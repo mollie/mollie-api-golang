@@ -1,0 +1,10 @@
+# GetClientEmbedded
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `Organization`                                                                                        | [*operations.GetClientEmbeddedOrganization](../../models/operations/getclientembeddedorganization.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `Onboarding`                                                                                          | [*operations.GetClientEmbeddedOnboarding](../../models/operations/getclientembeddedonboarding.md)     | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `Capabilities`                                                                                        | [*operations.GetClientCapabilities](../../models/operations/getclientcapabilities.md)                 | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |

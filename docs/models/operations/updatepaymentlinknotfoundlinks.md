@@ -1,0 +1,8 @@
+# UpdatePaymentLinkNotFoundLinks
+
+
+## Fields
+
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `Documentation`                                                                                                        | [operations.UpdatePaymentLinkNotFoundDocumentation](../../models/operations/updatepaymentlinknotfounddocumentation.md) | :heavy_check_mark:                                                                                                     | The URL to the generic Mollie API error handling guide.                                                                |

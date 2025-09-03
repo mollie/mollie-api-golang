@@ -1,0 +1,40 @@
+speakeasyVersion: 1.607.1
+sources:
+    Mollie API:
+        sourceNamespace: mollie-api
+        sourceRevisionDigest: sha256:4cfbe042fc927dbb0893477d08702434c88d1b773120843c8f59c3c828b81966
+        sourceBlobDigest: sha256:3b700f009979c7e9ae7ab4533ca786e61b6adb49640f212b1dcd4bce0d422fd7
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    mollie-api-golang:
+        source: Mollie API
+        sourceNamespace: mollie-api
+        sourceRevisionDigest: sha256:4cfbe042fc927dbb0893477d08702434c88d1b773120843c8f59c3c828b81966
+        sourceBlobDigest: sha256:3b700f009979c7e9ae7ab4533ca786e61b6adb49640f212b1dcd4bce0d422fd7
+        codeSamplesNamespace: mollie-api-go-code-samples
+        codeSamplesRevisionDigest: sha256:d0a51a951091539d3e5711c38c68203226edb6555145f97756d51328a29669c0
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Mollie API:
+            inputs:
+                - location: https://raw.githubusercontent.com/mollie/openapi-specs/main/specs.yaml
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api
+    targets:
+        client:
+            target: ""
+            source: ""
+        mollie-api-golang:
+            target: go
+            source: Mollie API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api-go-code-samples
+                labelOverride:
+                    fixedValue: Go (SDK)
+                blocking: false

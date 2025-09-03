@@ -1,0 +1,9 @@
+# ListBalanceTransactionsResponse
+
+
+## Fields
+
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                        | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                                | :heavy_check_mark:                                                                                                | N/A                                                                                                               |
+| `Object`                                                                                                          | [*operations.ListBalanceTransactionsResponseBody](../../models/operations/listbalancetransactionsresponsebody.md) | :heavy_minus_sign:                                                                                                | A list of balance transaction objects.                                                                            |

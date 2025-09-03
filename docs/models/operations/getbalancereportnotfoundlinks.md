@@ -1,0 +1,8 @@
+# GetBalanceReportNotFoundLinks
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `Documentation`                                                                                                      | [operations.GetBalanceReportNotFoundDocumentation](../../models/operations/getbalancereportnotfounddocumentation.md) | :heavy_check_mark:                                                                                                   | The URL to the generic Mollie API error handling guide.                                                              |

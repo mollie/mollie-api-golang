@@ -1,0 +1,9 @@
+# CreatePaymentLinkResponse
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                            | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                    | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `Object`                                                                                              | [*operations.CreatePaymentLinkResponseBody](../../models/operations/createpaymentlinkresponsebody.md) | :heavy_minus_sign:                                                                                    | The newly created payment link object.                                                                |

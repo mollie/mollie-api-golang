@@ -1,0 +1,8 @@
+# ListSettlementRefundsNotFoundLinks
+
+
+## Fields
+
+| Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `Documentation`                                                                                                                | [operations.ListSettlementRefundsNotFoundDocumentation](../../models/operations/listsettlementrefundsnotfounddocumentation.md) | :heavy_check_mark:                                                                                                             | The URL to the generic Mollie API error handling guide.                                                                        |

@@ -1,0 +1,8 @@
+# ListBalanceTransactionsNotFoundLinks
+
+
+## Fields
+
+| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `Documentation`                                                                                                                    | [operations.ListBalanceTransactionsNotFoundDocumentation](../../models/operations/listbalancetransactionsnotfounddocumentation.md) | :heavy_check_mark:                                                                                                                 | The URL to the generic Mollie API error handling guide.                                                                            |

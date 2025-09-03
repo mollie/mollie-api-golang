@@ -1,0 +1,8 @@
+# UpdateCustomerNotFoundLinks
+
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `Documentation`                                                                                                  | [operations.UpdateCustomerNotFoundDocumentation](../../models/operations/updatecustomernotfounddocumentation.md) | :heavy_check_mark:                                                                                               | The URL to the generic Mollie API error handling guide.                                                          |

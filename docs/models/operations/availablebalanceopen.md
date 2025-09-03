@@ -1,0 +1,9 @@
+# AvailableBalanceOpen
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `Amount`                                                                                               | [*operations.AvailableBalanceOpenAmount](../../models/operations/availablebalanceopenamount.md)        | :heavy_minus_sign:                                                                                     | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.      |
+| `Subtotals`                                                                                            | [][operations.AvailableBalanceOpenSubtotal2](../../models/operations/availablebalanceopensubtotal2.md) | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |

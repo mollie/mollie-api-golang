@@ -1,0 +1,12 @@
+# Corrections
+
+Only available on `transaction-categories` grouping.
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `Pending`                                                                                                 | [*operations.CorrectionsPending](../../models/operations/correctionspending.md)                           | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
+| `MovedToAvailable`                                                                                        | [*operations.CorrectionsMovedToAvailable](../../models/operations/correctionsmovedtoavailable.md)         | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
+| `ImmediatelyAvailable`                                                                                    | [*operations.CorrectionsImmediatelyAvailable](../../models/operations/correctionsimmediatelyavailable.md) | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |

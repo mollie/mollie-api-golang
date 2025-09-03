@@ -1,0 +1,13 @@
+# GetClientLinks
+
+An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Self`                                                                                          | [*operations.GetClientSelf](../../models/operations/getclientself.md)                           | :heavy_minus_sign:                                                                              | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.      |
+| `Organization`                                                                                  | [*operations.GetClientLinksOrganization](../../models/operations/getclientlinksorganization.md) | :heavy_minus_sign:                                                                              | The API resource URL of the client's organization.                                              |
+| `Onboarding`                                                                                    | [*operations.GetClientLinksOnboarding](../../models/operations/getclientlinksonboarding.md)     | :heavy_minus_sign:                                                                              | The API resource URL of the client's onboarding status.                                         |
+| `Documentation`                                                                                 | [*operations.GetClientDocumentation](../../models/operations/getclientdocumentation.md)         | :heavy_minus_sign:                                                                              | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.      |

@@ -1,0 +1,9 @@
+# SubmitOnboardingDataRequest
+
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `Organization`                                                                                              | [*operations.SubmitOnboardingDataOrganization](../../models/operations/submitonboardingdataorganization.md) | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
+| `Profile`                                                                                                   | [*operations.SubmitOnboardingDataProfile](../../models/operations/submitonboardingdataprofile.md)           | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |

@@ -1,0 +1,12 @@
+# GetBalanceReportChargebacks
+
+Only available on `transaction-categories` grouping.
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `Pending`                                                                                                 | [*operations.ChargebacksPending](../../models/operations/chargebackspending.md)                           | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
+| `MovedToAvailable`                                                                                        | [*operations.ChargebacksMovedToAvailable](../../models/operations/chargebacksmovedtoavailable.md)         | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
+| `ImmediatelyAvailable`                                                                                    | [*operations.ChargebacksImmediatelyAvailable](../../models/operations/chargebacksimmediatelyavailable.md) | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |

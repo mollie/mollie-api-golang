@@ -1,0 +1,391 @@
+# Profiles
+(*Profiles*)
+
+## Overview
+
+### Available Operations
+
+* [Create](#create) - Create profile
+* [List](#list) - List profiles
+* [Get](#get) - Get profile
+* [Update](#update) - Update profile
+* [Delete](#delete) - Delete profile
+* [GetCurrent](#getcurrent) - Get current profile
+
+## Create
+
+Create a profile to process payments on.
+
+Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+can use this endpoint to automate profile creation.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="create-profile" method="post" path="/profiles" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Create(ctx, operations.CreateProfileRequest{
+        Name: "My website name",
+        Website: "https://example.com",
+        Email: "test@mollie.com",
+        Phone: "+31208202070",
+        Description: client.String("My website description"),
+        CountriesOfActivity: []string{
+            "NL",
+            "GB",
+        },
+        BusinessCategory: client.String("OTHER_MERCHANDISE"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreateProfileRequest](../../models/operations/createprofilerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+
+### Response
+
+**[*operations.CreateProfileResponse](../../models/operations/createprofileresponse.md), error**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| apierrors.CreateProfileHalJSONError | 422                                 | application/hal+json                |
+| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+
+## List
+
+Retrieve a list of all of your profiles.
+
+The results are paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-profiles" method="get" path="/profiles" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.List(ctx, client.String("pfl_QkEhN94Ba"), client.Int64(50))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                                          | :heavy_check_mark:                                                                                                             | The context to use for the request.                                                                                            |                                                                                                                                |
+| `from`                                                                                                                         | **string*                                                                                                                      | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. | pfl_QkEhN94Ba                                                                                                                  |
+| `limit`                                                                                                                        | **int64*                                                                                                                       | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
+| `opts`                                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |                                                                                                                                |
+
+### Response
+
+**[*operations.ListProfilesResponse](../../models/operations/listprofilesresponse.md), error**
+
+### Errors
+
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| apierrors.ListProfilesHalJSONError | 400                                | application/hal+json               |
+| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+
+## Get
+
+Retrieve a single profile by its ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-profile" method="get" path="/profiles/{id}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Get(ctx, "pfl_QkEhN94Ba", client.Bool(false))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
+
+### Response
+
+**[*operations.GetProfileResponse](../../models/operations/getprofileresponse.md), error**
+
+### Errors
+
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| apierrors.GetProfileNotFoundHalJSONError | 404                                      | application/hal+json                     |
+| apierrors.GetProfileGoneHalJSONError     | 410                                      | application/hal+json                     |
+| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+
+## Update
+
+Update an existing profile.
+
+Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+Alternatively, you can use this endpoint to automate profile management.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{id}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Update(ctx, "pfl_QkEhN94Ba", operations.UpdateProfileRequestBody{
+        Name: client.String("My new website name"),
+        Website: client.String("https://example.com"),
+        Email: client.String("test@mollie.com"),
+        Phone: client.String("+31208202071"),
+        Description: client.String("My website description"),
+        CountriesOfActivity: []string{
+            "NL",
+            "GB",
+        },
+        BusinessCategory: client.String("OTHER_MERCHANDISE"),
+        Mode: operations.ModeRequestLive.ToPointer(),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |                                                                                            |
+| `id`                                                                                       | *string*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          | pfl_QkEhN94Ba                                                                              |
+| `requestBody`                                                                              | [operations.UpdateProfileRequestBody](../../models/operations/updateprofilerequestbody.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |                                                                                            |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |                                                                                            |
+
+### Response
+
+**[*operations.UpdateProfileResponse](../../models/operations/updateprofileresponse.md), error**
+
+### Errors
+
+| Error Type                                             | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| apierrors.UpdateProfileNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
+| apierrors.UpdateProfileGoneHalJSONError                | 410                                                    | application/hal+json                                   |
+| apierrors.UpdateProfileUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
+| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+
+## Delete
+
+Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="delete-profile" method="delete" path="/profiles/{id}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Delete(ctx, "pfl_QkEhN94Ba")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Any != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |                                                                   |
+| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | pfl_QkEhN94Ba                                                     |
+| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |                                                                   |
+
+### Response
+
+**[*operations.DeleteProfileResponse](../../models/operations/deleteprofileresponse.md), error**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| apierrors.DeleteProfileNotFoundHalJSONError | 404                                         | application/hal+json                        |
+| apierrors.DeleteProfileGoneHalJSONError     | 410                                         | application/hal+json                        |
+| apierrors.APIError                          | 4XX, 5XX                                    | \*/\*                                       |
+
+## GetCurrent
+
+Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+endpoint.
+
+For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+documentation.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-current-profile" method="get" path="/profiles/me" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.GetCurrent(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.GetCurrentProfileResponse](../../models/operations/getcurrentprofileresponse.md), error**
+
+### Errors
+
+| Error Type         | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| apierrors.APIError | 4XX, 5XX           | \*/\*              |

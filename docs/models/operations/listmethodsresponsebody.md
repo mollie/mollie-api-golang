@@ -1,0 +1,13 @@
+# ListMethodsResponseBody
+
+A list of payment method objects. For a complete reference of the
+payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Count`                                                                                 | *int64*                                                                                 | :heavy_check_mark:                                                                      | The number of payment method objects in this result set.<br/>Results are **not** paginated. | 5                                                                                       |
+| `Embedded`                                                                              | [operations.ListMethodsEmbedded](../../models/operations/listmethodsembedded.md)        | :heavy_check_mark:                                                                      | N/A                                                                                     |                                                                                         |
+| `Links`                                                                                 | [operations.ListMethodsLinks](../../models/operations/listmethodslinks.md)              | :heavy_check_mark:                                                                      | N/A                                                                                     |                                                                                         |

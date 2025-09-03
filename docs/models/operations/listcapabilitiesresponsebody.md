@@ -1,0 +1,12 @@
+# ListCapabilitiesResponseBody
+
+A list of capabilities.
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Count`                                                                                     | **int64*                                                                                    | :heavy_minus_sign:                                                                          | The number of items in this result set.                                                     | 2                                                                                           |
+| `Embedded`                                                                                  | [*operations.ListCapabilitiesEmbedded](../../models/operations/listcapabilitiesembedded.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
+| `Links`                                                                                     | [*operations.ListCapabilitiesLinks](../../models/operations/listcapabilitieslinks.md)       | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |

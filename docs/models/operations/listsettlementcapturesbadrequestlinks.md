@@ -1,0 +1,8 @@
+# ListSettlementCapturesBadRequestLinks
+
+
+## Fields
+
+| Field                                                                                                                                | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `Documentation`                                                                                                                      | [operations.ListSettlementCapturesBadRequestDocumentation](../../models/operations/listsettlementcapturesbadrequestdocumentation.md) | :heavy_check_mark:                                                                                                                   | The URL to the generic Mollie API error handling guide.                                                                              |

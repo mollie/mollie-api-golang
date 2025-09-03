@@ -1,0 +1,22 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Mollie API:
+        inputs:
+            - location: https://raw.githubusercontent.com/mollie/openapi-specs/main/specs.yaml
+        output: .speakeasy/out.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api
+targets:
+    client:
+        target: ""
+        source: ""
+    mollie-api-golang:
+        target: go
+        source: Mollie API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api-go-code-samples
+            labelOverride:
+                fixedValue: Go (SDK)
+            blocking: false

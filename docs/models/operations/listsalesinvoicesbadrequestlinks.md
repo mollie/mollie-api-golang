@@ -1,0 +1,8 @@
+# ListSalesInvoicesBadRequestLinks
+
+
+## Fields
+
+| Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `Documentation`                                                                                                            | [operations.ListSalesInvoicesBadRequestDocumentation](../../models/operations/listsalesinvoicesbadrequestdocumentation.md) | :heavy_check_mark:                                                                                                         | The URL to the generic Mollie API error handling guide.                                                                    |

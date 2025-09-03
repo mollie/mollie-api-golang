@@ -1,0 +1,10 @@
+# ClientEmbedded
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Organization`                                                                            | [*operations.ListClientsOrganization](../../models/operations/listclientsorganization.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Onboarding`                                                                              | [*operations.ListClientsOnboarding](../../models/operations/listclientsonboarding.md)     | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Capabilities`                                                                            | [*operations.ListClientsCapabilities](../../models/operations/listclientscapabilities.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
