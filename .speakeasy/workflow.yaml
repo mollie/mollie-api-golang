@@ -8,9 +8,6 @@ sources:
         registry:
             location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api
 targets:
-    client:
-        target: ""
-        source: ""
     mollie-api-golang:
         target: go
         source: Mollie API
