@@ -1,16 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 6667c74e5d8c8c01edce544416993c26
+  docChecksum: 30e66b28c2936672fec3dc4ec5e841f3
   docVersion: 1.0.0
-  speakeasyVersion: 1.607.1
-  generationVersion: 2.690.1
-  releaseVersion: 0.0.1
-  configChecksum: 1553acd3087d46c290cea5aa935b16b9
+  speakeasyVersion: 1.609.0
+  generationVersion: 2.692.0
+  releaseVersion: 0.1.0
+  configChecksum: dbf5fd4011f023a38c05d2b72b26d370
+  repoURL: https://github.com/mollie/mollie-api-golang.git
+  installationURL: https://github.com/mollie/mollie-api-golang
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.9.5
+    core: 3.9.6
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -24,11 +26,10 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    openEnums: 0.1.0
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.85.13
+    unions: 2.85.14
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -436,7 +437,6 @@ generatedFiles:
   - docs/models/operations/cancelpaymentcustomer.md
   - docs/models/operations/cancelpaymentdashboard.md
   - docs/models/operations/cancelpaymentdestination.md
-  - docs/models/operations/cancelpaymentdestinationtype.md
   - docs/models/operations/cancelpaymentdetails.md
   - docs/models/operations/cancelpaymentdiscountamount.md
   - docs/models/operations/cancelpaymentdocumentation.md
@@ -473,6 +473,7 @@ generatedFiles:
   - docs/models/operations/cancelpaymentroutinglinks.md
   - docs/models/operations/cancelpaymentroutingmode.md
   - docs/models/operations/cancelpaymentroutingself.md
+  - docs/models/operations/cancelpaymentroutingtype.md
   - docs/models/operations/cancelpaymentself.md
   - docs/models/operations/cancelpaymentsellerprotection.md
   - docs/models/operations/cancelpaymentsequencetype.md
@@ -812,7 +813,6 @@ generatedFiles:
   - docs/models/operations/createcustomerpaymentdashboard.md
   - docs/models/operations/createcustomerpaymentdestinationrequest.md
   - docs/models/operations/createcustomerpaymentdestinationresponse.md
-  - docs/models/operations/createcustomerpaymentdestinationtype.md
   - docs/models/operations/createcustomerpaymentdetails.md
   - docs/models/operations/createcustomerpaymentdiscountamountrequest.md
   - docs/models/operations/createcustomerpaymentdiscountamountresponse.md
@@ -859,6 +859,8 @@ generatedFiles:
   - docs/models/operations/createcustomerpaymentroutingrequest.md
   - docs/models/operations/createcustomerpaymentroutingresponse.md
   - docs/models/operations/createcustomerpaymentroutingselfresponse.md
+  - docs/models/operations/createcustomerpaymentroutingtyperequest.md
+  - docs/models/operations/createcustomerpaymentroutingtyperesponse.md
   - docs/models/operations/createcustomerpayments.md
   - docs/models/operations/createcustomerpaymentselfrequest.md
   - docs/models/operations/createcustomerpaymentselfresponse.md
@@ -877,7 +879,6 @@ generatedFiles:
   - docs/models/operations/createcustomerpaymentterminal.md
   - docs/models/operations/createcustomerpaymenttotalamountrequest.md
   - docs/models/operations/createcustomerpaymenttotalamountresponse.md
-  - docs/models/operations/createcustomerpaymenttypeorganization.md
   - docs/models/operations/createcustomerpaymentunitpricerequest.md
   - docs/models/operations/createcustomerpaymentunitpriceresponse.md
   - docs/models/operations/createcustomerpaymentunprocessableentitydocumentation.md
@@ -938,7 +939,6 @@ generatedFiles:
   - docs/models/operations/createpaymentdashboard.md
   - docs/models/operations/createpaymentdestinationrequest.md
   - docs/models/operations/createpaymentdestinationresponse.md
-  - docs/models/operations/createpaymentdestinationtype.md
   - docs/models/operations/createpaymentdetails.md
   - docs/models/operations/createpaymentdiscountamountrequest.md
   - docs/models/operations/createpaymentdiscountamountresponse.md
@@ -1025,6 +1025,8 @@ generatedFiles:
   - docs/models/operations/createpaymentroutingrequest.md
   - docs/models/operations/createpaymentroutingresponse.md
   - docs/models/operations/createpaymentroutingselfresponse.md
+  - docs/models/operations/createpaymentroutingtyperequest.md
+  - docs/models/operations/createpaymentroutingtyperesponse.md
   - docs/models/operations/createpaymentselfrequest.md
   - docs/models/operations/createpaymentselfresponse.md
   - docs/models/operations/createpaymentsellerprotection.md
@@ -1042,7 +1044,6 @@ generatedFiles:
   - docs/models/operations/createpaymentterminal.md
   - docs/models/operations/createpaymenttotalamountrequest.md
   - docs/models/operations/createpaymenttotalamountresponse.md
-  - docs/models/operations/createpaymenttypeorganization.md
   - docs/models/operations/createpaymentunitpricerequest.md
   - docs/models/operations/createpaymentunitpriceresponse.md
   - docs/models/operations/createpaymentunprocessableentitydocumentation.md
@@ -1072,7 +1073,6 @@ generatedFiles:
   - docs/models/operations/createrefundamountresponse.md
   - docs/models/operations/createrefunddocumentation.md
   - docs/models/operations/createrefundexternalreferenceresponse.md
-  - docs/models/operations/createrefundexternalreferencetype.md
   - docs/models/operations/createrefundlinks.md
   - docs/models/operations/createrefundmetadatarequest.md
   - docs/models/operations/createrefundmetadataresponse.md
@@ -1090,7 +1090,9 @@ generatedFiles:
   - docs/models/operations/createrefundsettlement.md
   - docs/models/operations/createrefundsettlementamount.md
   - docs/models/operations/createrefundsourceoutput.md
+  - docs/models/operations/createrefundsourcerequest.md
   - docs/models/operations/createrefundstatus.md
+  - docs/models/operations/createrefundtyperesponse.md
   - docs/models/operations/createrefundunprocessableentitydocumentation.md
   - docs/models/operations/createrefundunprocessableentitylinks.md
   - docs/models/operations/createsalesinvoiceamountdue.md
@@ -1168,7 +1170,7 @@ generatedFiles:
   - docs/models/operations/createsubscriptionself.md
   - docs/models/operations/createsubscriptionstatus.md
   - docs/models/operations/createwebhookdocumentation.md
-  - docs/models/operations/createwebhookeventtypes.md
+  - docs/models/operations/createwebhookeventtypewebhookeventtypes.md
   - docs/models/operations/createwebhooklinks.md
   - docs/models/operations/createwebhookmode.md
   - docs/models/operations/createwebhookrequest.md
@@ -1177,6 +1179,7 @@ generatedFiles:
   - docs/models/operations/createwebhookstatus.md
   - docs/models/operations/createwebhookunprocessableentitydocumentation.md
   - docs/models/operations/createwebhookunprocessableentitylinks.md
+  - docs/models/operations/createwebhookwebhookeventtypesrequest.md
   - docs/models/operations/currencies.md
   - docs/models/operations/customerdocumentation.md
   - docs/models/operations/customerlinks.md
@@ -1222,6 +1225,7 @@ generatedFiles:
   - docs/models/operations/entityself2.md
   - docs/models/operations/event.md
   - docs/models/operations/eventlinks.md
+  - docs/models/operations/eventtypeswebhookeventtypes.md
   - docs/models/operations/externalreferencerequest.md
   - docs/models/operations/failedpayment.md
   - docs/models/operations/failedpaymentfee.md
@@ -1535,7 +1539,6 @@ generatedFiles:
   - docs/models/operations/getpaymentcustomer.md
   - docs/models/operations/getpaymentdashboard.md
   - docs/models/operations/getpaymentdestination.md
-  - docs/models/operations/getpaymentdestinationtype.md
   - docs/models/operations/getpaymentdetails.md
   - docs/models/operations/getpaymentdiscountamount.md
   - docs/models/operations/getpaymentdocumentation.md
@@ -1584,7 +1587,6 @@ generatedFiles:
   - docs/models/operations/getpaymentlinkpaymentscustomer.md
   - docs/models/operations/getpaymentlinkpaymentsdashboard.md
   - docs/models/operations/getpaymentlinkpaymentsdestination.md
-  - docs/models/operations/getpaymentlinkpaymentsdestinationtype.md
   - docs/models/operations/getpaymentlinkpaymentsdetails.md
   - docs/models/operations/getpaymentlinkpaymentsdiscountamount.md
   - docs/models/operations/getpaymentlinkpaymentsdocumentation.md
@@ -1625,6 +1627,7 @@ generatedFiles:
   - docs/models/operations/getpaymentlinkpaymentsroutingmode.md
   - docs/models/operations/getpaymentlinkpaymentsroutingpayment.md
   - docs/models/operations/getpaymentlinkpaymentsroutingself.md
+  - docs/models/operations/getpaymentlinkpaymentsroutingtype.md
   - docs/models/operations/getpaymentlinkpaymentsself.md
   - docs/models/operations/getpaymentlinkpaymentssellerprotection.md
   - docs/models/operations/getpaymentlinkpaymentssequencetype.md
@@ -1678,6 +1681,7 @@ generatedFiles:
   - docs/models/operations/getpaymentroutinglinks.md
   - docs/models/operations/getpaymentroutingmode.md
   - docs/models/operations/getpaymentroutingself.md
+  - docs/models/operations/getpaymentroutingtype.md
   - docs/models/operations/getpaymentself.md
   - docs/models/operations/getpaymentsellerprotection.md
   - docs/models/operations/getpaymentsequencetype.md
@@ -1833,6 +1837,7 @@ generatedFiles:
   - docs/models/operations/getterminalresponsebody.md
   - docs/models/operations/getterminalself.md
   - docs/models/operations/getterminalstatus.md
+  - docs/models/operations/getwebhookdocumentation.md
   - docs/models/operations/getwebhookeventamount.md
   - docs/models/operations/getwebhookeventapplicationfee.md
   - docs/models/operations/getwebhookeventapplicationfeeamount.md
@@ -1870,6 +1875,8 @@ generatedFiles:
   - docs/models/operations/getwebhookeventtype.md
   - docs/models/operations/getwebhookeventunitprice.md
   - docs/models/operations/getwebhookeventvatamount.md
+  - docs/models/operations/getwebhookeventwebhookeventtypes.md
+  - docs/models/operations/getwebhooklinks.md
   - docs/models/operations/getwebhookmode.md
   - docs/models/operations/getwebhooknotfounddocumentation.md
   - docs/models/operations/getwebhooknotfoundlinks.md
@@ -1879,6 +1886,7 @@ generatedFiles:
   - docs/models/operations/getwebhookstatus.md
   - docs/models/operations/getwebhookunprocessableentitydocumentation.md
   - docs/models/operations/getwebhookunprocessableentitylinks.md
+  - docs/models/operations/getwebhookwebhookeventtypes.md
   - docs/models/operations/grossamount.md
   - docs/models/operations/groupingresponse.md
   - docs/models/operations/includewallets.md
@@ -2147,7 +2155,6 @@ generatedFiles:
   - docs/models/operations/listcustomerpaymentscustomer.md
   - docs/models/operations/listcustomerpaymentsdashboard.md
   - docs/models/operations/listcustomerpaymentsdestination.md
-  - docs/models/operations/listcustomerpaymentsdestinationtype.md
   - docs/models/operations/listcustomerpaymentsdetails.md
   - docs/models/operations/listcustomerpaymentsdiscountamount.md
   - docs/models/operations/listcustomerpaymentsdocumentation.md
@@ -2188,6 +2195,7 @@ generatedFiles:
   - docs/models/operations/listcustomerpaymentsroutingmode.md
   - docs/models/operations/listcustomerpaymentsroutingpayment.md
   - docs/models/operations/listcustomerpaymentsroutingself.md
+  - docs/models/operations/listcustomerpaymentsroutingtype.md
   - docs/models/operations/listcustomerpaymentsself.md
   - docs/models/operations/listcustomerpaymentssellerprotection.md
   - docs/models/operations/listcustomerpaymentssequencetype.md
@@ -2339,7 +2347,6 @@ generatedFiles:
   - docs/models/operations/listpaymentscustomer.md
   - docs/models/operations/listpaymentsdashboard.md
   - docs/models/operations/listpaymentsdestination.md
-  - docs/models/operations/listpaymentsdestinationtype.md
   - docs/models/operations/listpaymentsdetails.md
   - docs/models/operations/listpaymentsdiscountamount.md
   - docs/models/operations/listpaymentsdocumentation.md
@@ -2380,6 +2387,7 @@ generatedFiles:
   - docs/models/operations/listpaymentsroutingmode.md
   - docs/models/operations/listpaymentsroutingpayment.md
   - docs/models/operations/listpaymentsroutingself.md
+  - docs/models/operations/listpaymentsroutingtype.md
   - docs/models/operations/listpaymentsself.md
   - docs/models/operations/listpaymentssellerprotection.md
   - docs/models/operations/listpaymentssequencetype.md
@@ -2565,7 +2573,6 @@ generatedFiles:
   - docs/models/operations/listsettlementpaymentscustomer.md
   - docs/models/operations/listsettlementpaymentsdashboard.md
   - docs/models/operations/listsettlementpaymentsdestination.md
-  - docs/models/operations/listsettlementpaymentsdestinationtype.md
   - docs/models/operations/listsettlementpaymentsdetails.md
   - docs/models/operations/listsettlementpaymentsdiscountamount.md
   - docs/models/operations/listsettlementpaymentsdocumentation.md
@@ -2606,6 +2613,7 @@ generatedFiles:
   - docs/models/operations/listsettlementpaymentsroutingmode.md
   - docs/models/operations/listsettlementpaymentsroutingpayment.md
   - docs/models/operations/listsettlementpaymentsroutingself.md
+  - docs/models/operations/listsettlementpaymentsroutingtype.md
   - docs/models/operations/listsettlementpaymentsself.md
   - docs/models/operations/listsettlementpaymentssellerprotection.md
   - docs/models/operations/listsettlementpaymentssequencetype.md
@@ -2698,7 +2706,6 @@ generatedFiles:
   - docs/models/operations/listsubscriptionpaymentscustomer.md
   - docs/models/operations/listsubscriptionpaymentsdashboard.md
   - docs/models/operations/listsubscriptionpaymentsdestination.md
-  - docs/models/operations/listsubscriptionpaymentsdestinationtype.md
   - docs/models/operations/listsubscriptionpaymentsdetails.md
   - docs/models/operations/listsubscriptionpaymentsdiscountamount.md
   - docs/models/operations/listsubscriptionpaymentsdocumentation.md
@@ -2739,6 +2746,7 @@ generatedFiles:
   - docs/models/operations/listsubscriptionpaymentsroutingmode.md
   - docs/models/operations/listsubscriptionpaymentsroutingpayment.md
   - docs/models/operations/listsubscriptionpaymentsroutingself.md
+  - docs/models/operations/listsubscriptionpaymentsroutingtype.md
   - docs/models/operations/listsubscriptionpaymentsself.md
   - docs/models/operations/listsubscriptionpaymentssellerprotection.md
   - docs/models/operations/listsubscriptionpaymentssequencetype.md
@@ -2804,7 +2812,6 @@ generatedFiles:
   - docs/models/operations/listwebhooksbadrequestlinks.md
   - docs/models/operations/listwebhooksdocumentation.md
   - docs/models/operations/listwebhooksembedded.md
-  - docs/models/operations/listwebhookseventtypes.md
   - docs/models/operations/listwebhookslinks.md
   - docs/models/operations/listwebhooksmode.md
   - docs/models/operations/listwebhooksnext.md
@@ -2886,7 +2893,6 @@ generatedFiles:
   - docs/models/operations/paymentcreaterouteamountresponse.md
   - docs/models/operations/paymentcreateroutedestinationrequest.md
   - docs/models/operations/paymentcreateroutedestinationresponse.md
-  - docs/models/operations/paymentcreateroutedestinationtype.md
   - docs/models/operations/paymentcreateroutedocumentation.md
   - docs/models/operations/paymentcreateroutelinks.md
   - docs/models/operations/paymentcreateroutenotfounddocumentation.md
@@ -2896,7 +2902,8 @@ generatedFiles:
   - docs/models/operations/paymentcreaterouteresponse.md
   - docs/models/operations/paymentcreaterouteresponsebody.md
   - docs/models/operations/paymentcreaterouteself.md
-  - docs/models/operations/paymentcreateroutetypeorganization.md
+  - docs/models/operations/paymentcreateroutetyperequest.md
+  - docs/models/operations/paymentcreateroutetyperesponse.md
   - docs/models/operations/paymentfee.md
   - docs/models/operations/paymentlinklinks.md
   - docs/models/operations/paymentlinkself.md
@@ -3148,7 +3155,6 @@ generatedFiles:
   - docs/models/operations/settlementlinks.md
   - docs/models/operations/settlementself.md
   - docs/models/operations/signuplink.md
-  - docs/models/operations/sourceorganization.md
   - docs/models/operations/splitpayment.md
   - docs/models/operations/submitonboardingdataaddress.md
   - docs/models/operations/submitonboardingdataorganization.md
@@ -3279,7 +3285,7 @@ generatedFiles:
   - docs/models/operations/transferspendingsubtotalprepaymentparttype2.md
   - docs/models/operations/transferspendingsubtotaltransactiontype1.md
   - docs/models/operations/transferspendingsubtotaltransactiontype2.md
-  - docs/models/operations/typeacquirerreference.md
+  - docs/models/operations/typeacquirerreferencerequest.md
   - docs/models/operations/unauthorizeddirectdebit.md
   - docs/models/operations/updatecustomerdashboard.md
   - docs/models/operations/updatecustomerdocumentation.md
@@ -3324,7 +3330,6 @@ generatedFiles:
   - docs/models/operations/updatepaymentcustomer.md
   - docs/models/operations/updatepaymentdashboard.md
   - docs/models/operations/updatepaymentdestination.md
-  - docs/models/operations/updatepaymentdestinationtype.md
   - docs/models/operations/updatepaymentdetails.md
   - docs/models/operations/updatepaymentdiscountamount.md
   - docs/models/operations/updatepaymentdocumentation.md
@@ -3400,6 +3405,7 @@ generatedFiles:
   - docs/models/operations/updatepaymentroutinglinks.md
   - docs/models/operations/updatepaymentroutingmode.md
   - docs/models/operations/updatepaymentroutingself.md
+  - docs/models/operations/updatepaymentroutingtype.md
   - docs/models/operations/updatepaymentself.md
   - docs/models/operations/updatepaymentsellerprotection.md
   - docs/models/operations/updatepaymentsequencetype.md
@@ -3511,7 +3517,9 @@ generatedFiles:
   - docs/models/operations/updatesubscriptionresponsebody.md
   - docs/models/operations/updatesubscriptionself.md
   - docs/models/operations/updatesubscriptionstatus.md
-  - docs/models/operations/updatewebhookeventtypes.md
+  - docs/models/operations/updatewebhookdocumentation.md
+  - docs/models/operations/updatewebhookeventtypewebhookeventtypes.md
+  - docs/models/operations/updatewebhooklinks.md
   - docs/models/operations/updatewebhookmode.md
   - docs/models/operations/updatewebhooknotfounddocumentation.md
   - docs/models/operations/updatewebhooknotfoundlinks.md
@@ -3522,11 +3530,15 @@ generatedFiles:
   - docs/models/operations/updatewebhookstatus.md
   - docs/models/operations/updatewebhookunprocessableentitydocumentation.md
   - docs/models/operations/updatewebhookunprocessableentitylinks.md
+  - docs/models/operations/updatewebhookwebhookeventtypesrequest.md
   - docs/models/operations/urlobj.md
   - docs/models/operations/useragenttoken.md
   - docs/models/operations/vatmoderequest.md
   - docs/models/operations/vatschemerequest.md
   - docs/models/operations/webhook.md
+  - docs/models/operations/webhookdocumentation.md
+  - docs/models/operations/webhooklinks.md
+  - docs/models/operations/webhookwebhookeventtypes.md
   - docs/sdks/balances/README.md
   - docs/sdks/capabilities/README.md
   - docs/sdks/captures/README.md
@@ -4392,7 +4404,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-01-01T12:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.paid, sales-invoice.canceled"], "status": "enabled", "mode": "live", "webhookSecret": "secret", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-01-01T12:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live", "webhookSecret": "secret", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-webhooks:
@@ -4406,7 +4418,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "payment.failed"], "status": "enabled", "mode": "live"}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live"}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
+          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
     speakeasy-default-list-webhooks:
       parameters:
         query:
@@ -4417,7 +4429,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create", "profile.blocked"], "status": "enabled", "mode": "live"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["balance-transaction.created", "sales-invoice.issued"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-webhook:
@@ -4429,7 +4441,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/create-webhook", "type": "text/html"}}}
     speakeasy-default-update-webhook:
       parameters:
         path:
@@ -4438,7 +4450,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create", "profile.blocked"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.canceled", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
@@ -4452,7 +4464,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid", "sales-invoice.paid"], "status": "enabled", "mode": "test"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid", "sales-invoice.paid"], "status": "enabled", "mode": "test", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}
     get-webhook-200-1:
       parameters:
         path:
@@ -4461,7 +4473,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "deleted", "mode": "test"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "deleted", "mode": "test", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}
     speakeasy-default-get-webhook:
       parameters:
         path:
@@ -4470,7 +4482,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create", "profile.blocked"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.issued", "balance-transaction.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
@@ -5677,7 +5689,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "customer", "id": "cst_5B8cwPMGnU", "mode": "live", "name": "John Doe", "email": "example@email.com", "locale": "en_US", "metadata": ["<value 1>", "<value 2>", "<value 3>"], "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "mandates": null, "subscriptions": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "events": [{"resource": "event", "type": 200, "createdAt": "2024-03-20T09:13:37.0Z", "message": "Customer created", "_links": {"url": {"href": "https://...", "type": "application/hal+json"}}}]}
+          application/hal+json: {"resource": "customer", "id": "cst_5B8cwPMGnU", "mode": "live", "name": "John Doe", "email": "example@email.com", "locale": "en_US", "metadata": {"0": "<value 1>", "1": "<value 2>", "2": "<value 3>"}, "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "mandates": null, "subscriptions": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "events": [{"resource": "event", "type": 200, "createdAt": "2024-03-20T09:13:37.0Z", "message": "Customer created", "_links": {"url": {"href": "https://...", "type": "application/hal+json"}}}]}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-customer:
@@ -6012,7 +6024,7 @@ examples:
         application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": ["<value 1>"], "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"0": "<value 1>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-subscriptions:
@@ -6064,7 +6076,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": [], "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-subscription:
@@ -6097,7 +6109,7 @@ examples:
         application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "1 months", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": [], "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   cancel-subscription:
@@ -6120,7 +6132,7 @@ examples:
         application/json: {"testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": [], "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-all-subscriptions:
@@ -6271,3 +6283,4 @@ examples:
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes Detected:\n* `Client.Webhooks.Create()`: \n  *  `request.Request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `Client.Webhooks.List()`: \n  *  `request.Request.EventTypes` **Changed**\n  *  `response` **Changed** **Breaking** :warning:\n* `Client.Webhooks.Update()`: \n  *  `request.RequestBody` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `Client.Webhooks.Get()`:  `response` **Changed** **Breaking** :warning:\n* `Client.Webhook-Events.Get()`:  `response` **Changed** **Breaking** :warning:\n"

@@ -111,6 +111,21 @@ const (
 func (e GetCustomerMode) ToPointer() *GetCustomerMode {
 	return &e
 }
+func (e *GetCustomerMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetCustomerMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerMode: %v", v)
+	}
+}
 
 // GetCustomerLocale - Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
 // absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
@@ -144,6 +159,61 @@ const (
 func (e GetCustomerLocale) ToPointer() *GetCustomerLocale {
 	return &e
 }
+func (e *GetCustomerLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = GetCustomerLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerLocale: %v", v)
+	}
+}
 
 type GetCustomerMetadataType string
 
@@ -156,9 +226,9 @@ const (
 // GetCustomerMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type GetCustomerMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type GetCustomerMetadataType
 }

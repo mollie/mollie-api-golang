@@ -984,9 +984,9 @@ const (
 // CreatePaymentMetadataRequest - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreatePaymentMetadataRequest struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreatePaymentMetadataRequestType
 }
@@ -1171,42 +1171,42 @@ func (o *CreatePaymentRoutingAmountRequest) GetValue() string {
 	return o.Value
 }
 
-// CreatePaymentTypeOrganization - The type of destination. Currently only the destination type `organization` is supported.
-type CreatePaymentTypeOrganization string
+// CreatePaymentRoutingTypeRequest - The type of destination. Currently only the destination type `organization` is supported.
+type CreatePaymentRoutingTypeRequest string
 
 const (
-	CreatePaymentTypeOrganizationOrganization CreatePaymentTypeOrganization = "organization"
+	CreatePaymentRoutingTypeRequestOrganization CreatePaymentRoutingTypeRequest = "organization"
 )
 
-func (e CreatePaymentTypeOrganization) ToPointer() *CreatePaymentTypeOrganization {
+func (e CreatePaymentRoutingTypeRequest) ToPointer() *CreatePaymentRoutingTypeRequest {
 	return &e
 }
-func (e *CreatePaymentTypeOrganization) UnmarshalJSON(data []byte) error {
+func (e *CreatePaymentRoutingTypeRequest) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "organization":
-		*e = CreatePaymentTypeOrganization(v)
+		*e = CreatePaymentRoutingTypeRequest(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreatePaymentTypeOrganization: %v", v)
+		return fmt.Errorf("invalid value for CreatePaymentRoutingTypeRequest: %v", v)
 	}
 }
 
 // CreatePaymentDestinationRequest - The destination of this portion of the payment.
 type CreatePaymentDestinationRequest struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type CreatePaymentTypeOrganization `json:"type"`
+	Type CreatePaymentRoutingTypeRequest `json:"type"`
 	// Required for destination type `organization`. The ID of the connected organization the funds should be
 	// routed to.
 	OrganizationID string `json:"organizationId"`
 }
 
-func (o *CreatePaymentDestinationRequest) GetType() CreatePaymentTypeOrganization {
+func (o *CreatePaymentDestinationRequest) GetType() CreatePaymentRoutingTypeRequest {
 	if o == nil {
-		return CreatePaymentTypeOrganization("")
+		return CreatePaymentRoutingTypeRequest("")
 	}
 	return o.Type
 }
@@ -1982,6 +1982,21 @@ const (
 func (e CreatePaymentMode) ToPointer() *CreatePaymentMode {
 	return &e
 }
+func (e *CreatePaymentMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreatePaymentMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentMode: %v", v)
+	}
+}
 
 // CreatePaymentAmountResponse - The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
 //
@@ -2150,6 +2165,33 @@ const (
 func (e CreatePaymentLineTypeResponse) ToPointer() *CreatePaymentLineTypeResponse {
 	return &e
 }
+func (e *CreatePaymentLineTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "physical":
+		fallthrough
+	case "digital":
+		fallthrough
+	case "shipping_fee":
+		fallthrough
+	case "discount":
+		fallthrough
+	case "store_credit":
+		fallthrough
+	case "gift_card":
+		fallthrough
+	case "surcharge":
+		fallthrough
+	case "tip":
+		*e = CreatePaymentLineTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentLineTypeResponse: %v", v)
+	}
+}
 
 // CreatePaymentUnitPriceResponse - The price of a single item including VAT.
 //
@@ -2267,6 +2309,25 @@ const (
 
 func (e CreatePaymentCategoryResponse) ToPointer() *CreatePaymentCategoryResponse {
 	return &e
+}
+func (e *CreatePaymentCategoryResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "meal":
+		fallthrough
+	case "eco":
+		fallthrough
+	case "gift":
+		fallthrough
+	case "sport_culture":
+		*e = CreatePaymentCategoryResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCategoryResponse: %v", v)
+	}
 }
 
 // CreatePaymentRecurringAmountResponse - Total amount and currency of the recurring item.
@@ -2804,6 +2865,61 @@ const (
 func (e CreatePaymentLocaleResponse) ToPointer() *CreatePaymentLocaleResponse {
 	return &e
 }
+func (e *CreatePaymentLocaleResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = CreatePaymentLocaleResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentLocaleResponse: %v", v)
+	}
+}
 
 // CreatePaymentMethodResponse - The payment method used for this transaction. If a specific method was selected during payment initialization,
 // this field reflects that choice.
@@ -2851,6 +2967,89 @@ const (
 func (e CreatePaymentMethodResponse) ToPointer() *CreatePaymentMethodResponse {
 	return &e
 }
+func (e *CreatePaymentMethodResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CreatePaymentMethodResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentMethodResponse: %v", v)
+	}
+}
 
 type CreatePaymentMetadataResponseType string
 
@@ -2863,9 +3062,9 @@ const (
 // CreatePaymentMetadataResponse - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreatePaymentMetadataResponse struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreatePaymentMetadataResponseType
 }
@@ -2953,6 +3152,21 @@ const (
 func (e CreatePaymentCaptureModeResponse) ToPointer() *CreatePaymentCaptureModeResponse {
 	return &e
 }
+func (e *CreatePaymentCaptureModeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "automatic":
+		fallthrough
+	case "manual":
+		*e = CreatePaymentCaptureModeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCaptureModeResponse: %v", v)
+	}
+}
 
 // CreatePaymentApplicationFeeAmountResponse - The fee that you wish to charge.
 //
@@ -3024,6 +3238,21 @@ const (
 func (e CreatePaymentRoutingMode) ToPointer() *CreatePaymentRoutingMode {
 	return &e
 }
+func (e *CreatePaymentRoutingMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreatePaymentRoutingMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentRoutingMode: %v", v)
+	}
+}
 
 // CreatePaymentRoutingAmountResponse - The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
 type CreatePaymentRoutingAmountResponse struct {
@@ -3047,29 +3276,42 @@ func (o *CreatePaymentRoutingAmountResponse) GetValue() string {
 	return o.Value
 }
 
-// CreatePaymentDestinationType - The type of destination. Currently only the destination type `organization` is supported.
-type CreatePaymentDestinationType string
+// CreatePaymentRoutingTypeResponse - The type of destination. Currently only the destination type `organization` is supported.
+type CreatePaymentRoutingTypeResponse string
 
 const (
-	CreatePaymentDestinationTypeOrganization CreatePaymentDestinationType = "organization"
+	CreatePaymentRoutingTypeResponseOrganization CreatePaymentRoutingTypeResponse = "organization"
 )
 
-func (e CreatePaymentDestinationType) ToPointer() *CreatePaymentDestinationType {
+func (e CreatePaymentRoutingTypeResponse) ToPointer() *CreatePaymentRoutingTypeResponse {
 	return &e
+}
+func (e *CreatePaymentRoutingTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "organization":
+		*e = CreatePaymentRoutingTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentRoutingTypeResponse: %v", v)
+	}
 }
 
 // CreatePaymentDestinationResponse - The destination of this portion of the payment.
 type CreatePaymentDestinationResponse struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type CreatePaymentDestinationType `json:"type"`
+	Type CreatePaymentRoutingTypeResponse `json:"type"`
 	// Required for destination type `organization`. The ID of the connected organization the funds should be
 	// routed to.
 	OrganizationID string `json:"organizationId"`
 }
 
-func (o *CreatePaymentDestinationResponse) GetType() CreatePaymentDestinationType {
+func (o *CreatePaymentDestinationResponse) GetType() CreatePaymentRoutingTypeResponse {
 	if o == nil {
-		return CreatePaymentDestinationType("")
+		return CreatePaymentRoutingTypeResponse("")
 	}
 	return o.Type
 }
@@ -3252,6 +3494,23 @@ const (
 func (e CreatePaymentSequenceTypeResponse) ToPointer() *CreatePaymentSequenceTypeResponse {
 	return &e
 }
+func (e *CreatePaymentSequenceTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oneoff":
+		fallthrough
+	case "first":
+		fallthrough
+	case "recurring":
+		*e = CreatePaymentSequenceTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentSequenceTypeResponse: %v", v)
+	}
+}
 
 // CreatePaymentStatusEnum - The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
 // statuses occur at what point.
@@ -3269,6 +3528,31 @@ const (
 
 func (e CreatePaymentStatusEnum) ToPointer() *CreatePaymentStatusEnum {
 	return &e
+}
+func (e *CreatePaymentStatusEnum) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "open":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "authorized":
+		fallthrough
+	case "paid":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "expired":
+		fallthrough
+	case "failed":
+		*e = CreatePaymentStatusEnum(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentStatusEnum: %v", v)
+	}
 }
 
 // CreatePaymentCode - A machine-readable code that indicates the reason for the payment's status.
@@ -3396,6 +3680,249 @@ const (
 func (e CreatePaymentCode) ToPointer() *CreatePaymentCode {
 	return &e
 }
+func (e *CreatePaymentCode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "approved_or_completed_successfully":
+		fallthrough
+	case "refer_to_card_issuer":
+		fallthrough
+	case "invalid_merchant":
+		fallthrough
+	case "capture_card":
+		fallthrough
+	case "do_not_honor":
+		fallthrough
+	case "error":
+		fallthrough
+	case "partial_approval":
+		fallthrough
+	case "invalid_transaction":
+		fallthrough
+	case "invalid_amount":
+		fallthrough
+	case "invalid_issuer":
+		fallthrough
+	case "lost_card":
+		fallthrough
+	case "stolen_card":
+		fallthrough
+	case "insufficient_funds":
+		fallthrough
+	case "expired_card":
+		fallthrough
+	case "invalid_pin":
+		fallthrough
+	case "transaction_not_permitted_to_cardholder":
+		fallthrough
+	case "transaction_not_allowed_at_terminal":
+		fallthrough
+	case "exceeds_withdrawal_amount_limit":
+		fallthrough
+	case "restricted_card":
+		fallthrough
+	case "security_violation":
+		fallthrough
+	case "exceeds_withdrawal_count_limit":
+		fallthrough
+	case "allowable_number_of_pin_tries_exceeded":
+		fallthrough
+	case "no_reason_to_decline":
+		fallthrough
+	case "cannot_verify_pin":
+		fallthrough
+	case "issuer_unavailable":
+		fallthrough
+	case "unable_to_route_transaction":
+		fallthrough
+	case "duplicate_transaction":
+		fallthrough
+	case "system_malfunction":
+		fallthrough
+	case "honor_with_id":
+		fallthrough
+	case "invalid_card_number":
+		fallthrough
+	case "format_error":
+		fallthrough
+	case "contact_card_issuer":
+		fallthrough
+	case "pin_not_changed":
+		fallthrough
+	case "invalid_nonexistent_to_account_specified":
+		fallthrough
+	case "invalid_nonexistent_from_account_specified":
+		fallthrough
+	case "invalid_nonexistent_account_specified":
+		fallthrough
+	case "lifecycle_related":
+		fallthrough
+	case "domestic_debit_transaction_not_allowed":
+		fallthrough
+	case "policy_related":
+		fallthrough
+	case "fraud_security_related":
+		fallthrough
+	case "invalid_authorization_life_cycle":
+		fallthrough
+	case "purchase_amount_only_no_cash_back_allowed":
+		fallthrough
+	case "cryptographic_failure":
+		fallthrough
+	case "unacceptable_pin":
+		fallthrough
+	case "refer_to_card_issuer_special_condition":
+		fallthrough
+	case "pick_up_card_special_condition":
+		fallthrough
+	case "vip_approval":
+		fallthrough
+	case "invalid_account_number":
+		fallthrough
+	case "re_enter_transaction":
+		fallthrough
+	case "no_action_taken":
+		fallthrough
+	case "unable_to_locate_record":
+		fallthrough
+	case "file_temporarily_unavailable":
+		fallthrough
+	case "no_credit_account":
+		fallthrough
+	case "closed_account":
+		fallthrough
+	case "no_checking_account":
+		fallthrough
+	case "no_savings_account":
+		fallthrough
+	case "suspected_fraud":
+		fallthrough
+	case "transaction_does_not_fulfill_aml_requirement":
+		fallthrough
+	case "pin_data_required":
+		fallthrough
+	case "unable_to_locate_previous_message":
+		fallthrough
+	case "previous_message_located_inconsistent_data":
+		fallthrough
+	case "blocked_first_used":
+		fallthrough
+	case "transaction_reversed":
+		fallthrough
+	case "credit_issuer_unavailable":
+		fallthrough
+	case "pin_cryptographic_error_found":
+		fallthrough
+	case "negative_online_cam_result":
+		fallthrough
+	case "violation_of_law":
+		fallthrough
+	case "force_stip":
+		fallthrough
+	case "cash_service_not_available":
+		fallthrough
+	case "cashback_request_exceeds_issuer_limit":
+		fallthrough
+	case "decline_for_cvv2_failure":
+		fallthrough
+	case "transaction_amount_exceeds_pre_authorized_amount":
+		fallthrough
+	case "invalid_biller_information":
+		fallthrough
+	case "pin_change_unblock_request_declined":
+		fallthrough
+	case "unsafe_pin":
+		fallthrough
+	case "card_authentication_failed":
+		fallthrough
+	case "stop_payment_order":
+		fallthrough
+	case "revocation_of_authorization":
+		fallthrough
+	case "revocation_of_all_authorizations":
+		fallthrough
+	case "forward_to_issuer_xa":
+		fallthrough
+	case "forward_to_issuer_xd":
+		fallthrough
+	case "unable_to_go_online":
+		fallthrough
+	case "additional_customer_authentication_required":
+		fallthrough
+	case "merchant_id_not_found":
+		fallthrough
+	case "merchant_account_closed":
+		fallthrough
+	case "terminal_id_not_found":
+		fallthrough
+	case "terminal_closed":
+		fallthrough
+	case "invalid_category_code":
+		fallthrough
+	case "invalid_currency":
+		fallthrough
+	case "missing_cvv2_cvc2":
+		fallthrough
+	case "cvv2_not_allowed":
+		fallthrough
+	case "merchant_not_registered_vbv":
+		fallthrough
+	case "merchant_not_registered_for_amex":
+		fallthrough
+	case "transaction_not_permitted_at_terminal":
+		fallthrough
+	case "agreement_terminal_not_related":
+		fallthrough
+	case "invalid_processor_id":
+		fallthrough
+	case "invalid_merchant_data":
+		fallthrough
+	case "sub_merchant_account_closed":
+		fallthrough
+	case "terminal_busy":
+		fallthrough
+	case "terminal_unreachable":
+		fallthrough
+	case "service_failed":
+		fallthrough
+	case "invalid_operation":
+		fallthrough
+	case "authorization_error":
+		fallthrough
+	case "login_failed_without_reason":
+		fallthrough
+	case "invalid_retailer":
+		fallthrough
+	case "card_does_not_exist":
+		fallthrough
+	case "card_is_blocked":
+		fallthrough
+	case "invalid_card_id":
+		fallthrough
+	case "card_is_transferred":
+		fallthrough
+	case "card_is_not_active":
+		fallthrough
+	case "incorrect_purchase_value":
+		fallthrough
+	case "card_not_available":
+		fallthrough
+	case "wrong_currency":
+		fallthrough
+	case "login_failed_unknown_user":
+		fallthrough
+	case "login_failed_invalid_password":
+		fallthrough
+	case "invalid_ean_code":
+		*e = CreatePaymentCode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCode: %v", v)
+	}
+}
 
 // CreatePaymentStatusReason - This object offers details about the status of a payment. Currently it is only available for point-of-sale
 // payments.
@@ -3433,6 +3960,21 @@ const (
 func (e CreatePaymentCardAudition) ToPointer() *CreatePaymentCardAudition {
 	return &e
 }
+func (e *CreatePaymentCardAudition) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = CreatePaymentCardAudition(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardAudition: %v", v)
+	}
+}
 
 // CreatePaymentCardLabel - The card's label, if known.
 type CreatePaymentCardLabel string
@@ -3456,6 +3998,43 @@ const (
 func (e CreatePaymentCardLabel) ToPointer() *CreatePaymentCardLabel {
 	return &e
 }
+func (e *CreatePaymentCardLabel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "American Express":
+		fallthrough
+	case "Carta Si":
+		fallthrough
+	case "Carte Bleue":
+		fallthrough
+	case "Dankort":
+		fallthrough
+	case "Diners Club":
+		fallthrough
+	case "Discover":
+		fallthrough
+	case "JCB":
+		fallthrough
+	case "Laser":
+		fallthrough
+	case "Maestro":
+		fallthrough
+	case "Mastercard":
+		fallthrough
+	case "Unionpay":
+		fallthrough
+	case "Visa":
+		fallthrough
+	case "Vpay":
+		*e = CreatePaymentCardLabel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardLabel: %v", v)
+	}
+}
 
 // CreatePaymentCardFunding - The card type.
 type CreatePaymentCardFunding string
@@ -3470,6 +4049,25 @@ const (
 func (e CreatePaymentCardFunding) ToPointer() *CreatePaymentCardFunding {
 	return &e
 }
+func (e *CreatePaymentCardFunding) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "debit":
+		fallthrough
+	case "credit":
+		fallthrough
+	case "prepaid":
+		fallthrough
+	case "deferred-debit":
+		*e = CreatePaymentCardFunding(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardFunding: %v", v)
+	}
+}
 
 // CreatePaymentCardSecurity - The level of security applied during card processing.
 type CreatePaymentCardSecurity string
@@ -3481,6 +4079,21 @@ const (
 
 func (e CreatePaymentCardSecurity) ToPointer() *CreatePaymentCardSecurity {
 	return &e
+}
+func (e *CreatePaymentCardSecurity) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "normal":
+		fallthrough
+	case "3dsecure":
+		*e = CreatePaymentCardSecurity(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardSecurity: %v", v)
+	}
 }
 
 // CreatePaymentFeeRegion - The applicable card fee region.
@@ -3501,6 +4114,37 @@ const (
 
 func (e CreatePaymentFeeRegion) ToPointer() *CreatePaymentFeeRegion {
 	return &e
+}
+func (e *CreatePaymentFeeRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "american-express":
+		fallthrough
+	case "amex-intra-eea":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "intra-eu-corporate":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "other":
+		fallthrough
+	case "inter":
+		fallthrough
+	case "intra_eea":
+		*e = CreatePaymentFeeRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentFeeRegion: %v", v)
+	}
 }
 
 // CreatePaymentFailureReason - A failure code to help understand why the payment failed.
@@ -3527,6 +4171,47 @@ const (
 func (e CreatePaymentFailureReason) ToPointer() *CreatePaymentFailureReason {
 	return &e
 }
+func (e *CreatePaymentFailureReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "authentication_abandoned":
+		fallthrough
+	case "authentication_failed":
+		fallthrough
+	case "authentication_required":
+		fallthrough
+	case "authentication_unavailable_acs":
+		fallthrough
+	case "card_declined":
+		fallthrough
+	case "card_expired":
+		fallthrough
+	case "inactive_card":
+		fallthrough
+	case "insufficient_funds":
+		fallthrough
+	case "invalid_cvv":
+		fallthrough
+	case "invalid_card_holder_name":
+		fallthrough
+	case "invalid_card_number":
+		fallthrough
+	case "invalid_card_type":
+		fallthrough
+	case "possible_fraud":
+		fallthrough
+	case "refused_by_issuer":
+		fallthrough
+	case "unknown_reason":
+		*e = CreatePaymentFailureReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentFailureReason: %v", v)
+	}
+}
 
 // CreatePaymentWallet - The wallet used when creating the payment.
 type CreatePaymentWallet string
@@ -3537,6 +4222,19 @@ const (
 
 func (e CreatePaymentWallet) ToPointer() *CreatePaymentWallet {
 	return &e
+}
+func (e *CreatePaymentWallet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "applepay":
+		*e = CreatePaymentWallet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentWallet: %v", v)
+	}
 }
 
 // CreatePaymentSellerProtection - Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
@@ -3556,6 +4254,33 @@ const (
 
 func (e CreatePaymentSellerProtection) ToPointer() *CreatePaymentSellerProtection {
 	return &e
+}
+func (e *CreatePaymentSellerProtection) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Eligible":
+		fallthrough
+	case "Ineligible":
+		fallthrough
+	case "Partially Eligible - INR Only":
+		fallthrough
+	case "Partially Eligible - Unauth Only":
+		fallthrough
+	case "Partially Eligible":
+		fallthrough
+	case "None":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Fraud Control - Unauth Premium Eligible":
+		*e = CreatePaymentSellerProtection(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentSellerProtection: %v", v)
+	}
 }
 
 // CreatePaymentPaypalFee - An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
@@ -3595,6 +4320,27 @@ const (
 func (e CreatePaymentCardReadMethod) ToPointer() *CreatePaymentCardReadMethod {
 	return &e
 }
+func (e *CreatePaymentCardReadMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "chip":
+		fallthrough
+	case "magnetic-stripe":
+		fallthrough
+	case "near-field-communication":
+		fallthrough
+	case "contactless":
+		fallthrough
+	case "moto":
+		*e = CreatePaymentCardReadMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardReadMethod: %v", v)
+	}
+}
 
 // CreatePaymentCardVerificationMethod - The method used to verify the cardholder's identity.
 type CreatePaymentCardVerificationMethod string
@@ -3613,6 +4359,35 @@ const (
 
 func (e CreatePaymentCardVerificationMethod) ToPointer() *CreatePaymentCardVerificationMethod {
 	return &e
+}
+func (e *CreatePaymentCardVerificationMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "no-cvm-required":
+		fallthrough
+	case "online-pin":
+		fallthrough
+	case "offline-pin":
+		fallthrough
+	case "consumer-device":
+		fallthrough
+	case "signature":
+		fallthrough
+	case "signature-and-online-pin":
+		fallthrough
+	case "online-pin-and-signature":
+		fallthrough
+	case "none":
+		fallthrough
+	case "failed":
+		*e = CreatePaymentCardVerificationMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePaymentCardVerificationMethod: %v", v)
+	}
 }
 
 // CreatePaymentReceipt - The Point of sale receipt object.

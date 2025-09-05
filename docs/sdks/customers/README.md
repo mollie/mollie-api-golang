@@ -463,7 +463,7 @@ func main() {
                     Value: "10.00",
                 },
                 Destination: operations.CreateCustomerPaymentDestinationRequest{
-                    Type: operations.CreateCustomerPaymentTypeOrganizationOrganization,
+                    Type: operations.CreateCustomerPaymentRoutingTypeRequestOrganization,
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.String("2024-12-12"),

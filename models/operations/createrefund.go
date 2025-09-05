@@ -44,9 +44,9 @@ const (
 // CreateRefundMetadataRequest - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreateRefundMetadataRequest struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateRefundMetadataRequestType
 }
@@ -120,38 +120,38 @@ func (u CreateRefundMetadataRequest) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type CreateRefundMetadataRequest: all fields are null")
 }
 
-// TypeAcquirerReference - Specifies the reference type
-type TypeAcquirerReference string
+// TypeAcquirerReferenceRequest - Specifies the reference type
+type TypeAcquirerReferenceRequest string
 
 const (
-	TypeAcquirerReferenceAcquirerReference TypeAcquirerReference = "acquirer-reference"
+	TypeAcquirerReferenceRequestAcquirerReference TypeAcquirerReferenceRequest = "acquirer-reference"
 )
 
-func (e TypeAcquirerReference) ToPointer() *TypeAcquirerReference {
+func (e TypeAcquirerReferenceRequest) ToPointer() *TypeAcquirerReferenceRequest {
 	return &e
 }
-func (e *TypeAcquirerReference) UnmarshalJSON(data []byte) error {
+func (e *TypeAcquirerReferenceRequest) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "acquirer-reference":
-		*e = TypeAcquirerReference(v)
+		*e = TypeAcquirerReferenceRequest(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TypeAcquirerReference: %v", v)
+		return fmt.Errorf("invalid value for TypeAcquirerReferenceRequest: %v", v)
 	}
 }
 
 type ExternalReferenceRequest struct {
 	// Specifies the reference type
-	Type *TypeAcquirerReference `json:"type,omitempty"`
+	Type *TypeAcquirerReferenceRequest `json:"type,omitempty"`
 	// Unique reference from the payment provider
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *ExternalReferenceRequest) GetType() *TypeAcquirerReference {
+func (o *ExternalReferenceRequest) GetType() *TypeAcquirerReferenceRequest {
 	if o == nil {
 		return nil
 	}
@@ -211,8 +211,8 @@ func (e *RoutingReversalType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// SourceOrganization - Where the funds will be pulled back from.
-type SourceOrganization struct {
+// CreateRefundSourceRequest - Where the funds will be pulled back from.
+type CreateRefundSourceRequest struct {
 	// The type of source. Currently only the source type `organization` is supported.
 	Type *RoutingReversalType `json:"type,omitempty"`
 	// Required for source type `organization`. The ID of the connected organization the funds should be pulled
@@ -220,14 +220,14 @@ type SourceOrganization struct {
 	OrganizationID *string `json:"organizationId,omitempty"`
 }
 
-func (o *SourceOrganization) GetType() *RoutingReversalType {
+func (o *CreateRefundSourceRequest) GetType() *RoutingReversalType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *SourceOrganization) GetOrganizationID() *string {
+func (o *CreateRefundSourceRequest) GetOrganizationID() *string {
 	if o == nil {
 		return nil
 	}
@@ -238,7 +238,7 @@ type RoutingReversalRequest struct {
 	// The amount that will be pulled back.
 	Amount *RoutingReversalAmountRequest `json:"amount,omitempty"`
 	// Where the funds will be pulled back from.
-	Source *SourceOrganization `json:"source,omitempty"`
+	Source *CreateRefundSourceRequest `json:"source,omitempty"`
 }
 
 func (o *RoutingReversalRequest) GetAmount() *RoutingReversalAmountRequest {
@@ -248,7 +248,7 @@ func (o *RoutingReversalRequest) GetAmount() *RoutingReversalAmountRequest {
 	return o.Amount
 }
 
-func (o *RoutingReversalRequest) GetSource() *SourceOrganization {
+func (o *RoutingReversalRequest) GetSource() *CreateRefundSourceRequest {
 	if o == nil {
 		return nil
 	}
@@ -470,6 +470,21 @@ const (
 func (e CreateRefundMode) ToPointer() *CreateRefundMode {
 	return &e
 }
+func (e *CreateRefundMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreateRefundMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateRefundMode: %v", v)
+	}
+}
 
 // CreateRefundAmountResponse - The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
 // amount.
@@ -539,9 +554,9 @@ const (
 // CreateRefundMetadataResponse - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreateRefundMetadataResponse struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateRefundMetadataResponseType
 }
@@ -630,26 +645,62 @@ const (
 func (e CreateRefundStatus) ToPointer() *CreateRefundStatus {
 	return &e
 }
+func (e *CreateRefundStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "queued":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "processing":
+		fallthrough
+	case "refunded":
+		fallthrough
+	case "failed":
+		fallthrough
+	case "canceled":
+		*e = CreateRefundStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateRefundStatus: %v", v)
+	}
+}
 
-// CreateRefundExternalReferenceType - Specifies the reference type
-type CreateRefundExternalReferenceType string
+// CreateRefundTypeResponse - Specifies the reference type
+type CreateRefundTypeResponse string
 
 const (
-	CreateRefundExternalReferenceTypeAcquirerReference CreateRefundExternalReferenceType = "acquirer-reference"
+	CreateRefundTypeResponseAcquirerReference CreateRefundTypeResponse = "acquirer-reference"
 )
 
-func (e CreateRefundExternalReferenceType) ToPointer() *CreateRefundExternalReferenceType {
+func (e CreateRefundTypeResponse) ToPointer() *CreateRefundTypeResponse {
 	return &e
+}
+func (e *CreateRefundTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "acquirer-reference":
+		*e = CreateRefundTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateRefundTypeResponse: %v", v)
+	}
 }
 
 type CreateRefundExternalReferenceResponse struct {
 	// Specifies the reference type
-	Type *CreateRefundExternalReferenceType `json:"type,omitempty"`
+	Type *CreateRefundTypeResponse `json:"type,omitempty"`
 	// Unique reference from the payment provider
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *CreateRefundExternalReferenceResponse) GetType() *CreateRefundExternalReferenceType {
+func (o *CreateRefundExternalReferenceResponse) GetType() *CreateRefundTypeResponse {
 	if o == nil {
 		return nil
 	}

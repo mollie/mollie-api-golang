@@ -31,42 +31,42 @@ func (o *PaymentCreateRouteAmountRequest) GetValue() string {
 	return o.Value
 }
 
-// PaymentCreateRouteTypeOrganization - The type of destination. Currently only the destination type `organization` is supported.
-type PaymentCreateRouteTypeOrganization string
+// PaymentCreateRouteTypeRequest - The type of destination. Currently only the destination type `organization` is supported.
+type PaymentCreateRouteTypeRequest string
 
 const (
-	PaymentCreateRouteTypeOrganizationOrganization PaymentCreateRouteTypeOrganization = "organization"
+	PaymentCreateRouteTypeRequestOrganization PaymentCreateRouteTypeRequest = "organization"
 )
 
-func (e PaymentCreateRouteTypeOrganization) ToPointer() *PaymentCreateRouteTypeOrganization {
+func (e PaymentCreateRouteTypeRequest) ToPointer() *PaymentCreateRouteTypeRequest {
 	return &e
 }
-func (e *PaymentCreateRouteTypeOrganization) UnmarshalJSON(data []byte) error {
+func (e *PaymentCreateRouteTypeRequest) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "organization":
-		*e = PaymentCreateRouteTypeOrganization(v)
+		*e = PaymentCreateRouteTypeRequest(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PaymentCreateRouteTypeOrganization: %v", v)
+		return fmt.Errorf("invalid value for PaymentCreateRouteTypeRequest: %v", v)
 	}
 }
 
 // PaymentCreateRouteDestinationRequest - The destination of the route.
 type PaymentCreateRouteDestinationRequest struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type PaymentCreateRouteTypeOrganization `json:"type"`
+	Type PaymentCreateRouteTypeRequest `json:"type"`
 	// Required for destination type `organization`. The ID of the connected organization the funds should be
 	// routed to.
 	OrganizationID string `json:"organizationId"`
 }
 
-func (o *PaymentCreateRouteDestinationRequest) GetType() PaymentCreateRouteTypeOrganization {
+func (o *PaymentCreateRouteDestinationRequest) GetType() PaymentCreateRouteTypeRequest {
 	if o == nil {
-		return PaymentCreateRouteTypeOrganization("")
+		return PaymentCreateRouteTypeRequest("")
 	}
 	return o.Type
 }
@@ -197,29 +197,42 @@ func (o *PaymentCreateRouteAmountResponse) GetValue() string {
 	return o.Value
 }
 
-// PaymentCreateRouteDestinationType - The type of destination. Currently only the destination type `organization` is supported.
-type PaymentCreateRouteDestinationType string
+// PaymentCreateRouteTypeResponse - The type of destination. Currently only the destination type `organization` is supported.
+type PaymentCreateRouteTypeResponse string
 
 const (
-	PaymentCreateRouteDestinationTypeOrganization PaymentCreateRouteDestinationType = "organization"
+	PaymentCreateRouteTypeResponseOrganization PaymentCreateRouteTypeResponse = "organization"
 )
 
-func (e PaymentCreateRouteDestinationType) ToPointer() *PaymentCreateRouteDestinationType {
+func (e PaymentCreateRouteTypeResponse) ToPointer() *PaymentCreateRouteTypeResponse {
 	return &e
+}
+func (e *PaymentCreateRouteTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "organization":
+		*e = PaymentCreateRouteTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentCreateRouteTypeResponse: %v", v)
+	}
 }
 
 // PaymentCreateRouteDestinationResponse - The destination of the route.
 type PaymentCreateRouteDestinationResponse struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type PaymentCreateRouteDestinationType `json:"type"`
+	Type PaymentCreateRouteTypeResponse `json:"type"`
 	// Required for destination type `organization`. The ID of the connected organization the funds should be
 	// routed to.
 	OrganizationID string `json:"organizationId"`
 }
 
-func (o *PaymentCreateRouteDestinationResponse) GetType() PaymentCreateRouteDestinationType {
+func (o *PaymentCreateRouteDestinationResponse) GetType() PaymentCreateRouteTypeResponse {
 	if o == nil {
-		return PaymentCreateRouteDestinationType("")
+		return PaymentCreateRouteTypeResponse("")
 	}
 	return o.Type
 }

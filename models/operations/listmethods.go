@@ -476,6 +476,89 @@ const (
 func (e ListMethodsID) ToPointer() *ListMethodsID {
 	return &e
 }
+func (e *ListMethodsID) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ListMethodsID(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMethodsID: %v", v)
+	}
+}
 
 // ListMethodsMinimumAmount - The minimum payment amount required to use this payment method.
 type ListMethodsMinimumAmount struct {
@@ -567,6 +650,27 @@ const (
 
 func (e ListMethodsStatus) ToPointer() *ListMethodsStatus {
 	return &e
+}
+func (e *ListMethodsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "activated":
+		fallthrough
+	case "pending-boarding":
+		fallthrough
+	case "pending-review":
+		fallthrough
+	case "pending-external":
+		fallthrough
+	case "rejected":
+		*e = ListMethodsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMethodsStatus: %v", v)
+	}
 }
 
 // ListMethodsIssuerImage - URLs of images representing the issuer.

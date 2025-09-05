@@ -779,6 +779,23 @@ const (
 func (e UpdateSalesInvoiceStatusResponse) ToPointer() *UpdateSalesInvoiceStatusResponse {
 	return &e
 }
+func (e *UpdateSalesInvoiceStatusResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "issued":
+		fallthrough
+	case "paid":
+		*e = UpdateSalesInvoiceStatusResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceStatusResponse: %v", v)
+	}
+}
 
 // UpdateSalesInvoiceVatScheme - The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 type UpdateSalesInvoiceVatScheme string
@@ -790,6 +807,21 @@ const (
 
 func (e UpdateSalesInvoiceVatScheme) ToPointer() *UpdateSalesInvoiceVatScheme {
 	return &e
+}
+func (e *UpdateSalesInvoiceVatScheme) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "standard":
+		fallthrough
+	case "one-stop-shop":
+		*e = UpdateSalesInvoiceVatScheme(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceVatScheme: %v", v)
+	}
 }
 
 // UpdateSalesInvoiceVatMode - The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -803,6 +835,21 @@ const (
 
 func (e UpdateSalesInvoiceVatMode) ToPointer() *UpdateSalesInvoiceVatMode {
 	return &e
+}
+func (e *UpdateSalesInvoiceVatMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "exclusive":
+		fallthrough
+	case "inclusive":
+		*e = UpdateSalesInvoiceVatMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceVatMode: %v", v)
+	}
 }
 
 // UpdateSalesInvoiceMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
@@ -826,6 +873,31 @@ const (
 func (e UpdateSalesInvoicePaymentTermResponse) ToPointer() *UpdateSalesInvoicePaymentTermResponse {
 	return &e
 }
+func (e *UpdateSalesInvoicePaymentTermResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "7 days":
+		fallthrough
+	case "14 days":
+		fallthrough
+	case "30 days":
+		fallthrough
+	case "45 days":
+		fallthrough
+	case "60 days":
+		fallthrough
+	case "90 days":
+		fallthrough
+	case "120 days":
+		*e = UpdateSalesInvoicePaymentTermResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoicePaymentTermResponse: %v", v)
+	}
+}
 
 // UpdateSalesInvoiceSourceResponse - The way through which the invoice is to be set to paid.
 type UpdateSalesInvoiceSourceResponse string
@@ -838,6 +910,23 @@ const (
 
 func (e UpdateSalesInvoiceSourceResponse) ToPointer() *UpdateSalesInvoiceSourceResponse {
 	return &e
+}
+func (e *UpdateSalesInvoiceSourceResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "payment-link":
+		fallthrough
+	case "payment":
+		*e = UpdateSalesInvoiceSourceResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceSourceResponse: %v", v)
+	}
 }
 
 // UpdateSalesInvoicePaymentDetailsResponse - Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
@@ -899,6 +988,21 @@ const (
 func (e UpdateSalesInvoiceRecipientTypeResponse) ToPointer() *UpdateSalesInvoiceRecipientTypeResponse {
 	return &e
 }
+func (e *UpdateSalesInvoiceRecipientTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = UpdateSalesInvoiceRecipientTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceRecipientTypeResponse: %v", v)
+	}
+}
 
 // UpdateSalesInvoiceLocaleResponse - The locale for the recipient, to be used for translations in PDF generation and payment pages.
 type UpdateSalesInvoiceLocaleResponse string
@@ -917,6 +1021,35 @@ const (
 
 func (e UpdateSalesInvoiceLocaleResponse) ToPointer() *UpdateSalesInvoiceLocaleResponse {
 	return &e
+}
+func (e *UpdateSalesInvoiceLocaleResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		*e = UpdateSalesInvoiceLocaleResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceLocaleResponse: %v", v)
+	}
 }
 
 type UpdateSalesInvoiceRecipientResponse struct {
@@ -1108,6 +1241,21 @@ const (
 func (e UpdateSalesInvoiceLineTypeResponse) ToPointer() *UpdateSalesInvoiceLineTypeResponse {
 	return &e
 }
+func (e *UpdateSalesInvoiceLineTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = UpdateSalesInvoiceLineTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceLineTypeResponse: %v", v)
+	}
+}
 
 // UpdateSalesInvoiceLineDiscountResponse - The discount to be applied to the line item.
 type UpdateSalesInvoiceLineDiscountResponse struct {
@@ -1193,6 +1341,21 @@ const (
 
 func (e UpdateSalesInvoiceDiscountTypeResponse) ToPointer() *UpdateSalesInvoiceDiscountTypeResponse {
 	return &e
+}
+func (e *UpdateSalesInvoiceDiscountTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = UpdateSalesInvoiceDiscountTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSalesInvoiceDiscountTypeResponse: %v", v)
+	}
 }
 
 // UpdateSalesInvoiceDiscountResponse - The discount to be applied to the entire invoice, applied on top of any line item discounts.

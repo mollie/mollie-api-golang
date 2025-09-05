@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -95,6 +97,19 @@ const (
 
 func (e PaymentListRoutesType) ToPointer() *PaymentListRoutesType {
 	return &e
+}
+func (e *PaymentListRoutesType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "organization":
+		*e = PaymentListRoutesType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentListRoutesType: %v", v)
+	}
 }
 
 // PaymentListRoutesDestination - The destination of the route.

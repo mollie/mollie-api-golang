@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -96,6 +97,21 @@ const (
 func (e CancelSubscriptionMode) ToPointer() *CancelSubscriptionMode {
 	return &e
 }
+func (e *CancelSubscriptionMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CancelSubscriptionMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CancelSubscriptionMode: %v", v)
+	}
+}
 
 // CancelSubscriptionStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
 // enabling the subscription.
@@ -111,6 +127,27 @@ const (
 
 func (e CancelSubscriptionStatus) ToPointer() *CancelSubscriptionStatus {
 	return &e
+}
+func (e *CancelSubscriptionStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "suspended":
+		fallthrough
+	case "completed":
+		*e = CancelSubscriptionStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CancelSubscriptionStatus: %v", v)
+	}
 }
 
 // CancelSubscriptionAmount - The amount for each individual payment that is charged with this subscription. For example, for a monthly
@@ -147,6 +184,23 @@ const (
 
 func (e CancelSubscriptionMethod) ToPointer() *CancelSubscriptionMethod {
 	return &e
+}
+func (e *CancelSubscriptionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = CancelSubscriptionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CancelSubscriptionMethod: %v", v)
+	}
 }
 
 // CancelSubscriptionApplicationFeeAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -212,9 +266,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type CancelSubscriptionMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CancelSubscriptionMetadataType
 }

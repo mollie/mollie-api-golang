@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -74,6 +76,21 @@ const (
 func (e GetPaymentLinkMode) ToPointer() *GetPaymentLinkMode {
 	return &e
 }
+func (e *GetPaymentLinkMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetPaymentLinkMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLinkMode: %v", v)
+	}
+}
 
 // GetPaymentLinkAmount - The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
 // amount.
@@ -139,6 +156,33 @@ const (
 
 func (e GetPaymentLinkType) ToPointer() *GetPaymentLinkType {
 	return &e
+}
+func (e *GetPaymentLinkType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "physical":
+		fallthrough
+	case "digital":
+		fallthrough
+	case "shipping_fee":
+		fallthrough
+	case "discount":
+		fallthrough
+	case "store_credit":
+		fallthrough
+	case "gift_card":
+		fallthrough
+	case "surcharge":
+		fallthrough
+	case "tip":
+		*e = GetPaymentLinkType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLinkType: %v", v)
+	}
 }
 
 // GetPaymentLinkUnitPrice - The price of a single item including VAT.
@@ -257,6 +301,25 @@ const (
 
 func (e GetPaymentLinkCategory) ToPointer() *GetPaymentLinkCategory {
 	return &e
+}
+func (e *GetPaymentLinkCategory) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "meal":
+		fallthrough
+	case "eco":
+		fallthrough
+	case "gift":
+		fallthrough
+	case "sport_culture":
+		*e = GetPaymentLinkCategory(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLinkCategory: %v", v)
+	}
 }
 
 type GetPaymentLinkLine struct {
@@ -743,6 +806,21 @@ const (
 
 func (e GetPaymentLinkSequenceType) ToPointer() *GetPaymentLinkSequenceType {
 	return &e
+}
+func (e *GetPaymentLinkSequenceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oneoff":
+		fallthrough
+	case "first":
+		*e = GetPaymentLinkSequenceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLinkSequenceType: %v", v)
+	}
 }
 
 // GetPaymentLinkSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

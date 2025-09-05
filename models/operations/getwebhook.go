@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -95,6 +97,48 @@ func (o *GetWebhookNotFoundLinks) GetDocumentation() GetWebhookNotFoundDocumenta
 	return o.Documentation
 }
 
+// GetWebhookWebhookEventTypes - The event's type
+type GetWebhookWebhookEventTypes string
+
+const (
+	GetWebhookWebhookEventTypesPaymentLinkPaid           GetWebhookWebhookEventTypes = "payment-link.paid"
+	GetWebhookWebhookEventTypesBalanceTransactionCreated GetWebhookWebhookEventTypes = "balance-transaction.created"
+	GetWebhookWebhookEventTypesSalesInvoiceCreated       GetWebhookWebhookEventTypes = "sales-invoice.created"
+	GetWebhookWebhookEventTypesSalesInvoiceIssued        GetWebhookWebhookEventTypes = "sales-invoice.issued"
+	GetWebhookWebhookEventTypesSalesInvoiceCanceled      GetWebhookWebhookEventTypes = "sales-invoice.canceled"
+	GetWebhookWebhookEventTypesSalesInvoicePaid          GetWebhookWebhookEventTypes = "sales-invoice.paid"
+	GetWebhookWebhookEventTypesWildcard                  GetWebhookWebhookEventTypes = "*"
+)
+
+func (e GetWebhookWebhookEventTypes) ToPointer() *GetWebhookWebhookEventTypes {
+	return &e
+}
+func (e *GetWebhookWebhookEventTypes) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-link.paid":
+		fallthrough
+	case "balance-transaction.created":
+		fallthrough
+	case "sales-invoice.created":
+		fallthrough
+	case "sales-invoice.issued":
+		fallthrough
+	case "sales-invoice.canceled":
+		fallthrough
+	case "sales-invoice.paid":
+		fallthrough
+	case "*":
+		*e = GetWebhookWebhookEventTypes(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookWebhookEventTypes: %v", v)
+	}
+}
+
 // GetWebhookStatus - The subscription's current status.
 type GetWebhookStatus string
 
@@ -108,8 +152,27 @@ const (
 func (e GetWebhookStatus) ToPointer() *GetWebhookStatus {
 	return &e
 }
+func (e *GetWebhookStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "enabled":
+		fallthrough
+	case "blocked":
+		fallthrough
+	case "disabled":
+		fallthrough
+	case "deleted":
+		*e = GetWebhookStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookStatus: %v", v)
+	}
+}
 
-// GetWebhookMode - The subscription's mode.
+// GetWebhookMode - Whether this entity was created in live mode or in test mode.
 type GetWebhookMode string
 
 const (
@@ -120,47 +183,99 @@ const (
 func (e GetWebhookMode) ToPointer() *GetWebhookMode {
 	return &e
 }
+func (e *GetWebhookMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetWebhookMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookMode: %v", v)
+	}
+}
+
+// GetWebhookDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+type GetWebhookDocumentation struct {
+	// The actual URL string.
+	Href string `json:"href"`
+	// The content type of the page or endpoint the URL points to.
+	Type string `json:"type"`
+}
+
+func (o *GetWebhookDocumentation) GetHref() string {
+	if o == nil {
+		return ""
+	}
+	return o.Href
+}
+
+func (o *GetWebhookDocumentation) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+// GetWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+type GetWebhookLinks struct {
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation GetWebhookDocumentation `json:"documentation"`
+}
+
+func (o *GetWebhookLinks) GetDocumentation() GetWebhookDocumentation {
+	if o == nil {
+		return GetWebhookDocumentation{}
+	}
+	return o.Documentation
+}
 
 // GetWebhookResponseBody - The webhook object.
 type GetWebhookResponseBody struct {
 	// Indicates the response contains a webhook subscription object.
 	// Will always contain the string `webhook` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The identifier uniquely referring to this subscription.
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id"`
 	// The subscription's events destination.
-	URL *string `json:"url,omitempty"`
+	URL string `json:"url"`
 	// The identifier uniquely referring to the profile that created the subscription.
-	ProfileID *string `json:"profileId,omitempty"`
+	ProfileID *string `json:"profileId"`
 	// The subscription's date time of creation.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// The subscription's name.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The events types that are subscribed.
-	EventTypes []string `json:"eventTypes,omitempty"`
+	EventTypes []GetWebhookWebhookEventTypes `json:"eventTypes"`
 	// The subscription's current status.
-	Status *GetWebhookStatus `json:"status,omitempty"`
-	// The subscription's mode.
-	Mode *GetWebhookMode `json:"mode,omitempty"`
+	Status GetWebhookStatus `json:"status"`
+	// Whether this entity was created in live mode or in test mode.
+	Mode GetWebhookMode `json:"mode"`
+	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+	Links GetWebhookLinks `json:"_links"`
 }
 
-func (o *GetWebhookResponseBody) GetResource() *string {
+func (o *GetWebhookResponseBody) GetResource() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Resource
 }
 
-func (o *GetWebhookResponseBody) GetID() *string {
+func (o *GetWebhookResponseBody) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }
 
-func (o *GetWebhookResponseBody) GetURL() *string {
+func (o *GetWebhookResponseBody) GetURL() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.URL
 }
@@ -172,39 +287,46 @@ func (o *GetWebhookResponseBody) GetProfileID() *string {
 	return o.ProfileID
 }
 
-func (o *GetWebhookResponseBody) GetCreatedAt() *string {
+func (o *GetWebhookResponseBody) GetCreatedAt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.CreatedAt
 }
 
-func (o *GetWebhookResponseBody) GetName() *string {
+func (o *GetWebhookResponseBody) GetName() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Name
 }
 
-func (o *GetWebhookResponseBody) GetEventTypes() []string {
+func (o *GetWebhookResponseBody) GetEventTypes() []GetWebhookWebhookEventTypes {
 	if o == nil {
-		return nil
+		return []GetWebhookWebhookEventTypes{}
 	}
 	return o.EventTypes
 }
 
-func (o *GetWebhookResponseBody) GetStatus() *GetWebhookStatus {
+func (o *GetWebhookResponseBody) GetStatus() GetWebhookStatus {
 	if o == nil {
-		return nil
+		return GetWebhookStatus("")
 	}
 	return o.Status
 }
 
-func (o *GetWebhookResponseBody) GetMode() *GetWebhookMode {
+func (o *GetWebhookResponseBody) GetMode() GetWebhookMode {
 	if o == nil {
-		return nil
+		return GetWebhookMode("")
 	}
 	return o.Mode
+}
+
+func (o *GetWebhookResponseBody) GetLinks() GetWebhookLinks {
+	if o == nil {
+		return GetWebhookLinks{}
+	}
+	return o.Links
 }
 
 type GetWebhookResponse struct {

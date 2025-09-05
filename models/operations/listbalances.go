@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -125,6 +127,21 @@ const (
 func (e ListBalancesMode) ToPointer() *ListBalancesMode {
 	return &e
 }
+func (e *ListBalancesMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListBalancesMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalancesMode: %v", v)
+	}
+}
 
 // ListBalancesCurrency - The balance's ISO 4217 currency code.
 type ListBalancesCurrency string
@@ -147,6 +164,41 @@ const (
 func (e ListBalancesCurrency) ToPointer() *ListBalancesCurrency {
 	return &e
 }
+func (e *ListBalancesCurrency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "EUR":
+		fallthrough
+	case "GBP":
+		fallthrough
+	case "CHF":
+		fallthrough
+	case "DKK":
+		fallthrough
+	case "NOK":
+		fallthrough
+	case "PLN":
+		fallthrough
+	case "SEK":
+		fallthrough
+	case "USD":
+		fallthrough
+	case "CZK":
+		fallthrough
+	case "HUF":
+		fallthrough
+	case "AUD":
+		fallthrough
+	case "CAD":
+		*e = ListBalancesCurrency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalancesCurrency: %v", v)
+	}
+}
 
 // ListBalancesStatus - The status of the balance.
 type ListBalancesStatus string
@@ -158,6 +210,21 @@ const (
 
 func (e ListBalancesStatus) ToPointer() *ListBalancesStatus {
 	return &e
+}
+func (e *ListBalancesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "active":
+		fallthrough
+	case "inactive":
+		*e = ListBalancesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalancesStatus: %v", v)
+	}
 }
 
 // ListBalancesTransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
@@ -179,6 +246,33 @@ const (
 
 func (e ListBalancesTransferFrequency) ToPointer() *ListBalancesTransferFrequency {
 	return &e
+}
+func (e *ListBalancesTransferFrequency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "daily":
+		fallthrough
+	case "every-monday":
+		fallthrough
+	case "every-tuesday":
+		fallthrough
+	case "every-wednesday":
+		fallthrough
+	case "every-thursday":
+		fallthrough
+	case "every-friday":
+		fallthrough
+	case "monthly":
+		fallthrough
+	case "never":
+		*e = ListBalancesTransferFrequency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalancesTransferFrequency: %v", v)
+	}
 }
 
 // ListBalancesTransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
@@ -216,6 +310,19 @@ const (
 
 func (e ListBalancesType) ToPointer() *ListBalancesType {
 	return &e
+}
+func (e *ListBalancesType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "bank-account":
+		*e = ListBalancesType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalancesType: %v", v)
+	}
 }
 
 // ListBalancesTransferDestination - The destination where the available amount will be automatically transferred to according to the configured

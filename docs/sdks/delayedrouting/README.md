@@ -44,7 +44,7 @@ func main() {
         },
         Description: client.String("Payment for Order #12345"),
         Destination: &operations.PaymentCreateRouteDestinationRequest{
-            Type: operations.PaymentCreateRouteTypeOrganizationOrganization,
+            Type: operations.PaymentCreateRouteTypeRequestOrganization,
             OrganizationID: "org_1234567",
         },
         Testmode: client.Bool(false),

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -18,6 +20,25 @@ const (
 
 func (e GetOpenSettlementStatus) ToPointer() *GetOpenSettlementStatus {
 	return &e
+}
+func (e *GetOpenSettlementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "open":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "paidout":
+		fallthrough
+	case "failed":
+		*e = GetOpenSettlementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetOpenSettlementStatus: %v", v)
+	}
 }
 
 // GetOpenSettlementAmount - The total amount of the settlement.

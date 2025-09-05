@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -45,9 +46,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type UpdateSubscriptionMetadataRequest struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type UpdateSubscriptionMetadataRequestType
 }
@@ -297,6 +298,21 @@ const (
 func (e UpdateSubscriptionMode) ToPointer() *UpdateSubscriptionMode {
 	return &e
 }
+func (e *UpdateSubscriptionMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = UpdateSubscriptionMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSubscriptionMode: %v", v)
+	}
+}
 
 // UpdateSubscriptionStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
 // enabling the subscription.
@@ -312,6 +328,27 @@ const (
 
 func (e UpdateSubscriptionStatus) ToPointer() *UpdateSubscriptionStatus {
 	return &e
+}
+func (e *UpdateSubscriptionStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "suspended":
+		fallthrough
+	case "completed":
+		*e = UpdateSubscriptionStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSubscriptionStatus: %v", v)
+	}
 }
 
 // UpdateSubscriptionAmountResponse - The amount for each individual payment that is charged with this subscription. For example, for a monthly
@@ -348,6 +385,23 @@ const (
 
 func (e UpdateSubscriptionMethod) ToPointer() *UpdateSubscriptionMethod {
 	return &e
+}
+func (e *UpdateSubscriptionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = UpdateSubscriptionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateSubscriptionMethod: %v", v)
+	}
 }
 
 // UpdateSubscriptionApplicationFeeAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -413,9 +467,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type UpdateSubscriptionMetadataResponse struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type UpdateSubscriptionMetadataResponseType
 }

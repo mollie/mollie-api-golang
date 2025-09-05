@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -83,6 +85,21 @@ const (
 func (e GetMandateMode) ToPointer() *GetMandateMode {
 	return &e
 }
+func (e *GetMandateMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetMandateMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMandateMode: %v", v)
+	}
+}
 
 // GetMandateMethod - Payment method of the mandate.
 //
@@ -97,6 +114,23 @@ const (
 
 func (e GetMandateMethod) ToPointer() *GetMandateMethod {
 	return &e
+}
+func (e *GetMandateMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = GetMandateMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMandateMethod: %v", v)
+	}
 }
 
 // GetMandateCardLabel - The card's label. Available for card mandates, if the card label could be detected.
@@ -119,6 +153,41 @@ const (
 
 func (e GetMandateCardLabel) ToPointer() *GetMandateCardLabel {
 	return &e
+}
+func (e *GetMandateCardLabel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "American Express":
+		fallthrough
+	case "Carta Si":
+		fallthrough
+	case "Carte Bleue":
+		fallthrough
+	case "Dankort":
+		fallthrough
+	case "Diners Club":
+		fallthrough
+	case "Discover":
+		fallthrough
+	case "JCB":
+		fallthrough
+	case "Laser":
+		fallthrough
+	case "Maestro":
+		fallthrough
+	case "Mastercard":
+		fallthrough
+	case "Unionpay":
+		fallthrough
+	case "Visa":
+		*e = GetMandateCardLabel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMandateCardLabel: %v", v)
+	}
 }
 
 type GetMandateDetails struct {
@@ -209,6 +278,23 @@ const (
 
 func (e GetMandateStatus) ToPointer() *GetMandateStatus {
 	return &e
+}
+func (e *GetMandateStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "valid":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "invalid":
+		*e = GetMandateStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetMandateStatus: %v", v)
+	}
 }
 
 // GetMandateSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

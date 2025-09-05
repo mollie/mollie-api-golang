@@ -126,9 +126,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type CreateSubscriptionMetadataRequest struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateSubscriptionMetadataRequestType
 }
@@ -395,6 +395,21 @@ const (
 func (e CreateSubscriptionMode) ToPointer() *CreateSubscriptionMode {
 	return &e
 }
+func (e *CreateSubscriptionMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreateSubscriptionMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSubscriptionMode: %v", v)
+	}
+}
 
 // CreateSubscriptionStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
 // enabling the subscription.
@@ -410,6 +425,27 @@ const (
 
 func (e CreateSubscriptionStatus) ToPointer() *CreateSubscriptionStatus {
 	return &e
+}
+func (e *CreateSubscriptionStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "suspended":
+		fallthrough
+	case "completed":
+		*e = CreateSubscriptionStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSubscriptionStatus: %v", v)
+	}
 }
 
 // CreateSubscriptionAmountResponse - The amount for each individual payment that is charged with this subscription. For example, for a monthly
@@ -446,6 +482,23 @@ const (
 
 func (e CreateSubscriptionMethodResponse) ToPointer() *CreateSubscriptionMethodResponse {
 	return &e
+}
+func (e *CreateSubscriptionMethodResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = CreateSubscriptionMethodResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSubscriptionMethodResponse: %v", v)
+	}
 }
 
 // CreateSubscriptionApplicationFeeAmountResponse - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -511,9 +564,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type CreateSubscriptionMetadataResponse struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateSubscriptionMetadataResponseType
 }

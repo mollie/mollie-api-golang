@@ -1,4 +1,4 @@
-# PaymentCreateRouteDestinationType
+# GetPaymentLinkPaymentsRoutingType
 
 The type of destination. Currently only the destination type `organization` is supported.
 
@@ -7,4 +7,4 @@ The type of destination. Currently only the destination type `organization` is s
 
 | Name                                            | Value                                           |
 | ----------------------------------------------- | ----------------------------------------------- |
-| `PaymentCreateRouteDestinationTypeOrganization` | organization                                    |
+| `GetPaymentLinkPaymentsRoutingTypeOrganization` | organization                                    |

@@ -243,6 +243,21 @@ const (
 func (e UpdateProfileModeResponse) ToPointer() *UpdateProfileModeResponse {
 	return &e
 }
+func (e *UpdateProfileModeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = UpdateProfileModeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateProfileModeResponse: %v", v)
+	}
+}
 
 // UpdateProfileStatus - The profile status determines whether the profile is able to receive live payments.
 //
@@ -260,6 +275,23 @@ const (
 func (e UpdateProfileStatus) ToPointer() *UpdateProfileStatus {
 	return &e
 }
+func (e *UpdateProfileStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unverified":
+		fallthrough
+	case "verified":
+		fallthrough
+	case "blocked":
+		*e = UpdateProfileStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateProfileStatus: %v", v)
+	}
+}
 
 // UpdateProfileReviewStatus - The status of the requested changes.
 type UpdateProfileReviewStatus string
@@ -271,6 +303,21 @@ const (
 
 func (e UpdateProfileReviewStatus) ToPointer() *UpdateProfileReviewStatus {
 	return &e
+}
+func (e *UpdateProfileReviewStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "rejected":
+		*e = UpdateProfileReviewStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateProfileReviewStatus: %v", v)
+	}
 }
 
 // UpdateProfileReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved

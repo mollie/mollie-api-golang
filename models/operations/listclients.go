@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -281,6 +283,61 @@ const (
 func (e ListClientsLocale) ToPointer() *ListClientsLocale {
 	return &e
 }
+func (e *ListClientsLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = ListClientsLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsLocale: %v", v)
+	}
+}
 
 // ListClientsAddress - The address of the organization.
 type ListClientsAddress struct {
@@ -335,6 +392,23 @@ const (
 
 func (e ListClientsVatRegulation) ToPointer() *ListClientsVatRegulation {
 	return &e
+}
+func (e *ListClientsVatRegulation) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "dutch":
+		fallthrough
+	case "british":
+		fallthrough
+	case "shifted":
+		*e = ListClientsVatRegulation(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsVatRegulation: %v", v)
+	}
 }
 
 // ClientOrganizationSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -550,6 +624,23 @@ const (
 func (e ListClientsOnboardingStatus) ToPointer() *ListClientsOnboardingStatus {
 	return &e
 }
+func (e *ListClientsOnboardingStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "needs-data":
+		fallthrough
+	case "in-review":
+		fallthrough
+	case "completed":
+		*e = ListClientsOnboardingStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsOnboardingStatus: %v", v)
+	}
+}
 
 // ClientOnboardingSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 type ClientOnboardingSelf struct {
@@ -764,6 +855,25 @@ const (
 func (e ListClientsCapabilitiesStatus) ToPointer() *ListClientsCapabilitiesStatus {
 	return &e
 }
+func (e *ListClientsCapabilitiesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unrequested":
+		fallthrough
+	case "enabled":
+		fallthrough
+	case "disabled":
+		fallthrough
+	case "pending":
+		*e = ListClientsCapabilitiesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsCapabilitiesStatus: %v", v)
+	}
+}
 
 type ListClientsStatusReason string
 
@@ -774,6 +884,21 @@ const (
 
 func (e ListClientsStatusReason) ToPointer() *ListClientsStatusReason {
 	return &e
+}
+func (e *ListClientsStatusReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "requirement-past-due":
+		fallthrough
+	case "onboarding-information-needed":
+		*e = ListClientsStatusReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsStatusReason: %v", v)
+	}
 }
 
 // ListClientsRequirementStatus - The status of the requirement depends on its due date.
@@ -788,6 +913,23 @@ const (
 
 func (e ListClientsRequirementStatus) ToPointer() *ListClientsRequirementStatus {
 	return &e
+}
+func (e *ListClientsRequirementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "currently-due":
+		fallthrough
+	case "past-due":
+		fallthrough
+	case "requested":
+		*e = ListClientsRequirementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListClientsRequirementStatus: %v", v)
+	}
 }
 
 // ListClientsCapabilitiesDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.

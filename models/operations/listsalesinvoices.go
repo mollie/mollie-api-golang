@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -97,6 +99,23 @@ const (
 func (e ListSalesInvoicesStatus) ToPointer() *ListSalesInvoicesStatus {
 	return &e
 }
+func (e *ListSalesInvoicesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "issued":
+		fallthrough
+	case "paid":
+		*e = ListSalesInvoicesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesStatus: %v", v)
+	}
+}
 
 // ListSalesInvoicesVatScheme - The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 type ListSalesInvoicesVatScheme string
@@ -108,6 +127,21 @@ const (
 
 func (e ListSalesInvoicesVatScheme) ToPointer() *ListSalesInvoicesVatScheme {
 	return &e
+}
+func (e *ListSalesInvoicesVatScheme) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "standard":
+		fallthrough
+	case "one-stop-shop":
+		*e = ListSalesInvoicesVatScheme(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesVatScheme: %v", v)
+	}
 }
 
 // ListSalesInvoicesVatMode - The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -121,6 +155,21 @@ const (
 
 func (e ListSalesInvoicesVatMode) ToPointer() *ListSalesInvoicesVatMode {
 	return &e
+}
+func (e *ListSalesInvoicesVatMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "exclusive":
+		fallthrough
+	case "inclusive":
+		*e = ListSalesInvoicesVatMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesVatMode: %v", v)
+	}
 }
 
 // ListSalesInvoicesMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
@@ -144,6 +193,31 @@ const (
 func (e ListSalesInvoicesPaymentTerm) ToPointer() *ListSalesInvoicesPaymentTerm {
 	return &e
 }
+func (e *ListSalesInvoicesPaymentTerm) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "7 days":
+		fallthrough
+	case "14 days":
+		fallthrough
+	case "30 days":
+		fallthrough
+	case "45 days":
+		fallthrough
+	case "60 days":
+		fallthrough
+	case "90 days":
+		fallthrough
+	case "120 days":
+		*e = ListSalesInvoicesPaymentTerm(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesPaymentTerm: %v", v)
+	}
+}
 
 // ListSalesInvoicesSource - The way through which the invoice is to be set to paid.
 type ListSalesInvoicesSource string
@@ -156,6 +230,23 @@ const (
 
 func (e ListSalesInvoicesSource) ToPointer() *ListSalesInvoicesSource {
 	return &e
+}
+func (e *ListSalesInvoicesSource) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "payment-link":
+		fallthrough
+	case "payment":
+		*e = ListSalesInvoicesSource(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesSource: %v", v)
+	}
 }
 
 // ListSalesInvoicesPaymentDetails - Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
@@ -217,6 +308,21 @@ const (
 func (e ListSalesInvoicesRecipientType) ToPointer() *ListSalesInvoicesRecipientType {
 	return &e
 }
+func (e *ListSalesInvoicesRecipientType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = ListSalesInvoicesRecipientType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesRecipientType: %v", v)
+	}
+}
 
 // ListSalesInvoicesLocale - The locale for the recipient, to be used for translations in PDF generation and payment pages.
 type ListSalesInvoicesLocale string
@@ -235,6 +341,35 @@ const (
 
 func (e ListSalesInvoicesLocale) ToPointer() *ListSalesInvoicesLocale {
 	return &e
+}
+func (e *ListSalesInvoicesLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		*e = ListSalesInvoicesLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesLocale: %v", v)
+	}
 }
 
 type ListSalesInvoicesRecipient struct {
@@ -426,6 +561,21 @@ const (
 func (e ListSalesInvoicesLineType) ToPointer() *ListSalesInvoicesLineType {
 	return &e
 }
+func (e *ListSalesInvoicesLineType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = ListSalesInvoicesLineType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesLineType: %v", v)
+	}
+}
 
 // ListSalesInvoicesLineDiscount - The discount to be applied to the line item.
 type ListSalesInvoicesLineDiscount struct {
@@ -511,6 +661,21 @@ const (
 
 func (e ListSalesInvoicesDiscountType) ToPointer() *ListSalesInvoicesDiscountType {
 	return &e
+}
+func (e *ListSalesInvoicesDiscountType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = ListSalesInvoicesDiscountType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSalesInvoicesDiscountType: %v", v)
+	}
 }
 
 // ListSalesInvoicesDiscount - The discount to be applied to the entire invoice, applied on top of any line item discounts.

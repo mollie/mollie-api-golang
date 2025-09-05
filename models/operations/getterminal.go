@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -74,6 +76,21 @@ const (
 func (e GetTerminalMode) ToPointer() *GetTerminalMode {
 	return &e
 }
+func (e *GetTerminalMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetTerminalMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTerminalMode: %v", v)
+	}
+}
 
 // GetTerminalStatus - The status of the terminal.
 type GetTerminalStatus string
@@ -87,6 +104,23 @@ const (
 func (e GetTerminalStatus) ToPointer() *GetTerminalStatus {
 	return &e
 }
+func (e *GetTerminalStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "inactive":
+		*e = GetTerminalStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTerminalStatus: %v", v)
+	}
+}
 
 // GetTerminalBrand - The brand of the terminal.
 type GetTerminalBrand string
@@ -98,6 +132,21 @@ const (
 
 func (e GetTerminalBrand) ToPointer() *GetTerminalBrand {
 	return &e
+}
+func (e *GetTerminalBrand) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "PAX":
+		fallthrough
+	case "Tap":
+		*e = GetTerminalBrand(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTerminalBrand: %v", v)
+	}
 }
 
 // GetTerminalModel - The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
@@ -114,6 +163,29 @@ const (
 
 func (e GetTerminalModel) ToPointer() *GetTerminalModel {
 	return &e
+}
+func (e *GetTerminalModel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "A35":
+		fallthrough
+	case "A77":
+		fallthrough
+	case "A920":
+		fallthrough
+	case "A920Pro":
+		fallthrough
+	case "IM30":
+		fallthrough
+	case "Tap":
+		*e = GetTerminalModel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetTerminalModel: %v", v)
+	}
 }
 
 // GetTerminalSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -18,6 +20,23 @@ const (
 
 func (e PartnerType) ToPointer() *PartnerType {
 	return &e
+}
+func (e *PartnerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oauth":
+		fallthrough
+	case "signuplink":
+		fallthrough
+	case "useragent":
+		*e = PartnerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PartnerType: %v", v)
+	}
 }
 
 type UserAgentToken struct {

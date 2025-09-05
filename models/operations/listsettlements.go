@@ -201,6 +201,25 @@ const (
 func (e ListSettlementsStatus) ToPointer() *ListSettlementsStatus {
 	return &e
 }
+func (e *ListSettlementsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "open":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "paidout":
+		fallthrough
+	case "failed":
+		*e = ListSettlementsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementsStatus: %v", v)
+	}
+}
 
 // ListSettlementsAmount - The total amount of the settlement.
 type ListSettlementsAmount struct {

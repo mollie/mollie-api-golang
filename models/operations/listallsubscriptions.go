@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -133,6 +134,21 @@ const (
 func (e ListAllSubscriptionsMode) ToPointer() *ListAllSubscriptionsMode {
 	return &e
 }
+func (e *ListAllSubscriptionsMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListAllSubscriptionsMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListAllSubscriptionsMode: %v", v)
+	}
+}
 
 // ListAllSubscriptionsStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
 // enabling the subscription.
@@ -148,6 +164,27 @@ const (
 
 func (e ListAllSubscriptionsStatus) ToPointer() *ListAllSubscriptionsStatus {
 	return &e
+}
+func (e *ListAllSubscriptionsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "suspended":
+		fallthrough
+	case "completed":
+		*e = ListAllSubscriptionsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListAllSubscriptionsStatus: %v", v)
+	}
 }
 
 // ListAllSubscriptionsAmount - The amount for each individual payment that is charged with this subscription. For example, for a monthly
@@ -184,6 +221,23 @@ const (
 
 func (e ListAllSubscriptionsMethod) ToPointer() *ListAllSubscriptionsMethod {
 	return &e
+}
+func (e *ListAllSubscriptionsMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = ListAllSubscriptionsMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListAllSubscriptionsMethod: %v", v)
+	}
 }
 
 // ListAllSubscriptionsApplicationFeeAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -249,9 +303,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type ListAllSubscriptionsMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type ListAllSubscriptionsMetadataType
 }

@@ -826,6 +826,21 @@ const (
 func (e UpdatePaymentLinkMode) ToPointer() *UpdatePaymentLinkMode {
 	return &e
 }
+func (e *UpdatePaymentLinkMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = UpdatePaymentLinkMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdatePaymentLinkMode: %v", v)
+	}
+}
 
 // UpdatePaymentLinkAmount - The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
 // amount.
@@ -891,6 +906,33 @@ const (
 
 func (e UpdatePaymentLinkTypeResponse) ToPointer() *UpdatePaymentLinkTypeResponse {
 	return &e
+}
+func (e *UpdatePaymentLinkTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "physical":
+		fallthrough
+	case "digital":
+		fallthrough
+	case "shipping_fee":
+		fallthrough
+	case "discount":
+		fallthrough
+	case "store_credit":
+		fallthrough
+	case "gift_card":
+		fallthrough
+	case "surcharge":
+		fallthrough
+	case "tip":
+		*e = UpdatePaymentLinkTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdatePaymentLinkTypeResponse: %v", v)
+	}
 }
 
 // UpdatePaymentLinkUnitPriceResponse - The price of a single item including VAT.
@@ -1009,6 +1051,25 @@ const (
 
 func (e UpdatePaymentLinkCategoryResponse) ToPointer() *UpdatePaymentLinkCategoryResponse {
 	return &e
+}
+func (e *UpdatePaymentLinkCategoryResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "meal":
+		fallthrough
+	case "eco":
+		fallthrough
+	case "gift":
+		fallthrough
+	case "sport_culture":
+		*e = UpdatePaymentLinkCategoryResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdatePaymentLinkCategoryResponse: %v", v)
+	}
 }
 
 type UpdatePaymentLinkLineResponse struct {
@@ -1495,6 +1556,21 @@ const (
 
 func (e UpdatePaymentLinkSequenceType) ToPointer() *UpdatePaymentLinkSequenceType {
 	return &e
+}
+func (e *UpdatePaymentLinkSequenceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oneoff":
+		fallthrough
+	case "first":
+		*e = UpdatePaymentLinkSequenceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdatePaymentLinkSequenceType: %v", v)
+	}
 }
 
 // UpdatePaymentLinkSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

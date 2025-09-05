@@ -184,6 +184,21 @@ const (
 func (e GroupingResponse) ToPointer() *GroupingResponse {
 	return &e
 }
+func (e *GroupingResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "status-balances":
+		fallthrough
+	case "transaction-categories":
+		*e = GroupingResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GroupingResponse: %v", v)
+	}
+}
 
 // PendingBalanceOpenAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 type PendingBalanceOpenAmount struct {
@@ -258,6 +273,101 @@ const (
 func (e PendingBalanceOpenSubTotalMethod1) ToPointer() *PendingBalanceOpenSubTotalMethod1 {
 	return &e
 }
+func (e *PendingBalanceOpenSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceOpenSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalMethod1: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceOpenSubTotalCardIssuer1 string
@@ -272,6 +382,25 @@ const (
 func (e PendingBalanceOpenSubTotalCardIssuer1) ToPointer() *PendingBalanceOpenSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PendingBalanceOpenSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceOpenSubTotalCardAudience1 string
@@ -283,6 +412,21 @@ const (
 
 func (e PendingBalanceOpenSubTotalCardAudience1) ToPointer() *PendingBalanceOpenSubTotalCardAudience1 {
 	return &e
+}
+func (e *PendingBalanceOpenSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -297,6 +441,25 @@ const (
 
 func (e PendingBalanceOpenSubTotalCardRegion1) ToPointer() *PendingBalanceOpenSubTotalCardRegion1 {
 	return &e
+}
+func (e *PendingBalanceOpenSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -335,6 +498,71 @@ const (
 func (e PendingBalanceOpenSubTotalFeeType1) ToPointer() *PendingBalanceOpenSubTotalFeeType1 {
 	return &e
 }
+func (e *PendingBalanceOpenSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceOpenSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalFeeType1: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceOpenSubTotalPrepaymentPartType1 string
@@ -349,6 +577,27 @@ const (
 
 func (e PendingBalanceOpenSubTotalPrepaymentPartType1) ToPointer() *PendingBalanceOpenSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PendingBalanceOpenSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceOpenSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubTotalTransactionType1 - Represents the transaction type
@@ -398,6 +647,95 @@ const (
 
 func (e PendingBalanceOpenSubTotalTransactionType1) ToPointer() *PendingBalanceOpenSubTotalTransactionType1 {
 	return &e
+}
+func (e *PendingBalanceOpenSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceOpenSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PendingBalanceOpenSubTotal1 struct {
@@ -526,6 +864,101 @@ const (
 func (e PendingBalanceOpenSubtotalMethod2) ToPointer() *PendingBalanceOpenSubtotalMethod2 {
 	return &e
 }
+func (e *PendingBalanceOpenSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceOpenSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalMethod2: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceOpenSubtotalCardIssuer2 string
@@ -540,6 +973,25 @@ const (
 func (e PendingBalanceOpenSubtotalCardIssuer2) ToPointer() *PendingBalanceOpenSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PendingBalanceOpenSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceOpenSubtotalCardAudience2 string
@@ -551,6 +1003,21 @@ const (
 
 func (e PendingBalanceOpenSubtotalCardAudience2) ToPointer() *PendingBalanceOpenSubtotalCardAudience2 {
 	return &e
+}
+func (e *PendingBalanceOpenSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -565,6 +1032,25 @@ const (
 
 func (e PendingBalanceOpenSubtotalCardRegion2) ToPointer() *PendingBalanceOpenSubtotalCardRegion2 {
 	return &e
+}
+func (e *PendingBalanceOpenSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceOpenSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -603,6 +1089,71 @@ const (
 func (e PendingBalanceOpenSubtotalFeeType2) ToPointer() *PendingBalanceOpenSubtotalFeeType2 {
 	return &e
 }
+func (e *PendingBalanceOpenSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceOpenSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalFeeType2: %v", v)
+	}
+}
 
 // PendingBalanceOpenSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceOpenSubtotalPrepaymentPartType2 string
@@ -617,6 +1168,27 @@ const (
 
 func (e PendingBalanceOpenSubtotalPrepaymentPartType2) ToPointer() *PendingBalanceOpenSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PendingBalanceOpenSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceOpenSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PendingBalanceOpenSubtotalTransactionType2 - Represents the transaction type
@@ -666,6 +1238,95 @@ const (
 
 func (e PendingBalanceOpenSubtotalTransactionType2) ToPointer() *PendingBalanceOpenSubtotalTransactionType2 {
 	return &e
+}
+func (e *PendingBalanceOpenSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceOpenSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceOpenSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PendingBalanceOpenSubtotal2 struct {
@@ -844,6 +1505,101 @@ const (
 func (e PendingBalanceCloseSubTotalMethod1) ToPointer() *PendingBalanceCloseSubTotalMethod1 {
 	return &e
 }
+func (e *PendingBalanceCloseSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceCloseSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalMethod1: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceCloseSubTotalCardIssuer1 string
@@ -858,6 +1614,25 @@ const (
 func (e PendingBalanceCloseSubTotalCardIssuer1) ToPointer() *PendingBalanceCloseSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PendingBalanceCloseSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceCloseSubTotalCardAudience1 string
@@ -869,6 +1644,21 @@ const (
 
 func (e PendingBalanceCloseSubTotalCardAudience1) ToPointer() *PendingBalanceCloseSubTotalCardAudience1 {
 	return &e
+}
+func (e *PendingBalanceCloseSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -883,6 +1673,25 @@ const (
 
 func (e PendingBalanceCloseSubTotalCardRegion1) ToPointer() *PendingBalanceCloseSubTotalCardRegion1 {
 	return &e
+}
+func (e *PendingBalanceCloseSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -921,6 +1730,71 @@ const (
 func (e PendingBalanceCloseSubTotalFeeType1) ToPointer() *PendingBalanceCloseSubTotalFeeType1 {
 	return &e
 }
+func (e *PendingBalanceCloseSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceCloseSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalFeeType1: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceCloseSubTotalPrepaymentPartType1 string
@@ -935,6 +1809,27 @@ const (
 
 func (e PendingBalanceCloseSubTotalPrepaymentPartType1) ToPointer() *PendingBalanceCloseSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PendingBalanceCloseSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceCloseSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubTotalTransactionType1 - Represents the transaction type
@@ -984,6 +1879,95 @@ const (
 
 func (e PendingBalanceCloseSubTotalTransactionType1) ToPointer() *PendingBalanceCloseSubTotalTransactionType1 {
 	return &e
+}
+func (e *PendingBalanceCloseSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceCloseSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PendingBalanceCloseSubTotal1 struct {
@@ -1112,6 +2096,101 @@ const (
 func (e PendingBalanceCloseSubtotalMethod2) ToPointer() *PendingBalanceCloseSubtotalMethod2 {
 	return &e
 }
+func (e *PendingBalanceCloseSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceCloseSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalMethod2: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceCloseSubtotalCardIssuer2 string
@@ -1126,6 +2205,25 @@ const (
 func (e PendingBalanceCloseSubtotalCardIssuer2) ToPointer() *PendingBalanceCloseSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PendingBalanceCloseSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceCloseSubtotalCardAudience2 string
@@ -1137,6 +2235,21 @@ const (
 
 func (e PendingBalanceCloseSubtotalCardAudience2) ToPointer() *PendingBalanceCloseSubtotalCardAudience2 {
 	return &e
+}
+func (e *PendingBalanceCloseSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -1151,6 +2264,25 @@ const (
 
 func (e PendingBalanceCloseSubtotalCardRegion2) ToPointer() *PendingBalanceCloseSubtotalCardRegion2 {
 	return &e
+}
+func (e *PendingBalanceCloseSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceCloseSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -1189,6 +2321,71 @@ const (
 func (e PendingBalanceCloseSubtotalFeeType2) ToPointer() *PendingBalanceCloseSubtotalFeeType2 {
 	return &e
 }
+func (e *PendingBalanceCloseSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceCloseSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalFeeType2: %v", v)
+	}
+}
 
 // PendingBalanceCloseSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceCloseSubtotalPrepaymentPartType2 string
@@ -1203,6 +2400,27 @@ const (
 
 func (e PendingBalanceCloseSubtotalPrepaymentPartType2) ToPointer() *PendingBalanceCloseSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PendingBalanceCloseSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceCloseSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PendingBalanceCloseSubtotalTransactionType2 - Represents the transaction type
@@ -1252,6 +2470,95 @@ const (
 
 func (e PendingBalanceCloseSubtotalTransactionType2) ToPointer() *PendingBalanceCloseSubtotalTransactionType2 {
 	return &e
+}
+func (e *PendingBalanceCloseSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceCloseSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceCloseSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PendingBalanceCloseSubtotal2 struct {
@@ -1430,6 +2737,101 @@ const (
 func (e PendingBalancePendingSubTotalMethod1) ToPointer() *PendingBalancePendingSubTotalMethod1 {
 	return &e
 }
+func (e *PendingBalancePendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalancePendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalMethod1: %v", v)
+	}
+}
 
 // PendingBalancePendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PendingBalancePendingSubTotalCardIssuer1 string
@@ -1444,6 +2846,25 @@ const (
 func (e PendingBalancePendingSubTotalCardIssuer1) ToPointer() *PendingBalancePendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PendingBalancePendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PendingBalancePendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalancePendingSubTotalCardAudience1 string
@@ -1455,6 +2876,21 @@ const (
 
 func (e PendingBalancePendingSubTotalCardAudience1) ToPointer() *PendingBalancePendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *PendingBalancePendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PendingBalancePendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -1469,6 +2905,25 @@ const (
 
 func (e PendingBalancePendingSubTotalCardRegion1) ToPointer() *PendingBalancePendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *PendingBalancePendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PendingBalancePendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -1507,6 +2962,71 @@ const (
 func (e PendingBalancePendingSubTotalFeeType1) ToPointer() *PendingBalancePendingSubTotalFeeType1 {
 	return &e
 }
+func (e *PendingBalancePendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalancePendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // PendingBalancePendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalancePendingSubTotalPrepaymentPartType1 string
@@ -1521,6 +3041,27 @@ const (
 
 func (e PendingBalancePendingSubTotalPrepaymentPartType1) ToPointer() *PendingBalancePendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PendingBalancePendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalancePendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PendingBalancePendingSubTotalTransactionType1 - Represents the transaction type
@@ -1570,6 +3111,95 @@ const (
 
 func (e PendingBalancePendingSubTotalTransactionType1) ToPointer() *PendingBalancePendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *PendingBalancePendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalancePendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PendingBalancePendingSubTotal1 struct {
@@ -1698,6 +3328,101 @@ const (
 func (e PendingBalancePendingSubtotalMethod2) ToPointer() *PendingBalancePendingSubtotalMethod2 {
 	return &e
 }
+func (e *PendingBalancePendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalancePendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalMethod2: %v", v)
+	}
+}
 
 // PendingBalancePendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PendingBalancePendingSubtotalCardIssuer2 string
@@ -1712,6 +3437,25 @@ const (
 func (e PendingBalancePendingSubtotalCardIssuer2) ToPointer() *PendingBalancePendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PendingBalancePendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PendingBalancePendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalancePendingSubtotalCardAudience2 string
@@ -1723,6 +3467,21 @@ const (
 
 func (e PendingBalancePendingSubtotalCardAudience2) ToPointer() *PendingBalancePendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *PendingBalancePendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PendingBalancePendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -1737,6 +3496,25 @@ const (
 
 func (e PendingBalancePendingSubtotalCardRegion2) ToPointer() *PendingBalancePendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *PendingBalancePendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalancePendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PendingBalancePendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -1775,6 +3553,71 @@ const (
 func (e PendingBalancePendingSubtotalFeeType2) ToPointer() *PendingBalancePendingSubtotalFeeType2 {
 	return &e
 }
+func (e *PendingBalancePendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalancePendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // PendingBalancePendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalancePendingSubtotalPrepaymentPartType2 string
@@ -1789,6 +3632,27 @@ const (
 
 func (e PendingBalancePendingSubtotalPrepaymentPartType2) ToPointer() *PendingBalancePendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PendingBalancePendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalancePendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PendingBalancePendingSubtotalTransactionType2 - Represents the transaction type
@@ -1838,6 +3702,95 @@ const (
 
 func (e PendingBalancePendingSubtotalTransactionType2) ToPointer() *PendingBalancePendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *PendingBalancePendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalancePendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalancePendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PendingBalancePendingSubtotal2 struct {
@@ -2016,6 +3969,101 @@ const (
 func (e PendingBalanceMovedToAvailableSubTotalMethod1) ToPointer() *PendingBalanceMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceMovedToAvailableSubTotalCardIssuer1 string
@@ -2030,6 +4078,25 @@ const (
 func (e PendingBalanceMovedToAvailableSubTotalCardIssuer1) ToPointer() *PendingBalanceMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceMovedToAvailableSubTotalCardAudience1 string
@@ -2041,6 +4108,21 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubTotalCardAudience1) ToPointer() *PendingBalanceMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -2055,6 +4137,25 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubTotalCardRegion1) ToPointer() *PendingBalanceMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -2093,6 +4194,71 @@ const (
 func (e PendingBalanceMovedToAvailableSubTotalFeeType1) ToPointer() *PendingBalanceMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -2107,6 +4273,27 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -2156,6 +4343,95 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubTotalTransactionType1) ToPointer() *PendingBalanceMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PendingBalanceMovedToAvailableSubTotal1 struct {
@@ -2284,6 +4560,101 @@ const (
 func (e PendingBalanceMovedToAvailableSubtotalMethod2) ToPointer() *PendingBalanceMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PendingBalanceMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PendingBalanceMovedToAvailableSubtotalCardIssuer2 string
@@ -2298,6 +4669,25 @@ const (
 func (e PendingBalanceMovedToAvailableSubtotalCardIssuer2) ToPointer() *PendingBalanceMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PendingBalanceMovedToAvailableSubtotalCardAudience2 string
@@ -2309,6 +4699,21 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubtotalCardAudience2) ToPointer() *PendingBalanceMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -2323,6 +4728,25 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubtotalCardRegion2) ToPointer() *PendingBalanceMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PendingBalanceMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -2361,6 +4785,71 @@ const (
 func (e PendingBalanceMovedToAvailableSubtotalFeeType2) ToPointer() *PendingBalanceMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *PendingBalanceMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PendingBalanceMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -2375,6 +4864,27 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PendingBalanceMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -2424,6 +4934,95 @@ const (
 
 func (e PendingBalanceMovedToAvailableSubtotalTransactionType2) ToPointer() *PendingBalanceMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *PendingBalanceMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PendingBalanceMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PendingBalanceMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PendingBalanceMovedToAvailableSubtotal2 struct {
@@ -2638,6 +5237,101 @@ const (
 func (e AvailableBalanceOpenSubTotalMethod1) ToPointer() *AvailableBalanceOpenSubTotalMethod1 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceOpenSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalMethod1: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceOpenSubTotalCardIssuer1 string
@@ -2652,6 +5346,25 @@ const (
 func (e AvailableBalanceOpenSubTotalCardIssuer1) ToPointer() *AvailableBalanceOpenSubTotalCardIssuer1 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceOpenSubTotalCardAudience1 string
@@ -2663,6 +5376,21 @@ const (
 
 func (e AvailableBalanceOpenSubTotalCardAudience1) ToPointer() *AvailableBalanceOpenSubTotalCardAudience1 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalCardAudience1: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -2677,6 +5405,25 @@ const (
 
 func (e AvailableBalanceOpenSubTotalCardRegion1) ToPointer() *AvailableBalanceOpenSubTotalCardRegion1 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalCardRegion1: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -2715,6 +5462,71 @@ const (
 func (e AvailableBalanceOpenSubTotalFeeType1) ToPointer() *AvailableBalanceOpenSubTotalFeeType1 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceOpenSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalFeeType1: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceOpenSubTotalPrepaymentPartType1 string
@@ -2729,6 +5541,27 @@ const (
 
 func (e AvailableBalanceOpenSubTotalPrepaymentPartType1) ToPointer() *AvailableBalanceOpenSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceOpenSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubTotalTransactionType1 - Represents the transaction type
@@ -2778,6 +5611,95 @@ const (
 
 func (e AvailableBalanceOpenSubTotalTransactionType1) ToPointer() *AvailableBalanceOpenSubTotalTransactionType1 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceOpenSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubTotalTransactionType1: %v", v)
+	}
 }
 
 type AvailableBalanceOpenSubTotal1 struct {
@@ -2906,6 +5828,101 @@ const (
 func (e AvailableBalanceOpenSubtotalMethod2) ToPointer() *AvailableBalanceOpenSubtotalMethod2 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceOpenSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalMethod2: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceOpenSubtotalCardIssuer2 string
@@ -2920,6 +5937,25 @@ const (
 func (e AvailableBalanceOpenSubtotalCardIssuer2) ToPointer() *AvailableBalanceOpenSubtotalCardIssuer2 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceOpenSubtotalCardAudience2 string
@@ -2931,6 +5967,21 @@ const (
 
 func (e AvailableBalanceOpenSubtotalCardAudience2) ToPointer() *AvailableBalanceOpenSubtotalCardAudience2 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalCardAudience2: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -2945,6 +5996,25 @@ const (
 
 func (e AvailableBalanceOpenSubtotalCardRegion2) ToPointer() *AvailableBalanceOpenSubtotalCardRegion2 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceOpenSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalCardRegion2: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -2983,6 +6053,71 @@ const (
 func (e AvailableBalanceOpenSubtotalFeeType2) ToPointer() *AvailableBalanceOpenSubtotalFeeType2 {
 	return &e
 }
+func (e *AvailableBalanceOpenSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceOpenSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalFeeType2: %v", v)
+	}
+}
 
 // AvailableBalanceOpenSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceOpenSubtotalPrepaymentPartType2 string
@@ -2997,6 +6132,27 @@ const (
 
 func (e AvailableBalanceOpenSubtotalPrepaymentPartType2) ToPointer() *AvailableBalanceOpenSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceOpenSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // AvailableBalanceOpenSubtotalTransactionType2 - Represents the transaction type
@@ -3046,6 +6202,95 @@ const (
 
 func (e AvailableBalanceOpenSubtotalTransactionType2) ToPointer() *AvailableBalanceOpenSubtotalTransactionType2 {
 	return &e
+}
+func (e *AvailableBalanceOpenSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceOpenSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceOpenSubtotalTransactionType2: %v", v)
+	}
 }
 
 type AvailableBalanceOpenSubtotal2 struct {
@@ -3224,6 +6469,101 @@ const (
 func (e MovedFromPendingSubTotalMethod1) ToPointer() *MovedFromPendingSubTotalMethod1 {
 	return &e
 }
+func (e *MovedFromPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = MovedFromPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // MovedFromPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type MovedFromPendingSubTotalCardIssuer1 string
@@ -3238,6 +6578,25 @@ const (
 func (e MovedFromPendingSubTotalCardIssuer1) ToPointer() *MovedFromPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *MovedFromPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // MovedFromPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type MovedFromPendingSubTotalCardAudience1 string
@@ -3249,6 +6608,21 @@ const (
 
 func (e MovedFromPendingSubTotalCardAudience1) ToPointer() *MovedFromPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *MovedFromPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // MovedFromPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -3263,6 +6637,25 @@ const (
 
 func (e MovedFromPendingSubTotalCardRegion1) ToPointer() *MovedFromPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *MovedFromPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // MovedFromPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -3301,6 +6694,71 @@ const (
 func (e MovedFromPendingSubTotalFeeType1) ToPointer() *MovedFromPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *MovedFromPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = MovedFromPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // MovedFromPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type MovedFromPendingSubTotalPrepaymentPartType1 string
@@ -3315,6 +6773,27 @@ const (
 
 func (e MovedFromPendingSubTotalPrepaymentPartType1) ToPointer() *MovedFromPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *MovedFromPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = MovedFromPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // MovedFromPendingSubTotalTransactionType1 - Represents the transaction type
@@ -3364,6 +6843,95 @@ const (
 
 func (e MovedFromPendingSubTotalTransactionType1) ToPointer() *MovedFromPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *MovedFromPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = MovedFromPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type MovedFromPendingSubTotal1 struct {
@@ -3492,6 +7060,101 @@ const (
 func (e MovedFromPendingSubtotalMethod2) ToPointer() *MovedFromPendingSubtotalMethod2 {
 	return &e
 }
+func (e *MovedFromPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = MovedFromPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // MovedFromPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type MovedFromPendingSubtotalCardIssuer2 string
@@ -3506,6 +7169,25 @@ const (
 func (e MovedFromPendingSubtotalCardIssuer2) ToPointer() *MovedFromPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *MovedFromPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // MovedFromPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type MovedFromPendingSubtotalCardAudience2 string
@@ -3517,6 +7199,21 @@ const (
 
 func (e MovedFromPendingSubtotalCardAudience2) ToPointer() *MovedFromPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *MovedFromPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // MovedFromPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -3531,6 +7228,25 @@ const (
 
 func (e MovedFromPendingSubtotalCardRegion2) ToPointer() *MovedFromPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *MovedFromPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = MovedFromPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // MovedFromPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -3569,6 +7285,71 @@ const (
 func (e MovedFromPendingSubtotalFeeType2) ToPointer() *MovedFromPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *MovedFromPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = MovedFromPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // MovedFromPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type MovedFromPendingSubtotalPrepaymentPartType2 string
@@ -3583,6 +7364,27 @@ const (
 
 func (e MovedFromPendingSubtotalPrepaymentPartType2) ToPointer() *MovedFromPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *MovedFromPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = MovedFromPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // MovedFromPendingSubtotalTransactionType2 - Represents the transaction type
@@ -3632,6 +7434,95 @@ const (
 
 func (e MovedFromPendingSubtotalTransactionType2) ToPointer() *MovedFromPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *MovedFromPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = MovedFromPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MovedFromPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type MovedFromPendingSubtotal2 struct {
@@ -3810,6 +7701,101 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubTotalMethod1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1 string
@@ -3824,6 +7810,25 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceImmediatelyAvailableSubTotalCardAudience1 string
@@ -3835,6 +7840,21 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubTotalCardAudience1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -3849,6 +7869,25 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubTotalCardRegion1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -3887,6 +7926,71 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubTotalFeeType1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -3901,6 +8005,27 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -3950,6 +8075,95 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubTotalTransactionType1) ToPointer() *AvailableBalanceImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type AvailableBalanceImmediatelyAvailableSubTotal1 struct {
@@ -4078,6 +8292,101 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubtotalMethod2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2 string
@@ -4092,6 +8401,25 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceImmediatelyAvailableSubtotalCardAudience2 string
@@ -4103,6 +8431,21 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubtotalCardAudience2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -4117,6 +8460,25 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubtotalCardRegion2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -4155,6 +8517,71 @@ const (
 func (e AvailableBalanceImmediatelyAvailableSubtotalFeeType2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *AvailableBalanceImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -4169,6 +8596,27 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // AvailableBalanceImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -4218,6 +8666,95 @@ const (
 
 func (e AvailableBalanceImmediatelyAvailableSubtotalTransactionType2) ToPointer() *AvailableBalanceImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *AvailableBalanceImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type AvailableBalanceImmediatelyAvailableSubtotal2 struct {
@@ -4396,6 +8933,101 @@ const (
 func (e AvailableBalanceCloseSubTotalMethod1) ToPointer() *AvailableBalanceCloseSubTotalMethod1 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceCloseSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalMethod1: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceCloseSubTotalCardIssuer1 string
@@ -4410,6 +9042,25 @@ const (
 func (e AvailableBalanceCloseSubTotalCardIssuer1) ToPointer() *AvailableBalanceCloseSubTotalCardIssuer1 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceCloseSubTotalCardAudience1 string
@@ -4421,6 +9072,21 @@ const (
 
 func (e AvailableBalanceCloseSubTotalCardAudience1) ToPointer() *AvailableBalanceCloseSubTotalCardAudience1 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalCardAudience1: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -4435,6 +9101,25 @@ const (
 
 func (e AvailableBalanceCloseSubTotalCardRegion1) ToPointer() *AvailableBalanceCloseSubTotalCardRegion1 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalCardRegion1: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -4473,6 +9158,71 @@ const (
 func (e AvailableBalanceCloseSubTotalFeeType1) ToPointer() *AvailableBalanceCloseSubTotalFeeType1 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceCloseSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalFeeType1: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceCloseSubTotalPrepaymentPartType1 string
@@ -4487,6 +9237,27 @@ const (
 
 func (e AvailableBalanceCloseSubTotalPrepaymentPartType1) ToPointer() *AvailableBalanceCloseSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceCloseSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubTotalTransactionType1 - Represents the transaction type
@@ -4536,6 +9307,95 @@ const (
 
 func (e AvailableBalanceCloseSubTotalTransactionType1) ToPointer() *AvailableBalanceCloseSubTotalTransactionType1 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceCloseSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubTotalTransactionType1: %v", v)
+	}
 }
 
 type AvailableBalanceCloseSubTotal1 struct {
@@ -4664,6 +9524,101 @@ const (
 func (e AvailableBalanceCloseSubtotalMethod2) ToPointer() *AvailableBalanceCloseSubtotalMethod2 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = AvailableBalanceCloseSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalMethod2: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type AvailableBalanceCloseSubtotalCardIssuer2 string
@@ -4678,6 +9633,25 @@ const (
 func (e AvailableBalanceCloseSubtotalCardIssuer2) ToPointer() *AvailableBalanceCloseSubtotalCardIssuer2 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type AvailableBalanceCloseSubtotalCardAudience2 string
@@ -4689,6 +9663,21 @@ const (
 
 func (e AvailableBalanceCloseSubtotalCardAudience2) ToPointer() *AvailableBalanceCloseSubtotalCardAudience2 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalCardAudience2: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -4703,6 +9692,25 @@ const (
 
 func (e AvailableBalanceCloseSubtotalCardRegion2) ToPointer() *AvailableBalanceCloseSubtotalCardRegion2 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = AvailableBalanceCloseSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalCardRegion2: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -4741,6 +9749,71 @@ const (
 func (e AvailableBalanceCloseSubtotalFeeType2) ToPointer() *AvailableBalanceCloseSubtotalFeeType2 {
 	return &e
 }
+func (e *AvailableBalanceCloseSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = AvailableBalanceCloseSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalFeeType2: %v", v)
+	}
+}
 
 // AvailableBalanceCloseSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type AvailableBalanceCloseSubtotalPrepaymentPartType2 string
@@ -4755,6 +9828,27 @@ const (
 
 func (e AvailableBalanceCloseSubtotalPrepaymentPartType2) ToPointer() *AvailableBalanceCloseSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = AvailableBalanceCloseSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // AvailableBalanceCloseSubtotalTransactionType2 - Represents the transaction type
@@ -4804,6 +9898,95 @@ const (
 
 func (e AvailableBalanceCloseSubtotalTransactionType2) ToPointer() *AvailableBalanceCloseSubtotalTransactionType2 {
 	return &e
+}
+func (e *AvailableBalanceCloseSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = AvailableBalanceCloseSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AvailableBalanceCloseSubtotalTransactionType2: %v", v)
+	}
 }
 
 type AvailableBalanceCloseSubtotal2 struct {
@@ -5018,6 +10201,101 @@ const (
 func (e OpenPendingSubTotalMethod1) ToPointer() *OpenPendingSubTotalMethod1 {
 	return &e
 }
+func (e *OpenPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = OpenPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // OpenPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type OpenPendingSubTotalCardIssuer1 string
@@ -5032,6 +10310,25 @@ const (
 func (e OpenPendingSubTotalCardIssuer1) ToPointer() *OpenPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *OpenPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // OpenPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type OpenPendingSubTotalCardAudience1 string
@@ -5043,6 +10340,21 @@ const (
 
 func (e OpenPendingSubTotalCardAudience1) ToPointer() *OpenPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *OpenPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // OpenPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -5057,6 +10369,25 @@ const (
 
 func (e OpenPendingSubTotalCardRegion1) ToPointer() *OpenPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *OpenPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // OpenPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -5095,6 +10426,71 @@ const (
 func (e OpenPendingSubTotalFeeType1) ToPointer() *OpenPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *OpenPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = OpenPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // OpenPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type OpenPendingSubTotalPrepaymentPartType1 string
@@ -5109,6 +10505,27 @@ const (
 
 func (e OpenPendingSubTotalPrepaymentPartType1) ToPointer() *OpenPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *OpenPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = OpenPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // OpenPendingSubTotalTransactionType1 - Represents the transaction type
@@ -5158,6 +10575,95 @@ const (
 
 func (e OpenPendingSubTotalTransactionType1) ToPointer() *OpenPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *OpenPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = OpenPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type OpenPendingSubTotal1 struct {
@@ -5286,6 +10792,101 @@ const (
 func (e OpenPendingSubtotalMethod2) ToPointer() *OpenPendingSubtotalMethod2 {
 	return &e
 }
+func (e *OpenPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = OpenPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // OpenPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type OpenPendingSubtotalCardIssuer2 string
@@ -5300,6 +10901,25 @@ const (
 func (e OpenPendingSubtotalCardIssuer2) ToPointer() *OpenPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *OpenPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // OpenPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type OpenPendingSubtotalCardAudience2 string
@@ -5311,6 +10931,21 @@ const (
 
 func (e OpenPendingSubtotalCardAudience2) ToPointer() *OpenPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *OpenPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // OpenPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -5325,6 +10960,25 @@ const (
 
 func (e OpenPendingSubtotalCardRegion2) ToPointer() *OpenPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *OpenPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = OpenPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // OpenPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -5363,6 +11017,71 @@ const (
 func (e OpenPendingSubtotalFeeType2) ToPointer() *OpenPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *OpenPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = OpenPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // OpenPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type OpenPendingSubtotalPrepaymentPartType2 string
@@ -5377,6 +11096,27 @@ const (
 
 func (e OpenPendingSubtotalPrepaymentPartType2) ToPointer() *OpenPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *OpenPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = OpenPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // OpenPendingSubtotalTransactionType2 - Represents the transaction type
@@ -5426,6 +11166,95 @@ const (
 
 func (e OpenPendingSubtotalTransactionType2) ToPointer() *OpenPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *OpenPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = OpenPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type OpenPendingSubtotal2 struct {
@@ -5604,6 +11433,101 @@ const (
 func (e OpenAvailableSubTotalMethod1) ToPointer() *OpenAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *OpenAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = OpenAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // OpenAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type OpenAvailableSubTotalCardIssuer1 string
@@ -5618,6 +11542,25 @@ const (
 func (e OpenAvailableSubTotalCardIssuer1) ToPointer() *OpenAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *OpenAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // OpenAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type OpenAvailableSubTotalCardAudience1 string
@@ -5629,6 +11572,21 @@ const (
 
 func (e OpenAvailableSubTotalCardAudience1) ToPointer() *OpenAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *OpenAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // OpenAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -5643,6 +11601,25 @@ const (
 
 func (e OpenAvailableSubTotalCardRegion1) ToPointer() *OpenAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *OpenAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // OpenAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -5681,6 +11658,71 @@ const (
 func (e OpenAvailableSubTotalFeeType1) ToPointer() *OpenAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *OpenAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = OpenAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // OpenAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type OpenAvailableSubTotalPrepaymentPartType1 string
@@ -5695,6 +11737,27 @@ const (
 
 func (e OpenAvailableSubTotalPrepaymentPartType1) ToPointer() *OpenAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *OpenAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = OpenAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // OpenAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -5744,6 +11807,95 @@ const (
 
 func (e OpenAvailableSubTotalTransactionType1) ToPointer() *OpenAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *OpenAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = OpenAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type OpenAvailableSubTotal1 struct {
@@ -5872,6 +12024,101 @@ const (
 func (e OpenAvailableSubtotalMethod2) ToPointer() *OpenAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *OpenAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = OpenAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // OpenAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type OpenAvailableSubtotalCardIssuer2 string
@@ -5886,6 +12133,25 @@ const (
 func (e OpenAvailableSubtotalCardIssuer2) ToPointer() *OpenAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *OpenAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // OpenAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type OpenAvailableSubtotalCardAudience2 string
@@ -5897,6 +12163,21 @@ const (
 
 func (e OpenAvailableSubtotalCardAudience2) ToPointer() *OpenAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *OpenAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // OpenAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -5911,6 +12192,25 @@ const (
 
 func (e OpenAvailableSubtotalCardRegion2) ToPointer() *OpenAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *OpenAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = OpenAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // OpenAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -5949,6 +12249,71 @@ const (
 func (e OpenAvailableSubtotalFeeType2) ToPointer() *OpenAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *OpenAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = OpenAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // OpenAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type OpenAvailableSubtotalPrepaymentPartType2 string
@@ -5963,6 +12328,27 @@ const (
 
 func (e OpenAvailableSubtotalPrepaymentPartType2) ToPointer() *OpenAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *OpenAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = OpenAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // OpenAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -6012,6 +12398,95 @@ const (
 
 func (e OpenAvailableSubtotalTransactionType2) ToPointer() *OpenAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *OpenAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = OpenAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OpenAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type OpenAvailableSubtotal2 struct {
@@ -6210,6 +12685,101 @@ const (
 func (e ClosePendingSubTotalMethod1) ToPointer() *ClosePendingSubTotalMethod1 {
 	return &e
 }
+func (e *ClosePendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ClosePendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalMethod1: %v", v)
+	}
+}
 
 // ClosePendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type ClosePendingSubTotalCardIssuer1 string
@@ -6224,6 +12794,25 @@ const (
 func (e ClosePendingSubTotalCardIssuer1) ToPointer() *ClosePendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *ClosePendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // ClosePendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type ClosePendingSubTotalCardAudience1 string
@@ -6235,6 +12824,21 @@ const (
 
 func (e ClosePendingSubTotalCardAudience1) ToPointer() *ClosePendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *ClosePendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // ClosePendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -6249,6 +12853,25 @@ const (
 
 func (e ClosePendingSubTotalCardRegion1) ToPointer() *ClosePendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *ClosePendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // ClosePendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -6287,6 +12910,71 @@ const (
 func (e ClosePendingSubTotalFeeType1) ToPointer() *ClosePendingSubTotalFeeType1 {
 	return &e
 }
+func (e *ClosePendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ClosePendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // ClosePendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ClosePendingSubTotalPrepaymentPartType1 string
@@ -6301,6 +12989,27 @@ const (
 
 func (e ClosePendingSubTotalPrepaymentPartType1) ToPointer() *ClosePendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *ClosePendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ClosePendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // ClosePendingSubTotalTransactionType1 - Represents the transaction type
@@ -6350,6 +13059,95 @@ const (
 
 func (e ClosePendingSubTotalTransactionType1) ToPointer() *ClosePendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *ClosePendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ClosePendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type ClosePendingSubTotal1 struct {
@@ -6478,6 +13276,101 @@ const (
 func (e ClosePendingSubtotalMethod2) ToPointer() *ClosePendingSubtotalMethod2 {
 	return &e
 }
+func (e *ClosePendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ClosePendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalMethod2: %v", v)
+	}
+}
 
 // ClosePendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type ClosePendingSubtotalCardIssuer2 string
@@ -6492,6 +13385,25 @@ const (
 func (e ClosePendingSubtotalCardIssuer2) ToPointer() *ClosePendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *ClosePendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // ClosePendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type ClosePendingSubtotalCardAudience2 string
@@ -6503,6 +13415,21 @@ const (
 
 func (e ClosePendingSubtotalCardAudience2) ToPointer() *ClosePendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *ClosePendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // ClosePendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -6517,6 +13444,25 @@ const (
 
 func (e ClosePendingSubtotalCardRegion2) ToPointer() *ClosePendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *ClosePendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ClosePendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // ClosePendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -6555,6 +13501,71 @@ const (
 func (e ClosePendingSubtotalFeeType2) ToPointer() *ClosePendingSubtotalFeeType2 {
 	return &e
 }
+func (e *ClosePendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ClosePendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // ClosePendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ClosePendingSubtotalPrepaymentPartType2 string
@@ -6569,6 +13580,27 @@ const (
 
 func (e ClosePendingSubtotalPrepaymentPartType2) ToPointer() *ClosePendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *ClosePendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ClosePendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // ClosePendingSubtotalTransactionType2 - Represents the transaction type
@@ -6618,6 +13650,95 @@ const (
 
 func (e ClosePendingSubtotalTransactionType2) ToPointer() *ClosePendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *ClosePendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ClosePendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ClosePendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type ClosePendingSubtotal2 struct {
@@ -6796,6 +13917,101 @@ const (
 func (e CloseAvailableSubTotalMethod1) ToPointer() *CloseAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *CloseAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CloseAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // CloseAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CloseAvailableSubTotalCardIssuer1 string
@@ -6810,6 +14026,25 @@ const (
 func (e CloseAvailableSubTotalCardIssuer1) ToPointer() *CloseAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CloseAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CloseAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CloseAvailableSubTotalCardAudience1 string
@@ -6821,6 +14056,21 @@ const (
 
 func (e CloseAvailableSubTotalCardAudience1) ToPointer() *CloseAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *CloseAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CloseAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -6835,6 +14085,25 @@ const (
 
 func (e CloseAvailableSubTotalCardRegion1) ToPointer() *CloseAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *CloseAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CloseAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -6873,6 +14142,71 @@ const (
 func (e CloseAvailableSubTotalFeeType1) ToPointer() *CloseAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *CloseAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CloseAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // CloseAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CloseAvailableSubTotalPrepaymentPartType1 string
@@ -6887,6 +14221,27 @@ const (
 
 func (e CloseAvailableSubTotalPrepaymentPartType1) ToPointer() *CloseAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CloseAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CloseAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CloseAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -6936,6 +14291,95 @@ const (
 
 func (e CloseAvailableSubTotalTransactionType1) ToPointer() *CloseAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *CloseAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CloseAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CloseAvailableSubTotal1 struct {
@@ -7064,6 +14508,101 @@ const (
 func (e CloseAvailableSubtotalMethod2) ToPointer() *CloseAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *CloseAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CloseAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // CloseAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CloseAvailableSubtotalCardIssuer2 string
@@ -7078,6 +14617,25 @@ const (
 func (e CloseAvailableSubtotalCardIssuer2) ToPointer() *CloseAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CloseAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CloseAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CloseAvailableSubtotalCardAudience2 string
@@ -7089,6 +14647,21 @@ const (
 
 func (e CloseAvailableSubtotalCardAudience2) ToPointer() *CloseAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *CloseAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CloseAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -7103,6 +14676,25 @@ const (
 
 func (e CloseAvailableSubtotalCardRegion2) ToPointer() *CloseAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *CloseAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CloseAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CloseAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -7141,6 +14733,71 @@ const (
 func (e CloseAvailableSubtotalFeeType2) ToPointer() *CloseAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *CloseAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CloseAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // CloseAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CloseAvailableSubtotalPrepaymentPartType2 string
@@ -7155,6 +14812,27 @@ const (
 
 func (e CloseAvailableSubtotalPrepaymentPartType2) ToPointer() *CloseAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CloseAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CloseAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CloseAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -7204,6 +14882,95 @@ const (
 
 func (e CloseAvailableSubtotalTransactionType2) ToPointer() *CloseAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *CloseAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CloseAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CloseAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CloseAvailableSubtotal2 struct {
@@ -7402,6 +15169,101 @@ const (
 func (e PaymentsPendingSubTotalMethod1) ToPointer() *PaymentsPendingSubTotalMethod1 {
 	return &e
 }
+func (e *PaymentsPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // PaymentsPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PaymentsPendingSubTotalCardIssuer1 string
@@ -7416,6 +15278,25 @@ const (
 func (e PaymentsPendingSubTotalCardIssuer1) ToPointer() *PaymentsPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PaymentsPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PaymentsPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsPendingSubTotalCardAudience1 string
@@ -7427,6 +15308,21 @@ const (
 
 func (e PaymentsPendingSubTotalCardAudience1) ToPointer() *PaymentsPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *PaymentsPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PaymentsPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -7441,6 +15337,25 @@ const (
 
 func (e PaymentsPendingSubTotalCardRegion1) ToPointer() *PaymentsPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *PaymentsPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PaymentsPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -7479,6 +15394,71 @@ const (
 func (e PaymentsPendingSubTotalFeeType1) ToPointer() *PaymentsPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *PaymentsPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // PaymentsPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsPendingSubTotalPrepaymentPartType1 string
@@ -7493,6 +15473,27 @@ const (
 
 func (e PaymentsPendingSubTotalPrepaymentPartType1) ToPointer() *PaymentsPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PaymentsPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PaymentsPendingSubTotalTransactionType1 - Represents the transaction type
@@ -7542,6 +15543,95 @@ const (
 
 func (e PaymentsPendingSubTotalTransactionType1) ToPointer() *PaymentsPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *PaymentsPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PaymentsPendingSubTotal1 struct {
@@ -7670,6 +15760,101 @@ const (
 func (e PaymentsPendingSubtotalMethod2) ToPointer() *PaymentsPendingSubtotalMethod2 {
 	return &e
 }
+func (e *PaymentsPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // PaymentsPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PaymentsPendingSubtotalCardIssuer2 string
@@ -7684,6 +15869,25 @@ const (
 func (e PaymentsPendingSubtotalCardIssuer2) ToPointer() *PaymentsPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PaymentsPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PaymentsPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsPendingSubtotalCardAudience2 string
@@ -7695,6 +15899,21 @@ const (
 
 func (e PaymentsPendingSubtotalCardAudience2) ToPointer() *PaymentsPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *PaymentsPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PaymentsPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -7709,6 +15928,25 @@ const (
 
 func (e PaymentsPendingSubtotalCardRegion2) ToPointer() *PaymentsPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *PaymentsPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PaymentsPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -7747,6 +15985,71 @@ const (
 func (e PaymentsPendingSubtotalFeeType2) ToPointer() *PaymentsPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *PaymentsPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // PaymentsPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsPendingSubtotalPrepaymentPartType2 string
@@ -7761,6 +16064,27 @@ const (
 
 func (e PaymentsPendingSubtotalPrepaymentPartType2) ToPointer() *PaymentsPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PaymentsPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PaymentsPendingSubtotalTransactionType2 - Represents the transaction type
@@ -7810,6 +16134,95 @@ const (
 
 func (e PaymentsPendingSubtotalTransactionType2) ToPointer() *PaymentsPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *PaymentsPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PaymentsPendingSubtotal2 struct {
@@ -7988,6 +16401,101 @@ const (
 func (e PaymentsMovedToAvailableSubTotalMethod1) ToPointer() *PaymentsMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PaymentsMovedToAvailableSubTotalCardIssuer1 string
@@ -8002,6 +16510,25 @@ const (
 func (e PaymentsMovedToAvailableSubTotalCardIssuer1) ToPointer() *PaymentsMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsMovedToAvailableSubTotalCardAudience1 string
@@ -8013,6 +16540,21 @@ const (
 
 func (e PaymentsMovedToAvailableSubTotalCardAudience1) ToPointer() *PaymentsMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -8027,6 +16569,25 @@ const (
 
 func (e PaymentsMovedToAvailableSubTotalCardRegion1) ToPointer() *PaymentsMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -8065,6 +16626,71 @@ const (
 func (e PaymentsMovedToAvailableSubTotalFeeType1) ToPointer() *PaymentsMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -8079,6 +16705,27 @@ const (
 
 func (e PaymentsMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *PaymentsMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -8128,6 +16775,95 @@ const (
 
 func (e PaymentsMovedToAvailableSubTotalTransactionType1) ToPointer() *PaymentsMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PaymentsMovedToAvailableSubTotal1 struct {
@@ -8256,6 +16992,101 @@ const (
 func (e PaymentsMovedToAvailableSubtotalMethod2) ToPointer() *PaymentsMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PaymentsMovedToAvailableSubtotalCardIssuer2 string
@@ -8270,6 +17101,25 @@ const (
 func (e PaymentsMovedToAvailableSubtotalCardIssuer2) ToPointer() *PaymentsMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsMovedToAvailableSubtotalCardAudience2 string
@@ -8281,6 +17131,21 @@ const (
 
 func (e PaymentsMovedToAvailableSubtotalCardAudience2) ToPointer() *PaymentsMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -8295,6 +17160,25 @@ const (
 
 func (e PaymentsMovedToAvailableSubtotalCardRegion2) ToPointer() *PaymentsMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -8333,6 +17217,71 @@ const (
 func (e PaymentsMovedToAvailableSubtotalFeeType2) ToPointer() *PaymentsMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *PaymentsMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // PaymentsMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -8347,6 +17296,27 @@ const (
 
 func (e PaymentsMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *PaymentsMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PaymentsMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -8396,6 +17366,95 @@ const (
 
 func (e PaymentsMovedToAvailableSubtotalTransactionType2) ToPointer() *PaymentsMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *PaymentsMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PaymentsMovedToAvailableSubtotal2 struct {
@@ -8574,6 +17633,101 @@ const (
 func (e PaymentsImmediatelyAvailableSubTotalMethod1) ToPointer() *PaymentsImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type PaymentsImmediatelyAvailableSubTotalCardIssuer1 string
@@ -8588,6 +17742,25 @@ const (
 func (e PaymentsImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *PaymentsImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsImmediatelyAvailableSubTotalCardAudience1 string
@@ -8599,6 +17772,21 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubTotalCardAudience1) ToPointer() *PaymentsImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -8613,6 +17801,25 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubTotalCardRegion1) ToPointer() *PaymentsImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -8651,6 +17858,71 @@ const (
 func (e PaymentsImmediatelyAvailableSubTotalFeeType1) ToPointer() *PaymentsImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -8665,6 +17937,27 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -8714,6 +18007,95 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubTotalTransactionType1) ToPointer() *PaymentsImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type PaymentsImmediatelyAvailableSubTotal1 struct {
@@ -8842,6 +18224,101 @@ const (
 func (e PaymentsImmediatelyAvailableSubtotalMethod2) ToPointer() *PaymentsImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = PaymentsImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type PaymentsImmediatelyAvailableSubtotalCardIssuer2 string
@@ -8856,6 +18333,25 @@ const (
 func (e PaymentsImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *PaymentsImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type PaymentsImmediatelyAvailableSubtotalCardAudience2 string
@@ -8867,6 +18363,21 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubtotalCardAudience2) ToPointer() *PaymentsImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -8881,6 +18392,25 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubtotalCardRegion2) ToPointer() *PaymentsImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = PaymentsImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -8919,6 +18449,71 @@ const (
 func (e PaymentsImmediatelyAvailableSubtotalFeeType2) ToPointer() *PaymentsImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *PaymentsImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = PaymentsImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -8933,6 +18528,27 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // PaymentsImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -8982,6 +18598,95 @@ const (
 
 func (e PaymentsImmediatelyAvailableSubtotalTransactionType2) ToPointer() *PaymentsImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *PaymentsImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = PaymentsImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type PaymentsImmediatelyAvailableSubtotal2 struct {
@@ -9188,6 +18893,101 @@ const (
 func (e RefundsPendingSubTotalMethod1) ToPointer() *RefundsPendingSubTotalMethod1 {
 	return &e
 }
+func (e *RefundsPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // RefundsPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type RefundsPendingSubTotalCardIssuer1 string
@@ -9202,6 +19002,25 @@ const (
 func (e RefundsPendingSubTotalCardIssuer1) ToPointer() *RefundsPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *RefundsPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // RefundsPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsPendingSubTotalCardAudience1 string
@@ -9213,6 +19032,21 @@ const (
 
 func (e RefundsPendingSubTotalCardAudience1) ToPointer() *RefundsPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *RefundsPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // RefundsPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -9227,6 +19061,25 @@ const (
 
 func (e RefundsPendingSubTotalCardRegion1) ToPointer() *RefundsPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *RefundsPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // RefundsPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -9265,6 +19118,71 @@ const (
 func (e RefundsPendingSubTotalFeeType1) ToPointer() *RefundsPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *RefundsPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // RefundsPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsPendingSubTotalPrepaymentPartType1 string
@@ -9279,6 +19197,27 @@ const (
 
 func (e RefundsPendingSubTotalPrepaymentPartType1) ToPointer() *RefundsPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *RefundsPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // RefundsPendingSubTotalTransactionType1 - Represents the transaction type
@@ -9328,6 +19267,95 @@ const (
 
 func (e RefundsPendingSubTotalTransactionType1) ToPointer() *RefundsPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *RefundsPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type RefundsPendingSubTotal1 struct {
@@ -9456,6 +19484,101 @@ const (
 func (e RefundsPendingSubtotalMethod2) ToPointer() *RefundsPendingSubtotalMethod2 {
 	return &e
 }
+func (e *RefundsPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // RefundsPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type RefundsPendingSubtotalCardIssuer2 string
@@ -9470,6 +19593,25 @@ const (
 func (e RefundsPendingSubtotalCardIssuer2) ToPointer() *RefundsPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *RefundsPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // RefundsPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsPendingSubtotalCardAudience2 string
@@ -9481,6 +19623,21 @@ const (
 
 func (e RefundsPendingSubtotalCardAudience2) ToPointer() *RefundsPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *RefundsPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // RefundsPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -9495,6 +19652,25 @@ const (
 
 func (e RefundsPendingSubtotalCardRegion2) ToPointer() *RefundsPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *RefundsPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // RefundsPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -9533,6 +19709,71 @@ const (
 func (e RefundsPendingSubtotalFeeType2) ToPointer() *RefundsPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *RefundsPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // RefundsPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsPendingSubtotalPrepaymentPartType2 string
@@ -9547,6 +19788,27 @@ const (
 
 func (e RefundsPendingSubtotalPrepaymentPartType2) ToPointer() *RefundsPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *RefundsPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // RefundsPendingSubtotalTransactionType2 - Represents the transaction type
@@ -9596,6 +19858,95 @@ const (
 
 func (e RefundsPendingSubtotalTransactionType2) ToPointer() *RefundsPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *RefundsPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type RefundsPendingSubtotal2 struct {
@@ -9774,6 +20125,101 @@ const (
 func (e RefundsMovedToAvailableSubTotalMethod1) ToPointer() *RefundsMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type RefundsMovedToAvailableSubTotalCardIssuer1 string
@@ -9788,6 +20234,25 @@ const (
 func (e RefundsMovedToAvailableSubTotalCardIssuer1) ToPointer() *RefundsMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsMovedToAvailableSubTotalCardAudience1 string
@@ -9799,6 +20264,21 @@ const (
 
 func (e RefundsMovedToAvailableSubTotalCardAudience1) ToPointer() *RefundsMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -9813,6 +20293,25 @@ const (
 
 func (e RefundsMovedToAvailableSubTotalCardRegion1) ToPointer() *RefundsMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -9851,6 +20350,71 @@ const (
 func (e RefundsMovedToAvailableSubTotalFeeType1) ToPointer() *RefundsMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -9865,6 +20429,27 @@ const (
 
 func (e RefundsMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *RefundsMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -9914,6 +20499,95 @@ const (
 
 func (e RefundsMovedToAvailableSubTotalTransactionType1) ToPointer() *RefundsMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type RefundsMovedToAvailableSubTotal1 struct {
@@ -10042,6 +20716,101 @@ const (
 func (e RefundsMovedToAvailableSubtotalMethod2) ToPointer() *RefundsMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type RefundsMovedToAvailableSubtotalCardIssuer2 string
@@ -10056,6 +20825,25 @@ const (
 func (e RefundsMovedToAvailableSubtotalCardIssuer2) ToPointer() *RefundsMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsMovedToAvailableSubtotalCardAudience2 string
@@ -10067,6 +20855,21 @@ const (
 
 func (e RefundsMovedToAvailableSubtotalCardAudience2) ToPointer() *RefundsMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -10081,6 +20884,25 @@ const (
 
 func (e RefundsMovedToAvailableSubtotalCardRegion2) ToPointer() *RefundsMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -10119,6 +20941,71 @@ const (
 func (e RefundsMovedToAvailableSubtotalFeeType2) ToPointer() *RefundsMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *RefundsMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // RefundsMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -10133,6 +21020,27 @@ const (
 
 func (e RefundsMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *RefundsMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // RefundsMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -10182,6 +21090,95 @@ const (
 
 func (e RefundsMovedToAvailableSubtotalTransactionType2) ToPointer() *RefundsMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *RefundsMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type RefundsMovedToAvailableSubtotal2 struct {
@@ -10360,6 +21357,101 @@ const (
 func (e RefundsImmediatelyAvailableSubTotalMethod1) ToPointer() *RefundsImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type RefundsImmediatelyAvailableSubTotalCardIssuer1 string
@@ -10374,6 +21466,25 @@ const (
 func (e RefundsImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *RefundsImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsImmediatelyAvailableSubTotalCardAudience1 string
@@ -10385,6 +21496,21 @@ const (
 
 func (e RefundsImmediatelyAvailableSubTotalCardAudience1) ToPointer() *RefundsImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -10399,6 +21525,25 @@ const (
 
 func (e RefundsImmediatelyAvailableSubTotalCardRegion1) ToPointer() *RefundsImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -10437,6 +21582,71 @@ const (
 func (e RefundsImmediatelyAvailableSubTotalFeeType1) ToPointer() *RefundsImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -10451,6 +21661,27 @@ const (
 
 func (e RefundsImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *RefundsImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -10500,6 +21731,95 @@ const (
 
 func (e RefundsImmediatelyAvailableSubTotalTransactionType1) ToPointer() *RefundsImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type RefundsImmediatelyAvailableSubTotal1 struct {
@@ -10628,6 +21948,101 @@ const (
 func (e RefundsImmediatelyAvailableSubtotalMethod2) ToPointer() *RefundsImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = RefundsImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type RefundsImmediatelyAvailableSubtotalCardIssuer2 string
@@ -10642,6 +22057,25 @@ const (
 func (e RefundsImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *RefundsImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type RefundsImmediatelyAvailableSubtotalCardAudience2 string
@@ -10653,6 +22087,21 @@ const (
 
 func (e RefundsImmediatelyAvailableSubtotalCardAudience2) ToPointer() *RefundsImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -10667,6 +22116,25 @@ const (
 
 func (e RefundsImmediatelyAvailableSubtotalCardRegion2) ToPointer() *RefundsImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = RefundsImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -10705,6 +22173,71 @@ const (
 func (e RefundsImmediatelyAvailableSubtotalFeeType2) ToPointer() *RefundsImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *RefundsImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = RefundsImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // RefundsImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type RefundsImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -10719,6 +22252,27 @@ const (
 
 func (e RefundsImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *RefundsImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = RefundsImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // RefundsImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -10768,6 +22322,95 @@ const (
 
 func (e RefundsImmediatelyAvailableSubtotalTransactionType2) ToPointer() *RefundsImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *RefundsImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = RefundsImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RefundsImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type RefundsImmediatelyAvailableSubtotal2 struct {
@@ -10974,6 +22617,101 @@ const (
 func (e ChargebacksPendingSubTotalMethod1) ToPointer() *ChargebacksPendingSubTotalMethod1 {
 	return &e
 }
+func (e *ChargebacksPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // ChargebacksPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksPendingSubTotalCardIssuer1 string
@@ -10988,6 +22726,25 @@ const (
 func (e ChargebacksPendingSubTotalCardIssuer1) ToPointer() *ChargebacksPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *ChargebacksPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // ChargebacksPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksPendingSubTotalCardAudience1 string
@@ -10999,6 +22756,21 @@ const (
 
 func (e ChargebacksPendingSubTotalCardAudience1) ToPointer() *ChargebacksPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *ChargebacksPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // ChargebacksPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -11013,6 +22785,25 @@ const (
 
 func (e ChargebacksPendingSubTotalCardRegion1) ToPointer() *ChargebacksPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *ChargebacksPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // ChargebacksPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -11051,6 +22842,71 @@ const (
 func (e ChargebacksPendingSubTotalFeeType1) ToPointer() *ChargebacksPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *ChargebacksPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // ChargebacksPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksPendingSubTotalPrepaymentPartType1 string
@@ -11065,6 +22921,27 @@ const (
 
 func (e ChargebacksPendingSubTotalPrepaymentPartType1) ToPointer() *ChargebacksPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *ChargebacksPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // ChargebacksPendingSubTotalTransactionType1 - Represents the transaction type
@@ -11114,6 +22991,95 @@ const (
 
 func (e ChargebacksPendingSubTotalTransactionType1) ToPointer() *ChargebacksPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *ChargebacksPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type ChargebacksPendingSubTotal1 struct {
@@ -11242,6 +23208,101 @@ const (
 func (e ChargebacksPendingSubtotalMethod2) ToPointer() *ChargebacksPendingSubtotalMethod2 {
 	return &e
 }
+func (e *ChargebacksPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // ChargebacksPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksPendingSubtotalCardIssuer2 string
@@ -11256,6 +23317,25 @@ const (
 func (e ChargebacksPendingSubtotalCardIssuer2) ToPointer() *ChargebacksPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *ChargebacksPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // ChargebacksPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksPendingSubtotalCardAudience2 string
@@ -11267,6 +23347,21 @@ const (
 
 func (e ChargebacksPendingSubtotalCardAudience2) ToPointer() *ChargebacksPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *ChargebacksPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // ChargebacksPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -11281,6 +23376,25 @@ const (
 
 func (e ChargebacksPendingSubtotalCardRegion2) ToPointer() *ChargebacksPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *ChargebacksPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // ChargebacksPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -11319,6 +23433,71 @@ const (
 func (e ChargebacksPendingSubtotalFeeType2) ToPointer() *ChargebacksPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *ChargebacksPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // ChargebacksPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksPendingSubtotalPrepaymentPartType2 string
@@ -11333,6 +23512,27 @@ const (
 
 func (e ChargebacksPendingSubtotalPrepaymentPartType2) ToPointer() *ChargebacksPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *ChargebacksPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // ChargebacksPendingSubtotalTransactionType2 - Represents the transaction type
@@ -11382,6 +23582,95 @@ const (
 
 func (e ChargebacksPendingSubtotalTransactionType2) ToPointer() *ChargebacksPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *ChargebacksPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type ChargebacksPendingSubtotal2 struct {
@@ -11560,6 +23849,101 @@ const (
 func (e ChargebacksMovedToAvailableSubTotalMethod1) ToPointer() *ChargebacksMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksMovedToAvailableSubTotalCardIssuer1 string
@@ -11574,6 +23958,25 @@ const (
 func (e ChargebacksMovedToAvailableSubTotalCardIssuer1) ToPointer() *ChargebacksMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksMovedToAvailableSubTotalCardAudience1 string
@@ -11585,6 +23988,21 @@ const (
 
 func (e ChargebacksMovedToAvailableSubTotalCardAudience1) ToPointer() *ChargebacksMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -11599,6 +24017,25 @@ const (
 
 func (e ChargebacksMovedToAvailableSubTotalCardRegion1) ToPointer() *ChargebacksMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -11637,6 +24074,71 @@ const (
 func (e ChargebacksMovedToAvailableSubTotalFeeType1) ToPointer() *ChargebacksMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -11651,6 +24153,27 @@ const (
 
 func (e ChargebacksMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *ChargebacksMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -11700,6 +24223,95 @@ const (
 
 func (e ChargebacksMovedToAvailableSubTotalTransactionType1) ToPointer() *ChargebacksMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type ChargebacksMovedToAvailableSubTotal1 struct {
@@ -11828,6 +24440,101 @@ const (
 func (e ChargebacksMovedToAvailableSubtotalMethod2) ToPointer() *ChargebacksMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksMovedToAvailableSubtotalCardIssuer2 string
@@ -11842,6 +24549,25 @@ const (
 func (e ChargebacksMovedToAvailableSubtotalCardIssuer2) ToPointer() *ChargebacksMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksMovedToAvailableSubtotalCardAudience2 string
@@ -11853,6 +24579,21 @@ const (
 
 func (e ChargebacksMovedToAvailableSubtotalCardAudience2) ToPointer() *ChargebacksMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -11867,6 +24608,25 @@ const (
 
 func (e ChargebacksMovedToAvailableSubtotalCardRegion2) ToPointer() *ChargebacksMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -11905,6 +24665,71 @@ const (
 func (e ChargebacksMovedToAvailableSubtotalFeeType2) ToPointer() *ChargebacksMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *ChargebacksMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // ChargebacksMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -11919,6 +24744,27 @@ const (
 
 func (e ChargebacksMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *ChargebacksMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // ChargebacksMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -11968,6 +24814,95 @@ const (
 
 func (e ChargebacksMovedToAvailableSubtotalTransactionType2) ToPointer() *ChargebacksMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *ChargebacksMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type ChargebacksMovedToAvailableSubtotal2 struct {
@@ -12146,6 +25081,101 @@ const (
 func (e ChargebacksImmediatelyAvailableSubTotalMethod1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksImmediatelyAvailableSubTotalCardIssuer1 string
@@ -12160,6 +25190,25 @@ const (
 func (e ChargebacksImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksImmediatelyAvailableSubTotalCardAudience1 string
@@ -12171,6 +25220,21 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubTotalCardAudience1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -12185,6 +25249,25 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubTotalCardRegion1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -12223,6 +25306,71 @@ const (
 func (e ChargebacksImmediatelyAvailableSubTotalFeeType1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -12237,6 +25385,27 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -12286,6 +25455,95 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubTotalTransactionType1) ToPointer() *ChargebacksImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type ChargebacksImmediatelyAvailableSubTotal1 struct {
@@ -12414,6 +25672,101 @@ const (
 func (e ChargebacksImmediatelyAvailableSubtotalMethod2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = ChargebacksImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type ChargebacksImmediatelyAvailableSubtotalCardIssuer2 string
@@ -12428,6 +25781,25 @@ const (
 func (e ChargebacksImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type ChargebacksImmediatelyAvailableSubtotalCardAudience2 string
@@ -12439,6 +25811,21 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubtotalCardAudience2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -12453,6 +25840,25 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubtotalCardRegion2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = ChargebacksImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -12491,6 +25897,71 @@ const (
 func (e ChargebacksImmediatelyAvailableSubtotalFeeType2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *ChargebacksImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = ChargebacksImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -12505,6 +25976,27 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // ChargebacksImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -12554,6 +26046,95 @@ const (
 
 func (e ChargebacksImmediatelyAvailableSubtotalTransactionType2) ToPointer() *ChargebacksImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *ChargebacksImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = ChargebacksImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ChargebacksImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type ChargebacksImmediatelyAvailableSubtotal2 struct {
@@ -12760,6 +26341,101 @@ const (
 func (e CapitalPendingSubTotalMethod1) ToPointer() *CapitalPendingSubTotalMethod1 {
 	return &e
 }
+func (e *CapitalPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // CapitalPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CapitalPendingSubTotalCardIssuer1 string
@@ -12774,6 +26450,25 @@ const (
 func (e CapitalPendingSubTotalCardIssuer1) ToPointer() *CapitalPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CapitalPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CapitalPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalPendingSubTotalCardAudience1 string
@@ -12785,6 +26480,21 @@ const (
 
 func (e CapitalPendingSubTotalCardAudience1) ToPointer() *CapitalPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *CapitalPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CapitalPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -12799,6 +26509,25 @@ const (
 
 func (e CapitalPendingSubTotalCardRegion1) ToPointer() *CapitalPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *CapitalPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CapitalPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -12837,6 +26566,71 @@ const (
 func (e CapitalPendingSubTotalFeeType1) ToPointer() *CapitalPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *CapitalPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // CapitalPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalPendingSubTotalPrepaymentPartType1 string
@@ -12851,6 +26645,27 @@ const (
 
 func (e CapitalPendingSubTotalPrepaymentPartType1) ToPointer() *CapitalPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CapitalPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CapitalPendingSubTotalTransactionType1 - Represents the transaction type
@@ -12900,6 +26715,95 @@ const (
 
 func (e CapitalPendingSubTotalTransactionType1) ToPointer() *CapitalPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *CapitalPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CapitalPendingSubTotal1 struct {
@@ -13028,6 +26932,101 @@ const (
 func (e CapitalPendingSubtotalMethod2) ToPointer() *CapitalPendingSubtotalMethod2 {
 	return &e
 }
+func (e *CapitalPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // CapitalPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CapitalPendingSubtotalCardIssuer2 string
@@ -13042,6 +27041,25 @@ const (
 func (e CapitalPendingSubtotalCardIssuer2) ToPointer() *CapitalPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CapitalPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CapitalPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalPendingSubtotalCardAudience2 string
@@ -13053,6 +27071,21 @@ const (
 
 func (e CapitalPendingSubtotalCardAudience2) ToPointer() *CapitalPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *CapitalPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CapitalPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -13067,6 +27100,25 @@ const (
 
 func (e CapitalPendingSubtotalCardRegion2) ToPointer() *CapitalPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *CapitalPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CapitalPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -13105,6 +27157,71 @@ const (
 func (e CapitalPendingSubtotalFeeType2) ToPointer() *CapitalPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *CapitalPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // CapitalPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalPendingSubtotalPrepaymentPartType2 string
@@ -13119,6 +27236,27 @@ const (
 
 func (e CapitalPendingSubtotalPrepaymentPartType2) ToPointer() *CapitalPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CapitalPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CapitalPendingSubtotalTransactionType2 - Represents the transaction type
@@ -13168,6 +27306,95 @@ const (
 
 func (e CapitalPendingSubtotalTransactionType2) ToPointer() *CapitalPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *CapitalPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CapitalPendingSubtotal2 struct {
@@ -13346,6 +27573,101 @@ const (
 func (e CapitalMovedToAvailableSubTotalMethod1) ToPointer() *CapitalMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CapitalMovedToAvailableSubTotalCardIssuer1 string
@@ -13360,6 +27682,25 @@ const (
 func (e CapitalMovedToAvailableSubTotalCardIssuer1) ToPointer() *CapitalMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalMovedToAvailableSubTotalCardAudience1 string
@@ -13371,6 +27712,21 @@ const (
 
 func (e CapitalMovedToAvailableSubTotalCardAudience1) ToPointer() *CapitalMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -13385,6 +27741,25 @@ const (
 
 func (e CapitalMovedToAvailableSubTotalCardRegion1) ToPointer() *CapitalMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -13423,6 +27798,71 @@ const (
 func (e CapitalMovedToAvailableSubTotalFeeType1) ToPointer() *CapitalMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -13437,6 +27877,27 @@ const (
 
 func (e CapitalMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *CapitalMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -13486,6 +27947,95 @@ const (
 
 func (e CapitalMovedToAvailableSubTotalTransactionType1) ToPointer() *CapitalMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CapitalMovedToAvailableSubTotal1 struct {
@@ -13614,6 +28164,101 @@ const (
 func (e CapitalMovedToAvailableSubtotalMethod2) ToPointer() *CapitalMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CapitalMovedToAvailableSubtotalCardIssuer2 string
@@ -13628,6 +28273,25 @@ const (
 func (e CapitalMovedToAvailableSubtotalCardIssuer2) ToPointer() *CapitalMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalMovedToAvailableSubtotalCardAudience2 string
@@ -13639,6 +28303,21 @@ const (
 
 func (e CapitalMovedToAvailableSubtotalCardAudience2) ToPointer() *CapitalMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -13653,6 +28332,25 @@ const (
 
 func (e CapitalMovedToAvailableSubtotalCardRegion2) ToPointer() *CapitalMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -13691,6 +28389,71 @@ const (
 func (e CapitalMovedToAvailableSubtotalFeeType2) ToPointer() *CapitalMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *CapitalMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // CapitalMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -13705,6 +28468,27 @@ const (
 
 func (e CapitalMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *CapitalMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CapitalMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -13754,6 +28538,95 @@ const (
 
 func (e CapitalMovedToAvailableSubtotalTransactionType2) ToPointer() *CapitalMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *CapitalMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CapitalMovedToAvailableSubtotal2 struct {
@@ -13932,6 +28805,101 @@ const (
 func (e CapitalImmediatelyAvailableSubTotalMethod1) ToPointer() *CapitalImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CapitalImmediatelyAvailableSubTotalCardIssuer1 string
@@ -13946,6 +28914,25 @@ const (
 func (e CapitalImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *CapitalImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalImmediatelyAvailableSubTotalCardAudience1 string
@@ -13957,6 +28944,21 @@ const (
 
 func (e CapitalImmediatelyAvailableSubTotalCardAudience1) ToPointer() *CapitalImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -13971,6 +28973,25 @@ const (
 
 func (e CapitalImmediatelyAvailableSubTotalCardRegion1) ToPointer() *CapitalImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -14009,6 +29030,71 @@ const (
 func (e CapitalImmediatelyAvailableSubTotalFeeType1) ToPointer() *CapitalImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -14023,6 +29109,27 @@ const (
 
 func (e CapitalImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *CapitalImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -14072,6 +29179,95 @@ const (
 
 func (e CapitalImmediatelyAvailableSubTotalTransactionType1) ToPointer() *CapitalImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CapitalImmediatelyAvailableSubTotal1 struct {
@@ -14200,6 +29396,101 @@ const (
 func (e CapitalImmediatelyAvailableSubtotalMethod2) ToPointer() *CapitalImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CapitalImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CapitalImmediatelyAvailableSubtotalCardIssuer2 string
@@ -14214,6 +29505,25 @@ const (
 func (e CapitalImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *CapitalImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CapitalImmediatelyAvailableSubtotalCardAudience2 string
@@ -14225,6 +29535,21 @@ const (
 
 func (e CapitalImmediatelyAvailableSubtotalCardAudience2) ToPointer() *CapitalImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -14239,6 +29564,25 @@ const (
 
 func (e CapitalImmediatelyAvailableSubtotalCardRegion2) ToPointer() *CapitalImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CapitalImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -14277,6 +29621,71 @@ const (
 func (e CapitalImmediatelyAvailableSubtotalFeeType2) ToPointer() *CapitalImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *CapitalImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CapitalImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // CapitalImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CapitalImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -14291,6 +29700,27 @@ const (
 
 func (e CapitalImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *CapitalImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CapitalImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CapitalImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -14340,6 +29770,95 @@ const (
 
 func (e CapitalImmediatelyAvailableSubtotalTransactionType2) ToPointer() *CapitalImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *CapitalImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CapitalImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CapitalImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CapitalImmediatelyAvailableSubtotal2 struct {
@@ -14546,6 +30065,101 @@ const (
 func (e TransfersPendingSubTotalMethod1) ToPointer() *TransfersPendingSubTotalMethod1 {
 	return &e
 }
+func (e *TransfersPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // TransfersPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TransfersPendingSubTotalCardIssuer1 string
@@ -14560,6 +30174,25 @@ const (
 func (e TransfersPendingSubTotalCardIssuer1) ToPointer() *TransfersPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TransfersPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TransfersPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersPendingSubTotalCardAudience1 string
@@ -14571,6 +30204,21 @@ const (
 
 func (e TransfersPendingSubTotalCardAudience1) ToPointer() *TransfersPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *TransfersPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TransfersPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -14585,6 +30233,25 @@ const (
 
 func (e TransfersPendingSubTotalCardRegion1) ToPointer() *TransfersPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *TransfersPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TransfersPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -14623,6 +30290,71 @@ const (
 func (e TransfersPendingSubTotalFeeType1) ToPointer() *TransfersPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *TransfersPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // TransfersPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersPendingSubTotalPrepaymentPartType1 string
@@ -14637,6 +30369,27 @@ const (
 
 func (e TransfersPendingSubTotalPrepaymentPartType1) ToPointer() *TransfersPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TransfersPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TransfersPendingSubTotalTransactionType1 - Represents the transaction type
@@ -14686,6 +30439,95 @@ const (
 
 func (e TransfersPendingSubTotalTransactionType1) ToPointer() *TransfersPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *TransfersPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TransfersPendingSubTotal1 struct {
@@ -14814,6 +30656,101 @@ const (
 func (e TransfersPendingSubtotalMethod2) ToPointer() *TransfersPendingSubtotalMethod2 {
 	return &e
 }
+func (e *TransfersPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // TransfersPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TransfersPendingSubtotalCardIssuer2 string
@@ -14828,6 +30765,25 @@ const (
 func (e TransfersPendingSubtotalCardIssuer2) ToPointer() *TransfersPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TransfersPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TransfersPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersPendingSubtotalCardAudience2 string
@@ -14839,6 +30795,21 @@ const (
 
 func (e TransfersPendingSubtotalCardAudience2) ToPointer() *TransfersPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *TransfersPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TransfersPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -14853,6 +30824,25 @@ const (
 
 func (e TransfersPendingSubtotalCardRegion2) ToPointer() *TransfersPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *TransfersPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TransfersPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -14891,6 +30881,71 @@ const (
 func (e TransfersPendingSubtotalFeeType2) ToPointer() *TransfersPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *TransfersPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // TransfersPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersPendingSubtotalPrepaymentPartType2 string
@@ -14905,6 +30960,27 @@ const (
 
 func (e TransfersPendingSubtotalPrepaymentPartType2) ToPointer() *TransfersPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TransfersPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TransfersPendingSubtotalTransactionType2 - Represents the transaction type
@@ -14954,6 +31030,95 @@ const (
 
 func (e TransfersPendingSubtotalTransactionType2) ToPointer() *TransfersPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *TransfersPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TransfersPendingSubtotal2 struct {
@@ -15132,6 +31297,101 @@ const (
 func (e TransfersMovedToAvailableSubTotalMethod1) ToPointer() *TransfersMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TransfersMovedToAvailableSubTotalCardIssuer1 string
@@ -15146,6 +31406,25 @@ const (
 func (e TransfersMovedToAvailableSubTotalCardIssuer1) ToPointer() *TransfersMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersMovedToAvailableSubTotalCardAudience1 string
@@ -15157,6 +31436,21 @@ const (
 
 func (e TransfersMovedToAvailableSubTotalCardAudience1) ToPointer() *TransfersMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -15171,6 +31465,25 @@ const (
 
 func (e TransfersMovedToAvailableSubTotalCardRegion1) ToPointer() *TransfersMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -15209,6 +31522,71 @@ const (
 func (e TransfersMovedToAvailableSubTotalFeeType1) ToPointer() *TransfersMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -15223,6 +31601,27 @@ const (
 
 func (e TransfersMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *TransfersMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -15272,6 +31671,95 @@ const (
 
 func (e TransfersMovedToAvailableSubTotalTransactionType1) ToPointer() *TransfersMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TransfersMovedToAvailableSubTotal1 struct {
@@ -15400,6 +31888,101 @@ const (
 func (e TransfersMovedToAvailableSubtotalMethod2) ToPointer() *TransfersMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TransfersMovedToAvailableSubtotalCardIssuer2 string
@@ -15414,6 +31997,25 @@ const (
 func (e TransfersMovedToAvailableSubtotalCardIssuer2) ToPointer() *TransfersMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersMovedToAvailableSubtotalCardAudience2 string
@@ -15425,6 +32027,21 @@ const (
 
 func (e TransfersMovedToAvailableSubtotalCardAudience2) ToPointer() *TransfersMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -15439,6 +32056,25 @@ const (
 
 func (e TransfersMovedToAvailableSubtotalCardRegion2) ToPointer() *TransfersMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -15477,6 +32113,71 @@ const (
 func (e TransfersMovedToAvailableSubtotalFeeType2) ToPointer() *TransfersMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *TransfersMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // TransfersMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -15491,6 +32192,27 @@ const (
 
 func (e TransfersMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *TransfersMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TransfersMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -15540,6 +32262,95 @@ const (
 
 func (e TransfersMovedToAvailableSubtotalTransactionType2) ToPointer() *TransfersMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *TransfersMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TransfersMovedToAvailableSubtotal2 struct {
@@ -15718,6 +32529,101 @@ const (
 func (e TransfersImmediatelyAvailableSubTotalMethod1) ToPointer() *TransfersImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TransfersImmediatelyAvailableSubTotalCardIssuer1 string
@@ -15732,6 +32638,25 @@ const (
 func (e TransfersImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *TransfersImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersImmediatelyAvailableSubTotalCardAudience1 string
@@ -15743,6 +32668,21 @@ const (
 
 func (e TransfersImmediatelyAvailableSubTotalCardAudience1) ToPointer() *TransfersImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -15757,6 +32697,25 @@ const (
 
 func (e TransfersImmediatelyAvailableSubTotalCardRegion1) ToPointer() *TransfersImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -15795,6 +32754,71 @@ const (
 func (e TransfersImmediatelyAvailableSubTotalFeeType1) ToPointer() *TransfersImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -15809,6 +32833,27 @@ const (
 
 func (e TransfersImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *TransfersImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -15858,6 +32903,95 @@ const (
 
 func (e TransfersImmediatelyAvailableSubTotalTransactionType1) ToPointer() *TransfersImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TransfersImmediatelyAvailableSubTotal1 struct {
@@ -15986,6 +33120,101 @@ const (
 func (e TransfersImmediatelyAvailableSubtotalMethod2) ToPointer() *TransfersImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TransfersImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TransfersImmediatelyAvailableSubtotalCardIssuer2 string
@@ -16000,6 +33229,25 @@ const (
 func (e TransfersImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *TransfersImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TransfersImmediatelyAvailableSubtotalCardAudience2 string
@@ -16011,6 +33259,21 @@ const (
 
 func (e TransfersImmediatelyAvailableSubtotalCardAudience2) ToPointer() *TransfersImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -16025,6 +33288,25 @@ const (
 
 func (e TransfersImmediatelyAvailableSubtotalCardRegion2) ToPointer() *TransfersImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TransfersImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -16063,6 +33345,71 @@ const (
 func (e TransfersImmediatelyAvailableSubtotalFeeType2) ToPointer() *TransfersImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *TransfersImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TransfersImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // TransfersImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TransfersImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -16077,6 +33424,27 @@ const (
 
 func (e TransfersImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *TransfersImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TransfersImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TransfersImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -16126,6 +33494,95 @@ const (
 
 func (e TransfersImmediatelyAvailableSubtotalTransactionType2) ToPointer() *TransfersImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *TransfersImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TransfersImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransfersImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TransfersImmediatelyAvailableSubtotal2 struct {
@@ -16332,6 +33789,101 @@ const (
 func (e FeePrepaymentsPendingSubTotalMethod1) ToPointer() *FeePrepaymentsPendingSubTotalMethod1 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsPendingSubTotalCardIssuer1 string
@@ -16346,6 +33898,25 @@ const (
 func (e FeePrepaymentsPendingSubTotalCardIssuer1) ToPointer() *FeePrepaymentsPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsPendingSubTotalCardAudience1 string
@@ -16357,6 +33928,21 @@ const (
 
 func (e FeePrepaymentsPendingSubTotalCardAudience1) ToPointer() *FeePrepaymentsPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -16371,6 +33957,25 @@ const (
 
 func (e FeePrepaymentsPendingSubTotalCardRegion1) ToPointer() *FeePrepaymentsPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -16409,6 +34014,71 @@ const (
 func (e FeePrepaymentsPendingSubTotalFeeType1) ToPointer() *FeePrepaymentsPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsPendingSubTotalPrepaymentPartType1 string
@@ -16423,6 +34093,27 @@ const (
 
 func (e FeePrepaymentsPendingSubTotalPrepaymentPartType1) ToPointer() *FeePrepaymentsPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubTotalTransactionType1 - Represents the transaction type
@@ -16472,6 +34163,95 @@ const (
 
 func (e FeePrepaymentsPendingSubTotalTransactionType1) ToPointer() *FeePrepaymentsPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type FeePrepaymentsPendingSubTotal1 struct {
@@ -16600,6 +34380,101 @@ const (
 func (e FeePrepaymentsPendingSubtotalMethod2) ToPointer() *FeePrepaymentsPendingSubtotalMethod2 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsPendingSubtotalCardIssuer2 string
@@ -16614,6 +34489,25 @@ const (
 func (e FeePrepaymentsPendingSubtotalCardIssuer2) ToPointer() *FeePrepaymentsPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsPendingSubtotalCardAudience2 string
@@ -16625,6 +34519,21 @@ const (
 
 func (e FeePrepaymentsPendingSubtotalCardAudience2) ToPointer() *FeePrepaymentsPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -16639,6 +34548,25 @@ const (
 
 func (e FeePrepaymentsPendingSubtotalCardRegion2) ToPointer() *FeePrepaymentsPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -16677,6 +34605,71 @@ const (
 func (e FeePrepaymentsPendingSubtotalFeeType2) ToPointer() *FeePrepaymentsPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *FeePrepaymentsPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // FeePrepaymentsPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsPendingSubtotalPrepaymentPartType2 string
@@ -16691,6 +34684,27 @@ const (
 
 func (e FeePrepaymentsPendingSubtotalPrepaymentPartType2) ToPointer() *FeePrepaymentsPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // FeePrepaymentsPendingSubtotalTransactionType2 - Represents the transaction type
@@ -16740,6 +34754,95 @@ const (
 
 func (e FeePrepaymentsPendingSubtotalTransactionType2) ToPointer() *FeePrepaymentsPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *FeePrepaymentsPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type FeePrepaymentsPendingSubtotal2 struct {
@@ -16918,6 +35021,101 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubTotalMethod1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsMovedToAvailableSubTotalCardIssuer1 string
@@ -16932,6 +35130,25 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubTotalCardIssuer1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsMovedToAvailableSubTotalCardAudience1 string
@@ -16943,6 +35160,21 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubTotalCardAudience1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -16957,6 +35189,25 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubTotalCardRegion1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -16995,6 +35246,71 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubTotalFeeType1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -17009,6 +35325,27 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -17058,6 +35395,95 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubTotalTransactionType1) ToPointer() *FeePrepaymentsMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type FeePrepaymentsMovedToAvailableSubTotal1 struct {
@@ -17186,6 +35612,101 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubtotalMethod2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsMovedToAvailableSubtotalCardIssuer2 string
@@ -17200,6 +35721,25 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubtotalCardIssuer2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsMovedToAvailableSubtotalCardAudience2 string
@@ -17211,6 +35751,21 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubtotalCardAudience2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -17225,6 +35780,25 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubtotalCardRegion2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -17263,6 +35837,71 @@ const (
 func (e FeePrepaymentsMovedToAvailableSubtotalFeeType2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *FeePrepaymentsMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -17277,6 +35916,27 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // FeePrepaymentsMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -17326,6 +35986,95 @@ const (
 
 func (e FeePrepaymentsMovedToAvailableSubtotalTransactionType2) ToPointer() *FeePrepaymentsMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *FeePrepaymentsMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type FeePrepaymentsMovedToAvailableSubtotal2 struct {
@@ -17504,6 +36253,101 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubTotalMethod1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1 string
@@ -17518,6 +36362,25 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1 string
@@ -17529,6 +36392,21 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -17543,6 +36421,25 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -17581,6 +36478,71 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubTotalFeeType1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -17595,6 +36557,27 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -17644,6 +36627,95 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1) ToPointer() *FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type FeePrepaymentsImmediatelyAvailableSubTotal1 struct {
@@ -17772,6 +36844,101 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubtotalMethod2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2 string
@@ -17786,6 +36953,25 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2 string
@@ -17797,6 +36983,21 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -17811,6 +37012,25 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -17849,6 +37069,71 @@ const (
 func (e FeePrepaymentsImmediatelyAvailableSubtotalFeeType2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -17863,6 +37148,27 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -17912,6 +37218,95 @@ const (
 
 func (e FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2) ToPointer() *FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FeePrepaymentsImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type FeePrepaymentsImmediatelyAvailableSubtotal2 struct {
@@ -18118,6 +37513,101 @@ const (
 func (e CorrectionsPendingSubTotalMethod1) ToPointer() *CorrectionsPendingSubTotalMethod1 {
 	return &e
 }
+func (e *CorrectionsPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // CorrectionsPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsPendingSubTotalCardIssuer1 string
@@ -18132,6 +37622,25 @@ const (
 func (e CorrectionsPendingSubTotalCardIssuer1) ToPointer() *CorrectionsPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CorrectionsPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CorrectionsPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsPendingSubTotalCardAudience1 string
@@ -18143,6 +37652,21 @@ const (
 
 func (e CorrectionsPendingSubTotalCardAudience1) ToPointer() *CorrectionsPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *CorrectionsPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CorrectionsPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -18157,6 +37681,25 @@ const (
 
 func (e CorrectionsPendingSubTotalCardRegion1) ToPointer() *CorrectionsPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *CorrectionsPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CorrectionsPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -18195,6 +37738,71 @@ const (
 func (e CorrectionsPendingSubTotalFeeType1) ToPointer() *CorrectionsPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *CorrectionsPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // CorrectionsPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsPendingSubTotalPrepaymentPartType1 string
@@ -18209,6 +37817,27 @@ const (
 
 func (e CorrectionsPendingSubTotalPrepaymentPartType1) ToPointer() *CorrectionsPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CorrectionsPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CorrectionsPendingSubTotalTransactionType1 - Represents the transaction type
@@ -18258,6 +37887,95 @@ const (
 
 func (e CorrectionsPendingSubTotalTransactionType1) ToPointer() *CorrectionsPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *CorrectionsPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CorrectionsPendingSubTotal1 struct {
@@ -18386,6 +38104,101 @@ const (
 func (e CorrectionsPendingSubtotalMethod2) ToPointer() *CorrectionsPendingSubtotalMethod2 {
 	return &e
 }
+func (e *CorrectionsPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // CorrectionsPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsPendingSubtotalCardIssuer2 string
@@ -18400,6 +38213,25 @@ const (
 func (e CorrectionsPendingSubtotalCardIssuer2) ToPointer() *CorrectionsPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CorrectionsPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CorrectionsPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsPendingSubtotalCardAudience2 string
@@ -18411,6 +38243,21 @@ const (
 
 func (e CorrectionsPendingSubtotalCardAudience2) ToPointer() *CorrectionsPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *CorrectionsPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CorrectionsPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -18425,6 +38272,25 @@ const (
 
 func (e CorrectionsPendingSubtotalCardRegion2) ToPointer() *CorrectionsPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *CorrectionsPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CorrectionsPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -18463,6 +38329,71 @@ const (
 func (e CorrectionsPendingSubtotalFeeType2) ToPointer() *CorrectionsPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *CorrectionsPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // CorrectionsPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsPendingSubtotalPrepaymentPartType2 string
@@ -18477,6 +38408,27 @@ const (
 
 func (e CorrectionsPendingSubtotalPrepaymentPartType2) ToPointer() *CorrectionsPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CorrectionsPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CorrectionsPendingSubtotalTransactionType2 - Represents the transaction type
@@ -18526,6 +38478,95 @@ const (
 
 func (e CorrectionsPendingSubtotalTransactionType2) ToPointer() *CorrectionsPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *CorrectionsPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CorrectionsPendingSubtotal2 struct {
@@ -18704,6 +38745,101 @@ const (
 func (e CorrectionsMovedToAvailableSubTotalMethod1) ToPointer() *CorrectionsMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsMovedToAvailableSubTotalCardIssuer1 string
@@ -18718,6 +38854,25 @@ const (
 func (e CorrectionsMovedToAvailableSubTotalCardIssuer1) ToPointer() *CorrectionsMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsMovedToAvailableSubTotalCardAudience1 string
@@ -18729,6 +38884,21 @@ const (
 
 func (e CorrectionsMovedToAvailableSubTotalCardAudience1) ToPointer() *CorrectionsMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -18743,6 +38913,25 @@ const (
 
 func (e CorrectionsMovedToAvailableSubTotalCardRegion1) ToPointer() *CorrectionsMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -18781,6 +38970,71 @@ const (
 func (e CorrectionsMovedToAvailableSubTotalFeeType1) ToPointer() *CorrectionsMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -18795,6 +39049,27 @@ const (
 
 func (e CorrectionsMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *CorrectionsMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -18844,6 +39119,95 @@ const (
 
 func (e CorrectionsMovedToAvailableSubTotalTransactionType1) ToPointer() *CorrectionsMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CorrectionsMovedToAvailableSubTotal1 struct {
@@ -18972,6 +39336,101 @@ const (
 func (e CorrectionsMovedToAvailableSubtotalMethod2) ToPointer() *CorrectionsMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsMovedToAvailableSubtotalCardIssuer2 string
@@ -18986,6 +39445,25 @@ const (
 func (e CorrectionsMovedToAvailableSubtotalCardIssuer2) ToPointer() *CorrectionsMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsMovedToAvailableSubtotalCardAudience2 string
@@ -18997,6 +39475,21 @@ const (
 
 func (e CorrectionsMovedToAvailableSubtotalCardAudience2) ToPointer() *CorrectionsMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -19011,6 +39504,25 @@ const (
 
 func (e CorrectionsMovedToAvailableSubtotalCardRegion2) ToPointer() *CorrectionsMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -19049,6 +39561,71 @@ const (
 func (e CorrectionsMovedToAvailableSubtotalFeeType2) ToPointer() *CorrectionsMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *CorrectionsMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // CorrectionsMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -19063,6 +39640,27 @@ const (
 
 func (e CorrectionsMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *CorrectionsMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CorrectionsMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -19112,6 +39710,95 @@ const (
 
 func (e CorrectionsMovedToAvailableSubtotalTransactionType2) ToPointer() *CorrectionsMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *CorrectionsMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CorrectionsMovedToAvailableSubtotal2 struct {
@@ -19290,6 +39977,101 @@ const (
 func (e CorrectionsImmediatelyAvailableSubTotalMethod1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsImmediatelyAvailableSubTotalCardIssuer1 string
@@ -19304,6 +40086,25 @@ const (
 func (e CorrectionsImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsImmediatelyAvailableSubTotalCardAudience1 string
@@ -19315,6 +40116,21 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubTotalCardAudience1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -19329,6 +40145,25 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubTotalCardRegion1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -19367,6 +40202,71 @@ const (
 func (e CorrectionsImmediatelyAvailableSubTotalFeeType1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -19381,6 +40281,27 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -19430,6 +40351,95 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubTotalTransactionType1) ToPointer() *CorrectionsImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type CorrectionsImmediatelyAvailableSubTotal1 struct {
@@ -19558,6 +40568,101 @@ const (
 func (e CorrectionsImmediatelyAvailableSubtotalMethod2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = CorrectionsImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type CorrectionsImmediatelyAvailableSubtotalCardIssuer2 string
@@ -19572,6 +40677,25 @@ const (
 func (e CorrectionsImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type CorrectionsImmediatelyAvailableSubtotalCardAudience2 string
@@ -19583,6 +40707,21 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubtotalCardAudience2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -19597,6 +40736,25 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubtotalCardRegion2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = CorrectionsImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -19635,6 +40793,71 @@ const (
 func (e CorrectionsImmediatelyAvailableSubtotalFeeType2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *CorrectionsImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = CorrectionsImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -19649,6 +40872,27 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // CorrectionsImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -19698,6 +40942,95 @@ const (
 
 func (e CorrectionsImmediatelyAvailableSubtotalTransactionType2) ToPointer() *CorrectionsImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *CorrectionsImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = CorrectionsImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CorrectionsImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type CorrectionsImmediatelyAvailableSubtotal2 struct {
@@ -19904,6 +41237,101 @@ const (
 func (e TopupsPendingSubTotalMethod1) ToPointer() *TopupsPendingSubTotalMethod1 {
 	return &e
 }
+func (e *TopupsPendingSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsPendingSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalMethod1: %v", v)
+	}
+}
 
 // TopupsPendingSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TopupsPendingSubTotalCardIssuer1 string
@@ -19918,6 +41346,25 @@ const (
 func (e TopupsPendingSubTotalCardIssuer1) ToPointer() *TopupsPendingSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TopupsPendingSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TopupsPendingSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsPendingSubTotalCardAudience1 string
@@ -19929,6 +41376,21 @@ const (
 
 func (e TopupsPendingSubTotalCardAudience1) ToPointer() *TopupsPendingSubTotalCardAudience1 {
 	return &e
+}
+func (e *TopupsPendingSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TopupsPendingSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -19943,6 +41405,25 @@ const (
 
 func (e TopupsPendingSubTotalCardRegion1) ToPointer() *TopupsPendingSubTotalCardRegion1 {
 	return &e
+}
+func (e *TopupsPendingSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TopupsPendingSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -19981,6 +41462,71 @@ const (
 func (e TopupsPendingSubTotalFeeType1) ToPointer() *TopupsPendingSubTotalFeeType1 {
 	return &e
 }
+func (e *TopupsPendingSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsPendingSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalFeeType1: %v", v)
+	}
+}
 
 // TopupsPendingSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsPendingSubTotalPrepaymentPartType1 string
@@ -19995,6 +41541,27 @@ const (
 
 func (e TopupsPendingSubTotalPrepaymentPartType1) ToPointer() *TopupsPendingSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TopupsPendingSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsPendingSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TopupsPendingSubTotalTransactionType1 - Represents the transaction type
@@ -20044,6 +41611,95 @@ const (
 
 func (e TopupsPendingSubTotalTransactionType1) ToPointer() *TopupsPendingSubTotalTransactionType1 {
 	return &e
+}
+func (e *TopupsPendingSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsPendingSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TopupsPendingSubTotal1 struct {
@@ -20172,6 +41828,101 @@ const (
 func (e TopupsPendingSubtotalMethod2) ToPointer() *TopupsPendingSubtotalMethod2 {
 	return &e
 }
+func (e *TopupsPendingSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsPendingSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalMethod2: %v", v)
+	}
+}
 
 // TopupsPendingSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TopupsPendingSubtotalCardIssuer2 string
@@ -20186,6 +41937,25 @@ const (
 func (e TopupsPendingSubtotalCardIssuer2) ToPointer() *TopupsPendingSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TopupsPendingSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TopupsPendingSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsPendingSubtotalCardAudience2 string
@@ -20197,6 +41967,21 @@ const (
 
 func (e TopupsPendingSubtotalCardAudience2) ToPointer() *TopupsPendingSubtotalCardAudience2 {
 	return &e
+}
+func (e *TopupsPendingSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TopupsPendingSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -20211,6 +41996,25 @@ const (
 
 func (e TopupsPendingSubtotalCardRegion2) ToPointer() *TopupsPendingSubtotalCardRegion2 {
 	return &e
+}
+func (e *TopupsPendingSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsPendingSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TopupsPendingSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -20249,6 +42053,71 @@ const (
 func (e TopupsPendingSubtotalFeeType2) ToPointer() *TopupsPendingSubtotalFeeType2 {
 	return &e
 }
+func (e *TopupsPendingSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsPendingSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalFeeType2: %v", v)
+	}
+}
 
 // TopupsPendingSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsPendingSubtotalPrepaymentPartType2 string
@@ -20263,6 +42132,27 @@ const (
 
 func (e TopupsPendingSubtotalPrepaymentPartType2) ToPointer() *TopupsPendingSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TopupsPendingSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsPendingSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TopupsPendingSubtotalTransactionType2 - Represents the transaction type
@@ -20312,6 +42202,95 @@ const (
 
 func (e TopupsPendingSubtotalTransactionType2) ToPointer() *TopupsPendingSubtotalTransactionType2 {
 	return &e
+}
+func (e *TopupsPendingSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsPendingSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsPendingSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TopupsPendingSubtotal2 struct {
@@ -20490,6 +42469,101 @@ const (
 func (e TopupsMovedToAvailableSubTotalMethod1) ToPointer() *TopupsMovedToAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsMovedToAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TopupsMovedToAvailableSubTotalCardIssuer1 string
@@ -20504,6 +42578,25 @@ const (
 func (e TopupsMovedToAvailableSubTotalCardIssuer1) ToPointer() *TopupsMovedToAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsMovedToAvailableSubTotalCardAudience1 string
@@ -20515,6 +42608,21 @@ const (
 
 func (e TopupsMovedToAvailableSubTotalCardAudience1) ToPointer() *TopupsMovedToAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -20529,6 +42637,25 @@ const (
 
 func (e TopupsMovedToAvailableSubTotalCardRegion1) ToPointer() *TopupsMovedToAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -20567,6 +42694,71 @@ const (
 func (e TopupsMovedToAvailableSubTotalFeeType1) ToPointer() *TopupsMovedToAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsMovedToAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsMovedToAvailableSubTotalPrepaymentPartType1 string
@@ -20581,6 +42773,27 @@ const (
 
 func (e TopupsMovedToAvailableSubTotalPrepaymentPartType1) ToPointer() *TopupsMovedToAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsMovedToAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -20630,6 +42843,95 @@ const (
 
 func (e TopupsMovedToAvailableSubTotalTransactionType1) ToPointer() *TopupsMovedToAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsMovedToAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TopupsMovedToAvailableSubTotal1 struct {
@@ -20758,6 +43060,101 @@ const (
 func (e TopupsMovedToAvailableSubtotalMethod2) ToPointer() *TopupsMovedToAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsMovedToAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TopupsMovedToAvailableSubtotalCardIssuer2 string
@@ -20772,6 +43169,25 @@ const (
 func (e TopupsMovedToAvailableSubtotalCardIssuer2) ToPointer() *TopupsMovedToAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsMovedToAvailableSubtotalCardAudience2 string
@@ -20783,6 +43199,21 @@ const (
 
 func (e TopupsMovedToAvailableSubtotalCardAudience2) ToPointer() *TopupsMovedToAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -20797,6 +43228,25 @@ const (
 
 func (e TopupsMovedToAvailableSubtotalCardRegion2) ToPointer() *TopupsMovedToAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsMovedToAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -20835,6 +43285,71 @@ const (
 func (e TopupsMovedToAvailableSubtotalFeeType2) ToPointer() *TopupsMovedToAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *TopupsMovedToAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsMovedToAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // TopupsMovedToAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsMovedToAvailableSubtotalPrepaymentPartType2 string
@@ -20849,6 +43364,27 @@ const (
 
 func (e TopupsMovedToAvailableSubtotalPrepaymentPartType2) ToPointer() *TopupsMovedToAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsMovedToAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TopupsMovedToAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -20898,6 +43434,95 @@ const (
 
 func (e TopupsMovedToAvailableSubtotalTransactionType2) ToPointer() *TopupsMovedToAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *TopupsMovedToAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsMovedToAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsMovedToAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TopupsMovedToAvailableSubtotal2 struct {
@@ -21076,6 +43701,101 @@ const (
 func (e TopupsImmediatelyAvailableSubTotalMethod1) ToPointer() *TopupsImmediatelyAvailableSubTotalMethod1 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubTotalMethod1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsImmediatelyAvailableSubTotalMethod1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalMethod1: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubTotalCardIssuer1 - In case of payments transactions with card, the card issuer will be available
 type TopupsImmediatelyAvailableSubTotalCardIssuer1 string
@@ -21090,6 +43810,25 @@ const (
 func (e TopupsImmediatelyAvailableSubTotalCardIssuer1) ToPointer() *TopupsImmediatelyAvailableSubTotalCardIssuer1 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubTotalCardIssuer1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubTotalCardIssuer1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalCardIssuer1: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubTotalCardAudience1 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsImmediatelyAvailableSubTotalCardAudience1 string
@@ -21101,6 +43840,21 @@ const (
 
 func (e TopupsImmediatelyAvailableSubTotalCardAudience1) ToPointer() *TopupsImmediatelyAvailableSubTotalCardAudience1 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubTotalCardAudience1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubTotalCardAudience1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalCardAudience1: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubTotalCardRegion1 - In case of payments transactions with card, the card region will be available.
@@ -21115,6 +43869,25 @@ const (
 
 func (e TopupsImmediatelyAvailableSubTotalCardRegion1) ToPointer() *TopupsImmediatelyAvailableSubTotalCardRegion1 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubTotalCardRegion1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubTotalCardRegion1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalCardRegion1: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubTotalFeeType1 - Present when the transaction represents a fee.
@@ -21153,6 +43926,71 @@ const (
 func (e TopupsImmediatelyAvailableSubTotalFeeType1) ToPointer() *TopupsImmediatelyAvailableSubTotalFeeType1 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubTotalFeeType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsImmediatelyAvailableSubTotalFeeType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalFeeType1: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubTotalPrepaymentPartType1 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsImmediatelyAvailableSubTotalPrepaymentPartType1 string
@@ -21167,6 +44005,27 @@ const (
 
 func (e TopupsImmediatelyAvailableSubTotalPrepaymentPartType1) ToPointer() *TopupsImmediatelyAvailableSubTotalPrepaymentPartType1 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubTotalPrepaymentPartType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsImmediatelyAvailableSubTotalPrepaymentPartType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalPrepaymentPartType1: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubTotalTransactionType1 - Represents the transaction type
@@ -21216,6 +44075,95 @@ const (
 
 func (e TopupsImmediatelyAvailableSubTotalTransactionType1) ToPointer() *TopupsImmediatelyAvailableSubTotalTransactionType1 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubTotalTransactionType1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsImmediatelyAvailableSubTotalTransactionType1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubTotalTransactionType1: %v", v)
+	}
 }
 
 type TopupsImmediatelyAvailableSubTotal1 struct {
@@ -21344,6 +44292,101 @@ const (
 func (e TopupsImmediatelyAvailableSubtotalMethod2) ToPointer() *TopupsImmediatelyAvailableSubtotalMethod2 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubtotalMethod2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "bitcoin":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "giropay":
+		fallthrough
+	case "googlepay":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "inghomepay":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "podiumcadeaukaart":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "sofort":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = TopupsImmediatelyAvailableSubtotalMethod2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalMethod2: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubtotalCardIssuer2 - In case of payments transactions with card, the card issuer will be available
 type TopupsImmediatelyAvailableSubtotalCardIssuer2 string
@@ -21358,6 +44401,25 @@ const (
 func (e TopupsImmediatelyAvailableSubtotalCardIssuer2) ToPointer() *TopupsImmediatelyAvailableSubtotalCardIssuer2 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubtotalCardIssuer2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amex":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubtotalCardIssuer2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalCardIssuer2: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubtotalCardAudience2 - In case of payments trnsactions with card, the card audience will be available.
 type TopupsImmediatelyAvailableSubtotalCardAudience2 string
@@ -21369,6 +44431,21 @@ const (
 
 func (e TopupsImmediatelyAvailableSubtotalCardAudience2) ToPointer() *TopupsImmediatelyAvailableSubtotalCardAudience2 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubtotalCardAudience2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "corporate":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubtotalCardAudience2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalCardAudience2: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubtotalCardRegion2 - In case of payments transactions with card, the card region will be available.
@@ -21383,6 +44460,25 @@ const (
 
 func (e TopupsImmediatelyAvailableSubtotalCardRegion2) ToPointer() *TopupsImmediatelyAvailableSubtotalCardRegion2 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubtotalCardRegion2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "intra-eea":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "other":
+		*e = TopupsImmediatelyAvailableSubtotalCardRegion2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalCardRegion2: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubtotalFeeType2 - Present when the transaction represents a fee.
@@ -21421,6 +44517,71 @@ const (
 func (e TopupsImmediatelyAvailableSubtotalFeeType2) ToPointer() *TopupsImmediatelyAvailableSubtotalFeeType2 {
 	return &e
 }
+func (e *TopupsImmediatelyAvailableSubtotalFeeType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-fee":
+		fallthrough
+	case "direct-debit-failure-fee":
+		fallthrough
+	case "unauthorized-direct-debit-fee":
+		fallthrough
+	case "bank-charged-direct-debit-failure-fee":
+		fallthrough
+	case "partner-commission":
+		fallthrough
+	case "application-fee":
+		fallthrough
+	case "capture-fee":
+		fallthrough
+	case "refund-fee":
+		fallthrough
+	case "chargeback-fee":
+		fallthrough
+	case "payment-notification-fee":
+		fallthrough
+	case "transfer-notification-fee":
+		fallthrough
+	case "payout-fee":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "platform-volume-fee":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "balance-charge-fee":
+		fallthrough
+	case "3ds-authentication-attempt-fee":
+		fallthrough
+	case "terminal-monthly-fee":
+		fallthrough
+	case "acceptance-risk-fee":
+		fallthrough
+	case "top-up-fee":
+		fallthrough
+	case "payment-gateway-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-processing-fee":
+		fallthrough
+	case "mastercard-specialty-merchant-program-registration-fee":
+		fallthrough
+	case "visa-integrity-risk-program-processing-fee":
+		fallthrough
+	case "visa-integrity-risk-program-registration-fee":
+		fallthrough
+	case "minimum-invoice-amount-fee":
+		*e = TopupsImmediatelyAvailableSubtotalFeeType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalFeeType2: %v", v)
+	}
+}
 
 // TopupsImmediatelyAvailableSubtotalPrepaymentPartType2 - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
 type TopupsImmediatelyAvailableSubtotalPrepaymentPartType2 string
@@ -21435,6 +44596,27 @@ const (
 
 func (e TopupsImmediatelyAvailableSubtotalPrepaymentPartType2) ToPointer() *TopupsImmediatelyAvailableSubtotalPrepaymentPartType2 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubtotalPrepaymentPartType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fee":
+		fallthrough
+	case "fee-reimbursement":
+		fallthrough
+	case "fee-discount":
+		fallthrough
+	case "fee-vat":
+		fallthrough
+	case "fee-rounding-compensation":
+		*e = TopupsImmediatelyAvailableSubtotalPrepaymentPartType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalPrepaymentPartType2: %v", v)
+	}
 }
 
 // TopupsImmediatelyAvailableSubtotalTransactionType2 - Represents the transaction type
@@ -21484,6 +44666,95 @@ const (
 
 func (e TopupsImmediatelyAvailableSubtotalTransactionType2) ToPointer() *TopupsImmediatelyAvailableSubtotalTransactionType2 {
 	return &e
+}
+func (e *TopupsImmediatelyAvailableSubtotalTransactionType2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "failed-platform-split-payment":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "fee-prepayment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "canceled-transfer":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "invoice-rounding-compensation":
+		fallthrough
+	case "rolling-reserve-hold":
+		fallthrough
+	case "rolling-reserve-release":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "repayment":
+		fallthrough
+	case "loan":
+		fallthrough
+	case "balance-topup":
+		fallthrough
+	case "cash-collateral-issuance';":
+		fallthrough
+	case "cash-collateral-release":
+		fallthrough
+	case "pending-rolling-reserve":
+		fallthrough
+	case "to-be-released-rolling-reserve":
+		fallthrough
+	case "held-rolling-reserve":
+		fallthrough
+	case "released-rolling-reserve":
+		*e = TopupsImmediatelyAvailableSubtotalTransactionType2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TopupsImmediatelyAvailableSubtotalTransactionType2: %v", v)
+	}
 }
 
 type TopupsImmediatelyAvailableSubtotal2 struct {

@@ -43,7 +43,7 @@ func main() {
     res, err := s.Webhooks.Create(ctx, &operations.CreateWebhookRequest{
         Name: "Webhook #1",
         URL: "https://mollie.com/",
-        EventTypes: operations.CreateWebhookEventTypesPaymentLinkPaid,
+        WebhookEventTypes: operations.CreateWebhookWebhookEventTypesRequestPaymentLinkPaid,
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -106,7 +106,7 @@ func main() {
         From: client.String("hook_B2EyhTH5N4KWUnoYPcgiH"),
         Limit: client.Int64(50),
         Sort: operations.ListWebhooksSortDesc.ToPointer(),
-        EventTypes: operations.ListWebhooksEventTypesPaymentLinkPaid.ToPointer(),
+        EventTypes: operations.EventTypesWebhookEventTypesPaymentLinkPaid.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -168,7 +168,7 @@ func main() {
     res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", &operations.UpdateWebhookRequestBody{
         Name: client.String("Webhook #1"),
         URL: client.String("https://mollie.com/"),
-        EventTypes: operations.UpdateWebhookEventTypesPaymentLinkPaid.ToPointer(),
+        WebhookEventTypes: operations.UpdateWebhookWebhookEventTypesRequestPaymentLinkPaid.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {

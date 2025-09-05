@@ -167,6 +167,21 @@ const (
 func (e ListSubscriptionsMode) ToPointer() *ListSubscriptionsMode {
 	return &e
 }
+func (e *ListSubscriptionsMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListSubscriptionsMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSubscriptionsMode: %v", v)
+	}
+}
 
 // ListSubscriptionsStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
 // enabling the subscription.
@@ -182,6 +197,27 @@ const (
 
 func (e ListSubscriptionsStatus) ToPointer() *ListSubscriptionsStatus {
 	return &e
+}
+func (e *ListSubscriptionsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "suspended":
+		fallthrough
+	case "completed":
+		*e = ListSubscriptionsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSubscriptionsStatus: %v", v)
+	}
 }
 
 // ListSubscriptionsAmount - The amount for each individual payment that is charged with this subscription. For example, for a monthly
@@ -218,6 +254,23 @@ const (
 
 func (e ListSubscriptionsMethod) ToPointer() *ListSubscriptionsMethod {
 	return &e
+}
+func (e *ListSubscriptionsMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = ListSubscriptionsMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSubscriptionsMethod: %v", v)
+	}
 }
 
 // ListSubscriptionsApplicationFeeAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -283,9 +336,9 @@ const (
 //
 // Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
 type ListSubscriptionsMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type ListSubscriptionsMetadataType
 }

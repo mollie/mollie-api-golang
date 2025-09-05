@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -207,6 +209,109 @@ const (
 
 func (e ListBalanceTransactionsType) ToPointer() *ListBalanceTransactionsType {
 	return &e
+}
+func (e *ListBalanceTransactionsType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "application-fee":
+		fallthrough
+	case "capture":
+		fallthrough
+	case "chargeback":
+		fallthrough
+	case "chargeback-reversal":
+		fallthrough
+	case "failed-payment-fee":
+		fallthrough
+	case "failed-payment":
+		fallthrough
+	case "invoice-compensation":
+		fallthrough
+	case "payment":
+		fallthrough
+	case "payment-fee":
+		fallthrough
+	case "payment-commission":
+		fallthrough
+	case "refund":
+		fallthrough
+	case "returned-refund":
+		fallthrough
+	case "returned-transfer":
+		fallthrough
+	case "split-payment":
+		fallthrough
+	case "outgoing-transfer":
+		fallthrough
+	case "capture-commission":
+		fallthrough
+	case "canceled-outgoing-transfer":
+		fallthrough
+	case "incoming-transfer":
+		fallthrough
+	case "api-payment-rolling-reserve-release":
+		fallthrough
+	case "capture-rolling-reserve-release":
+		fallthrough
+	case "reimbursement-fee":
+		fallthrough
+	case "balance-correction":
+		fallthrough
+	case "unauthorized-direct-debit":
+		fallthrough
+	case "bank-charged-failure-fee":
+		fallthrough
+	case "platform-payment-refund":
+		fallthrough
+	case "refund-compensation":
+		fallthrough
+	case "returned-refund-compensation":
+		fallthrough
+	case "returned-platform-payment-refund":
+		fallthrough
+	case "platform-payment-chargeback":
+		fallthrough
+	case "chargeback-compensation":
+		fallthrough
+	case "reversed-platform-payment-chargeback":
+		fallthrough
+	case "reversed-chargeback-compensation":
+		fallthrough
+	case "failed-split-payment-platform":
+		fallthrough
+	case "failed-split-payment-compensation":
+		fallthrough
+	case "cash-advance-loan":
+		fallthrough
+	case "platform-connected-organizations-fee":
+		fallthrough
+	case "split-transaction":
+		fallthrough
+	case "managed-fee":
+		fallthrough
+	case "returned-managed-fee":
+		fallthrough
+	case "topup":
+		fallthrough
+	case "balance-reserve":
+		fallthrough
+	case "balance-reserve-return":
+		fallthrough
+	case "movement":
+		fallthrough
+	case "post-payment-split-payment":
+		fallthrough
+	case "cash-collateral-issuance":
+		fallthrough
+	case "cash-collateral-release":
+		*e = ListBalanceTransactionsType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListBalanceTransactionsType: %v", v)
+	}
 }
 
 // ResultAmount - The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for

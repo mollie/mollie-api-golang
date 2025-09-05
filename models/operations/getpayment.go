@@ -156,6 +156,21 @@ const (
 func (e GetPaymentMode) ToPointer() *GetPaymentMode {
 	return &e
 }
+func (e *GetPaymentMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetPaymentMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentMode: %v", v)
+	}
+}
 
 // GetPaymentAmount - The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
 //
@@ -324,6 +339,33 @@ const (
 func (e GetPaymentLineType) ToPointer() *GetPaymentLineType {
 	return &e
 }
+func (e *GetPaymentLineType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "physical":
+		fallthrough
+	case "digital":
+		fallthrough
+	case "shipping_fee":
+		fallthrough
+	case "discount":
+		fallthrough
+	case "store_credit":
+		fallthrough
+	case "gift_card":
+		fallthrough
+	case "surcharge":
+		fallthrough
+	case "tip":
+		*e = GetPaymentLineType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLineType: %v", v)
+	}
+}
 
 // GetPaymentUnitPrice - The price of a single item including VAT.
 //
@@ -441,6 +483,25 @@ const (
 
 func (e GetPaymentCategory) ToPointer() *GetPaymentCategory {
 	return &e
+}
+func (e *GetPaymentCategory) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "meal":
+		fallthrough
+	case "eco":
+		fallthrough
+	case "gift":
+		fallthrough
+	case "sport_culture":
+		*e = GetPaymentCategory(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCategory: %v", v)
+	}
 }
 
 // GetPaymentRecurringAmount - Total amount and currency of the recurring item.
@@ -978,6 +1039,61 @@ const (
 func (e GetPaymentLocale) ToPointer() *GetPaymentLocale {
 	return &e
 }
+func (e *GetPaymentLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = GetPaymentLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentLocale: %v", v)
+	}
+}
 
 // GetPaymentMethod - The payment method used for this transaction. If a specific method was selected during payment initialization,
 // this field reflects that choice.
@@ -1025,6 +1141,89 @@ const (
 func (e GetPaymentMethod) ToPointer() *GetPaymentMethod {
 	return &e
 }
+func (e *GetPaymentMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "klarnapaylater":
+		fallthrough
+	case "klarnapaynow":
+		fallthrough
+	case "klarnasliceit":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "payconiq":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "voucher":
+		*e = GetPaymentMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentMethod: %v", v)
+	}
+}
 
 type GetPaymentMetadataType string
 
@@ -1037,9 +1236,9 @@ const (
 // GetPaymentMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type GetPaymentMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type GetPaymentMetadataType
 }
@@ -1127,6 +1326,21 @@ const (
 func (e GetPaymentCaptureMode) ToPointer() *GetPaymentCaptureMode {
 	return &e
 }
+func (e *GetPaymentCaptureMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "automatic":
+		fallthrough
+	case "manual":
+		*e = GetPaymentCaptureMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCaptureMode: %v", v)
+	}
+}
 
 // GetPaymentApplicationFeeAmount - The fee that you wish to charge.
 //
@@ -1198,6 +1412,21 @@ const (
 func (e GetPaymentRoutingMode) ToPointer() *GetPaymentRoutingMode {
 	return &e
 }
+func (e *GetPaymentRoutingMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetPaymentRoutingMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentRoutingMode: %v", v)
+	}
+}
 
 // GetPaymentRoutingAmount - The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
 type GetPaymentRoutingAmount struct {
@@ -1221,29 +1450,42 @@ func (o *GetPaymentRoutingAmount) GetValue() string {
 	return o.Value
 }
 
-// GetPaymentDestinationType - The type of destination. Currently only the destination type `organization` is supported.
-type GetPaymentDestinationType string
+// GetPaymentRoutingType - The type of destination. Currently only the destination type `organization` is supported.
+type GetPaymentRoutingType string
 
 const (
-	GetPaymentDestinationTypeOrganization GetPaymentDestinationType = "organization"
+	GetPaymentRoutingTypeOrganization GetPaymentRoutingType = "organization"
 )
 
-func (e GetPaymentDestinationType) ToPointer() *GetPaymentDestinationType {
+func (e GetPaymentRoutingType) ToPointer() *GetPaymentRoutingType {
 	return &e
+}
+func (e *GetPaymentRoutingType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "organization":
+		*e = GetPaymentRoutingType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentRoutingType: %v", v)
+	}
 }
 
 // GetPaymentDestination - The destination of this portion of the payment.
 type GetPaymentDestination struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type GetPaymentDestinationType `json:"type"`
+	Type GetPaymentRoutingType `json:"type"`
 	// Required for destination type `organization`. The ID of the connected organization the funds should be
 	// routed to.
 	OrganizationID string `json:"organizationId"`
 }
 
-func (o *GetPaymentDestination) GetType() GetPaymentDestinationType {
+func (o *GetPaymentDestination) GetType() GetPaymentRoutingType {
 	if o == nil {
-		return GetPaymentDestinationType("")
+		return GetPaymentRoutingType("")
 	}
 	return o.Type
 }
@@ -1426,6 +1668,23 @@ const (
 func (e GetPaymentSequenceType) ToPointer() *GetPaymentSequenceType {
 	return &e
 }
+func (e *GetPaymentSequenceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oneoff":
+		fallthrough
+	case "first":
+		fallthrough
+	case "recurring":
+		*e = GetPaymentSequenceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentSequenceType: %v", v)
+	}
+}
 
 // GetPaymentStatusEnum - The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
 // statuses occur at what point.
@@ -1443,6 +1702,31 @@ const (
 
 func (e GetPaymentStatusEnum) ToPointer() *GetPaymentStatusEnum {
 	return &e
+}
+func (e *GetPaymentStatusEnum) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "open":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "authorized":
+		fallthrough
+	case "paid":
+		fallthrough
+	case "canceled":
+		fallthrough
+	case "expired":
+		fallthrough
+	case "failed":
+		*e = GetPaymentStatusEnum(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentStatusEnum: %v", v)
+	}
 }
 
 // GetPaymentCode - A machine-readable code that indicates the reason for the payment's status.
@@ -1570,6 +1854,249 @@ const (
 func (e GetPaymentCode) ToPointer() *GetPaymentCode {
 	return &e
 }
+func (e *GetPaymentCode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "approved_or_completed_successfully":
+		fallthrough
+	case "refer_to_card_issuer":
+		fallthrough
+	case "invalid_merchant":
+		fallthrough
+	case "capture_card":
+		fallthrough
+	case "do_not_honor":
+		fallthrough
+	case "error":
+		fallthrough
+	case "partial_approval":
+		fallthrough
+	case "invalid_transaction":
+		fallthrough
+	case "invalid_amount":
+		fallthrough
+	case "invalid_issuer":
+		fallthrough
+	case "lost_card":
+		fallthrough
+	case "stolen_card":
+		fallthrough
+	case "insufficient_funds":
+		fallthrough
+	case "expired_card":
+		fallthrough
+	case "invalid_pin":
+		fallthrough
+	case "transaction_not_permitted_to_cardholder":
+		fallthrough
+	case "transaction_not_allowed_at_terminal":
+		fallthrough
+	case "exceeds_withdrawal_amount_limit":
+		fallthrough
+	case "restricted_card":
+		fallthrough
+	case "security_violation":
+		fallthrough
+	case "exceeds_withdrawal_count_limit":
+		fallthrough
+	case "allowable_number_of_pin_tries_exceeded":
+		fallthrough
+	case "no_reason_to_decline":
+		fallthrough
+	case "cannot_verify_pin":
+		fallthrough
+	case "issuer_unavailable":
+		fallthrough
+	case "unable_to_route_transaction":
+		fallthrough
+	case "duplicate_transaction":
+		fallthrough
+	case "system_malfunction":
+		fallthrough
+	case "honor_with_id":
+		fallthrough
+	case "invalid_card_number":
+		fallthrough
+	case "format_error":
+		fallthrough
+	case "contact_card_issuer":
+		fallthrough
+	case "pin_not_changed":
+		fallthrough
+	case "invalid_nonexistent_to_account_specified":
+		fallthrough
+	case "invalid_nonexistent_from_account_specified":
+		fallthrough
+	case "invalid_nonexistent_account_specified":
+		fallthrough
+	case "lifecycle_related":
+		fallthrough
+	case "domestic_debit_transaction_not_allowed":
+		fallthrough
+	case "policy_related":
+		fallthrough
+	case "fraud_security_related":
+		fallthrough
+	case "invalid_authorization_life_cycle":
+		fallthrough
+	case "purchase_amount_only_no_cash_back_allowed":
+		fallthrough
+	case "cryptographic_failure":
+		fallthrough
+	case "unacceptable_pin":
+		fallthrough
+	case "refer_to_card_issuer_special_condition":
+		fallthrough
+	case "pick_up_card_special_condition":
+		fallthrough
+	case "vip_approval":
+		fallthrough
+	case "invalid_account_number":
+		fallthrough
+	case "re_enter_transaction":
+		fallthrough
+	case "no_action_taken":
+		fallthrough
+	case "unable_to_locate_record":
+		fallthrough
+	case "file_temporarily_unavailable":
+		fallthrough
+	case "no_credit_account":
+		fallthrough
+	case "closed_account":
+		fallthrough
+	case "no_checking_account":
+		fallthrough
+	case "no_savings_account":
+		fallthrough
+	case "suspected_fraud":
+		fallthrough
+	case "transaction_does_not_fulfill_aml_requirement":
+		fallthrough
+	case "pin_data_required":
+		fallthrough
+	case "unable_to_locate_previous_message":
+		fallthrough
+	case "previous_message_located_inconsistent_data":
+		fallthrough
+	case "blocked_first_used":
+		fallthrough
+	case "transaction_reversed":
+		fallthrough
+	case "credit_issuer_unavailable":
+		fallthrough
+	case "pin_cryptographic_error_found":
+		fallthrough
+	case "negative_online_cam_result":
+		fallthrough
+	case "violation_of_law":
+		fallthrough
+	case "force_stip":
+		fallthrough
+	case "cash_service_not_available":
+		fallthrough
+	case "cashback_request_exceeds_issuer_limit":
+		fallthrough
+	case "decline_for_cvv2_failure":
+		fallthrough
+	case "transaction_amount_exceeds_pre_authorized_amount":
+		fallthrough
+	case "invalid_biller_information":
+		fallthrough
+	case "pin_change_unblock_request_declined":
+		fallthrough
+	case "unsafe_pin":
+		fallthrough
+	case "card_authentication_failed":
+		fallthrough
+	case "stop_payment_order":
+		fallthrough
+	case "revocation_of_authorization":
+		fallthrough
+	case "revocation_of_all_authorizations":
+		fallthrough
+	case "forward_to_issuer_xa":
+		fallthrough
+	case "forward_to_issuer_xd":
+		fallthrough
+	case "unable_to_go_online":
+		fallthrough
+	case "additional_customer_authentication_required":
+		fallthrough
+	case "merchant_id_not_found":
+		fallthrough
+	case "merchant_account_closed":
+		fallthrough
+	case "terminal_id_not_found":
+		fallthrough
+	case "terminal_closed":
+		fallthrough
+	case "invalid_category_code":
+		fallthrough
+	case "invalid_currency":
+		fallthrough
+	case "missing_cvv2_cvc2":
+		fallthrough
+	case "cvv2_not_allowed":
+		fallthrough
+	case "merchant_not_registered_vbv":
+		fallthrough
+	case "merchant_not_registered_for_amex":
+		fallthrough
+	case "transaction_not_permitted_at_terminal":
+		fallthrough
+	case "agreement_terminal_not_related":
+		fallthrough
+	case "invalid_processor_id":
+		fallthrough
+	case "invalid_merchant_data":
+		fallthrough
+	case "sub_merchant_account_closed":
+		fallthrough
+	case "terminal_busy":
+		fallthrough
+	case "terminal_unreachable":
+		fallthrough
+	case "service_failed":
+		fallthrough
+	case "invalid_operation":
+		fallthrough
+	case "authorization_error":
+		fallthrough
+	case "login_failed_without_reason":
+		fallthrough
+	case "invalid_retailer":
+		fallthrough
+	case "card_does_not_exist":
+		fallthrough
+	case "card_is_blocked":
+		fallthrough
+	case "invalid_card_id":
+		fallthrough
+	case "card_is_transferred":
+		fallthrough
+	case "card_is_not_active":
+		fallthrough
+	case "incorrect_purchase_value":
+		fallthrough
+	case "card_not_available":
+		fallthrough
+	case "wrong_currency":
+		fallthrough
+	case "login_failed_unknown_user":
+		fallthrough
+	case "login_failed_invalid_password":
+		fallthrough
+	case "invalid_ean_code":
+		*e = GetPaymentCode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCode: %v", v)
+	}
+}
 
 // GetPaymentStatusReason - This object offers details about the status of a payment. Currently it is only available for point-of-sale
 // payments.
@@ -1607,6 +2134,21 @@ const (
 func (e GetPaymentCardAudition) ToPointer() *GetPaymentCardAudition {
 	return &e
 }
+func (e *GetPaymentCardAudition) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = GetPaymentCardAudition(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardAudition: %v", v)
+	}
+}
 
 // GetPaymentCardLabel - The card's label, if known.
 type GetPaymentCardLabel string
@@ -1630,6 +2172,43 @@ const (
 func (e GetPaymentCardLabel) ToPointer() *GetPaymentCardLabel {
 	return &e
 }
+func (e *GetPaymentCardLabel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "American Express":
+		fallthrough
+	case "Carta Si":
+		fallthrough
+	case "Carte Bleue":
+		fallthrough
+	case "Dankort":
+		fallthrough
+	case "Diners Club":
+		fallthrough
+	case "Discover":
+		fallthrough
+	case "JCB":
+		fallthrough
+	case "Laser":
+		fallthrough
+	case "Maestro":
+		fallthrough
+	case "Mastercard":
+		fallthrough
+	case "Unionpay":
+		fallthrough
+	case "Visa":
+		fallthrough
+	case "Vpay":
+		*e = GetPaymentCardLabel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardLabel: %v", v)
+	}
+}
 
 // GetPaymentCardFunding - The card type.
 type GetPaymentCardFunding string
@@ -1644,6 +2223,25 @@ const (
 func (e GetPaymentCardFunding) ToPointer() *GetPaymentCardFunding {
 	return &e
 }
+func (e *GetPaymentCardFunding) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "debit":
+		fallthrough
+	case "credit":
+		fallthrough
+	case "prepaid":
+		fallthrough
+	case "deferred-debit":
+		*e = GetPaymentCardFunding(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardFunding: %v", v)
+	}
+}
 
 // GetPaymentCardSecurity - The level of security applied during card processing.
 type GetPaymentCardSecurity string
@@ -1655,6 +2253,21 @@ const (
 
 func (e GetPaymentCardSecurity) ToPointer() *GetPaymentCardSecurity {
 	return &e
+}
+func (e *GetPaymentCardSecurity) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "normal":
+		fallthrough
+	case "3dsecure":
+		*e = GetPaymentCardSecurity(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardSecurity: %v", v)
+	}
 }
 
 // GetPaymentFeeRegion - The applicable card fee region.
@@ -1675,6 +2288,37 @@ const (
 
 func (e GetPaymentFeeRegion) ToPointer() *GetPaymentFeeRegion {
 	return &e
+}
+func (e *GetPaymentFeeRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "american-express":
+		fallthrough
+	case "amex-intra-eea":
+		fallthrough
+	case "carte-bancaire":
+		fallthrough
+	case "intra-eu":
+		fallthrough
+	case "intra-eu-corporate":
+		fallthrough
+	case "domestic":
+		fallthrough
+	case "maestro":
+		fallthrough
+	case "other":
+		fallthrough
+	case "inter":
+		fallthrough
+	case "intra_eea":
+		*e = GetPaymentFeeRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentFeeRegion: %v", v)
+	}
 }
 
 // GetPaymentFailureReason - A failure code to help understand why the payment failed.
@@ -1701,6 +2345,47 @@ const (
 func (e GetPaymentFailureReason) ToPointer() *GetPaymentFailureReason {
 	return &e
 }
+func (e *GetPaymentFailureReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "authentication_abandoned":
+		fallthrough
+	case "authentication_failed":
+		fallthrough
+	case "authentication_required":
+		fallthrough
+	case "authentication_unavailable_acs":
+		fallthrough
+	case "card_declined":
+		fallthrough
+	case "card_expired":
+		fallthrough
+	case "inactive_card":
+		fallthrough
+	case "insufficient_funds":
+		fallthrough
+	case "invalid_cvv":
+		fallthrough
+	case "invalid_card_holder_name":
+		fallthrough
+	case "invalid_card_number":
+		fallthrough
+	case "invalid_card_type":
+		fallthrough
+	case "possible_fraud":
+		fallthrough
+	case "refused_by_issuer":
+		fallthrough
+	case "unknown_reason":
+		*e = GetPaymentFailureReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentFailureReason: %v", v)
+	}
+}
 
 // GetPaymentWallet - The wallet used when creating the payment.
 type GetPaymentWallet string
@@ -1711,6 +2396,19 @@ const (
 
 func (e GetPaymentWallet) ToPointer() *GetPaymentWallet {
 	return &e
+}
+func (e *GetPaymentWallet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "applepay":
+		*e = GetPaymentWallet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentWallet: %v", v)
+	}
 }
 
 // GetPaymentSellerProtection - Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
@@ -1730,6 +2428,33 @@ const (
 
 func (e GetPaymentSellerProtection) ToPointer() *GetPaymentSellerProtection {
 	return &e
+}
+func (e *GetPaymentSellerProtection) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Eligible":
+		fallthrough
+	case "Ineligible":
+		fallthrough
+	case "Partially Eligible - INR Only":
+		fallthrough
+	case "Partially Eligible - Unauth Only":
+		fallthrough
+	case "Partially Eligible":
+		fallthrough
+	case "None":
+		fallthrough
+	case "Active":
+		fallthrough
+	case "Fraud Control - Unauth Premium Eligible":
+		*e = GetPaymentSellerProtection(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentSellerProtection: %v", v)
+	}
 }
 
 // GetPaymentPaypalFee - An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
@@ -1769,6 +2494,27 @@ const (
 func (e GetPaymentCardReadMethod) ToPointer() *GetPaymentCardReadMethod {
 	return &e
 }
+func (e *GetPaymentCardReadMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "chip":
+		fallthrough
+	case "magnetic-stripe":
+		fallthrough
+	case "near-field-communication":
+		fallthrough
+	case "contactless":
+		fallthrough
+	case "moto":
+		*e = GetPaymentCardReadMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardReadMethod: %v", v)
+	}
+}
 
 // GetPaymentCardVerificationMethod - The method used to verify the cardholder's identity.
 type GetPaymentCardVerificationMethod string
@@ -1787,6 +2533,35 @@ const (
 
 func (e GetPaymentCardVerificationMethod) ToPointer() *GetPaymentCardVerificationMethod {
 	return &e
+}
+func (e *GetPaymentCardVerificationMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "no-cvm-required":
+		fallthrough
+	case "online-pin":
+		fallthrough
+	case "offline-pin":
+		fallthrough
+	case "consumer-device":
+		fallthrough
+	case "signature":
+		fallthrough
+	case "signature-and-online-pin":
+		fallthrough
+	case "online-pin-and-signature":
+		fallthrough
+	case "none":
+		fallthrough
+	case "failed":
+		*e = GetPaymentCardVerificationMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPaymentCardVerificationMethod: %v", v)
+	}
 }
 
 // GetPaymentReceipt - The Point of sale receipt object.
