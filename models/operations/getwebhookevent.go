@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -66,6 +67,48 @@ func (o *GetWebhookEventNotFoundLinks) GetDocumentation() GetWebhookEventNotFoun
 	return o.Documentation
 }
 
+// GetWebhookEventWebhookEventTypes - The event's type
+type GetWebhookEventWebhookEventTypes string
+
+const (
+	GetWebhookEventWebhookEventTypesPaymentLinkPaid           GetWebhookEventWebhookEventTypes = "payment-link.paid"
+	GetWebhookEventWebhookEventTypesBalanceTransactionCreated GetWebhookEventWebhookEventTypes = "balance-transaction.created"
+	GetWebhookEventWebhookEventTypesSalesInvoiceCreated       GetWebhookEventWebhookEventTypes = "sales-invoice.created"
+	GetWebhookEventWebhookEventTypesSalesInvoiceIssued        GetWebhookEventWebhookEventTypes = "sales-invoice.issued"
+	GetWebhookEventWebhookEventTypesSalesInvoiceCanceled      GetWebhookEventWebhookEventTypes = "sales-invoice.canceled"
+	GetWebhookEventWebhookEventTypesSalesInvoicePaid          GetWebhookEventWebhookEventTypes = "sales-invoice.paid"
+	GetWebhookEventWebhookEventTypesWildcard                  GetWebhookEventWebhookEventTypes = "*"
+)
+
+func (e GetWebhookEventWebhookEventTypes) ToPointer() *GetWebhookEventWebhookEventTypes {
+	return &e
+}
+func (e *GetWebhookEventWebhookEventTypes) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "payment-link.paid":
+		fallthrough
+	case "balance-transaction.created":
+		fallthrough
+	case "sales-invoice.created":
+		fallthrough
+	case "sales-invoice.issued":
+		fallthrough
+	case "sales-invoice.canceled":
+		fallthrough
+	case "sales-invoice.paid":
+		fallthrough
+	case "*":
+		*e = GetWebhookEventWebhookEventTypes(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventWebhookEventTypes: %v", v)
+	}
+}
+
 // GetWebhookEventMode2 - Whether this entity was created in live mode or in test mode.
 type GetWebhookEventMode2 string
 
@@ -76,6 +119,21 @@ const (
 
 func (e GetWebhookEventMode2) ToPointer() *GetWebhookEventMode2 {
 	return &e
+}
+func (e *GetWebhookEventMode2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetWebhookEventMode2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventMode2: %v", v)
+	}
 }
 
 // GetWebhookEventStatus - The profile status determines whether the profile is able to receive live payments.
@@ -94,6 +152,23 @@ const (
 func (e GetWebhookEventStatus) ToPointer() *GetWebhookEventStatus {
 	return &e
 }
+func (e *GetWebhookEventStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unverified":
+		fallthrough
+	case "verified":
+		fallthrough
+	case "blocked":
+		*e = GetWebhookEventStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventStatus: %v", v)
+	}
+}
 
 // GetWebhookEventReviewStatus - The status of the requested changes.
 type GetWebhookEventReviewStatus string
@@ -105,6 +180,21 @@ const (
 
 func (e GetWebhookEventReviewStatus) ToPointer() *GetWebhookEventReviewStatus {
 	return &e
+}
+func (e *GetWebhookEventReviewStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "rejected":
+		*e = GetWebhookEventReviewStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventReviewStatus: %v", v)
+	}
 }
 
 // GetWebhookEventReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
@@ -645,6 +735,21 @@ const (
 func (e GetWebhookEventMode1) ToPointer() *GetWebhookEventMode1 {
 	return &e
 }
+func (e *GetWebhookEventMode1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetWebhookEventMode1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventMode1: %v", v)
+	}
+}
 
 // GetWebhookEventAmount - The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
 // amount.
@@ -732,6 +837,33 @@ const (
 
 func (e GetWebhookEventType) ToPointer() *GetWebhookEventType {
 	return &e
+}
+func (e *GetWebhookEventType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "physical":
+		fallthrough
+	case "digital":
+		fallthrough
+	case "shipping_fee":
+		fallthrough
+	case "discount":
+		fallthrough
+	case "store_credit":
+		fallthrough
+	case "gift_card":
+		fallthrough
+	case "surcharge":
+		fallthrough
+	case "tip":
+		*e = GetWebhookEventType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventType: %v", v)
+	}
 }
 
 // GetWebhookEventUnitPrice - The price of a single item including VAT.
@@ -894,6 +1026,25 @@ const (
 
 func (e GetWebhookEventCategory) ToPointer() *GetWebhookEventCategory {
 	return &e
+}
+func (e *GetWebhookEventCategory) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "meal":
+		fallthrough
+	case "eco":
+		fallthrough
+	case "gift":
+		fallthrough
+	case "sport_culture":
+		*e = GetWebhookEventCategory(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventCategory: %v", v)
+	}
 }
 
 type GetWebhookEventLine struct {
@@ -1436,6 +1587,21 @@ const (
 func (e GetWebhookEventSequenceType) ToPointer() *GetWebhookEventSequenceType {
 	return &e
 }
+func (e *GetWebhookEventSequenceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "oneoff":
+		fallthrough
+	case "first":
+		*e = GetWebhookEventSequenceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetWebhookEventSequenceType: %v", v)
+	}
+}
 
 // EntitySelf1 - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 type EntitySelf1 struct {
@@ -1810,8 +1976,8 @@ const (
 )
 
 type Entity struct {
-	GetWebhookEventPaymentLinkOutput *GetWebhookEventPaymentLinkOutput `queryParam:"inline"`
-	GetWebhookEventProfile           *GetWebhookEventProfile           `queryParam:"inline"`
+	GetWebhookEventPaymentLinkOutput *GetWebhookEventPaymentLinkOutput `queryParam:"inline" name:"entity"`
+	GetWebhookEventProfile           *GetWebhookEventProfile           `queryParam:"inline" name:"entity"`
 
 	Type EntityType
 }
@@ -1946,23 +2112,23 @@ func (o *LinksEntity) GetType() string {
 // GetWebhookEventLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type GetWebhookEventLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *GetWebhookEventSelf `json:"self,omitempty"`
+	Self GetWebhookEventSelf `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *GetWebhookEventDocumentation `json:"documentation,omitempty"`
+	Documentation GetWebhookEventDocumentation `json:"documentation"`
 	// The API resource URL of the entity that this event belongs to.
 	Entity *LinksEntity `json:"entity,omitempty"`
 }
 
-func (o *GetWebhookEventLinks) GetSelf() *GetWebhookEventSelf {
+func (o *GetWebhookEventLinks) GetSelf() GetWebhookEventSelf {
 	if o == nil {
-		return nil
+		return GetWebhookEventSelf{}
 	}
 	return o.Self
 }
 
-func (o *GetWebhookEventLinks) GetDocumentation() *GetWebhookEventDocumentation {
+func (o *GetWebhookEventLinks) GetDocumentation() GetWebhookEventDocumentation {
 	if o == nil {
-		return nil
+		return GetWebhookEventDocumentation{}
 	}
 	return o.Documentation
 }
@@ -1977,52 +2143,52 @@ func (o *GetWebhookEventLinks) GetEntity() *LinksEntity {
 // GetWebhookEventResponseBody - The webhook event object.
 type GetWebhookEventResponseBody struct {
 	// Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The identifier uniquely referring to this event.
-	ID *string `json:"id,omitempty"`
-	// The event's type.
-	Type *string `json:"type,omitempty"`
+	ID string `json:"id"`
+	// The event's type
+	WebhookEventTypes GetWebhookEventWebhookEventTypes `json:"type"`
 	// The entity token that triggered the event
-	EntityID *string `json:"entityId,omitempty"`
+	EntityID string `json:"entityId"`
 	// The event's date time of creation.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// Full payload of the event.
 	Embedded *GetWebhookEventEmbedded `json:"_embedded,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *GetWebhookEventLinks `json:"_links,omitempty"`
+	Links GetWebhookEventLinks `json:"_links"`
 }
 
-func (o *GetWebhookEventResponseBody) GetResource() *string {
+func (o *GetWebhookEventResponseBody) GetResource() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Resource
 }
 
-func (o *GetWebhookEventResponseBody) GetID() *string {
+func (o *GetWebhookEventResponseBody) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }
 
-func (o *GetWebhookEventResponseBody) GetType() *string {
+func (o *GetWebhookEventResponseBody) GetWebhookEventTypes() GetWebhookEventWebhookEventTypes {
 	if o == nil {
-		return nil
+		return GetWebhookEventWebhookEventTypes("")
 	}
-	return o.Type
+	return o.WebhookEventTypes
 }
 
-func (o *GetWebhookEventResponseBody) GetEntityID() *string {
+func (o *GetWebhookEventResponseBody) GetEntityID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.EntityID
 }
 
-func (o *GetWebhookEventResponseBody) GetCreatedAt() *string {
+func (o *GetWebhookEventResponseBody) GetCreatedAt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.CreatedAt
 }
@@ -2034,9 +2200,9 @@ func (o *GetWebhookEventResponseBody) GetEmbedded() *GetWebhookEventEmbedded {
 	return o.Embedded
 }
 
-func (o *GetWebhookEventResponseBody) GetLinks() *GetWebhookEventLinks {
+func (o *GetWebhookEventResponseBody) GetLinks() GetWebhookEventLinks {
 	if o == nil {
-		return nil
+		return GetWebhookEventLinks{}
 	}
 	return o.Links
 }

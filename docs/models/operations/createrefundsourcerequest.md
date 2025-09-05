@@ -1,4 +1,4 @@
-# SourceOrganization
+# CreateRefundSourceRequest
 
 Where the funds will be pulled back from.
 

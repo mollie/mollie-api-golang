@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -16,6 +18,21 @@ const (
 
 func (e GetPrimaryBalanceMode) ToPointer() *GetPrimaryBalanceMode {
 	return &e
+}
+func (e *GetPrimaryBalanceMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetPrimaryBalanceMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPrimaryBalanceMode: %v", v)
+	}
 }
 
 // GetPrimaryBalanceCurrency - The balance's ISO 4217 currency code.
@@ -39,6 +56,41 @@ const (
 func (e GetPrimaryBalanceCurrency) ToPointer() *GetPrimaryBalanceCurrency {
 	return &e
 }
+func (e *GetPrimaryBalanceCurrency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "EUR":
+		fallthrough
+	case "GBP":
+		fallthrough
+	case "CHF":
+		fallthrough
+	case "DKK":
+		fallthrough
+	case "NOK":
+		fallthrough
+	case "PLN":
+		fallthrough
+	case "SEK":
+		fallthrough
+	case "USD":
+		fallthrough
+	case "CZK":
+		fallthrough
+	case "HUF":
+		fallthrough
+	case "AUD":
+		fallthrough
+	case "CAD":
+		*e = GetPrimaryBalanceCurrency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPrimaryBalanceCurrency: %v", v)
+	}
+}
 
 // GetPrimaryBalanceStatus - The status of the balance.
 type GetPrimaryBalanceStatus string
@@ -50,6 +102,21 @@ const (
 
 func (e GetPrimaryBalanceStatus) ToPointer() *GetPrimaryBalanceStatus {
 	return &e
+}
+func (e *GetPrimaryBalanceStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "active":
+		fallthrough
+	case "inactive":
+		*e = GetPrimaryBalanceStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPrimaryBalanceStatus: %v", v)
+	}
 }
 
 // GetPrimaryBalanceTransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
@@ -71,6 +138,33 @@ const (
 
 func (e GetPrimaryBalanceTransferFrequency) ToPointer() *GetPrimaryBalanceTransferFrequency {
 	return &e
+}
+func (e *GetPrimaryBalanceTransferFrequency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "daily":
+		fallthrough
+	case "every-monday":
+		fallthrough
+	case "every-tuesday":
+		fallthrough
+	case "every-wednesday":
+		fallthrough
+	case "every-thursday":
+		fallthrough
+	case "every-friday":
+		fallthrough
+	case "monthly":
+		fallthrough
+	case "never":
+		*e = GetPrimaryBalanceTransferFrequency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPrimaryBalanceTransferFrequency: %v", v)
+	}
 }
 
 // GetPrimaryBalanceTransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
@@ -108,6 +202,19 @@ const (
 
 func (e GetPrimaryBalanceType) ToPointer() *GetPrimaryBalanceType {
 	return &e
+}
+func (e *GetPrimaryBalanceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "bank-account":
+		*e = GetPrimaryBalanceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetPrimaryBalanceType: %v", v)
+	}
 }
 
 // GetPrimaryBalanceTransferDestination - The destination where the available amount will be automatically transferred to according to the configured

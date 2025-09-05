@@ -898,6 +898,23 @@ const (
 func (e CreateSalesInvoiceStatusResponse) ToPointer() *CreateSalesInvoiceStatusResponse {
 	return &e
 }
+func (e *CreateSalesInvoiceStatusResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "issued":
+		fallthrough
+	case "paid":
+		*e = CreateSalesInvoiceStatusResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceStatusResponse: %v", v)
+	}
+}
 
 // CreateSalesInvoiceVatSchemeResponse - The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 type CreateSalesInvoiceVatSchemeResponse string
@@ -909,6 +926,21 @@ const (
 
 func (e CreateSalesInvoiceVatSchemeResponse) ToPointer() *CreateSalesInvoiceVatSchemeResponse {
 	return &e
+}
+func (e *CreateSalesInvoiceVatSchemeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "standard":
+		fallthrough
+	case "one-stop-shop":
+		*e = CreateSalesInvoiceVatSchemeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceVatSchemeResponse: %v", v)
+	}
 }
 
 // CreateSalesInvoiceVatModeResponse - The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -922,6 +954,21 @@ const (
 
 func (e CreateSalesInvoiceVatModeResponse) ToPointer() *CreateSalesInvoiceVatModeResponse {
 	return &e
+}
+func (e *CreateSalesInvoiceVatModeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "exclusive":
+		fallthrough
+	case "inclusive":
+		*e = CreateSalesInvoiceVatModeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceVatModeResponse: %v", v)
+	}
 }
 
 // CreateSalesInvoiceMetadataResponse - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
@@ -945,6 +992,31 @@ const (
 func (e CreateSalesInvoicePaymentTermResponse) ToPointer() *CreateSalesInvoicePaymentTermResponse {
 	return &e
 }
+func (e *CreateSalesInvoicePaymentTermResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "7 days":
+		fallthrough
+	case "14 days":
+		fallthrough
+	case "30 days":
+		fallthrough
+	case "45 days":
+		fallthrough
+	case "60 days":
+		fallthrough
+	case "90 days":
+		fallthrough
+	case "120 days":
+		*e = CreateSalesInvoicePaymentTermResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoicePaymentTermResponse: %v", v)
+	}
+}
 
 // CreateSalesInvoiceSourceResponse - The way through which the invoice is to be set to paid.
 type CreateSalesInvoiceSourceResponse string
@@ -957,6 +1029,23 @@ const (
 
 func (e CreateSalesInvoiceSourceResponse) ToPointer() *CreateSalesInvoiceSourceResponse {
 	return &e
+}
+func (e *CreateSalesInvoiceSourceResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "payment-link":
+		fallthrough
+	case "payment":
+		*e = CreateSalesInvoiceSourceResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceSourceResponse: %v", v)
+	}
 }
 
 // CreateSalesInvoicePaymentDetailsResponse - Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
@@ -1018,6 +1107,21 @@ const (
 func (e CreateSalesInvoiceRecipientTypeResponse) ToPointer() *CreateSalesInvoiceRecipientTypeResponse {
 	return &e
 }
+func (e *CreateSalesInvoiceRecipientTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = CreateSalesInvoiceRecipientTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceRecipientTypeResponse: %v", v)
+	}
+}
 
 // CreateSalesInvoiceLocaleResponse - The locale for the recipient, to be used for translations in PDF generation and payment pages.
 type CreateSalesInvoiceLocaleResponse string
@@ -1036,6 +1140,35 @@ const (
 
 func (e CreateSalesInvoiceLocaleResponse) ToPointer() *CreateSalesInvoiceLocaleResponse {
 	return &e
+}
+func (e *CreateSalesInvoiceLocaleResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		*e = CreateSalesInvoiceLocaleResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceLocaleResponse: %v", v)
+	}
 }
 
 type CreateSalesInvoiceRecipientResponse struct {
@@ -1227,6 +1360,21 @@ const (
 func (e CreateSalesInvoiceLineTypeResponse) ToPointer() *CreateSalesInvoiceLineTypeResponse {
 	return &e
 }
+func (e *CreateSalesInvoiceLineTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = CreateSalesInvoiceLineTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceLineTypeResponse: %v", v)
+	}
+}
 
 // CreateSalesInvoiceLineDiscountResponse - The discount to be applied to the line item.
 type CreateSalesInvoiceLineDiscountResponse struct {
@@ -1312,6 +1460,21 @@ const (
 
 func (e CreateSalesInvoiceDiscountTypeResponse) ToPointer() *CreateSalesInvoiceDiscountTypeResponse {
 	return &e
+}
+func (e *CreateSalesInvoiceDiscountTypeResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = CreateSalesInvoiceDiscountTypeResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSalesInvoiceDiscountTypeResponse: %v", v)
+	}
 }
 
 // CreateSalesInvoiceDiscountResponse - The discount to be applied to the entire invoice, applied on top of any line item discounts.

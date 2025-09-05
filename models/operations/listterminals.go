@@ -124,6 +124,21 @@ const (
 func (e ListTerminalsMode) ToPointer() *ListTerminalsMode {
 	return &e
 }
+func (e *ListTerminalsMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListTerminalsMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListTerminalsMode: %v", v)
+	}
+}
 
 // ListTerminalsStatus - The status of the terminal.
 type ListTerminalsStatus string
@@ -137,6 +152,23 @@ const (
 func (e ListTerminalsStatus) ToPointer() *ListTerminalsStatus {
 	return &e
 }
+func (e *ListTerminalsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "active":
+		fallthrough
+	case "inactive":
+		*e = ListTerminalsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListTerminalsStatus: %v", v)
+	}
+}
 
 // ListTerminalsBrand - The brand of the terminal.
 type ListTerminalsBrand string
@@ -148,6 +180,21 @@ const (
 
 func (e ListTerminalsBrand) ToPointer() *ListTerminalsBrand {
 	return &e
+}
+func (e *ListTerminalsBrand) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "PAX":
+		fallthrough
+	case "Tap":
+		*e = ListTerminalsBrand(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListTerminalsBrand: %v", v)
+	}
 }
 
 // ListTerminalsModel - The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
@@ -164,6 +211,29 @@ const (
 
 func (e ListTerminalsModel) ToPointer() *ListTerminalsModel {
 	return &e
+}
+func (e *ListTerminalsModel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "A35":
+		fallthrough
+	case "A77":
+		fallthrough
+	case "A920":
+		fallthrough
+	case "A920Pro":
+		fallthrough
+	case "IM30":
+		fallthrough
+	case "Tap":
+		*e = ListTerminalsModel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListTerminalsModel: %v", v)
+	}
 }
 
 // TerminalSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

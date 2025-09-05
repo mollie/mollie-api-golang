@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -21,6 +23,23 @@ const (
 
 func (e GetOnboardingStatusStatus) ToPointer() *GetOnboardingStatusStatus {
 	return &e
+}
+func (e *GetOnboardingStatusStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "needs-data":
+		fallthrough
+	case "in-review":
+		fallthrough
+	case "completed":
+		*e = GetOnboardingStatusStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetOnboardingStatusStatus: %v", v)
+	}
 }
 
 // GetOnboardingStatusSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

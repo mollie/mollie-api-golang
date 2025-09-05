@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -239,6 +241,61 @@ const (
 func (e GetClientLocale) ToPointer() *GetClientLocale {
 	return &e
 }
+func (e *GetClientLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = GetClientLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientLocale: %v", v)
+	}
+}
 
 // GetClientAddress - The address of the organization.
 type GetClientAddress struct {
@@ -293,6 +350,23 @@ const (
 
 func (e GetClientVatRegulation) ToPointer() *GetClientVatRegulation {
 	return &e
+}
+func (e *GetClientVatRegulation) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "dutch":
+		fallthrough
+	case "british":
+		fallthrough
+	case "shifted":
+		*e = GetClientVatRegulation(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientVatRegulation: %v", v)
+	}
 }
 
 // GetClientOrganizationSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -508,6 +582,23 @@ const (
 func (e GetClientOnboardingStatus) ToPointer() *GetClientOnboardingStatus {
 	return &e
 }
+func (e *GetClientOnboardingStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "needs-data":
+		fallthrough
+	case "in-review":
+		fallthrough
+	case "completed":
+		*e = GetClientOnboardingStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientOnboardingStatus: %v", v)
+	}
+}
 
 // GetClientOnboardingSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 type GetClientOnboardingSelf struct {
@@ -722,6 +813,25 @@ const (
 func (e GetClientCapabilitiesStatus) ToPointer() *GetClientCapabilitiesStatus {
 	return &e
 }
+func (e *GetClientCapabilitiesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unrequested":
+		fallthrough
+	case "enabled":
+		fallthrough
+	case "disabled":
+		fallthrough
+	case "pending":
+		*e = GetClientCapabilitiesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientCapabilitiesStatus: %v", v)
+	}
+}
 
 type GetClientStatusReason string
 
@@ -732,6 +842,21 @@ const (
 
 func (e GetClientStatusReason) ToPointer() *GetClientStatusReason {
 	return &e
+}
+func (e *GetClientStatusReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "requirement-past-due":
+		fallthrough
+	case "onboarding-information-needed":
+		*e = GetClientStatusReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientStatusReason: %v", v)
+	}
 }
 
 // GetClientRequirementStatus - The status of the requirement depends on its due date.
@@ -746,6 +871,23 @@ const (
 
 func (e GetClientRequirementStatus) ToPointer() *GetClientRequirementStatus {
 	return &e
+}
+func (e *GetClientRequirementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "currently-due":
+		fallthrough
+	case "past-due":
+		fallthrough
+	case "requested":
+		*e = GetClientRequirementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetClientRequirementStatus: %v", v)
+	}
 }
 
 // GetClientCapabilitiesDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -36,6 +38,61 @@ const (
 
 func (e GetCurrentOrganizationLocale) ToPointer() *GetCurrentOrganizationLocale {
 	return &e
+}
+func (e *GetCurrentOrganizationLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		fallthrough
+	case "es_ES":
+		fallthrough
+	case "ca_ES":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "nb_NO":
+		fallthrough
+	case "sv_SE":
+		fallthrough
+	case "fi_FI":
+		fallthrough
+	case "da_DK":
+		fallthrough
+	case "is_IS":
+		fallthrough
+	case "hu_HU":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "lv_LV":
+		fallthrough
+	case "lt_LT":
+		*e = GetCurrentOrganizationLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCurrentOrganizationLocale: %v", v)
+	}
 }
 
 // GetCurrentOrganizationAddress - The address of the organization.
@@ -91,6 +148,23 @@ const (
 
 func (e GetCurrentOrganizationVatRegulation) ToPointer() *GetCurrentOrganizationVatRegulation {
 	return &e
+}
+func (e *GetCurrentOrganizationVatRegulation) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "dutch":
+		fallthrough
+	case "british":
+		fallthrough
+	case "shifted":
+		*e = GetCurrentOrganizationVatRegulation(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCurrentOrganizationVatRegulation: %v", v)
+	}
 }
 
 // GetCurrentOrganizationSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

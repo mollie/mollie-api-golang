@@ -165,6 +165,21 @@ const (
 func (e ListMandatesMode) ToPointer() *ListMandatesMode {
 	return &e
 }
+func (e *ListMandatesMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListMandatesMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMandatesMode: %v", v)
+	}
+}
 
 // ListMandatesMethod - Payment method of the mandate.
 //
@@ -179,6 +194,23 @@ const (
 
 func (e ListMandatesMethod) ToPointer() *ListMandatesMethod {
 	return &e
+}
+func (e *ListMandatesMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = ListMandatesMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMandatesMethod: %v", v)
+	}
 }
 
 // ListMandatesCardLabel - The card's label. Available for card mandates, if the card label could be detected.
@@ -201,6 +233,41 @@ const (
 
 func (e ListMandatesCardLabel) ToPointer() *ListMandatesCardLabel {
 	return &e
+}
+func (e *ListMandatesCardLabel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "American Express":
+		fallthrough
+	case "Carta Si":
+		fallthrough
+	case "Carte Bleue":
+		fallthrough
+	case "Dankort":
+		fallthrough
+	case "Diners Club":
+		fallthrough
+	case "Discover":
+		fallthrough
+	case "JCB":
+		fallthrough
+	case "Laser":
+		fallthrough
+	case "Maestro":
+		fallthrough
+	case "Mastercard":
+		fallthrough
+	case "Unionpay":
+		fallthrough
+	case "Visa":
+		*e = ListMandatesCardLabel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMandatesCardLabel: %v", v)
+	}
 }
 
 type ListMandatesDetails struct {
@@ -291,6 +358,23 @@ const (
 
 func (e ListMandatesStatus) ToPointer() *ListMandatesStatus {
 	return &e
+}
+func (e *ListMandatesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "valid":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "invalid":
+		*e = ListMandatesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListMandatesStatus: %v", v)
+	}
 }
 
 // MandateSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

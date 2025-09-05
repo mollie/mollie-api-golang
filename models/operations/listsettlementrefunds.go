@@ -164,6 +164,21 @@ const (
 func (e ListSettlementRefundsMode) ToPointer() *ListSettlementRefundsMode {
 	return &e
 }
+func (e *ListSettlementRefundsMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListSettlementRefundsMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementRefundsMode: %v", v)
+	}
+}
 
 // ListSettlementRefundsAmount - The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
 // amount.
@@ -233,9 +248,9 @@ const (
 // ListSettlementRefundsMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type ListSettlementRefundsMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type ListSettlementRefundsMetadataType
 }
@@ -324,6 +339,29 @@ const (
 func (e ListSettlementRefundsStatus) ToPointer() *ListSettlementRefundsStatus {
 	return &e
 }
+func (e *ListSettlementRefundsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "queued":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "processing":
+		fallthrough
+	case "refunded":
+		fallthrough
+	case "failed":
+		fallthrough
+	case "canceled":
+		*e = ListSettlementRefundsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementRefundsStatus: %v", v)
+	}
+}
 
 // ListSettlementRefundsType - Specifies the reference type
 type ListSettlementRefundsType string
@@ -334,6 +372,19 @@ const (
 
 func (e ListSettlementRefundsType) ToPointer() *ListSettlementRefundsType {
 	return &e
+}
+func (e *ListSettlementRefundsType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "acquirer-reference":
+		*e = ListSettlementRefundsType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementRefundsType: %v", v)
+	}
 }
 
 type ListSettlementRefundsExternalReference struct {

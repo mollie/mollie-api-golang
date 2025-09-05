@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -42,9 +43,9 @@ const (
 // CreateCaptureMetadataRequest - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreateCaptureMetadataRequest struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateCaptureMetadataRequestType
 }
@@ -244,6 +245,21 @@ const (
 func (e CreateCaptureMode) ToPointer() *CreateCaptureMode {
 	return &e
 }
+func (e *CreateCaptureMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreateCaptureMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCaptureMode: %v", v)
+	}
+}
 
 // CreateCaptureAmountResponse - The amount captured. If no amount is provided, the full authorized amount is captured.
 type CreateCaptureAmountResponse struct {
@@ -306,6 +322,23 @@ const (
 func (e CreateCaptureStatus) ToPointer() *CreateCaptureStatus {
 	return &e
 }
+func (e *CreateCaptureStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "succeeded":
+		fallthrough
+	case "failed":
+		*e = CreateCaptureStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCaptureStatus: %v", v)
+	}
+}
 
 type CreateCaptureMetadataResponseType string
 
@@ -318,9 +351,9 @@ const (
 // CreateCaptureMetadataResponse - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type CreateCaptureMetadataResponse struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type CreateCaptureMetadataResponseType
 }

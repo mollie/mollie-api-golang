@@ -122,6 +122,21 @@ const (
 func (e GetRefundMode) ToPointer() *GetRefundMode {
 	return &e
 }
+func (e *GetRefundMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetRefundMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetRefundMode: %v", v)
+	}
+}
 
 // GetRefundAmount - The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
 // amount.
@@ -191,9 +206,9 @@ const (
 // GetRefundMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type GetRefundMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type GetRefundMetadataType
 }
@@ -282,6 +297,29 @@ const (
 func (e GetRefundStatus) ToPointer() *GetRefundStatus {
 	return &e
 }
+func (e *GetRefundStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "queued":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "processing":
+		fallthrough
+	case "refunded":
+		fallthrough
+	case "failed":
+		fallthrough
+	case "canceled":
+		*e = GetRefundStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetRefundStatus: %v", v)
+	}
+}
 
 // GetRefundType - Specifies the reference type
 type GetRefundType string
@@ -292,6 +330,19 @@ const (
 
 func (e GetRefundType) ToPointer() *GetRefundType {
 	return &e
+}
+func (e *GetRefundType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "acquirer-reference":
+		*e = GetRefundType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetRefundType: %v", v)
+	}
 }
 
 type GetRefundExternalReference struct {

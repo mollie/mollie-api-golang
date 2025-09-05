@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -87,6 +89,23 @@ const (
 func (e GetSalesInvoiceStatus) ToPointer() *GetSalesInvoiceStatus {
 	return &e
 }
+func (e *GetSalesInvoiceStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "issued":
+		fallthrough
+	case "paid":
+		*e = GetSalesInvoiceStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceStatus: %v", v)
+	}
+}
 
 // GetSalesInvoiceVatScheme - The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 type GetSalesInvoiceVatScheme string
@@ -98,6 +117,21 @@ const (
 
 func (e GetSalesInvoiceVatScheme) ToPointer() *GetSalesInvoiceVatScheme {
 	return &e
+}
+func (e *GetSalesInvoiceVatScheme) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "standard":
+		fallthrough
+	case "one-stop-shop":
+		*e = GetSalesInvoiceVatScheme(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceVatScheme: %v", v)
+	}
 }
 
 // GetSalesInvoiceVatMode - The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -111,6 +145,21 @@ const (
 
 func (e GetSalesInvoiceVatMode) ToPointer() *GetSalesInvoiceVatMode {
 	return &e
+}
+func (e *GetSalesInvoiceVatMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "exclusive":
+		fallthrough
+	case "inclusive":
+		*e = GetSalesInvoiceVatMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceVatMode: %v", v)
+	}
 }
 
 // GetSalesInvoiceMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
@@ -134,6 +183,31 @@ const (
 func (e GetSalesInvoicePaymentTerm) ToPointer() *GetSalesInvoicePaymentTerm {
 	return &e
 }
+func (e *GetSalesInvoicePaymentTerm) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "7 days":
+		fallthrough
+	case "14 days":
+		fallthrough
+	case "30 days":
+		fallthrough
+	case "45 days":
+		fallthrough
+	case "60 days":
+		fallthrough
+	case "90 days":
+		fallthrough
+	case "120 days":
+		*e = GetSalesInvoicePaymentTerm(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoicePaymentTerm: %v", v)
+	}
+}
 
 // GetSalesInvoiceSource - The way through which the invoice is to be set to paid.
 type GetSalesInvoiceSource string
@@ -146,6 +220,23 @@ const (
 
 func (e GetSalesInvoiceSource) ToPointer() *GetSalesInvoiceSource {
 	return &e
+}
+func (e *GetSalesInvoiceSource) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "payment-link":
+		fallthrough
+	case "payment":
+		*e = GetSalesInvoiceSource(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceSource: %v", v)
+	}
 }
 
 // GetSalesInvoicePaymentDetails - Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
@@ -207,6 +298,21 @@ const (
 func (e GetSalesInvoiceRecipientType) ToPointer() *GetSalesInvoiceRecipientType {
 	return &e
 }
+func (e *GetSalesInvoiceRecipientType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "consumer":
+		fallthrough
+	case "business":
+		*e = GetSalesInvoiceRecipientType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceRecipientType: %v", v)
+	}
+}
 
 // GetSalesInvoiceLocale - The locale for the recipient, to be used for translations in PDF generation and payment pages.
 type GetSalesInvoiceLocale string
@@ -225,6 +331,35 @@ const (
 
 func (e GetSalesInvoiceLocale) ToPointer() *GetSalesInvoiceLocale {
 	return &e
+}
+func (e *GetSalesInvoiceLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		*e = GetSalesInvoiceLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceLocale: %v", v)
+	}
 }
 
 type GetSalesInvoiceRecipient struct {
@@ -416,6 +551,21 @@ const (
 func (e GetSalesInvoiceLineType) ToPointer() *GetSalesInvoiceLineType {
 	return &e
 }
+func (e *GetSalesInvoiceLineType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = GetSalesInvoiceLineType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceLineType: %v", v)
+	}
+}
 
 // GetSalesInvoiceLineDiscount - The discount to be applied to the line item.
 type GetSalesInvoiceLineDiscount struct {
@@ -501,6 +651,21 @@ const (
 
 func (e GetSalesInvoiceDiscountType) ToPointer() *GetSalesInvoiceDiscountType {
 	return &e
+}
+func (e *GetSalesInvoiceDiscountType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "amount":
+		fallthrough
+	case "percentage":
+		*e = GetSalesInvoiceDiscountType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetSalesInvoiceDiscountType: %v", v)
+	}
 }
 
 // GetSalesInvoiceDiscount - The discount to be applied to the entire invoice, applied on top of any line item discounts.

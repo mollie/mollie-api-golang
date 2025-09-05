@@ -122,6 +122,21 @@ const (
 func (e GetCaptureMode) ToPointer() *GetCaptureMode {
 	return &e
 }
+func (e *GetCaptureMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetCaptureMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCaptureMode: %v", v)
+	}
+}
 
 // GetCaptureAmount - The amount captured. If no amount is provided, the full authorized amount is captured.
 type GetCaptureAmount struct {
@@ -184,6 +199,23 @@ const (
 func (e GetCaptureStatus) ToPointer() *GetCaptureStatus {
 	return &e
 }
+func (e *GetCaptureStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "succeeded":
+		fallthrough
+	case "failed":
+		*e = GetCaptureStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCaptureStatus: %v", v)
+	}
+}
 
 type GetCaptureMetadataType string
 
@@ -196,9 +228,9 @@ const (
 // GetCaptureMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type GetCaptureMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type GetCaptureMetadataType
 }

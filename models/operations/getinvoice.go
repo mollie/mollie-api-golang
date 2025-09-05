@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -65,6 +67,23 @@ const (
 
 func (e GetInvoiceStatus) ToPointer() *GetInvoiceStatus {
 	return &e
+}
+func (e *GetInvoiceStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "open":
+		fallthrough
+	case "paid":
+		fallthrough
+	case "overdue":
+		*e = GetInvoiceStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetInvoiceStatus: %v", v)
+	}
 }
 
 // NetAmount - Total amount of the invoice, excluding VAT.

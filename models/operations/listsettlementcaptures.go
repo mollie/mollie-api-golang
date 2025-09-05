@@ -164,6 +164,21 @@ const (
 func (e ListSettlementCapturesMode) ToPointer() *ListSettlementCapturesMode {
 	return &e
 }
+func (e *ListSettlementCapturesMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = ListSettlementCapturesMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementCapturesMode: %v", v)
+	}
+}
 
 // ListSettlementCapturesAmount - The amount captured. If no amount is provided, the full authorized amount is captured.
 type ListSettlementCapturesAmount struct {
@@ -226,6 +241,23 @@ const (
 func (e ListSettlementCapturesStatus) ToPointer() *ListSettlementCapturesStatus {
 	return &e
 }
+func (e *ListSettlementCapturesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "succeeded":
+		fallthrough
+	case "failed":
+		*e = ListSettlementCapturesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListSettlementCapturesStatus: %v", v)
+	}
+}
 
 type ListSettlementCapturesMetadataType string
 
@@ -238,9 +270,9 @@ const (
 // ListSettlementCapturesMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type ListSettlementCapturesMetadata struct {
-	Str        *string        `queryParam:"inline"`
-	MapOfAny   map[string]any `queryParam:"inline"`
-	ArrayOfStr []string       `queryParam:"inline"`
+	Str        *string        `queryParam:"inline" name:"metadata"`
+	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
+	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
 
 	Type ListSettlementCapturesMetadataType
 }

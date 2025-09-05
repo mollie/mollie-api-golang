@@ -214,6 +214,21 @@ const (
 func (e CreateMandateMode) ToPointer() *CreateMandateMode {
 	return &e
 }
+func (e *CreateMandateMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = CreateMandateMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateMandateMode: %v", v)
+	}
+}
 
 // CreateMandateMethodResponse - Payment method of the mandate.
 //
@@ -228,6 +243,23 @@ const (
 
 func (e CreateMandateMethodResponse) ToPointer() *CreateMandateMethodResponse {
 	return &e
+}
+func (e *CreateMandateMethodResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "paypal":
+		*e = CreateMandateMethodResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateMandateMethodResponse: %v", v)
+	}
 }
 
 // CreateMandateCardLabel - The card's label. Available for card mandates, if the card label could be detected.
@@ -250,6 +282,41 @@ const (
 
 func (e CreateMandateCardLabel) ToPointer() *CreateMandateCardLabel {
 	return &e
+}
+func (e *CreateMandateCardLabel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "American Express":
+		fallthrough
+	case "Carta Si":
+		fallthrough
+	case "Carte Bleue":
+		fallthrough
+	case "Dankort":
+		fallthrough
+	case "Diners Club":
+		fallthrough
+	case "Discover":
+		fallthrough
+	case "JCB":
+		fallthrough
+	case "Laser":
+		fallthrough
+	case "Maestro":
+		fallthrough
+	case "Mastercard":
+		fallthrough
+	case "Unionpay":
+		fallthrough
+	case "Visa":
+		*e = CreateMandateCardLabel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateMandateCardLabel: %v", v)
+	}
 }
 
 type CreateMandateDetails struct {
@@ -340,6 +407,23 @@ const (
 
 func (e CreateMandateStatus) ToPointer() *CreateMandateStatus {
 	return &e
+}
+func (e *CreateMandateStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "valid":
+		fallthrough
+	case "pending":
+		fallthrough
+	case "invalid":
+		*e = CreateMandateStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateMandateStatus: %v", v)
+	}
 }
 
 // CreateMandateSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

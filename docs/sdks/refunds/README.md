@@ -47,7 +47,7 @@ func main() {
             Value: "10.00",
         },
         ExternalReference: &operations.ExternalReferenceRequest{
-            Type: operations.TypeAcquirerReferenceAcquirerReference.ToPointer(),
+            Type: operations.TypeAcquirerReferenceRequestAcquirerReference.ToPointer(),
             ID: client.String("123456789012345"),
         },
         ReverseRouting: client.Bool(false),
@@ -57,7 +57,7 @@ func main() {
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Source: &operations.SourceOrganization{
+                Source: &operations.CreateRefundSourceRequest{
                     Type: operations.RoutingReversalTypeOrganization.ToPointer(),
                     OrganizationID: client.String("org_1234567"),
                 },

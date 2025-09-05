@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -16,6 +18,21 @@ const (
 
 func (e GetCurrentProfileMode) ToPointer() *GetCurrentProfileMode {
 	return &e
+}
+func (e *GetCurrentProfileMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetCurrentProfileMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCurrentProfileMode: %v", v)
+	}
 }
 
 // GetCurrentProfileStatus - The profile status determines whether the profile is able to receive live payments.
@@ -34,6 +51,23 @@ const (
 func (e GetCurrentProfileStatus) ToPointer() *GetCurrentProfileStatus {
 	return &e
 }
+func (e *GetCurrentProfileStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unverified":
+		fallthrough
+	case "verified":
+		fallthrough
+	case "blocked":
+		*e = GetCurrentProfileStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCurrentProfileStatus: %v", v)
+	}
+}
 
 // GetCurrentProfileReviewStatus - The status of the requested changes.
 type GetCurrentProfileReviewStatus string
@@ -45,6 +79,21 @@ const (
 
 func (e GetCurrentProfileReviewStatus) ToPointer() *GetCurrentProfileReviewStatus {
 	return &e
+}
+func (e *GetCurrentProfileReviewStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "rejected":
+		*e = GetCurrentProfileReviewStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCurrentProfileReviewStatus: %v", v)
+	}
 }
 
 // GetCurrentProfileReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved

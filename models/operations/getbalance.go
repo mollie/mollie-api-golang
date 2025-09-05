@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -74,6 +76,21 @@ const (
 func (e GetBalanceMode) ToPointer() *GetBalanceMode {
 	return &e
 }
+func (e *GetBalanceMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "live":
+		fallthrough
+	case "test":
+		*e = GetBalanceMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBalanceMode: %v", v)
+	}
+}
 
 // GetBalanceCurrency - The balance's ISO 4217 currency code.
 type GetBalanceCurrency string
@@ -96,6 +113,41 @@ const (
 func (e GetBalanceCurrency) ToPointer() *GetBalanceCurrency {
 	return &e
 }
+func (e *GetBalanceCurrency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "EUR":
+		fallthrough
+	case "GBP":
+		fallthrough
+	case "CHF":
+		fallthrough
+	case "DKK":
+		fallthrough
+	case "NOK":
+		fallthrough
+	case "PLN":
+		fallthrough
+	case "SEK":
+		fallthrough
+	case "USD":
+		fallthrough
+	case "CZK":
+		fallthrough
+	case "HUF":
+		fallthrough
+	case "AUD":
+		fallthrough
+	case "CAD":
+		*e = GetBalanceCurrency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBalanceCurrency: %v", v)
+	}
+}
 
 // GetBalanceStatus - The status of the balance.
 type GetBalanceStatus string
@@ -107,6 +159,21 @@ const (
 
 func (e GetBalanceStatus) ToPointer() *GetBalanceStatus {
 	return &e
+}
+func (e *GetBalanceStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "active":
+		fallthrough
+	case "inactive":
+		*e = GetBalanceStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBalanceStatus: %v", v)
+	}
 }
 
 // GetBalanceTransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
@@ -128,6 +195,33 @@ const (
 
 func (e GetBalanceTransferFrequency) ToPointer() *GetBalanceTransferFrequency {
 	return &e
+}
+func (e *GetBalanceTransferFrequency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "daily":
+		fallthrough
+	case "every-monday":
+		fallthrough
+	case "every-tuesday":
+		fallthrough
+	case "every-wednesday":
+		fallthrough
+	case "every-thursday":
+		fallthrough
+	case "every-friday":
+		fallthrough
+	case "monthly":
+		fallthrough
+	case "never":
+		*e = GetBalanceTransferFrequency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBalanceTransferFrequency: %v", v)
+	}
 }
 
 // GetBalanceTransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
@@ -165,6 +259,19 @@ const (
 
 func (e GetBalanceType) ToPointer() *GetBalanceType {
 	return &e
+}
+func (e *GetBalanceType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "bank-account":
+		*e = GetBalanceType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetBalanceType: %v", v)
+	}
 }
 
 // GetBalanceTransferDestination - The destination where the available amount will be automatically transferred to according to the configured

@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -18,6 +20,25 @@ const (
 func (e ListCapabilitiesStatus) ToPointer() *ListCapabilitiesStatus {
 	return &e
 }
+func (e *ListCapabilitiesStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "unrequested":
+		fallthrough
+	case "enabled":
+		fallthrough
+	case "disabled":
+		fallthrough
+	case "pending":
+		*e = ListCapabilitiesStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListCapabilitiesStatus: %v", v)
+	}
+}
 
 type ListCapabilitiesStatusReason string
 
@@ -28,6 +49,21 @@ const (
 
 func (e ListCapabilitiesStatusReason) ToPointer() *ListCapabilitiesStatusReason {
 	return &e
+}
+func (e *ListCapabilitiesStatusReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "requirement-past-due":
+		fallthrough
+	case "onboarding-information-needed":
+		*e = ListCapabilitiesStatusReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListCapabilitiesStatusReason: %v", v)
+	}
 }
 
 // ListCapabilitiesRequirementStatus - The status of the requirement depends on its due date.
@@ -42,6 +78,23 @@ const (
 
 func (e ListCapabilitiesRequirementStatus) ToPointer() *ListCapabilitiesRequirementStatus {
 	return &e
+}
+func (e *ListCapabilitiesRequirementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "currently-due":
+		fallthrough
+	case "past-due":
+		fallthrough
+	case "requested":
+		*e = ListCapabilitiesRequirementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListCapabilitiesRequirementStatus: %v", v)
+	}
 }
 
 // ListCapabilitiesDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.

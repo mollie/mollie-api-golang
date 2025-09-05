@@ -151,7 +151,7 @@ func main() {
                     Value: "10.00",
                 },
                 Destination: operations.CreatePaymentDestinationRequest{
-                    Type: operations.CreatePaymentTypeOrganizationOrganization,
+                    Type: operations.CreatePaymentRoutingTypeRequestOrganization,
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.String("2024-12-12"),
