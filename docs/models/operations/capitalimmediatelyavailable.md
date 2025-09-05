@@ -1,9 +1,0 @@
-# CapitalImmediatelyAvailable
-
-
-## Fields
-
-| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `Amount`                                                                                                             | [*operations.CapitalImmediatelyAvailableAmount](../../models/operations/capitalimmediatelyavailableamount.md)        | :heavy_minus_sign:                                                                                                   | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.                    |
-| `Subtotals`                                                                                                          | [][operations.CapitalImmediatelyAvailableSubtotal2](../../models/operations/capitalimmediatelyavailablesubtotal2.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |

@@ -38,7 +38,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/types"
 	"log"
 )
@@ -52,49 +51,70 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, operations.CreatePaymentIncludeDetailsQrCode.ToPointer(), &operations.CreatePaymentRequestBody{
-        Description: "Chess Board",
-        Amount: operations.CreatePaymentAmountRequest{
+    res, err := s.Payments.Create(ctx, client.String("details.qrCode"), &components.PaymentRequest{
+        ID: client.String("tr_5B8cwPMGnU"),
+        Description: client.String("Chess Board"),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountRefunded: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountRemaining: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountCaptured: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountChargedBack: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        SettlementAmount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
         RedirectURL: client.String("https://example.org/redirect"),
         CancelURL: client.String("https://example.org/cancel"),
         WebhookURL: client.String("https://example.org/webhooks"),
-        Lines: []operations.CreatePaymentLineRequest{
-            operations.CreatePaymentLineRequest{
-                Type: operations.CreatePaymentLineTypeRequestPhysical.ToPointer(),
+        Lines: []components.PaymentRequestLine{
+            components.PaymentRequestLine{
+                Type: components.PaymentRequestTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 QuantityUnit: client.String("pcs"),
-                UnitPrice: operations.CreatePaymentUnitPriceRequest{
+                UnitPrice: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                DiscountAmount: &operations.CreatePaymentDiscountAmountRequest{
+                DiscountAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                TotalAmount: operations.CreatePaymentTotalAmountRequest{
+                TotalAmount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 VatRate: client.String("21.00"),
-                VatAmount: &operations.CreatePaymentVatAmountRequest{
+                VatAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 Sku: client.String("9780241661628"),
-                Categories: []operations.CreatePaymentCategoryRequest{
-                    operations.CreatePaymentCategoryRequestMeal,
-                    operations.CreatePaymentCategoryRequestEco,
+                Categories: []components.PaymentRequestCategory{
+                    components.PaymentRequestCategoryMeal,
+                    components.PaymentRequestCategoryEco,
                 },
                 ImageURL: client.String("https://..."),
                 ProductURL: client.String("https://..."),
-                Recurring: &operations.CreatePaymentRecurringRequest{
+                Recurring: &components.RecurringLineItem{
                     Description: client.String("Gym subscription"),
                     Interval: "12 months",
-                    Amount: &operations.CreatePaymentRecurringAmountRequest{
+                    Amount: &components.Amount{
                         Currency: "EUR",
                         Value: "10.00",
                     },
@@ -103,7 +123,7 @@ func main() {
                 },
             },
         },
-        BillingAddress: &operations.CreatePaymentBillingAddressRequest{
+        BillingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -117,7 +137,7 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        ShippingAddress: &operations.CreatePaymentShippingAddressRequest{
+        ShippingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -131,50 +151,54 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        Locale: operations.CreatePaymentLocaleRequestEnUs.ToPointer(),
-        Method: operations.CreatePaymentMethodRequestIdeal.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
+        Method: components.MethodIdeal.ToPointer(),
         Issuer: client.String("ideal_INGBNL2A"),
         RestrictPaymentMethodsToCountry: client.String("NL"),
-        CaptureMode: operations.CreatePaymentCaptureModeRequestManual.ToPointer(),
+        CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.String("8 hours"),
-        ApplicationFee: &operations.CreatePaymentApplicationFeeRequest{
-            Amount: &operations.CreatePaymentApplicationFeeAmountRequest{
+        ApplicationFee: &components.PaymentRequestApplicationFee{
+            Amount: &components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
             Description: client.String("10"),
         },
-        Routing: []operations.CreatePaymentRoutingRequest{
-            operations.CreatePaymentRoutingRequest{
-                Amount: operations.CreatePaymentRoutingAmountRequest{
+        Routing: []components.EntityPaymentRoute{
+            components.EntityPaymentRoute{
+                ID: "rt_5B8cwPMGnU",
+                Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: operations.CreatePaymentDestinationRequest{
-                    Type: operations.CreatePaymentRoutingTypeRequestOrganization,
+                Destination: components.EntityPaymentRouteDestination{
+                    Type: components.EntityPaymentRouteTypeOrganization,
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.String("2024-12-12"),
-                Links: operations.CreatePaymentLinksRequest{
-                    Self: operations.CreatePaymentSelfRequest{
+                Links: components.EntityPaymentRouteLinks{
+                    Self: components.URLObj{
                         Href: "https://...",
                         Type: "application/hal+json",
                     },
-                    Payment: operations.CreatePaymentPaymentRequest{
+                    Payment: components.URLObj{
                         Href: "https://...",
                         Type: "application/hal+json",
                     },
                 },
             },
         },
-        SequenceType: operations.CreatePaymentSequenceTypeRequestOneoff.ToPointer(),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        SubscriptionID: client.String("sub_5B8cwPMGnU"),
         MandateID: client.String("mdt_5B8cwPMGnU"),
         CustomerID: client.String("cst_5B8cwPMGnU"),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
+        SettlementID: client.String("stl_5B8cwPMGnU"),
+        OrderID: client.String("ord_5B8cwPMGnU"),
         DueDate: client.String("2025-01-01"),
         Testmode: client.Bool(false),
         ApplePayPaymentToken: client.String("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &operations.CreatePaymentCompany{
+        Company: &components.Company{
             RegistrationNumber: client.String("12345678"),
             VatNumber: client.String("NL123456789B01"),
             EntityType: nil,
@@ -191,7 +215,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -199,12 +223,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |                                                                                                      |
-| `include`                                                                                            | [*operations.CreatePaymentInclude](../../models/operations/createpaymentinclude.md)                  | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. | details.qrCode                                                                                       |
-| `requestBody`                                                                                        | [*operations.CreatePaymentRequestBody](../../models/operations/createpaymentrequestbody.md)          | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |                                                                                                      |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `include`                                                                                            | **string*                                                                                            | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. |
+| `paymentRequest`                                                                                     | [*components.PaymentRequest](../../models/components/paymentrequest.md)                              | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 ### Response
 
@@ -212,11 +236,11 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.CreatePaymentUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.CreatePaymentServiceUnavailableHalJSONError  | 503                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.ErrorResponse | 503                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -251,7 +275,7 @@ func main() {
     res, err := s.Payments.List(ctx, operations.ListPaymentsRequest{
         From: client.String("tr_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListPaymentsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -278,10 +302,10 @@ func main() {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| apierrors.ListPaymentsHalJSONError | 400                                | application/hal+json               |
-| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -298,7 +322,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -311,11 +334,11 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Get(ctx, "tr_5B8cwPMGnU", operations.GetPaymentIncludeDetailsQrCode.ToPointer(), operations.GetPaymentEmbedCaptures.ToPointer(), client.Bool(false))
+    res, err := s.Payments.Get(ctx, "tr_5B8cwPMGnU", client.String("details.qrCode"), client.String("captures"), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -327,8 +350,8 @@ func main() {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `paymentID`                                                                                                                                                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | [*operations.GetPaymentInclude](../../models/operations/getpaymentinclude.md)                                                                                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | details.qrCode                                                                                                                                                                                                                                                                                                                                                                         |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [*operations.GetPaymentEmbed](../../models/operations/getpaymentembed.md)                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the<br/>following values via the `embed` query string parameter.                                                                                                                                                                                                                                                         | captures                                                                                                                                                                                                                                                                                                                                                                               |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                        |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -338,10 +361,10 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetPaymentHalJSONError | 404                              | application/hal+json             |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -378,13 +401,13 @@ func main() {
         RedirectURL: client.String("https://example.org/redirect"),
         CancelURL: client.String("https://example.org/cancel"),
         WebhookURL: client.String("https://example.org/webhooks"),
-        Method: operations.UpdatePaymentMethodRequestIdeal.ToPointer(),
-        Locale: operations.UpdatePaymentLocaleRequestEnUs.ToPointer(),
+        Method: components.MethodIdeal.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
         DueDate: client.String("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.String("NL"),
         Testmode: client.Bool(false),
         Issuer: client.String("ideal_INGBNL2A"),
-        BillingAddress: &operations.UpdatePaymentBillingAddressRequest{
+        BillingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -398,7 +421,7 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        ShippingAddress: &operations.UpdatePaymentShippingAddressRequest{
+        ShippingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -417,7 +440,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -438,11 +461,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.UpdatePaymentNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
-| apierrors.UpdatePaymentUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Cancel
 
@@ -483,7 +505,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -504,11 +526,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.CancelPaymentNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
-| apierrors.CancelPaymentUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ReleaseAuthorization
 
@@ -573,8 +594,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                                    | Status Code                                                   | Content Type                                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| apierrors.ReleaseAuthorizationNotFoundHalJSONError            | 404                                                           | application/hal+json                                          |
-| apierrors.ReleaseAuthorizationUnprocessableEntityHalJSONError | 422                                                           | application/hal+json                                          |
-| apierrors.APIError                                            | 4XX, 5XX                                                      | \*/\*                                                         |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

@@ -74,7 +74,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -87,15 +86,15 @@ func main() {
         }),
     )
 
-    res, err := s.ClientLinks.Create(ctx, &operations.CreateClientLinkRequest{
-        Owner: operations.Owner{
+    res, err := s.ClientLinks.Create(ctx, &components.EntityClientLink{
+        Owner: &components.Owner{
             Email: "john@example.org",
             GivenName: "John",
             FamilyName: "Doe",
-            Locale: operations.CreateClientLinkLocaleEnUs.ToPointer(),
+            Locale: components.LocaleResponseEnUs.ToPointer(),
         },
-        Name: "Acme Corporation",
-        Address: operations.CreateClientLinkAddress{
+        Name: client.String("Acme Corporation"),
+        Address: &components.EntityClientLinkAddress{
             StreetAndNumber: client.String("Main Street 123"),
             PostalCode: client.String("1234AB"),
             City: client.String("Amsterdam"),
@@ -107,7 +106,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityClientLinkResponse != nil {
         // handle response
     }
 }
@@ -115,11 +114,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateClientLinkRequest](../../models/operations/createclientlinkrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [components.EntityClientLink](../../models/components/entityclientlink.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 
@@ -127,8 +126,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| apierrors.CreateClientLinkNotFoundHalJSONError            | 404                                                       | application/hal+json                                      |
-| apierrors.CreateClientLinkUnprocessableEntityHalJSONError | 422                                                       | application/hal+json                                      |
-| apierrors.APIError                                        | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

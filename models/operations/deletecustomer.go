@@ -41,38 +41,6 @@ func (o *DeleteCustomerRequest) GetRequestBody() *DeleteCustomerRequestBody {
 	return o.RequestBody
 }
 
-// DeleteCustomerDocumentation - The URL to the generic Mollie API error handling guide.
-type DeleteCustomerDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *DeleteCustomerDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *DeleteCustomerDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type DeleteCustomerLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation DeleteCustomerDocumentation `json:"documentation"`
-}
-
-func (o *DeleteCustomerLinks) GetDocumentation() DeleteCustomerDocumentation {
-	if o == nil {
-		return DeleteCustomerDocumentation{}
-	}
-	return o.Documentation
-}
-
 type DeleteCustomerResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// An empty response.

@@ -1,8 +1,0 @@
-# CancelPaymentNotFoundLinks
-
-
-## Fields
-
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                | [operations.CancelPaymentNotFoundDocumentation](../../models/operations/cancelpaymentnotfounddocumentation.md) | :heavy_check_mark:                                                                                             | The URL to the generic Mollie API error handling guide.                                                        |

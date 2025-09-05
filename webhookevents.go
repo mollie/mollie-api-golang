@@ -214,12 +214,12 @@ func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out operations.GetWebhookEventResponseBody
+			var out components.EntityWebhookEvent
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityWebhookEvent = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -235,7 +235,7 @@ func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out apierrors.GetWebhookEventHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

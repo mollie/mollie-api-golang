@@ -3,80 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// ListWebhooksSort - Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-// newest to oldest.
-type ListWebhooksSort string
-
-const (
-	ListWebhooksSortAsc  ListWebhooksSort = "asc"
-	ListWebhooksSortDesc ListWebhooksSort = "desc"
-)
-
-func (e ListWebhooksSort) ToPointer() *ListWebhooksSort {
-	return &e
-}
-func (e *ListWebhooksSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asc":
-		fallthrough
-	case "desc":
-		*e = ListWebhooksSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListWebhooksSort: %v", v)
-	}
-}
-
-// EventTypesWebhookEventTypes - The event's type
-type EventTypesWebhookEventTypes string
-
-const (
-	EventTypesWebhookEventTypesPaymentLinkPaid           EventTypesWebhookEventTypes = "payment-link.paid"
-	EventTypesWebhookEventTypesBalanceTransactionCreated EventTypesWebhookEventTypes = "balance-transaction.created"
-	EventTypesWebhookEventTypesSalesInvoiceCreated       EventTypesWebhookEventTypes = "sales-invoice.created"
-	EventTypesWebhookEventTypesSalesInvoiceIssued        EventTypesWebhookEventTypes = "sales-invoice.issued"
-	EventTypesWebhookEventTypesSalesInvoiceCanceled      EventTypesWebhookEventTypes = "sales-invoice.canceled"
-	EventTypesWebhookEventTypesSalesInvoicePaid          EventTypesWebhookEventTypes = "sales-invoice.paid"
-	EventTypesWebhookEventTypesWildcard                  EventTypesWebhookEventTypes = "*"
-)
-
-func (e EventTypesWebhookEventTypes) ToPointer() *EventTypesWebhookEventTypes {
-	return &e
-}
-func (e *EventTypesWebhookEventTypes) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-link.paid":
-		fallthrough
-	case "balance-transaction.created":
-		fallthrough
-	case "sales-invoice.created":
-		fallthrough
-	case "sales-invoice.issued":
-		fallthrough
-	case "sales-invoice.canceled":
-		fallthrough
-	case "sales-invoice.paid":
-		fallthrough
-	case "*":
-		*e = EventTypesWebhookEventTypes(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EventTypesWebhookEventTypes: %v", v)
-	}
-}
 
 type ListWebhooksRequest struct {
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
@@ -86,9 +14,9 @@ type ListWebhooksRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *ListWebhooksSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
 	// Used to filter out only the webhooks that are subscribed to certain types of events.
-	EventTypes *EventTypesWebhookEventTypes `queryParam:"style=form,explode=true,name=eventTypes"`
+	EventTypes *components.WebhookEventTypes `queryParam:"style=form,explode=true,name=eventTypes"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -111,14 +39,14 @@ func (o *ListWebhooksRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *ListWebhooksRequest) GetSort() *ListWebhooksSort {
+func (o *ListWebhooksRequest) GetSort() *components.ListSort {
 	if o == nil {
 		return nil
 	}
 	return o.Sort
 }
 
-func (o *ListWebhooksRequest) GetEventTypes() *EventTypesWebhookEventTypes {
+func (o *ListWebhooksRequest) GetEventTypes() *components.WebhookEventTypes {
 	if o == nil {
 		return nil
 	}
@@ -132,407 +60,16 @@ func (o *ListWebhooksRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// ListWebhooksBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListWebhooksBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListWebhooksBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListWebhooksBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListWebhooksBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListWebhooksBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListWebhooksBadRequestLinks) GetDocumentation() ListWebhooksBadRequestDocumentation {
-	if o == nil {
-		return ListWebhooksBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-// WebhookWebhookEventTypes - The event's type
-type WebhookWebhookEventTypes string
-
-const (
-	WebhookWebhookEventTypesPaymentLinkPaid           WebhookWebhookEventTypes = "payment-link.paid"
-	WebhookWebhookEventTypesBalanceTransactionCreated WebhookWebhookEventTypes = "balance-transaction.created"
-	WebhookWebhookEventTypesSalesInvoiceCreated       WebhookWebhookEventTypes = "sales-invoice.created"
-	WebhookWebhookEventTypesSalesInvoiceIssued        WebhookWebhookEventTypes = "sales-invoice.issued"
-	WebhookWebhookEventTypesSalesInvoiceCanceled      WebhookWebhookEventTypes = "sales-invoice.canceled"
-	WebhookWebhookEventTypesSalesInvoicePaid          WebhookWebhookEventTypes = "sales-invoice.paid"
-	WebhookWebhookEventTypesWildcard                  WebhookWebhookEventTypes = "*"
-)
-
-func (e WebhookWebhookEventTypes) ToPointer() *WebhookWebhookEventTypes {
-	return &e
-}
-func (e *WebhookWebhookEventTypes) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-link.paid":
-		fallthrough
-	case "balance-transaction.created":
-		fallthrough
-	case "sales-invoice.created":
-		fallthrough
-	case "sales-invoice.issued":
-		fallthrough
-	case "sales-invoice.canceled":
-		fallthrough
-	case "sales-invoice.paid":
-		fallthrough
-	case "*":
-		*e = WebhookWebhookEventTypes(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for WebhookWebhookEventTypes: %v", v)
-	}
-}
-
-// ListWebhooksStatus - The subscription's current status.
-type ListWebhooksStatus string
-
-const (
-	ListWebhooksStatusEnabled  ListWebhooksStatus = "enabled"
-	ListWebhooksStatusBlocked  ListWebhooksStatus = "blocked"
-	ListWebhooksStatusDisabled ListWebhooksStatus = "disabled"
-	ListWebhooksStatusDeleted  ListWebhooksStatus = "deleted"
-)
-
-func (e ListWebhooksStatus) ToPointer() *ListWebhooksStatus {
-	return &e
-}
-func (e *ListWebhooksStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "enabled":
-		fallthrough
-	case "blocked":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "deleted":
-		*e = ListWebhooksStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListWebhooksStatus: %v", v)
-	}
-}
-
-// ListWebhooksMode - Whether this entity was created in live mode or in test mode.
-type ListWebhooksMode string
-
-const (
-	ListWebhooksModeLive ListWebhooksMode = "live"
-	ListWebhooksModeTest ListWebhooksMode = "test"
-)
-
-func (e ListWebhooksMode) ToPointer() *ListWebhooksMode {
-	return &e
-}
-func (e *ListWebhooksMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = ListWebhooksMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListWebhooksMode: %v", v)
-	}
-}
-
-// WebhookDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type WebhookDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *WebhookDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *WebhookDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// WebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type WebhookLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation WebhookDocumentation `json:"documentation"`
-}
-
-func (o *WebhookLinks) GetDocumentation() WebhookDocumentation {
-	if o == nil {
-		return WebhookDocumentation{}
-	}
-	return o.Documentation
-}
-
-type Webhook struct {
-	// Indicates the response contains a webhook subscription object.
-	// Will always contain the string `webhook` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this subscription.
-	ID string `json:"id"`
-	// The subscription's events destination.
-	URL string `json:"url"`
-	// The identifier uniquely referring to the profile that created the subscription.
-	ProfileID *string `json:"profileId"`
-	// The subscription's date time of creation.
-	CreatedAt string `json:"createdAt"`
-	// The subscription's name.
-	Name string `json:"name"`
-	// The events types that are subscribed.
-	EventTypes []WebhookWebhookEventTypes `json:"eventTypes"`
-	// The subscription's current status.
-	Status ListWebhooksStatus `json:"status"`
-	// Whether this entity was created in live mode or in test mode.
-	Mode ListWebhooksMode `json:"mode"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links WebhookLinks `json:"_links"`
-}
-
-func (o *Webhook) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *Webhook) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *Webhook) GetURL() string {
-	if o == nil {
-		return ""
-	}
-	return o.URL
-}
-
-func (o *Webhook) GetProfileID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProfileID
-}
-
-func (o *Webhook) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
-func (o *Webhook) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *Webhook) GetEventTypes() []WebhookWebhookEventTypes {
-	if o == nil {
-		return []WebhookWebhookEventTypes{}
-	}
-	return o.EventTypes
-}
-
-func (o *Webhook) GetStatus() ListWebhooksStatus {
-	if o == nil {
-		return ListWebhooksStatus("")
-	}
-	return o.Status
-}
-
-func (o *Webhook) GetMode() ListWebhooksMode {
-	if o == nil {
-		return ListWebhooksMode("")
-	}
-	return o.Mode
-}
-
-func (o *Webhook) GetLinks() WebhookLinks {
-	if o == nil {
-		return WebhookLinks{}
-	}
-	return o.Links
-}
-
 type ListWebhooksEmbedded struct {
 	// A list of webhooks.
-	Webhooks []Webhook `json:"webhooks"`
+	Webhooks []components.EntityWebhook `json:"webhooks"`
 }
 
-func (o *ListWebhooksEmbedded) GetWebhooks() []Webhook {
+func (o *ListWebhooksEmbedded) GetWebhooks() []components.EntityWebhook {
 	if o == nil {
-		return []Webhook{}
+		return []components.EntityWebhook{}
 	}
 	return o.Webhooks
-}
-
-// ListWebhooksSelf - The URL to the current set of items.
-type ListWebhooksSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListWebhooksSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListWebhooksSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListWebhooksPrevious - The previous set of items, if available.
-type ListWebhooksPrevious struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListWebhooksPrevious) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListWebhooksPrevious) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListWebhooksNext - The next set of items, if available.
-type ListWebhooksNext struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListWebhooksNext) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListWebhooksNext) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListWebhooksDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListWebhooksDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListWebhooksDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListWebhooksDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListWebhooksLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-type ListWebhooksLinks struct {
-	// The URL to the current set of items.
-	Self ListWebhooksSelf `json:"self"`
-	// The previous set of items, if available.
-	Previous *ListWebhooksPrevious `json:"previous"`
-	// The next set of items, if available.
-	Next *ListWebhooksNext `json:"next"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListWebhooksDocumentation `json:"documentation"`
-}
-
-func (o *ListWebhooksLinks) GetSelf() ListWebhooksSelf {
-	if o == nil {
-		return ListWebhooksSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListWebhooksLinks) GetPrevious() *ListWebhooksPrevious {
-	if o == nil {
-		return nil
-	}
-	return o.Previous
-}
-
-func (o *ListWebhooksLinks) GetNext() *ListWebhooksNext {
-	if o == nil {
-		return nil
-	}
-	return o.Next
-}
-
-func (o *ListWebhooksLinks) GetDocumentation() ListWebhooksDocumentation {
-	if o == nil {
-		return ListWebhooksDocumentation{}
-	}
-	return o.Documentation
 }
 
 // ListWebhooksResponseBody - A list of webhooks. For a complete reference of the webhook
@@ -546,7 +83,7 @@ type ListWebhooksResponseBody struct {
 	Count    int64                `json:"count"`
 	Embedded ListWebhooksEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links ListWebhooksLinks `json:"_links"`
+	Links components.ListLinks `json:"_links"`
 }
 
 func (o *ListWebhooksResponseBody) GetCount() int64 {
@@ -563,9 +100,9 @@ func (o *ListWebhooksResponseBody) GetEmbedded() ListWebhooksEmbedded {
 	return o.Embedded
 }
 
-func (o *ListWebhooksResponseBody) GetLinks() ListWebhooksLinks {
+func (o *ListWebhooksResponseBody) GetLinks() components.ListLinks {
 	if o == nil {
-		return ListWebhooksLinks{}
+		return components.ListLinks{}
 	}
 	return o.Links
 }

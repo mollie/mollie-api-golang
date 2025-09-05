@@ -1,9 +1,0 @@
-# RoutingReversalRequest
-
-
-## Fields
-
-| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `Amount`                                                                                            | [*operations.RoutingReversalAmountRequest](../../models/operations/routingreversalamountrequest.md) | :heavy_minus_sign:                                                                                  | The amount that will be pulled back.                                                                |
-| `Source`                                                                                            | [*operations.CreateRefundSourceRequest](../../models/operations/createrefundsourcerequest.md)       | :heavy_minus_sign:                                                                                  | Where the funds will be pulled back from.                                                           |

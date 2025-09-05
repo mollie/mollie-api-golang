@@ -236,7 +236,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, request *operation
 				return nil, err
 			}
 
-			res.Object = out
+			res.EntitySession = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -252,7 +252,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, request *operation
 				return nil, err
 			}
 
-			var out apierrors.RequestApplePayPaymentSessionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

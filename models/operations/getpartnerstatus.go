@@ -70,99 +70,31 @@ func (o *UserAgentToken) GetEndsAt() *string {
 	return o.EndsAt
 }
 
-// GetPartnerStatusSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetPartnerStatusSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetPartnerStatusSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetPartnerStatusSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// Signuplink - The URL that can be used to have new organizations sign up and be automatically linked to this
-// partner. Will be omitted if the partner is not of type `signuplink`.
-type Signuplink struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *Signuplink) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *Signuplink) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// GetPartnerStatusDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetPartnerStatusDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetPartnerStatusDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetPartnerStatusDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
 // GetPartnerStatusLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type GetPartnerStatusLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *GetPartnerStatusSelf `json:"self,omitempty"`
-	// The URL that can be used to have new organizations sign up and be automatically linked to this
-	// partner. Will be omitted if the partner is not of type `signuplink`.
-	Signuplink *Signuplink `json:"signuplink,omitempty"`
+	Self *components.URLObj `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *GetPartnerStatusDocumentation `json:"documentation,omitempty"`
+	Signuplink *components.URLObj `json:"signuplink,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *GetPartnerStatusLinks) GetSelf() *GetPartnerStatusSelf {
+func (o *GetPartnerStatusLinks) GetSelf() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Self
 }
 
-func (o *GetPartnerStatusLinks) GetSignuplink() *Signuplink {
+func (o *GetPartnerStatusLinks) GetSignuplink() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Signuplink
 }
 
-func (o *GetPartnerStatusLinks) GetDocumentation() *GetPartnerStatusDocumentation {
+func (o *GetPartnerStatusLinks) GetDocumentation() *components.URLObj {
 	if o == nil {
 		return nil
 	}

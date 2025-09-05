@@ -1,0 +1,9 @@
+# EntityRefundResponseExternalReference
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Type`                                                                                      | [*components.EntityRefundResponseType](../../models/components/entityrefundresponsetype.md) | :heavy_minus_sign:                                                                          | Specifies the reference type                                                                | acquirer-reference                                                                          |
+| `ID`                                                                                        | **string*                                                                                   | :heavy_minus_sign:                                                                          | Unique reference from the payment provider                                                  | 123456789012345                                                                             |

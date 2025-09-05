@@ -3,246 +3,33 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type ListCapabilitiesStatus string
-
-const (
-	ListCapabilitiesStatusUnrequested ListCapabilitiesStatus = "unrequested"
-	ListCapabilitiesStatusEnabled     ListCapabilitiesStatus = "enabled"
-	ListCapabilitiesStatusDisabled    ListCapabilitiesStatus = "disabled"
-	ListCapabilitiesStatusPending     ListCapabilitiesStatus = "pending"
-)
-
-func (e ListCapabilitiesStatus) ToPointer() *ListCapabilitiesStatus {
-	return &e
-}
-func (e *ListCapabilitiesStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unrequested":
-		fallthrough
-	case "enabled":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "pending":
-		*e = ListCapabilitiesStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListCapabilitiesStatus: %v", v)
-	}
-}
-
-type ListCapabilitiesStatusReason string
-
-const (
-	ListCapabilitiesStatusReasonRequirementPastDue          ListCapabilitiesStatusReason = "requirement-past-due"
-	ListCapabilitiesStatusReasonOnboardingInformationNeeded ListCapabilitiesStatusReason = "onboarding-information-needed"
-)
-
-func (e ListCapabilitiesStatusReason) ToPointer() *ListCapabilitiesStatusReason {
-	return &e
-}
-func (e *ListCapabilitiesStatusReason) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "requirement-past-due":
-		fallthrough
-	case "onboarding-information-needed":
-		*e = ListCapabilitiesStatusReason(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListCapabilitiesStatusReason: %v", v)
-	}
-}
-
-// ListCapabilitiesRequirementStatus - The status of the requirement depends on its due date.
-// If no due date is given, the status will be `requested`.
-type ListCapabilitiesRequirementStatus string
-
-const (
-	ListCapabilitiesRequirementStatusCurrentlyDue ListCapabilitiesRequirementStatus = "currently-due"
-	ListCapabilitiesRequirementStatusPastDue      ListCapabilitiesRequirementStatus = "past-due"
-	ListCapabilitiesRequirementStatusRequested    ListCapabilitiesRequirementStatus = "requested"
-)
-
-func (e ListCapabilitiesRequirementStatus) ToPointer() *ListCapabilitiesRequirementStatus {
-	return &e
-}
-func (e *ListCapabilitiesRequirementStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "currently-due":
-		fallthrough
-	case "past-due":
-		fallthrough
-	case "requested":
-		*e = ListCapabilitiesRequirementStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListCapabilitiesRequirementStatus: %v", v)
-	}
-}
-
-// ListCapabilitiesDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-// For example, where necessary documents are to be uploaded.
-type ListCapabilitiesDashboard struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListCapabilitiesDashboard) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListCapabilitiesDashboard) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-type CapabilityLinks struct {
-	// If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-	// For example, where necessary documents are to be uploaded.
-	Dashboard *ListCapabilitiesDashboard `json:"dashboard,omitempty"`
-}
-
-func (o *CapabilityLinks) GetDashboard() *ListCapabilitiesDashboard {
-	if o == nil {
-		return nil
-	}
-	return o.Dashboard
-}
-
-type ListCapabilitiesRequirement struct {
-	// The name of this requirement, referring to the task to be fulfilled by the organization
-	// to enable or re-enable the capability. The name is unique among other requirements
-	// of the same capability.
-	ID *string `json:"id,omitempty"`
-	// The status of the requirement depends on its due date.
-	// If no due date is given, the status will be `requested`.
-	Status *ListCapabilitiesRequirementStatus `json:"status,omitempty"`
-	// Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
-	DueDate *string          `json:"dueDate,omitempty"`
-	Links   *CapabilityLinks `json:"_links,omitempty"`
-}
-
-func (o *ListCapabilitiesRequirement) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *ListCapabilitiesRequirement) GetStatus() *ListCapabilitiesRequirementStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *ListCapabilitiesRequirement) GetDueDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DueDate
-}
-
-func (o *ListCapabilitiesRequirement) GetLinks() *CapabilityLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
-type Capability struct {
-	// Always the word `capability` for this resource type.
-	Resource *string `json:"resource,omitempty"`
-	// A unique name for this capability like `payments` / `settlements`.
-	Name         *string                       `json:"name,omitempty"`
-	Status       *ListCapabilitiesStatus       `json:"status,omitempty"`
-	StatusReason *ListCapabilitiesStatusReason `json:"statusReason,omitempty"`
-	Requirements []ListCapabilitiesRequirement `json:"requirements,omitempty"`
-}
-
-func (o *Capability) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *Capability) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
-}
-
-func (o *Capability) GetStatus() *ListCapabilitiesStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *Capability) GetStatusReason() *ListCapabilitiesStatusReason {
-	if o == nil {
-		return nil
-	}
-	return o.StatusReason
-}
-
-func (o *Capability) GetRequirements() []ListCapabilitiesRequirement {
-	if o == nil {
-		return nil
-	}
-	return o.Requirements
-}
-
 type ListCapabilitiesEmbedded struct {
-	Capabilities []Capability `json:"capabilities,omitempty"`
+	Capabilities []components.EntityCapability `json:"capabilities,omitempty"`
 }
 
-func (o *ListCapabilitiesEmbedded) GetCapabilities() []Capability {
+func (o *ListCapabilitiesEmbedded) GetCapabilities() []components.EntityCapability {
 	if o == nil {
 		return nil
 	}
 	return o.Capabilities
 }
 
-type ListCapabilitiesDocumentation struct {
+type Documentation struct {
 	Href *string `json:"href,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *ListCapabilitiesDocumentation) GetHref() *string {
+func (o *Documentation) GetHref() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Href
 }
 
-func (o *ListCapabilitiesDocumentation) GetType() *string {
+func (o *Documentation) GetType() *string {
 	if o == nil {
 		return nil
 	}
@@ -250,10 +37,10 @@ func (o *ListCapabilitiesDocumentation) GetType() *string {
 }
 
 type ListCapabilitiesLinks struct {
-	Documentation *ListCapabilitiesDocumentation `json:"documentation,omitempty"`
+	Documentation *Documentation `json:"documentation,omitempty"`
 }
 
-func (o *ListCapabilitiesLinks) GetDocumentation() *ListCapabilitiesDocumentation {
+func (o *ListCapabilitiesLinks) GetDocumentation() *Documentation {
 	if o == nil {
 		return nil
 	}

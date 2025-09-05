@@ -3,8 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
@@ -33,324 +31,34 @@ func (o *PaymentListRoutesRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// PaymentListRoutesNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type PaymentListRoutesNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *PaymentListRoutesNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentListRoutesNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type PaymentListRoutesNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation PaymentListRoutesNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *PaymentListRoutesNotFoundLinks) GetDocumentation() PaymentListRoutesNotFoundDocumentation {
-	if o == nil {
-		return PaymentListRoutesNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// PaymentListRoutesAmount - The amount of the route.
-// That amount that will be routed to the specified destination.
-type PaymentListRoutesAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *PaymentListRoutesAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *PaymentListRoutesAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// PaymentListRoutesType - The type of destination. Currently only the destination type `organization` is supported.
-type PaymentListRoutesType string
-
-const (
-	PaymentListRoutesTypeOrganization PaymentListRoutesType = "organization"
-)
-
-func (e PaymentListRoutesType) ToPointer() *PaymentListRoutesType {
-	return &e
-}
-func (e *PaymentListRoutesType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = PaymentListRoutesType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentListRoutesType: %v", v)
-	}
-}
-
-// PaymentListRoutesDestination - The destination of the route.
-type PaymentListRoutesDestination struct {
-	// The type of destination. Currently only the destination type `organization` is supported.
-	Type PaymentListRoutesType `json:"type"`
-	// Required for destination type `organization`. The ID of the connected organization the funds should be
-	// routed to.
-	OrganizationID string `json:"organizationId"`
-}
-
-func (o *PaymentListRoutesDestination) GetType() PaymentListRoutesType {
-	if o == nil {
-		return PaymentListRoutesType("")
-	}
-	return o.Type
-}
-
-func (o *PaymentListRoutesDestination) GetOrganizationID() string {
-	if o == nil {
-		return ""
-	}
-	return o.OrganizationID
-}
-
-// RouteSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type RouteSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *RouteSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *RouteSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// RouteDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type RouteDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *RouteDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *RouteDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// RouteLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type RouteLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self RouteSelf `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation RouteDocumentation `json:"documentation"`
-}
-
-func (o *RouteLinks) GetSelf() RouteSelf {
-	if o == nil {
-		return RouteSelf{}
-	}
-	return o.Self
-}
-
-func (o *RouteLinks) GetDocumentation() RouteDocumentation {
-	if o == nil {
-		return RouteDocumentation{}
-	}
-	return o.Documentation
-}
-
-type Route struct {
-	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
-	// will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-	ID string `json:"id"`
-	// The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-	// The full payment object can be retrieved via the payment URL in the `_links` object.
-	PaymentID string `json:"paymentId"`
-	// The amount of the route.
-	// That amount that will be routed to the specified destination.
-	Amount PaymentListRoutesAmount `json:"amount"`
-	// The description of the route. This description is shown in the reports.
-	Description string `json:"description"`
-	// The destination of the route.
-	Destination PaymentListRoutesDestination `json:"destination"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links RouteLinks `json:"_links"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
-}
-
-func (o *Route) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *Route) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *Route) GetPaymentID() string {
-	if o == nil {
-		return ""
-	}
-	return o.PaymentID
-}
-
-func (o *Route) GetAmount() PaymentListRoutesAmount {
-	if o == nil {
-		return PaymentListRoutesAmount{}
-	}
-	return o.Amount
-}
-
-func (o *Route) GetDescription() string {
-	if o == nil {
-		return ""
-	}
-	return o.Description
-}
-
-func (o *Route) GetDestination() PaymentListRoutesDestination {
-	if o == nil {
-		return PaymentListRoutesDestination{}
-	}
-	return o.Destination
-}
-
-func (o *Route) GetLinks() RouteLinks {
-	if o == nil {
-		return RouteLinks{}
-	}
-	return o.Links
-}
-
-func (o *Route) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
 type PaymentListRoutesEmbedded struct {
 	// An array of route objects.
-	Routes []Route `json:"routes,omitempty"`
+	Routes []components.RouteGetResponse `json:"routes,omitempty"`
 }
 
-func (o *PaymentListRoutesEmbedded) GetRoutes() []Route {
+func (o *PaymentListRoutesEmbedded) GetRoutes() []components.RouteGetResponse {
 	if o == nil {
 		return nil
 	}
 	return o.Routes
 }
 
-// PaymentListRoutesSelf - The URL to the current set of items.
-type PaymentListRoutesSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PaymentListRoutesSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentListRoutesSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// PaymentListRoutesDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type PaymentListRoutesDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PaymentListRoutesDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentListRoutesDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
 // PaymentListRoutesLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
 type PaymentListRoutesLinks struct {
-	// The URL to the current set of items.
-	Self *PaymentListRoutesSelf `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *PaymentListRoutesDocumentation `json:"documentation,omitempty"`
+	Self *components.URLObj `json:"self,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *PaymentListRoutesLinks) GetSelf() *PaymentListRoutesSelf {
+func (o *PaymentListRoutesLinks) GetSelf() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Self
 }
 
-func (o *PaymentListRoutesLinks) GetDocumentation() *PaymentListRoutesDocumentation {
+func (o *PaymentListRoutesLinks) GetDocumentation() *components.URLObj {
 	if o == nil {
 		return nil
 	}

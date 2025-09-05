@@ -3,38 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// ListInvoicesSort - Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-// newest to oldest.
-type ListInvoicesSort string
-
-const (
-	ListInvoicesSortAsc  ListInvoicesSort = "asc"
-	ListInvoicesSortDesc ListInvoicesSort = "desc"
-)
-
-func (e ListInvoicesSort) ToPointer() *ListInvoicesSort {
-	return &e
-}
-func (e *ListInvoicesSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asc":
-		fallthrough
-	case "desc":
-		*e = ListInvoicesSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListInvoicesSort: %v", v)
-	}
-}
 
 type ListInvoicesRequest struct {
 	// Filter for an invoice with a specific invoice reference, for example
@@ -51,7 +21,7 @@ type ListInvoicesRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *ListInvoicesSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
 }
 
 func (o *ListInvoicesRequest) GetReference() *string {
@@ -89,219 +59,27 @@ func (o *ListInvoicesRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *ListInvoicesRequest) GetSort() *ListInvoicesSort {
+func (o *ListInvoicesRequest) GetSort() *components.ListSort {
 	if o == nil {
 		return nil
 	}
 	return o.Sort
 }
 
-// ListInvoicesNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type ListInvoicesNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListInvoicesNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListInvoicesNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListInvoicesNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *ListInvoicesNotFoundLinks) GetDocumentation() ListInvoicesNotFoundDocumentation {
-	if o == nil {
-		return ListInvoicesNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListInvoicesBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListInvoicesBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListInvoicesBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListInvoicesBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListInvoicesBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListInvoicesBadRequestLinks) GetDocumentation() ListInvoicesBadRequestDocumentation {
-	if o == nil {
-		return ListInvoicesBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-type ListInvoicesInvoice struct {
+type Invoice struct {
 }
 
 type ListInvoicesEmbedded struct {
 	// An array of invoice objects. For a complete reference of
 	// the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
-	Invoices []ListInvoicesInvoice `json:"invoices,omitempty"`
+	Invoices []Invoice `json:"invoices,omitempty"`
 }
 
-func (o *ListInvoicesEmbedded) GetInvoices() []ListInvoicesInvoice {
+func (o *ListInvoicesEmbedded) GetInvoices() []Invoice {
 	if o == nil {
 		return nil
 	}
 	return o.Invoices
-}
-
-// ListInvoicesSelf - The URL to the current set of items.
-type ListInvoicesSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListInvoicesSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListInvoicesPrevious - The previous set of items, if available.
-type ListInvoicesPrevious struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListInvoicesPrevious) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesPrevious) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListInvoicesNext - The next set of items, if available.
-type ListInvoicesNext struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListInvoicesNext) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesNext) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListInvoicesDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListInvoicesDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListInvoicesDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListInvoicesDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListInvoicesLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-type ListInvoicesLinks struct {
-	// The URL to the current set of items.
-	Self ListInvoicesSelf `json:"self"`
-	// The previous set of items, if available.
-	Previous *ListInvoicesPrevious `json:"previous"`
-	// The next set of items, if available.
-	Next *ListInvoicesNext `json:"next"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListInvoicesDocumentation `json:"documentation"`
-}
-
-func (o *ListInvoicesLinks) GetSelf() ListInvoicesSelf {
-	if o == nil {
-		return ListInvoicesSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListInvoicesLinks) GetPrevious() *ListInvoicesPrevious {
-	if o == nil {
-		return nil
-	}
-	return o.Previous
-}
-
-func (o *ListInvoicesLinks) GetNext() *ListInvoicesNext {
-	if o == nil {
-		return nil
-	}
-	return o.Next
-}
-
-func (o *ListInvoicesLinks) GetDocumentation() ListInvoicesDocumentation {
-	if o == nil {
-		return ListInvoicesDocumentation{}
-	}
-	return o.Documentation
 }
 
 // ListInvoicesResponseBody - A list of invoice objects. For a complete reference of the invoice
@@ -315,7 +93,7 @@ type ListInvoicesResponseBody struct {
 	Count    *int64                `json:"count,omitempty"`
 	Embedded *ListInvoicesEmbedded `json:"_embedded,omitempty"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *ListInvoicesLinks `json:"_links,omitempty"`
+	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
 func (o *ListInvoicesResponseBody) GetCount() *int64 {
@@ -332,7 +110,7 @@ func (o *ListInvoicesResponseBody) GetEmbedded() *ListInvoicesEmbedded {
 	return o.Embedded
 }
 
-func (o *ListInvoicesResponseBody) GetLinks() *ListInvoicesLinks {
+func (o *ListInvoicesResponseBody) GetLinks() *components.ListLinks {
 	if o == nil {
 		return nil
 	}

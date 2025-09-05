@@ -53,17 +53,17 @@ func main() {
     )
 
     res, err := s.Methods.List(ctx, operations.ListMethodsRequest{
-        SequenceType: operations.ListMethodsSequenceTypeOneoff.ToPointer(),
-        Locale: operations.ListMethodsLocaleEnUs.ToPointer(),
-        Amount: &operations.ListMethodsAmount{
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        Locale: components.LocaleParameterEnUs.ToPointer(),
+        Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
         BillingCountry: client.String("DE"),
         IncludeWallets: operations.IncludeWalletsApplepay.ToPointer(),
-        OrderLineCategories: operations.OrderLineCategoriesEco.ToPointer(),
+        OrderLineCategories: components.OrderLineCategoriesEco.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Include: operations.ListMethodsIncludeIssuers.ToPointer(),
+        Include: client.String("issuers"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -89,10 +89,10 @@ func main() {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| apierrors.ListMethodsHalJSONError | 400                               | application/hal+json              |
-| apierrors.APIError                | 4XX, 5XX                          | \*/\*                             |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## All
 
@@ -126,13 +126,13 @@ func main() {
     )
 
     res, err := s.Methods.All(ctx, operations.ListAllMethodsRequest{
-        Locale: operations.ListAllMethodsLocaleEnUs.ToPointer(),
-        Amount: &operations.ListAllMethodsAmount{
+        Locale: components.LocaleParameterEnUs.ToPointer(),
+        Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Include: operations.ListAllMethodsIncludeIssuers.ToPointer(),
-        SequenceType: operations.ListAllMethodsSequenceTypeOneoff.ToPointer(),
+        Include: client.String("issuers"),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -159,10 +159,10 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.ListAllMethodsHalJSONError | 400                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -205,17 +205,17 @@ func main() {
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
         ID: "ideal",
-        Locale: operations.GetMethodLocaleEnUs.ToPointer(),
+        Locale: components.LocaleParameterEnUs.ToPointer(),
         Currency: client.String("EUR"),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Include: operations.GetMethodIncludeIssuers.ToPointer(),
-        SequenceType: operations.GetMethodSequenceTypeOneoff.ToPointer(),
+        Include: client.String("issuers"),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityMethod != nil {
         // handle response
     }
 }
@@ -235,8 +235,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| apierrors.GetMethodBadRequestHalJSONError | 400                                       | application/hal+json                      |
-| apierrors.GetMethodNotFoundHalJSONError   | 404                                       | application/hal+json                      |
-| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

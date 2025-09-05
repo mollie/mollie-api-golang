@@ -246,7 +246,7 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 				return nil, err
 			}
 
-			var out apierrors.ListMethodsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -490,7 +490,7 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 				return nil, err
 			}
 
-			var out apierrors.ListAllMethodsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -721,12 +721,12 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 				return nil, err
 			}
 
-			var out operations.GetMethodResponseBody
+			var out components.EntityMethod
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityMethod = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -735,30 +735,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.GetMethodBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -767,7 +744,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 				return nil, err
 			}
 
-			var out apierrors.GetMethodNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

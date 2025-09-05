@@ -6,25 +6,10 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type DeleteSalesInvoiceRequestBody struct {
-	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (o *DeleteSalesInvoiceRequestBody) GetTestmode() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Testmode
-}
-
 type DeleteSalesInvoiceRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
-	ID          string                         `pathParam:"style=simple,explode=false,name=id"`
-	RequestBody *DeleteSalesInvoiceRequestBody `request:"mediaType=application/json"`
+	ID                       string                               `pathParam:"style=simple,explode=false,name=id"`
+	DeleteValuesSalesInvoice *components.DeleteValuesSalesInvoice `request:"mediaType=application/json"`
 }
 
 func (o *DeleteSalesInvoiceRequest) GetID() string {
@@ -34,75 +19,11 @@ func (o *DeleteSalesInvoiceRequest) GetID() string {
 	return o.ID
 }
 
-func (o *DeleteSalesInvoiceRequest) GetRequestBody() *DeleteSalesInvoiceRequestBody {
+func (o *DeleteSalesInvoiceRequest) GetDeleteValuesSalesInvoice() *components.DeleteValuesSalesInvoice {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
-}
-
-// DeleteSalesInvoiceUnprocessableEntityDocumentation - The URL to the generic Mollie API error handling guide.
-type DeleteSalesInvoiceUnprocessableEntityDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *DeleteSalesInvoiceUnprocessableEntityDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *DeleteSalesInvoiceUnprocessableEntityDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type DeleteSalesInvoiceUnprocessableEntityLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation DeleteSalesInvoiceUnprocessableEntityDocumentation `json:"documentation"`
-}
-
-func (o *DeleteSalesInvoiceUnprocessableEntityLinks) GetDocumentation() DeleteSalesInvoiceUnprocessableEntityDocumentation {
-	if o == nil {
-		return DeleteSalesInvoiceUnprocessableEntityDocumentation{}
-	}
-	return o.Documentation
-}
-
-// DeleteSalesInvoiceNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type DeleteSalesInvoiceNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *DeleteSalesInvoiceNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *DeleteSalesInvoiceNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type DeleteSalesInvoiceNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation DeleteSalesInvoiceNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *DeleteSalesInvoiceNotFoundLinks) GetDocumentation() DeleteSalesInvoiceNotFoundDocumentation {
-	if o == nil {
-		return DeleteSalesInvoiceNotFoundDocumentation{}
-	}
-	return o.Documentation
+	return o.DeleteValuesSalesInvoice
 }
 
 type DeleteSalesInvoiceResponse struct {

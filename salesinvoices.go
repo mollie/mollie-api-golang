@@ -37,7 +37,7 @@ func newSalesInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // With the Sales Invoice API you can generate sales invoices to send to your customers.
-func (s *SalesInvoices) Create(ctx context.Context, request *operations.CreateSalesInvoiceRequest, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Create(ctx context.Context, request *components.EntitySalesInvoice, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -217,12 +217,12 @@ func (s *SalesInvoices) Create(ctx context.Context, request *operations.CreateSa
 				return nil, err
 			}
 
-			var out operations.CreateSalesInvoiceResponseBody
+			var out components.EntitySalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntitySalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -231,30 +231,7 @@ func (s *SalesInvoices) Create(ctx context.Context, request *operations.CreateSa
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CreateSalesInvoiceNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -263,7 +240,7 @@ func (s *SalesInvoices) Create(ctx context.Context, request *operations.CreateSa
 				return nil, err
 			}
 
-			var out apierrors.CreateSalesInvoiceUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +493,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 				return nil, err
 			}
 
-			var out apierrors.ListSalesInvoicesHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -745,12 +722,12 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out operations.GetSalesInvoiceResponseBody
+			var out components.EntitySalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntitySalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -766,7 +743,7 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out apierrors.GetSalesInvoiceHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -815,10 +792,10 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts
 // Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
 // statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
 // respectively).
-func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *operations.UpdateSalesInvoiceRequestBody, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Update(ctx context.Context, id string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	request := operations.UpdateSalesInvoiceRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:                       id,
+		UpdateValuesSalesInvoice: updateValuesSalesInvoice,
 	}
 
 	o := operations.Options{}
@@ -853,7 +830,7 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *oper
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "UpdateValuesSalesInvoice", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1000,12 +977,12 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *oper
 				return nil, err
 			}
 
-			var out operations.UpdateSalesInvoiceResponseBody
+			var out components.EntitySalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntitySalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1014,30 +991,7 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *oper
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.UpdateSalesInvoiceNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1046,7 +1000,7 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *oper
 				return nil, err
 			}
 
-			var out apierrors.UpdateSalesInvoiceUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1094,10 +1048,10 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, requestBody *oper
 //
 // Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
 // [Update sales invoice](update-sales-invoice) endpoint instead.
-func (s *SalesInvoices) Delete(ctx context.Context, id string, requestBody *operations.DeleteSalesInvoiceRequestBody, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Delete(ctx context.Context, id string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
 	request := operations.DeleteSalesInvoiceRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:                       id,
+		DeleteValuesSalesInvoice: deleteValuesSalesInvoice,
 	}
 
 	o := operations.Options{}
@@ -1132,7 +1086,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, requestBody *oper
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "DeleteValuesSalesInvoice", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1293,30 +1247,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, requestBody *oper
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.DeleteSalesInvoiceNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1325,7 +1256,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, requestBody *oper
 				return nil, err
 			}
 
-			var out apierrors.DeleteSalesInvoiceUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

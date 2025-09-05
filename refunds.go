@@ -34,10 +34,10 @@ func newRefunds(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Create payment refund
 // Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 // transfer or by refunding the amount to your customer's credit card.
-func (s *Refunds) Create(ctx context.Context, paymentID string, requestBody *operations.CreateRefundRequestBody, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
+func (s *Refunds) Create(ctx context.Context, paymentID string, entityRefund *components.EntityRefund, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
 	request := operations.CreateRefundRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:    paymentID,
+		EntityRefund: entityRefund,
 	}
 
 	o := operations.Options{}
@@ -72,7 +72,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, requestBody *ope
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityRefund", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -219,12 +219,12 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, requestBody *ope
 				return nil, err
 			}
 
-			var out operations.CreateRefundResponseBody
+			var out components.EntityRefundResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityRefundResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -233,55 +233,9 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, requestBody *ope
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CreateRefundNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ConflictHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -290,7 +244,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, requestBody *ope
 				return nil, err
 			}
 
-			var out apierrors.CreateRefundUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -526,30 +480,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListRefundsBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -558,7 +489,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 				return nil, err
 			}
 
-			var out apierrors.ListRefundsNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -601,7 +532,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 
 // Get payment refund
 // Retrieve a single payment refund by its ID and the ID of its parent payment.
-func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, embed *operations.GetRefundEmbed, testmode *bool, opts ...operations.Option) (*operations.GetRefundResponse, error) {
+func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetRefundResponse, error) {
 	request := operations.GetRefundRequest{
 		PaymentID: paymentID,
 		RefundID:  refundID,
@@ -785,12 +716,12 @@ func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, em
 				return nil, err
 			}
 
-			var out operations.GetRefundResponseBody
+			var out components.EntityRefundResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityRefundResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -806,7 +737,7 @@ func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, em
 				return nil, err
 			}
 
-			var out apierrors.GetRefundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1057,7 +988,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 				return nil, err
 			}
 
-			var out apierrors.CancelRefundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1300,7 +1231,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 				return nil, err
 			}
 
-			var out apierrors.ListAllRefundsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

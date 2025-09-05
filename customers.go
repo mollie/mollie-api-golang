@@ -36,7 +36,7 @@ func newCustomers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // to this customer object, which simplifies management of recurring payments.
 //
 // Once registered, customers will also appear in your Mollie dashboard.
-func (s *Customers) Create(ctx context.Context, request *operations.CreateCustomerRequest, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+func (s *Customers) Create(ctx context.Context, request *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -216,12 +216,12 @@ func (s *Customers) Create(ctx context.Context, request *operations.CreateCustom
 				return nil, err
 			}
 
-			var out operations.CreateCustomerResponseBody
+			var out components.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -237,7 +237,7 @@ func (s *Customers) Create(ctx context.Context, request *operations.CreateCustom
 				return nil, err
 			}
 
-			var out apierrors.CreateCustomerHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -282,7 +282,7 @@ func (s *Customers) Create(ctx context.Context, request *operations.CreateCustom
 // Retrieve a list of all customers.
 //
 // The results are paginated.
-func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *operations.ListCustomersSort, testmode *bool, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
+func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *components.ListSort, testmode *bool, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	request := operations.ListCustomersRequest{
 		From:     from,
 		Limit:    limit,
@@ -480,30 +480,7 @@ func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListCustomersBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -512,7 +489,7 @@ func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *
 				return nil, err
 			}
 
-			var out apierrors.ListCustomersNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -555,7 +532,7 @@ func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *
 
 // Get customer
 // Retrieve a single customer by its ID.
-func (s *Customers) Get(ctx context.Context, customerID string, include *operations.GetCustomerInclude, testmode *bool, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
+func (s *Customers) Get(ctx context.Context, customerID string, include *string, testmode *bool, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	request := operations.GetCustomerRequest{
 		CustomerID: customerID,
 		Include:    include,
@@ -759,7 +736,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *operati
 				return nil, err
 			}
 
-			var out apierrors.GetCustomerHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -804,10 +781,10 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *operati
 // Update an existing customer.
 //
 // For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-func (s *Customers) Update(ctx context.Context, customerID string, requestBody *operations.UpdateCustomerRequestBody, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
+func (s *Customers) Update(ctx context.Context, customerID string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	request := operations.UpdateCustomerRequest{
-		CustomerID:  customerID,
-		RequestBody: requestBody,
+		CustomerID:     customerID,
+		EntityCustomer: entityCustomer,
 	}
 
 	o := operations.Options{}
@@ -842,7 +819,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, requestBody *
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCustomer", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -989,12 +966,12 @@ func (s *Customers) Update(ctx context.Context, customerID string, requestBody *
 				return nil, err
 			}
 
-			var out operations.UpdateCustomerResponseBody
+			var out components.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1010,7 +987,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, requestBody *
 				return nil, err
 			}
 
-			var out apierrors.UpdateCustomerHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1259,7 +1236,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, requestBody *
 				return nil, err
 			}
 
-			var out apierrors.DeleteCustomerHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1312,10 +1289,10 @@ func (s *Customers) Delete(ctx context.Context, customerID string, requestBody *
 //
 // This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
 // parameter predefined.
-func (s *Customers) CreatePayment(ctx context.Context, customerID string, requestBody *operations.CreateCustomerPaymentRequestBody, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
+func (s *Customers) CreatePayment(ctx context.Context, customerID string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
 	request := operations.CreateCustomerPaymentRequest{
-		CustomerID:  customerID,
-		RequestBody: requestBody,
+		CustomerID:     customerID,
+		PaymentRequest: paymentRequest,
 	}
 
 	o := operations.Options{}
@@ -1350,7 +1327,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, reques
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PaymentRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1497,12 +1474,12 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, reques
 				return nil, err
 			}
 
-			var out operations.CreateCustomerPaymentResponseBody
+			var out components.PaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.PaymentResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1518,7 +1495,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, reques
 				return nil, err
 			}
 
-			var out apierrors.CreateCustomerPaymentUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1543,7 +1520,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, reques
 				return nil, err
 			}
 
-			var out apierrors.CreateCustomerPaymentServiceUnavailableHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1784,7 +1761,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 				return nil, err
 			}
 
-			var out apierrors.ListCustomerPaymentsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

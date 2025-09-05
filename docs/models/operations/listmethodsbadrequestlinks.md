@@ -1,8 +1,0 @@
-# ListMethodsBadRequestLinks
-
-
-## Fields
-
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                | [operations.ListMethodsBadRequestDocumentation](../../models/operations/listmethodsbadrequestdocumentation.md) | :heavy_check_mark:                                                                                             | The URL to the generic Mollie API error handling guide.                                                        |

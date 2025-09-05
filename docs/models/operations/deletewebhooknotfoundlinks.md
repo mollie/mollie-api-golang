@@ -1,8 +1,0 @@
-# DeleteWebhookNotFoundLinks
-
-
-## Fields
-
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                | [operations.DeleteWebhookNotFoundDocumentation](../../models/operations/deletewebhooknotfounddocumentation.md) | :heavy_check_mark:                                                                                             | The URL to the generic Mollie API error handling guide.                                                        |

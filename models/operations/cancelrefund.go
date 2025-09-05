@@ -40,38 +40,6 @@ func (o *CancelRefundRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// CancelRefundDocumentation - The URL to the generic Mollie API error handling guide.
-type CancelRefundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *CancelRefundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *CancelRefundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type CancelRefundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation CancelRefundDocumentation `json:"documentation"`
-}
-
-func (o *CancelRefundLinks) GetDocumentation() CancelRefundDocumentation {
-	if o == nil {
-		return CancelRefundDocumentation{}
-	}
-	return o.Documentation
-}
-
 type CancelRefundResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// An empty response if the refund was successfully canceled.

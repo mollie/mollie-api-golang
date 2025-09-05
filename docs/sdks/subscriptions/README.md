@@ -46,7 +46,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -59,31 +58,33 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", &operations.CreateSubscriptionRequestBody{
-        Amount: operations.CreateSubscriptionAmountRequest{
+    res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", &components.SubscriptionRequest{
+        ID: client.String("sub_5B8cwPMGnU"),
+        Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
         Times: client.Int64(6),
-        Interval: "2 days",
+        Interval: client.String("2 days"),
         StartDate: client.String("2025-01-01"),
-        Description: "Subscription of streaming channel",
-        Method: operations.CreateSubscriptionMethodRequestPaypal.ToPointer(),
-        ApplicationFee: &operations.CreateSubscriptionApplicationFeeRequest{
-            Amount: operations.CreateSubscriptionApplicationFeeAmountRequest{
+        Description: client.String("Subscription of streaming channel"),
+        Method: components.SubscriptionRequestMethodPaypal.ToPointer(),
+        ApplicationFee: &components.SubscriptionRequestApplicationFee{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
             Description: "Platform fee",
         },
         WebhookURL: client.String("https://example.com/webhook"),
+        CustomerID: client.String("cst_5B8cwPMGnU"),
         MandateID: client.String("mdt_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -91,12 +92,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `customerID`                                                                                          | *string*                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related customer.                                                               | cst_5B8cwPMGnU                                                                                        |
-| `requestBody`                                                                                         | [*operations.CreateSubscriptionRequestBody](../../models/operations/createsubscriptionrequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
+| `customerID`                                                                      | *string*                                                                          | :heavy_check_mark:                                                                | Provide the ID of the related customer.                                           | cst_5B8cwPMGnU                                                                    |
+| `subscriptionRequest`                                                             | [*components.SubscriptionRequest](../../models/components/subscriptionrequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
 
 ### Response
 
@@ -104,10 +105,10 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.CreateSubscriptionHalJSONError | 404                                      | application/hal+json                     |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -143,7 +144,7 @@ func main() {
         CustomerID: "cst_5B8cwPMGnU",
         From: client.String("sub_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListSubscriptionsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -169,11 +170,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                        | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| apierrors.ListSubscriptionsBadRequestHalJSONError | 400                                               | application/hal+json                              |
-| apierrors.ListSubscriptionsNotFoundHalJSONError   | 404                                               | application/hal+json                              |
-| apierrors.APIError                                | 4XX, 5XX                                          | \*/\*                                             |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -206,7 +206,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -228,10 +228,10 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.GetSubscriptionHalJSONError | 404                                   | application/hal+json                  |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -266,7 +266,7 @@ func main() {
     )
 
     res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", &operations.UpdateSubscriptionRequestBody{
-        Amount: &operations.UpdateSubscriptionAmountRequest{
+        Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
@@ -281,7 +281,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -303,10 +303,10 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.UpdateSubscriptionHalJSONError | 404                                      | application/hal+json                     |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Cancel
 
@@ -342,7 +342,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -364,10 +364,10 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.CancelSubscriptionHalJSONError | 404                                      | application/hal+json                     |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## All
 
@@ -413,7 +413,7 @@ func main() {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | sub_rVKGtNd6s3                                                                                                                                                                                                                                                                                                                                                                         |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | **int64*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `profileID`                                                                                                                                                                                                                                                                                                                                                                            | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.<br/><br/>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.<br/><br/>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the<br/>`profileId` parameter.                       | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -425,11 +425,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| apierrors.ListAllSubscriptionsBadRequestHalJSONError | 400                                                  | application/hal+json                                 |
-| apierrors.ListAllSubscriptionsNotFoundHalJSONError   | 404                                                  | application/hal+json                                 |
-| apierrors.APIError                                   | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListPayments
 
@@ -466,7 +465,7 @@ func main() {
         SubscriptionID: "sub_5B8cwPMGnU",
         From: client.String("tr_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListSubscriptionPaymentsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -493,7 +492,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| apierrors.ListSubscriptionPaymentsHalJSONError | 400                                            | application/hal+json                           |
-| apierrors.APIError                             | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

@@ -3,21 +3,12 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
 type ListClientsRequest struct {
-	// This endpoint allows embedding related API items by appending the
-	// following values via the `embed` query string parameter.
-	//
-	// * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-	//   partners with the `organizations.read` scope.
-	// * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-	//   partners with the `onboarding.read` scope.
-	// * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-	//   Available for *oauth* partners with the `onboarding.read` scope.
+	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
+	// parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
 	// result set.
@@ -47,70 +38,6 @@ func (o *ListClientsRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-// ListClientsNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type ListClientsNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListClientsNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListClientsNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListClientsNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *ListClientsNotFoundLinks) GetDocumentation() ListClientsNotFoundDocumentation {
-	if o == nil {
-		return ListClientsNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListClientsBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListClientsBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListClientsBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListClientsBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListClientsBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListClientsBadRequestLinks) GetDocumentation() ListClientsBadRequestDocumentation {
-	if o == nil {
-		return ListClientsBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
 // ListClientsCommission - The commission object.
 type ListClientsCommission struct {
 	// The commission count.
@@ -124,957 +51,67 @@ func (o *ListClientsCommission) GetCount() *int64 {
 	return o.Count
 }
 
-// ClientSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsLinksOrganization - The API resource URL of the client's organization.
-type ListClientsLinksOrganization struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsLinksOrganization) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsLinksOrganization) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsLinksOnboarding - The API resource URL of the client's onboarding status.
-type ListClientsLinksOnboarding struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsLinksOnboarding) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsLinksOnboarding) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type ClientLinks struct {
+// ListClientsLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+type ListClientsLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *ClientSelf `json:"self,omitempty"`
-	// The API resource URL of the client's organization.
-	Organization *ListClientsLinksOrganization `json:"organization,omitempty"`
-	// The API resource URL of the client's onboarding status.
-	Onboarding *ListClientsLinksOnboarding `json:"onboarding,omitempty"`
+	Self *components.URLObj `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *ClientDocumentation `json:"documentation,omitempty"`
+	Organization *components.URLObj `json:"organization,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Onboarding *components.URLObj `json:"onboarding,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *ClientLinks) GetSelf() *ClientSelf {
+func (o *ListClientsLinks) GetSelf() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Self
 }
 
-func (o *ClientLinks) GetOrganization() *ListClientsLinksOrganization {
+func (o *ListClientsLinks) GetOrganization() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Organization
 }
 
-func (o *ClientLinks) GetOnboarding() *ListClientsLinksOnboarding {
+func (o *ListClientsLinks) GetOnboarding() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Onboarding
 }
 
-func (o *ClientLinks) GetDocumentation() *ClientDocumentation {
+func (o *ListClientsLinks) GetDocumentation() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Documentation
-}
-
-// ListClientsLocale - The preferred locale of the merchant, as set in their Mollie dashboard.
-type ListClientsLocale string
-
-const (
-	ListClientsLocaleEnUs ListClientsLocale = "en_US"
-	ListClientsLocaleEnGb ListClientsLocale = "en_GB"
-	ListClientsLocaleNlNl ListClientsLocale = "nl_NL"
-	ListClientsLocaleNlBe ListClientsLocale = "nl_BE"
-	ListClientsLocaleDeDe ListClientsLocale = "de_DE"
-	ListClientsLocaleDeAt ListClientsLocale = "de_AT"
-	ListClientsLocaleDeCh ListClientsLocale = "de_CH"
-	ListClientsLocaleFrFr ListClientsLocale = "fr_FR"
-	ListClientsLocaleFrBe ListClientsLocale = "fr_BE"
-	ListClientsLocaleEsEs ListClientsLocale = "es_ES"
-	ListClientsLocaleCaEs ListClientsLocale = "ca_ES"
-	ListClientsLocalePtPt ListClientsLocale = "pt_PT"
-	ListClientsLocaleItIt ListClientsLocale = "it_IT"
-	ListClientsLocaleNbNo ListClientsLocale = "nb_NO"
-	ListClientsLocaleSvSe ListClientsLocale = "sv_SE"
-	ListClientsLocaleFiFi ListClientsLocale = "fi_FI"
-	ListClientsLocaleDaDk ListClientsLocale = "da_DK"
-	ListClientsLocaleIsIs ListClientsLocale = "is_IS"
-	ListClientsLocaleHuHu ListClientsLocale = "hu_HU"
-	ListClientsLocalePlPl ListClientsLocale = "pl_PL"
-	ListClientsLocaleLvLv ListClientsLocale = "lv_LV"
-	ListClientsLocaleLtLt ListClientsLocale = "lt_LT"
-)
-
-func (e ListClientsLocale) ToPointer() *ListClientsLocale {
-	return &e
-}
-func (e *ListClientsLocale) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "en_US":
-		fallthrough
-	case "en_GB":
-		fallthrough
-	case "nl_NL":
-		fallthrough
-	case "nl_BE":
-		fallthrough
-	case "de_DE":
-		fallthrough
-	case "de_AT":
-		fallthrough
-	case "de_CH":
-		fallthrough
-	case "fr_FR":
-		fallthrough
-	case "fr_BE":
-		fallthrough
-	case "es_ES":
-		fallthrough
-	case "ca_ES":
-		fallthrough
-	case "pt_PT":
-		fallthrough
-	case "it_IT":
-		fallthrough
-	case "nb_NO":
-		fallthrough
-	case "sv_SE":
-		fallthrough
-	case "fi_FI":
-		fallthrough
-	case "da_DK":
-		fallthrough
-	case "is_IS":
-		fallthrough
-	case "hu_HU":
-		fallthrough
-	case "pl_PL":
-		fallthrough
-	case "lv_LV":
-		fallthrough
-	case "lt_LT":
-		*e = ListClientsLocale(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsLocale: %v", v)
-	}
-}
-
-// ListClientsAddress - The address of the organization.
-type ListClientsAddress struct {
-	// A street and street number.
-	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
-	// A postal code. This field may be required if the provided country has a postal code system.
-	PostalCode *string `json:"postalCode,omitempty"`
-	City       *string `json:"city,omitempty"`
-	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	Country *string `json:"country,omitempty"`
-}
-
-func (o *ListClientsAddress) GetStreetAndNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.StreetAndNumber
-}
-
-func (o *ListClientsAddress) GetPostalCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PostalCode
-}
-
-func (o *ListClientsAddress) GetCity() *string {
-	if o == nil {
-		return nil
-	}
-	return o.City
-}
-
-func (o *ListClientsAddress) GetCountry() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Country
-}
-
-// ListClientsVatRegulation - Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
-// Kingdom, and shifted VAT for merchants in the European Union.
-//
-// The field is not present for merchants residing in other countries.
-type ListClientsVatRegulation string
-
-const (
-	ListClientsVatRegulationDutch   ListClientsVatRegulation = "dutch"
-	ListClientsVatRegulationBritish ListClientsVatRegulation = "british"
-	ListClientsVatRegulationShifted ListClientsVatRegulation = "shifted"
-)
-
-func (e ListClientsVatRegulation) ToPointer() *ListClientsVatRegulation {
-	return &e
-}
-func (e *ListClientsVatRegulation) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "dutch":
-		fallthrough
-	case "british":
-		fallthrough
-	case "shifted":
-		*e = ListClientsVatRegulation(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsVatRegulation: %v", v)
-	}
-}
-
-// ClientOrganizationSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientOrganizationSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientOrganizationSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientOrganizationSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsOrganizationDashboard - Direct link to the organization's Mollie dashboard.
-type ListClientsOrganizationDashboard struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsOrganizationDashboard) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsOrganizationDashboard) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientOrganizationDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientOrganizationDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientOrganizationDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientOrganizationDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientOrganizationLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type ClientOrganizationLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *ClientOrganizationSelf `json:"self,omitempty"`
-	// Direct link to the organization's Mollie dashboard.
-	Dashboard *ListClientsOrganizationDashboard `json:"dashboard,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *ClientOrganizationDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *ClientOrganizationLinks) GetSelf() *ClientOrganizationSelf {
-	if o == nil {
-		return nil
-	}
-	return o.Self
-}
-
-func (o *ClientOrganizationLinks) GetDashboard() *ListClientsOrganizationDashboard {
-	if o == nil {
-		return nil
-	}
-	return o.Dashboard
-}
-
-func (o *ClientOrganizationLinks) GetDocumentation() *ClientOrganizationDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-type ListClientsOrganization struct {
-	// Indicates the response contains an organization object. Will always contain the string `organization` for this
-	// resource type.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this organization. Example: `org_12345678`.
-	ID *string `json:"id,omitempty"`
-	// The name of the organization.
-	Name *string `json:"name,omitempty"`
-	// The email address associated with the organization.
-	Email *string `json:"email,omitempty"`
-	// The preferred locale of the merchant, as set in their Mollie dashboard.
-	Locale *ListClientsLocale `json:"locale,omitempty"`
-	// The address of the organization.
-	Address *ListClientsAddress `json:"address,omitempty"`
-	// The registration number of the organization at their local chamber of commerce.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
-	// The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
-	// verified against the international registry *VIES*.
-	//
-	// The field is not present for merchants residing in other countries.
-	VatNumber *string `json:"vatNumber,omitempty"`
-	// Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
-	// Kingdom, and shifted VAT for merchants in the European Union.
-	//
-	// The field is not present for merchants residing in other countries.
-	VatRegulation *ListClientsVatRegulation `json:"vatRegulation,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *ClientOrganizationLinks `json:"_links,omitempty"`
-}
-
-func (o *ListClientsOrganization) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *ListClientsOrganization) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *ListClientsOrganization) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
-}
-
-func (o *ListClientsOrganization) GetEmail() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Email
-}
-
-func (o *ListClientsOrganization) GetLocale() *ListClientsLocale {
-	if o == nil {
-		return nil
-	}
-	return o.Locale
-}
-
-func (o *ListClientsOrganization) GetAddress() *ListClientsAddress {
-	if o == nil {
-		return nil
-	}
-	return o.Address
-}
-
-func (o *ListClientsOrganization) GetRegistrationNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RegistrationNumber
-}
-
-func (o *ListClientsOrganization) GetVatNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.VatNumber
-}
-
-func (o *ListClientsOrganization) GetVatRegulation() *ListClientsVatRegulation {
-	if o == nil {
-		return nil
-	}
-	return o.VatRegulation
-}
-
-func (o *ListClientsOrganization) GetLinks() *ClientOrganizationLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
-// ListClientsOnboardingStatus - The current status of the organization's onboarding process.
-//
-// * `needs-data` — The merchant needs to provide additional information
-// * `in-review` — The merchant provided all information, awaiting review from Mollie
-// * `completed` — The onboarding is completed
-type ListClientsOnboardingStatus string
-
-const (
-	ListClientsOnboardingStatusNeedsData ListClientsOnboardingStatus = "needs-data"
-	ListClientsOnboardingStatusInReview  ListClientsOnboardingStatus = "in-review"
-	ListClientsOnboardingStatusCompleted ListClientsOnboardingStatus = "completed"
-)
-
-func (e ListClientsOnboardingStatus) ToPointer() *ListClientsOnboardingStatus {
-	return &e
-}
-func (e *ListClientsOnboardingStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "needs-data":
-		fallthrough
-	case "in-review":
-		fallthrough
-	case "completed":
-		*e = ListClientsOnboardingStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsOnboardingStatus: %v", v)
-	}
-}
-
-// ClientOnboardingSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientOnboardingSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientOnboardingSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientOnboardingSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsOnboardingDashboard - Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-// complete their onboarding.
-type ListClientsOnboardingDashboard struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsOnboardingDashboard) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsOnboardingDashboard) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsOnboardingOrganization - The API resource URL of the organization.
-type ListClientsOnboardingOrganization struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsOnboardingOrganization) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsOnboardingOrganization) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientOnboardingDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ClientOnboardingDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ClientOnboardingDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ClientOnboardingDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ClientOnboardingLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type ClientOnboardingLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *ClientOnboardingSelf `json:"self,omitempty"`
-	// Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-	// complete their onboarding.
-	Dashboard *ListClientsOnboardingDashboard `json:"dashboard,omitempty"`
-	// The API resource URL of the organization.
-	Organization *ListClientsOnboardingOrganization `json:"organization,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *ClientOnboardingDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *ClientOnboardingLinks) GetSelf() *ClientOnboardingSelf {
-	if o == nil {
-		return nil
-	}
-	return o.Self
-}
-
-func (o *ClientOnboardingLinks) GetDashboard() *ListClientsOnboardingDashboard {
-	if o == nil {
-		return nil
-	}
-	return o.Dashboard
-}
-
-func (o *ClientOnboardingLinks) GetOrganization() *ListClientsOnboardingOrganization {
-	if o == nil {
-		return nil
-	}
-	return o.Organization
-}
-
-func (o *ClientOnboardingLinks) GetDocumentation() *ClientOnboardingDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-type ListClientsOnboarding struct {
-	// Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-	// resource type.
-	Resource *string `json:"resource,omitempty"`
-	// The name of the organization.
-	Name *string `json:"name,omitempty"`
-	// The current status of the organization's onboarding process.
-	//
-	// * `needs-data` — The merchant needs to provide additional information
-	// * `in-review` — The merchant provided all information, awaiting review from Mollie
-	// * `completed` — The onboarding is completed
-	Status *ListClientsOnboardingStatus `json:"status,omitempty"`
-	// Whether the organization can receive payments.
-	CanReceivePayments *bool `json:"canReceivePayments,omitempty"`
-	// Whether the organization can receive settlements to their external bank account.
-	CanReceiveSettlements *bool `json:"canReceiveSettlements,omitempty"`
-	// The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	SignedUpAt *string `json:"signedUpAt,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *ClientOnboardingLinks `json:"_links,omitempty"`
-}
-
-func (o *ListClientsOnboarding) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *ListClientsOnboarding) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
-}
-
-func (o *ListClientsOnboarding) GetStatus() *ListClientsOnboardingStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *ListClientsOnboarding) GetCanReceivePayments() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.CanReceivePayments
-}
-
-func (o *ListClientsOnboarding) GetCanReceiveSettlements() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.CanReceiveSettlements
-}
-
-func (o *ListClientsOnboarding) GetSignedUpAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SignedUpAt
-}
-
-func (o *ListClientsOnboarding) GetLinks() *ClientOnboardingLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
-type ListClientsCapabilitiesStatus string
-
-const (
-	ListClientsCapabilitiesStatusUnrequested ListClientsCapabilitiesStatus = "unrequested"
-	ListClientsCapabilitiesStatusEnabled     ListClientsCapabilitiesStatus = "enabled"
-	ListClientsCapabilitiesStatusDisabled    ListClientsCapabilitiesStatus = "disabled"
-	ListClientsCapabilitiesStatusPending     ListClientsCapabilitiesStatus = "pending"
-)
-
-func (e ListClientsCapabilitiesStatus) ToPointer() *ListClientsCapabilitiesStatus {
-	return &e
-}
-func (e *ListClientsCapabilitiesStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unrequested":
-		fallthrough
-	case "enabled":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "pending":
-		*e = ListClientsCapabilitiesStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsCapabilitiesStatus: %v", v)
-	}
-}
-
-type ListClientsStatusReason string
-
-const (
-	ListClientsStatusReasonRequirementPastDue          ListClientsStatusReason = "requirement-past-due"
-	ListClientsStatusReasonOnboardingInformationNeeded ListClientsStatusReason = "onboarding-information-needed"
-)
-
-func (e ListClientsStatusReason) ToPointer() *ListClientsStatusReason {
-	return &e
-}
-func (e *ListClientsStatusReason) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "requirement-past-due":
-		fallthrough
-	case "onboarding-information-needed":
-		*e = ListClientsStatusReason(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsStatusReason: %v", v)
-	}
-}
-
-// ListClientsRequirementStatus - The status of the requirement depends on its due date.
-// If no due date is given, the status will be `requested`.
-type ListClientsRequirementStatus string
-
-const (
-	ListClientsRequirementStatusCurrentlyDue ListClientsRequirementStatus = "currently-due"
-	ListClientsRequirementStatusPastDue      ListClientsRequirementStatus = "past-due"
-	ListClientsRequirementStatusRequested    ListClientsRequirementStatus = "requested"
-)
-
-func (e ListClientsRequirementStatus) ToPointer() *ListClientsRequirementStatus {
-	return &e
-}
-func (e *ListClientsRequirementStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "currently-due":
-		fallthrough
-	case "past-due":
-		fallthrough
-	case "requested":
-		*e = ListClientsRequirementStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListClientsRequirementStatus: %v", v)
-	}
-}
-
-// ListClientsCapabilitiesDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-// For example, where necessary documents are to be uploaded.
-type ListClientsCapabilitiesDashboard struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListClientsCapabilitiesDashboard) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListClientsCapabilitiesDashboard) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-type ClientRequirementLinks struct {
-	// If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-	// For example, where necessary documents are to be uploaded.
-	Dashboard *ListClientsCapabilitiesDashboard `json:"dashboard,omitempty"`
-}
-
-func (o *ClientRequirementLinks) GetDashboard() *ListClientsCapabilitiesDashboard {
-	if o == nil {
-		return nil
-	}
-	return o.Dashboard
-}
-
-type ListClientsRequirement struct {
-	// The name of this requirement, referring to the task to be fulfilled by the organization
-	// to enable or re-enable the capability. The name is unique among other requirements
-	// of the same capability.
-	ID *string `json:"id,omitempty"`
-	// The status of the requirement depends on its due date.
-	// If no due date is given, the status will be `requested`.
-	Status *ListClientsRequirementStatus `json:"status,omitempty"`
-	// Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
-	DueDate *string                 `json:"dueDate,omitempty"`
-	Links   *ClientRequirementLinks `json:"_links,omitempty"`
-}
-
-func (o *ListClientsRequirement) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *ListClientsRequirement) GetStatus() *ListClientsRequirementStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *ListClientsRequirement) GetDueDate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.DueDate
-}
-
-func (o *ListClientsRequirement) GetLinks() *ClientRequirementLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
-type ListClientsCapabilities struct {
-	// Always the word `capability` for this resource type.
-	Resource *string `json:"resource,omitempty"`
-	// A unique name for this capability like `payments` / `settlements`.
-	Name         *string                        `json:"name,omitempty"`
-	Status       *ListClientsCapabilitiesStatus `json:"status,omitempty"`
-	StatusReason *ListClientsStatusReason       `json:"statusReason,omitempty"`
-	Requirements []ListClientsRequirement       `json:"requirements,omitempty"`
-}
-
-func (o *ListClientsCapabilities) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *ListClientsCapabilities) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
-}
-
-func (o *ListClientsCapabilities) GetStatus() *ListClientsCapabilitiesStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *ListClientsCapabilities) GetStatusReason() *ListClientsStatusReason {
-	if o == nil {
-		return nil
-	}
-	return o.StatusReason
-}
-
-func (o *ListClientsCapabilities) GetRequirements() []ListClientsRequirement {
-	if o == nil {
-		return nil
-	}
-	return o.Requirements
 }
 
 type ClientEmbedded struct {
-	Organization *ListClientsOrganization `json:"organization,omitempty"`
-	Onboarding   *ListClientsOnboarding   `json:"onboarding,omitempty"`
-	Capabilities *ListClientsCapabilities `json:"capabilities,omitempty"`
+	Organization *components.EntityOrganization     `json:"organization,omitempty"`
+	Onboarding   *components.EntityOnboardingStatus `json:"onboarding,omitempty"`
+	Capabilities *components.EntityCapability       `json:"capabilities,omitempty"`
 }
 
-func (o *ClientEmbedded) GetOrganization() *ListClientsOrganization {
+func (o *ClientEmbedded) GetOrganization() *components.EntityOrganization {
 	if o == nil {
 		return nil
 	}
 	return o.Organization
 }
 
-func (o *ClientEmbedded) GetOnboarding() *ListClientsOnboarding {
+func (o *ClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Onboarding
 }
 
-func (o *ClientEmbedded) GetCapabilities() *ListClientsCapabilities {
+func (o *ClientEmbedded) GetCapabilities() *components.EntityCapability {
 	if o == nil {
 		return nil
 	}
@@ -1092,8 +129,8 @@ type Client struct {
 	// format.
 	OrganizationCreatedAt *string `json:"organizationCreatedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links    *ClientLinks    `json:"_links,omitempty"`
-	Embedded *ClientEmbedded `json:"_embedded,omitempty"`
+	Links    *ListClientsLinks `json:"_links,omitempty"`
+	Embedded *ClientEmbedded   `json:"_embedded,omitempty"`
 }
 
 func (o *Client) GetResource() *string {
@@ -1124,7 +161,7 @@ func (o *Client) GetOrganizationCreatedAt() *string {
 	return o.OrganizationCreatedAt
 }
 
-func (o *Client) GetLinks() *ClientLinks {
+func (o *Client) GetLinks() *ListClientsLinks {
 	if o == nil {
 		return nil
 	}
@@ -1151,134 +188,6 @@ func (o *ListClientsEmbedded) GetClients() []Client {
 	return o.Clients
 }
 
-// ListClientsSelf - The URL to the current set of items.
-type ListClientsSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsPrevious - The previous set of items, if available.
-type ListClientsPrevious struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListClientsPrevious) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListClientsPrevious) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListClientsNext - The next set of items, if available.
-type ListClientsNext struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListClientsNext) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListClientsNext) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListClientsDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListClientsDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListClientsDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListClientsDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListClientsLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-type ListClientsLinks struct {
-	// The URL to the current set of items.
-	Self ListClientsSelf `json:"self"`
-	// The previous set of items, if available.
-	Previous *ListClientsPrevious `json:"previous"`
-	// The next set of items, if available.
-	Next *ListClientsNext `json:"next"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListClientsDocumentation `json:"documentation"`
-}
-
-func (o *ListClientsLinks) GetSelf() ListClientsSelf {
-	if o == nil {
-		return ListClientsSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListClientsLinks) GetPrevious() *ListClientsPrevious {
-	if o == nil {
-		return nil
-	}
-	return o.Previous
-}
-
-func (o *ListClientsLinks) GetNext() *ListClientsNext {
-	if o == nil {
-		return nil
-	}
-	return o.Next
-}
-
-func (o *ListClientsLinks) GetDocumentation() ListClientsDocumentation {
-	if o == nil {
-		return ListClientsDocumentation{}
-	}
-	return o.Documentation
-}
-
 // ListClientsResponseBody - A list of client objects. For a complete reference of the client object, refer to the
 // [Get client endpoint](get-client) documentation.
 type ListClientsResponseBody struct {
@@ -1290,7 +199,7 @@ type ListClientsResponseBody struct {
 	Count    *int64               `json:"count,omitempty"`
 	Embedded *ListClientsEmbedded `json:"_embedded,omitempty"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *ListClientsLinks `json:"_links,omitempty"`
+	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
 func (o *ListClientsResponseBody) GetCount() *int64 {
@@ -1307,7 +216,7 @@ func (o *ListClientsResponseBody) GetEmbedded() *ListClientsEmbedded {
 	return o.Embedded
 }
 
-func (o *ListClientsResponseBody) GetLinks() *ListClientsLinks {
+func (o *ListClientsResponseBody) GetLinks() *components.ListLinks {
 	if o == nil {
 		return nil
 	}

@@ -43,13 +43,13 @@ func main() {
     res, err := s.Webhooks.Create(ctx, &operations.CreateWebhookRequest{
         Name: "Webhook #1",
         URL: "https://mollie.com/",
-        WebhookEventTypes: operations.CreateWebhookWebhookEventTypesRequestPaymentLinkPaid,
+        WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid,
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CreateWebhook != nil {
         // handle response
     }
 }
@@ -69,10 +69,10 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.CreateWebhookHalJSONError | 422                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -105,8 +105,8 @@ func main() {
     res, err := s.Webhooks.List(ctx, operations.ListWebhooksRequest{
         From: client.String("hook_B2EyhTH5N4KWUnoYPcgiH"),
         Limit: client.Int64(50),
-        Sort: operations.ListWebhooksSortDesc.ToPointer(),
-        EventTypes: operations.EventTypesWebhookEventTypesPaymentLinkPaid.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
+        EventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -132,10 +132,10 @@ func main() {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| apierrors.ListWebhooksHalJSONError | 400                                | application/hal+json               |
-| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -168,13 +168,13 @@ func main() {
     res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", &operations.UpdateWebhookRequestBody{
         Name: client.String("Webhook #1"),
         URL: client.String("https://mollie.com/"),
-        WebhookEventTypes: operations.UpdateWebhookWebhookEventTypesRequestPaymentLinkPaid.ToPointer(),
+        WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityWebhook != nil {
         // handle response
     }
 }
@@ -182,12 +182,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           | hook_B2EyhTH5N4KWUnoYPcgiH                                                                  |
-| `requestBody`                                                                               | [*operations.UpdateWebhookRequestBody](../../models/operations/updatewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |
+| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |
+| `requestBody`                                                                               | [*operations.UpdateWebhookRequestBody](../../models/operations/updatewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |
 
 ### Response
 
@@ -195,11 +195,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.UpdateWebhookNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
-| apierrors.UpdateWebhookUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -232,7 +231,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityWebhook != nil {
         // handle response
     }
 }
@@ -243,7 +242,7 @@ func main() {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | hook_B2EyhTH5N4KWUnoYPcgiH                                                                                                                                                                                                                                                                                                                                                             |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -253,11 +252,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                          | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| apierrors.GetWebhookNotFoundHalJSONError            | 404                                                 | application/hal+json                                |
-| apierrors.GetWebhookUnprocessableEntityHalJSONError | 422                                                 | application/hal+json                                |
-| apierrors.APIError                                  | 4XX, 5XX                                            | \*/\*                                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
 
@@ -301,12 +299,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           | hook_B2EyhTH5N4KWUnoYPcgiH                                                                  |
-| `requestBody`                                                                               | [*operations.DeleteWebhookRequestBody](../../models/operations/deletewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |
+| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |
+| `requestBody`                                                                               | [*operations.DeleteWebhookRequestBody](../../models/operations/deletewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |
 
 ### Response
 
@@ -314,11 +312,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.DeleteWebhookNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
-| apierrors.DeleteWebhookUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Test
 
@@ -362,12 +359,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |                                                                                         |
-| `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Provide the ID of the item you want to perform this operation on.                       | hook_B2EyhTH5N4KWUnoYPcgiH                                                              |
-| `requestBody`                                                                           | [*operations.TestWebhookRequestBody](../../models/operations/testwebhookrequestbody.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |                                                                                         |
-| `opts`                                                                                  | [][operations.Option](../../models/operations/option.md)                                | :heavy_minus_sign:                                                                      | The options for this request.                                                           |                                                                                         |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |
+| `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Provide the ID of the item you want to perform this operation on.                       |
+| `requestBody`                                                                           | [*operations.TestWebhookRequestBody](../../models/operations/testwebhookrequestbody.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `opts`                                                                                  | [][operations.Option](../../models/operations/option.md)                                | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
 
 ### Response
 
@@ -375,8 +372,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| apierrors.TestWebhookNotFoundHalJSONError            | 404                                                  | application/hal+json                                 |
-| apierrors.TestWebhookUnprocessableEntityHalJSONError | 422                                                  | application/hal+json                                 |
-| apierrors.APIError                                   | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

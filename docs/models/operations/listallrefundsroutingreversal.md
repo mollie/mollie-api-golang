@@ -1,9 +1,0 @@
-# ListAllRefundsRoutingReversal
-
-
-## Fields
-
-| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `Amount`                                                                                                          | [*operations.ListAllRefundsRoutingReversalAmount](../../models/operations/listallrefundsroutingreversalamount.md) | :heavy_minus_sign:                                                                                                | The amount that will be pulled back.                                                                              |
-| `Source`                                                                                                          | [*operations.ListAllRefundsSource](../../models/operations/listallrefundssource.md)                               | :heavy_minus_sign:                                                                                                | Where the funds will be pulled back from.                                                                         |

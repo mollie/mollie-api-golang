@@ -33,10 +33,10 @@ func newDelayedRouting(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // Create a delayed route
 // Create a route for a specific payment.
 // The routed amount is credited to the account of your customer.
-func (s *DelayedRouting) Create(ctx context.Context, paymentID string, requestBody *operations.PaymentCreateRouteRequestBody, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
+func (s *DelayedRouting) Create(ctx context.Context, paymentID string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
 	request := operations.PaymentCreateRouteRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:          paymentID,
+		RouteCreateRequest: routeCreateRequest,
 	}
 
 	o := operations.Options{}
@@ -71,7 +71,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, requestBo
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RouteCreateRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -218,12 +218,12 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, requestBo
 				return nil, err
 			}
 
-			var out operations.PaymentCreateRouteResponseBody
+			var out components.RouteCreateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.RouteCreateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -239,7 +239,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, requestBo
 				return nil, err
 			}
 
-			var out apierrors.PaymentCreateRouteHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -485,7 +485,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 				return nil, err
 			}
 
-			var out apierrors.PaymentListRoutesHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

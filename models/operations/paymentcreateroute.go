@@ -3,129 +3,13 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-// PaymentCreateRouteAmountRequest - The amount of the route.
-// That amount that will be routed to the specified destination.
-type PaymentCreateRouteAmountRequest struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *PaymentCreateRouteAmountRequest) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *PaymentCreateRouteAmountRequest) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// PaymentCreateRouteTypeRequest - The type of destination. Currently only the destination type `organization` is supported.
-type PaymentCreateRouteTypeRequest string
-
-const (
-	PaymentCreateRouteTypeRequestOrganization PaymentCreateRouteTypeRequest = "organization"
-)
-
-func (e PaymentCreateRouteTypeRequest) ToPointer() *PaymentCreateRouteTypeRequest {
-	return &e
-}
-func (e *PaymentCreateRouteTypeRequest) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = PaymentCreateRouteTypeRequest(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentCreateRouteTypeRequest: %v", v)
-	}
-}
-
-// PaymentCreateRouteDestinationRequest - The destination of the route.
-type PaymentCreateRouteDestinationRequest struct {
-	// The type of destination. Currently only the destination type `organization` is supported.
-	Type PaymentCreateRouteTypeRequest `json:"type"`
-	// Required for destination type `organization`. The ID of the connected organization the funds should be
-	// routed to.
-	OrganizationID string `json:"organizationId"`
-}
-
-func (o *PaymentCreateRouteDestinationRequest) GetType() PaymentCreateRouteTypeRequest {
-	if o == nil {
-		return PaymentCreateRouteTypeRequest("")
-	}
-	return o.Type
-}
-
-func (o *PaymentCreateRouteDestinationRequest) GetOrganizationID() string {
-	if o == nil {
-		return ""
-	}
-	return o.OrganizationID
-}
-
-type PaymentCreateRouteRequestBody struct {
-	// The amount of the route.
-	// That amount that will be routed to the specified destination.
-	Amount *PaymentCreateRouteAmountRequest `json:"amount,omitempty"`
-	// The description of the route. This description is shown in the reports.
-	Description *string `json:"description,omitempty"`
-	// The destination of the route.
-	Destination *PaymentCreateRouteDestinationRequest `json:"destination,omitempty"`
-	// Whether to create the entity in test mode or live mode.
-	//
-	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-	// `testmode` to `true`.
-	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (o *PaymentCreateRouteRequestBody) GetAmount() *PaymentCreateRouteAmountRequest {
-	if o == nil {
-		return nil
-	}
-	return o.Amount
-}
-
-func (o *PaymentCreateRouteRequestBody) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *PaymentCreateRouteRequestBody) GetDestination() *PaymentCreateRouteDestinationRequest {
-	if o == nil {
-		return nil
-	}
-	return o.Destination
-}
-
-func (o *PaymentCreateRouteRequestBody) GetTestmode() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Testmode
-}
-
 type PaymentCreateRouteRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID   string                         `pathParam:"style=simple,explode=false,name=paymentId"`
-	RequestBody *PaymentCreateRouteRequestBody `request:"mediaType=application/json"`
+	PaymentID          string                         `pathParam:"style=simple,explode=false,name=paymentId"`
+	RouteCreateRequest *components.RouteCreateRequest `request:"mediaType=application/json"`
 }
 
 func (o *PaymentCreateRouteRequest) GetPaymentID() string {
@@ -135,255 +19,17 @@ func (o *PaymentCreateRouteRequest) GetPaymentID() string {
 	return o.PaymentID
 }
 
-func (o *PaymentCreateRouteRequest) GetRequestBody() *PaymentCreateRouteRequestBody {
+func (o *PaymentCreateRouteRequest) GetRouteCreateRequest() *components.RouteCreateRequest {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
-}
-
-// PaymentCreateRouteNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type PaymentCreateRouteNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *PaymentCreateRouteNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentCreateRouteNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type PaymentCreateRouteNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation PaymentCreateRouteNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *PaymentCreateRouteNotFoundLinks) GetDocumentation() PaymentCreateRouteNotFoundDocumentation {
-	if o == nil {
-		return PaymentCreateRouteNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// PaymentCreateRouteAmountResponse - The amount of the route.
-// That amount that will be routed to the specified destination.
-type PaymentCreateRouteAmountResponse struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *PaymentCreateRouteAmountResponse) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *PaymentCreateRouteAmountResponse) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// PaymentCreateRouteTypeResponse - The type of destination. Currently only the destination type `organization` is supported.
-type PaymentCreateRouteTypeResponse string
-
-const (
-	PaymentCreateRouteTypeResponseOrganization PaymentCreateRouteTypeResponse = "organization"
-)
-
-func (e PaymentCreateRouteTypeResponse) ToPointer() *PaymentCreateRouteTypeResponse {
-	return &e
-}
-func (e *PaymentCreateRouteTypeResponse) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = PaymentCreateRouteTypeResponse(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentCreateRouteTypeResponse: %v", v)
-	}
-}
-
-// PaymentCreateRouteDestinationResponse - The destination of the route.
-type PaymentCreateRouteDestinationResponse struct {
-	// The type of destination. Currently only the destination type `organization` is supported.
-	Type PaymentCreateRouteTypeResponse `json:"type"`
-	// Required for destination type `organization`. The ID of the connected organization the funds should be
-	// routed to.
-	OrganizationID string `json:"organizationId"`
-}
-
-func (o *PaymentCreateRouteDestinationResponse) GetType() PaymentCreateRouteTypeResponse {
-	if o == nil {
-		return PaymentCreateRouteTypeResponse("")
-	}
-	return o.Type
-}
-
-func (o *PaymentCreateRouteDestinationResponse) GetOrganizationID() string {
-	if o == nil {
-		return ""
-	}
-	return o.OrganizationID
-}
-
-// PaymentCreateRouteSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type PaymentCreateRouteSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PaymentCreateRouteSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentCreateRouteSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// PaymentCreateRouteDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type PaymentCreateRouteDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PaymentCreateRouteDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PaymentCreateRouteDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// PaymentCreateRouteLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type PaymentCreateRouteLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self PaymentCreateRouteSelf `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation PaymentCreateRouteDocumentation `json:"documentation"`
-}
-
-func (o *PaymentCreateRouteLinks) GetSelf() PaymentCreateRouteSelf {
-	if o == nil {
-		return PaymentCreateRouteSelf{}
-	}
-	return o.Self
-}
-
-func (o *PaymentCreateRouteLinks) GetDocumentation() PaymentCreateRouteDocumentation {
-	if o == nil {
-		return PaymentCreateRouteDocumentation{}
-	}
-	return o.Documentation
-}
-
-// PaymentCreateRouteResponseBody - The route object.
-type PaymentCreateRouteResponseBody struct {
-	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
-	// will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-	ID string `json:"id"`
-	// The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-	// The full payment object can be retrieved via the payment URL in the `_links` object.
-	PaymentID string `json:"paymentId"`
-	// The amount of the route.
-	// That amount that will be routed to the specified destination.
-	Amount PaymentCreateRouteAmountResponse `json:"amount"`
-	// The description of the route. This description is shown in the reports.
-	Description string `json:"description"`
-	// The destination of the route.
-	Destination PaymentCreateRouteDestinationResponse `json:"destination"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links PaymentCreateRouteLinks `json:"_links"`
-}
-
-func (o *PaymentCreateRouteResponseBody) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *PaymentCreateRouteResponseBody) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *PaymentCreateRouteResponseBody) GetPaymentID() string {
-	if o == nil {
-		return ""
-	}
-	return o.PaymentID
-}
-
-func (o *PaymentCreateRouteResponseBody) GetAmount() PaymentCreateRouteAmountResponse {
-	if o == nil {
-		return PaymentCreateRouteAmountResponse{}
-	}
-	return o.Amount
-}
-
-func (o *PaymentCreateRouteResponseBody) GetDescription() string {
-	if o == nil {
-		return ""
-	}
-	return o.Description
-}
-
-func (o *PaymentCreateRouteResponseBody) GetDestination() PaymentCreateRouteDestinationResponse {
-	if o == nil {
-		return PaymentCreateRouteDestinationResponse{}
-	}
-	return o.Destination
-}
-
-func (o *PaymentCreateRouteResponseBody) GetLinks() PaymentCreateRouteLinks {
-	if o == nil {
-		return PaymentCreateRouteLinks{}
-	}
-	return o.Links
+	return o.RouteCreateRequest
 }
 
 type PaymentCreateRouteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The route object.
-	Object *PaymentCreateRouteResponseBody
+	RouteCreateResponse *components.RouteCreateResponse
 }
 
 func (o *PaymentCreateRouteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -393,9 +39,9 @@ func (o *PaymentCreateRouteResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *PaymentCreateRouteResponse) GetObject() *PaymentCreateRouteResponseBody {
+func (o *PaymentCreateRouteResponse) GetRouteCreateResponse() *components.RouteCreateResponse {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.RouteCreateResponse
 }

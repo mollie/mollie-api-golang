@@ -36,10 +36,10 @@ func newMandates(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 // mandates for cards, your customers need to perform a 'first payment' with their card.
-func (s *Mandates) Create(ctx context.Context, customerID string, requestBody *operations.CreateMandateRequestBody, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
+func (s *Mandates) Create(ctx context.Context, customerID string, entityMandate *components.EntityMandate, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
 	request := operations.CreateMandateRequest{
-		CustomerID:  customerID,
-		RequestBody: requestBody,
+		CustomerID:    customerID,
+		EntityMandate: entityMandate,
 	}
 
 	o := operations.Options{}
@@ -74,7 +74,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, requestBody *o
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityMandate", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -221,12 +221,12 @@ func (s *Mandates) Create(ctx context.Context, customerID string, requestBody *o
 				return nil, err
 			}
 
-			var out operations.CreateMandateResponseBody
+			var out components.MandateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.MandateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -242,7 +242,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, requestBody *o
 				return nil, err
 			}
 
-			var out apierrors.CreateMandateHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -478,30 +478,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListMandatesBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -510,7 +487,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 				return nil, err
 			}
 
-			var out apierrors.ListMandatesNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -737,12 +714,12 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 				return nil, err
 			}
 
-			var out operations.GetMandateResponseBody
+			var out components.MandateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.MandateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -758,7 +735,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 				return nil, err
 			}
 
-			var out apierrors.GetMandateHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1009,7 +986,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 				return nil, err
 			}
 
-			var out apierrors.RevokeMandateHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

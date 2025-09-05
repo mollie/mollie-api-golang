@@ -1,9 +1,0 @@
-# OpenPending
-
-
-## Fields
-
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `Amount`                                                                                          | [*operations.OpenPendingAmount](../../models/operations/openpendingamount.md)                     | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
-| `Subtotals`                                                                                       | [][operations.OpenPendingSubtotal2](../../models/operations/openpendingsubtotal2.md)              | :heavy_minus_sign:                                                                                | N/A                                                                                               |

@@ -31,7 +31,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -44,16 +43,17 @@ func main() {
         }),
     )
 
-    res, err := s.Customers.Create(ctx, &operations.CreateCustomerRequest{
+    res, err := s.Customers.Create(ctx, &components.EntityCustomer{
+        ID: client.String("cst_5B8cwPMGnU"),
         Name: client.String("John Doe"),
         Email: client.String("example@email.com"),
-        Locale: operations.CreateCustomerLocaleRequestEnUs.ToPointer(),
+        Locale: components.LocaleResponseEnUs.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CustomerResponse != nil {
         // handle response
     }
 }
@@ -61,11 +61,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.CreateCustomerRequest](../../models/operations/createcustomerrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [components.EntityCustomer](../../models/components/entitycustomer.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `opts`                                                                 | [][operations.Option](../../models/operations/option.md)               | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 
@@ -73,10 +73,10 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.CreateCustomerHalJSONError | 404                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -95,7 +95,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -108,7 +107,7 @@ func main() {
         }),
     )
 
-    res, err := s.Customers.List(ctx, client.String("cst_5B8cwPMGnU"), client.Int64(50), operations.ListCustomersSortDesc.ToPointer(), client.Bool(false))
+    res, err := s.Customers.List(ctx, client.String("cst_5B8cwPMGnU"), client.Int64(50), components.ListSortDesc.ToPointer(), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
@@ -125,7 +124,7 @@ func main() {
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `from`                                                                                                                                                                                                                                                                                                                                                                                 | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | **int64*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
-| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | [*operations.ListCustomersSort](../../models/operations/listcustomerssort.md)                                                                                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from<br/>newest to oldest.                                                                                                                                                                                                                                             | desc                                                                                                                                                                                                                                                                                                                                                                                   |
+| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | [*components.ListSort](../../models/components/listsort.md)                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from<br/>newest to oldest.                                                                                                                                                                                                                                             | desc                                                                                                                                                                                                                                                                                                                                                                                   |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -135,11 +134,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                    | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| apierrors.ListCustomersBadRequestHalJSONError | 400                                           | application/hal+json                          |
-| apierrors.ListCustomersNotFoundHalJSONError   | 404                                           | application/hal+json                          |
-| apierrors.APIError                            | 4XX, 5XX                                      | \*/\*                                         |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -156,7 +154,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -169,7 +166,7 @@ func main() {
         }),
     )
 
-    res, err := s.Customers.Get(ctx, "cst_5B8cwPMGnU", operations.GetCustomerIncludeEvents.ToPointer(), client.Bool(false))
+    res, err := s.Customers.Get(ctx, "cst_5B8cwPMGnU", client.String("events"), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
@@ -185,7 +182,7 @@ func main() {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `customerID`                                                                                                                                                                                                                                                                                                                                                                           | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | [*operations.GetCustomerInclude](../../models/operations/getcustomerinclude.md)                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | events                                                                                                                                                                                                                                                                                                                                                                                 |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -195,10 +192,10 @@ func main() {
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| apierrors.GetCustomerHalJSONError | 404                               | application/hal+json              |
-| apierrors.APIError                | 4XX, 5XX                          | \*/\*                             |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -217,7 +214,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -230,16 +226,17 @@ func main() {
         }),
     )
 
-    res, err := s.Customers.Update(ctx, "cst_5B8cwPMGnU", &operations.UpdateCustomerRequestBody{
+    res, err := s.Customers.Update(ctx, "cst_5B8cwPMGnU", &components.EntityCustomer{
+        ID: client.String("cst_5B8cwPMGnU"),
         Name: client.String("John Doe"),
         Email: client.String("example@email.com"),
-        Locale: operations.UpdateCustomerLocaleRequestEnUs.ToPointer(),
+        Locale: components.LocaleResponseEnUs.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CustomerResponse != nil {
         // handle response
     }
 }
@@ -247,12 +244,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |                                                                                               |
-| `customerID`                                                                                  | *string*                                                                                      | :heavy_check_mark:                                                                            | Provide the ID of the related customer.                                                       | cst_5B8cwPMGnU                                                                                |
-| `requestBody`                                                                                 | [*operations.UpdateCustomerRequestBody](../../models/operations/updatecustomerrequestbody.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |                                                                                               |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |                                                                         |
+| `customerID`                                                            | *string*                                                                | :heavy_check_mark:                                                      | Provide the ID of the related customer.                                 | cst_5B8cwPMGnU                                                          |
+| `entityCustomer`                                                        | [*components.EntityCustomer](../../models/components/entitycustomer.md) | :heavy_minus_sign:                                                      | N/A                                                                     |                                                                         |
+| `opts`                                                                  | [][operations.Option](../../models/operations/option.md)                | :heavy_minus_sign:                                                      | The options for this request.                                           |                                                                         |
 
 ### Response
 
@@ -260,10 +257,10 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.UpdateCustomerHalJSONError | 404                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
 
@@ -320,10 +317,10 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.DeleteCustomerHalJSONError | 404                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## CreatePayment
 
@@ -350,7 +347,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/types"
 	"log"
 )
@@ -364,49 +360,70 @@ func main() {
         }),
     )
 
-    res, err := s.Customers.CreatePayment(ctx, "cst_5B8cwPMGnU", &operations.CreateCustomerPaymentRequestBody{
-        Description: "Chess Board",
-        Amount: operations.CreateCustomerPaymentAmountRequest{
+    res, err := s.Customers.CreatePayment(ctx, "cst_5B8cwPMGnU", &components.PaymentRequest{
+        ID: client.String("tr_5B8cwPMGnU"),
+        Description: client.String("Chess Board"),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountRefunded: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountRemaining: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountCaptured: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        AmountChargedBack: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        SettlementAmount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
         RedirectURL: client.String("https://example.org/redirect"),
         CancelURL: client.String("https://example.org/cancel"),
         WebhookURL: client.String("https://example.org/webhooks"),
-        Lines: []operations.CreateCustomerPaymentLineRequest{
-            operations.CreateCustomerPaymentLineRequest{
-                Type: operations.CreateCustomerPaymentLineTypeRequestPhysical.ToPointer(),
+        Lines: []components.PaymentRequestLine{
+            components.PaymentRequestLine{
+                Type: components.PaymentRequestTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 QuantityUnit: client.String("pcs"),
-                UnitPrice: operations.CreateCustomerPaymentUnitPriceRequest{
+                UnitPrice: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                DiscountAmount: &operations.CreateCustomerPaymentDiscountAmountRequest{
+                DiscountAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                TotalAmount: operations.CreateCustomerPaymentTotalAmountRequest{
+                TotalAmount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 VatRate: client.String("21.00"),
-                VatAmount: &operations.CreateCustomerPaymentVatAmountRequest{
+                VatAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 Sku: client.String("9780241661628"),
-                Categories: []operations.CreateCustomerPaymentCategoryRequest{
-                    operations.CreateCustomerPaymentCategoryRequestMeal,
-                    operations.CreateCustomerPaymentCategoryRequestEco,
+                Categories: []components.PaymentRequestCategory{
+                    components.PaymentRequestCategoryMeal,
+                    components.PaymentRequestCategoryEco,
                 },
                 ImageURL: client.String("https://..."),
                 ProductURL: client.String("https://..."),
-                Recurring: &operations.CreateCustomerPaymentRecurringRequest{
+                Recurring: &components.RecurringLineItem{
                     Description: client.String("Gym subscription"),
                     Interval: "12 months",
-                    Amount: &operations.CreateCustomerPaymentRecurringAmountRequest{
+                    Amount: &components.Amount{
                         Currency: "EUR",
                         Value: "10.00",
                     },
@@ -415,7 +432,7 @@ func main() {
                 },
             },
         },
-        BillingAddress: &operations.CreateCustomerPaymentBillingAddressRequest{
+        BillingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -429,7 +446,7 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        ShippingAddress: &operations.CreateCustomerPaymentShippingAddressRequest{
+        ShippingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -443,50 +460,54 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        Locale: operations.CreateCustomerPaymentLocaleRequestEnUs.ToPointer(),
-        Method: operations.CreateCustomerPaymentMethodRequestIdeal.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
+        Method: components.MethodIdeal.ToPointer(),
         Issuer: client.String("ideal_INGBNL2A"),
         RestrictPaymentMethodsToCountry: client.String("NL"),
-        CaptureMode: operations.CreateCustomerPaymentCaptureModeRequestManual.ToPointer(),
+        CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.String("8 hours"),
-        ApplicationFee: &operations.CreateCustomerPaymentApplicationFeeRequest{
-            Amount: &operations.CreateCustomerPaymentApplicationFeeAmountRequest{
+        ApplicationFee: &components.PaymentRequestApplicationFee{
+            Amount: &components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
             Description: client.String("10"),
         },
-        Routing: []operations.CreateCustomerPaymentRoutingRequest{
-            operations.CreateCustomerPaymentRoutingRequest{
-                Amount: operations.CreateCustomerPaymentRoutingAmountRequest{
+        Routing: []components.EntityPaymentRoute{
+            components.EntityPaymentRoute{
+                ID: "rt_5B8cwPMGnU",
+                Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: operations.CreateCustomerPaymentDestinationRequest{
-                    Type: operations.CreateCustomerPaymentRoutingTypeRequestOrganization,
+                Destination: components.EntityPaymentRouteDestination{
+                    Type: components.EntityPaymentRouteTypeOrganization,
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.String("2024-12-12"),
-                Links: operations.CreateCustomerPaymentLinksRequest{
-                    Self: operations.CreateCustomerPaymentSelfRequest{
+                Links: components.EntityPaymentRouteLinks{
+                    Self: components.URLObj{
                         Href: "https://...",
                         Type: "application/hal+json",
                     },
-                    Payment: operations.CreateCustomerPaymentPaymentRequest{
+                    Payment: components.URLObj{
                         Href: "https://...",
                         Type: "application/hal+json",
                     },
                 },
             },
         },
-        SequenceType: operations.CreateCustomerPaymentSequenceTypeRequestOneoff.ToPointer(),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        SubscriptionID: client.String("sub_5B8cwPMGnU"),
         MandateID: client.String("mdt_5B8cwPMGnU"),
         CustomerID: client.String("cst_5B8cwPMGnU"),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
+        SettlementID: client.String("stl_5B8cwPMGnU"),
+        OrderID: client.String("ord_5B8cwPMGnU"),
         DueDate: client.String("2025-01-01"),
         Testmode: client.Bool(false),
         ApplePayPaymentToken: client.String("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &operations.CreateCustomerPaymentCompany{
+        Company: &components.Company{
             RegistrationNumber: client.String("12345678"),
             VatNumber: client.String("NL123456789B01"),
             EntityType: nil,
@@ -503,7 +524,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -511,12 +532,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 | Example                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                                       | :heavy_check_mark:                                                                                          | The context to use for the request.                                                                         |                                                                                                             |
-| `customerID`                                                                                                | *string*                                                                                                    | :heavy_check_mark:                                                                                          | Provide the ID of the related customer.                                                                     | cst_5B8cwPMGnU                                                                                              |
-| `requestBody`                                                                                               | [*operations.CreateCustomerPaymentRequestBody](../../models/operations/createcustomerpaymentrequestbody.md) | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |                                                                                                             |
-| `opts`                                                                                                      | [][operations.Option](../../models/operations/option.md)                                                    | :heavy_minus_sign:                                                                                          | The options for this request.                                                                               |                                                                                                             |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |                                                                         |
+| `customerID`                                                            | *string*                                                                | :heavy_check_mark:                                                      | Provide the ID of the related customer.                                 | cst_5B8cwPMGnU                                                          |
+| `paymentRequest`                                                        | [*components.PaymentRequest](../../models/components/paymentrequest.md) | :heavy_minus_sign:                                                      | N/A                                                                     |                                                                         |
+| `opts`                                                                  | [][operations.Option](../../models/operations/option.md)                | :heavy_minus_sign:                                                      | The options for this request.                                           |                                                                         |
 
 ### Response
 
@@ -524,11 +545,11 @@ func main() {
 
 ### Errors
 
-| Error Type                                                     | Status Code                                                    | Content Type                                                   |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| apierrors.CreateCustomerPaymentUnprocessableEntityHalJSONError | 422                                                            | application/hal+json                                           |
-| apierrors.CreateCustomerPaymentServiceUnavailableHalJSONError  | 503                                                            | application/hal+json                                           |
-| apierrors.APIError                                             | 4XX, 5XX                                                       | \*/\*                                                          |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.ErrorResponse | 503                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListPayments
 
@@ -562,7 +583,7 @@ func main() {
         CustomerID: "cst_5B8cwPMGnU",
         From: client.String("tr_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListCustomerPaymentsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -589,7 +610,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| apierrors.ListCustomerPaymentsHalJSONError | 400                                        | application/hal+json                       |
-| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

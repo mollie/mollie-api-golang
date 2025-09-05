@@ -30,7 +30,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -43,27 +42,28 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.Create(ctx, &operations.CreateSalesInvoiceRequest{
+    res, err := s.SalesInvoices.Create(ctx, &components.EntitySalesInvoice{
+        ID: client.String("invoice_4Y0eZitmBnQ6IDoMqZQKh"),
         Testmode: client.Bool(false),
         ProfileID: client.String("pfl_QkEhN94Ba"),
-        Status: operations.CreateSalesInvoiceStatusRequestDraft,
-        VatScheme: operations.VatSchemeRequestStandard.ToPointer(),
-        VatMode: operations.VatModeRequestExclusive.ToPointer(),
+        Status: components.EntitySalesInvoiceStatusDraft.ToPointer(),
+        VatScheme: components.EntitySalesInvoiceVatSchemeStandard.ToPointer(),
+        VatMode: components.EntitySalesInvoiceVatModeExclusive.ToPointer(),
         Memo: client.String("This is a memo!"),
-        PaymentTerm: operations.CreateSalesInvoicePaymentTermRequestThirtydays.ToPointer(),
-        PaymentDetails: &operations.CreateSalesInvoicePaymentDetailsRequest{
-            Source: operations.CreateSalesInvoiceSourceRequestPaymentLink,
+        PaymentTerm: components.EntitySalesInvoicePaymentTermThirtydays.ToPointer(),
+        PaymentDetails: &components.SalesInvoicePaymentDetails{
+            Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
             SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
         },
-        EmailDetails: &operations.CreateSalesInvoiceEmailDetailsRequest{
+        EmailDetails: &components.SalesInvoiceEmailDetails{
             Subject: "Your invoice is available",
             Body: "Please find your invoice enclosed.",
         },
         CustomerID: client.String("cst_8wmqcHMN4U"),
         MandateID: client.String("mdt_pWUnw6pkBN"),
-        RecipientIdentifier: "customer-xyz-0123",
-        Recipient: &operations.CreateSalesInvoiceRecipientRequest{
-            Type: operations.CreateSalesInvoiceRecipientTypeRequestConsumer,
+        RecipientIdentifier: client.String("customer-xyz-0123"),
+        Recipient: &components.SalesInvoiceRecipient{
+            Type: components.SalesInvoiceRecipientTypeConsumer,
             Title: client.String("Mrs."),
             GivenName: client.String("Jane"),
             FamilyName: client.String("Doe"),
@@ -78,18 +78,38 @@ func main() {
             City: "Amsterdam",
             Region: client.String("Noord-Holland"),
             Country: "NL",
-            Locale: operations.CreateSalesInvoiceLocaleRequestNlNl,
+            Locale: components.SalesInvoiceRecipientLocaleNlNl,
         },
-        Lines: []operations.CreateSalesInvoiceLineRequest{},
-        Discount: &operations.CreateSalesInvoiceDiscountRequest{
-            Type: operations.CreateSalesInvoiceDiscountTypeRequestAmount,
+        Lines: []components.SalesInvoiceLineItem{},
+        Discount: &components.SalesInvoiceDiscount{
+            Type: components.SalesInvoiceDiscountTypeAmount,
+            Value: "10.00",
+        },
+        AmountDue: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        SubtotalAmount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        TotalAmount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        TotalVatAmount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        DiscountedSubtotalAmount: &components.Amount{
+            Currency: "EUR",
             Value: "10.00",
         },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySalesInvoiceResponse != nil {
         // handle response
     }
 }
@@ -97,11 +117,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.CreateSalesInvoiceRequest](../../models/operations/createsalesinvoicerequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [components.EntitySalesInvoice](../../models/components/entitysalesinvoice.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -109,11 +129,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| apierrors.CreateSalesInvoiceNotFoundHalJSONError            | 404                                                         | application/hal+json                                        |
-| apierrors.CreateSalesInvoiceUnprocessableEntityHalJSONError | 422                                                         | application/hal+json                                        |
-| apierrors.APIError                                          | 4XX, 5XX                                                    | \*/\*                                                       |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -163,7 +182,7 @@ func main() {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | **int64*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -174,10 +193,10 @@ func main() {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| apierrors.ListSalesInvoicesHalJSONError | 400                                     | application/hal+json                    |
-| apierrors.APIError                      | 4XX, 5XX                                | \*/\*                                   |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -214,7 +233,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySalesInvoiceResponse != nil {
         // handle response
     }
 }
@@ -225,7 +244,7 @@ func main() {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -235,10 +254,10 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.GetSalesInvoiceHalJSONError | 404                                   | application/hal+json                  |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -261,7 +280,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -274,22 +292,22 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", &operations.UpdateSalesInvoiceRequestBody{
+    res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", &components.UpdateValuesSalesInvoice{
         Testmode: client.Bool(false),
-        Status: operations.UpdateSalesInvoiceStatusRequestPaid.ToPointer(),
+        Status: components.UpdateValuesSalesInvoiceStatusPaid.ToPointer(),
         Memo: client.String("An updated memo!"),
-        PaymentTerm: operations.UpdateSalesInvoicePaymentTermRequestThirtydays.ToPointer(),
-        PaymentDetails: &operations.UpdateSalesInvoicePaymentDetailsRequest{
-            Source: operations.UpdateSalesInvoiceSourceRequestPaymentLink,
+        PaymentTerm: components.UpdateValuesSalesInvoicePaymentTermThirtydays.ToPointer(),
+        PaymentDetails: &components.SalesInvoicePaymentDetails{
+            Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
             SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
         },
-        EmailDetails: &operations.UpdateSalesInvoiceEmailDetailsRequest{
+        EmailDetails: &components.SalesInvoiceEmailDetails{
             Subject: "Your invoice is available",
             Body: "Please find your invoice enclosed.",
         },
         RecipientIdentifier: client.String("customer-xyz-0123"),
-        Recipient: &operations.UpdateSalesInvoiceRecipientRequest{
-            Type: operations.UpdateSalesInvoiceRecipientTypeRequestConsumer,
+        Recipient: &components.SalesInvoiceRecipient{
+            Type: components.SalesInvoiceRecipientTypeConsumer,
             Title: client.String("Mrs."),
             GivenName: client.String("Jane"),
             FamilyName: client.String("Doe"),
@@ -304,32 +322,32 @@ func main() {
             City: "Amsterdam",
             Region: client.String("Noord-Holland"),
             Country: "NL",
-            Locale: operations.UpdateSalesInvoiceLocaleRequestNlNl,
+            Locale: components.SalesInvoiceRecipientLocaleNlNl,
         },
-        Lines: []operations.UpdateSalesInvoiceLineRequest{
-            operations.UpdateSalesInvoiceLineRequest{
+        Lines: []components.SalesInvoiceLineItem{
+            components.SalesInvoiceLineItem{
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 VatRate: "21.00",
-                UnitPrice: operations.UpdateSalesInvoiceUnitPriceRequest{
+                UnitPrice: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Discount: &operations.UpdateSalesInvoiceLineDiscountRequest{
-                    Type: operations.UpdateSalesInvoiceLineTypeRequestAmount,
+                Discount: &components.SalesInvoiceDiscount{
+                    Type: components.SalesInvoiceDiscountTypeAmount,
                     Value: "10.00",
                 },
             },
         },
-        Discount: &operations.UpdateSalesInvoiceDiscountRequest{
-            Type: operations.UpdateSalesInvoiceDiscountTypeRequestAmount,
+        Discount: &components.SalesInvoiceDiscount{
+            Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySalesInvoiceResponse != nil {
         // handle response
     }
 }
@@ -337,12 +355,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `id`                                                                                                  | *string*                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the item you want to perform this operation on.                                     | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                         |
-| `requestBody`                                                                                         | [*operations.UpdateSalesInvoiceRequestBody](../../models/operations/updatesalesinvoicerequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |
+| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |
+| `updateValuesSalesInvoice`                                                                  | [*components.UpdateValuesSalesInvoice](../../models/components/updatevaluessalesinvoice.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |
 
 ### Response
 
@@ -350,11 +368,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| apierrors.UpdateSalesInvoiceNotFoundHalJSONError            | 404                                                         | application/hal+json                                        |
-| apierrors.UpdateSalesInvoiceUnprocessableEntityHalJSONError | 422                                                         | application/hal+json                                        |
-| apierrors.APIError                                          | 4XX, 5XX                                                    | \*/\*                                                       |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
 
@@ -376,7 +393,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -389,7 +405,7 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.Delete(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", &operations.DeleteSalesInvoiceRequestBody{
+    res, err := s.SalesInvoices.Delete(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", &components.DeleteValuesSalesInvoice{
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -403,12 +419,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `id`                                                                                                  | *string*                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the item you want to perform this operation on.                                     | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                         |
-| `requestBody`                                                                                         | [*operations.DeleteSalesInvoiceRequestBody](../../models/operations/deletesalesinvoicerequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |
+| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |
+| `deleteValuesSalesInvoice`                                                                  | [*components.DeleteValuesSalesInvoice](../../models/components/deletevaluessalesinvoice.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |
 
 ### Response
 
@@ -416,8 +432,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| apierrors.DeleteSalesInvoiceNotFoundHalJSONError            | 404                                                         | application/hal+json                                        |
-| apierrors.DeleteSalesInvoiceUnprocessableEntityHalJSONError | 422                                                         | application/hal+json                                        |
-| apierrors.APIError                                          | 4XX, 5XX                                                    | \*/\*                                                       |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

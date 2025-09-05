@@ -206,12 +206,12 @@ func (s *Onboarding) Get(ctx context.Context, opts ...operations.Option) (*opera
 				return nil, err
 			}
 
-			var out operations.GetOnboardingStatusResponseBody
+			var out components.EntityOnboardingStatus
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityOnboardingStatus = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

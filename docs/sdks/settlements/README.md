@@ -50,7 +50,7 @@ func main() {
         BalanceID: client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
         Year: client.String("2025"),
         Month: client.String("1"),
-        Currencies: operations.CurrenciesEur.ToPointer(),
+        Currencies: components.CurrenciesEur.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -75,11 +75,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| apierrors.ListSettlementsBadRequestHalJSONError | 400                                             | application/hal+json                            |
-| apierrors.ListSettlementsNotFoundHalJSONError   | 404                                             | application/hal+json                            |
-| apierrors.APIError                              | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -123,7 +122,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySettlement != nil {
         // handle response
     }
 }
@@ -131,11 +130,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |                                                                   |
-| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | stl_jDk30akdN                                                     |
-| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |                                                                   |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
+| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
+| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |
 
 ### Response
 
@@ -143,10 +142,10 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.GetSettlementHalJSONError | 404                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetOpen
 
@@ -186,7 +185,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySettlement != nil {
         // handle response
     }
 }
@@ -246,7 +245,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySettlement != nil {
         // handle response
     }
 }
@@ -306,7 +305,7 @@ func main() {
         SettlementID: "stl_jDk30akdN",
         From: client.String("tr_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListSettlementPaymentsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -333,10 +332,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.ListSettlementPaymentsHalJSONError | 400                                          | application/hal+json                         |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListCaptures
 
@@ -372,7 +371,7 @@ func main() {
         SettlementID: "stl_jDk30akdN",
         From: client.String("cpt_vytxeTZskVKR7C7WgdSP3d"),
         Limit: client.Int64(50),
-        Embed: operations.ListSettlementCapturesEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -398,11 +397,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.ListSettlementCapturesBadRequestHalJSONError | 400                                                    | application/hal+json                                   |
-| apierrors.ListSettlementCapturesNotFoundHalJSONError   | 404                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListRefunds
 
@@ -438,7 +436,7 @@ func main() {
         SettlementID: "stl_jDk30akdN",
         From: client.String("re_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Embed: operations.ListSettlementRefundsEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -464,11 +462,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| apierrors.ListSettlementRefundsBadRequestHalJSONError | 400                                                   | application/hal+json                                  |
-| apierrors.ListSettlementRefundsNotFoundHalJSONError   | 404                                                   | application/hal+json                                  |
-| apierrors.APIError                                    | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListChargebacks
 
@@ -504,7 +501,7 @@ func main() {
         SettlementID: "stl_jDk30akdN",
         From: client.String("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Int64(50),
-        Embed: operations.ListSettlementChargebacksEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -530,8 +527,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| apierrors.ListSettlementChargebacksBadRequestHalJSONError | 400                                                       | application/hal+json                                      |
-| apierrors.ListSettlementChargebacksNotFoundHalJSONError   | 404                                                       | application/hal+json                                      |
-| apierrors.APIError                                        | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

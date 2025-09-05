@@ -1,8 +1,0 @@
-# ListAllChargebacksBadRequestLinks
-
-
-## Fields
-
-| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                              | [operations.ListAllChargebacksBadRequestDocumentation](../../models/operations/listallchargebacksbadrequestdocumentation.md) | :heavy_check_mark:                                                                                                           | The URL to the generic Mollie API error handling guide.                                                                      |

@@ -1,8 +1,0 @@
-# ListSettlementsNotFoundLinks
-
-
-## Fields
-
-| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `Documentation`                                                                                                    | [operations.ListSettlementsNotFoundDocumentation](../../models/operations/listsettlementsnotfounddocumentation.md) | :heavy_check_mark:                                                                                                 | The URL to the generic Mollie API error handling guide.                                                            |

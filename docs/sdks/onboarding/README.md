@@ -39,7 +39,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityOnboardingStatus != nil {
         // handle response
     }
 }
@@ -96,13 +96,13 @@ func main() {
     )
 
     res, err := s.Onboarding.Submit(ctx, &operations.SubmitOnboardingDataRequest{
-        Organization: &operations.SubmitOnboardingDataOrganization{
+        Organization: &operations.Organization{
             Name: client.String("Mollie B.V."),
             RegistrationNumber: client.String("30204462"),
             VatNumber: client.String("NL815839091B01"),
-            VatRegulation: operations.SubmitOnboardingDataVatRegulationDutch.ToPointer(),
+            VatRegulation: operations.VatRegulationDutch.ToPointer(),
         },
-        Profile: &operations.SubmitOnboardingDataProfile{
+        Profile: &operations.Profile{
             Name: client.String("Mollie"),
             URL: client.String("https://www.mollie.com"),
             Email: client.String("info@mollie.com"),

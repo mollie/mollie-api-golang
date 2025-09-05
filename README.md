@@ -411,11 +411,10 @@ By Default, an API error will return `apierrors.APIError`. When custom error res
 
 For example, the `List` function may return the following errors:
 
-| Error Type                                   | Status Code | Content Type         |
-| -------------------------------------------- | ----------- | -------------------- |
-| apierrors.ListBalancesBadRequestHalJSONError | 400         | application/hal+json |
-| apierrors.ListBalancesNotFoundHalJSONError   | 404         | application/hal+json |
-| apierrors.APIError                           | 4XX, 5XX    | \*/\*                |
+| Error Type              | Status Code | Content Type         |
+| ----------------------- | ----------- | -------------------- |
+| apierrors.ErrorResponse | 400, 404    | application/hal+json |
+| apierrors.APIError      | 4XX, 5XX    | \*/\*                |
 
 ### Example
 
@@ -444,13 +443,7 @@ func main() {
 	res, err := s.Balances.List(ctx, client.String("EUR"), client.String("bal_gVMhHKqSSRYJyPsuoPNFH"), client.Int64(50), client.Bool(false))
 	if err != nil {
 
-		var e *apierrors.ListBalancesBadRequestHalJSONError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.ListBalancesNotFoundHalJSONError
+		var e *apierrors.ErrorResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())

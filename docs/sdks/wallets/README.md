@@ -61,7 +61,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntitySession != nil {
         // handle response
     }
 }
@@ -81,7 +81,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                          | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| apierrors.RequestApplePayPaymentSessionHalJSONError | 422                                                 | application/hal+json                                |
-| apierrors.APIError                                  | 4XX, 5XX                                            | \*/\*                                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

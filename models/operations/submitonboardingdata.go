@@ -8,61 +8,22 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-// SubmitOnboardingDataAddress - The address of the organization.
-type SubmitOnboardingDataAddress struct {
-	// A street and street number.
-	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
-	// A postal code. This field may be required if the provided country has a postal code system.
-	PostalCode *string `json:"postalCode,omitempty"`
-	City       *string `json:"city,omitempty"`
-	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	Country *string `json:"country,omitempty"`
-}
-
-func (o *SubmitOnboardingDataAddress) GetStreetAndNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.StreetAndNumber
-}
-
-func (o *SubmitOnboardingDataAddress) GetPostalCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PostalCode
-}
-
-func (o *SubmitOnboardingDataAddress) GetCity() *string {
-	if o == nil {
-		return nil
-	}
-	return o.City
-}
-
-func (o *SubmitOnboardingDataAddress) GetCountry() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Country
-}
-
-// SubmitOnboardingDataVatRegulation - Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+// VatRegulation - Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
 // The United Kingdom, and shifted VAT for merchants in the European Union.
 //
 // The field can be omitted for merchants residing in other countries.
-type SubmitOnboardingDataVatRegulation string
+type VatRegulation string
 
 const (
-	SubmitOnboardingDataVatRegulationDutch   SubmitOnboardingDataVatRegulation = "dutch"
-	SubmitOnboardingDataVatRegulationBritish SubmitOnboardingDataVatRegulation = "british"
-	SubmitOnboardingDataVatRegulationShifted SubmitOnboardingDataVatRegulation = "shifted"
+	VatRegulationDutch   VatRegulation = "dutch"
+	VatRegulationBritish VatRegulation = "british"
+	VatRegulationShifted VatRegulation = "shifted"
 )
 
-func (e SubmitOnboardingDataVatRegulation) ToPointer() *SubmitOnboardingDataVatRegulation {
+func (e VatRegulation) ToPointer() *VatRegulation {
 	return &e
 }
-func (e *SubmitOnboardingDataVatRegulation) UnmarshalJSON(data []byte) error {
+func (e *VatRegulation) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -73,18 +34,17 @@ func (e *SubmitOnboardingDataVatRegulation) UnmarshalJSON(data []byte) error {
 	case "british":
 		fallthrough
 	case "shifted":
-		*e = SubmitOnboardingDataVatRegulation(v)
+		*e = VatRegulation(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SubmitOnboardingDataVatRegulation: %v", v)
+		return fmt.Errorf("invalid value for VatRegulation: %v", v)
 	}
 }
 
-type SubmitOnboardingDataOrganization struct {
+type Organization struct {
 	// The name of the organization.
-	Name *string `json:"name,omitempty"`
-	// The address of the organization.
-	Address *SubmitOnboardingDataAddress `json:"address,omitempty"`
+	Name    *string             `json:"name,omitempty"`
+	Address *components.Address `json:"address,omitempty"`
 	// The registration number of the organization at their local chamber of commerce.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
@@ -96,45 +56,45 @@ type SubmitOnboardingDataOrganization struct {
 	// The United Kingdom, and shifted VAT for merchants in the European Union.
 	//
 	// The field can be omitted for merchants residing in other countries.
-	VatRegulation *SubmitOnboardingDataVatRegulation `json:"vatRegulation,omitempty"`
+	VatRegulation *VatRegulation `json:"vatRegulation,omitempty"`
 }
 
-func (o *SubmitOnboardingDataOrganization) GetName() *string {
+func (o *Organization) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *SubmitOnboardingDataOrganization) GetAddress() *SubmitOnboardingDataAddress {
+func (o *Organization) GetAddress() *components.Address {
 	if o == nil {
 		return nil
 	}
 	return o.Address
 }
 
-func (o *SubmitOnboardingDataOrganization) GetRegistrationNumber() *string {
+func (o *Organization) GetRegistrationNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RegistrationNumber
 }
 
-func (o *SubmitOnboardingDataOrganization) GetVatNumber() *string {
+func (o *Organization) GetVatNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.VatNumber
 }
 
-func (o *SubmitOnboardingDataOrganization) GetVatRegulation() *SubmitOnboardingDataVatRegulation {
+func (o *Organization) GetVatRegulation() *VatRegulation {
 	if o == nil {
 		return nil
 	}
 	return o.VatRegulation
 }
 
-type SubmitOnboardingDataProfile struct {
+type Profile struct {
 	// The profile's name, this will usually reflect the trade name or brand name of the profile's website
 	// or application.
 	Name *string `json:"name,omitempty"`
@@ -152,42 +112,42 @@ type SubmitOnboardingDataProfile struct {
 	BusinessCategory *string `json:"businessCategory,omitempty"`
 }
 
-func (o *SubmitOnboardingDataProfile) GetName() *string {
+func (o *Profile) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *SubmitOnboardingDataProfile) GetURL() *string {
+func (o *Profile) GetURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-func (o *SubmitOnboardingDataProfile) GetEmail() *string {
+func (o *Profile) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *SubmitOnboardingDataProfile) GetPhone() *string {
+func (o *Profile) GetPhone() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Phone
 }
 
-func (o *SubmitOnboardingDataProfile) GetDescription() *string {
+func (o *Profile) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *SubmitOnboardingDataProfile) GetBusinessCategory() *string {
+func (o *Profile) GetBusinessCategory() *string {
 	if o == nil {
 		return nil
 	}
@@ -195,18 +155,18 @@ func (o *SubmitOnboardingDataProfile) GetBusinessCategory() *string {
 }
 
 type SubmitOnboardingDataRequest struct {
-	Organization *SubmitOnboardingDataOrganization `json:"organization,omitempty"`
-	Profile      *SubmitOnboardingDataProfile      `json:"profile,omitempty"`
+	Organization *Organization `json:"organization,omitempty"`
+	Profile      *Profile      `json:"profile,omitempty"`
 }
 
-func (o *SubmitOnboardingDataRequest) GetOrganization() *SubmitOnboardingDataOrganization {
+func (o *SubmitOnboardingDataRequest) GetOrganization() *Organization {
 	if o == nil {
 		return nil
 	}
 	return o.Organization
 }
 
-func (o *SubmitOnboardingDataRequest) GetProfile() *SubmitOnboardingDataProfile {
+func (o *SubmitOnboardingDataRequest) GetProfile() *Profile {
 	if o == nil {
 		return nil
 	}

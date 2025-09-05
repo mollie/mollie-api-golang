@@ -1,8 +1,0 @@
-# GetBalanceReportUnprocessableEntityLinks
-
-
-## Fields
-
-| Field                                                                                                                                      | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Documentation`                                                                                                                            | [operations.GetBalanceReportUnprocessableEntityDocumentation](../../models/operations/getbalancereportunprocessableentitydocumentation.md) | :heavy_check_mark:                                                                                                                         | The URL to the generic Mollie API error handling guide.                                                                                    |

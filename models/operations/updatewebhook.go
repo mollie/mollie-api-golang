@@ -3,62 +3,16 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// UpdateWebhookWebhookEventTypesRequest - The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-// that require explicit selection. Separate multiple event types with a comma.
-type UpdateWebhookWebhookEventTypesRequest string
-
-const (
-	UpdateWebhookWebhookEventTypesRequestPaymentLinkPaid           UpdateWebhookWebhookEventTypesRequest = "payment-link.paid"
-	UpdateWebhookWebhookEventTypesRequestBalanceTransactionCreated UpdateWebhookWebhookEventTypesRequest = "balance-transaction.created"
-	UpdateWebhookWebhookEventTypesRequestSalesInvoiceCreated       UpdateWebhookWebhookEventTypesRequest = "sales-invoice.created"
-	UpdateWebhookWebhookEventTypesRequestSalesInvoiceIssued        UpdateWebhookWebhookEventTypesRequest = "sales-invoice.issued"
-	UpdateWebhookWebhookEventTypesRequestSalesInvoiceCanceled      UpdateWebhookWebhookEventTypesRequest = "sales-invoice.canceled"
-	UpdateWebhookWebhookEventTypesRequestSalesInvoicePaid          UpdateWebhookWebhookEventTypesRequest = "sales-invoice.paid"
-	UpdateWebhookWebhookEventTypesRequestWildcard                  UpdateWebhookWebhookEventTypesRequest = "*"
-)
-
-func (e UpdateWebhookWebhookEventTypesRequest) ToPointer() *UpdateWebhookWebhookEventTypesRequest {
-	return &e
-}
-func (e *UpdateWebhookWebhookEventTypesRequest) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-link.paid":
-		fallthrough
-	case "balance-transaction.created":
-		fallthrough
-	case "sales-invoice.created":
-		fallthrough
-	case "sales-invoice.issued":
-		fallthrough
-	case "sales-invoice.canceled":
-		fallthrough
-	case "sales-invoice.paid":
-		fallthrough
-	case "*":
-		*e = UpdateWebhookWebhookEventTypesRequest(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateWebhookWebhookEventTypesRequest: %v", v)
-	}
-}
 
 type UpdateWebhookRequestBody struct {
 	// A name that identifies the webhook.
 	Name *string `json:"name,omitempty"`
 	// The URL Mollie will send the events to. This URL must be publicly accessible.
 	URL *string `json:"url,omitempty"`
-	// The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-	// that require explicit selection. Separate multiple event types with a comma.
-	WebhookEventTypes *UpdateWebhookWebhookEventTypesRequest `json:"eventTypes,omitempty"`
+	// The event's type
+	WebhookEventTypes *components.WebhookEventTypes `json:"eventTypes,omitempty"`
 	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
 	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 	//
@@ -80,7 +34,7 @@ func (o *UpdateWebhookRequestBody) GetURL() *string {
 	return o.URL
 }
 
-func (o *UpdateWebhookRequestBody) GetWebhookEventTypes() *UpdateWebhookWebhookEventTypesRequest {
+func (o *UpdateWebhookRequestBody) GetWebhookEventTypes() *components.WebhookEventTypes {
 	if o == nil {
 		return nil
 	}
@@ -114,306 +68,10 @@ func (o *UpdateWebhookRequest) GetRequestBody() *UpdateWebhookRequestBody {
 	return o.RequestBody
 }
 
-// UpdateWebhookUnprocessableEntityDocumentation - The URL to the generic Mollie API error handling guide.
-type UpdateWebhookUnprocessableEntityDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *UpdateWebhookUnprocessableEntityDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateWebhookUnprocessableEntityDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type UpdateWebhookUnprocessableEntityLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation UpdateWebhookUnprocessableEntityDocumentation `json:"documentation"`
-}
-
-func (o *UpdateWebhookUnprocessableEntityLinks) GetDocumentation() UpdateWebhookUnprocessableEntityDocumentation {
-	if o == nil {
-		return UpdateWebhookUnprocessableEntityDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateWebhookNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type UpdateWebhookNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *UpdateWebhookNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateWebhookNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type UpdateWebhookNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation UpdateWebhookNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *UpdateWebhookNotFoundLinks) GetDocumentation() UpdateWebhookNotFoundDocumentation {
-	if o == nil {
-		return UpdateWebhookNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateWebhookEventTypeWebhookEventTypes - The event's type
-type UpdateWebhookEventTypeWebhookEventTypes string
-
-const (
-	UpdateWebhookEventTypeWebhookEventTypesPaymentLinkPaid           UpdateWebhookEventTypeWebhookEventTypes = "payment-link.paid"
-	UpdateWebhookEventTypeWebhookEventTypesBalanceTransactionCreated UpdateWebhookEventTypeWebhookEventTypes = "balance-transaction.created"
-	UpdateWebhookEventTypeWebhookEventTypesSalesInvoiceCreated       UpdateWebhookEventTypeWebhookEventTypes = "sales-invoice.created"
-	UpdateWebhookEventTypeWebhookEventTypesSalesInvoiceIssued        UpdateWebhookEventTypeWebhookEventTypes = "sales-invoice.issued"
-	UpdateWebhookEventTypeWebhookEventTypesSalesInvoiceCanceled      UpdateWebhookEventTypeWebhookEventTypes = "sales-invoice.canceled"
-	UpdateWebhookEventTypeWebhookEventTypesSalesInvoicePaid          UpdateWebhookEventTypeWebhookEventTypes = "sales-invoice.paid"
-	UpdateWebhookEventTypeWebhookEventTypesWildcard                  UpdateWebhookEventTypeWebhookEventTypes = "*"
-)
-
-func (e UpdateWebhookEventTypeWebhookEventTypes) ToPointer() *UpdateWebhookEventTypeWebhookEventTypes {
-	return &e
-}
-func (e *UpdateWebhookEventTypeWebhookEventTypes) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-link.paid":
-		fallthrough
-	case "balance-transaction.created":
-		fallthrough
-	case "sales-invoice.created":
-		fallthrough
-	case "sales-invoice.issued":
-		fallthrough
-	case "sales-invoice.canceled":
-		fallthrough
-	case "sales-invoice.paid":
-		fallthrough
-	case "*":
-		*e = UpdateWebhookEventTypeWebhookEventTypes(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateWebhookEventTypeWebhookEventTypes: %v", v)
-	}
-}
-
-// UpdateWebhookStatus - The subscription's current status.
-type UpdateWebhookStatus string
-
-const (
-	UpdateWebhookStatusEnabled  UpdateWebhookStatus = "enabled"
-	UpdateWebhookStatusBlocked  UpdateWebhookStatus = "blocked"
-	UpdateWebhookStatusDisabled UpdateWebhookStatus = "disabled"
-	UpdateWebhookStatusDeleted  UpdateWebhookStatus = "deleted"
-)
-
-func (e UpdateWebhookStatus) ToPointer() *UpdateWebhookStatus {
-	return &e
-}
-func (e *UpdateWebhookStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "enabled":
-		fallthrough
-	case "blocked":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "deleted":
-		*e = UpdateWebhookStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateWebhookStatus: %v", v)
-	}
-}
-
-// UpdateWebhookMode - Whether this entity was created in live mode or in test mode.
-type UpdateWebhookMode string
-
-const (
-	UpdateWebhookModeLive UpdateWebhookMode = "live"
-	UpdateWebhookModeTest UpdateWebhookMode = "test"
-)
-
-func (e UpdateWebhookMode) ToPointer() *UpdateWebhookMode {
-	return &e
-}
-func (e *UpdateWebhookMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = UpdateWebhookMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateWebhookMode: %v", v)
-	}
-}
-
-// UpdateWebhookDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type UpdateWebhookDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateWebhookDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateWebhookDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type UpdateWebhookLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation UpdateWebhookDocumentation `json:"documentation"`
-}
-
-func (o *UpdateWebhookLinks) GetDocumentation() UpdateWebhookDocumentation {
-	if o == nil {
-		return UpdateWebhookDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateWebhookResponseBody - The webhook object.
-type UpdateWebhookResponseBody struct {
-	// Indicates the response contains a webhook subscription object.
-	// Will always contain the string `webhook` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this subscription.
-	ID string `json:"id"`
-	// The subscription's events destination.
-	URL string `json:"url"`
-	// The identifier uniquely referring to the profile that created the subscription.
-	ProfileID *string `json:"profileId"`
-	// The subscription's date time of creation.
-	CreatedAt string `json:"createdAt"`
-	// The subscription's name.
-	Name string `json:"name"`
-	// The events types that are subscribed.
-	EventTypes []UpdateWebhookEventTypeWebhookEventTypes `json:"eventTypes"`
-	// The subscription's current status.
-	Status UpdateWebhookStatus `json:"status"`
-	// Whether this entity was created in live mode or in test mode.
-	Mode UpdateWebhookMode `json:"mode"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links UpdateWebhookLinks `json:"_links"`
-}
-
-func (o *UpdateWebhookResponseBody) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *UpdateWebhookResponseBody) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *UpdateWebhookResponseBody) GetURL() string {
-	if o == nil {
-		return ""
-	}
-	return o.URL
-}
-
-func (o *UpdateWebhookResponseBody) GetProfileID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProfileID
-}
-
-func (o *UpdateWebhookResponseBody) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
-func (o *UpdateWebhookResponseBody) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *UpdateWebhookResponseBody) GetEventTypes() []UpdateWebhookEventTypeWebhookEventTypes {
-	if o == nil {
-		return []UpdateWebhookEventTypeWebhookEventTypes{}
-	}
-	return o.EventTypes
-}
-
-func (o *UpdateWebhookResponseBody) GetStatus() UpdateWebhookStatus {
-	if o == nil {
-		return UpdateWebhookStatus("")
-	}
-	return o.Status
-}
-
-func (o *UpdateWebhookResponseBody) GetMode() UpdateWebhookMode {
-	if o == nil {
-		return UpdateWebhookMode("")
-	}
-	return o.Mode
-}
-
-func (o *UpdateWebhookResponseBody) GetLinks() UpdateWebhookLinks {
-	if o == nil {
-		return UpdateWebhookLinks{}
-	}
-	return o.Links
-}
-
 type UpdateWebhookResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The webhook object.
-	Object *UpdateWebhookResponseBody
+	EntityWebhook *components.EntityWebhook
 }
 
 func (o *UpdateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -423,9 +81,9 @@ func (o *UpdateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *UpdateWebhookResponse) GetObject() *UpdateWebhookResponseBody {
+func (o *UpdateWebhookResponse) GetEntityWebhook() *components.EntityWebhook {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.EntityWebhook
 }

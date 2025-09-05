@@ -60,10 +60,10 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.ListPermissionsHalJSONError | 400                                   | application/hal+json                  |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -96,7 +96,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityPermission != nil {
         // handle response
     }
 }
@@ -117,7 +117,7 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.GetPermissionHalJSONError | 404                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

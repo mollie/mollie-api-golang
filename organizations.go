@@ -220,12 +220,12 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out operations.GetOrganizationResponseBody
+			var out components.EntityOrganization
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityOrganization = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -241,7 +241,7 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, opts
 				return nil, err
 			}
 
-			var out apierrors.GetOrganizationHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -461,12 +461,12 @@ func (s *Organizations) GetCurrent(ctx context.Context, opts ...operations.Optio
 				return nil, err
 			}
 
-			var out operations.GetCurrentOrganizationResponseBody
+			var out components.EntityOrganization
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityOrganization = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

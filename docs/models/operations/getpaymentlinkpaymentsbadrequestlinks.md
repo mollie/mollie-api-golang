@@ -1,8 +1,0 @@
-# GetPaymentLinkPaymentsBadRequestLinks
-
-
-## Fields
-
-| Field                                                                                                                                | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `Documentation`                                                                                                                      | [operations.GetPaymentLinkPaymentsBadRequestDocumentation](../../models/operations/getpaymentlinkpaymentsbadrequestdocumentation.md) | :heavy_check_mark:                                                                                                                   | The URL to the generic Mollie API error handling guide.                                                                              |

@@ -3,42 +3,14 @@
 package operations
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// GetCustomerInclude - This endpoint allows you to include additional information via the `include` query string parameter.
-type GetCustomerInclude string
-
-const (
-	GetCustomerIncludeEvents GetCustomerInclude = "events"
-)
-
-func (e GetCustomerInclude) ToPointer() *GetCustomerInclude {
-	return &e
-}
-func (e *GetCustomerInclude) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "events":
-		*e = GetCustomerInclude(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetCustomerInclude: %v", v)
-	}
-}
 
 type GetCustomerRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// This endpoint allows you to include additional information via the `include` query string parameter.
-	Include *GetCustomerInclude `queryParam:"style=form,explode=true,name=include"`
+	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -54,7 +26,7 @@ func (o *GetCustomerRequest) GetCustomerID() string {
 	return o.CustomerID
 }
 
-func (o *GetCustomerRequest) GetInclude() *GetCustomerInclude {
+func (o *GetCustomerRequest) GetInclude() *string {
 	if o == nil {
 		return nil
 	}
@@ -68,558 +40,104 @@ func (o *GetCustomerRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// GetCustomerNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type GetCustomerNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *GetCustomerNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetCustomerNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type GetCustomerNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation GetCustomerNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *GetCustomerNotFoundLinks) GetDocumentation() GetCustomerNotFoundDocumentation {
-	if o == nil {
-		return GetCustomerNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// GetCustomerMode - Whether this entity was created in live mode or in test mode.
-type GetCustomerMode string
-
-const (
-	GetCustomerModeLive GetCustomerMode = "live"
-	GetCustomerModeTest GetCustomerMode = "test"
-)
-
-func (e GetCustomerMode) ToPointer() *GetCustomerMode {
-	return &e
-}
-func (e *GetCustomerMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = GetCustomerMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetCustomerMode: %v", v)
-	}
-}
-
-// GetCustomerLocale - Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-// absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
-type GetCustomerLocale string
-
-const (
-	GetCustomerLocaleEnUs GetCustomerLocale = "en_US"
-	GetCustomerLocaleEnGb GetCustomerLocale = "en_GB"
-	GetCustomerLocaleNlNl GetCustomerLocale = "nl_NL"
-	GetCustomerLocaleNlBe GetCustomerLocale = "nl_BE"
-	GetCustomerLocaleDeDe GetCustomerLocale = "de_DE"
-	GetCustomerLocaleDeAt GetCustomerLocale = "de_AT"
-	GetCustomerLocaleDeCh GetCustomerLocale = "de_CH"
-	GetCustomerLocaleFrFr GetCustomerLocale = "fr_FR"
-	GetCustomerLocaleFrBe GetCustomerLocale = "fr_BE"
-	GetCustomerLocaleEsEs GetCustomerLocale = "es_ES"
-	GetCustomerLocaleCaEs GetCustomerLocale = "ca_ES"
-	GetCustomerLocalePtPt GetCustomerLocale = "pt_PT"
-	GetCustomerLocaleItIt GetCustomerLocale = "it_IT"
-	GetCustomerLocaleNbNo GetCustomerLocale = "nb_NO"
-	GetCustomerLocaleSvSe GetCustomerLocale = "sv_SE"
-	GetCustomerLocaleFiFi GetCustomerLocale = "fi_FI"
-	GetCustomerLocaleDaDk GetCustomerLocale = "da_DK"
-	GetCustomerLocaleIsIs GetCustomerLocale = "is_IS"
-	GetCustomerLocaleHuHu GetCustomerLocale = "hu_HU"
-	GetCustomerLocalePlPl GetCustomerLocale = "pl_PL"
-	GetCustomerLocaleLvLv GetCustomerLocale = "lv_LV"
-	GetCustomerLocaleLtLt GetCustomerLocale = "lt_LT"
-)
-
-func (e GetCustomerLocale) ToPointer() *GetCustomerLocale {
-	return &e
-}
-func (e *GetCustomerLocale) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "en_US":
-		fallthrough
-	case "en_GB":
-		fallthrough
-	case "nl_NL":
-		fallthrough
-	case "nl_BE":
-		fallthrough
-	case "de_DE":
-		fallthrough
-	case "de_AT":
-		fallthrough
-	case "de_CH":
-		fallthrough
-	case "fr_FR":
-		fallthrough
-	case "fr_BE":
-		fallthrough
-	case "es_ES":
-		fallthrough
-	case "ca_ES":
-		fallthrough
-	case "pt_PT":
-		fallthrough
-	case "it_IT":
-		fallthrough
-	case "nb_NO":
-		fallthrough
-	case "sv_SE":
-		fallthrough
-	case "fi_FI":
-		fallthrough
-	case "da_DK":
-		fallthrough
-	case "is_IS":
-		fallthrough
-	case "hu_HU":
-		fallthrough
-	case "pl_PL":
-		fallthrough
-	case "lv_LV":
-		fallthrough
-	case "lt_LT":
-		*e = GetCustomerLocale(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetCustomerLocale: %v", v)
-	}
-}
-
-type GetCustomerMetadataType string
-
-const (
-	GetCustomerMetadataTypeStr        GetCustomerMetadataType = "str"
-	GetCustomerMetadataTypeMapOfAny   GetCustomerMetadataType = "mapOfAny"
-	GetCustomerMetadataTypeArrayOfStr GetCustomerMetadataType = "arrayOfStr"
-)
-
-// GetCustomerMetadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-type GetCustomerMetadata struct {
-	Str        *string        `queryParam:"inline" name:"metadata"`
-	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
-	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
-
-	Type GetCustomerMetadataType
-}
-
-func CreateGetCustomerMetadataStr(str string) GetCustomerMetadata {
-	typ := GetCustomerMetadataTypeStr
-
-	return GetCustomerMetadata{
-		Str:  &str,
-		Type: typ,
-	}
-}
-
-func CreateGetCustomerMetadataMapOfAny(mapOfAny map[string]any) GetCustomerMetadata {
-	typ := GetCustomerMetadataTypeMapOfAny
-
-	return GetCustomerMetadata{
-		MapOfAny: mapOfAny,
-		Type:     typ,
-	}
-}
-
-func CreateGetCustomerMetadataArrayOfStr(arrayOfStr []string) GetCustomerMetadata {
-	typ := GetCustomerMetadataTypeArrayOfStr
-
-	return GetCustomerMetadata{
-		ArrayOfStr: arrayOfStr,
-		Type:       typ,
-	}
-}
-
-func (u *GetCustomerMetadata) UnmarshalJSON(data []byte) error {
-
-	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = GetCustomerMetadataTypeStr
-		return nil
-	}
-
-	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
-		u.MapOfAny = mapOfAny
-		u.Type = GetCustomerMetadataTypeMapOfAny
-		return nil
-	}
-
-	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
-		u.ArrayOfStr = arrayOfStr
-		u.Type = GetCustomerMetadataTypeArrayOfStr
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetCustomerMetadata", string(data))
-}
-
-func (u GetCustomerMetadata) MarshalJSON() ([]byte, error) {
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
-	}
-
-	if u.MapOfAny != nil {
-		return utils.MarshalJSON(u.MapOfAny, "", true)
-	}
-
-	if u.ArrayOfStr != nil {
-		return utils.MarshalJSON(u.ArrayOfStr, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type GetCustomerMetadata: all fields are null")
-}
-
-// GetCustomerSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetCustomerSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetCustomerSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetCustomerSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// GetCustomerDashboard - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetCustomerDashboard struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetCustomerDashboard) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetCustomerDashboard) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// GetCustomerPayments - The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-// exist (yet).
-type GetCustomerPayments struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *GetCustomerPayments) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *GetCustomerPayments) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// GetCustomerMandates - The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-// exist (yet).
-type GetCustomerMandates struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *GetCustomerMandates) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *GetCustomerMandates) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// GetCustomerSubscriptions - The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-// subscriptions exist (yet).
-type GetCustomerSubscriptions struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *GetCustomerSubscriptions) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *GetCustomerSubscriptions) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// GetCustomerDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetCustomerDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetCustomerDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetCustomerDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
 // GetCustomerLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type GetCustomerLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self GetCustomerSelf `json:"self"`
+	Self components.URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Dashboard GetCustomerDashboard `json:"dashboard"`
-	// The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-	// exist (yet).
-	Payments *GetCustomerPayments `json:"payments,omitempty"`
-	// The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-	// exist (yet).
-	Mandates *GetCustomerMandates `json:"mandates,omitempty"`
-	// The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-	// subscriptions exist (yet).
-	Subscriptions *GetCustomerSubscriptions `json:"subscriptions,omitempty"`
+	Dashboard components.URLObj `json:"dashboard"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation GetCustomerDocumentation `json:"documentation"`
+	Payments *components.URLNullable `json:"payments,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Mandates *components.URLNullable `json:"mandates,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Subscriptions *components.URLNullable `json:"subscriptions,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation components.URLObj `json:"documentation"`
 }
 
-func (o *GetCustomerLinks) GetSelf() GetCustomerSelf {
+func (o *GetCustomerLinks) GetSelf() components.URLObj {
 	if o == nil {
-		return GetCustomerSelf{}
+		return components.URLObj{}
 	}
 	return o.Self
 }
 
-func (o *GetCustomerLinks) GetDashboard() GetCustomerDashboard {
+func (o *GetCustomerLinks) GetDashboard() components.URLObj {
 	if o == nil {
-		return GetCustomerDashboard{}
+		return components.URLObj{}
 	}
 	return o.Dashboard
 }
 
-func (o *GetCustomerLinks) GetPayments() *GetCustomerPayments {
+func (o *GetCustomerLinks) GetPayments() *components.URLNullable {
 	if o == nil {
 		return nil
 	}
 	return o.Payments
 }
 
-func (o *GetCustomerLinks) GetMandates() *GetCustomerMandates {
+func (o *GetCustomerLinks) GetMandates() *components.URLNullable {
 	if o == nil {
 		return nil
 	}
 	return o.Mandates
 }
 
-func (o *GetCustomerLinks) GetSubscriptions() *GetCustomerSubscriptions {
+func (o *GetCustomerLinks) GetSubscriptions() *components.URLNullable {
 	if o == nil {
 		return nil
 	}
 	return o.Subscriptions
 }
 
-func (o *GetCustomerLinks) GetDocumentation() GetCustomerDocumentation {
+func (o *GetCustomerLinks) GetDocumentation() components.URLObj {
 	if o == nil {
-		return GetCustomerDocumentation{}
+		return components.URLObj{}
 	}
 	return o.Documentation
-}
-
-// URLObj - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type URLObj struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *URLObj) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *URLObj) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// EventLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type EventLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	URL *URLObj `json:"url,omitempty"`
-}
-
-func (o *EventLinks) GetURL() *URLObj {
-	if o == nil {
-		return nil
-	}
-	return o.URL
-}
-
-type Event struct {
-	Resource string `json:"resource"`
-	Type     int64  `json:"type"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
-	Message   string `json:"message"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EventLinks `json:"_links,omitempty"`
-}
-
-func (o *Event) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *Event) GetType() int64 {
-	if o == nil {
-		return 0
-	}
-	return o.Type
-}
-
-func (o *Event) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
-func (o *Event) GetMessage() string {
-	if o == nil {
-		return ""
-	}
-	return o.Message
-}
-
-func (o *Event) GetLinks() *EventLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
 }
 
 // GetCustomerResponseBody - The customer object.
 type GetCustomerResponseBody struct {
 	// Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
-	ID string `json:"id"`
+	Resource *string `json:"resource,omitempty"`
+	ID       *string `json:"id,omitempty"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode GetCustomerMode `json:"mode"`
+	Mode *components.Mode `json:"mode,omitempty"`
 	// The full name of the customer.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The email address of the customer.
-	Email *string `json:"email"`
-	// Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-	// absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
-	Locale *GetCustomerLocale `json:"locale"`
+	Email *string `json:"email,omitempty"`
+	// Allows you to preset the language to be used.
+	Locale *components.LocaleResponse `json:"locale,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *GetCustomerMetadata `json:"metadata"`
+	Metadata *components.Metadata `json:"metadata,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
+	CreatedAt *string `json:"createdAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links  GetCustomerLinks `json:"_links"`
-	Events []Event          `json:"events,omitempty"`
+	Links  *GetCustomerLinks        `json:"_links,omitempty"`
+	Events []components.EntityEvent `json:"events,omitempty"`
 }
 
-func (o *GetCustomerResponseBody) GetResource() string {
+func (o *GetCustomerResponseBody) GetResource() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Resource
 }
 
-func (o *GetCustomerResponseBody) GetID() string {
+func (o *GetCustomerResponseBody) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
 
-func (o *GetCustomerResponseBody) GetMode() GetCustomerMode {
+func (o *GetCustomerResponseBody) GetMode() *components.Mode {
 	if o == nil {
-		return GetCustomerMode("")
+		return nil
 	}
 	return o.Mode
 }
@@ -638,35 +156,35 @@ func (o *GetCustomerResponseBody) GetEmail() *string {
 	return o.Email
 }
 
-func (o *GetCustomerResponseBody) GetLocale() *GetCustomerLocale {
+func (o *GetCustomerResponseBody) GetLocale() *components.LocaleResponse {
 	if o == nil {
 		return nil
 	}
 	return o.Locale
 }
 
-func (o *GetCustomerResponseBody) GetMetadata() *GetCustomerMetadata {
+func (o *GetCustomerResponseBody) GetMetadata() *components.Metadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *GetCustomerResponseBody) GetCreatedAt() string {
+func (o *GetCustomerResponseBody) GetCreatedAt() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *GetCustomerResponseBody) GetLinks() GetCustomerLinks {
+func (o *GetCustomerResponseBody) GetLinks() *GetCustomerLinks {
 	if o == nil {
-		return GetCustomerLinks{}
+		return nil
 	}
 	return o.Links
 }
 
-func (o *GetCustomerResponseBody) GetEvents() []Event {
+func (o *GetCustomerResponseBody) GetEvents() []components.EntityEvent {
 	if o == nil {
 		return nil
 	}

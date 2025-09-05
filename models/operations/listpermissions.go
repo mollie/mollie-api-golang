@@ -6,225 +6,34 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-// ListPermissionsBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListPermissionsBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListPermissionsBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListPermissionsBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListPermissionsBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListPermissionsBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListPermissionsBadRequestLinks) GetDocumentation() ListPermissionsBadRequestDocumentation {
-	if o == nil {
-		return ListPermissionsBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-// PermissionSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type PermissionSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PermissionSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PermissionSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// PermissionDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type PermissionDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *PermissionDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *PermissionDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// PermissionLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type PermissionLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *PermissionSelf `json:"self,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *PermissionDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *PermissionLinks) GetSelf() *PermissionSelf {
-	if o == nil {
-		return nil
-	}
-	return o.Self
-}
-
-func (o *PermissionLinks) GetDocumentation() *PermissionDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-type Permission struct {
-	// Indicates the response contains a permission object. Will always contain the string `permission` for this
-	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this permission. Example: `payments.read`.
-	ID *string `json:"id,omitempty"`
-	// A short description of what kind of access the permission enables.
-	Description *string `json:"description,omitempty"`
-	// Whether this permission is granted to the app by the organization.
-	Granted *bool `json:"granted,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *PermissionLinks `json:"_links,omitempty"`
-}
-
-func (o *Permission) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *Permission) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *Permission) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *Permission) GetGranted() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Granted
-}
-
-func (o *Permission) GetLinks() *PermissionLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
 type ListPermissionsEmbedded struct {
 	// An array of permission objects.
-	Permissions []Permission `json:"permissions,omitempty"`
+	Permissions []components.EntityPermission `json:"permissions,omitempty"`
 }
 
-func (o *ListPermissionsEmbedded) GetPermissions() []Permission {
+func (o *ListPermissionsEmbedded) GetPermissions() []components.EntityPermission {
 	if o == nil {
 		return nil
 	}
 	return o.Permissions
 }
 
-// ListPermissionsSelf - The URL to the current set of items.
-type ListPermissionsSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListPermissionsSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListPermissionsSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListPermissionsDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListPermissionsDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListPermissionsDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListPermissionsDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
 // ListPermissionsLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type ListPermissionsLinks struct {
-	// The URL to the current set of items.
-	Self *ListPermissionsSelf `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *ListPermissionsDocumentation `json:"documentation,omitempty"`
+	Self *components.URLObj `json:"self,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *ListPermissionsLinks) GetSelf() *ListPermissionsSelf {
+func (o *ListPermissionsLinks) GetSelf() *components.URLObj {
 	if o == nil {
 		return nil
 	}
 	return o.Self
 }
 
-func (o *ListPermissionsLinks) GetDocumentation() *ListPermissionsDocumentation {
+func (o *ListPermissionsLinks) GetDocumentation() *components.URLObj {
 	if o == nil {
 		return nil
 	}

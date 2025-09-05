@@ -1,8 +1,0 @@
-# ListSettlementChargebacksNotFoundLinks
-
-
-## Fields
-
-| Field                                                                                                                                  | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                                        | [operations.ListSettlementChargebacksNotFoundDocumentation](../../models/operations/listsettlementchargebacksnotfounddocumentation.md) | :heavy_check_mark:                                                                                                                     | The URL to the generic Mollie API error handling guide.                                                                                |

@@ -31,158 +31,10 @@ func (o *GetPermissionRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// GetPermissionNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type GetPermissionNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *GetPermissionNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetPermissionNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type GetPermissionNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation GetPermissionNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *GetPermissionNotFoundLinks) GetDocumentation() GetPermissionNotFoundDocumentation {
-	if o == nil {
-		return GetPermissionNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// GetPermissionSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetPermissionSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetPermissionSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetPermissionSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// GetPermissionDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type GetPermissionDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *GetPermissionDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *GetPermissionDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// GetPermissionLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type GetPermissionLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *GetPermissionSelf `json:"self,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *GetPermissionDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *GetPermissionLinks) GetSelf() *GetPermissionSelf {
-	if o == nil {
-		return nil
-	}
-	return o.Self
-}
-
-func (o *GetPermissionLinks) GetDocumentation() *GetPermissionDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-// GetPermissionResponseBody - The permission object.
-type GetPermissionResponseBody struct {
-	// Indicates the response contains a permission object. Will always contain the string `permission` for this
-	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this permission. Example: `payments.read`.
-	ID *string `json:"id,omitempty"`
-	// A short description of what kind of access the permission enables.
-	Description *string `json:"description,omitempty"`
-	// Whether this permission is granted to the app by the organization.
-	Granted *bool `json:"granted,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *GetPermissionLinks `json:"_links,omitempty"`
-}
-
-func (o *GetPermissionResponseBody) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *GetPermissionResponseBody) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *GetPermissionResponseBody) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *GetPermissionResponseBody) GetGranted() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Granted
-}
-
-func (o *GetPermissionResponseBody) GetLinks() *GetPermissionLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
 type GetPermissionResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The permission object.
-	Object *GetPermissionResponseBody
+	EntityPermission *components.EntityPermission
 }
 
 func (o *GetPermissionResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -192,9 +44,9 @@ func (o *GetPermissionResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetPermissionResponse) GetObject() *GetPermissionResponseBody {
+func (o *GetPermissionResponse) GetEntityPermission() *components.EntityPermission {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.EntityPermission
 }

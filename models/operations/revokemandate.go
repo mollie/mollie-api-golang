@@ -50,38 +50,6 @@ func (o *RevokeMandateRequest) GetRequestBody() *RevokeMandateRequestBody {
 	return o.RequestBody
 }
 
-// RevokeMandateDocumentation - The URL to the generic Mollie API error handling guide.
-type RevokeMandateDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *RevokeMandateDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *RevokeMandateDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type RevokeMandateLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation RevokeMandateDocumentation `json:"documentation"`
-}
-
-func (o *RevokeMandateLinks) GetDocumentation() RevokeMandateDocumentation {
-	if o == nil {
-		return RevokeMandateDocumentation{}
-	}
-	return o.Documentation
-}
-
 type RevokeMandateResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// An empty response.

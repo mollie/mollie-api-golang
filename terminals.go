@@ -35,7 +35,7 @@ func newTerminals(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // Retrieve a list of all physical point-of-sale devices.
 //
 // The results are paginated.
-func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *operations.ListTerminalsSort, testmode *bool, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
+func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *components.ListSort, testmode *bool, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
 	request := operations.ListTerminalsRequest{
 		From:     from,
 		Limit:    limit,
@@ -240,7 +240,7 @@ func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *
 				return nil, err
 			}
 
-			var out apierrors.ListTerminalsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -465,12 +465,12 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 				return nil, err
 			}
 
-			var out operations.GetTerminalResponseBody
+			var out components.EntityTerminal
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityTerminal = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -486,7 +486,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 				return nil, err
 			}
 
-			var out apierrors.GetTerminalHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

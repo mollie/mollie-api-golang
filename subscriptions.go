@@ -51,10 +51,10 @@ func newSubscriptions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
 // `startDate="2018-04-30"`
 // Your customer will be charged €10 on the last day of each month, starting in April 2018.
-func (s *Subscriptions) Create(ctx context.Context, customerID string, requestBody *operations.CreateSubscriptionRequestBody, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
+func (s *Subscriptions) Create(ctx context.Context, customerID string, subscriptionRequest *components.SubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
 	request := operations.CreateSubscriptionRequest{
-		CustomerID:  customerID,
-		RequestBody: requestBody,
+		CustomerID:          customerID,
+		SubscriptionRequest: subscriptionRequest,
 	}
 
 	o := operations.Options{}
@@ -89,7 +89,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, requestBo
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SubscriptionRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -236,12 +236,12 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, requestBo
 				return nil, err
 			}
 
-			var out operations.CreateSubscriptionResponseBody
+			var out components.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -257,7 +257,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, requestBo
 				return nil, err
 			}
 
-			var out apierrors.CreateSubscriptionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -493,30 +493,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListSubscriptionsBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -525,7 +502,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 				return nil, err
 			}
 
-			var out apierrors.ListSubscriptionsNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -751,12 +728,12 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 				return nil, err
 			}
 
-			var out operations.GetSubscriptionResponseBody
+			var out components.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -772,7 +749,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 				return nil, err
 			}
 
-			var out apierrors.GetSubscriptionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1005,12 +982,12 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 				return nil, err
 			}
 
-			var out operations.UpdateSubscriptionResponseBody
+			var out components.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1026,7 +1003,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 				return nil, err
 			}
 
-			var out apierrors.UpdateSubscriptionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1255,12 +1232,12 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 				return nil, err
 			}
 
-			var out operations.CancelSubscriptionResponseBody
+			var out components.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1276,7 +1253,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 				return nil, err
 			}
 
-			var out apierrors.CancelSubscriptionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1519,30 +1496,7 @@ func (s *Subscriptions) All(ctx context.Context, from *string, limit *int64, pro
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListAllSubscriptionsBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1551,7 +1505,7 @@ func (s *Subscriptions) All(ctx context.Context, from *string, limit *int64, pro
 				return nil, err
 			}
 
-			var out apierrors.ListAllSubscriptionsNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1794,7 +1748,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 				return nil, err
 			}
 
-			var out apierrors.ListSubscriptionPaymentsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

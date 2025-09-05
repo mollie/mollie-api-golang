@@ -1,8 +1,0 @@
-# GetWebhookUnprocessableEntityLinks
-
-
-## Fields
-
-| Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `Documentation`                                                                                                                | [operations.GetWebhookUnprocessableEntityDocumentation](../../models/operations/getwebhookunprocessableentitydocumentation.md) | :heavy_check_mark:                                                                                                             | The URL to the generic Mollie API error handling guide.                                                                        |

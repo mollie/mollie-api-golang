@@ -229,7 +229,7 @@ func (s *Permissions) List(ctx context.Context, opts ...operations.Option) (*ope
 				return nil, err
 			}
 
-			var out apierrors.ListPermissionsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -454,12 +454,12 @@ func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bo
 				return nil, err
 			}
 
-			var out operations.GetPermissionResponseBody
+			var out components.EntityPermission
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityPermission = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -475,7 +475,7 @@ func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bo
 				return nil, err
 			}
 
-			var out apierrors.GetPermissionHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

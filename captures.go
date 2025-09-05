@@ -39,10 +39,10 @@ func newCaptures(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // By default, Mollie captures payments automatically. If however you
 // configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
 // having collected the customer's authorization.
-func (s *Captures) Create(ctx context.Context, paymentID string, requestBody *operations.CreateCaptureRequestBody, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
+func (s *Captures) Create(ctx context.Context, paymentID string, entityCapture *components.EntityCapture, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
 	request := operations.CreateCaptureRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:     paymentID,
+		EntityCapture: entityCapture,
 	}
 
 	o := operations.Options{}
@@ -77,7 +77,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, requestBody *op
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCapture", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -224,12 +224,12 @@ func (s *Captures) Create(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out operations.CreateCaptureResponseBody
+			var out components.CaptureResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.CaptureResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -238,30 +238,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, requestBody *op
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CreateCaptureNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -270,7 +247,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.CreateCaptureUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -506,30 +483,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ListCapturesBadRequestHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -538,7 +492,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 				return nil, err
 			}
 
-			var out apierrors.ListCapturesNotFoundHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -582,7 +536,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 // Get capture
 // Retrieve a single payment capture by its ID and the ID of its parent
 // payment.
-func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, embed *operations.GetCaptureEmbed, testmode *bool, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
+func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
 	request := operations.GetCaptureRequest{
 		PaymentID: paymentID,
 		CaptureID: captureID,
@@ -766,12 +720,12 @@ func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, 
 				return nil, err
 			}
 
-			var out operations.GetCaptureResponseBody
+			var out components.CaptureResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.CaptureResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -787,7 +741,7 @@ func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, 
 				return nil, err
 			}
 
-			var out apierrors.GetCaptureHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

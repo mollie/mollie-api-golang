@@ -29,7 +29,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -42,10 +41,10 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", &operations.CreateMandateRequestBody{
+    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", &components.EntityMandate{
         ID: client.String("mdt_5B8cwPMGnU"),
-        Method: operations.CreateMandateMethodRequestDirectdebit,
-        ConsumerName: "John Doe",
+        Method: components.EntityMandateMethodDirectdebit.ToPointer(),
+        ConsumerName: client.String("John Doe"),
         ConsumerAccount: client.String("NL55INGB0000000000"),
         ConsumerBic: client.String("BANKBIC"),
         ConsumerEmail: client.String("example@email.com"),
@@ -53,12 +52,13 @@ func main() {
         MandateReference: client.String("ID-1023892"),
         PaypalBillingAgreementID: client.String("B-12A34567B8901234CD"),
         PayPalVaultID: client.String("8kk8451t"),
+        CustomerID: client.String("cst_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.MandateResponse != nil {
         // handle response
     }
 }
@@ -66,12 +66,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `customerID`                                                                                | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related customer.                                                     | cst_5B8cwPMGnU                                                                              |
-| `requestBody`                                                                               | [*operations.CreateMandateRequestBody](../../models/operations/createmandaterequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ctx`                                                                 | [context.Context](https://pkg.go.dev/context#Context)                 | :heavy_check_mark:                                                    | The context to use for the request.                                   |                                                                       |
+| `customerID`                                                          | *string*                                                              | :heavy_check_mark:                                                    | Provide the ID of the related customer.                               | cst_5B8cwPMGnU                                                        |
+| `entityMandate`                                                       | [*components.EntityMandate](../../models/components/entitymandate.md) | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
+| `opts`                                                                | [][operations.Option](../../models/operations/option.md)              | :heavy_minus_sign:                                                    | The options for this request.                                         |                                                                       |
 
 ### Response
 
@@ -79,10 +79,10 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.CreateMandateHalJSONError | 404                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -118,7 +118,7 @@ func main() {
         CustomerID: "cst_5B8cwPMGnU",
         From: client.String("mdt_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListMandatesSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -144,11 +144,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.ListMandatesBadRequestHalJSONError | 400                                          | application/hal+json                         |
-| apierrors.ListMandatesNotFoundHalJSONError   | 404                                          | application/hal+json                         |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -182,7 +181,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.MandateResponse != nil {
         // handle response
     }
 }
@@ -204,10 +203,10 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetMandateHalJSONError | 404                              | application/hal+json             |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Revoke
 
@@ -266,7 +265,7 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.RevokeMandateHalJSONError | 404                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

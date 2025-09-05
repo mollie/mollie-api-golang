@@ -43,7 +43,7 @@ func main() {
         PaymentID: "tr_5B8cwPMGnU",
         From: client.String("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Int64(50),
-        Embed: operations.ListChargebacksEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -69,11 +69,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| apierrors.ListChargebacksBadRequestHalJSONError | 400                                             | application/hal+json                            |
-| apierrors.ListChargebacksNotFoundHalJSONError   | 404                                             | application/hal+json                            |
-| apierrors.APIError                              | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -90,7 +89,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -103,11 +101,11 @@ func main() {
         }),
     )
 
-    res, err := s.Chargebacks.Get(ctx, "tr_5B8cwPMGnU", "chb_xFzwUN4ci8HAmSGUACS4J", operations.GetChargebackEmbedPayment.ToPointer(), client.Bool(false))
+    res, err := s.Chargebacks.Get(ctx, "tr_5B8cwPMGnU", "chb_xFzwUN4ci8HAmSGUACS4J", client.String("payment"), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityChargeback != nil {
         // handle response
     }
 }
@@ -120,7 +118,7 @@ func main() {
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `paymentID`                                                                                                                                                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `chargebackID`                                                                                                                                                                                                                                                                                                                                                                         | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related chargeback.                                                                                                                                                                                                                                                                                                                                              | chb_xFzwUN4ci8HAmSGUACS4J                                                                                                                                                                                                                                                                                                                                                              |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [*operations.GetChargebackEmbed](../../models/operations/getchargebackembed.md)                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional information via the `embed` query string parameter.                                                                                                                                                                                                                                                                                       | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -130,10 +128,10 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.GetChargebackHalJSONError | 404                                 | application/hal+json                |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## All
 
@@ -168,8 +166,8 @@ func main() {
     res, err := s.Chargebacks.All(ctx, operations.ListAllChargebacksRequest{
         From: client.String("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Int64(50),
-        Embed: operations.ListAllChargebacksEmbedPayment.ToPointer(),
-        Sort: operations.ListAllChargebacksSortDesc.ToPointer(),
+        Embed: client.String("payment"),
+        Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -196,8 +194,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.ListAllChargebacksBadRequestHalJSONError | 400                                                | application/hal+json                               |
-| apierrors.ListAllChargebacksNotFoundHalJSONError   | 404                                                | application/hal+json                               |
-| apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

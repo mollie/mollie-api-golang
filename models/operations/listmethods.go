@@ -8,149 +8,6 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-// ListMethodsSequenceType - Set this parameter to `first` to only return the enabled methods that
-// can be used for the first payment of a recurring sequence.
-//
-// Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
-type ListMethodsSequenceType string
-
-const (
-	ListMethodsSequenceTypeOneoff    ListMethodsSequenceType = "oneoff"
-	ListMethodsSequenceTypeFirst     ListMethodsSequenceType = "first"
-	ListMethodsSequenceTypeRecurring ListMethodsSequenceType = "recurring"
-)
-
-func (e ListMethodsSequenceType) ToPointer() *ListMethodsSequenceType {
-	return &e
-}
-func (e *ListMethodsSequenceType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oneoff":
-		fallthrough
-	case "first":
-		fallthrough
-	case "recurring":
-		*e = ListMethodsSequenceType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMethodsSequenceType: %v", v)
-	}
-}
-
-// ListMethodsLocale - Passing a locale will sort the payment methods in the preferred order
-// for the country, and translate the payment method names in the corresponding language.
-type ListMethodsLocale string
-
-const (
-	ListMethodsLocaleEnUs ListMethodsLocale = "en_US"
-	ListMethodsLocaleEnGb ListMethodsLocale = "en_GB"
-	ListMethodsLocaleNlNl ListMethodsLocale = "nl_NL"
-	ListMethodsLocaleNlBe ListMethodsLocale = "nl_BE"
-	ListMethodsLocaleDeDe ListMethodsLocale = "de_DE"
-	ListMethodsLocaleDeAt ListMethodsLocale = "de_AT"
-	ListMethodsLocaleDeCh ListMethodsLocale = "de_CH"
-	ListMethodsLocaleFrFr ListMethodsLocale = "fr_FR"
-	ListMethodsLocaleFrBe ListMethodsLocale = "fr_BE"
-	ListMethodsLocaleEsEs ListMethodsLocale = "es_ES"
-	ListMethodsLocaleCaEs ListMethodsLocale = "ca_ES"
-	ListMethodsLocalePtPt ListMethodsLocale = "pt_PT"
-	ListMethodsLocaleItIt ListMethodsLocale = "it_IT"
-	ListMethodsLocaleNbNo ListMethodsLocale = "nb_NO"
-	ListMethodsLocaleSvSe ListMethodsLocale = "sv_SE"
-	ListMethodsLocaleFiFi ListMethodsLocale = "fi_FI"
-	ListMethodsLocaleDaDk ListMethodsLocale = "da_DK"
-	ListMethodsLocaleIsIs ListMethodsLocale = "is_IS"
-	ListMethodsLocaleHuHu ListMethodsLocale = "hu_HU"
-	ListMethodsLocalePlPl ListMethodsLocale = "pl_PL"
-	ListMethodsLocaleLvLv ListMethodsLocale = "lv_LV"
-	ListMethodsLocaleLtLt ListMethodsLocale = "lt_LT"
-)
-
-func (e ListMethodsLocale) ToPointer() *ListMethodsLocale {
-	return &e
-}
-func (e *ListMethodsLocale) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "en_US":
-		fallthrough
-	case "en_GB":
-		fallthrough
-	case "nl_NL":
-		fallthrough
-	case "nl_BE":
-		fallthrough
-	case "de_DE":
-		fallthrough
-	case "de_AT":
-		fallthrough
-	case "de_CH":
-		fallthrough
-	case "fr_FR":
-		fallthrough
-	case "fr_BE":
-		fallthrough
-	case "es_ES":
-		fallthrough
-	case "ca_ES":
-		fallthrough
-	case "pt_PT":
-		fallthrough
-	case "it_IT":
-		fallthrough
-	case "nb_NO":
-		fallthrough
-	case "sv_SE":
-		fallthrough
-	case "fi_FI":
-		fallthrough
-	case "da_DK":
-		fallthrough
-	case "is_IS":
-		fallthrough
-	case "hu_HU":
-		fallthrough
-	case "pl_PL":
-		fallthrough
-	case "lv_LV":
-		fallthrough
-	case "lt_LT":
-		*e = ListMethodsLocale(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMethodsLocale: %v", v)
-	}
-}
-
-// ListMethodsAmount - In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-type ListMethodsAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `queryParam:"name=currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `queryParam:"name=value"`
-}
-
-func (o *ListMethodsAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListMethodsAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
 // Resource - **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
 //
 // Indicate if you will use the result for the [Create order](create-order)
@@ -209,86 +66,19 @@ func (e *IncludeWallets) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// OrderLineCategories - A comma-separated list of the line categories you support in your checkout.
-//
-// Example: `/v2/methods?orderLineCategories=eco,meal`
-type OrderLineCategories string
-
-const (
-	OrderLineCategoriesEco          OrderLineCategories = "eco"
-	OrderLineCategoriesGift         OrderLineCategories = "gift"
-	OrderLineCategoriesMeal         OrderLineCategories = "meal"
-	OrderLineCategoriesSportCulture OrderLineCategories = "sport_culture"
-	OrderLineCategoriesAdditional   OrderLineCategories = "additional"
-	OrderLineCategoriesConsume      OrderLineCategories = "consume"
-)
-
-func (e OrderLineCategories) ToPointer() *OrderLineCategories {
-	return &e
-}
-func (e *OrderLineCategories) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "eco":
-		fallthrough
-	case "gift":
-		fallthrough
-	case "meal":
-		fallthrough
-	case "sport_culture":
-		fallthrough
-	case "additional":
-		fallthrough
-	case "consume":
-		*e = OrderLineCategories(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OrderLineCategories: %v", v)
-	}
-}
-
-// ListMethodsInclude - This endpoint allows you to include additional information via the
-// `include` query string parameter.
-type ListMethodsInclude string
-
-const (
-	ListMethodsIncludeIssuers ListMethodsInclude = "issuers"
-)
-
-func (e ListMethodsInclude) ToPointer() *ListMethodsInclude {
-	return &e
-}
-func (e *ListMethodsInclude) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "issuers":
-		*e = ListMethodsInclude(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMethodsInclude: %v", v)
-	}
-}
-
 type ListMethodsRequest struct {
 	// Set this parameter to `first` to only return the enabled methods that
 	// can be used for the first payment of a recurring sequence.
 	//
 	// Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
-	SequenceType *ListMethodsSequenceType `queryParam:"style=form,explode=true,name=sequenceType"`
-	// Passing a locale will sort the payment methods in the preferred order
-	// for the country, and translate the payment method names in the corresponding language.
-	Locale *ListMethodsLocale `queryParam:"style=form,explode=true,name=locale"`
+	SequenceType *components.SequenceType `queryParam:"style=form,explode=true,name=sequenceType"`
+	// Response language
+	Locale *components.LocaleParameter `queryParam:"style=form,explode=true,name=locale"`
 	// If supplied, only payment methods that support the amount and currency
 	// are returned.
 	//
 	// Example: `/v2/methods?amount[value]=100.00&amount[currency]=USD`
-	Amount *ListMethodsAmount `queryParam:"style=deepObject,explode=true,name=amount"`
+	Amount *components.Amount `queryParam:"style=deepObject,explode=true,name=amount"`
 	// **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
 	//
 	// Indicate if you will use the result for the [Create order](create-order)
@@ -310,16 +100,15 @@ type ListMethodsRequest struct {
 	// A comma-separated list of the line categories you support in your checkout.
 	//
 	// Example: `/v2/methods?orderLineCategories=eco,meal`
-	OrderLineCategories *OrderLineCategories `queryParam:"style=form,explode=true,name=orderLineCategories"`
+	OrderLineCategories *components.OrderLineCategories `queryParam:"style=form,explode=true,name=orderLineCategories"`
 	// The identifier referring to the [profile](get-profile) you wish to
 	// retrieve the resources for.
 	//
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
 	// organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
 	ProfileID *string `queryParam:"style=form,explode=true,name=profileId"`
-	// This endpoint allows you to include additional information via the
-	// `include` query string parameter.
-	Include *ListMethodsInclude `queryParam:"style=form,explode=true,name=include"`
+	// This endpoint allows you to include additional information via the `include` query string parameter.
+	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -328,21 +117,21 @@ type ListMethodsRequest struct {
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
 }
 
-func (o *ListMethodsRequest) GetSequenceType() *ListMethodsSequenceType {
+func (o *ListMethodsRequest) GetSequenceType() *components.SequenceType {
 	if o == nil {
 		return nil
 	}
 	return o.SequenceType
 }
 
-func (o *ListMethodsRequest) GetLocale() *ListMethodsLocale {
+func (o *ListMethodsRequest) GetLocale() *components.LocaleParameter {
 	if o == nil {
 		return nil
 	}
 	return o.Locale
 }
 
-func (o *ListMethodsRequest) GetAmount() *ListMethodsAmount {
+func (o *ListMethodsRequest) GetAmount() *components.Amount {
 	if o == nil {
 		return nil
 	}
@@ -370,7 +159,7 @@ func (o *ListMethodsRequest) GetIncludeWallets() *IncludeWallets {
 	return o.IncludeWallets
 }
 
-func (o *ListMethodsRequest) GetOrderLineCategories() *OrderLineCategories {
+func (o *ListMethodsRequest) GetOrderLineCategories() *components.OrderLineCategories {
 	if o == nil {
 		return nil
 	}
@@ -384,7 +173,7 @@ func (o *ListMethodsRequest) GetProfileID() *string {
 	return o.ProfileID
 }
 
-func (o *ListMethodsRequest) GetInclude() *ListMethodsInclude {
+func (o *ListMethodsRequest) GetInclude() *string {
 	if o == nil {
 		return nil
 	}
@@ -398,590 +187,38 @@ func (o *ListMethodsRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// ListMethodsBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListMethodsBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListMethodsBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListMethodsBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListMethodsBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListMethodsBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListMethodsBadRequestLinks) GetDocumentation() ListMethodsBadRequestDocumentation {
-	if o == nil {
-		return ListMethodsBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListMethodsID - The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-// method selection screen will be skipped.
-type ListMethodsID string
-
-const (
-	ListMethodsIDAlma           ListMethodsID = "alma"
-	ListMethodsIDApplepay       ListMethodsID = "applepay"
-	ListMethodsIDBacs           ListMethodsID = "bacs"
-	ListMethodsIDBancomatpay    ListMethodsID = "bancomatpay"
-	ListMethodsIDBancontact     ListMethodsID = "bancontact"
-	ListMethodsIDBanktransfer   ListMethodsID = "banktransfer"
-	ListMethodsIDBelfius        ListMethodsID = "belfius"
-	ListMethodsIDBillie         ListMethodsID = "billie"
-	ListMethodsIDBizum          ListMethodsID = "bizum"
-	ListMethodsIDBlik           ListMethodsID = "blik"
-	ListMethodsIDCreditcard     ListMethodsID = "creditcard"
-	ListMethodsIDDirectdebit    ListMethodsID = "directdebit"
-	ListMethodsIDEps            ListMethodsID = "eps"
-	ListMethodsIDGiftcard       ListMethodsID = "giftcard"
-	ListMethodsIDIdeal          ListMethodsID = "ideal"
-	ListMethodsIDIn3            ListMethodsID = "in3"
-	ListMethodsIDKbc            ListMethodsID = "kbc"
-	ListMethodsIDKlarna         ListMethodsID = "klarna"
-	ListMethodsIDKlarnapaylater ListMethodsID = "klarnapaylater"
-	ListMethodsIDKlarnapaynow   ListMethodsID = "klarnapaynow"
-	ListMethodsIDKlarnasliceit  ListMethodsID = "klarnasliceit"
-	ListMethodsIDMbway          ListMethodsID = "mbway"
-	ListMethodsIDMultibanco     ListMethodsID = "multibanco"
-	ListMethodsIDMybank         ListMethodsID = "mybank"
-	ListMethodsIDPaybybank      ListMethodsID = "paybybank"
-	ListMethodsIDPayconiq       ListMethodsID = "payconiq"
-	ListMethodsIDPaypal         ListMethodsID = "paypal"
-	ListMethodsIDPaysafecard    ListMethodsID = "paysafecard"
-	ListMethodsIDPointofsale    ListMethodsID = "pointofsale"
-	ListMethodsIDPrzelewy24     ListMethodsID = "przelewy24"
-	ListMethodsIDRiverty        ListMethodsID = "riverty"
-	ListMethodsIDSatispay       ListMethodsID = "satispay"
-	ListMethodsIDSwish          ListMethodsID = "swish"
-	ListMethodsIDTrustly        ListMethodsID = "trustly"
-	ListMethodsIDTwint          ListMethodsID = "twint"
-	ListMethodsIDVoucher        ListMethodsID = "voucher"
-)
-
-func (e ListMethodsID) ToPointer() *ListMethodsID {
-	return &e
-}
-func (e *ListMethodsID) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "alma":
-		fallthrough
-	case "applepay":
-		fallthrough
-	case "bacs":
-		fallthrough
-	case "bancomatpay":
-		fallthrough
-	case "bancontact":
-		fallthrough
-	case "banktransfer":
-		fallthrough
-	case "belfius":
-		fallthrough
-	case "billie":
-		fallthrough
-	case "bizum":
-		fallthrough
-	case "blik":
-		fallthrough
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "eps":
-		fallthrough
-	case "giftcard":
-		fallthrough
-	case "ideal":
-		fallthrough
-	case "in3":
-		fallthrough
-	case "kbc":
-		fallthrough
-	case "klarna":
-		fallthrough
-	case "klarnapaylater":
-		fallthrough
-	case "klarnapaynow":
-		fallthrough
-	case "klarnasliceit":
-		fallthrough
-	case "mbway":
-		fallthrough
-	case "multibanco":
-		fallthrough
-	case "mybank":
-		fallthrough
-	case "paybybank":
-		fallthrough
-	case "payconiq":
-		fallthrough
-	case "paypal":
-		fallthrough
-	case "paysafecard":
-		fallthrough
-	case "pointofsale":
-		fallthrough
-	case "przelewy24":
-		fallthrough
-	case "riverty":
-		fallthrough
-	case "satispay":
-		fallthrough
-	case "swish":
-		fallthrough
-	case "trustly":
-		fallthrough
-	case "twint":
-		fallthrough
-	case "voucher":
-		*e = ListMethodsID(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMethodsID: %v", v)
-	}
-}
-
-// ListMethodsMinimumAmount - The minimum payment amount required to use this payment method.
-type ListMethodsMinimumAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *ListMethodsMinimumAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListMethodsMinimumAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// ListMethodsMaximumAmount - The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-// is returned instead.
-type ListMethodsMaximumAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *ListMethodsMaximumAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListMethodsMaximumAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// ListMethodsImage - URLs of images representing the payment method.
-type ListMethodsImage struct {
-	// The URL pointing to an icon of 32 by 24 pixels.
-	Size1x string `json:"size1x"`
-	// The URL pointing to an icon of 64 by 48 pixels.
-	Size2x string `json:"size2x"`
-	// The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-	// scale to any desired size without compromising visual quality.
-	Svg string `json:"svg"`
-}
-
-func (o *ListMethodsImage) GetSize1x() string {
-	if o == nil {
-		return ""
-	}
-	return o.Size1x
-}
-
-func (o *ListMethodsImage) GetSize2x() string {
-	if o == nil {
-		return ""
-	}
-	return o.Size2x
-}
-
-func (o *ListMethodsImage) GetSvg() string {
-	if o == nil {
-		return ""
-	}
-	return o.Svg
-}
-
-// ListMethodsStatus - The payment method's activation status for this profile.
-type ListMethodsStatus string
-
-const (
-	ListMethodsStatusActivated       ListMethodsStatus = "activated"
-	ListMethodsStatusPendingBoarding ListMethodsStatus = "pending-boarding"
-	ListMethodsStatusPendingReview   ListMethodsStatus = "pending-review"
-	ListMethodsStatusPendingExternal ListMethodsStatus = "pending-external"
-	ListMethodsStatusRejected        ListMethodsStatus = "rejected"
-)
-
-func (e ListMethodsStatus) ToPointer() *ListMethodsStatus {
-	return &e
-}
-func (e *ListMethodsStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "activated":
-		fallthrough
-	case "pending-boarding":
-		fallthrough
-	case "pending-review":
-		fallthrough
-	case "pending-external":
-		fallthrough
-	case "rejected":
-		*e = ListMethodsStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMethodsStatus: %v", v)
-	}
-}
-
-// ListMethodsIssuerImage - URLs of images representing the issuer.
-// required:
-//   - size1x
-//   - size2x
-//   - svg
-type ListMethodsIssuerImage struct {
-	// The URL pointing to an icon of 32 by 24 pixels.
-	Size1x *string `json:"size1x,omitempty"`
-	// The URL pointing to an icon of 64 by 48 pixels.
-	Size2x *string `json:"size2x,omitempty"`
-	// The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-	// scale to any desired size without compromising visual quality.
-	Svg *string `json:"svg,omitempty"`
-}
-
-func (o *ListMethodsIssuerImage) GetSize1x() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Size1x
-}
-
-func (o *ListMethodsIssuerImage) GetSize2x() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Size2x
-}
-
-func (o *ListMethodsIssuerImage) GetSvg() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Svg
-}
-
-type ListMethodsIssuer struct {
-	Resource string `json:"resource"`
-	ID       string `json:"id"`
-	// The full name of the issuer.
-	Name string `json:"name"`
-	// URLs of images representing the issuer.
-	// required:
-	//   - size1x
-	//   - size2x
-	//   - svg
-	Image ListMethodsIssuerImage `json:"image"`
-}
-
-func (o *ListMethodsIssuer) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *ListMethodsIssuer) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *ListMethodsIssuer) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *ListMethodsIssuer) GetImage() ListMethodsIssuerImage {
-	if o == nil {
-		return ListMethodsIssuerImage{}
-	}
-	return o.Image
-}
-
-// ListMethodsMethodSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListMethodsMethodSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListMethodsMethodSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListMethodsMethodSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListMethodsMethodDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListMethodsMethodDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListMethodsMethodDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListMethodsMethodDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListMethodsMethodLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type ListMethodsMethodLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self ListMethodsMethodSelf `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *ListMethodsMethodDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *ListMethodsMethodLinks) GetSelf() ListMethodsMethodSelf {
-	if o == nil {
-		return ListMethodsMethodSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListMethodsMethodLinks) GetDocumentation() *ListMethodsMethodDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-type ListMethodsMethod struct {
-	// Indicates the response contains a payment method object. Will always contain the string `method` for this
-	// endpoint.
-	Resource string `json:"resource"`
-	// The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-	// method selection screen will be skipped.
-	ID ListMethodsID `json:"id"`
-	// The full name of the payment method.
-	//
-	// If a `locale` parameter is provided, the name is translated to the given locale if possible.
-	Description string `json:"description"`
-	// The minimum payment amount required to use this payment method.
-	MinimumAmount ListMethodsMinimumAmount `json:"minimumAmount"`
-	// The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-	// is returned instead.
-	MaximumAmount *ListMethodsMaximumAmount `json:"maximumAmount"`
-	// URLs of images representing the payment method.
-	Image ListMethodsImage `json:"image"`
-	// The payment method's activation status for this profile.
-	Status ListMethodsStatus `json:"status"`
-	// **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-	// for iDEAL, KBC/CBC, gift cards, and vouchers.
-	Issuers []ListMethodsIssuer `json:"issuers,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links ListMethodsMethodLinks `json:"_links"`
-}
-
-func (o *ListMethodsMethod) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *ListMethodsMethod) GetID() ListMethodsID {
-	if o == nil {
-		return ListMethodsID("")
-	}
-	return o.ID
-}
-
-func (o *ListMethodsMethod) GetDescription() string {
-	if o == nil {
-		return ""
-	}
-	return o.Description
-}
-
-func (o *ListMethodsMethod) GetMinimumAmount() ListMethodsMinimumAmount {
-	if o == nil {
-		return ListMethodsMinimumAmount{}
-	}
-	return o.MinimumAmount
-}
-
-func (o *ListMethodsMethod) GetMaximumAmount() *ListMethodsMaximumAmount {
-	if o == nil {
-		return nil
-	}
-	return o.MaximumAmount
-}
-
-func (o *ListMethodsMethod) GetImage() ListMethodsImage {
-	if o == nil {
-		return ListMethodsImage{}
-	}
-	return o.Image
-}
-
-func (o *ListMethodsMethod) GetStatus() ListMethodsStatus {
-	if o == nil {
-		return ListMethodsStatus("")
-	}
-	return o.Status
-}
-
-func (o *ListMethodsMethod) GetIssuers() []ListMethodsIssuer {
-	if o == nil {
-		return nil
-	}
-	return o.Issuers
-}
-
-func (o *ListMethodsMethod) GetLinks() ListMethodsMethodLinks {
-	if o == nil {
-		return ListMethodsMethodLinks{}
-	}
-	return o.Links
-}
-
 type ListMethodsEmbedded struct {
 	// An array of payment method objects. For a complete
 	// reference of the payment method object, refer
 	// to the [Get payment method endpoint](get-method)
 	// documentation.
-	Methods []ListMethodsMethod `json:"methods"`
+	Methods []components.EntityMethod `json:"methods"`
 }
 
-func (o *ListMethodsEmbedded) GetMethods() []ListMethodsMethod {
+func (o *ListMethodsEmbedded) GetMethods() []components.EntityMethod {
 	if o == nil {
-		return []ListMethodsMethod{}
+		return []components.EntityMethod{}
 	}
 	return o.Methods
 }
 
-// ListMethodsSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListMethodsSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListMethodsSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListMethodsSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListMethodsDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListMethodsDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListMethodsDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListMethodsDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
 type ListMethodsLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self ListMethodsSelf `json:"self"`
+	Self components.URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListMethodsDocumentation `json:"documentation"`
+	Documentation components.URLObj `json:"documentation"`
 }
 
-func (o *ListMethodsLinks) GetSelf() ListMethodsSelf {
+func (o *ListMethodsLinks) GetSelf() components.URLObj {
 	if o == nil {
-		return ListMethodsSelf{}
+		return components.URLObj{}
 	}
 	return o.Self
 }
 
-func (o *ListMethodsLinks) GetDocumentation() ListMethodsDocumentation {
+func (o *ListMethodsLinks) GetDocumentation() components.URLObj {
 	if o == nil {
-		return ListMethodsDocumentation{}
+		return components.URLObj{}
 	}
 	return o.Documentation
 }

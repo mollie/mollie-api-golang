@@ -3,63 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// ListAllChargebacksEmbed - This endpoint allows you to embed additional information via the
-// `embed` query string parameter.
-type ListAllChargebacksEmbed string
-
-const (
-	ListAllChargebacksEmbedPayment ListAllChargebacksEmbed = "payment"
-)
-
-func (e ListAllChargebacksEmbed) ToPointer() *ListAllChargebacksEmbed {
-	return &e
-}
-func (e *ListAllChargebacksEmbed) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment":
-		*e = ListAllChargebacksEmbed(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListAllChargebacksEmbed: %v", v)
-	}
-}
-
-// ListAllChargebacksSort - Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-// newest to oldest.
-type ListAllChargebacksSort string
-
-const (
-	ListAllChargebacksSortAsc  ListAllChargebacksSort = "asc"
-	ListAllChargebacksSortDesc ListAllChargebacksSort = "desc"
-)
-
-func (e ListAllChargebacksSort) ToPointer() *ListAllChargebacksSort {
-	return &e
-}
-func (e *ListAllChargebacksSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asc":
-		fallthrough
-	case "desc":
-		*e = ListAllChargebacksSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListAllChargebacksSort: %v", v)
-	}
-}
 
 type ListAllChargebacksRequest struct {
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
@@ -67,12 +12,12 @@ type ListAllChargebacksRequest struct {
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
-	// This endpoint allows you to embed additional information via the
-	// `embed` query string parameter.
-	Embed *ListAllChargebacksEmbed `queryParam:"style=form,explode=true,name=embed"`
+	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
+	// parameter.
+	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *ListAllChargebacksSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
 	// The identifier referring to the [profile](get-profile) you wish to
 	// retrieve chargebacks for.
 	//
@@ -104,14 +49,14 @@ func (o *ListAllChargebacksRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *ListAllChargebacksRequest) GetEmbed() *ListAllChargebacksEmbed {
+func (o *ListAllChargebacksRequest) GetEmbed() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Embed
 }
 
-func (o *ListAllChargebacksRequest) GetSort() *ListAllChargebacksSort {
+func (o *ListAllChargebacksRequest) GetSort() *components.ListSort {
 	if o == nil {
 		return nil
 	}
@@ -132,515 +77,16 @@ func (o *ListAllChargebacksRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// ListAllChargebacksNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type ListAllChargebacksNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListAllChargebacksNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListAllChargebacksNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *ListAllChargebacksNotFoundLinks) GetDocumentation() ListAllChargebacksNotFoundDocumentation {
-	if o == nil {
-		return ListAllChargebacksNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListAllChargebacksBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListAllChargebacksBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListAllChargebacksBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListAllChargebacksBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListAllChargebacksBadRequestLinks) GetDocumentation() ListAllChargebacksBadRequestDocumentation {
-	if o == nil {
-		return ListAllChargebacksBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListAllChargebacksAmount - The amount charged back by the customer.
-type ListAllChargebacksAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *ListAllChargebacksAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListAllChargebacksAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// ListAllChargebacksSettlementAmount - This optional field will contain the approximate amount that will be deducted from your account balance, converted
-// to the currency your account is settled in.
-//
-// The amount is a **negative** amount.
-//
-// Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-// instead.
-type ListAllChargebacksSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (o *ListAllChargebacksSettlementAmount) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListAllChargebacksSettlementAmount) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-// ListAllChargebacksReason - Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
-type ListAllChargebacksReason struct {
-	// Technical code provided by the bank.
-	Code string `json:"code"`
-	// A more detailed human-friendly description.
-	Description string `json:"description"`
-}
-
-func (o *ListAllChargebacksReason) GetCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.Code
-}
-
-func (o *ListAllChargebacksReason) GetDescription() string {
-	if o == nil {
-		return ""
-	}
-	return o.Description
-}
-
-// ListAllChargebacksChargebackSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListAllChargebacksChargebackSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksChargebackSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksChargebackSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListAllChargebacksPayment - The API resource URL of the [payment](get-payment) that this chargeback belongs to.
-type ListAllChargebacksPayment struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksPayment) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksPayment) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListAllChargebacksSettlement - The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
-// not yet settled.
-type ListAllChargebacksSettlement struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListAllChargebacksSettlement) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksSettlement) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListAllChargebacksChargebackDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListAllChargebacksChargebackDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksChargebackDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksChargebackDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListAllChargebacksChargebackLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type ListAllChargebacksChargebackLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self ListAllChargebacksChargebackSelf `json:"self"`
-	// The API resource URL of the [payment](get-payment) that this chargeback belongs to.
-	Payment ListAllChargebacksPayment `json:"payment"`
-	// The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
-	// not yet settled.
-	Settlement *ListAllChargebacksSettlement `json:"settlement,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListAllChargebacksChargebackDocumentation `json:"documentation"`
-}
-
-func (o *ListAllChargebacksChargebackLinks) GetSelf() ListAllChargebacksChargebackSelf {
-	if o == nil {
-		return ListAllChargebacksChargebackSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListAllChargebacksChargebackLinks) GetPayment() ListAllChargebacksPayment {
-	if o == nil {
-		return ListAllChargebacksPayment{}
-	}
-	return o.Payment
-}
-
-func (o *ListAllChargebacksChargebackLinks) GetSettlement() *ListAllChargebacksSettlement {
-	if o == nil {
-		return nil
-	}
-	return o.Settlement
-}
-
-func (o *ListAllChargebacksChargebackLinks) GetDocumentation() ListAllChargebacksChargebackDocumentation {
-	if o == nil {
-		return ListAllChargebacksChargebackDocumentation{}
-	}
-	return o.Documentation
-}
-
-type ListAllChargebacksChargeback struct {
-	// Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
-	// endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
-	ID string `json:"id"`
-	// The amount charged back by the customer.
-	Amount ListAllChargebacksAmount `json:"amount"`
-	// This optional field will contain the approximate amount that will be deducted from your account balance, converted
-	// to the currency your account is settled in.
-	//
-	// The amount is a **negative** amount.
-	//
-	// Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-	// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-	// instead.
-	SettlementAmount *ListAllChargebacksSettlementAmount `json:"settlementAmount,omitempty"`
-	// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
-	Reason *ListAllChargebacksReason `json:"reason,omitempty"`
-	// The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-	// The full payment object can be retrieved via the payment URL in the `_links` object.
-	PaymentID string `json:"paymentId"`
-	// The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
-	// is omitted if the refund is not settled (yet).
-	SettlementID *string `json:"settlementId,omitempty"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
-	// The date and time the chargeback was reversed if applicable, in
-	// [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	ReversedAt *string `json:"reversedAt,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links ListAllChargebacksChargebackLinks `json:"_links"`
-}
-
-func (o *ListAllChargebacksChargeback) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *ListAllChargebacksChargeback) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *ListAllChargebacksChargeback) GetAmount() ListAllChargebacksAmount {
-	if o == nil {
-		return ListAllChargebacksAmount{}
-	}
-	return o.Amount
-}
-
-func (o *ListAllChargebacksChargeback) GetSettlementAmount() *ListAllChargebacksSettlementAmount {
-	if o == nil {
-		return nil
-	}
-	return o.SettlementAmount
-}
-
-func (o *ListAllChargebacksChargeback) GetReason() *ListAllChargebacksReason {
-	if o == nil {
-		return nil
-	}
-	return o.Reason
-}
-
-func (o *ListAllChargebacksChargeback) GetPaymentID() string {
-	if o == nil {
-		return ""
-	}
-	return o.PaymentID
-}
-
-func (o *ListAllChargebacksChargeback) GetSettlementID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SettlementID
-}
-
-func (o *ListAllChargebacksChargeback) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
-func (o *ListAllChargebacksChargeback) GetReversedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ReversedAt
-}
-
-func (o *ListAllChargebacksChargeback) GetLinks() ListAllChargebacksChargebackLinks {
-	if o == nil {
-		return ListAllChargebacksChargebackLinks{}
-	}
-	return o.Links
-}
-
 type ListAllChargebacksEmbedded struct {
 	// A list of chargeback objects.
-	Chargebacks []ListAllChargebacksChargeback `json:"chargebacks,omitempty"`
+	Chargebacks []components.EntityChargeback `json:"chargebacks,omitempty"`
 }
 
-func (o *ListAllChargebacksEmbedded) GetChargebacks() []ListAllChargebacksChargeback {
+func (o *ListAllChargebacksEmbedded) GetChargebacks() []components.EntityChargeback {
 	if o == nil {
 		return nil
 	}
 	return o.Chargebacks
-}
-
-// ListAllChargebacksSelf - The URL to the current set of items.
-type ListAllChargebacksSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListAllChargebacksPrevious - The previous set of items, if available.
-type ListAllChargebacksPrevious struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListAllChargebacksPrevious) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksPrevious) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListAllChargebacksNext - The next set of items, if available.
-type ListAllChargebacksNext struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListAllChargebacksNext) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksNext) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListAllChargebacksDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListAllChargebacksDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListAllChargebacksDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListAllChargebacksDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListAllChargebacksLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-type ListAllChargebacksLinks struct {
-	// The URL to the current set of items.
-	Self ListAllChargebacksSelf `json:"self"`
-	// The previous set of items, if available.
-	Previous *ListAllChargebacksPrevious `json:"previous"`
-	// The next set of items, if available.
-	Next *ListAllChargebacksNext `json:"next"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListAllChargebacksDocumentation `json:"documentation"`
-}
-
-func (o *ListAllChargebacksLinks) GetSelf() ListAllChargebacksSelf {
-	if o == nil {
-		return ListAllChargebacksSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListAllChargebacksLinks) GetPrevious() *ListAllChargebacksPrevious {
-	if o == nil {
-		return nil
-	}
-	return o.Previous
-}
-
-func (o *ListAllChargebacksLinks) GetNext() *ListAllChargebacksNext {
-	if o == nil {
-		return nil
-	}
-	return o.Next
-}
-
-func (o *ListAllChargebacksLinks) GetDocumentation() ListAllChargebacksDocumentation {
-	if o == nil {
-		return ListAllChargebacksDocumentation{}
-	}
-	return o.Documentation
 }
 
 // ListAllChargebacksResponseBody - A list of chargeback objects.
@@ -653,7 +99,7 @@ type ListAllChargebacksResponseBody struct {
 	Count    *int64                      `json:"count,omitempty"`
 	Embedded *ListAllChargebacksEmbedded `json:"_embedded,omitempty"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *ListAllChargebacksLinks `json:"_links,omitempty"`
+	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
 func (o *ListAllChargebacksResponseBody) GetCount() *int64 {
@@ -670,7 +116,7 @@ func (o *ListAllChargebacksResponseBody) GetEmbedded() *ListAllChargebacksEmbedd
 	return o.Embedded
 }
 
-func (o *ListAllChargebacksResponseBody) GetLinks() *ListAllChargebacksLinks {
+func (o *ListAllChargebacksResponseBody) GetLinks() *components.ListLinks {
 	if o == nil {
 		return nil
 	}

@@ -45,7 +45,7 @@ func main() {
         Month: client.String("01"),
         From: client.String("inv_xBEbP9rvAq"),
         Limit: client.Int64(50),
-        Sort: operations.ListInvoicesSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -70,11 +70,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.ListInvoicesBadRequestHalJSONError | 400                                          | application/hal+json                         |
-| apierrors.ListInvoicesNotFoundHalJSONError   | 404                                          | application/hal+json                         |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -110,7 +109,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityInvoice != nil {
         // handle response
     }
 }
@@ -118,11 +117,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |                                                                   |
-| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | inv_FrvewDA3Pr                                                    |
-| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |                                                                   |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
+| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
+| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |
 
 ### Response
 
@@ -130,7 +129,7 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetInvoiceHalJSONError | 404                              | application/hal+json             |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

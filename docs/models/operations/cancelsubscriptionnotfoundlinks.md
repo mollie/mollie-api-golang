@@ -1,8 +1,0 @@
-# CancelSubscriptionNotFoundLinks
-
-
-## Fields
-
-| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `Documentation`                                                                                                          | [operations.CancelSubscriptionNotFoundDocumentation](../../models/operations/cancelsubscriptionnotfounddocumentation.md) | :heavy_check_mark:                                                                                                       | The URL to the generic Mollie API error handling guide.                                                                  |

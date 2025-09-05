@@ -44,10 +44,10 @@ func newPayments(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // If you specify the `method` parameter when creating a payment, optional
 // additional parameters may be available for the payment method that are not listed below. Please refer to the
 // guide on [method-specific parameters](extra-payment-parameters).
-func (s *Payments) Create(ctx context.Context, include *operations.CreatePaymentInclude, requestBody *operations.CreatePaymentRequestBody, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
+func (s *Payments) Create(ctx context.Context, include *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	request := operations.CreatePaymentRequest{
-		Include:     include,
-		RequestBody: requestBody,
+		Include:        include,
+		PaymentRequest: paymentRequest,
 	}
 
 	o := operations.Options{}
@@ -82,7 +82,7 @@ func (s *Payments) Create(ctx context.Context, include *operations.CreatePayment
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PaymentRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -233,12 +233,12 @@ func (s *Payments) Create(ctx context.Context, include *operations.CreatePayment
 				return nil, err
 			}
 
-			var out operations.CreatePaymentResponseBody
+			var out components.PaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.PaymentResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -254,7 +254,7 @@ func (s *Payments) Create(ctx context.Context, include *operations.CreatePayment
 				return nil, err
 			}
 
-			var out apierrors.CreatePaymentUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -279,7 +279,7 @@ func (s *Payments) Create(ctx context.Context, include *operations.CreatePayment
 				return nil, err
 			}
 
-			var out apierrors.CreatePaymentServiceUnavailableHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -522,7 +522,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 				return nil, err
 			}
 
-			var out apierrors.ListPaymentsHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -565,7 +565,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 
 // Get payment
 // Retrieve a single payment object by its payment ID.
-func (s *Payments) Get(ctx context.Context, paymentID string, include *operations.GetPaymentInclude, embed *operations.GetPaymentEmbed, testmode *bool, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
+func (s *Payments) Get(ctx context.Context, paymentID string, include *string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
 	request := operations.GetPaymentRequest{
 		PaymentID: paymentID,
 		Include:   include,
@@ -749,12 +749,12 @@ func (s *Payments) Get(ctx context.Context, paymentID string, include *operation
 				return nil, err
 			}
 
-			var out operations.GetPaymentResponseBody
+			var out components.PaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.PaymentResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -770,7 +770,7 @@ func (s *Payments) Get(ctx context.Context, paymentID string, include *operation
 				return nil, err
 			}
 
-			var out apierrors.GetPaymentHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1000,12 +1000,12 @@ func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out operations.UpdatePaymentResponseBody
+			var out components.PaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.PaymentResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1014,30 +1014,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *op
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.UpdatePaymentNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1046,7 +1023,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.UpdatePaymentUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1279,12 +1256,12 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out operations.CancelPaymentResponseBody
+			var out components.PaymentResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.PaymentResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1293,30 +1270,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *op
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CancelPaymentNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1325,7 +1279,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.CancelPaymentUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1574,30 +1528,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, r
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.ReleaseAuthorizationNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -1606,7 +1537,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, r
 				return nil, err
 			}
 
-			var out apierrors.ReleaseAuthorizationUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

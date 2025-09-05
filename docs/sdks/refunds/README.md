@@ -27,7 +27,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -40,25 +39,37 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", &operations.CreateRefundRequestBody{
-        Description: client.String("Refunding a Chess Board"),
-        Amount: operations.CreateRefundAmountRequest{
+    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", &components.EntityRefund{
+        ID: "re_5B8cwPMGnU",
+        Description: "Refunding a Chess Board",
+        Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        ExternalReference: &operations.ExternalReferenceRequest{
-            Type: operations.TypeAcquirerReferenceRequestAcquirerReference.ToPointer(),
+        SettlementAmount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Metadata: client.Pointer(components.CreateMetadataMapOfAny(
+            map[string]any{
+
+            },
+        )),
+        PaymentID: client.String("tr_5B8cwPMGnU"),
+        SettlementID: client.String("stl_5B8cwPMGnU"),
+        ExternalReference: &components.EntityRefundExternalReference{
+            Type: components.EntityRefundTypeAcquirerReferenceAcquirerReference.ToPointer(),
             ID: client.String("123456789012345"),
         },
         ReverseRouting: client.Bool(false),
-        RoutingReversals: []operations.RoutingReversalRequest{
-            operations.RoutingReversalRequest{
-                Amount: &operations.RoutingReversalAmountRequest{
+        RoutingReversals: []components.EntityRefundRoutingReversal{
+            components.EntityRefundRoutingReversal{
+                Amount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Source: &operations.CreateRefundSourceRequest{
-                    Type: operations.RoutingReversalTypeOrganization.ToPointer(),
+                Source: &components.EntityRefundSource{
+                    Type: components.RoutingReversalTypeOrganization.ToPointer(),
                     OrganizationID: client.String("org_1234567"),
                 },
             },
@@ -68,7 +79,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityRefundResponse != nil {
         // handle response
     }
 }
@@ -76,12 +87,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
-| `paymentID`                                                                               | *string*                                                                                  | :heavy_check_mark:                                                                        | Provide the ID of the related payment.                                                    | tr_5B8cwPMGnU                                                                             |
-| `requestBody`                                                                             | [*operations.CreateRefundRequestBody](../../models/operations/createrefundrequestbody.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |                                                                                           |
-| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `ctx`                                                               | [context.Context](https://pkg.go.dev/context#Context)               | :heavy_check_mark:                                                  | The context to use for the request.                                 |                                                                     |
+| `paymentID`                                                         | *string*                                                            | :heavy_check_mark:                                                  | Provide the ID of the related payment.                              | tr_5B8cwPMGnU                                                       |
+| `entityRefund`                                                      | [*components.EntityRefund](../../models/components/entityrefund.md) | :heavy_minus_sign:                                                  | N/A                                                                 |                                                                     |
+| `opts`                                                              | [][operations.Option](../../models/operations/option.md)            | :heavy_minus_sign:                                                  | The options for this request.                                       |                                                                     |
 
 ### Response
 
@@ -89,12 +100,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| apierrors.CreateRefundNotFoundHalJSONError            | 404                                                   | application/hal+json                                  |
-| apierrors.ConflictHalJSONError                        | 409                                                   | application/hal+json                                  |
-| apierrors.CreateRefundUnprocessableEntityHalJSONError | 422                                                   | application/hal+json                                  |
-| apierrors.APIError                                    | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 409, 422           | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -130,7 +139,7 @@ func main() {
         PaymentID: "tr_5B8cwPMGnU",
         From: client.String("re_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Embed: operations.ListRefundsEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -156,11 +165,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| apierrors.ListRefundsBadRequestHalJSONError | 400                                         | application/hal+json                        |
-| apierrors.ListRefundsNotFoundHalJSONError   | 404                                         | application/hal+json                        |
-| apierrors.APIError                          | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -177,7 +185,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -190,11 +197,11 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Get(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", operations.GetRefundEmbedPayment.ToPointer(), client.Bool(false))
+    res, err := s.Refunds.Get(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", client.String("payment"), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.EntityRefundResponse != nil {
         // handle response
     }
 }
@@ -207,7 +214,7 @@ func main() {
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `paymentID`                                                                                                                                                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `refundID`                                                                                                                                                                                                                                                                                                                                                                             | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [*operations.GetRefundEmbed](../../models/operations/getrefundembed.md)                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -217,10 +224,10 @@ func main() {
 
 ### Errors
 
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| apierrors.GetRefundHalJSONError | 404                             | application/hal+json            |
-| apierrors.APIError              | 4XX, 5XX                        | \*/\*                           |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Cancel
 
@@ -279,10 +286,10 @@ func main() {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| apierrors.CancelRefundHalJSONError | 404                                | application/hal+json               |
-| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## All
 
@@ -317,8 +324,8 @@ func main() {
     res, err := s.Refunds.All(ctx, operations.ListAllRefundsRequest{
         From: client.String("re_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.ListAllRefundsSortDesc.ToPointer(),
-        Embed: operations.ListAllRefundsEmbedPayment.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
+        Embed: client.String("payment"),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })
@@ -345,7 +352,7 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.ListAllRefundsHalJSONError | 400                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

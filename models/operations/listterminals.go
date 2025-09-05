@@ -3,38 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// ListTerminalsSort - Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-// newest to oldest.
-type ListTerminalsSort string
-
-const (
-	ListTerminalsSortAsc  ListTerminalsSort = "asc"
-	ListTerminalsSortDesc ListTerminalsSort = "desc"
-)
-
-func (e ListTerminalsSort) ToPointer() *ListTerminalsSort {
-	return &e
-}
-func (e *ListTerminalsSort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asc":
-		fallthrough
-	case "desc":
-		*e = ListTerminalsSort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListTerminalsSort: %v", v)
-	}
-}
 
 type ListTerminalsRequest struct {
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
@@ -44,7 +14,7 @@ type ListTerminalsRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *ListTerminalsSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -67,7 +37,7 @@ func (o *ListTerminalsRequest) GetLimit() *int64 {
 	return o.Limit
 }
 
-func (o *ListTerminalsRequest) GetSort() *ListTerminalsSort {
+func (o *ListTerminalsRequest) GetSort() *components.ListSort {
 	if o == nil {
 		return nil
 	}
@@ -81,492 +51,16 @@ func (o *ListTerminalsRequest) GetTestmode() *bool {
 	return o.Testmode
 }
 
-// ListTerminalsBadRequestDocumentation - The URL to the generic Mollie API error handling guide.
-type ListTerminalsBadRequestDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *ListTerminalsBadRequestDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListTerminalsBadRequestDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type ListTerminalsBadRequestLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation ListTerminalsBadRequestDocumentation `json:"documentation"`
-}
-
-func (o *ListTerminalsBadRequestLinks) GetDocumentation() ListTerminalsBadRequestDocumentation {
-	if o == nil {
-		return ListTerminalsBadRequestDocumentation{}
-	}
-	return o.Documentation
-}
-
-// ListTerminalsMode - Whether this entity was created in live mode or in test mode.
-type ListTerminalsMode string
-
-const (
-	ListTerminalsModeLive ListTerminalsMode = "live"
-	ListTerminalsModeTest ListTerminalsMode = "test"
-)
-
-func (e ListTerminalsMode) ToPointer() *ListTerminalsMode {
-	return &e
-}
-func (e *ListTerminalsMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = ListTerminalsMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListTerminalsMode: %v", v)
-	}
-}
-
-// ListTerminalsStatus - The status of the terminal.
-type ListTerminalsStatus string
-
-const (
-	ListTerminalsStatusPending  ListTerminalsStatus = "pending"
-	ListTerminalsStatusActive   ListTerminalsStatus = "active"
-	ListTerminalsStatusInactive ListTerminalsStatus = "inactive"
-)
-
-func (e ListTerminalsStatus) ToPointer() *ListTerminalsStatus {
-	return &e
-}
-func (e *ListTerminalsStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "active":
-		fallthrough
-	case "inactive":
-		*e = ListTerminalsStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListTerminalsStatus: %v", v)
-	}
-}
-
-// ListTerminalsBrand - The brand of the terminal.
-type ListTerminalsBrand string
-
-const (
-	ListTerminalsBrandPax ListTerminalsBrand = "PAX"
-	ListTerminalsBrandTap ListTerminalsBrand = "Tap"
-)
-
-func (e ListTerminalsBrand) ToPointer() *ListTerminalsBrand {
-	return &e
-}
-func (e *ListTerminalsBrand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "PAX":
-		fallthrough
-	case "Tap":
-		*e = ListTerminalsBrand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListTerminalsBrand: %v", v)
-	}
-}
-
-// ListTerminalsModel - The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-type ListTerminalsModel string
-
-const (
-	ListTerminalsModelA35     ListTerminalsModel = "A35"
-	ListTerminalsModelA77     ListTerminalsModel = "A77"
-	ListTerminalsModelA920    ListTerminalsModel = "A920"
-	ListTerminalsModelA920Pro ListTerminalsModel = "A920Pro"
-	ListTerminalsModelIm30    ListTerminalsModel = "IM30"
-	ListTerminalsModelTap     ListTerminalsModel = "Tap"
-)
-
-func (e ListTerminalsModel) ToPointer() *ListTerminalsModel {
-	return &e
-}
-func (e *ListTerminalsModel) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "A35":
-		fallthrough
-	case "A77":
-		fallthrough
-	case "A920":
-		fallthrough
-	case "A920Pro":
-		fallthrough
-	case "IM30":
-		fallthrough
-	case "Tap":
-		*e = ListTerminalsModel(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListTerminalsModel: %v", v)
-	}
-}
-
-// TerminalSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type TerminalSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *TerminalSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *TerminalSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// TerminalDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type TerminalDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *TerminalDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *TerminalDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// TerminalLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type TerminalLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self TerminalSelf `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation TerminalDocumentation `json:"documentation"`
-}
-
-func (o *TerminalLinks) GetSelf() TerminalSelf {
-	if o == nil {
-		return TerminalSelf{}
-	}
-	return o.Self
-}
-
-func (o *TerminalLinks) GetDocumentation() TerminalDocumentation {
-	if o == nil {
-		return TerminalDocumentation{}
-	}
-	return o.Documentation
-}
-
-type ListTerminalsTerminal struct {
-	// Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
-	ID string `json:"id"`
-	// Whether this entity was created in live mode or in test mode.
-	Mode ListTerminalsMode `json:"mode"`
-	// A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-	// description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-	// may be visible on the device itself depending on the device.
-	Description string `json:"description"`
-	// The status of the terminal.
-	Status ListTerminalsStatus `json:"status"`
-	// The brand of the terminal.
-	Brand *ListTerminalsBrand `json:"brand"`
-	// The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-	Model *ListTerminalsModel `json:"model"`
-	// The serial number of the terminal. The serial number is provided at terminal creation time.
-	SerialNumber *string `json:"serialNumber"`
-	// The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-	// specific currency, chosen during setup.
-	Currency string `json:"currency"`
-	// The identifier referring to the [profile](get-profile) this entity belongs to.
-	//
-	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-	// required.
-	ProfileID string `json:"profileId"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	UpdatedAt string `json:"updatedAt"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links TerminalLinks `json:"_links"`
-}
-
-func (o *ListTerminalsTerminal) GetResource() string {
-	if o == nil {
-		return ""
-	}
-	return o.Resource
-}
-
-func (o *ListTerminalsTerminal) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *ListTerminalsTerminal) GetMode() ListTerminalsMode {
-	if o == nil {
-		return ListTerminalsMode("")
-	}
-	return o.Mode
-}
-
-func (o *ListTerminalsTerminal) GetDescription() string {
-	if o == nil {
-		return ""
-	}
-	return o.Description
-}
-
-func (o *ListTerminalsTerminal) GetStatus() ListTerminalsStatus {
-	if o == nil {
-		return ListTerminalsStatus("")
-	}
-	return o.Status
-}
-
-func (o *ListTerminalsTerminal) GetBrand() *ListTerminalsBrand {
-	if o == nil {
-		return nil
-	}
-	return o.Brand
-}
-
-func (o *ListTerminalsTerminal) GetModel() *ListTerminalsModel {
-	if o == nil {
-		return nil
-	}
-	return o.Model
-}
-
-func (o *ListTerminalsTerminal) GetSerialNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SerialNumber
-}
-
-func (o *ListTerminalsTerminal) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *ListTerminalsTerminal) GetProfileID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProfileID
-}
-
-func (o *ListTerminalsTerminal) GetCreatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.CreatedAt
-}
-
-func (o *ListTerminalsTerminal) GetUpdatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.UpdatedAt
-}
-
-func (o *ListTerminalsTerminal) GetLinks() TerminalLinks {
-	if o == nil {
-		return TerminalLinks{}
-	}
-	return o.Links
-}
-
 type ListTerminalsEmbedded struct {
 	// An array of terminal objects.
-	Terminals []ListTerminalsTerminal `json:"terminals,omitempty"`
+	Terminals []components.EntityTerminal `json:"terminals,omitempty"`
 }
 
-func (o *ListTerminalsEmbedded) GetTerminals() []ListTerminalsTerminal {
+func (o *ListTerminalsEmbedded) GetTerminals() []components.EntityTerminal {
 	if o == nil {
 		return nil
 	}
 	return o.Terminals
-}
-
-// ListTerminalsSelf - The URL to the current set of items.
-type ListTerminalsSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListTerminalsSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListTerminalsSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListTerminalsPrevious - The previous set of items, if available.
-type ListTerminalsPrevious struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListTerminalsPrevious) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListTerminalsPrevious) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListTerminalsNext - The next set of items, if available.
-type ListTerminalsNext struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *ListTerminalsNext) GetHref() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Href
-}
-
-func (o *ListTerminalsNext) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-// ListTerminalsDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type ListTerminalsDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *ListTerminalsDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *ListTerminalsDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// ListTerminalsLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-type ListTerminalsLinks struct {
-	// The URL to the current set of items.
-	Self ListTerminalsSelf `json:"self"`
-	// The previous set of items, if available.
-	Previous *ListTerminalsPrevious `json:"previous"`
-	// The next set of items, if available.
-	Next *ListTerminalsNext `json:"next"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation ListTerminalsDocumentation `json:"documentation"`
-}
-
-func (o *ListTerminalsLinks) GetSelf() ListTerminalsSelf {
-	if o == nil {
-		return ListTerminalsSelf{}
-	}
-	return o.Self
-}
-
-func (o *ListTerminalsLinks) GetPrevious() *ListTerminalsPrevious {
-	if o == nil {
-		return nil
-	}
-	return o.Previous
-}
-
-func (o *ListTerminalsLinks) GetNext() *ListTerminalsNext {
-	if o == nil {
-		return nil
-	}
-	return o.Next
-}
-
-func (o *ListTerminalsLinks) GetDocumentation() ListTerminalsDocumentation {
-	if o == nil {
-		return ListTerminalsDocumentation{}
-	}
-	return o.Documentation
 }
 
 // ListTerminalsResponseBody - A list of terminal objects.
@@ -579,7 +73,7 @@ type ListTerminalsResponseBody struct {
 	Count    int64                 `json:"count"`
 	Embedded ListTerminalsEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links ListTerminalsLinks `json:"_links"`
+	Links components.ListLinks `json:"_links"`
 }
 
 func (o *ListTerminalsResponseBody) GetCount() int64 {
@@ -596,9 +90,9 @@ func (o *ListTerminalsResponseBody) GetEmbedded() ListTerminalsEmbedded {
 	return o.Embedded
 }
 
-func (o *ListTerminalsResponseBody) GetLinks() ListTerminalsLinks {
+func (o *ListTerminalsResponseBody) GetLinks() components.ListLinks {
 	if o == nil {
-		return ListTerminalsLinks{}
+		return components.ListLinks{}
 	}
 	return o.Links
 }

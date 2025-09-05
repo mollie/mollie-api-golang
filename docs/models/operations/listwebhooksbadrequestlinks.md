@@ -1,8 +1,0 @@
-# ListWebhooksBadRequestLinks
-
-
-## Fields
-
-| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `Documentation`                                                                                                  | [operations.ListWebhooksBadRequestDocumentation](../../models/operations/listwebhooksbadrequestdocumentation.md) | :heavy_check_mark:                                                                                               | The URL to the generic Mollie API error handling guide.                                                          |

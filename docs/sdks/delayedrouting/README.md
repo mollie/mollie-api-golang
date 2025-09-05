@@ -24,7 +24,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -37,14 +36,16 @@ func main() {
         }),
     )
 
-    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", &operations.PaymentCreateRouteRequestBody{
-        Amount: &operations.PaymentCreateRouteAmountRequest{
+    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", &components.RouteCreateRequest{
+        ID: client.String("crt_dyARQ3JzCgtPDhU2Pbq3J"),
+        PaymentID: client.String("tr_5B8cwPMGnU"),
+        Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
         Description: client.String("Payment for Order #12345"),
-        Destination: &operations.PaymentCreateRouteDestinationRequest{
-            Type: operations.PaymentCreateRouteTypeRequestOrganization,
+        Destination: &components.RouteCreateRequestDestination{
+            Type: components.RouteCreateRequestTypeOrganization,
             OrganizationID: "org_1234567",
         },
         Testmode: client.Bool(false),
@@ -52,7 +53,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.RouteCreateResponse != nil {
         // handle response
     }
 }
@@ -60,12 +61,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `paymentID`                                                                                           | *string*                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related payment.                                                                | tr_5B8cwPMGnU                                                                                         |
-| `requestBody`                                                                                         | [*operations.PaymentCreateRouteRequestBody](../../models/operations/paymentcreaterouterequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |                                                                                 |
+| `paymentID`                                                                     | *string*                                                                        | :heavy_check_mark:                                                              | Provide the ID of the related payment.                                          | tr_5B8cwPMGnU                                                                   |
+| `routeCreateRequest`                                                            | [*components.RouteCreateRequest](../../models/components/routecreaterequest.md) | :heavy_minus_sign:                                                              | N/A                                                                             |                                                                                 |
+| `opts`                                                                          | [][operations.Option](../../models/operations/option.md)                        | :heavy_minus_sign:                                                              | The options for this request.                                                   |                                                                                 |
 
 ### Response
 
@@ -73,10 +74,10 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.PaymentCreateRouteHalJSONError | 404                                      | application/hal+json                     |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -130,7 +131,7 @@ func main() {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| apierrors.PaymentListRoutesHalJSONError | 404                                     | application/hal+json                    |
-| apierrors.APIError                      | 4XX, 5XX                                | \*/\*                                   |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

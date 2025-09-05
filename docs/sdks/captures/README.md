@@ -31,7 +31,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -44,17 +43,25 @@ func main() {
         }),
     )
 
-    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", &operations.CreateCaptureRequestBody{
+    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", &components.EntityCapture{
+        ID: client.String("cpt_vytxeTZskVKR7C7WgdSP3d"),
         Description: client.String("Capture for cart #12345"),
-        Amount: &operations.CreateCaptureAmountRequest{
+        Amount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
         },
+        SettlementAmount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        PaymentID: client.String("tr_5B8cwPMGnU"),
+        ShipmentID: client.String("shp_5x4xQJDWGNcY3tKGL7X5J"),
+        SettlementID: client.String("stl_5B8cwPMGnU"),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CaptureResponse != nil {
         // handle response
     }
 }
@@ -62,12 +69,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `paymentID`                                                                                 | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related payment.                                                      | tr_5B8cwPMGnU                                                                               |
-| `requestBody`                                                                               | [*operations.CreateCaptureRequestBody](../../models/operations/createcapturerequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ctx`                                                                 | [context.Context](https://pkg.go.dev/context#Context)                 | :heavy_check_mark:                                                    | The context to use for the request.                                   |                                                                       |
+| `paymentID`                                                           | *string*                                                              | :heavy_check_mark:                                                    | Provide the ID of the related payment.                                | tr_5B8cwPMGnU                                                         |
+| `entityCapture`                                                       | [*components.EntityCapture](../../models/components/entitycapture.md) | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
+| `opts`                                                                | [][operations.Option](../../models/operations/option.md)              | :heavy_minus_sign:                                                    | The options for this request.                                         |                                                                       |
 
 ### Response
 
@@ -75,11 +82,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.CreateCaptureNotFoundHalJSONError            | 404                                                    | application/hal+json                                   |
-| apierrors.CreateCaptureUnprocessableEntityHalJSONError | 422                                                    | application/hal+json                                   |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -115,7 +121,7 @@ func main() {
         PaymentID: "tr_5B8cwPMGnU",
         From: client.String("cpt_vytxeTZskVKR7C7WgdSP3d"),
         Limit: client.Int64(50),
-        Embed: operations.ListCapturesEmbedPayment.ToPointer(),
+        Embed: client.String("payment"),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -141,11 +147,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.ListCapturesBadRequestHalJSONError | 400                                          | application/hal+json                         |
-| apierrors.ListCapturesNotFoundHalJSONError   | 404                                          | application/hal+json                         |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -163,7 +168,6 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -176,11 +180,11 @@ func main() {
         }),
     )
 
-    res, err := s.Captures.Get(ctx, "tr_5B8cwPMGnU", "cpt_gVMhHKqSSRYJyPsuoPNFH", operations.GetCaptureEmbedPayment.ToPointer(), client.Bool(false))
+    res, err := s.Captures.Get(ctx, "tr_5B8cwPMGnU", "cpt_gVMhHKqSSRYJyPsuoPNFH", client.String("payment"), client.Bool(false))
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CaptureResponse != nil {
         // handle response
     }
 }
@@ -193,7 +197,7 @@ func main() {
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `paymentID`                                                                                                                                                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `captureID`                                                                                                                                                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related capture.                                                                                                                                                                                                                                                                                                                                                 | cpt_gVMhHKqSSRYJyPsuoPNFH                                                                                                                                                                                                                                                                                                                                                              |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [*operations.GetCaptureEmbed](../../models/operations/getcaptureembed.md)                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional resources via the<br/>`embed` query string parameter.                                                                                                                                                                                                                                                                                     | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
 
@@ -203,7 +207,7 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetCaptureHalJSONError | 404                              | application/hal+json             |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

@@ -8,19 +8,19 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-// ModeRequest - Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+// Mode - Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
 // the profile before it can start accepting payments.
-type ModeRequest string
+type Mode string
 
 const (
-	ModeRequestLive ModeRequest = "live"
-	ModeRequestTest ModeRequest = "test"
+	ModeLive Mode = "live"
+	ModeTest Mode = "test"
 )
 
-func (e ModeRequest) ToPointer() *ModeRequest {
+func (e Mode) ToPointer() *Mode {
 	return &e
 }
-func (e *ModeRequest) UnmarshalJSON(data []byte) error {
+func (e *Mode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *ModeRequest) UnmarshalJSON(data []byte) error {
 	case "live":
 		fallthrough
 	case "test":
-		*e = ModeRequest(v)
+		*e = Mode(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ModeRequest: %v", v)
+		return fmt.Errorf("invalid value for Mode: %v", v)
 	}
 }
 
@@ -57,7 +57,7 @@ type UpdateProfileRequestBody struct {
 	BusinessCategory *string `json:"businessCategory,omitempty"`
 	// Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
 	// the profile before it can start accepting payments.
-	Mode *ModeRequest `json:"mode,omitempty"`
+	Mode *Mode `json:"mode,omitempty"`
 }
 
 func (o *UpdateProfileRequestBody) GetName() *string {
@@ -109,7 +109,7 @@ func (o *UpdateProfileRequestBody) GetBusinessCategory() *string {
 	return o.BusinessCategory
 }
 
-func (o *UpdateProfileRequestBody) GetMode() *ModeRequest {
+func (o *UpdateProfileRequestBody) GetMode() *Mode {
 	if o == nil {
 		return nil
 	}
@@ -136,601 +136,10 @@ func (o *UpdateProfileRequest) GetRequestBody() UpdateProfileRequestBody {
 	return o.RequestBody
 }
 
-// UpdateProfileUnprocessableEntityDocumentation - The URL to the generic Mollie API error handling guide.
-type UpdateProfileUnprocessableEntityDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileUnprocessableEntityDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileUnprocessableEntityDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type UpdateProfileUnprocessableEntityLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation UpdateProfileUnprocessableEntityDocumentation `json:"documentation"`
-}
-
-func (o *UpdateProfileUnprocessableEntityLinks) GetDocumentation() UpdateProfileUnprocessableEntityDocumentation {
-	if o == nil {
-		return UpdateProfileUnprocessableEntityDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateProfileGoneDocumentation - The URL to the generic Mollie API error handling guide.
-type UpdateProfileGoneDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileGoneDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileGoneDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type UpdateProfileGoneLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation UpdateProfileGoneDocumentation `json:"documentation"`
-}
-
-func (o *UpdateProfileGoneLinks) GetDocumentation() UpdateProfileGoneDocumentation {
-	if o == nil {
-		return UpdateProfileGoneDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateProfileNotFoundDocumentation - The URL to the generic Mollie API error handling guide.
-type UpdateProfileNotFoundDocumentation struct {
-	Href string `json:"href"`
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileNotFoundDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileNotFoundDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-type UpdateProfileNotFoundLinks struct {
-	// The URL to the generic Mollie API error handling guide.
-	Documentation UpdateProfileNotFoundDocumentation `json:"documentation"`
-}
-
-func (o *UpdateProfileNotFoundLinks) GetDocumentation() UpdateProfileNotFoundDocumentation {
-	if o == nil {
-		return UpdateProfileNotFoundDocumentation{}
-	}
-	return o.Documentation
-}
-
-// UpdateProfileModeResponse - Whether this entity was created in live mode or in test mode.
-type UpdateProfileModeResponse string
-
-const (
-	UpdateProfileModeResponseLive UpdateProfileModeResponse = "live"
-	UpdateProfileModeResponseTest UpdateProfileModeResponse = "test"
-)
-
-func (e UpdateProfileModeResponse) ToPointer() *UpdateProfileModeResponse {
-	return &e
-}
-func (e *UpdateProfileModeResponse) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = UpdateProfileModeResponse(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateProfileModeResponse: %v", v)
-	}
-}
-
-// UpdateProfileStatus - The profile status determines whether the profile is able to receive live payments.
-//
-// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
-// * `verified`: The profile has been verified and can be used to create live payments and test payments.
-// * `blocked`: The profile is blocked and can no longer be used or changed.
-type UpdateProfileStatus string
-
-const (
-	UpdateProfileStatusUnverified UpdateProfileStatus = "unverified"
-	UpdateProfileStatusVerified   UpdateProfileStatus = "verified"
-	UpdateProfileStatusBlocked    UpdateProfileStatus = "blocked"
-)
-
-func (e UpdateProfileStatus) ToPointer() *UpdateProfileStatus {
-	return &e
-}
-func (e *UpdateProfileStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unverified":
-		fallthrough
-	case "verified":
-		fallthrough
-	case "blocked":
-		*e = UpdateProfileStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateProfileStatus: %v", v)
-	}
-}
-
-// UpdateProfileReviewStatus - The status of the requested changes.
-type UpdateProfileReviewStatus string
-
-const (
-	UpdateProfileReviewStatusPending  UpdateProfileReviewStatus = "pending"
-	UpdateProfileReviewStatusRejected UpdateProfileReviewStatus = "rejected"
-)
-
-func (e UpdateProfileReviewStatus) ToPointer() *UpdateProfileReviewStatus {
-	return &e
-}
-func (e *UpdateProfileReviewStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "rejected":
-		*e = UpdateProfileReviewStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateProfileReviewStatus: %v", v)
-	}
-}
-
-// UpdateProfileReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
-// `null` in test mode.
-type UpdateProfileReview struct {
-	// The status of the requested changes.
-	Status *UpdateProfileReviewStatus `json:"status,omitempty"`
-}
-
-func (o *UpdateProfileReview) GetStatus() *UpdateProfileReviewStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-// UpdateProfileSelf - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type UpdateProfileSelf struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileSelf) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileSelf) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileDashboard - Link to the profile in the Mollie dashboard.
-type UpdateProfileDashboard struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileDashboard) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileDashboard) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileChargebacks - The API resource URL of the chargebacks that belong to this profile.
-type UpdateProfileChargebacks struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileChargebacks) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileChargebacks) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileMethods - The API resource URL of the methods that are enabled for this profile.
-type UpdateProfileMethods struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileMethods) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileMethods) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfilePayments - The API resource URL of the payments that belong to this profile.
-type UpdateProfilePayments struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfilePayments) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfilePayments) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileRefunds - The API resource URL of the refunds that belong to this profile.
-type UpdateProfileRefunds struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileRefunds) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileRefunds) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileCheckoutPreviewURL - The hosted checkout preview URL. You need to be logged in to access this page.
-type UpdateProfileCheckoutPreviewURL struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileCheckoutPreviewURL) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileCheckoutPreviewURL) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileDocumentation - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-type UpdateProfileDocumentation struct {
-	// The actual URL string.
-	Href string `json:"href"`
-	// The content type of the page or endpoint the URL points to.
-	Type string `json:"type"`
-}
-
-func (o *UpdateProfileDocumentation) GetHref() string {
-	if o == nil {
-		return ""
-	}
-	return o.Href
-}
-
-func (o *UpdateProfileDocumentation) GetType() string {
-	if o == nil {
-		return ""
-	}
-	return o.Type
-}
-
-// UpdateProfileLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type UpdateProfileLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *UpdateProfileSelf `json:"self,omitempty"`
-	// Link to the profile in the Mollie dashboard.
-	Dashboard *UpdateProfileDashboard `json:"dashboard,omitempty"`
-	// The API resource URL of the chargebacks that belong to this profile.
-	Chargebacks *UpdateProfileChargebacks `json:"chargebacks,omitempty"`
-	// The API resource URL of the methods that are enabled for this profile.
-	Methods *UpdateProfileMethods `json:"methods,omitempty"`
-	// The API resource URL of the payments that belong to this profile.
-	Payments *UpdateProfilePayments `json:"payments,omitempty"`
-	// The API resource URL of the refunds that belong to this profile.
-	Refunds *UpdateProfileRefunds `json:"refunds,omitempty"`
-	// The hosted checkout preview URL. You need to be logged in to access this page.
-	CheckoutPreviewURL *UpdateProfileCheckoutPreviewURL `json:"checkoutPreviewUrl,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *UpdateProfileDocumentation `json:"documentation,omitempty"`
-}
-
-func (o *UpdateProfileLinks) GetSelf() *UpdateProfileSelf {
-	if o == nil {
-		return nil
-	}
-	return o.Self
-}
-
-func (o *UpdateProfileLinks) GetDashboard() *UpdateProfileDashboard {
-	if o == nil {
-		return nil
-	}
-	return o.Dashboard
-}
-
-func (o *UpdateProfileLinks) GetChargebacks() *UpdateProfileChargebacks {
-	if o == nil {
-		return nil
-	}
-	return o.Chargebacks
-}
-
-func (o *UpdateProfileLinks) GetMethods() *UpdateProfileMethods {
-	if o == nil {
-		return nil
-	}
-	return o.Methods
-}
-
-func (o *UpdateProfileLinks) GetPayments() *UpdateProfilePayments {
-	if o == nil {
-		return nil
-	}
-	return o.Payments
-}
-
-func (o *UpdateProfileLinks) GetRefunds() *UpdateProfileRefunds {
-	if o == nil {
-		return nil
-	}
-	return o.Refunds
-}
-
-func (o *UpdateProfileLinks) GetCheckoutPreviewURL() *UpdateProfileCheckoutPreviewURL {
-	if o == nil {
-		return nil
-	}
-	return o.CheckoutPreviewURL
-}
-
-func (o *UpdateProfileLinks) GetDocumentation() *UpdateProfileDocumentation {
-	if o == nil {
-		return nil
-	}
-	return o.Documentation
-}
-
-// UpdateProfileResponseBody - The updated profile object.
-type UpdateProfileResponseBody struct {
-	// Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
-	ID *string `json:"id,omitempty"`
-	// Whether this entity was created in live mode or in test mode.
-	Mode *UpdateProfileModeResponse `json:"mode,omitempty"`
-	// The profile's name, this will usually reflect the trade name or brand name of the profile's website or
-	// application.
-	Name *string `json:"name,omitempty"`
-	// The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
-	// allowed.
-	Website *string `json:"website,omitempty"`
-	// The email address associated with the profile's trade name or brand.
-	Email *string `json:"email,omitempty"`
-	// The phone number associated with the profile's trade name or brand.
-	Phone *string `json:"phone,omitempty"`
-	// The products or services offered by the profile's website or application.
-	Description *string `json:"description,omitempty"`
-	// A list of countries where you expect that the majority of the profile's customers reside,
-	// in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	CountriesOfActivity []string `json:"countriesOfActivity,omitempty"`
-	// The industry associated with the profile's trade name or brand. Please refer to the
-	// [business category list](common-data-types#business-category) for all possible options.
-	BusinessCategory *string `json:"businessCategory,omitempty"`
-	// The profile status determines whether the profile is able to receive live payments.
-	//
-	// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
-	// * `verified`: The profile has been verified and can be used to create live payments and test payments.
-	// * `blocked`: The profile is blocked and can no longer be used or changed.
-	Status *UpdateProfileStatus `json:"status,omitempty"`
-	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
-	// `null` in test mode.
-	Review *UpdateProfileReview `json:"review,omitempty"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *UpdateProfileLinks `json:"_links,omitempty"`
-}
-
-func (o *UpdateProfileResponseBody) GetResource() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Resource
-}
-
-func (o *UpdateProfileResponseBody) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *UpdateProfileResponseBody) GetMode() *UpdateProfileModeResponse {
-	if o == nil {
-		return nil
-	}
-	return o.Mode
-}
-
-func (o *UpdateProfileResponseBody) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
-}
-
-func (o *UpdateProfileResponseBody) GetWebsite() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Website
-}
-
-func (o *UpdateProfileResponseBody) GetEmail() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Email
-}
-
-func (o *UpdateProfileResponseBody) GetPhone() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Phone
-}
-
-func (o *UpdateProfileResponseBody) GetDescription() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Description
-}
-
-func (o *UpdateProfileResponseBody) GetCountriesOfActivity() []string {
-	if o == nil {
-		return nil
-	}
-	return o.CountriesOfActivity
-}
-
-func (o *UpdateProfileResponseBody) GetBusinessCategory() *string {
-	if o == nil {
-		return nil
-	}
-	return o.BusinessCategory
-}
-
-func (o *UpdateProfileResponseBody) GetStatus() *UpdateProfileStatus {
-	if o == nil {
-		return nil
-	}
-	return o.Status
-}
-
-func (o *UpdateProfileResponseBody) GetReview() *UpdateProfileReview {
-	if o == nil {
-		return nil
-	}
-	return o.Review
-}
-
-func (o *UpdateProfileResponseBody) GetCreatedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *UpdateProfileResponseBody) GetLinks() *UpdateProfileLinks {
-	if o == nil {
-		return nil
-	}
-	return o.Links
-}
-
 type UpdateProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The updated profile object.
-	Object *UpdateProfileResponseBody
+	EntityProfileResponse *components.EntityProfileResponse
 }
 
 func (o *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -740,9 +149,9 @@ func (o *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *UpdateProfileResponse) GetObject() *UpdateProfileResponseBody {
+func (o *UpdateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.EntityProfileResponse
 }

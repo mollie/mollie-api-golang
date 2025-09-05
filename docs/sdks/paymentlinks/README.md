@@ -43,50 +43,51 @@ func main() {
     )
 
     res, err := s.PaymentLinks.Create(ctx, &operations.CreatePaymentLinkRequest{
+        ID: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
         Description: "Chess Board",
-        Amount: &operations.CreatePaymentLinkAmountRequest{
+        Amount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
         },
-        MinimumAmount: &operations.CreatePaymentLinkMinimumAmountRequest{
+        MinimumAmount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
         },
         RedirectURL: client.String("https://webshop.example.org/payment-links/redirect/"),
         WebhookURL: client.String("https://webshop.example.org/payment-links/webhook/"),
-        Lines: []operations.CreatePaymentLinkLineRequest{
-            operations.CreatePaymentLinkLineRequest{
-                Type: operations.CreatePaymentLinkTypeRequestPhysical.ToPointer(),
+        Lines: []components.PaymentLineItem{
+            components.PaymentLineItem{
+                Type: components.PaymentLineItemTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 QuantityUnit: client.String("pcs"),
-                UnitPrice: operations.CreatePaymentLinkUnitPriceRequest{
+                UnitPrice: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                DiscountAmount: &operations.CreatePaymentLinkDiscountAmountRequest{
+                DiscountAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                TotalAmount: operations.CreatePaymentLinkTotalAmountRequest{
+                TotalAmount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 VatRate: client.String("21.00"),
-                VatAmount: &operations.CreatePaymentLinkVatAmountRequest{
+                VatAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
                 Sku: client.String("9780241661628"),
-                Categories: []operations.CreatePaymentLinkCategoryRequest{
-                    operations.CreatePaymentLinkCategoryRequestMeal,
-                    operations.CreatePaymentLinkCategoryRequestEco,
+                Categories: []components.PaymentLineItemCategory{
+                    components.PaymentLineItemCategoryMeal,
+                    components.PaymentLineItemCategoryEco,
                 },
                 ImageURL: client.String("https://..."),
                 ProductURL: client.String("https://..."),
             },
         },
-        BillingAddress: &operations.CreatePaymentLinkBillingAddressRequest{
+        BillingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -100,7 +101,7 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        ShippingAddress: &operations.CreatePaymentLinkShippingAddressRequest{
+        ShippingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -118,21 +119,21 @@ func main() {
         Reusable: client.Bool(false),
         ExpiresAt: client.String("2025-12-24T11:00:16+00:00"),
         AllowedMethods: nil,
-        ApplicationFee: &operations.CreatePaymentLinkApplicationFeeRequest{
-            Amount: operations.CreatePaymentLinkApplicationFeeAmountRequest{
+        ApplicationFee: &operations.ApplicationFee{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
             Description: "Platform fee",
         },
-        SequenceType: operations.CreatePaymentLinkSequenceTypeRequestOneoff.ToPointer(),
+        SequenceType: components.PaymentLinkSequenceTypeOneoff.ToPointer(),
         CustomerID: client.String("cst_XimFHuaEzd"),
         Testmode: client.Bool(false),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentLinkResponse != nil {
         // handle response
     }
 }
@@ -152,11 +153,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| apierrors.CreatePaymentLinkNotFoundHalJSONError            | 404                                                        | application/hal+json                                       |
-| apierrors.CreatePaymentLinkUnprocessableEntityHalJSONError | 422                                                        | application/hal+json                                       |
-| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -213,10 +213,10 @@ func main() {
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| apierrors.ListPaymentLinksHalJSONError | 400                                    | application/hal+json                   |
-| apierrors.APIError                     | 4XX, 5XX                               | \*/\*                                  |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
 
@@ -249,7 +249,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentLinkResponse != nil {
         // handle response
     }
 }
@@ -270,10 +270,10 @@ func main() {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| apierrors.GetPaymentLinkHalJSONError | 404                                  | application/hal+json                 |
-| apierrors.APIError                   | 4XX, 5XX                             | \*/\*                                |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
 
@@ -305,7 +305,7 @@ func main() {
 
     res, err := s.PaymentLinks.Update(ctx, "pl_d9fQur83kFdhH8hIhaZfq", &operations.UpdatePaymentLinkRequestBody{
         Description: client.String("Chess Board"),
-        MinimumAmount: &operations.UpdatePaymentLinkMinimumAmountRequest{
+        MinimumAmount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
@@ -314,7 +314,7 @@ func main() {
             "ideal",
         },
         Lines: nil,
-        BillingAddress: &operations.UpdatePaymentLinkBillingAddressRequest{
+        BillingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -328,7 +328,7 @@ func main() {
             Region: client.String("Noord-Holland"),
             Country: client.String("NL"),
         },
-        ShippingAddress: &operations.UpdatePaymentLinkShippingAddressRequest{
+        ShippingAddress: &components.PaymentAddress{
             Title: client.String("Mr."),
             GivenName: client.String("Piet"),
             FamilyName: client.String("Mondriaan"),
@@ -347,7 +347,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.PaymentLinkResponse != nil {
         // handle response
     }
 }
@@ -368,11 +368,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| apierrors.UpdatePaymentLinkNotFoundHalJSONError            | 404                                                        | application/hal+json                                       |
-| apierrors.UpdatePaymentLinkUnprocessableEntityHalJSONError | 422                                                        | application/hal+json                                       |
-| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
 
@@ -435,11 +434,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| apierrors.DeletePaymentLinkNotFoundHalJSONError            | 404                                                        | application/hal+json                                       |
-| apierrors.DeletePaymentLinkUnprocessableEntityHalJSONError | 422                                                        | application/hal+json                                       |
-| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListPayments
 
@@ -475,7 +473,7 @@ func main() {
         PaymentLinkID: "pl_d9fQur83kFdhH8hIhaZfq",
         From: client.String("tr_5B8cwPMGnU"),
         Limit: client.Int64(50),
-        Sort: operations.GetPaymentLinkPaymentsSortDesc.ToPointer(),
+        Sort: components.ListSortDesc.ToPointer(),
         Testmode: client.Bool(false),
     })
     if err != nil {
@@ -501,7 +499,7 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.GetPaymentLinkPaymentsHalJSONError | 400                                          | application/hal+json                         |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

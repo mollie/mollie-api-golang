@@ -85,7 +85,7 @@ func newClientLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // > 🚧
 // >
 // > A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
-func (s *ClientLinks) Create(ctx context.Context, request *operations.CreateClientLinkRequest, opts ...operations.Option) (*operations.CreateClientLinkResponse, error) {
+func (s *ClientLinks) Create(ctx context.Context, request *components.EntityClientLink, opts ...operations.Option) (*operations.CreateClientLinkResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -265,12 +265,12 @@ func (s *ClientLinks) Create(ctx context.Context, request *operations.CreateClie
 				return nil, err
 			}
 
-			var out operations.CreateClientLinkResponseBody
+			var out components.EntityClientLinkResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityClientLinkResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -279,30 +279,7 @@ func (s *ClientLinks) Create(ctx context.Context, request *operations.CreateClie
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CreateClientLinkNotFoundHalJSONError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+		fallthrough
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
@@ -311,7 +288,7 @@ func (s *ClientLinks) Create(ctx context.Context, request *operations.CreateClie
 				return nil, err
 			}
 
-			var out apierrors.CreateClientLinkUnprocessableEntityHalJSONError
+			var out apierrors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
