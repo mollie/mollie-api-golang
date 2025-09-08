@@ -12,6 +12,8 @@ type GetClientRequest struct {
 	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
 	// parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *GetClientRequest) GetID() string {
@@ -26,6 +28,13 @@ func (o *GetClientRequest) GetEmbed() *string {
 		return nil
 	}
 	return o.Embed
+}
+
+func (o *GetClientRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 // GetClientCommission - The commission object.

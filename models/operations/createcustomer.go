@@ -6,6 +6,26 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type CreateCustomerRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
+	EntityCustomer *components.EntityCustomer `request:"mediaType=application/json"`
+}
+
+func (o *CreateCustomerRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
+	if o == nil {
+		return nil
+	}
+	return o.EntityCustomer
+}
+
 type CreateCustomerResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created customer object.

@@ -23,8 +23,10 @@ func (o *DeleteWebhookRequestBody) GetTestmode() *bool {
 
 type DeleteWebhookRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
-	ID          string                    `pathParam:"style=simple,explode=false,name=id"`
-	RequestBody *DeleteWebhookRequestBody `request:"mediaType=application/json"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *DeleteWebhookRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *DeleteWebhookRequest) GetID() string {
@@ -32,6 +34,13 @@ func (o *DeleteWebhookRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *DeleteWebhookRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *DeleteWebhookRequest) GetRequestBody() *DeleteWebhookRequestBody {

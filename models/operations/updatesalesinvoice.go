@@ -8,7 +8,9 @@ import (
 
 type UpdateSalesInvoiceRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
-	ID                       string                               `pathParam:"style=simple,explode=false,name=id"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey           *string                              `header:"style=simple,explode=false,name=idempotency-key"`
 	UpdateValuesSalesInvoice *components.UpdateValuesSalesInvoice `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *UpdateSalesInvoiceRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *UpdateSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdateSalesInvoiceRequest) GetUpdateValuesSalesInvoice() *components.UpdateValuesSalesInvoice {

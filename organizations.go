@@ -38,10 +38,11 @@ func newOrganizations(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // for OAuth apps. See also [Get current organization](get-current-organization).
 //
 // If you have a *partner account*', you can retrieve organization details of connected organizations.
-func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
+func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
 	request := operations.GetOrganizationRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -94,6 +95,8 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, opts
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -288,7 +291,11 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, opts
 //
 // For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
 // documentation.
-func (s *Organizations) GetCurrent(ctx context.Context, opts ...operations.Option) (*operations.GetCurrentOrganizationResponse, error) {
+func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentOrganizationResponse, error) {
+	request := operations.GetCurrentOrganizationRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -339,6 +346,8 @@ func (s *Organizations) GetCurrent(ctx context.Context, opts ...operations.Optio
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -501,7 +510,11 @@ func (s *Organizations) GetCurrent(ctx context.Context, opts ...operations.Optio
 // GetPartner - Get partner status
 // Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
 // accounts*.
-func (s *Organizations) GetPartner(ctx context.Context, opts ...operations.Option) (*operations.GetPartnerStatusResponse, error) {
+func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPartnerStatusResponse, error) {
+	request := operations.GetPartnerStatusRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -552,6 +565,8 @@ func (s *Organizations) GetPartner(ctx context.Context, opts ...operations.Optio
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

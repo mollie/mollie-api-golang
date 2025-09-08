@@ -24,8 +24,10 @@ func (o *CancelPaymentRequestBody) GetTestmode() *bool {
 
 type CancelPaymentRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID   string                    `pathParam:"style=simple,explode=false,name=paymentId"`
-	RequestBody *CancelPaymentRequestBody `request:"mediaType=application/json"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *CancelPaymentRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *CancelPaymentRequest) GetPaymentID() string {
@@ -33,6 +35,13 @@ func (o *CancelPaymentRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *CancelPaymentRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CancelPaymentRequest) GetRequestBody() *CancelPaymentRequestBody {

@@ -35,11 +35,12 @@ func newClients(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Retrieve a list of all clients linked to your account.
 //
 // The results are paginated.
-func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *int64, opts ...operations.Option) (*operations.ListClientsResponse, error) {
+func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListClientsResponse, error) {
 	request := operations.ListClientsRequest{
-		Embed: embed,
-		From:  from,
-		Limit: limit,
+		Embed:          embed,
+		From:           from,
+		Limit:          limit,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -92,6 +93,8 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -284,10 +287,11 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 
 // Get client
 // Retrieve a single client by its ID.
-func (s *Clients) Get(ctx context.Context, id string, embed *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
+func (s *Clients) Get(ctx context.Context, id string, embed *string, idempotencyKey *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
 	request := operations.GetClientRequest{
-		ID:    id,
-		Embed: embed,
+		ID:             id,
+		Embed:          embed,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -340,6 +344,8 @@ func (s *Clients) Get(ctx context.Context, id string, embed *string, opts ...ope
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

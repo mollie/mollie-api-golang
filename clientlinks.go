@@ -85,7 +85,12 @@ func newClientLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // > 🚧
 // >
 // > A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
-func (s *ClientLinks) Create(ctx context.Context, request *components.EntityClientLink, opts ...operations.Option) (*operations.CreateClientLinkResponse, error) {
+func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, entityClientLink *components.EntityClientLink, opts ...operations.Option) (*operations.CreateClientLinkResponse, error) {
+	request := operations.CreateClientLinkRequest{
+		IdempotencyKey:   idempotencyKey,
+		EntityClientLink: entityClientLink,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -118,7 +123,7 @@ func (s *ClientLinks) Create(ctx context.Context, request *components.EntityClie
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityClientLink", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -143,6 +148,8 @@ func (s *ClientLinks) Create(ctx context.Context, request *components.EntityClie
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

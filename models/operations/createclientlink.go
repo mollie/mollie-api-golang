@@ -6,6 +6,26 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type CreateClientLinkRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey   *string                      `header:"style=simple,explode=false,name=idempotency-key"`
+	EntityClientLink *components.EntityClientLink `request:"mediaType=application/json"`
+}
+
+func (o *CreateClientLinkRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreateClientLinkRequest) GetEntityClientLink() *components.EntityClientLink {
+	if o == nil {
+		return nil
+	}
+	return o.EntityClientLink
+}
+
 type CreateClientLinkResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created client link object.

@@ -35,7 +35,11 @@ func newPermissions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // Retrieve a list of all permissions available to the current access token.
 //
 // The results are **not** paginated.
-func (s *Permissions) List(ctx context.Context, opts ...operations.Option) (*operations.ListPermissionsResponse, error) {
+func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListPermissionsResponse, error) {
+	request := operations.ListPermissionsRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -86,6 +90,8 @@ func (s *Permissions) List(ctx context.Context, opts ...operations.Option) (*ope
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -272,10 +278,11 @@ func (s *Permissions) List(ctx context.Context, opts ...operations.Option) (*ope
 
 // Get permission
 // Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
-func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bool, opts ...operations.Option) (*operations.GetPermissionResponse, error) {
+func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPermissionResponse, error) {
 	request := operations.GetPermissionRequest{
-		PermissionID: permissionID,
-		Testmode:     testmode,
+		PermissionID:   permissionID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -328,6 +335,8 @@ func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bo
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

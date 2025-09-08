@@ -154,23 +154,43 @@ func (o *Profile) GetBusinessCategory() *string {
 	return o.BusinessCategory
 }
 
-type SubmitOnboardingDataRequest struct {
+type SubmitOnboardingDataRequestBody struct {
 	Organization *Organization `json:"organization,omitempty"`
 	Profile      *Profile      `json:"profile,omitempty"`
 }
 
-func (o *SubmitOnboardingDataRequest) GetOrganization() *Organization {
+func (o *SubmitOnboardingDataRequestBody) GetOrganization() *Organization {
 	if o == nil {
 		return nil
 	}
 	return o.Organization
 }
 
-func (o *SubmitOnboardingDataRequest) GetProfile() *Profile {
+func (o *SubmitOnboardingDataRequestBody) GetProfile() *Profile {
 	if o == nil {
 		return nil
 	}
 	return o.Profile
+}
+
+type SubmitOnboardingDataRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                          `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *SubmitOnboardingDataRequestBody `request:"mediaType=application/json"`
+}
+
+func (o *SubmitOnboardingDataRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *SubmitOnboardingDataRequest) GetRequestBody() *SubmitOnboardingDataRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 type SubmitOnboardingDataResponse struct {

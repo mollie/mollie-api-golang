@@ -33,7 +33,12 @@ func newWebhooks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 
 // Create a webhook
 // A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
-func (s *Webhooks) Create(ctx context.Context, request *operations.CreateWebhookRequest, opts ...operations.Option) (*operations.CreateWebhookResponse, error) {
+func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreateWebhookRequestBody, opts ...operations.Option) (*operations.CreateWebhookResponse, error) {
+	request := operations.CreateWebhookRequest{
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -66,7 +71,7 @@ func (s *Webhooks) Create(ctx context.Context, request *operations.CreateWebhook
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -91,6 +96,8 @@ func (s *Webhooks) Create(ctx context.Context, request *operations.CreateWebhook
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -329,6 +336,8 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -518,10 +527,11 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 
 // Update a webhook
 // Updates the webhook. You may edit the name, url and the list of subscribed event types.
-func (s *Webhooks) Update(ctx context.Context, id string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
+func (s *Webhooks) Update(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
 	request := operations.UpdateWebhookRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -581,6 +591,8 @@ func (s *Webhooks) Update(ctx context.Context, id string, requestBody *operation
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -769,10 +781,11 @@ func (s *Webhooks) Update(ctx context.Context, id string, requestBody *operation
 
 // Get a webhook
 // Retrieve a single webhook object by its ID.
-func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
+func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	request := operations.GetWebhookRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -825,6 +838,8 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, opts ...o
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1017,10 +1032,11 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, opts ...o
 
 // Delete a webhook
 // Delete a single webhook object by its webhook ID.
-func (s *Webhooks) Delete(ctx context.Context, id string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
+func (s *Webhooks) Delete(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
 	request := operations.DeleteWebhookRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1080,6 +1096,8 @@ func (s *Webhooks) Delete(ctx context.Context, id string, requestBody *operation
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1268,10 +1286,11 @@ func (s *Webhooks) Delete(ctx context.Context, id string, requestBody *operation
 
 // Test a webhook
 // Sends a test event to the webhook to verify the endpoint is working as expected.
-func (s *Webhooks) Test(ctx context.Context, id string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
+func (s *Webhooks) Test(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
 	request := operations.TestWebhookRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1331,6 +1350,8 @@ func (s *Webhooks) Test(ctx context.Context, id string, requestBody *operations.
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

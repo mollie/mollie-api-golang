@@ -34,7 +34,7 @@ func (o *ApplicationFee) GetDescription() string {
 	return o.Description
 }
 
-type CreatePaymentLinkRequest struct {
+type CreatePaymentLinkRequestBody struct {
 	ID *string `json:"id,omitempty"`
 	// A short description of the payment link. The description is visible in the Dashboard and will be shown on the
 	// customer's bank or card statement when possible.
@@ -107,123 +107,143 @@ type CreatePaymentLinkRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CreatePaymentLinkRequest) GetID() *string {
+func (o *CreatePaymentLinkRequestBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CreatePaymentLinkRequest) GetDescription() string {
+func (o *CreatePaymentLinkRequestBody) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *CreatePaymentLinkRequest) GetAmount() *components.AmountNullable {
+func (o *CreatePaymentLinkRequestBody) GetAmount() *components.AmountNullable {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *CreatePaymentLinkRequest) GetMinimumAmount() *components.AmountNullable {
+func (o *CreatePaymentLinkRequestBody) GetMinimumAmount() *components.AmountNullable {
 	if o == nil {
 		return nil
 	}
 	return o.MinimumAmount
 }
 
-func (o *CreatePaymentLinkRequest) GetRedirectURL() *string {
+func (o *CreatePaymentLinkRequestBody) GetRedirectURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RedirectURL
 }
 
-func (o *CreatePaymentLinkRequest) GetWebhookURL() *string {
+func (o *CreatePaymentLinkRequestBody) GetWebhookURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.WebhookURL
 }
 
-func (o *CreatePaymentLinkRequest) GetLines() []components.PaymentLineItem {
+func (o *CreatePaymentLinkRequestBody) GetLines() []components.PaymentLineItem {
 	if o == nil {
 		return nil
 	}
 	return o.Lines
 }
 
-func (o *CreatePaymentLinkRequest) GetBillingAddress() *components.PaymentAddress {
+func (o *CreatePaymentLinkRequestBody) GetBillingAddress() *components.PaymentAddress {
 	if o == nil {
 		return nil
 	}
 	return o.BillingAddress
 }
 
-func (o *CreatePaymentLinkRequest) GetShippingAddress() *components.PaymentAddress {
+func (o *CreatePaymentLinkRequestBody) GetShippingAddress() *components.PaymentAddress {
 	if o == nil {
 		return nil
 	}
 	return o.ShippingAddress
 }
 
-func (o *CreatePaymentLinkRequest) GetProfileID() *string {
+func (o *CreatePaymentLinkRequestBody) GetProfileID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ProfileID
 }
 
-func (o *CreatePaymentLinkRequest) GetReusable() *bool {
+func (o *CreatePaymentLinkRequestBody) GetReusable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Reusable
 }
 
-func (o *CreatePaymentLinkRequest) GetExpiresAt() *string {
+func (o *CreatePaymentLinkRequestBody) GetExpiresAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiresAt
 }
 
-func (o *CreatePaymentLinkRequest) GetAllowedMethods() []string {
+func (o *CreatePaymentLinkRequestBody) GetAllowedMethods() []string {
 	if o == nil {
 		return nil
 	}
 	return o.AllowedMethods
 }
 
-func (o *CreatePaymentLinkRequest) GetApplicationFee() *ApplicationFee {
+func (o *CreatePaymentLinkRequestBody) GetApplicationFee() *ApplicationFee {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicationFee
 }
 
-func (o *CreatePaymentLinkRequest) GetSequenceType() *components.PaymentLinkSequenceType {
+func (o *CreatePaymentLinkRequestBody) GetSequenceType() *components.PaymentLinkSequenceType {
 	if o == nil {
 		return nil
 	}
 	return o.SequenceType
 }
 
-func (o *CreatePaymentLinkRequest) GetCustomerID() *string {
+func (o *CreatePaymentLinkRequestBody) GetCustomerID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerID
 }
 
-func (o *CreatePaymentLinkRequest) GetTestmode() *bool {
+func (o *CreatePaymentLinkRequestBody) GetTestmode() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Testmode
+}
+
+type CreatePaymentLinkRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                       `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *CreatePaymentLinkRequestBody `request:"mediaType=application/json"`
+}
+
+func (o *CreatePaymentLinkRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreatePaymentLinkRequest) GetRequestBody() *CreatePaymentLinkRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 type CreatePaymentLinkResponse struct {

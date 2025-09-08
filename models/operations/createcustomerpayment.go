@@ -8,7 +8,9 @@ import (
 
 type CreateCustomerPaymentRequest struct {
 	// Provide the ID of the related customer.
-	CustomerID     string                     `pathParam:"style=simple,explode=false,name=customerId"`
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
 	PaymentRequest *components.PaymentRequest `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *CreateCustomerPaymentRequest) GetCustomerID() string {
 		return ""
 	}
 	return o.CustomerID
+}
+
+func (o *CreateCustomerPaymentRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CreateCustomerPaymentRequest) GetPaymentRequest() *components.PaymentRequest {

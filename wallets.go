@@ -51,7 +51,12 @@ func newWallets(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the
 // full documentation, see the official
 // [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
-func (s *Wallets) RequestApplePaySession(ctx context.Context, request *operations.RequestApplePayPaymentSessionRequest, opts ...operations.Option) (*operations.RequestApplePayPaymentSessionResponse, error) {
+func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *string, requestBody *operations.RequestApplePayPaymentSessionRequestBody, opts ...operations.Option) (*operations.RequestApplePayPaymentSessionResponse, error) {
+	request := operations.RequestApplePayPaymentSessionRequest{
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -84,7 +89,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, request *operation
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +114,8 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, request *operation
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

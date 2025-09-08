@@ -45,7 +45,11 @@ func newCapabilities(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // For payments, regardless them being at the profile level, the capability is listed at the organization level.
 // This means that if at least one of the clients's profiles can receive payments,
 // the payments capability is enabled, communicating that the organization can indeed receive payments.
-func (s *Capabilities) List(ctx context.Context, opts ...operations.Option) (*operations.ListCapabilitiesResponse, error) {
+func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListCapabilitiesResponse, error) {
+	request := operations.ListCapabilitiesRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -96,6 +100,8 @@ func (s *Capabilities) List(ctx context.Context, opts ...operations.Option) (*op
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

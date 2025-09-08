@@ -88,6 +88,8 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -282,9 +284,10 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 //
 // If you want to retrieve the details of an invoice by its invoice number,
 // call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-func (s *Invoices) Get(ctx context.Context, id string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
+func (s *Invoices) Get(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	request := operations.GetInvoiceRequest{
-		ID: id,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -337,6 +340,8 @@ func (s *Invoices) Get(ctx context.Context, id string, opts ...operations.Option
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

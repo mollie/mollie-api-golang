@@ -110,7 +110,9 @@ type UpdateSubscriptionRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// Provide the ID of the related subscription.
-	SubscriptionID string                         `pathParam:"style=simple,explode=false,name=subscriptionId"`
+	SubscriptionID string `pathParam:"style=simple,explode=false,name=subscriptionId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                        `header:"style=simple,explode=false,name=idempotency-key"`
 	RequestBody    *UpdateSubscriptionRequestBody `request:"mediaType=application/json"`
 }
 
@@ -126,6 +128,13 @@ func (o *UpdateSubscriptionRequest) GetSubscriptionID() string {
 		return ""
 	}
 	return o.SubscriptionID
+}
+
+func (o *UpdateSubscriptionRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdateSubscriptionRequest) GetRequestBody() *UpdateSubscriptionRequestBody {

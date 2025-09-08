@@ -37,7 +37,12 @@ func newSalesInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // With the Sales Invoice API you can generate sales invoices to send to your customers.
-func (s *SalesInvoices) Create(ctx context.Context, request *components.EntitySalesInvoice, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, entitySalesInvoice *components.EntitySalesInvoice, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
+	request := operations.CreateSalesInvoiceRequest{
+		IdempotencyKey:     idempotencyKey,
+		EntitySalesInvoice: entitySalesInvoice,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -70,7 +75,7 @@ func (s *SalesInvoices) Create(ctx context.Context, request *components.EntitySa
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySalesInvoice", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -95,6 +100,8 @@ func (s *SalesInvoices) Create(ctx context.Context, request *components.EntitySa
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -289,11 +296,12 @@ func (s *SalesInvoices) Create(ctx context.Context, request *components.EntitySa
 // Retrieve a list of all sales invoices created through the API.
 //
 // The results are paginated.
-func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, testmode *bool, opts ...operations.Option) (*operations.ListSalesInvoicesResponse, error) {
+func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListSalesInvoicesResponse, error) {
 	request := operations.ListSalesInvoicesRequest{
-		From:     from,
-		Limit:    limit,
-		Testmode: testmode,
+		From:           from,
+		Limit:          limit,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -346,6 +354,8 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -540,10 +550,11 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // Retrieve a single sales invoice by its ID.
-func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
 	request := operations.GetSalesInvoiceRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -596,6 +607,8 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -792,9 +805,10 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, opts
 // Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
 // statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
 // respectively).
-func (s *SalesInvoices) Update(ctx context.Context, id string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	request := operations.UpdateSalesInvoiceRequest{
 		ID:                       id,
+		IdempotencyKey:           idempotencyKey,
 		UpdateValuesSalesInvoice: updateValuesSalesInvoice,
 	}
 
@@ -855,6 +869,8 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, updateValuesSales
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1048,9 +1064,10 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, updateValuesSales
 //
 // Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
 // [Update sales invoice](update-sales-invoice) endpoint instead.
-func (s *SalesInvoices) Delete(ctx context.Context, id string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Delete(ctx context.Context, id string, idempotencyKey *string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
 	request := operations.DeleteSalesInvoiceRequest{
 		ID:                       id,
+		IdempotencyKey:           idempotencyKey,
 		DeleteValuesSalesInvoice: deleteValuesSalesInvoice,
 	}
 
@@ -1111,6 +1128,8 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, deleteValuesSales
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

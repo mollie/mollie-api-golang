@@ -23,8 +23,10 @@ func (o *DeleteCustomerRequestBody) GetTestmode() *bool {
 
 type DeleteCustomerRequest struct {
 	// Provide the ID of the related customer.
-	CustomerID  string                     `pathParam:"style=simple,explode=false,name=customerId"`
-	RequestBody *DeleteCustomerRequestBody `request:"mediaType=application/json"`
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *DeleteCustomerRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *DeleteCustomerRequest) GetCustomerID() string {
@@ -32,6 +34,13 @@ func (o *DeleteCustomerRequest) GetCustomerID() string {
 		return ""
 	}
 	return o.CustomerID
+}
+
+func (o *DeleteCustomerRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *DeleteCustomerRequest) GetRequestBody() *DeleteCustomerRequestBody {

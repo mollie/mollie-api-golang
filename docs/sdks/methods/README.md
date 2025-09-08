@@ -65,6 +65,7 @@ func main() {
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Include: client.String("issuers"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -135,6 +136,7 @@ func main() {
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -211,6 +213,7 @@ func main() {
         Include: client.String("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

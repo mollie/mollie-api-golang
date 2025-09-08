@@ -6,6 +6,18 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type GetOnboardingStatusRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (o *GetOnboardingStatusRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 type GetOnboardingStatusResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The onboarding status object of the current organization.

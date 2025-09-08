@@ -8,8 +8,10 @@ import (
 
 type CreateCaptureRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID     string                    `pathParam:"style=simple,explode=false,name=paymentId"`
-	EntityCapture *components.EntityCapture `request:"mediaType=application/json"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	EntityCapture  *components.EntityCapture `request:"mediaType=application/json"`
 }
 
 func (o *CreateCaptureRequest) GetPaymentID() string {
@@ -17,6 +19,13 @@ func (o *CreateCaptureRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *CreateCaptureRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CreateCaptureRequest) GetEntityCapture() *components.EntityCapture {

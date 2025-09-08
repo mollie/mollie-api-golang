@@ -191,8 +191,10 @@ func (o *UpdatePaymentRequestBody) GetBillingEmail() *string {
 
 type UpdatePaymentRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID   string                    `pathParam:"style=simple,explode=false,name=paymentId"`
-	RequestBody *UpdatePaymentRequestBody `request:"mediaType=application/json"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *UpdatePaymentRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdatePaymentRequest) GetPaymentID() string {
@@ -200,6 +202,13 @@ func (o *UpdatePaymentRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *UpdatePaymentRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdatePaymentRequest) GetRequestBody() *UpdatePaymentRequestBody {

@@ -8,7 +8,9 @@ import (
 
 type CreateSubscriptionRequest struct {
 	// Provide the ID of the related customer.
-	CustomerID          string                          `pathParam:"style=simple,explode=false,name=customerId"`
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey      *string                         `header:"style=simple,explode=false,name=idempotency-key"`
 	SubscriptionRequest *components.SubscriptionRequest `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *CreateSubscriptionRequest) GetCustomerID() string {
 		return ""
 	}
 	return o.CustomerID
+}
+
+func (o *CreateSubscriptionRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CreateSubscriptionRequest) GetSubscriptionRequest() *components.SubscriptionRequest {

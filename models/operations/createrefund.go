@@ -8,8 +8,10 @@ import (
 
 type CreateRefundRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID    string                   `pathParam:"style=simple,explode=false,name=paymentId"`
-	EntityRefund *components.EntityRefund `request:"mediaType=application/json"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
+	EntityRefund   *components.EntityRefund `request:"mediaType=application/json"`
 }
 
 func (o *CreateRefundRequest) GetPaymentID() string {
@@ -17,6 +19,13 @@ func (o *CreateRefundRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *CreateRefundRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CreateRefundRequest) GetEntityRefund() *components.EntityRefund {

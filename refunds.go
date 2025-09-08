@@ -34,10 +34,11 @@ func newRefunds(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Create payment refund
 // Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 // transfer or by refunding the amount to your customer's credit card.
-func (s *Refunds) Create(ctx context.Context, paymentID string, entityRefund *components.EntityRefund, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
+func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityRefund *components.EntityRefund, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
 	request := operations.CreateRefundRequest{
-		PaymentID:    paymentID,
-		EntityRefund: entityRefund,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		EntityRefund:   entityRefund,
 	}
 
 	o := operations.Options{}
@@ -97,6 +98,8 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, entityRefund *co
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -341,6 +344,8 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -532,14 +537,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 
 // Get payment refund
 // Retrieve a single payment refund by its ID and the ID of its parent payment.
-func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetRefundResponse, error) {
-	request := operations.GetRefundRequest{
-		PaymentID: paymentID,
-		RefundID:  refundID,
-		Embed:     embed,
-		Testmode:  testmode,
-	}
-
+func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, opts ...operations.Option) (*operations.GetRefundResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -590,6 +588,8 @@ func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, em
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -784,11 +784,12 @@ func (s *Refunds) Get(ctx context.Context, paymentID string, refundID string, em
 //
 // A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
 // [Get refund endpoint](get-refund) for more information.
-func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string, testmode *bool, opts ...operations.Option) (*operations.CancelRefundResponse, error) {
+func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CancelRefundResponse, error) {
 	request := operations.CancelRefundRequest{
-		PaymentID: paymentID,
-		RefundID:  refundID,
-		Testmode:  testmode,
+		PaymentID:      paymentID,
+		RefundID:       refundID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -841,6 +842,8 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1084,6 +1087,8 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

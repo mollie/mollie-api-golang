@@ -22,6 +22,8 @@ type ListInvoicesRequest struct {
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
 	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *ListInvoicesRequest) GetReference() *string {
@@ -64,6 +66,13 @@ func (o *ListInvoicesRequest) GetSort() *components.ListSort {
 		return nil
 	}
 	return o.Sort
+}
+
+func (o *ListInvoicesRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type Invoice struct {

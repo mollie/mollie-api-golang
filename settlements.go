@@ -87,6 +87,8 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -289,9 +291,10 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
-func (s *Settlements) Get(ctx context.Context, id string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
+func (s *Settlements) Get(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
 	request := operations.GetSettlementRequest{
-		ID: id,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -344,6 +347,8 @@ func (s *Settlements) Get(ctx context.Context, id string, opts ...operations.Opt
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -537,7 +542,11 @@ func (s *Settlements) Get(ctx context.Context, id string, opts ...operations.Opt
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
-func (s *Settlements) GetOpen(ctx context.Context, opts ...operations.Option) (*operations.GetOpenSettlementResponse, error) {
+func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOpenSettlementResponse, error) {
+	request := operations.GetOpenSettlementRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -588,6 +597,8 @@ func (s *Settlements) GetOpen(ctx context.Context, opts ...operations.Option) (*
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -755,7 +766,11 @@ func (s *Settlements) GetOpen(ctx context.Context, opts ...operations.Option) (*
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
-func (s *Settlements) GetNext(ctx context.Context, opts ...operations.Option) (*operations.GetNextSettlementResponse, error) {
+func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetNextSettlementResponse, error) {
+	request := operations.GetNextSettlementRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -806,6 +821,8 @@ func (s *Settlements) GetNext(ctx context.Context, opts ...operations.Option) (*
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1023,6 +1040,8 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1266,6 +1285,8 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1512,6 +1533,8 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -1756,6 +1779,8 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

@@ -36,7 +36,12 @@ func newCustomers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // to this customer object, which simplifies management of recurring payments.
 //
 // Once registered, customers will also appear in your Mollie dashboard.
-func (s *Customers) Create(ctx context.Context, request *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+	request := operations.CreateCustomerRequest{
+		IdempotencyKey: idempotencyKey,
+		EntityCustomer: entityCustomer,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -69,7 +74,7 @@ func (s *Customers) Create(ctx context.Context, request *components.EntityCustom
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCustomer", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -94,6 +99,8 @@ func (s *Customers) Create(ctx context.Context, request *components.EntityCustom
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -282,14 +289,7 @@ func (s *Customers) Create(ctx context.Context, request *components.EntityCustom
 // Retrieve a list of all customers.
 //
 // The results are paginated.
-func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *components.ListSort, testmode *bool, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
-	request := operations.ListCustomersRequest{
-		From:     from,
-		Limit:    limit,
-		Sort:     sort,
-		Testmode: testmode,
-	}
-
+func (s *Customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -340,6 +340,8 @@ func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -532,11 +534,12 @@ func (s *Customers) List(ctx context.Context, from *string, limit *int64, sort *
 
 // Get customer
 // Retrieve a single customer by its ID.
-func (s *Customers) Get(ctx context.Context, customerID string, include *string, testmode *bool, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
+func (s *Customers) Get(ctx context.Context, customerID string, include *string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	request := operations.GetCustomerRequest{
-		CustomerID: customerID,
-		Include:    include,
-		Testmode:   testmode,
+		CustomerID:     customerID,
+		Include:        include,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -589,6 +592,8 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -781,9 +786,10 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 // Update an existing customer.
 //
 // For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-func (s *Customers) Update(ctx context.Context, customerID string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
+func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKey *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	request := operations.UpdateCustomerRequest{
 		CustomerID:     customerID,
+		IdempotencyKey: idempotencyKey,
 		EntityCustomer: entityCustomer,
 	}
 
@@ -844,6 +850,8 @@ func (s *Customers) Update(ctx context.Context, customerID string, entityCustome
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1030,10 +1038,11 @@ func (s *Customers) Update(ctx context.Context, customerID string, entityCustome
 
 // Delete customer
 // Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
-func (s *Customers) Delete(ctx context.Context, customerID string, requestBody *operations.DeleteCustomerRequestBody, opts ...operations.Option) (*operations.DeleteCustomerResponse, error) {
+func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.DeleteCustomerRequestBody, opts ...operations.Option) (*operations.DeleteCustomerResponse, error) {
 	request := operations.DeleteCustomerRequest{
-		CustomerID:  customerID,
-		RequestBody: requestBody,
+		CustomerID:     customerID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1093,6 +1102,8 @@ func (s *Customers) Delete(ctx context.Context, customerID string, requestBody *
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1289,9 +1300,10 @@ func (s *Customers) Delete(ctx context.Context, customerID string, requestBody *
 //
 // This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
 // parameter predefined.
-func (s *Customers) CreatePayment(ctx context.Context, customerID string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
+func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
 	request := operations.CreateCustomerPaymentRequest{
 		CustomerID:     customerID,
+		IdempotencyKey: idempotencyKey,
 		PaymentRequest: paymentRequest,
 	}
 
@@ -1352,6 +1364,8 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, paymen
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1614,6 +1628,8 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

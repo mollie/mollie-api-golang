@@ -8,7 +8,9 @@ import (
 
 type UpdateCustomerRequest struct {
 	// Provide the ID of the related customer.
-	CustomerID     string                     `pathParam:"style=simple,explode=false,name=customerId"`
+	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
 	EntityCustomer *components.EntityCustomer `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *UpdateCustomerRequest) GetCustomerID() string {
 		return ""
 	}
 	return o.CustomerID
+}
+
+func (o *UpdateCustomerRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {

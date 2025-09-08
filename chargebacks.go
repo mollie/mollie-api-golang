@@ -87,6 +87,8 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -278,14 +280,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 
 // Get payment chargeback
 // Retrieve a single payment chargeback by its ID and the ID of its parent payment.
-func (s *Chargebacks) Get(ctx context.Context, paymentID string, chargebackID string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetChargebackResponse, error) {
-	request := operations.GetChargebackRequest{
-		PaymentID:    paymentID,
-		ChargebackID: chargebackID,
-		Embed:        embed,
-		Testmode:     testmode,
-	}
-
+func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackRequest, opts ...operations.Option) (*operations.GetChargebackResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -336,6 +331,8 @@ func (s *Chargebacks) Get(ctx context.Context, paymentID string, chargebackID st
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -579,6 +576,8 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

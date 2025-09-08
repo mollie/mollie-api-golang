@@ -25,8 +25,10 @@ type RevokeMandateRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// Provide the ID of the related mandate.
-	MandateID   string                    `pathParam:"style=simple,explode=false,name=mandateId"`
-	RequestBody *RevokeMandateRequestBody `request:"mediaType=application/json"`
+	MandateID string `pathParam:"style=simple,explode=false,name=mandateId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *RevokeMandateRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *RevokeMandateRequest) GetCustomerID() string {
@@ -41,6 +43,13 @@ func (o *RevokeMandateRequest) GetMandateID() string {
 		return ""
 	}
 	return o.MandateID
+}
+
+func (o *RevokeMandateRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *RevokeMandateRequest) GetRequestBody() *RevokeMandateRequestBody {

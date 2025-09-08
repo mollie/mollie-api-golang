@@ -21,6 +21,8 @@ type ListCustomersRequest struct {
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *ListCustomersRequest) GetFrom() *string {
@@ -49,6 +51,13 @@ func (o *ListCustomersRequest) GetTestmode() *bool {
 		return nil
 	}
 	return o.Testmode
+}
+
+func (o *ListCustomersRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type ListCustomersEmbedded struct {

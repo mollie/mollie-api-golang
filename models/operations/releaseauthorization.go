@@ -37,8 +37,10 @@ func (o *ReleaseAuthorizationRequestBody) GetTestmode() *bool {
 
 type ReleaseAuthorizationRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID   string                           `pathParam:"style=simple,explode=false,name=paymentId"`
-	RequestBody *ReleaseAuthorizationRequestBody `request:"mediaType=application/json"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                          `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *ReleaseAuthorizationRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *ReleaseAuthorizationRequest) GetPaymentID() string {
@@ -46,6 +48,13 @@ func (o *ReleaseAuthorizationRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *ReleaseAuthorizationRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *ReleaseAuthorizationRequest) GetRequestBody() *ReleaseAuthorizationRequestBody {

@@ -51,6 +51,7 @@ func main() {
         Year: client.String("2025"),
         Month: client.String("1"),
         Currencies: components.CurrenciesEur.ToPointer(),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -118,7 +119,7 @@ func main() {
         }),
     )
 
-    res, err := s.Settlements.Get(ctx, "stl_jDk30akdN")
+    res, err := s.Settlements.Get(ctx, "stl_jDk30akdN", client.String("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -130,11 +131,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
-| `id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
-| `opts`                                                            | [][operations.Option](../../models/operations/option.md)          | :heavy_minus_sign:                                                | The options for this request.                                     |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
 
@@ -181,7 +183,7 @@ func main() {
         }),
     )
 
-    res, err := s.Settlements.GetOpen(ctx)
+    res, err := s.Settlements.GetOpen(ctx, client.String("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -193,10 +195,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
 
@@ -241,7 +244,7 @@ func main() {
         }),
     )
 
-    res, err := s.Settlements.GetNext(ctx)
+    res, err := s.Settlements.GetNext(ctx, client.String("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -253,10 +256,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
 
@@ -308,6 +312,7 @@ func main() {
         Sort: components.ListSortDesc.ToPointer(),
         ProfileID: client.String("pfl_5B8cwPMGnU"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -373,6 +378,7 @@ func main() {
         Limit: client.Int64(50),
         Embed: client.String("payment"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -438,6 +444,7 @@ func main() {
         Limit: client.Int64(50),
         Embed: client.String("payment"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -503,6 +510,7 @@ func main() {
         Limit: client.Int64(50),
         Embed: client.String("payment"),
         Testmode: client.Bool(false),
+        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

@@ -35,14 +35,7 @@ func newTerminals(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // Retrieve a list of all physical point-of-sale devices.
 //
 // The results are paginated.
-func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *components.ListSort, testmode *bool, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
-	request := operations.ListTerminalsRequest{
-		From:     from,
-		Limit:    limit,
-		Sort:     sort,
-		Testmode: testmode,
-	}
-
+func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRequest, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -93,6 +86,8 @@ func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -283,10 +278,11 @@ func (s *Terminals) List(ctx context.Context, from *string, limit *int64, sort *
 
 // Get terminal
 // Retrieve a single terminal by its ID.
-func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, opts ...operations.Option) (*operations.GetTerminalResponse, error) {
+func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetTerminalResponse, error) {
 	request := operations.GetTerminalRequest{
-		TerminalID: terminalID,
-		Testmode:   testmode,
+		TerminalID:     terminalID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -339,6 +335,8 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

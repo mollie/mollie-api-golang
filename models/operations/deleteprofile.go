@@ -9,6 +9,8 @@ import (
 type DeleteProfileRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *DeleteProfileRequest) GetID() string {
@@ -16,6 +18,13 @@ func (o *DeleteProfileRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *DeleteProfileRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type DeleteProfileResponse struct {

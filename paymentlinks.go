@@ -35,7 +35,12 @@ func newPaymentLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
 // The payment link can be shared with your customers and will redirect them to them the payment page where they can
 // complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-func (s *PaymentLinks) Create(ctx context.Context, request *operations.CreatePaymentLinkRequest, opts ...operations.Option) (*operations.CreatePaymentLinkResponse, error) {
+func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreatePaymentLinkRequestBody, opts ...operations.Option) (*operations.CreatePaymentLinkResponse, error) {
+	request := operations.CreatePaymentLinkRequest{
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -68,7 +73,7 @@ func (s *PaymentLinks) Create(ctx context.Context, request *operations.CreatePay
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +98,8 @@ func (s *PaymentLinks) Create(ctx context.Context, request *operations.CreatePay
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -283,11 +290,12 @@ func (s *PaymentLinks) Create(ctx context.Context, request *operations.CreatePay
 // Retrieve a list of all payment links.
 //
 // The results are paginated.
-func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, testmode *bool, opts ...operations.Option) (*operations.ListPaymentLinksResponse, error) {
+func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListPaymentLinksResponse, error) {
 	request := operations.ListPaymentLinksRequest{
-		From:     from,
-		Limit:    limit,
-		Testmode: testmode,
+		From:           from,
+		Limit:          limit,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -340,6 +348,8 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -530,10 +540,11 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 
 // Get payment link
 // Retrieve a single payment link by its ID.
-func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *bool, opts ...operations.Option) (*operations.GetPaymentLinkResponse, error) {
+func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPaymentLinkResponse, error) {
 	request := operations.GetPaymentLinkRequest{
-		PaymentLinkID: paymentLinkID,
-		Testmode:      testmode,
+		PaymentLinkID:  paymentLinkID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -586,6 +597,8 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -776,10 +789,11 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 
 // Update payment link
 // Certain details of an existing payment link can be updated.
-func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, requestBody *operations.UpdatePaymentLinkRequestBody, opts ...operations.Option) (*operations.UpdatePaymentLinkResponse, error) {
+func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.UpdatePaymentLinkRequestBody, opts ...operations.Option) (*operations.UpdatePaymentLinkResponse, error) {
 	request := operations.UpdatePaymentLinkRequest{
-		PaymentLinkID: paymentLinkID,
-		RequestBody:   requestBody,
+		PaymentLinkID:  paymentLinkID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -839,6 +853,8 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, request
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1033,10 +1049,11 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, request
 //
 // To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
 // [Update payment link](update-payment-link) endpoint instead.
-func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, requestBody *operations.DeletePaymentLinkRequestBody, opts ...operations.Option) (*operations.DeletePaymentLinkResponse, error) {
+func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.DeletePaymentLinkRequestBody, opts ...operations.Option) (*operations.DeletePaymentLinkResponse, error) {
 	request := operations.DeletePaymentLinkRequest{
-		PaymentLinkID: paymentLinkID,
-		RequestBody:   requestBody,
+		PaymentLinkID:  paymentLinkID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1096,6 +1113,8 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, request
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1337,6 +1356,8 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

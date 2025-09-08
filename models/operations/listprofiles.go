@@ -12,6 +12,8 @@ type ListProfilesRequest struct {
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *ListProfilesRequest) GetFrom() *string {
@@ -26,6 +28,13 @@ func (o *ListProfilesRequest) GetLimit() *int64 {
 		return nil
 	}
 	return o.Limit
+}
+
+func (o *ListProfilesRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type ListProfilesEmbedded struct {

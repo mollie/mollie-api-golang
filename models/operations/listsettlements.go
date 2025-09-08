@@ -21,6 +21,8 @@ type ListSettlementsRequest struct {
 	Month *string `queryParam:"style=form,explode=true,name=month"`
 	// Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
 	Currencies *components.Currencies `queryParam:"style=form,explode=true,name=currencies"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *ListSettlementsRequest) GetFrom() *string {
@@ -63,6 +65,13 @@ func (o *ListSettlementsRequest) GetCurrencies() *components.Currencies {
 		return nil
 	}
 	return o.Currencies
+}
+
+func (o *ListSettlementsRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type ListSettlementsEmbedded struct {

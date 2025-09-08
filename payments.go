@@ -44,9 +44,10 @@ func newPayments(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // If you specify the `method` parameter when creating a payment, optional
 // additional parameters may be available for the payment method that are not listed below. Please refer to the
 // guide on [method-specific parameters](extra-payment-parameters).
-func (s *Payments) Create(ctx context.Context, include *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
+func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	request := operations.CreatePaymentRequest{
 		Include:        include,
+		IdempotencyKey: idempotencyKey,
 		PaymentRequest: paymentRequest,
 	}
 
@@ -107,6 +108,8 @@ func (s *Payments) Create(ctx context.Context, include *string, paymentRequest *
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -376,6 +379,8 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -565,14 +570,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 
 // Get payment
 // Retrieve a single payment object by its payment ID.
-func (s *Payments) Get(ctx context.Context, paymentID string, include *string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
-	request := operations.GetPaymentRequest{
-		PaymentID: paymentID,
-		Include:   include,
-		Embed:     embed,
-		Testmode:  testmode,
-	}
-
+func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -623,6 +621,8 @@ func (s *Payments) Get(ctx context.Context, paymentID string, include *string, e
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -815,10 +815,11 @@ func (s *Payments) Get(ctx context.Context, paymentID string, include *string, e
 // Certain details of an existing payment can be updated.
 //
 // Updating the payment details will not result in a webhook call.
-func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *operations.UpdatePaymentRequestBody, opts ...operations.Option) (*operations.UpdatePaymentResponse, error) {
+func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.UpdatePaymentRequestBody, opts ...operations.Option) (*operations.UpdatePaymentResponse, error) {
 	request := operations.UpdatePaymentRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -878,6 +879,8 @@ func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *op
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1071,10 +1074,11 @@ func (s *Payments) Update(ctx context.Context, paymentID string, requestBody *op
 // Payments may also be canceled manually from the Mollie Dashboard.
 //
 // The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *operations.CancelPaymentRequestBody, opts ...operations.Option) (*operations.CancelPaymentResponse, error) {
+func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.CancelPaymentRequestBody, opts ...operations.Option) (*operations.CancelPaymentResponse, error) {
 	request := operations.CancelPaymentRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1134,6 +1138,8 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *op
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1329,10 +1335,11 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, requestBody *op
 //
 // If the request does succeed, the payment status will change to `canceled` for payments without captures.
 // If there is a successful capture, the payment will transition to `paid`.
-func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, requestBody *operations.ReleaseAuthorizationRequestBody, opts ...operations.Option) (*operations.ReleaseAuthorizationResponse, error) {
+func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.ReleaseAuthorizationRequestBody, opts ...operations.Option) (*operations.ReleaseAuthorizationResponse, error) {
 	request := operations.ReleaseAuthorizationRequest{
-		PaymentID:   paymentID,
-		RequestBody: requestBody,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -1392,6 +1399,8 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, r
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

@@ -51,9 +51,10 @@ func newSubscriptions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
 // `startDate="2018-04-30"`
 // Your customer will be charged €10 on the last day of each month, starting in April 2018.
-func (s *Subscriptions) Create(ctx context.Context, customerID string, subscriptionRequest *components.SubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
+func (s *Subscriptions) Create(ctx context.Context, customerID string, idempotencyKey *string, subscriptionRequest *components.SubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
 	request := operations.CreateSubscriptionRequest{
 		CustomerID:          customerID,
+		IdempotencyKey:      idempotencyKey,
 		SubscriptionRequest: subscriptionRequest,
 	}
 
@@ -114,6 +115,8 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, subscript
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -354,6 +357,8 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -545,11 +550,12 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 
 // Get subscription
 // Retrieve a single subscription by its ID and the ID of its parent customer.
-func (s *Subscriptions) Get(ctx context.Context, customerID string, subscriptionID string, testmode *bool, opts ...operations.Option) (*operations.GetSubscriptionResponse, error) {
+func (s *Subscriptions) Get(ctx context.Context, customerID string, subscriptionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSubscriptionResponse, error) {
 	request := operations.GetSubscriptionRequest{
 		CustomerID:     customerID,
 		SubscriptionID: subscriptionID,
 		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -602,6 +608,8 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -796,10 +804,11 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 // Canceled subscriptions cannot be updated.
 //
 // For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
-func (s *Subscriptions) Update(ctx context.Context, customerID string, subscriptionID string, requestBody *operations.UpdateSubscriptionRequestBody, opts ...operations.Option) (*operations.UpdateSubscriptionResponse, error) {
+func (s *Subscriptions) Update(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.UpdateSubscriptionRequestBody, opts ...operations.Option) (*operations.UpdateSubscriptionResponse, error) {
 	request := operations.UpdateSubscriptionRequest{
 		CustomerID:     customerID,
 		SubscriptionID: subscriptionID,
+		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
 
@@ -860,6 +869,8 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1046,10 +1057,11 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 
 // Cancel subscription
 // Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
-func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscriptionID string, requestBody *operations.CancelSubscriptionRequestBody, opts ...operations.Option) (*operations.CancelSubscriptionResponse, error) {
+func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.CancelSubscriptionRequestBody, opts ...operations.Option) (*operations.CancelSubscriptionResponse, error) {
 	request := operations.CancelSubscriptionRequest{
 		CustomerID:     customerID,
 		SubscriptionID: subscriptionID,
+		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
 
@@ -1110,6 +1122,8 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1298,14 +1312,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 // Retrieve all subscriptions initiated across all your customers.
 //
 // The results are paginated.
-func (s *Subscriptions) All(ctx context.Context, from *string, limit *int64, profileID *string, testmode *bool, opts ...operations.Option) (*operations.ListAllSubscriptionsResponse, error) {
-	request := operations.ListAllSubscriptionsRequest{
-		From:      from,
-		Limit:     limit,
-		ProfileID: profileID,
-		Testmode:  testmode,
-	}
-
+func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubscriptionsRequest, opts ...operations.Option) (*operations.ListAllSubscriptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1356,6 +1363,8 @@ func (s *Subscriptions) All(ctx context.Context, from *string, limit *int64, pro
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1601,6 +1610,8 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

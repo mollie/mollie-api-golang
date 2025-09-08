@@ -6,6 +6,18 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type GetNextSettlementRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (o *GetNextSettlementRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 type GetNextSettlementResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The next settlement object. For a complete reference of the settlement object, refer to the

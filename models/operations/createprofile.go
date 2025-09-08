@@ -6,6 +6,26 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type CreateProfileRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
+	EntityProfile  components.EntityProfile `request:"mediaType=application/json"`
+}
+
+func (o *CreateProfileRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreateProfileRequest) GetEntityProfile() components.EntityProfile {
+	if o == nil {
+		return components.EntityProfile{}
+	}
+	return o.EntityProfile
+}
+
 type CreateProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created profile object.

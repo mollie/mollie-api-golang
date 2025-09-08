@@ -118,8 +118,10 @@ func (o *UpdateProfileRequestBody) GetMode() *Mode {
 
 type UpdateProfileRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
-	ID          string                   `pathParam:"style=simple,explode=false,name=id"`
-	RequestBody UpdateProfileRequestBody `request:"mediaType=application/json"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    UpdateProfileRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdateProfileRequest) GetID() string {
@@ -127,6 +129,13 @@ func (o *UpdateProfileRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *UpdateProfileRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdateProfileRequest) GetRequestBody() UpdateProfileRequestBody {

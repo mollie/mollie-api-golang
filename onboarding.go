@@ -33,7 +33,11 @@ func newOnboarding(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *ho
 
 // Get onboarding status
 // Retrieve the onboarding status of the currently authenticated organization.
-func (s *Onboarding) Get(ctx context.Context, opts ...operations.Option) (*operations.GetOnboardingStatusResponse, error) {
+func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOnboardingStatusResponse, error) {
+	request := operations.GetOnboardingStatusRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -84,6 +88,8 @@ func (s *Onboarding) Get(ctx context.Context, opts ...operations.Option) (*opera
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -250,7 +256,12 @@ func (s *Onboarding) Get(ctx context.Context, opts ...operations.Option) (*opera
 // Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
 // onboarding status is `needs-data`.
 // Information that the merchant has entered in their dashboard will not be overwritten.
-func (s *Onboarding) Submit(ctx context.Context, request *operations.SubmitOnboardingDataRequest, opts ...operations.Option) (*operations.SubmitOnboardingDataResponse, error) {
+func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, requestBody *operations.SubmitOnboardingDataRequestBody, opts ...operations.Option) (*operations.SubmitOnboardingDataResponse, error) {
+	request := operations.SubmitOnboardingDataRequest{
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -283,7 +294,7 @@ func (s *Onboarding) Submit(ctx context.Context, request *operations.SubmitOnboa
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -308,6 +319,8 @@ func (s *Onboarding) Submit(ctx context.Context, request *operations.SubmitOnboa
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

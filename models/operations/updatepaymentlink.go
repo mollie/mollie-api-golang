@@ -98,8 +98,10 @@ func (o *UpdatePaymentLinkRequestBody) GetTestmode() *bool {
 
 type UpdatePaymentLinkRequest struct {
 	// Provide the ID of the related payment link.
-	PaymentLinkID string                        `pathParam:"style=simple,explode=false,name=paymentLinkId"`
-	RequestBody   *UpdatePaymentLinkRequestBody `request:"mediaType=application/json"`
+	PaymentLinkID string `pathParam:"style=simple,explode=false,name=paymentLinkId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                       `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *UpdatePaymentLinkRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdatePaymentLinkRequest) GetPaymentLinkID() string {
@@ -107,6 +109,13 @@ func (o *UpdatePaymentLinkRequest) GetPaymentLinkID() string {
 		return ""
 	}
 	return o.PaymentLinkID
+}
+
+func (o *UpdatePaymentLinkRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *UpdatePaymentLinkRequest) GetRequestBody() *UpdatePaymentLinkRequestBody {

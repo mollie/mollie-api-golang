@@ -33,9 +33,10 @@ func newDelayedRouting(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // Create a delayed route
 // Create a route for a specific payment.
 // The routed amount is credited to the account of your customer.
-func (s *DelayedRouting) Create(ctx context.Context, paymentID string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
+func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempotencyKey *string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
 	request := operations.PaymentCreateRouteRequest{
 		PaymentID:          paymentID,
+		IdempotencyKey:     idempotencyKey,
 		RouteCreateRequest: routeCreateRequest,
 	}
 
@@ -96,6 +97,8 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, routeCrea
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -282,10 +285,11 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, routeCrea
 
 // List payment routes
 // Retrieve a list of all routes created for a specific payment.
-func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *bool, opts ...operations.Option) (*operations.PaymentListRoutesResponse, error) {
+func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.PaymentListRoutesResponse, error) {
 	request := operations.PaymentListRoutesRequest{
-		PaymentID: paymentID,
-		Testmode:  testmode,
+		PaymentID:      paymentID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -338,6 +342,8 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

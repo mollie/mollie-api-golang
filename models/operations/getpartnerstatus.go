@@ -8,6 +8,18 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type GetPartnerStatusRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (o *GetPartnerStatusRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 // PartnerType - Indicates the type of partner. Will be `null` if the currently authenticated organization is not
 // enrolled as a partner.
 type PartnerType string

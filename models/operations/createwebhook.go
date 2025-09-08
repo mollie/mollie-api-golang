@@ -6,7 +6,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type CreateWebhookRequest struct {
+type CreateWebhookRequestBody struct {
 	// A name that identifies the webhook.
 	Name string `json:"name"`
 	// The URL Mollie will send the events to. This URL must be publicly accessible.
@@ -21,32 +21,52 @@ type CreateWebhookRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CreateWebhookRequest) GetName() string {
+func (o *CreateWebhookRequestBody) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *CreateWebhookRequest) GetURL() string {
+func (o *CreateWebhookRequestBody) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *CreateWebhookRequest) GetWebhookEventTypes() components.WebhookEventTypes {
+func (o *CreateWebhookRequestBody) GetWebhookEventTypes() components.WebhookEventTypes {
 	if o == nil {
 		return components.WebhookEventTypes("")
 	}
 	return o.WebhookEventTypes
 }
 
-func (o *CreateWebhookRequest) GetTestmode() *bool {
+func (o *CreateWebhookRequestBody) GetTestmode() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Testmode
+}
+
+type CreateWebhookRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *CreateWebhookRequestBody `request:"mediaType=application/json"`
+}
+
+func (o *CreateWebhookRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreateWebhookRequest) GetRequestBody() *CreateWebhookRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 type CreateWebhookResponse struct {

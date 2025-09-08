@@ -36,7 +36,12 @@ func newProfiles(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
 // can use this endpoint to automate profile creation.
-func (s *Profiles) Create(ctx context.Context, request components.EntityProfile, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
+func (s *Profiles) Create(ctx context.Context, entityProfile components.EntityProfile, idempotencyKey *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
+	request := operations.CreateProfileRequest{
+		IdempotencyKey: idempotencyKey,
+		EntityProfile:  entityProfile,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -69,7 +74,7 @@ func (s *Profiles) Create(ctx context.Context, request components.EntityProfile,
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntityProfile", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -94,6 +99,8 @@ func (s *Profiles) Create(ctx context.Context, request components.EntityProfile,
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -282,10 +289,11 @@ func (s *Profiles) Create(ctx context.Context, request components.EntityProfile,
 // Retrieve a list of all of your profiles.
 //
 // The results are paginated.
-func (s *Profiles) List(ctx context.Context, from *string, limit *int64, opts ...operations.Option) (*operations.ListProfilesResponse, error) {
+func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListProfilesResponse, error) {
 	request := operations.ListProfilesRequest{
-		From:  from,
-		Limit: limit,
+		From:           from,
+		Limit:          limit,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -338,6 +346,8 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, opts ..
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -528,10 +538,11 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, opts ..
 
 // Get profile
 // Retrieve a single profile by its ID.
-func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetProfileResponse, error) {
+func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	request := operations.GetProfileRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -584,6 +595,8 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, opts ...o
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -779,10 +792,11 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, opts ...o
 //
 // Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
 // Alternatively, you can use this endpoint to automate profile management.
-func (s *Profiles) Update(ctx context.Context, id string, requestBody operations.UpdateProfileRequestBody, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
+func (s *Profiles) Update(ctx context.Context, id string, requestBody operations.UpdateProfileRequestBody, idempotencyKey *string, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	request := operations.UpdateProfileRequest{
-		ID:          id,
-		RequestBody: requestBody,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -842,6 +856,8 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1032,9 +1048,10 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 
 // Delete profile
 // Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
-func (s *Profiles) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
+func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
 	request := operations.DeleteProfileRequest{
-		ID: id,
+		ID:             id,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -1087,6 +1104,8 @@ func (s *Profiles) Delete(ctx context.Context, id string, opts ...operations.Opt
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1279,7 +1298,11 @@ func (s *Profiles) Delete(ctx context.Context, id string, opts ...operations.Opt
 //
 // For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
 // documentation.
-func (s *Profiles) GetCurrent(ctx context.Context, opts ...operations.Option) (*operations.GetCurrentProfileResponse, error) {
+func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentProfileResponse, error) {
+	request := operations.GetCurrentProfileRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1330,6 +1353,8 @@ func (s *Profiles) GetCurrent(ctx context.Context, opts ...operations.Option) (*
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

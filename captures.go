@@ -39,10 +39,11 @@ func newCaptures(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // By default, Mollie captures payments automatically. If however you
 // configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
 // having collected the customer's authorization.
-func (s *Captures) Create(ctx context.Context, paymentID string, entityCapture *components.EntityCapture, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
+func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityCapture *components.EntityCapture, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
 	request := operations.CreateCaptureRequest{
-		PaymentID:     paymentID,
-		EntityCapture: entityCapture,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		EntityCapture:  entityCapture,
 	}
 
 	o := operations.Options{}
@@ -102,6 +103,8 @@ func (s *Captures) Create(ctx context.Context, paymentID string, entityCapture *
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -344,6 +347,8 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -536,14 +541,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 // Get capture
 // Retrieve a single payment capture by its ID and the ID of its parent
 // payment.
-func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, embed *string, testmode *bool, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
-	request := operations.GetCaptureRequest{
-		PaymentID: paymentID,
-		CaptureID: captureID,
-		Embed:     embed,
-		Testmode:  testmode,
-	}
-
+func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -594,6 +592,8 @@ func (s *Captures) Get(ctx context.Context, paymentID string, captureID string, 
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

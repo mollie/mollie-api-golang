@@ -6,6 +6,7 @@ import (
 	"context"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 	"os"
 )
@@ -19,7 +20,13 @@ func main() {
 		}),
 	)
 
-	res, err := s.Balances.List(ctx, client.String("EUR"), client.String("bal_gVMhHKqSSRYJyPsuoPNFH"), client.Int64(50), client.Bool(false))
+	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
+		Currency:       client.String("EUR"),
+		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Int64(50),
+		Testmode:       client.Bool(false),
+		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -6,6 +6,18 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type ListPermissionsRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (o *ListPermissionsRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 type ListPermissionsEmbedded struct {
 	// An array of permission objects.
 	Permissions []components.EntityPermission `json:"permissions,omitempty"`

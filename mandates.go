@@ -36,10 +36,11 @@ func newMandates(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 // mandates for cards, your customers need to perform a 'first payment' with their card.
-func (s *Mandates) Create(ctx context.Context, customerID string, entityMandate *components.EntityMandate, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
+func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey *string, entityMandate *components.EntityMandate, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
 	request := operations.CreateMandateRequest{
-		CustomerID:    customerID,
-		EntityMandate: entityMandate,
+		CustomerID:     customerID,
+		IdempotencyKey: idempotencyKey,
+		EntityMandate:  entityMandate,
 	}
 
 	o := operations.Options{}
@@ -99,6 +100,8 @@ func (s *Mandates) Create(ctx context.Context, customerID string, entityMandate 
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -339,6 +342,8 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -531,11 +536,12 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 // Get mandate
 // Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
 // account details, card details, or PayPal account details.
-func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string, testmode *bool, opts ...operations.Option) (*operations.GetMandateResponse, error) {
+func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetMandateResponse, error) {
 	request := operations.GetMandateRequest{
-		CustomerID: customerID,
-		MandateID:  mandateID,
-		Testmode:   testmode,
+		CustomerID:     customerID,
+		MandateID:      mandateID,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -588,6 +594,8 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -779,11 +787,12 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 // Revoke mandate
 // Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
 // mandate, and all connected subscriptions will be canceled.
-func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID string, requestBody *operations.RevokeMandateRequestBody, opts ...operations.Option) (*operations.RevokeMandateResponse, error) {
+func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID string, idempotencyKey *string, requestBody *operations.RevokeMandateRequestBody, opts ...operations.Option) (*operations.RevokeMandateResponse, error) {
 	request := operations.RevokeMandateRequest{
-		CustomerID:  customerID,
-		MandateID:   mandateID,
-		RequestBody: requestBody,
+		CustomerID:     customerID,
+		MandateID:      mandateID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -843,6 +852,8 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

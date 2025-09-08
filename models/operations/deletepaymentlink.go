@@ -23,8 +23,10 @@ func (o *DeletePaymentLinkRequestBody) GetTestmode() *bool {
 
 type DeletePaymentLinkRequest struct {
 	// Provide the ID of the related payment link.
-	PaymentLinkID string                        `pathParam:"style=simple,explode=false,name=paymentLinkId"`
-	RequestBody   *DeletePaymentLinkRequestBody `request:"mediaType=application/json"`
+	PaymentLinkID string `pathParam:"style=simple,explode=false,name=paymentLinkId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                       `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *DeletePaymentLinkRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *DeletePaymentLinkRequest) GetPaymentLinkID() string {
@@ -32,6 +34,13 @@ func (o *DeletePaymentLinkRequest) GetPaymentLinkID() string {
 		return ""
 	}
 	return o.PaymentLinkID
+}
+
+func (o *DeletePaymentLinkRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *DeletePaymentLinkRequest) GetRequestBody() *DeletePaymentLinkRequestBody {

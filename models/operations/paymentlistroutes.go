@@ -15,6 +15,8 @@ type PaymentListRoutesRequest struct {
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
 func (o *PaymentListRoutesRequest) GetPaymentID() string {
@@ -29,6 +31,13 @@ func (o *PaymentListRoutesRequest) GetTestmode() *bool {
 		return nil
 	}
 	return o.Testmode
+}
+
+func (o *PaymentListRoutesRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 type PaymentListRoutesEmbedded struct {

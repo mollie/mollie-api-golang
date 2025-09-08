@@ -23,8 +23,10 @@ func (o *TestWebhookRequestBody) GetTestmode() *bool {
 
 type TestWebhookRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
-	ID          string                  `pathParam:"style=simple,explode=false,name=id"`
-	RequestBody *TestWebhookRequestBody `request:"mediaType=application/json"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                 `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *TestWebhookRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *TestWebhookRequest) GetID() string {
@@ -32,6 +34,13 @@ func (o *TestWebhookRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *TestWebhookRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *TestWebhookRequest) GetRequestBody() *TestWebhookRequestBody {

@@ -6,6 +6,18 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type ListCapabilitiesRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (o *ListCapabilitiesRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 type ListCapabilitiesEmbedded struct {
 	Capabilities []components.EntityCapability `json:"capabilities,omitempty"`
 }

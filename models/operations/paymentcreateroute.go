@@ -8,7 +8,9 @@ import (
 
 type PaymentCreateRouteRequest struct {
 	// Provide the ID of the related payment.
-	PaymentID          string                         `pathParam:"style=simple,explode=false,name=paymentId"`
+	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey     *string                        `header:"style=simple,explode=false,name=idempotency-key"`
 	RouteCreateRequest *components.RouteCreateRequest `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *PaymentCreateRouteRequest) GetPaymentID() string {
 		return ""
 	}
 	return o.PaymentID
+}
+
+func (o *PaymentCreateRouteRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *PaymentCreateRouteRequest) GetRouteCreateRequest() *components.RouteCreateRequest {

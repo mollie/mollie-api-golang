@@ -8,7 +8,9 @@ import (
 
 type CreatePaymentRequest struct {
 	// This endpoint allows you to include additional information via the `include` query string parameter.
-	Include        *string                    `queryParam:"style=form,explode=true,name=include"`
+	Include *string `queryParam:"style=form,explode=true,name=include"`
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
 	PaymentRequest *components.PaymentRequest `request:"mediaType=application/json"`
 }
 
@@ -17,6 +19,13 @@ func (o *CreatePaymentRequest) GetInclude() *string {
 		return nil
 	}
 	return o.Include
+}
+
+func (o *CreatePaymentRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *CreatePaymentRequest) GetPaymentRequest() *components.PaymentRequest {

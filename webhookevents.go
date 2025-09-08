@@ -32,10 +32,11 @@ func newWebhookEvents(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 
 // Get a Webhook Event
 // Retrieve a single webhook event object by its event ID.
-func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
+func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
 	request := operations.GetWebhookEventRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -88,6 +89,8 @@ func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, opts
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

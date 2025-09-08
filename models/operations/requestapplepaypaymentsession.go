@@ -6,7 +6,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type RequestApplePayPaymentSessionRequest struct {
+type RequestApplePayPaymentSessionRequestBody struct {
 	// The validationUrl you got from the
 	// [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
 	//
@@ -26,25 +26,45 @@ type RequestApplePayPaymentSessionRequest struct {
 	ProfileID *string `json:"profileId,omitempty"`
 }
 
-func (o *RequestApplePayPaymentSessionRequest) GetValidationURL() string {
+func (o *RequestApplePayPaymentSessionRequestBody) GetValidationURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.ValidationURL
 }
 
-func (o *RequestApplePayPaymentSessionRequest) GetDomain() string {
+func (o *RequestApplePayPaymentSessionRequestBody) GetDomain() string {
 	if o == nil {
 		return ""
 	}
 	return o.Domain
 }
 
-func (o *RequestApplePayPaymentSessionRequest) GetProfileID() *string {
+func (o *RequestApplePayPaymentSessionRequestBody) GetProfileID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ProfileID
+}
+
+type RequestApplePayPaymentSessionRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey *string                                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *RequestApplePayPaymentSessionRequestBody `request:"mediaType=application/json"`
+}
+
+func (o *RequestApplePayPaymentSessionRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *RequestApplePayPaymentSessionRequest) GetRequestBody() *RequestApplePayPaymentSessionRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 type RequestApplePayPaymentSessionResponse struct {

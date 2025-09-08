@@ -6,6 +6,26 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type CreateSalesInvoiceRequest struct {
+	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+	IdempotencyKey     *string                        `header:"style=simple,explode=false,name=idempotency-key"`
+	EntitySalesInvoice *components.EntitySalesInvoice `request:"mediaType=application/json"`
+}
+
+func (o *CreateSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
+func (o *CreateSalesInvoiceRequest) GetEntitySalesInvoice() *components.EntitySalesInvoice {
+	if o == nil {
+		return nil
+	}
+	return o.EntitySalesInvoice
+}
+
 type CreateSalesInvoiceResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created invoice object. For a complete reference of the invoice object, refer to the

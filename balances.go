@@ -35,14 +35,7 @@ func newBalances(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // Retrieve a list of the organization's balances, including the primary balance.
 //
 // The results are paginated.
-func (s *Balances) List(ctx context.Context, currency *string, from *string, limit *int64, testmode *bool, opts ...operations.Option) (*operations.ListBalancesResponse, error) {
-	request := operations.ListBalancesRequest{
-		Currency: currency,
-		From:     from,
-		Limit:    limit,
-		Testmode: testmode,
-	}
-
+func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequest, opts ...operations.Option) (*operations.ListBalancesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -93,6 +86,8 @@ func (s *Balances) List(ctx context.Context, currency *string, from *string, lim
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -299,10 +294,11 @@ func (s *Balances) List(ctx context.Context, currency *string, from *string, lim
 // With instant payment methods like iDEAL, payments are moved to the available
 // balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
 // funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
-func (s *Balances) Get(ctx context.Context, id string, testmode *bool, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
+func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
 	request := operations.GetBalanceRequest{
-		ID:       id,
-		Testmode: testmode,
+		ID:             id,
+		Testmode:       testmode,
+		IdempotencyKey: idempotencyKey,
 	}
 
 	o := operations.Options{}
@@ -355,6 +351,8 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, opts ...o
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -549,7 +547,11 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, opts ...o
 //
 // This endpoint is a convenient alias of the [Get balance](get-balance)
 // endpoint.
-func (s *Balances) GetPrimary(ctx context.Context, opts ...operations.Option) (*operations.GetPrimaryBalanceResponse, error) {
+func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPrimaryBalanceResponse, error) {
+	request := operations.GetPrimaryBalanceRequest{
+		IdempotencyKey: idempotencyKey,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -600,6 +602,8 @@ func (s *Balances) GetPrimary(ctx context.Context, opts ...operations.Option) (*
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -819,6 +823,8 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	utils.PopulateHeaders(ctx, req, request, nil)
+
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
@@ -1019,14 +1025,7 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 // organization's primary balance.
 //
 // The results are paginated.
-func (s *Balances) ListTransactions(ctx context.Context, balanceID string, from *string, limit *int64, testmode *bool, opts ...operations.Option) (*operations.ListBalanceTransactionsResponse, error) {
-	request := operations.ListBalanceTransactionsRequest{
-		BalanceID: balanceID,
-		From:      from,
-		Limit:     limit,
-		Testmode:  testmode,
-	}
-
+func (s *Balances) ListTransactions(ctx context.Context, request operations.ListBalanceTransactionsRequest, opts ...operations.Option) (*operations.ListBalanceTransactionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1077,6 +1076,8 @@ func (s *Balances) ListTransactions(ctx context.Context, balanceID string, from 
 	}
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
