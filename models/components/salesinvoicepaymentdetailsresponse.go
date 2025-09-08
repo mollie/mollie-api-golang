@@ -2,52 +2,17 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SalesInvoicePaymentDetailsResponseSource - The way through which the invoice is to be set to paid.
-type SalesInvoicePaymentDetailsResponseSource string
-
-const (
-	SalesInvoicePaymentDetailsResponseSourceManual      SalesInvoicePaymentDetailsResponseSource = "manual"
-	SalesInvoicePaymentDetailsResponseSourcePaymentLink SalesInvoicePaymentDetailsResponseSource = "payment-link"
-	SalesInvoicePaymentDetailsResponseSourcePayment     SalesInvoicePaymentDetailsResponseSource = "payment"
-)
-
-func (e SalesInvoicePaymentDetailsResponseSource) ToPointer() *SalesInvoicePaymentDetailsResponseSource {
-	return &e
-}
-func (e *SalesInvoicePaymentDetailsResponseSource) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "manual":
-		fallthrough
-	case "payment-link":
-		fallthrough
-	case "payment":
-		*e = SalesInvoicePaymentDetailsResponseSource(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoicePaymentDetailsResponseSource: %v", v)
-	}
-}
-
 type SalesInvoicePaymentDetailsResponse struct {
 	// The way through which the invoice is to be set to paid.
-	Source SalesInvoicePaymentDetailsResponseSource `json:"source"`
+	Source SalesInvoicePaymentDetailsSourceResponse `json:"source"`
 	// A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
 	// `payment`.
 	SourceReference *string `json:"sourceReference,omitempty"`
 }
 
-func (o *SalesInvoicePaymentDetailsResponse) GetSource() SalesInvoicePaymentDetailsResponseSource {
+func (o *SalesInvoicePaymentDetailsResponse) GetSource() SalesInvoicePaymentDetailsSourceResponse {
 	if o == nil {
-		return SalesInvoicePaymentDetailsResponseSource("")
+		return SalesInvoicePaymentDetailsSourceResponse("")
 	}
 	return o.Source
 }

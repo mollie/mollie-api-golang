@@ -2,41 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SubscriptionRequestMethod - The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-type SubscriptionRequestMethod string
-
-const (
-	SubscriptionRequestMethodCreditcard  SubscriptionRequestMethod = "creditcard"
-	SubscriptionRequestMethodDirectdebit SubscriptionRequestMethod = "directdebit"
-	SubscriptionRequestMethodPaypal      SubscriptionRequestMethod = "paypal"
-)
-
-func (e SubscriptionRequestMethod) ToPointer() *SubscriptionRequestMethod {
-	return &e
-}
-func (e *SubscriptionRequestMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "paypal":
-		*e = SubscriptionRequestMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubscriptionRequestMethod: %v", v)
-	}
-}
-
 // SubscriptionRequestApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //
@@ -66,6 +31,9 @@ func (o *SubscriptionRequestApplicationFee) GetDescription() string {
 
 type SubscriptionRequest struct {
 	ID *string `json:"id,omitempty"`
+	// The subscription's current status is directly related to the status of the underlying customer or mandate that is
+	// enabling the subscription.
+	Status *SubscriptionStatus `json:"status,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *Amount `json:"amount,omitempty"`
 	// Total number of payments for the subscription. Once this number of payments is reached, the subscription is
@@ -87,7 +55,7 @@ type SubscriptionRequest struct {
 	// **Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
 	Description *string `json:"description,omitempty"`
 	// The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-	Method *SubscriptionRequestMethod `json:"method,omitempty"`
+	Method *SubscriptionMethod `json:"method,omitempty"`
 	// With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 	// merchants.
 	//
@@ -119,6 +87,13 @@ func (o *SubscriptionRequest) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *SubscriptionRequest) GetStatus() *SubscriptionStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *SubscriptionRequest) GetAmount() *Amount {
@@ -156,7 +131,7 @@ func (o *SubscriptionRequest) GetDescription() *string {
 	return o.Description
 }
 
-func (o *SubscriptionRequest) GetMethod() *SubscriptionRequestMethod {
+func (o *SubscriptionRequest) GetMethod() *SubscriptionMethod {
 	if o == nil {
 		return nil
 	}

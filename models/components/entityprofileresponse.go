@@ -3,78 +3,15 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
-
-// EntityProfileResponseStatus - The profile status determines whether the profile is able to receive live payments.
-//
-// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
-// * `verified`: The profile has been verified and can be used to create live payments and test payments.
-// * `blocked`: The profile is blocked and can no longer be used or changed.
-type EntityProfileResponseStatus string
-
-const (
-	EntityProfileResponseStatusUnverified EntityProfileResponseStatus = "unverified"
-	EntityProfileResponseStatusVerified   EntityProfileResponseStatus = "verified"
-	EntityProfileResponseStatusBlocked    EntityProfileResponseStatus = "blocked"
-)
-
-func (e EntityProfileResponseStatus) ToPointer() *EntityProfileResponseStatus {
-	return &e
-}
-func (e *EntityProfileResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unverified":
-		fallthrough
-	case "verified":
-		fallthrough
-	case "blocked":
-		*e = EntityProfileResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityProfileResponseStatus: %v", v)
-	}
-}
-
-// ReviewStatus - The status of the requested changes.
-type ReviewStatus string
-
-const (
-	ReviewStatusPending  ReviewStatus = "pending"
-	ReviewStatusRejected ReviewStatus = "rejected"
-)
-
-func (e ReviewStatus) ToPointer() *ReviewStatus {
-	return &e
-}
-func (e *ReviewStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "rejected":
-		*e = ReviewStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ReviewStatus: %v", v)
-	}
-}
 
 // Review - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 // automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 // `null` in test mode.
 type Review struct {
 	// The status of the requested changes.
-	Status *ReviewStatus `json:"status,omitempty"`
+	Status *ProfileReviewStatusResponse `json:"status,omitempty"`
 }
 
 func (r Review) MarshalJSON() ([]byte, error) {
@@ -88,7 +25,7 @@ func (r *Review) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Review) GetStatus() *ReviewStatus {
+func (o *Review) GetStatus() *ProfileReviewStatusResponse {
 	if o == nil {
 		return nil
 	}
@@ -212,7 +149,7 @@ type EntityProfileResponse struct {
 	// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
 	// * `verified`: The profile has been verified and can be used to create live payments and test payments.
 	// * `blocked`: The profile is blocked and can no longer be used or changed.
-	Status *EntityProfileResponseStatus `json:"status,omitempty"`
+	Status *ProfileStatus `json:"status,omitempty"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 	// `null` in test mode.
@@ -304,7 +241,7 @@ func (o *EntityProfileResponse) GetBusinessCategory() *string {
 	return o.BusinessCategory
 }
 
-func (o *EntityProfileResponse) GetStatus() *EntityProfileResponseStatus {
+func (o *EntityProfileResponse) GetStatus() *ProfileStatus {
 	if o == nil {
 		return nil
 	}

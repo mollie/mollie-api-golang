@@ -54,6 +54,7 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
+        Status: components.CaptureStatusSucceeded.ToPointer(),
         PaymentID: client.String("tr_5B8cwPMGnU"),
         ShipmentID: client.String("shp_5x4xQJDWGNcY3tKGL7X5J"),
         SettlementID: client.String("stl_5B8cwPMGnU"),

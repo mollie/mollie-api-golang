@@ -2,46 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// Grouping - You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-// status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-// by transaction type, and then by other sub-groupings where available (e.g. payment method).
-//
-// With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-// movement, and then again by other sub-groupings where available.
-//
-// Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-// of the report.
-type Grouping string
-
-const (
-	GroupingStatusBalances        Grouping = "status-balances"
-	GroupingTransactionCategories Grouping = "transaction-categories"
-)
-
-func (e Grouping) ToPointer() *Grouping {
-	return &e
-}
-func (e *Grouping) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status-balances":
-		fallthrough
-	case "transaction-categories":
-		*e = Grouping(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Grouping: %v", v)
-	}
-}
-
 // PendingBalance - The pending balance. Only available if grouping is `status-balances`.
 type PendingBalance struct {
 	Open             *SubGroup `json:"open,omitempty"`
@@ -544,17 +504,8 @@ type EntityBalanceReport struct {
 	From *string `json:"from,omitempty"`
 	// The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
 	// This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
-	Until *string `json:"until,omitempty"`
-	// You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-	// status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-	// by transaction type, and then by other sub-groupings where available (e.g. payment method).
-	//
-	// With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-	// movement, and then again by other sub-groupings where available.
-	//
-	// Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-	// of the report.
-	Grouping *Grouping `json:"grouping,omitempty"`
+	Until    *string                `json:"until,omitempty"`
+	Grouping *BalanceReportGrouping `json:"grouping,omitempty"`
 	// Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
 	// typical grouping looks like.
 	//
@@ -615,7 +566,7 @@ func (o *EntityBalanceReport) GetUntil() *string {
 	return o.Until
 }
 
-func (o *EntityBalanceReport) GetGrouping() *Grouping {
+func (o *EntityBalanceReport) GetGrouping() *BalanceReportGrouping {
 	if o == nil {
 		return nil
 	}

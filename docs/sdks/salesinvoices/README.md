@@ -46,11 +46,11 @@ func main() {
         ID: client.String("invoice_4Y0eZitmBnQ6IDoMqZQKh"),
         Testmode: client.Bool(false),
         ProfileID: client.String("pfl_QkEhN94Ba"),
-        Status: components.EntitySalesInvoiceStatusDraft.ToPointer(),
-        VatScheme: components.EntitySalesInvoiceVatSchemeStandard.ToPointer(),
-        VatMode: components.EntitySalesInvoiceVatModeExclusive.ToPointer(),
+        Status: components.SalesInvoiceStatusDraft.ToPointer(),
+        VatScheme: components.SalesInvoiceVatSchemeStandard.ToPointer(),
+        VatMode: components.SalesInvoiceVatModeExclusive.ToPointer(),
         Memo: client.String("This is a memo!"),
-        PaymentTerm: components.EntitySalesInvoicePaymentTermThirtydays.ToPointer(),
+        PaymentTerm: components.SalesInvoicePaymentTermThirtydays.ToPointer(),
         PaymentDetails: &components.SalesInvoicePaymentDetails{
             Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
             SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
@@ -294,9 +294,9 @@ func main() {
 
     res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", &components.UpdateValuesSalesInvoice{
         Testmode: client.Bool(false),
-        Status: components.UpdateValuesSalesInvoiceStatusPaid.ToPointer(),
+        Status: components.SalesInvoiceStatusDraft.ToPointer(),
         Memo: client.String("An updated memo!"),
-        PaymentTerm: components.UpdateValuesSalesInvoicePaymentTermThirtydays.ToPointer(),
+        PaymentTerm: components.SalesInvoicePaymentTermThirtydays.ToPointer(),
         PaymentDetails: &components.SalesInvoicePaymentDetails{
             Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
             SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),

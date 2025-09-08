@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // EntityMethodAllImage - URLs of images representing the payment method.
 type EntityMethodAllImage struct {
 	// The URL pointing to an icon of 32 by 24 pixels.
@@ -37,42 +32,6 @@ func (o *EntityMethodAllImage) GetSvg() string {
 		return ""
 	}
 	return o.Svg
-}
-
-// EntityMethodAllStatus - The payment method's activation status for this profile.
-type EntityMethodAllStatus string
-
-const (
-	EntityMethodAllStatusActivated       EntityMethodAllStatus = "activated"
-	EntityMethodAllStatusPendingBoarding EntityMethodAllStatus = "pending-boarding"
-	EntityMethodAllStatusPendingReview   EntityMethodAllStatus = "pending-review"
-	EntityMethodAllStatusPendingExternal EntityMethodAllStatus = "pending-external"
-	EntityMethodAllStatusRejected        EntityMethodAllStatus = "rejected"
-)
-
-func (e EntityMethodAllStatus) ToPointer() *EntityMethodAllStatus {
-	return &e
-}
-func (e *EntityMethodAllStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "activated":
-		fallthrough
-	case "pending-boarding":
-		fallthrough
-	case "pending-review":
-		fallthrough
-	case "pending-external":
-		fallthrough
-	case "rejected":
-		*e = EntityMethodAllStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityMethodAllStatus: %v", v)
-	}
 }
 
 // EntityMethodAllIssuerImage - URLs of images representing the issuer.
@@ -238,7 +197,7 @@ type EntityMethodAll struct {
 	// URLs of images representing the payment method.
 	Image EntityMethodAllImage `json:"image"`
 	// The payment method's activation status for this profile.
-	Status EntityMethodAllStatus `json:"status"`
+	Status MethodStatus `json:"status"`
 	// **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
 	// for iDEAL, KBC/CBC, gift cards, and vouchers.
 	Issuers []EntityMethodAllIssuer `json:"issuers,omitempty"`
@@ -291,9 +250,9 @@ func (o *EntityMethodAll) GetImage() EntityMethodAllImage {
 	return o.Image
 }
 
-func (o *EntityMethodAll) GetStatus() EntityMethodAllStatus {
+func (o *EntityMethodAll) GetStatus() MethodStatus {
 	if o == nil {
-		return EntityMethodAllStatus("")
+		return MethodStatus("")
 	}
 	return o.Status
 }

@@ -8,53 +8,6 @@ import (
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
 
-// PaymentLineItemResponseType - The type of product purchased. For example, a physical or a digital product.
-//
-// The `tip` payment line type is not available when creating a payment.
-type PaymentLineItemResponseType string
-
-const (
-	PaymentLineItemResponseTypePhysical    PaymentLineItemResponseType = "physical"
-	PaymentLineItemResponseTypeDigital     PaymentLineItemResponseType = "digital"
-	PaymentLineItemResponseTypeShippingFee PaymentLineItemResponseType = "shipping_fee"
-	PaymentLineItemResponseTypeDiscount    PaymentLineItemResponseType = "discount"
-	PaymentLineItemResponseTypeStoreCredit PaymentLineItemResponseType = "store_credit"
-	PaymentLineItemResponseTypeGiftCard    PaymentLineItemResponseType = "gift_card"
-	PaymentLineItemResponseTypeSurcharge   PaymentLineItemResponseType = "surcharge"
-	PaymentLineItemResponseTypeTip         PaymentLineItemResponseType = "tip"
-)
-
-func (e PaymentLineItemResponseType) ToPointer() *PaymentLineItemResponseType {
-	return &e
-}
-func (e *PaymentLineItemResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "physical":
-		fallthrough
-	case "digital":
-		fallthrough
-	case "shipping_fee":
-		fallthrough
-	case "discount":
-		fallthrough
-	case "store_credit":
-		fallthrough
-	case "gift_card":
-		fallthrough
-	case "surcharge":
-		fallthrough
-	case "tip":
-		*e = PaymentLineItemResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentLineItemResponseType: %v", v)
-	}
-}
-
 type PaymentLineItemResponseCategory string
 
 const (
@@ -91,7 +44,7 @@ type PaymentLineItemResponse struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
 	// The `tip` payment line type is not available when creating a payment.
-	Type *PaymentLineItemResponseType `json:"type,omitempty"`
+	Type *PaymentLineTypeResponse `json:"type,omitempty"`
 	// A description of the line item. For example *LEGO 4440 Forest Police Station*.
 	Description string `json:"description"`
 	// The number of items.
@@ -131,7 +84,7 @@ func (p *PaymentLineItemResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentLineItemResponse) GetType() *PaymentLineItemResponseType {
+func (o *PaymentLineItemResponse) GetType() *PaymentLineTypeResponse {
 	if o == nil {
 		return nil
 	}

@@ -83,7 +83,7 @@ func main() {
         WebhookURL: client.String("https://example.org/webhooks"),
         Lines: []components.PaymentRequestLine{
             components.PaymentRequestLine{
-                Type: components.PaymentRequestTypePhysical.ToPointer(),
+                Type: components.PaymentLineTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 QuantityUnit: client.String("pcs"),
@@ -172,7 +172,7 @@ func main() {
                     Value: "10.00",
                 },
                 Destination: components.EntityPaymentRouteDestination{
-                    Type: components.EntityPaymentRouteTypeOrganization,
+                    Type: components.RouteDestinationTypeOrganization,
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.String("2024-12-12"),

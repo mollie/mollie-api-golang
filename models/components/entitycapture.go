@@ -10,6 +10,8 @@ type EntityCapture struct {
 	Amount *AmountNullable `json:"amount,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
+	// The capture's status.
+	Status *CaptureStatus `json:"status,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata     *Metadata `json:"metadata,omitempty"`
@@ -44,6 +46,13 @@ func (o *EntityCapture) GetSettlementAmount() *AmountNullable {
 		return nil
 	}
 	return o.SettlementAmount
+}
+
+func (o *EntityCapture) GetStatus() *CaptureStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *EntityCapture) GetMetadata() *Metadata {

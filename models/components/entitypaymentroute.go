@@ -2,45 +2,16 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityPaymentRouteType - The type of destination. Currently only the destination type `organization` is supported.
-type EntityPaymentRouteType string
-
-const (
-	EntityPaymentRouteTypeOrganization EntityPaymentRouteType = "organization"
-)
-
-func (e EntityPaymentRouteType) ToPointer() *EntityPaymentRouteType {
-	return &e
-}
-func (e *EntityPaymentRouteType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = EntityPaymentRouteType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityPaymentRouteType: %v", v)
-	}
-}
-
 // EntityPaymentRouteDestination - The destination of this portion of the payment.
 type EntityPaymentRouteDestination struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type           EntityPaymentRouteType `json:"type"`
-	OrganizationID string                 `json:"organizationId"`
+	Type           RouteDestinationType `json:"type"`
+	OrganizationID string               `json:"organizationId"`
 }
 
-func (o *EntityPaymentRouteDestination) GetType() EntityPaymentRouteType {
+func (o *EntityPaymentRouteDestination) GetType() RouteDestinationType {
 	if o == nil {
-		return EntityPaymentRouteType("")
+		return RouteDestinationType("")
 	}
 	return o.Type
 }

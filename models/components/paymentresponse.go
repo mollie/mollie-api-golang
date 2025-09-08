@@ -9,53 +9,6 @@ import (
 	"github.com/mollie/mollie-api-golang/types"
 )
 
-// PaymentResponseType - The type of product purchased. For example, a physical or a digital product.
-//
-// The `tip` payment line type is not available when creating a payment.
-type PaymentResponseType string
-
-const (
-	PaymentResponseTypePhysical    PaymentResponseType = "physical"
-	PaymentResponseTypeDigital     PaymentResponseType = "digital"
-	PaymentResponseTypeShippingFee PaymentResponseType = "shipping_fee"
-	PaymentResponseTypeDiscount    PaymentResponseType = "discount"
-	PaymentResponseTypeStoreCredit PaymentResponseType = "store_credit"
-	PaymentResponseTypeGiftCard    PaymentResponseType = "gift_card"
-	PaymentResponseTypeSurcharge   PaymentResponseType = "surcharge"
-	PaymentResponseTypeTip         PaymentResponseType = "tip"
-)
-
-func (e PaymentResponseType) ToPointer() *PaymentResponseType {
-	return &e
-}
-func (e *PaymentResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "physical":
-		fallthrough
-	case "digital":
-		fallthrough
-	case "shipping_fee":
-		fallthrough
-	case "discount":
-		fallthrough
-	case "store_credit":
-		fallthrough
-	case "gift_card":
-		fallthrough
-	case "surcharge":
-		fallthrough
-	case "tip":
-		*e = PaymentResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentResponseType: %v", v)
-	}
-}
-
 type PaymentResponseCategory string
 
 const (
@@ -92,7 +45,7 @@ type PaymentResponseLine struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
 	// The `tip` payment line type is not available when creating a payment.
-	Type *PaymentResponseType `json:"type,omitempty"`
+	Type *PaymentLineTypeResponse `json:"type,omitempty"`
 	// A description of the line item. For example *LEGO 4440 Forest Police Station*.
 	Description string `json:"description"`
 	// The number of items.
@@ -122,7 +75,7 @@ type PaymentResponseLine struct {
 	Recurring  *RecurringLineItem `json:"recurring,omitempty"`
 }
 
-func (o *PaymentResponseLine) GetType() *PaymentResponseType {
+func (o *PaymentResponseLine) GetType() *PaymentLineTypeResponse {
 	if o == nil {
 		return nil
 	}
@@ -251,467 +204,6 @@ func (o *PaymentResponseApplicationFee) GetDescription() *string {
 	return o.Description
 }
 
-// PaymentResponseStatus - The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-// statuses occur at what point.
-type PaymentResponseStatus string
-
-const (
-	PaymentResponseStatusOpen       PaymentResponseStatus = "open"
-	PaymentResponseStatusPending    PaymentResponseStatus = "pending"
-	PaymentResponseStatusAuthorized PaymentResponseStatus = "authorized"
-	PaymentResponseStatusPaid       PaymentResponseStatus = "paid"
-	PaymentResponseStatusCanceled   PaymentResponseStatus = "canceled"
-	PaymentResponseStatusExpired    PaymentResponseStatus = "expired"
-	PaymentResponseStatusFailed     PaymentResponseStatus = "failed"
-)
-
-func (e PaymentResponseStatus) ToPointer() *PaymentResponseStatus {
-	return &e
-}
-func (e *PaymentResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "open":
-		fallthrough
-	case "pending":
-		fallthrough
-	case "authorized":
-		fallthrough
-	case "paid":
-		fallthrough
-	case "canceled":
-		fallthrough
-	case "expired":
-		fallthrough
-	case "failed":
-		*e = PaymentResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentResponseStatus: %v", v)
-	}
-}
-
-// CardAudition - The card's target audience, if known.
-type CardAudition string
-
-const (
-	CardAuditionConsumer CardAudition = "consumer"
-	CardAuditionBusiness CardAudition = "business"
-)
-
-func (e CardAudition) ToPointer() *CardAudition {
-	return &e
-}
-func (e *CardAudition) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "consumer":
-		fallthrough
-	case "business":
-		*e = CardAudition(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CardAudition: %v", v)
-	}
-}
-
-// PaymentResponseCardLabel - The card's label, if known.
-type PaymentResponseCardLabel string
-
-const (
-	PaymentResponseCardLabelAmericanExpress PaymentResponseCardLabel = "American Express"
-	PaymentResponseCardLabelCartaSi         PaymentResponseCardLabel = "Carta Si"
-	PaymentResponseCardLabelCarteBleue      PaymentResponseCardLabel = "Carte Bleue"
-	PaymentResponseCardLabelDankort         PaymentResponseCardLabel = "Dankort"
-	PaymentResponseCardLabelDinersClub      PaymentResponseCardLabel = "Diners Club"
-	PaymentResponseCardLabelDiscover        PaymentResponseCardLabel = "Discover"
-	PaymentResponseCardLabelJcb             PaymentResponseCardLabel = "JCB"
-	PaymentResponseCardLabelLaser           PaymentResponseCardLabel = "Laser"
-	PaymentResponseCardLabelMaestro         PaymentResponseCardLabel = "Maestro"
-	PaymentResponseCardLabelMastercard      PaymentResponseCardLabel = "Mastercard"
-	PaymentResponseCardLabelUnionpay        PaymentResponseCardLabel = "Unionpay"
-	PaymentResponseCardLabelVisa            PaymentResponseCardLabel = "Visa"
-	PaymentResponseCardLabelVpay            PaymentResponseCardLabel = "Vpay"
-)
-
-func (e PaymentResponseCardLabel) ToPointer() *PaymentResponseCardLabel {
-	return &e
-}
-func (e *PaymentResponseCardLabel) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "American Express":
-		fallthrough
-	case "Carta Si":
-		fallthrough
-	case "Carte Bleue":
-		fallthrough
-	case "Dankort":
-		fallthrough
-	case "Diners Club":
-		fallthrough
-	case "Discover":
-		fallthrough
-	case "JCB":
-		fallthrough
-	case "Laser":
-		fallthrough
-	case "Maestro":
-		fallthrough
-	case "Mastercard":
-		fallthrough
-	case "Unionpay":
-		fallthrough
-	case "Visa":
-		fallthrough
-	case "Vpay":
-		*e = PaymentResponseCardLabel(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentResponseCardLabel: %v", v)
-	}
-}
-
-// CardFunding - The card type.
-type CardFunding string
-
-const (
-	CardFundingDebit         CardFunding = "debit"
-	CardFundingCredit        CardFunding = "credit"
-	CardFundingPrepaid       CardFunding = "prepaid"
-	CardFundingDeferredDebit CardFunding = "deferred-debit"
-)
-
-func (e CardFunding) ToPointer() *CardFunding {
-	return &e
-}
-func (e *CardFunding) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "debit":
-		fallthrough
-	case "credit":
-		fallthrough
-	case "prepaid":
-		fallthrough
-	case "deferred-debit":
-		*e = CardFunding(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CardFunding: %v", v)
-	}
-}
-
-// CardSecurity - The level of security applied during card processing.
-type CardSecurity string
-
-const (
-	CardSecurityNormal       CardSecurity = "normal"
-	CardSecurityThreedsecure CardSecurity = "3dsecure"
-)
-
-func (e CardSecurity) ToPointer() *CardSecurity {
-	return &e
-}
-func (e *CardSecurity) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "normal":
-		fallthrough
-	case "3dsecure":
-		*e = CardSecurity(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CardSecurity: %v", v)
-	}
-}
-
-// FeeRegion - The applicable card fee region.
-type FeeRegion string
-
-const (
-	FeeRegionAmericanExpress  FeeRegion = "american-express"
-	FeeRegionAmexIntraEea     FeeRegion = "amex-intra-eea"
-	FeeRegionCarteBancaire    FeeRegion = "carte-bancaire"
-	FeeRegionIntraEu          FeeRegion = "intra-eu"
-	FeeRegionIntraEuCorporate FeeRegion = "intra-eu-corporate"
-	FeeRegionDomestic         FeeRegion = "domestic"
-	FeeRegionMaestro          FeeRegion = "maestro"
-	FeeRegionOther            FeeRegion = "other"
-	FeeRegionInter            FeeRegion = "inter"
-	FeeRegionIntraEea         FeeRegion = "intra_eea"
-)
-
-func (e FeeRegion) ToPointer() *FeeRegion {
-	return &e
-}
-func (e *FeeRegion) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "american-express":
-		fallthrough
-	case "amex-intra-eea":
-		fallthrough
-	case "carte-bancaire":
-		fallthrough
-	case "intra-eu":
-		fallthrough
-	case "intra-eu-corporate":
-		fallthrough
-	case "domestic":
-		fallthrough
-	case "maestro":
-		fallthrough
-	case "other":
-		fallthrough
-	case "inter":
-		fallthrough
-	case "intra_eea":
-		*e = FeeRegion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FeeRegion: %v", v)
-	}
-}
-
-// FailureReason - A failure code to help understand why the payment failed.
-type FailureReason string
-
-const (
-	FailureReasonAuthenticationAbandoned      FailureReason = "authentication_abandoned"
-	FailureReasonAuthenticationFailed         FailureReason = "authentication_failed"
-	FailureReasonAuthenticationRequired       FailureReason = "authentication_required"
-	FailureReasonAuthenticationUnavailableAcs FailureReason = "authentication_unavailable_acs"
-	FailureReasonCardDeclined                 FailureReason = "card_declined"
-	FailureReasonCardExpired                  FailureReason = "card_expired"
-	FailureReasonInactiveCard                 FailureReason = "inactive_card"
-	FailureReasonInsufficientFunds            FailureReason = "insufficient_funds"
-	FailureReasonInvalidCvv                   FailureReason = "invalid_cvv"
-	FailureReasonInvalidCardHolderName        FailureReason = "invalid_card_holder_name"
-	FailureReasonInvalidCardNumber            FailureReason = "invalid_card_number"
-	FailureReasonInvalidCardType              FailureReason = "invalid_card_type"
-	FailureReasonPossibleFraud                FailureReason = "possible_fraud"
-	FailureReasonRefusedByIssuer              FailureReason = "refused_by_issuer"
-	FailureReasonUnknownReason                FailureReason = "unknown_reason"
-)
-
-func (e FailureReason) ToPointer() *FailureReason {
-	return &e
-}
-func (e *FailureReason) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "authentication_abandoned":
-		fallthrough
-	case "authentication_failed":
-		fallthrough
-	case "authentication_required":
-		fallthrough
-	case "authentication_unavailable_acs":
-		fallthrough
-	case "card_declined":
-		fallthrough
-	case "card_expired":
-		fallthrough
-	case "inactive_card":
-		fallthrough
-	case "insufficient_funds":
-		fallthrough
-	case "invalid_cvv":
-		fallthrough
-	case "invalid_card_holder_name":
-		fallthrough
-	case "invalid_card_number":
-		fallthrough
-	case "invalid_card_type":
-		fallthrough
-	case "possible_fraud":
-		fallthrough
-	case "refused_by_issuer":
-		fallthrough
-	case "unknown_reason":
-		*e = FailureReason(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FailureReason: %v", v)
-	}
-}
-
-// Wallet - The wallet used when creating the payment.
-type Wallet string
-
-const (
-	WalletApplepay Wallet = "applepay"
-)
-
-func (e Wallet) ToPointer() *Wallet {
-	return &e
-}
-func (e *Wallet) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "applepay":
-		*e = Wallet(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Wallet: %v", v)
-	}
-}
-
-// SellerProtection - Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
-// payments, and if the information is made available by PayPal.
-type SellerProtection string
-
-const (
-	SellerProtectionEligible                          SellerProtection = "Eligible"
-	SellerProtectionIneligible                        SellerProtection = "Ineligible"
-	SellerProtectionPartiallyEligibleInrOnly          SellerProtection = "Partially Eligible - INR Only"
-	SellerProtectionPartiallyEligibleUnauthOnly       SellerProtection = "Partially Eligible - Unauth Only"
-	SellerProtectionPartiallyEligible                 SellerProtection = "Partially Eligible"
-	SellerProtectionNone                              SellerProtection = "None"
-	SellerProtectionActive                            SellerProtection = "Active"
-	SellerProtectionFraudControlUnauthPremiumEligible SellerProtection = "Fraud Control - Unauth Premium Eligible"
-)
-
-func (e SellerProtection) ToPointer() *SellerProtection {
-	return &e
-}
-func (e *SellerProtection) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Eligible":
-		fallthrough
-	case "Ineligible":
-		fallthrough
-	case "Partially Eligible - INR Only":
-		fallthrough
-	case "Partially Eligible - Unauth Only":
-		fallthrough
-	case "Partially Eligible":
-		fallthrough
-	case "None":
-		fallthrough
-	case "Active":
-		fallthrough
-	case "Fraud Control - Unauth Premium Eligible":
-		*e = SellerProtection(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SellerProtection: %v", v)
-	}
-}
-
-// CardReadMethod - The method by which the card was read by the terminal.
-type CardReadMethod string
-
-const (
-	CardReadMethodChip                   CardReadMethod = "chip"
-	CardReadMethodMagneticStripe         CardReadMethod = "magnetic-stripe"
-	CardReadMethodNearFieldCommunication CardReadMethod = "near-field-communication"
-	CardReadMethodContactless            CardReadMethod = "contactless"
-	CardReadMethodMoto                   CardReadMethod = "moto"
-)
-
-func (e CardReadMethod) ToPointer() *CardReadMethod {
-	return &e
-}
-func (e *CardReadMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "chip":
-		fallthrough
-	case "magnetic-stripe":
-		fallthrough
-	case "near-field-communication":
-		fallthrough
-	case "contactless":
-		fallthrough
-	case "moto":
-		*e = CardReadMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CardReadMethod: %v", v)
-	}
-}
-
-// CardVerificationMethod - The method used to verify the cardholder's identity.
-type CardVerificationMethod string
-
-const (
-	CardVerificationMethodNoCvmRequired         CardVerificationMethod = "no-cvm-required"
-	CardVerificationMethodOnlinePin             CardVerificationMethod = "online-pin"
-	CardVerificationMethodOfflinePin            CardVerificationMethod = "offline-pin"
-	CardVerificationMethodConsumerDevice        CardVerificationMethod = "consumer-device"
-	CardVerificationMethodSignature             CardVerificationMethod = "signature"
-	CardVerificationMethodSignatureAndOnlinePin CardVerificationMethod = "signature-and-online-pin"
-	CardVerificationMethodOnlinePinAndSignature CardVerificationMethod = "online-pin-and-signature"
-	CardVerificationMethodNone                  CardVerificationMethod = "none"
-	CardVerificationMethodFailed                CardVerificationMethod = "failed"
-)
-
-func (e CardVerificationMethod) ToPointer() *CardVerificationMethod {
-	return &e
-}
-func (e *CardVerificationMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "no-cvm-required":
-		fallthrough
-	case "online-pin":
-		fallthrough
-	case "offline-pin":
-		fallthrough
-	case "consumer-device":
-		fallthrough
-	case "signature":
-		fallthrough
-	case "signature-and-online-pin":
-		fallthrough
-	case "online-pin-and-signature":
-		fallthrough
-	case "none":
-		fallthrough
-	case "failed":
-		*e = CardVerificationMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CardVerificationMethod: %v", v)
-	}
-}
-
 // Receipt - The Point of sale receipt object.
 type Receipt struct {
 	// A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
@@ -719,9 +211,9 @@ type Receipt struct {
 	// The unique number that identifies a specific payment application on a chip card.
 	ApplicationIdentifier *string `json:"applicationIdentifier,omitempty"`
 	// The method by which the card was read by the terminal.
-	CardReadMethod *CardReadMethod `json:"cardReadMethod,omitempty"`
+	CardReadMethod *PaymentDetailsReceiptCardReadMethodResponse `json:"cardReadMethod,omitempty"`
 	// The method used to verify the cardholder's identity.
-	CardVerificationMethod *CardVerificationMethod `json:"cardVerificationMethod,omitempty"`
+	CardVerificationMethod *PaymentDetailsReceiptCardVerificationMethodResponse `json:"cardVerificationMethod,omitempty"`
 }
 
 func (o *Receipt) GetAuthorizationCode() *string {
@@ -738,14 +230,14 @@ func (o *Receipt) GetApplicationIdentifier() *string {
 	return o.ApplicationIdentifier
 }
 
-func (o *Receipt) GetCardReadMethod() *CardReadMethod {
+func (o *Receipt) GetCardReadMethod() *PaymentDetailsReceiptCardReadMethodResponse {
 	if o == nil {
 		return nil
 	}
 	return o.CardReadMethod
 }
 
-func (o *Receipt) GetCardVerificationMethod() *CardVerificationMethod {
+func (o *Receipt) GetCardVerificationMethod() *PaymentDetailsReceiptCardVerificationMethodResponse {
 	if o == nil {
 		return nil
 	}
@@ -829,19 +321,19 @@ type PaymentResponseDetails struct {
 	// The customer's name as shown on their card.
 	CardHolder *string `json:"cardHolder,omitempty"`
 	// The card's target audience, if known.
-	CardAudition *CardAudition `json:"cardAudition,omitempty"`
+	CardAudition *PaymentDetailsCardAuditionResponse `json:"cardAudition,omitempty"`
 	// The card's label, if known.
-	CardLabel *PaymentResponseCardLabel `json:"cardLabel,omitempty"`
+	CardLabel *PaymentDetailsCardLabelResponse `json:"cardLabel,omitempty"`
 	// The ISO 3166-1 alpha-2 country code of the country the card was issued in.
 	CardCountryCode *string `json:"cardCountryCode,omitempty"`
 	// The expiry date (MM/YY) of the card as displayed on the card.
 	CardExpiryDate *string `json:"cardExpiryDate,omitempty"`
 	// The card type.
-	CardFunding *CardFunding `json:"cardFunding,omitempty"`
+	CardFunding *PaymentDetailsCardFundingResponse `json:"cardFunding,omitempty"`
 	// The level of security applied during card processing.
-	CardSecurity *CardSecurity `json:"cardSecurity,omitempty"`
+	CardSecurity *PaymentDetailsCardSecurityResponse `json:"cardSecurity,omitempty"`
 	// The applicable card fee region.
-	FeeRegion *FeeRegion `json:"feeRegion,omitempty"`
+	FeeRegion *PaymentDetailsFeeRegionResponse `json:"feeRegion,omitempty"`
 	// The first 6 and last 4 digits of the card number.
 	CardMaskedNumber *string `json:"cardMaskedNumber,omitempty"`
 	// The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
@@ -851,19 +343,19 @@ type PaymentResponseDetails struct {
 	// The issuer of the Card.
 	CardIssuer *string `json:"cardIssuer,omitempty"`
 	// A failure code to help understand why the payment failed.
-	FailureReason *FailureReason `json:"failureReason,omitempty"`
+	FailureReason *PaymentDetailsFailureReasonResponse `json:"failureReason,omitempty"`
 	// A human-friendly failure message that can be shown to the customer. The message is translated in accordance
 	// with the payment's locale setting.
 	FailureMessage *string `json:"failureMessage,omitempty"`
 	// The wallet used when creating the payment.
-	Wallet *Wallet `json:"wallet,omitempty"`
+	Wallet *PaymentDetailsWalletResponse `json:"wallet,omitempty"`
 	// PayPal's reference for the payment.
 	PaypalReference *string `json:"paypalReference,omitempty"`
 	// ID of the customer's PayPal account.
 	PaypalPayerID *string `json:"paypalPayerId,omitempty"`
 	// Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
 	// payments, and if the information is made available by PayPal.
-	SellerProtection *SellerProtection `json:"sellerProtection,omitempty"`
+	SellerProtection *PaymentDetailsSellerProtectionResponse `json:"sellerProtection,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	PaypalFee *AmountNullable `json:"paypalFee,omitempty"`
 	// The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
@@ -1005,14 +497,14 @@ func (o *PaymentResponseDetails) GetCardHolder() *string {
 	return o.CardHolder
 }
 
-func (o *PaymentResponseDetails) GetCardAudition() *CardAudition {
+func (o *PaymentResponseDetails) GetCardAudition() *PaymentDetailsCardAuditionResponse {
 	if o == nil {
 		return nil
 	}
 	return o.CardAudition
 }
 
-func (o *PaymentResponseDetails) GetCardLabel() *PaymentResponseCardLabel {
+func (o *PaymentResponseDetails) GetCardLabel() *PaymentDetailsCardLabelResponse {
 	if o == nil {
 		return nil
 	}
@@ -1033,21 +525,21 @@ func (o *PaymentResponseDetails) GetCardExpiryDate() *string {
 	return o.CardExpiryDate
 }
 
-func (o *PaymentResponseDetails) GetCardFunding() *CardFunding {
+func (o *PaymentResponseDetails) GetCardFunding() *PaymentDetailsCardFundingResponse {
 	if o == nil {
 		return nil
 	}
 	return o.CardFunding
 }
 
-func (o *PaymentResponseDetails) GetCardSecurity() *CardSecurity {
+func (o *PaymentResponseDetails) GetCardSecurity() *PaymentDetailsCardSecurityResponse {
 	if o == nil {
 		return nil
 	}
 	return o.CardSecurity
 }
 
-func (o *PaymentResponseDetails) GetFeeRegion() *FeeRegion {
+func (o *PaymentResponseDetails) GetFeeRegion() *PaymentDetailsFeeRegionResponse {
 	if o == nil {
 		return nil
 	}
@@ -1082,7 +574,7 @@ func (o *PaymentResponseDetails) GetCardIssuer() *string {
 	return o.CardIssuer
 }
 
-func (o *PaymentResponseDetails) GetFailureReason() *FailureReason {
+func (o *PaymentResponseDetails) GetFailureReason() *PaymentDetailsFailureReasonResponse {
 	if o == nil {
 		return nil
 	}
@@ -1096,7 +588,7 @@ func (o *PaymentResponseDetails) GetFailureMessage() *string {
 	return o.FailureMessage
 }
 
-func (o *PaymentResponseDetails) GetWallet() *Wallet {
+func (o *PaymentResponseDetails) GetWallet() *PaymentDetailsWalletResponse {
 	if o == nil {
 		return nil
 	}
@@ -1117,7 +609,7 @@ func (o *PaymentResponseDetails) GetPaypalPayerID() *string {
 	return o.PaypalPayerID
 }
 
-func (o *PaymentResponseDetails) GetSellerProtection() *SellerProtection {
+func (o *PaymentResponseDetails) GetSellerProtection() *PaymentDetailsSellerProtectionResponse {
 	if o == nil {
 		return nil
 	}
@@ -1584,7 +1076,7 @@ type PaymentResponse struct {
 	OrderID      *string `json:"orderId,omitempty"`
 	// The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
 	// statuses occur at what point.
-	Status *PaymentResponseStatus `json:"status,omitempty"`
+	Status *PaymentStatus `json:"status,omitempty"`
 	// This object offers details about the status of a payment. Currently it is only available for point-of-sale
 	// payments.
 	//
@@ -1852,7 +1344,7 @@ func (o *PaymentResponse) GetOrderID() *string {
 	return o.OrderID
 }
 
-func (o *PaymentResponse) GetStatus() *PaymentResponseStatus {
+func (o *PaymentResponse) GetStatus() *PaymentStatus {
 	if o == nil {
 		return nil
 	}

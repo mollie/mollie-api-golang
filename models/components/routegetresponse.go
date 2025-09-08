@@ -2,45 +2,16 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// RouteGetResponseType - The type of destination. Currently only the destination type `organization` is supported.
-type RouteGetResponseType string
-
-const (
-	RouteGetResponseTypeOrganization RouteGetResponseType = "organization"
-)
-
-func (e RouteGetResponseType) ToPointer() *RouteGetResponseType {
-	return &e
-}
-func (e *RouteGetResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = RouteGetResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RouteGetResponseType: %v", v)
-	}
-}
-
 // RouteGetResponseDestination - The destination of the route.
 type RouteGetResponseDestination struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type           RouteGetResponseType `json:"type"`
-	OrganizationID string               `json:"organizationId"`
+	Type           RouteDestinationTypeResponse `json:"type"`
+	OrganizationID string                       `json:"organizationId"`
 }
 
-func (o *RouteGetResponseDestination) GetType() RouteGetResponseType {
+func (o *RouteGetResponseDestination) GetType() RouteDestinationTypeResponse {
 	if o == nil {
-		return RouteGetResponseType("")
+		return RouteDestinationTypeResponse("")
 	}
 	return o.Type
 }

@@ -2,91 +2,10 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SalesInvoiceRecipientResponseType - The type of recipient, either `consumer` or `business`. This will determine what further fields are
-// required on the `recipient` object.
-type SalesInvoiceRecipientResponseType string
-
-const (
-	SalesInvoiceRecipientResponseTypeConsumer SalesInvoiceRecipientResponseType = "consumer"
-	SalesInvoiceRecipientResponseTypeBusiness SalesInvoiceRecipientResponseType = "business"
-)
-
-func (e SalesInvoiceRecipientResponseType) ToPointer() *SalesInvoiceRecipientResponseType {
-	return &e
-}
-func (e *SalesInvoiceRecipientResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "consumer":
-		fallthrough
-	case "business":
-		*e = SalesInvoiceRecipientResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoiceRecipientResponseType: %v", v)
-	}
-}
-
-// SalesInvoiceRecipientResponseLocale - The locale for the recipient, to be used for translations in PDF generation and payment pages.
-type SalesInvoiceRecipientResponseLocale string
-
-const (
-	SalesInvoiceRecipientResponseLocaleEnUs SalesInvoiceRecipientResponseLocale = "en_US"
-	SalesInvoiceRecipientResponseLocaleEnGb SalesInvoiceRecipientResponseLocale = "en_GB"
-	SalesInvoiceRecipientResponseLocaleNlNl SalesInvoiceRecipientResponseLocale = "nl_NL"
-	SalesInvoiceRecipientResponseLocaleNlBe SalesInvoiceRecipientResponseLocale = "nl_BE"
-	SalesInvoiceRecipientResponseLocaleDeDe SalesInvoiceRecipientResponseLocale = "de_DE"
-	SalesInvoiceRecipientResponseLocaleDeAt SalesInvoiceRecipientResponseLocale = "de_AT"
-	SalesInvoiceRecipientResponseLocaleDeCh SalesInvoiceRecipientResponseLocale = "de_CH"
-	SalesInvoiceRecipientResponseLocaleFrFr SalesInvoiceRecipientResponseLocale = "fr_FR"
-	SalesInvoiceRecipientResponseLocaleFrBe SalesInvoiceRecipientResponseLocale = "fr_BE"
-)
-
-func (e SalesInvoiceRecipientResponseLocale) ToPointer() *SalesInvoiceRecipientResponseLocale {
-	return &e
-}
-func (e *SalesInvoiceRecipientResponseLocale) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "en_US":
-		fallthrough
-	case "en_GB":
-		fallthrough
-	case "nl_NL":
-		fallthrough
-	case "nl_BE":
-		fallthrough
-	case "de_DE":
-		fallthrough
-	case "de_AT":
-		fallthrough
-	case "de_CH":
-		fallthrough
-	case "fr_FR":
-		fallthrough
-	case "fr_BE":
-		*e = SalesInvoiceRecipientResponseLocale(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoiceRecipientResponseLocale: %v", v)
-	}
-}
-
 type SalesInvoiceRecipientResponse struct {
 	// The type of recipient, either `consumer` or `business`. This will determine what further fields are
 	// required on the `recipient` object.
-	Type SalesInvoiceRecipientResponseType `json:"type"`
+	Type SalesInvoiceRecipientTypeResponse `json:"type"`
 	// The title of the `consumer` type recipient, for example Mr. or Mrs..
 	Title *string `json:"title,omitempty"`
 	// The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
@@ -120,12 +39,12 @@ type SalesInvoiceRecipientResponse struct {
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 	Country string `json:"country"`
 	// The locale for the recipient, to be used for translations in PDF generation and payment pages.
-	Locale SalesInvoiceRecipientResponseLocale `json:"locale"`
+	Locale SalesInvoiceRecipientLocaleResponse `json:"locale"`
 }
 
-func (o *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientResponseType {
+func (o *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientTypeResponse {
 	if o == nil {
-		return SalesInvoiceRecipientResponseType("")
+		return SalesInvoiceRecipientTypeResponse("")
 	}
 	return o.Type
 }
@@ -228,9 +147,9 @@ func (o *SalesInvoiceRecipientResponse) GetCountry() string {
 	return o.Country
 }
 
-func (o *SalesInvoiceRecipientResponse) GetLocale() SalesInvoiceRecipientResponseLocale {
+func (o *SalesInvoiceRecipientResponse) GetLocale() SalesInvoiceRecipientLocaleResponse {
 	if o == nil {
-		return SalesInvoiceRecipientResponseLocale("")
+		return SalesInvoiceRecipientLocaleResponse("")
 	}
 	return o.Locale
 }

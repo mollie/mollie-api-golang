@@ -2,76 +2,13 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type EntityCapabilityStatus string
-
-const (
-	EntityCapabilityStatusUnrequested EntityCapabilityStatus = "unrequested"
-	EntityCapabilityStatusEnabled     EntityCapabilityStatus = "enabled"
-	EntityCapabilityStatusDisabled    EntityCapabilityStatus = "disabled"
-	EntityCapabilityStatusPending     EntityCapabilityStatus = "pending"
-)
-
-func (e EntityCapabilityStatus) ToPointer() *EntityCapabilityStatus {
-	return &e
-}
-func (e *EntityCapabilityStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "unrequested":
-		fallthrough
-	case "enabled":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "pending":
-		*e = EntityCapabilityStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityCapabilityStatus: %v", v)
-	}
-}
-
-type StatusReasonEnum string
-
-const (
-	StatusReasonEnumRequirementPastDue          StatusReasonEnum = "requirement-past-due"
-	StatusReasonEnumOnboardingInformationNeeded StatusReasonEnum = "onboarding-information-needed"
-)
-
-func (e StatusReasonEnum) ToPointer() *StatusReasonEnum {
-	return &e
-}
-func (e *StatusReasonEnum) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "requirement-past-due":
-		fallthrough
-	case "onboarding-information-needed":
-		*e = StatusReasonEnum(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for StatusReasonEnum: %v", v)
-	}
-}
-
 type EntityCapability struct {
 	// Always the word `capability` for this resource type.
 	Resource *string `json:"resource,omitempty"`
 	// A unique name for this capability like `payments` / `settlements`.
 	Name         *string                       `json:"name,omitempty"`
-	Status       *EntityCapabilityStatus       `json:"status,omitempty"`
-	StatusReason *StatusReasonEnum             `json:"statusReason,omitempty"`
+	Status       *CapabilityStatus             `json:"status,omitempty"`
+	StatusReason *CapabilityStatusReason       `json:"statusReason,omitempty"`
 	Requirements []EntityCapabilityRequirement `json:"requirements,omitempty"`
 }
 
@@ -89,14 +26,14 @@ func (o *EntityCapability) GetName() *string {
 	return o.Name
 }
 
-func (o *EntityCapability) GetStatus() *EntityCapabilityStatus {
+func (o *EntityCapability) GetStatus() *CapabilityStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EntityCapability) GetStatusReason() *StatusReasonEnum {
+func (o *EntityCapability) GetStatusReason() *CapabilityStatusReason {
 	if o == nil {
 		return nil
 	}

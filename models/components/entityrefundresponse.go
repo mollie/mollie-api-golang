@@ -2,82 +2,14 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityRefundResponseStatus - Refunds may take some time to get confirmed.
-type EntityRefundResponseStatus string
-
-const (
-	EntityRefundResponseStatusQueued     EntityRefundResponseStatus = "queued"
-	EntityRefundResponseStatusPending    EntityRefundResponseStatus = "pending"
-	EntityRefundResponseStatusProcessing EntityRefundResponseStatus = "processing"
-	EntityRefundResponseStatusRefunded   EntityRefundResponseStatus = "refunded"
-	EntityRefundResponseStatusFailed     EntityRefundResponseStatus = "failed"
-	EntityRefundResponseStatusCanceled   EntityRefundResponseStatus = "canceled"
-)
-
-func (e EntityRefundResponseStatus) ToPointer() *EntityRefundResponseStatus {
-	return &e
-}
-func (e *EntityRefundResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "queued":
-		fallthrough
-	case "pending":
-		fallthrough
-	case "processing":
-		fallthrough
-	case "refunded":
-		fallthrough
-	case "failed":
-		fallthrough
-	case "canceled":
-		*e = EntityRefundResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityRefundResponseStatus: %v", v)
-	}
-}
-
-// EntityRefundResponseType - Specifies the reference type
-type EntityRefundResponseType string
-
-const (
-	EntityRefundResponseTypeAcquirerReference EntityRefundResponseType = "acquirer-reference"
-)
-
-func (e EntityRefundResponseType) ToPointer() *EntityRefundResponseType {
-	return &e
-}
-func (e *EntityRefundResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "acquirer-reference":
-		*e = EntityRefundResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityRefundResponseType: %v", v)
-	}
-}
-
 type EntityRefundResponseExternalReference struct {
 	// Specifies the reference type
-	Type *EntityRefundResponseType `json:"type,omitempty"`
+	Type *RefundExternalReferenceTypeResponse `json:"type,omitempty"`
 	// Unique reference from the payment provider
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *EntityRefundResponseExternalReference) GetType() *EntityRefundResponseType {
+func (o *EntityRefundResponseExternalReference) GetType() *RefundExternalReferenceTypeResponse {
 	if o == nil {
 		return nil
 	}
@@ -93,7 +25,16 @@ func (o *EntityRefundResponseExternalReference) GetID() *string {
 
 // EntityRefundResponseSource - Where the funds will be pulled back from.
 type EntityRefundResponseSource struct {
-	OrganizationID *string `json:"organizationId,omitempty"`
+	// The type of source. Currently only the source type `organization` is supported.
+	Type           *RefundRoutingReversalsSourceType `json:"type,omitempty"`
+	OrganizationID *string                           `json:"organizationId,omitempty"`
+}
+
+func (o *EntityRefundResponseSource) GetType() *RefundRoutingReversalsSourceType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *EntityRefundResponseSource) GetOrganizationID() *string {
@@ -178,11 +119,10 @@ type EntityRefundResponse struct {
 	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata     *Metadata `json:"metadata"`
-	PaymentID    *string   `json:"paymentId,omitempty"`
-	SettlementID *string   `json:"settlementId,omitempty"`
-	// Refunds may take some time to get confirmed.
-	Status EntityRefundResponseStatus `json:"status"`
+	Metadata     *Metadata    `json:"metadata"`
+	PaymentID    *string      `json:"paymentId,omitempty"`
+	SettlementID *string      `json:"settlementId,omitempty"`
+	Status       RefundStatus `json:"status"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt         string                                 `json:"createdAt"`
 	ExternalReference *EntityRefundResponseExternalReference `json:"externalReference,omitempty"`
@@ -262,9 +202,9 @@ func (o *EntityRefundResponse) GetSettlementID() *string {
 	return o.SettlementID
 }
 
-func (o *EntityRefundResponse) GetStatus() EntityRefundResponseStatus {
+func (o *EntityRefundResponse) GetStatus() RefundStatus {
 	if o == nil {
-		return EntityRefundResponseStatus("")
+		return RefundStatus("")
 	}
 	return o.Status
 }

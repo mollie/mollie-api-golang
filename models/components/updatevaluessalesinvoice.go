@@ -2,85 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// UpdateValuesSalesInvoiceStatus - The status for the invoice to end up in.
-//
-// Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
-type UpdateValuesSalesInvoiceStatus string
-
-const (
-	UpdateValuesSalesInvoiceStatusDraft  UpdateValuesSalesInvoiceStatus = "draft"
-	UpdateValuesSalesInvoiceStatusIssued UpdateValuesSalesInvoiceStatus = "issued"
-	UpdateValuesSalesInvoiceStatusPaid   UpdateValuesSalesInvoiceStatus = "paid"
-)
-
-func (e UpdateValuesSalesInvoiceStatus) ToPointer() *UpdateValuesSalesInvoiceStatus {
-	return &e
-}
-func (e *UpdateValuesSalesInvoiceStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "issued":
-		fallthrough
-	case "paid":
-		*e = UpdateValuesSalesInvoiceStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateValuesSalesInvoiceStatus: %v", v)
-	}
-}
-
-// UpdateValuesSalesInvoicePaymentTerm - The payment term to be set on the invoice.
-type UpdateValuesSalesInvoicePaymentTerm string
-
-const (
-	UpdateValuesSalesInvoicePaymentTermSevendays               UpdateValuesSalesInvoicePaymentTerm = "7 days"
-	UpdateValuesSalesInvoicePaymentTermFourteendays            UpdateValuesSalesInvoicePaymentTerm = "14 days"
-	UpdateValuesSalesInvoicePaymentTermThirtydays              UpdateValuesSalesInvoicePaymentTerm = "30 days"
-	UpdateValuesSalesInvoicePaymentTermFortyFivedays           UpdateValuesSalesInvoicePaymentTerm = "45 days"
-	UpdateValuesSalesInvoicePaymentTermSixtydays               UpdateValuesSalesInvoicePaymentTerm = "60 days"
-	UpdateValuesSalesInvoicePaymentTermNinetydays              UpdateValuesSalesInvoicePaymentTerm = "90 days"
-	UpdateValuesSalesInvoicePaymentTermOneHundredAndTwentydays UpdateValuesSalesInvoicePaymentTerm = "120 days"
-)
-
-func (e UpdateValuesSalesInvoicePaymentTerm) ToPointer() *UpdateValuesSalesInvoicePaymentTerm {
-	return &e
-}
-func (e *UpdateValuesSalesInvoicePaymentTerm) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "7 days":
-		fallthrough
-	case "14 days":
-		fallthrough
-	case "30 days":
-		fallthrough
-	case "45 days":
-		fallthrough
-	case "60 days":
-		fallthrough
-	case "90 days":
-		fallthrough
-	case "120 days":
-		*e = UpdateValuesSalesInvoicePaymentTerm(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateValuesSalesInvoicePaymentTerm: %v", v)
-	}
-}
-
 type UpdateValuesSalesInvoice struct {
 	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
 	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -89,14 +10,24 @@ type UpdateValuesSalesInvoice struct {
 	Testmode *bool `json:"testmode,omitempty"`
 	// The status for the invoice to end up in.
 	//
-	// Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
-	Status *UpdateValuesSalesInvoiceStatus `json:"status,omitempty"`
+	// A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+	// the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+	// mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+	//
+	// A status value that cannot be set but can be returned is `canceled`, for invoices which were
+	// issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+	//
+	// Dependent parameters:
+	//   - `paymentDetails` is required if invoice should be set directly to `paid`
+	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+	//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+	Status *SalesInvoiceStatus `json:"status,omitempty"`
 	// A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
 	Memo *string `json:"memo,omitempty"`
 	// The payment term to be set on the invoice.
-	PaymentTerm    *UpdateValuesSalesInvoicePaymentTerm `json:"paymentTerm,omitempty"`
-	PaymentDetails *SalesInvoicePaymentDetails          `json:"paymentDetails,omitempty"`
-	EmailDetails   *SalesInvoiceEmailDetails            `json:"emailDetails,omitempty"`
+	PaymentTerm    *SalesInvoicePaymentTerm    `json:"paymentTerm,omitempty"`
+	PaymentDetails *SalesInvoicePaymentDetails `json:"paymentDetails,omitempty"`
+	EmailDetails   *SalesInvoiceEmailDetails   `json:"emailDetails,omitempty"`
 	// An identifier tied to the recipient data. This should be a unique value based on data your system contains,
 	// so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
 	// is not required to send a first invoice to a recipient.
@@ -117,7 +48,7 @@ func (o *UpdateValuesSalesInvoice) GetTestmode() *bool {
 	return o.Testmode
 }
 
-func (o *UpdateValuesSalesInvoice) GetStatus() *UpdateValuesSalesInvoiceStatus {
+func (o *UpdateValuesSalesInvoice) GetStatus() *SalesInvoiceStatus {
 	if o == nil {
 		return nil
 	}
@@ -131,7 +62,7 @@ func (o *UpdateValuesSalesInvoice) GetMemo() *string {
 	return o.Memo
 }
 
-func (o *UpdateValuesSalesInvoice) GetPaymentTerm() *UpdateValuesSalesInvoicePaymentTerm {
+func (o *UpdateValuesSalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
 	if o == nil {
 		return nil
 	}

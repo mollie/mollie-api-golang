@@ -2,45 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityInvoiceStatus - Status of the invoice.
-//
-// * `open` — The invoice is not paid yet.
-// * `paid` — The invoice is paid.
-// * `overdue` — Payment of the invoice is overdue.
-type EntityInvoiceStatus string
-
-const (
-	EntityInvoiceStatusOpen    EntityInvoiceStatus = "open"
-	EntityInvoiceStatusPaid    EntityInvoiceStatus = "paid"
-	EntityInvoiceStatusOverdue EntityInvoiceStatus = "overdue"
-)
-
-func (e EntityInvoiceStatus) ToPointer() *EntityInvoiceStatus {
-	return &e
-}
-func (e *EntityInvoiceStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "open":
-		fallthrough
-	case "paid":
-		fallthrough
-	case "overdue":
-		*e = EntityInvoiceStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityInvoiceStatus: %v", v)
-	}
-}
-
 type EntityInvoiceLine struct {
 	// The administrative period in `YYYY-MM` on which the line should be booked.
 	Period *string `json:"period,omitempty"`
@@ -131,11 +92,7 @@ type EntityInvoice struct {
 	// The VAT number to which the invoice was issued to, if applicable.
 	VatNumber *string `json:"vatNumber,omitempty"`
 	// Status of the invoice.
-	//
-	// * `open` — The invoice is not paid yet.
-	// * `paid` — The invoice is paid.
-	// * `overdue` — Payment of the invoice is overdue.
-	Status *EntityInvoiceStatus `json:"status,omitempty"`
+	Status *InvoiceStatus `json:"status,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	NetAmount *Amount `json:"netAmount,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -182,7 +139,7 @@ func (o *EntityInvoice) GetVatNumber() *string {
 	return o.VatNumber
 }
 
-func (o *EntityInvoice) GetStatus() *EntityInvoiceStatus {
+func (o *EntityInvoice) GetStatus() *InvoiceStatus {
 	if o == nil {
 		return nil
 	}

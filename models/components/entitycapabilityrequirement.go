@@ -2,42 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityCapabilityRequirementStatus - The status of the requirement depends on its due date.
-// If no due date is given, the status will be `requested`.
-type EntityCapabilityRequirementStatus string
-
-const (
-	EntityCapabilityRequirementStatusCurrentlyDue EntityCapabilityRequirementStatus = "currently-due"
-	EntityCapabilityRequirementStatusPastDue      EntityCapabilityRequirementStatus = "past-due"
-	EntityCapabilityRequirementStatusRequested    EntityCapabilityRequirementStatus = "requested"
-)
-
-func (e EntityCapabilityRequirementStatus) ToPointer() *EntityCapabilityRequirementStatus {
-	return &e
-}
-func (e *EntityCapabilityRequirementStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "currently-due":
-		fallthrough
-	case "past-due":
-		fallthrough
-	case "requested":
-		*e = EntityCapabilityRequirementStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityCapabilityRequirementStatus: %v", v)
-	}
-}
-
 // Dashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
 // For example, where necessary documents are to be uploaded.
 type Dashboard struct {
@@ -81,7 +45,7 @@ type EntityCapabilityRequirement struct {
 	ID *string `json:"id,omitempty"`
 	// The status of the requirement depends on its due date.
 	// If no due date is given, the status will be `requested`.
-	Status *EntityCapabilityRequirementStatus `json:"status,omitempty"`
+	Status *CapabilityRequirementStatus `json:"status,omitempty"`
 	// Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
 	DueDate *string                           `json:"dueDate,omitempty"`
 	Links   *EntityCapabilityRequirementLinks `json:"_links,omitempty"`
@@ -94,7 +58,7 @@ func (o *EntityCapabilityRequirement) GetID() *string {
 	return o.ID
 }
 
-func (o *EntityCapabilityRequirement) GetStatus() *EntityCapabilityRequirementStatus {
+func (o *EntityCapabilityRequirement) GetStatus() *CapabilityRequirementStatus {
 	if o == nil {
 		return nil
 	}

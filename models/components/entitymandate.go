@@ -2,49 +2,12 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityMandateMethod - Payment method of the mandate.
-//
-// SEPA Direct Debit and PayPal mandates can be created directly.
-type EntityMandateMethod string
-
-const (
-	EntityMandateMethodCreditcard  EntityMandateMethod = "creditcard"
-	EntityMandateMethodDirectdebit EntityMandateMethod = "directdebit"
-	EntityMandateMethodPaypal      EntityMandateMethod = "paypal"
-)
-
-func (e EntityMandateMethod) ToPointer() *EntityMandateMethod {
-	return &e
-}
-func (e *EntityMandateMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "paypal":
-		*e = EntityMandateMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityMandateMethod: %v", v)
-	}
-}
-
 type EntityMandate struct {
 	ID *string `json:"id,omitempty"`
 	// Payment method of the mandate.
 	//
 	// SEPA Direct Debit and PayPal mandates can be created directly.
-	Method *EntityMandateMethod `json:"method,omitempty"`
+	Method *MandateMethod `json:"method,omitempty"`
 	// The customer's name.
 	ConsumerName *string `json:"consumerName,omitempty"`
 	// The customer's IBAN. Required for SEPA Direct Debit mandates.
@@ -64,7 +27,10 @@ type EntityMandate struct {
 	// The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
 	// Must provide either this field or `paypalBillingAgreementId`, but not both.
 	PayPalVaultID *string `json:"payPalVaultId,omitempty"`
-	CustomerID    *string `json:"customerId,omitempty"`
+	// The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+	// when we did not received the IBAN yet from the first payment.
+	Status     *MandateStatus `json:"status,omitempty"`
+	CustomerID *string        `json:"customerId,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -80,7 +46,7 @@ func (o *EntityMandate) GetID() *string {
 	return o.ID
 }
 
-func (o *EntityMandate) GetMethod() *EntityMandateMethod {
+func (o *EntityMandate) GetMethod() *MandateMethod {
 	if o == nil {
 		return nil
 	}
@@ -141,6 +107,13 @@ func (o *EntityMandate) GetPayPalVaultID() *string {
 		return nil
 	}
 	return o.PayPalVaultID
+}
+
+func (o *EntityMandate) GetStatus() *MandateStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *EntityMandate) GetCustomerID() *string {

@@ -2,45 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityOnboardingStatusStatus - The current status of the organization's onboarding process.
-//
-// * `needs-data` — The merchant needs to provide additional information
-// * `in-review` — The merchant provided all information, awaiting review from Mollie
-// * `completed` — The onboarding is completed
-type EntityOnboardingStatusStatus string
-
-const (
-	EntityOnboardingStatusStatusNeedsData EntityOnboardingStatusStatus = "needs-data"
-	EntityOnboardingStatusStatusInReview  EntityOnboardingStatusStatus = "in-review"
-	EntityOnboardingStatusStatusCompleted EntityOnboardingStatusStatus = "completed"
-)
-
-func (e EntityOnboardingStatusStatus) ToPointer() *EntityOnboardingStatusStatus {
-	return &e
-}
-func (e *EntityOnboardingStatusStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "needs-data":
-		fallthrough
-	case "in-review":
-		fallthrough
-	case "completed":
-		*e = EntityOnboardingStatusStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityOnboardingStatusStatus: %v", v)
-	}
-}
-
 // EntityOnboardingStatusLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityOnboardingStatusLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -88,11 +49,7 @@ type EntityOnboardingStatus struct {
 	// The name of the organization.
 	Name *string `json:"name,omitempty"`
 	// The current status of the organization's onboarding process.
-	//
-	// * `needs-data` — The merchant needs to provide additional information
-	// * `in-review` — The merchant provided all information, awaiting review from Mollie
-	// * `completed` — The onboarding is completed
-	Status *EntityOnboardingStatusStatus `json:"status,omitempty"`
+	Status *OnboardingStatus `json:"status,omitempty"`
 	// Whether the organization can receive payments.
 	CanReceivePayments *bool `json:"canReceivePayments,omitempty"`
 	// Whether the organization can receive settlements to their external bank account.
@@ -117,7 +74,7 @@ func (o *EntityOnboardingStatus) GetName() *string {
 	return o.Name
 }
 
-func (o *EntityOnboardingStatus) GetStatus() *EntityOnboardingStatusStatus {
+func (o *EntityOnboardingStatus) GetStatus() *OnboardingStatus {
 	if o == nil {
 		return nil
 	}

@@ -9,53 +9,6 @@ import (
 	"github.com/mollie/mollie-api-golang/types"
 )
 
-// PaymentRequestType - The type of product purchased. For example, a physical or a digital product.
-//
-// The `tip` payment line type is not available when creating a payment.
-type PaymentRequestType string
-
-const (
-	PaymentRequestTypePhysical    PaymentRequestType = "physical"
-	PaymentRequestTypeDigital     PaymentRequestType = "digital"
-	PaymentRequestTypeShippingFee PaymentRequestType = "shipping_fee"
-	PaymentRequestTypeDiscount    PaymentRequestType = "discount"
-	PaymentRequestTypeStoreCredit PaymentRequestType = "store_credit"
-	PaymentRequestTypeGiftCard    PaymentRequestType = "gift_card"
-	PaymentRequestTypeSurcharge   PaymentRequestType = "surcharge"
-	PaymentRequestTypeTip         PaymentRequestType = "tip"
-)
-
-func (e PaymentRequestType) ToPointer() *PaymentRequestType {
-	return &e
-}
-func (e *PaymentRequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "physical":
-		fallthrough
-	case "digital":
-		fallthrough
-	case "shipping_fee":
-		fallthrough
-	case "discount":
-		fallthrough
-	case "store_credit":
-		fallthrough
-	case "gift_card":
-		fallthrough
-	case "surcharge":
-		fallthrough
-	case "tip":
-		*e = PaymentRequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentRequestType: %v", v)
-	}
-}
-
 type PaymentRequestCategory string
 
 const (
@@ -92,7 +45,7 @@ type PaymentRequestLine struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
 	// The `tip` payment line type is not available when creating a payment.
-	Type *PaymentRequestType `json:"type,omitempty"`
+	Type *PaymentLineType `json:"type,omitempty"`
 	// A description of the line item. For example *LEGO 4440 Forest Police Station*.
 	Description string `json:"description"`
 	// The number of items.
@@ -122,7 +75,7 @@ type PaymentRequestLine struct {
 	Recurring  *RecurringLineItem `json:"recurring,omitempty"`
 }
 
-func (o *PaymentRequestLine) GetType() *PaymentRequestType {
+func (o *PaymentRequestLine) GetType() *PaymentLineType {
 	if o == nil {
 		return nil
 	}

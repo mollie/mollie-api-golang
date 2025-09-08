@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // EntityMethodImage - URLs of images representing the payment method.
 type EntityMethodImage struct {
 	// The URL pointing to an icon of 32 by 24 pixels.
@@ -37,42 +32,6 @@ func (o *EntityMethodImage) GetSvg() string {
 		return ""
 	}
 	return o.Svg
-}
-
-// EntityMethodStatus - The payment method's activation status for this profile.
-type EntityMethodStatus string
-
-const (
-	EntityMethodStatusActivated       EntityMethodStatus = "activated"
-	EntityMethodStatusPendingBoarding EntityMethodStatus = "pending-boarding"
-	EntityMethodStatusPendingReview   EntityMethodStatus = "pending-review"
-	EntityMethodStatusPendingExternal EntityMethodStatus = "pending-external"
-	EntityMethodStatusRejected        EntityMethodStatus = "rejected"
-)
-
-func (e EntityMethodStatus) ToPointer() *EntityMethodStatus {
-	return &e
-}
-func (e *EntityMethodStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "activated":
-		fallthrough
-	case "pending-boarding":
-		fallthrough
-	case "pending-review":
-		fallthrough
-	case "pending-external":
-		fallthrough
-	case "rejected":
-		*e = EntityMethodStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityMethodStatus: %v", v)
-	}
 }
 
 // EntityMethodIssuerImage - URLs of images representing the issuer.
@@ -197,7 +156,7 @@ type EntityMethod struct {
 	// URLs of images representing the payment method.
 	Image EntityMethodImage `json:"image"`
 	// The payment method's activation status for this profile.
-	Status EntityMethodStatus `json:"status"`
+	Status MethodStatus `json:"status"`
 	// **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
 	// for iDEAL, KBC/CBC, gift cards, and vouchers.
 	Issuers []EntityMethodIssuer `json:"issuers,omitempty"`
@@ -247,9 +206,9 @@ func (o *EntityMethod) GetImage() EntityMethodImage {
 	return o.Image
 }
 
-func (o *EntityMethod) GetStatus() EntityMethodStatus {
+func (o *EntityMethod) GetStatus() MethodStatus {
 	if o == nil {
-		return EntityMethodStatus("")
+		return MethodStatus("")
 	}
 	return o.Status
 }

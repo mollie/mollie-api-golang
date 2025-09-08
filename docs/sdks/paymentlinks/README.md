@@ -57,7 +57,7 @@ func main() {
         WebhookURL: client.String("https://webshop.example.org/payment-links/webhook/"),
         Lines: []components.PaymentLineItem{
             components.PaymentLineItem{
-                Type: components.PaymentLineItemTypePhysical.ToPointer(),
+                Type: components.PaymentLineTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
                 QuantityUnit: client.String("pcs"),

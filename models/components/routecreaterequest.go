@@ -2,45 +2,16 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// RouteCreateRequestType - The type of destination. Currently only the destination type `organization` is supported.
-type RouteCreateRequestType string
-
-const (
-	RouteCreateRequestTypeOrganization RouteCreateRequestType = "organization"
-)
-
-func (e RouteCreateRequestType) ToPointer() *RouteCreateRequestType {
-	return &e
-}
-func (e *RouteCreateRequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = RouteCreateRequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RouteCreateRequestType: %v", v)
-	}
-}
-
 // RouteCreateRequestDestination - The destination of the route.
 type RouteCreateRequestDestination struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
-	Type           RouteCreateRequestType `json:"type"`
-	OrganizationID string                 `json:"organizationId"`
+	Type           RouteDestinationType `json:"type"`
+	OrganizationID string               `json:"organizationId"`
 }
 
-func (o *RouteCreateRequestDestination) GetType() RouteCreateRequestType {
+func (o *RouteCreateRequestDestination) GetType() RouteDestinationType {
 	if o == nil {
-		return RouteCreateRequestType("")
+		return RouteDestinationType("")
 	}
 	return o.Type
 }

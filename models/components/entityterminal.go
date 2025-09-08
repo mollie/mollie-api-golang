@@ -2,68 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityTerminalStatus - The status of the terminal.
-type EntityTerminalStatus string
-
-const (
-	EntityTerminalStatusPending  EntityTerminalStatus = "pending"
-	EntityTerminalStatusActive   EntityTerminalStatus = "active"
-	EntityTerminalStatusInactive EntityTerminalStatus = "inactive"
-)
-
-func (e EntityTerminalStatus) ToPointer() *EntityTerminalStatus {
-	return &e
-}
-func (e *EntityTerminalStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "active":
-		fallthrough
-	case "inactive":
-		*e = EntityTerminalStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityTerminalStatus: %v", v)
-	}
-}
-
-// Brand - The brand of the terminal.
-type Brand string
-
-const (
-	BrandPax Brand = "PAX"
-	BrandTap Brand = "Tap"
-)
-
-func (e Brand) ToPointer() *Brand {
-	return &e
-}
-func (e *Brand) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "PAX":
-		fallthrough
-	case "Tap":
-		*e = Brand(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Brand: %v", v)
-	}
-}
-
 // EntityTerminalLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityTerminalLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -97,9 +35,9 @@ type EntityTerminal struct {
 	// may be visible on the device itself depending on the device.
 	Description string `json:"description"`
 	// The status of the terminal.
-	Status EntityTerminalStatus `json:"status"`
+	Status TerminalStatus `json:"status"`
 	// The brand of the terminal.
-	Brand *Brand `json:"brand"`
+	Brand *TerminalBrand `json:"brand"`
 	// The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
 	Model *TerminalModel `json:"model"`
 	// The serial number of the terminal. The serial number is provided at terminal creation time.
@@ -149,14 +87,14 @@ func (o *EntityTerminal) GetDescription() string {
 	return o.Description
 }
 
-func (o *EntityTerminal) GetStatus() EntityTerminalStatus {
+func (o *EntityTerminal) GetStatus() TerminalStatus {
 	if o == nil {
-		return EntityTerminalStatus("")
+		return TerminalStatus("")
 	}
 	return o.Status
 }
 
-func (o *EntityTerminal) GetBrand() *Brand {
+func (o *EntityTerminal) GetBrand() *TerminalBrand {
 	if o == nil {
 		return nil
 	}

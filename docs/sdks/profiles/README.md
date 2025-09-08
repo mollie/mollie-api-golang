@@ -53,6 +53,7 @@ func main() {
             "GB",
         },
         BusinessCategory: client.String("OTHER_MERCHANDISE"),
+        Status: components.ProfileStatusUnverified.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

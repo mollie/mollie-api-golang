@@ -2,41 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// CreateWebhookStatus - The subscription's current status.
-type CreateWebhookStatus string
-
-const (
-	CreateWebhookStatusEnabled  CreateWebhookStatus = "enabled"
-	CreateWebhookStatusBlocked  CreateWebhookStatus = "blocked"
-	CreateWebhookStatusDisabled CreateWebhookStatus = "disabled"
-)
-
-func (e CreateWebhookStatus) ToPointer() *CreateWebhookStatus {
-	return &e
-}
-func (e *CreateWebhookStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "enabled":
-		fallthrough
-	case "blocked":
-		fallthrough
-	case "disabled":
-		*e = CreateWebhookStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateWebhookStatus: %v", v)
-	}
-}
-
 // CreateWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type CreateWebhookLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -66,7 +31,7 @@ type CreateWebhook struct {
 	// The events types that are subscribed.
 	EventTypes []WebhookEventTypes `json:"eventTypes"`
 	// The subscription's current status.
-	Status CreateWebhookStatus `json:"status"`
+	Status WebhookStatus `json:"status"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The subscription's secret.
@@ -124,9 +89,9 @@ func (o *CreateWebhook) GetEventTypes() []WebhookEventTypes {
 	return o.EventTypes
 }
 
-func (o *CreateWebhook) GetStatus() CreateWebhookStatus {
+func (o *CreateWebhook) GetStatus() WebhookStatus {
 	if o == nil {
-		return CreateWebhookStatus("")
+		return WebhookStatus("")
 	}
 	return o.Status
 }

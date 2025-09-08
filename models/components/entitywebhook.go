@@ -2,44 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityWebhookStatus - The subscription's current status.
-type EntityWebhookStatus string
-
-const (
-	EntityWebhookStatusEnabled  EntityWebhookStatus = "enabled"
-	EntityWebhookStatusBlocked  EntityWebhookStatus = "blocked"
-	EntityWebhookStatusDisabled EntityWebhookStatus = "disabled"
-	EntityWebhookStatusDeleted  EntityWebhookStatus = "deleted"
-)
-
-func (e EntityWebhookStatus) ToPointer() *EntityWebhookStatus {
-	return &e
-}
-func (e *EntityWebhookStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "enabled":
-		fallthrough
-	case "blocked":
-		fallthrough
-	case "disabled":
-		fallthrough
-	case "deleted":
-		*e = EntityWebhookStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityWebhookStatus: %v", v)
-	}
-}
-
 // EntityWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityWebhookLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -70,7 +32,7 @@ type EntityWebhook struct {
 	// The events types that are subscribed.
 	EventTypes []WebhookEventTypes `json:"eventTypes"`
 	// The subscription's current status.
-	Status EntityWebhookStatus `json:"status"`
+	Status WebhookStatus `json:"status"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -126,9 +88,9 @@ func (o *EntityWebhook) GetEventTypes() []WebhookEventTypes {
 	return o.EventTypes
 }
 
-func (o *EntityWebhook) GetStatus() EntityWebhookStatus {
+func (o *EntityWebhook) GetStatus() WebhookStatus {
 	if o == nil {
-		return EntityWebhookStatus("")
+		return WebhookStatus("")
 	}
 	return o.Status
 }

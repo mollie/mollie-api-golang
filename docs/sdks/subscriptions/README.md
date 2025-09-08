@@ -60,6 +60,7 @@ func main() {
 
     res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", &components.SubscriptionRequest{
         ID: client.String("sub_5B8cwPMGnU"),
+        Status: components.SubscriptionStatusActive.ToPointer(),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -68,7 +69,7 @@ func main() {
         Interval: client.String("2 days"),
         StartDate: client.String("2025-01-01"),
         Description: client.String("Subscription of streaming channel"),
-        Method: components.SubscriptionRequestMethodPaypal.ToPointer(),
+        Method: components.SubscriptionMethodPaypal.ToPointer(),
         ApplicationFee: &components.SubscriptionRequestApplicationFee{
             Amount: components.Amount{
                 Currency: "EUR",

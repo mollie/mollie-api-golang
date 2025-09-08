@@ -45,7 +45,7 @@ func main() {
         },
         Description: client.String("Payment for Order #12345"),
         Destination: &components.RouteCreateRequestDestination{
-            Type: components.RouteCreateRequestTypeOrganization,
+            Type: components.RouteDestinationTypeOrganization,
             OrganizationID: "org_1234567",
         },
         Testmode: client.Bool(false),

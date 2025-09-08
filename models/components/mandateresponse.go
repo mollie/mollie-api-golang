@@ -2,100 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// MandateResponseMethod - Payment method of the mandate.
-//
-// SEPA Direct Debit and PayPal mandates can be created directly.
-type MandateResponseMethod string
-
-const (
-	MandateResponseMethodCreditcard  MandateResponseMethod = "creditcard"
-	MandateResponseMethodDirectdebit MandateResponseMethod = "directdebit"
-	MandateResponseMethodPaypal      MandateResponseMethod = "paypal"
-)
-
-func (e MandateResponseMethod) ToPointer() *MandateResponseMethod {
-	return &e
-}
-func (e *MandateResponseMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "paypal":
-		*e = MandateResponseMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MandateResponseMethod: %v", v)
-	}
-}
-
-// MandateResponseCardLabel - The card's label. Available for card mandates, if the card label could be detected.
-type MandateResponseCardLabel string
-
-const (
-	MandateResponseCardLabelAmericanExpress MandateResponseCardLabel = "American Express"
-	MandateResponseCardLabelCartaSi         MandateResponseCardLabel = "Carta Si"
-	MandateResponseCardLabelCarteBleue      MandateResponseCardLabel = "Carte Bleue"
-	MandateResponseCardLabelDankort         MandateResponseCardLabel = "Dankort"
-	MandateResponseCardLabelDinersClub      MandateResponseCardLabel = "Diners Club"
-	MandateResponseCardLabelDiscover        MandateResponseCardLabel = "Discover"
-	MandateResponseCardLabelJcb             MandateResponseCardLabel = "JCB"
-	MandateResponseCardLabelLaser           MandateResponseCardLabel = "Laser"
-	MandateResponseCardLabelMaestro         MandateResponseCardLabel = "Maestro"
-	MandateResponseCardLabelMastercard      MandateResponseCardLabel = "Mastercard"
-	MandateResponseCardLabelUnionpay        MandateResponseCardLabel = "Unionpay"
-	MandateResponseCardLabelVisa            MandateResponseCardLabel = "Visa"
-)
-
-func (e MandateResponseCardLabel) ToPointer() *MandateResponseCardLabel {
-	return &e
-}
-func (e *MandateResponseCardLabel) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "American Express":
-		fallthrough
-	case "Carta Si":
-		fallthrough
-	case "Carte Bleue":
-		fallthrough
-	case "Dankort":
-		fallthrough
-	case "Diners Club":
-		fallthrough
-	case "Discover":
-		fallthrough
-	case "JCB":
-		fallthrough
-	case "Laser":
-		fallthrough
-	case "Maestro":
-		fallthrough
-	case "Mastercard":
-		fallthrough
-	case "Unionpay":
-		fallthrough
-	case "Visa":
-		*e = MandateResponseCardLabel(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MandateResponseCardLabel: %v", v)
-	}
-}
-
 type MandateResponseDetails struct {
 	// The customer's name. Available for SEPA Direct Debit and PayPal mandates.
 	ConsumerName *string `json:"consumerName,omitempty"`
@@ -110,7 +16,7 @@ type MandateResponseDetails struct {
 	// The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
 	CardExpiryDate *string `json:"cardExpiryDate,omitempty"`
 	// The card's label. Available for card mandates, if the card label could be detected.
-	CardLabel *MandateResponseCardLabel `json:"cardLabel,omitempty"`
+	CardLabel *MandateDetailsCardLabelResponse `json:"cardLabel,omitempty"`
 	// Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
 	// returning customers.
 	CardFingerprint *string `json:"cardFingerprint,omitempty"`
@@ -158,7 +64,7 @@ func (o *MandateResponseDetails) GetCardExpiryDate() *string {
 	return o.CardExpiryDate
 }
 
-func (o *MandateResponseDetails) GetCardLabel() *MandateResponseCardLabel {
+func (o *MandateResponseDetails) GetCardLabel() *MandateDetailsCardLabelResponse {
 	if o == nil {
 		return nil
 	}
@@ -170,37 +76,6 @@ func (o *MandateResponseDetails) GetCardFingerprint() *string {
 		return nil
 	}
 	return o.CardFingerprint
-}
-
-// MandateResponseStatus - The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-// when we did not received the IBAN yet from the first payment.
-type MandateResponseStatus string
-
-const (
-	MandateResponseStatusValid   MandateResponseStatus = "valid"
-	MandateResponseStatusPending MandateResponseStatus = "pending"
-	MandateResponseStatusInvalid MandateResponseStatus = "invalid"
-)
-
-func (e MandateResponseStatus) ToPointer() *MandateResponseStatus {
-	return &e
-}
-func (e *MandateResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "valid":
-		fallthrough
-	case "pending":
-		fallthrough
-	case "invalid":
-		*e = MandateResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MandateResponseStatus: %v", v)
-	}
 }
 
 // MandateResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -243,7 +118,7 @@ type MandateResponse struct {
 	// Payment method of the mandate.
 	//
 	// SEPA Direct Debit and PayPal mandates can be created directly.
-	Method  *MandateResponseMethod  `json:"method,omitempty"`
+	Method  *MandateMethodResponse  `json:"method,omitempty"`
 	Details *MandateResponseDetails `json:"details,omitempty"`
 	// The date when the mandate was signed in `YYYY-MM-DD` format.
 	SignatureDate *string `json:"signatureDate,omitempty"`
@@ -252,8 +127,8 @@ type MandateResponse struct {
 	MandateReference *string `json:"mandateReference,omitempty"`
 	// The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
 	// when we did not received the IBAN yet from the first payment.
-	Status     *MandateResponseStatus `json:"status,omitempty"`
-	CustomerID *string                `json:"customerId,omitempty"`
+	Status     *MandateStatus `json:"status,omitempty"`
+	CustomerID *string        `json:"customerId,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -281,7 +156,7 @@ func (o *MandateResponse) GetMode() *Mode {
 	return o.Mode
 }
 
-func (o *MandateResponse) GetMethod() *MandateResponseMethod {
+func (o *MandateResponse) GetMethod() *MandateMethodResponse {
 	if o == nil {
 		return nil
 	}
@@ -309,7 +184,7 @@ func (o *MandateResponse) GetMandateReference() *string {
 	return o.MandateReference
 }
 
-func (o *MandateResponse) GetStatus() *MandateResponseStatus {
+func (o *MandateResponse) GetStatus() *MandateStatus {
 	if o == nil {
 		return nil
 	}

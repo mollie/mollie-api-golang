@@ -2,126 +2,20 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityBalanceStatus - The status of the balance.
-type EntityBalanceStatus string
-
-const (
-	EntityBalanceStatusActive   EntityBalanceStatus = "active"
-	EntityBalanceStatusInactive EntityBalanceStatus = "inactive"
-)
-
-func (e EntityBalanceStatus) ToPointer() *EntityBalanceStatus {
-	return &e
-}
-func (e *EntityBalanceStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		*e = EntityBalanceStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityBalanceStatus: %v", v)
-	}
-}
-
-// TransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
-// destination.
-//
-// Settlements created during weekends or on bank holidays will take place on the next business day.
-type TransferFrequency string
-
-const (
-	TransferFrequencyDaily          TransferFrequency = "daily"
-	TransferFrequencyEveryMonday    TransferFrequency = "every-monday"
-	TransferFrequencyEveryTuesday   TransferFrequency = "every-tuesday"
-	TransferFrequencyEveryWednesday TransferFrequency = "every-wednesday"
-	TransferFrequencyEveryThursday  TransferFrequency = "every-thursday"
-	TransferFrequencyEveryFriday    TransferFrequency = "every-friday"
-	TransferFrequencyMonthly        TransferFrequency = "monthly"
-	TransferFrequencyNever          TransferFrequency = "never"
-)
-
-func (e TransferFrequency) ToPointer() *TransferFrequency {
-	return &e
-}
-func (e *TransferFrequency) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "daily":
-		fallthrough
-	case "every-monday":
-		fallthrough
-	case "every-tuesday":
-		fallthrough
-	case "every-wednesday":
-		fallthrough
-	case "every-thursday":
-		fallthrough
-	case "every-friday":
-		fallthrough
-	case "monthly":
-		fallthrough
-	case "never":
-		*e = TransferFrequency(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TransferFrequency: %v", v)
-	}
-}
-
-// EntityBalanceType - The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
-//
-// * `bank-account` — Transfer the balance amount to an external bank account
-type EntityBalanceType string
-
-const (
-	EntityBalanceTypeBankAccount EntityBalanceType = "bank-account"
-)
-
-func (e EntityBalanceType) ToPointer() *EntityBalanceType {
-	return &e
-}
-func (e *EntityBalanceType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "bank-account":
-		*e = EntityBalanceType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityBalanceType: %v", v)
-	}
-}
-
 // TransferDestination - The destination where the available amount will be automatically transferred to according to the configured
 // transfer frequency.
 type TransferDestination struct {
 	// The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
 	//
 	// * `bank-account` — Transfer the balance amount to an external bank account
-	Type *EntityBalanceType `json:"type,omitempty"`
+	Type *BalanceTransferDestinationType `json:"type,omitempty"`
 	// The configured bank account number of the beneficiary the balance amount is to be transferred to.
 	BankAccount *string `json:"bankAccount,omitempty"`
 	// The full name of the beneficiary the balance amount is to be transferred to.
 	BeneficiaryName *string `json:"beneficiaryName,omitempty"`
 }
 
-func (o *TransferDestination) GetType() *EntityBalanceType {
+func (o *TransferDestination) GetType() *BalanceTransferDestinationType {
 	if o == nil {
 		return nil
 	}
@@ -176,12 +70,12 @@ type EntityBalance struct {
 	// The description or name of the balance. Can be used to denote the purpose of the balance.
 	Description *string `json:"description,omitempty"`
 	// The status of the balance.
-	Status *EntityBalanceStatus `json:"status,omitempty"`
+	Status *BalanceStatus `json:"status,omitempty"`
 	// The frequency with which the available amount on the balance will be settled to the configured transfer
 	// destination.
 	//
 	// Settlements created during weekends or on bank holidays will take place on the next business day.
-	TransferFrequency *TransferFrequency `json:"transferFrequency,omitempty"`
+	TransferFrequency *BalanceTransferFrequency `json:"transferFrequency,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	TransferThreshold *Amount `json:"transferThreshold,omitempty"`
 	// The transfer reference set to be included in all the transfers for this balance.
@@ -239,14 +133,14 @@ func (o *EntityBalance) GetDescription() *string {
 	return o.Description
 }
 
-func (o *EntityBalance) GetStatus() *EntityBalanceStatus {
+func (o *EntityBalance) GetStatus() *BalanceStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EntityBalance) GetTransferFrequency() *TransferFrequency {
+func (o *EntityBalance) GetTransferFrequency() *BalanceTransferFrequency {
 	if o == nil {
 		return nil
 	}

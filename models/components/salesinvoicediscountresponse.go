@@ -2,48 +2,16 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SalesInvoiceDiscountResponseType - The type of discount.
-type SalesInvoiceDiscountResponseType string
-
-const (
-	SalesInvoiceDiscountResponseTypeAmount     SalesInvoiceDiscountResponseType = "amount"
-	SalesInvoiceDiscountResponseTypePercentage SalesInvoiceDiscountResponseType = "percentage"
-)
-
-func (e SalesInvoiceDiscountResponseType) ToPointer() *SalesInvoiceDiscountResponseType {
-	return &e
-}
-func (e *SalesInvoiceDiscountResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "amount":
-		fallthrough
-	case "percentage":
-		*e = SalesInvoiceDiscountResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoiceDiscountResponseType: %v", v)
-	}
-}
-
 type SalesInvoiceDiscountResponse struct {
 	// The type of discount.
-	Type SalesInvoiceDiscountResponseType `json:"type"`
+	Type SalesInvoiceDiscountTypeResponse `json:"type"`
 	// A string containing an exact monetary amount in the given currency, or the percentage.
 	Value string `json:"value"`
 }
 
-func (o *SalesInvoiceDiscountResponse) GetType() SalesInvoiceDiscountResponseType {
+func (o *SalesInvoiceDiscountResponse) GetType() SalesInvoiceDiscountTypeResponse {
 	if o == nil {
-		return SalesInvoiceDiscountResponseType("")
+		return SalesInvoiceDiscountTypeResponse("")
 	}
 	return o.Type
 }

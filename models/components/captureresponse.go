@@ -2,41 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// CaptureResponseStatus - The capture's status.
-type CaptureResponseStatus string
-
-const (
-	CaptureResponseStatusPending   CaptureResponseStatus = "pending"
-	CaptureResponseStatusSucceeded CaptureResponseStatus = "succeeded"
-	CaptureResponseStatusFailed    CaptureResponseStatus = "failed"
-)
-
-func (e CaptureResponseStatus) ToPointer() *CaptureResponseStatus {
-	return &e
-}
-func (e *CaptureResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "succeeded":
-		fallthrough
-	case "failed":
-		*e = CaptureResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CaptureResponseStatus: %v", v)
-	}
-}
-
 // CaptureResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type CaptureResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -99,7 +64,7 @@ type CaptureResponse struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
 	// The capture's status.
-	Status *CaptureResponseStatus `json:"status,omitempty"`
+	Status *CaptureStatus `json:"status,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata     *Metadata `json:"metadata,omitempty"`
@@ -154,7 +119,7 @@ func (o *CaptureResponse) GetSettlementAmount() *AmountNullable {
 	return o.SettlementAmount
 }
 
-func (o *CaptureResponse) GetStatus() *CaptureResponseStatus {
+func (o *CaptureResponse) GetStatus() *CaptureStatus {
 	if o == nil {
 		return nil
 	}

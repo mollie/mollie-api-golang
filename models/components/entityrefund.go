@@ -2,43 +2,14 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityRefundTypeAcquirerReference - Specifies the reference type
-type EntityRefundTypeAcquirerReference string
-
-const (
-	EntityRefundTypeAcquirerReferenceAcquirerReference EntityRefundTypeAcquirerReference = "acquirer-reference"
-)
-
-func (e EntityRefundTypeAcquirerReference) ToPointer() *EntityRefundTypeAcquirerReference {
-	return &e
-}
-func (e *EntityRefundTypeAcquirerReference) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "acquirer-reference":
-		*e = EntityRefundTypeAcquirerReference(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityRefundTypeAcquirerReference: %v", v)
-	}
-}
-
 type EntityRefundExternalReference struct {
 	// Specifies the reference type
-	Type *EntityRefundTypeAcquirerReference `json:"type,omitempty"`
+	Type *RefundExternalReferenceType `json:"type,omitempty"`
 	// Unique reference from the payment provider
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *EntityRefundExternalReference) GetType() *EntityRefundTypeAcquirerReference {
+func (o *EntityRefundExternalReference) GetType() *RefundExternalReferenceType {
 	if o == nil {
 		return nil
 	}
@@ -52,38 +23,14 @@ func (o *EntityRefundExternalReference) GetID() *string {
 	return o.ID
 }
 
-// RoutingReversalType - The type of source. Currently only the source type `organization` is supported.
-type RoutingReversalType string
-
-const (
-	RoutingReversalTypeOrganization RoutingReversalType = "organization"
-)
-
-func (e RoutingReversalType) ToPointer() *RoutingReversalType {
-	return &e
-}
-func (e *RoutingReversalType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "organization":
-		*e = RoutingReversalType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RoutingReversalType: %v", v)
-	}
-}
-
 // EntityRefundSource - Where the funds will be pulled back from.
 type EntityRefundSource struct {
 	// The type of source. Currently only the source type `organization` is supported.
-	Type           *RoutingReversalType `json:"type,omitempty"`
-	OrganizationID *string              `json:"organizationId,omitempty"`
+	Type           *RefundRoutingReversalsSourceType `json:"type,omitempty"`
+	OrganizationID *string                           `json:"organizationId,omitempty"`
 }
 
-func (o *EntityRefundSource) GetType() *RoutingReversalType {
+func (o *EntityRefundSource) GetType() *RefundRoutingReversalsSourceType {
 	if o == nil {
 		return nil
 	}
@@ -131,6 +78,7 @@ type EntityRefund struct {
 	Metadata          *Metadata                      `json:"metadata"`
 	PaymentID         *string                        `json:"paymentId,omitempty"`
 	SettlementID      *string                        `json:"settlementId,omitempty"`
+	Status            RefundStatus                   `json:"status"`
 	ExternalReference *EntityRefundExternalReference `json:"externalReference,omitempty"`
 	// *This feature is only available to marketplace operators.*
 	//
@@ -208,6 +156,13 @@ func (o *EntityRefund) GetSettlementID() *string {
 		return nil
 	}
 	return o.SettlementID
+}
+
+func (o *EntityRefund) GetStatus() RefundStatus {
+	if o == nil {
+		return RefundStatus("")
+	}
+	return o.Status
 }
 
 func (o *EntityRefund) GetExternalReference() *EntityRefundExternalReference {

@@ -2,78 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SubscriptionResponseStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
-// enabling the subscription.
-type SubscriptionResponseStatus string
-
-const (
-	SubscriptionResponseStatusPending   SubscriptionResponseStatus = "pending"
-	SubscriptionResponseStatusActive    SubscriptionResponseStatus = "active"
-	SubscriptionResponseStatusCanceled  SubscriptionResponseStatus = "canceled"
-	SubscriptionResponseStatusSuspended SubscriptionResponseStatus = "suspended"
-	SubscriptionResponseStatusCompleted SubscriptionResponseStatus = "completed"
-)
-
-func (e SubscriptionResponseStatus) ToPointer() *SubscriptionResponseStatus {
-	return &e
-}
-func (e *SubscriptionResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "active":
-		fallthrough
-	case "canceled":
-		fallthrough
-	case "suspended":
-		fallthrough
-	case "completed":
-		*e = SubscriptionResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubscriptionResponseStatus: %v", v)
-	}
-}
-
-// SubscriptionResponseMethod - The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-type SubscriptionResponseMethod string
-
-const (
-	SubscriptionResponseMethodCreditcard  SubscriptionResponseMethod = "creditcard"
-	SubscriptionResponseMethodDirectdebit SubscriptionResponseMethod = "directdebit"
-	SubscriptionResponseMethodPaypal      SubscriptionResponseMethod = "paypal"
-)
-
-func (e SubscriptionResponseMethod) ToPointer() *SubscriptionResponseMethod {
-	return &e
-}
-func (e *SubscriptionResponseMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "paypal":
-		*e = SubscriptionResponseMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubscriptionResponseMethod: %v", v)
-	}
-}
-
 // SubscriptionResponseApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //
@@ -168,7 +96,7 @@ type SubscriptionResponse struct {
 	Mode *Mode `json:"mode,omitempty"`
 	// The subscription's current status is directly related to the status of the underlying customer or mandate that is
 	// enabling the subscription.
-	Status *SubscriptionResponseStatus `json:"status,omitempty"`
+	Status *SubscriptionStatus `json:"status,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *Amount `json:"amount,omitempty"`
 	// Total number of payments for the subscription. Once this number of payments is reached, the subscription is
@@ -195,7 +123,7 @@ type SubscriptionResponse struct {
 	// **Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
 	Description *string `json:"description,omitempty"`
 	// The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-	Method *SubscriptionResponseMethod `json:"method,omitempty"`
+	Method *SubscriptionMethodResponse `json:"method,omitempty"`
 	// With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 	// merchants.
 	//
@@ -244,7 +172,7 @@ func (o *SubscriptionResponse) GetMode() *Mode {
 	return o.Mode
 }
 
-func (o *SubscriptionResponse) GetStatus() *SubscriptionResponseStatus {
+func (o *SubscriptionResponse) GetStatus() *SubscriptionStatus {
 	if o == nil {
 		return nil
 	}
@@ -300,7 +228,7 @@ func (o *SubscriptionResponse) GetDescription() *string {
 	return o.Description
 }
 
-func (o *SubscriptionResponse) GetMethod() *SubscriptionResponseMethod {
+func (o *SubscriptionResponse) GetMethod() *SubscriptionMethodResponse {
 	if o == nil {
 		return nil
 	}

@@ -2,153 +2,9 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntitySalesInvoiceResponseStatus - The status for the invoice to end up in.
-//
-// A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-// the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
-// mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-//
-// A status value that cannot be set but can be returned is `canceled`, for invoices which were
-// issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-//
-// Dependent parameters:
-//   - `paymentDetails` is required if invoice should be set directly to `paid`
-//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-type EntitySalesInvoiceResponseStatus string
-
-const (
-	EntitySalesInvoiceResponseStatusDraft  EntitySalesInvoiceResponseStatus = "draft"
-	EntitySalesInvoiceResponseStatusIssued EntitySalesInvoiceResponseStatus = "issued"
-	EntitySalesInvoiceResponseStatusPaid   EntitySalesInvoiceResponseStatus = "paid"
-)
-
-func (e EntitySalesInvoiceResponseStatus) ToPointer() *EntitySalesInvoiceResponseStatus {
-	return &e
-}
-func (e *EntitySalesInvoiceResponseStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "issued":
-		fallthrough
-	case "paid":
-		*e = EntitySalesInvoiceResponseStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntitySalesInvoiceResponseStatus: %v", v)
-	}
-}
-
-// EntitySalesInvoiceResponseVatScheme - The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-type EntitySalesInvoiceResponseVatScheme string
-
-const (
-	EntitySalesInvoiceResponseVatSchemeStandard    EntitySalesInvoiceResponseVatScheme = "standard"
-	EntitySalesInvoiceResponseVatSchemeOneStopShop EntitySalesInvoiceResponseVatScheme = "one-stop-shop"
-)
-
-func (e EntitySalesInvoiceResponseVatScheme) ToPointer() *EntitySalesInvoiceResponseVatScheme {
-	return &e
-}
-func (e *EntitySalesInvoiceResponseVatScheme) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "standard":
-		fallthrough
-	case "one-stop-shop":
-		*e = EntitySalesInvoiceResponseVatScheme(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntitySalesInvoiceResponseVatScheme: %v", v)
-	}
-}
-
-// EntitySalesInvoiceResponseVatMode - The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-// price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-type EntitySalesInvoiceResponseVatMode string
-
-const (
-	EntitySalesInvoiceResponseVatModeExclusive EntitySalesInvoiceResponseVatMode = "exclusive"
-	EntitySalesInvoiceResponseVatModeInclusive EntitySalesInvoiceResponseVatMode = "inclusive"
-)
-
-func (e EntitySalesInvoiceResponseVatMode) ToPointer() *EntitySalesInvoiceResponseVatMode {
-	return &e
-}
-func (e *EntitySalesInvoiceResponseVatMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "exclusive":
-		fallthrough
-	case "inclusive":
-		*e = EntitySalesInvoiceResponseVatMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntitySalesInvoiceResponseVatMode: %v", v)
-	}
-}
-
 // EntitySalesInvoiceResponseMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type EntitySalesInvoiceResponseMetadata struct {
-}
-
-// EntitySalesInvoiceResponsePaymentTerm - The payment term to be set on the invoice.
-type EntitySalesInvoiceResponsePaymentTerm string
-
-const (
-	EntitySalesInvoiceResponsePaymentTermSevendays               EntitySalesInvoiceResponsePaymentTerm = "7 days"
-	EntitySalesInvoiceResponsePaymentTermFourteendays            EntitySalesInvoiceResponsePaymentTerm = "14 days"
-	EntitySalesInvoiceResponsePaymentTermThirtydays              EntitySalesInvoiceResponsePaymentTerm = "30 days"
-	EntitySalesInvoiceResponsePaymentTermFortyFivedays           EntitySalesInvoiceResponsePaymentTerm = "45 days"
-	EntitySalesInvoiceResponsePaymentTermSixtydays               EntitySalesInvoiceResponsePaymentTerm = "60 days"
-	EntitySalesInvoiceResponsePaymentTermNinetydays              EntitySalesInvoiceResponsePaymentTerm = "90 days"
-	EntitySalesInvoiceResponsePaymentTermOneHundredAndTwentydays EntitySalesInvoiceResponsePaymentTerm = "120 days"
-)
-
-func (e EntitySalesInvoiceResponsePaymentTerm) ToPointer() *EntitySalesInvoiceResponsePaymentTerm {
-	return &e
-}
-func (e *EntitySalesInvoiceResponsePaymentTerm) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "7 days":
-		fallthrough
-	case "14 days":
-		fallthrough
-	case "30 days":
-		fallthrough
-	case "45 days":
-		fallthrough
-	case "60 days":
-		fallthrough
-	case "90 days":
-		fallthrough
-	case "120 days":
-		*e = EntitySalesInvoiceResponsePaymentTerm(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntitySalesInvoiceResponsePaymentTerm: %v", v)
-	}
 }
 
 // EntitySalesInvoiceResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -211,21 +67,21 @@ type EntitySalesInvoiceResponse struct {
 	//   - `paymentDetails` is required if invoice should be set directly to `paid`
 	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
 	//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-	Status *EntitySalesInvoiceResponseStatus `json:"status,omitempty"`
+	Status *SalesInvoiceStatusResponse `json:"status,omitempty"`
 	// The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-	VatScheme *EntitySalesInvoiceResponseVatScheme `json:"vatScheme,omitempty"`
+	VatScheme *SalesInvoiceVatSchemeResponse `json:"vatScheme,omitempty"`
 	// The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
 	// price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-	VatMode *EntitySalesInvoiceResponseVatMode `json:"vatMode,omitempty"`
+	VatMode *SalesInvoiceVatModeResponse `json:"vatMode,omitempty"`
 	// A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
 	Memo *string `json:"memo,omitempty"`
 	// Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *EntitySalesInvoiceResponseMetadata `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
-	PaymentTerm    *EntitySalesInvoiceResponsePaymentTerm `json:"paymentTerm,omitempty"`
-	PaymentDetails *SalesInvoicePaymentDetailsResponse    `json:"paymentDetails,omitempty"`
-	EmailDetails   *SalesInvoiceEmailDetails              `json:"emailDetails,omitempty"`
+	PaymentTerm    *SalesInvoicePaymentTermResponse    `json:"paymentTerm,omitempty"`
+	PaymentDetails *SalesInvoicePaymentDetailsResponse `json:"paymentDetails,omitempty"`
+	EmailDetails   *SalesInvoiceEmailDetails           `json:"emailDetails,omitempty"`
 	// The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
 	// provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
 	CustomerID *string `json:"customerId,omitempty"`
@@ -289,21 +145,21 @@ func (o *EntitySalesInvoiceResponse) GetInvoiceNumber() *string {
 	return o.InvoiceNumber
 }
 
-func (o *EntitySalesInvoiceResponse) GetStatus() *EntitySalesInvoiceResponseStatus {
+func (o *EntitySalesInvoiceResponse) GetStatus() *SalesInvoiceStatusResponse {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EntitySalesInvoiceResponse) GetVatScheme() *EntitySalesInvoiceResponseVatScheme {
+func (o *EntitySalesInvoiceResponse) GetVatScheme() *SalesInvoiceVatSchemeResponse {
 	if o == nil {
 		return nil
 	}
 	return o.VatScheme
 }
 
-func (o *EntitySalesInvoiceResponse) GetVatMode() *EntitySalesInvoiceResponseVatMode {
+func (o *EntitySalesInvoiceResponse) GetVatMode() *SalesInvoiceVatModeResponse {
 	if o == nil {
 		return nil
 	}
@@ -324,7 +180,7 @@ func (o *EntitySalesInvoiceResponse) GetMetadata() *EntitySalesInvoiceResponseMe
 	return o.Metadata
 }
 
-func (o *EntitySalesInvoiceResponse) GetPaymentTerm() *EntitySalesInvoiceResponsePaymentTerm {
+func (o *EntitySalesInvoiceResponse) GetPaymentTerm() *SalesInvoicePaymentTermResponse {
 	if o == nil {
 		return nil
 	}

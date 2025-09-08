@@ -57,8 +57,9 @@ func main() {
         )),
         PaymentID: client.String("tr_5B8cwPMGnU"),
         SettlementID: client.String("stl_5B8cwPMGnU"),
+        Status: components.RefundStatusQueued,
         ExternalReference: &components.EntityRefundExternalReference{
-            Type: components.EntityRefundTypeAcquirerReferenceAcquirerReference.ToPointer(),
+            Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
             ID: client.String("123456789012345"),
         },
         ReverseRouting: client.Bool(false),
@@ -69,7 +70,7 @@ func main() {
                     Value: "10.00",
                 },
                 Source: &components.EntityRefundSource{
-                    Type: components.RoutingReversalTypeOrganization.ToPointer(),
+                    Type: components.RefundRoutingReversalsSourceTypeOrganization.ToPointer(),
                     OrganizationID: client.String("org_1234567"),
                 },
             },

@@ -2,44 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// VatRegulation - Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
-// Kingdom, and shifted VAT for merchants in the European Union.
-//
-// The field is not present for merchants residing in other countries.
-type VatRegulation string
-
-const (
-	VatRegulationDutch   VatRegulation = "dutch"
-	VatRegulationBritish VatRegulation = "british"
-	VatRegulationShifted VatRegulation = "shifted"
-)
-
-func (e VatRegulation) ToPointer() *VatRegulation {
-	return &e
-}
-func (e *VatRegulation) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "dutch":
-		fallthrough
-	case "british":
-		fallthrough
-	case "shifted":
-		*e = VatRegulation(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for VatRegulation: %v", v)
-	}
-}
-
 // EntityOrganizationLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityOrganizationLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -95,7 +57,7 @@ type EntityOrganization struct {
 	// Kingdom, and shifted VAT for merchants in the European Union.
 	//
 	// The field is not present for merchants residing in other countries.
-	VatRegulation *VatRegulation `json:"vatRegulation,omitempty"`
+	VatRegulation *OrganizationVatRegulation `json:"vatRegulation,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links *EntityOrganizationLinks `json:"_links,omitempty"`
 }
@@ -156,7 +118,7 @@ func (o *EntityOrganization) GetVatNumber() *string {
 	return o.VatNumber
 }
 
-func (o *EntityOrganization) GetVatRegulation() *VatRegulation {
+func (o *EntityOrganization) GetVatRegulation() *OrganizationVatRegulation {
 	if o == nil {
 		return nil
 	}

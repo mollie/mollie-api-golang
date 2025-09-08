@@ -2,41 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SalesInvoicePaymentDetailsSource - The way through which the invoice is to be set to paid.
-type SalesInvoicePaymentDetailsSource string
-
-const (
-	SalesInvoicePaymentDetailsSourceManual      SalesInvoicePaymentDetailsSource = "manual"
-	SalesInvoicePaymentDetailsSourcePaymentLink SalesInvoicePaymentDetailsSource = "payment-link"
-	SalesInvoicePaymentDetailsSourcePayment     SalesInvoicePaymentDetailsSource = "payment"
-)
-
-func (e SalesInvoicePaymentDetailsSource) ToPointer() *SalesInvoicePaymentDetailsSource {
-	return &e
-}
-func (e *SalesInvoicePaymentDetailsSource) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "manual":
-		fallthrough
-	case "payment-link":
-		fallthrough
-	case "payment":
-		*e = SalesInvoicePaymentDetailsSource(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoicePaymentDetailsSource: %v", v)
-	}
-}
-
 type SalesInvoicePaymentDetails struct {
 	// The way through which the invoice is to be set to paid.
 	Source SalesInvoicePaymentDetailsSource `json:"source"`

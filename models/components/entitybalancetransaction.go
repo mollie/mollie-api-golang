@@ -2,177 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntityBalanceTransactionType - The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-// is not definitive.
-//
-// * Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-// * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-// * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-// * Invoicing: `invoice-compensation` `balance-correction`
-// * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-type EntityBalanceTransactionType string
-
-const (
-	EntityBalanceTransactionTypeApplicationFee                    EntityBalanceTransactionType = "application-fee"
-	EntityBalanceTransactionTypeCapture                           EntityBalanceTransactionType = "capture"
-	EntityBalanceTransactionTypeChargeback                        EntityBalanceTransactionType = "chargeback"
-	EntityBalanceTransactionTypeChargebackReversal                EntityBalanceTransactionType = "chargeback-reversal"
-	EntityBalanceTransactionTypeFailedPaymentFee                  EntityBalanceTransactionType = "failed-payment-fee"
-	EntityBalanceTransactionTypeFailedPayment                     EntityBalanceTransactionType = "failed-payment"
-	EntityBalanceTransactionTypeInvoiceCompensation               EntityBalanceTransactionType = "invoice-compensation"
-	EntityBalanceTransactionTypePayment                           EntityBalanceTransactionType = "payment"
-	EntityBalanceTransactionTypePaymentFee                        EntityBalanceTransactionType = "payment-fee"
-	EntityBalanceTransactionTypePaymentCommission                 EntityBalanceTransactionType = "payment-commission"
-	EntityBalanceTransactionTypeRefund                            EntityBalanceTransactionType = "refund"
-	EntityBalanceTransactionTypeReturnedRefund                    EntityBalanceTransactionType = "returned-refund"
-	EntityBalanceTransactionTypeReturnedTransfer                  EntityBalanceTransactionType = "returned-transfer"
-	EntityBalanceTransactionTypeSplitPayment                      EntityBalanceTransactionType = "split-payment"
-	EntityBalanceTransactionTypeOutgoingTransfer                  EntityBalanceTransactionType = "outgoing-transfer"
-	EntityBalanceTransactionTypeCaptureCommission                 EntityBalanceTransactionType = "capture-commission"
-	EntityBalanceTransactionTypeCanceledOutgoingTransfer          EntityBalanceTransactionType = "canceled-outgoing-transfer"
-	EntityBalanceTransactionTypeIncomingTransfer                  EntityBalanceTransactionType = "incoming-transfer"
-	EntityBalanceTransactionTypeAPIPaymentRollingReserveRelease   EntityBalanceTransactionType = "api-payment-rolling-reserve-release"
-	EntityBalanceTransactionTypeCaptureRollingReserveRelease      EntityBalanceTransactionType = "capture-rolling-reserve-release"
-	EntityBalanceTransactionTypeReimbursementFee                  EntityBalanceTransactionType = "reimbursement-fee"
-	EntityBalanceTransactionTypeBalanceCorrection                 EntityBalanceTransactionType = "balance-correction"
-	EntityBalanceTransactionTypeUnauthorizedDirectDebit           EntityBalanceTransactionType = "unauthorized-direct-debit"
-	EntityBalanceTransactionTypeBankChargedFailureFee             EntityBalanceTransactionType = "bank-charged-failure-fee"
-	EntityBalanceTransactionTypePlatformPaymentRefund             EntityBalanceTransactionType = "platform-payment-refund"
-	EntityBalanceTransactionTypeRefundCompensation                EntityBalanceTransactionType = "refund-compensation"
-	EntityBalanceTransactionTypeReturnedRefundCompensation        EntityBalanceTransactionType = "returned-refund-compensation"
-	EntityBalanceTransactionTypeReturnedPlatformPaymentRefund     EntityBalanceTransactionType = "returned-platform-payment-refund"
-	EntityBalanceTransactionTypePlatformPaymentChargeback         EntityBalanceTransactionType = "platform-payment-chargeback"
-	EntityBalanceTransactionTypeChargebackCompensation            EntityBalanceTransactionType = "chargeback-compensation"
-	EntityBalanceTransactionTypeReversedPlatformPaymentChargeback EntityBalanceTransactionType = "reversed-platform-payment-chargeback"
-	EntityBalanceTransactionTypeReversedChargebackCompensation    EntityBalanceTransactionType = "reversed-chargeback-compensation"
-	EntityBalanceTransactionTypeFailedSplitPaymentPlatform        EntityBalanceTransactionType = "failed-split-payment-platform"
-	EntityBalanceTransactionTypeFailedSplitPaymentCompensation    EntityBalanceTransactionType = "failed-split-payment-compensation"
-	EntityBalanceTransactionTypeCashAdvanceLoan                   EntityBalanceTransactionType = "cash-advance-loan"
-	EntityBalanceTransactionTypePlatformConnectedOrganizationsFee EntityBalanceTransactionType = "platform-connected-organizations-fee"
-	EntityBalanceTransactionTypeSplitTransaction                  EntityBalanceTransactionType = "split-transaction"
-	EntityBalanceTransactionTypeManagedFee                        EntityBalanceTransactionType = "managed-fee"
-	EntityBalanceTransactionTypeReturnedManagedFee                EntityBalanceTransactionType = "returned-managed-fee"
-	EntityBalanceTransactionTypeTopup                             EntityBalanceTransactionType = "topup"
-	EntityBalanceTransactionTypeBalanceReserve                    EntityBalanceTransactionType = "balance-reserve"
-	EntityBalanceTransactionTypeBalanceReserveReturn              EntityBalanceTransactionType = "balance-reserve-return"
-	EntityBalanceTransactionTypeMovement                          EntityBalanceTransactionType = "movement"
-	EntityBalanceTransactionTypePostPaymentSplitPayment           EntityBalanceTransactionType = "post-payment-split-payment"
-	EntityBalanceTransactionTypeCashCollateralIssuance            EntityBalanceTransactionType = "cash-collateral-issuance"
-	EntityBalanceTransactionTypeCashCollateralRelease             EntityBalanceTransactionType = "cash-collateral-release"
-)
-
-func (e EntityBalanceTransactionType) ToPointer() *EntityBalanceTransactionType {
-	return &e
-}
-func (e *EntityBalanceTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "application-fee":
-		fallthrough
-	case "capture":
-		fallthrough
-	case "chargeback":
-		fallthrough
-	case "chargeback-reversal":
-		fallthrough
-	case "failed-payment-fee":
-		fallthrough
-	case "failed-payment":
-		fallthrough
-	case "invoice-compensation":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "payment-fee":
-		fallthrough
-	case "payment-commission":
-		fallthrough
-	case "refund":
-		fallthrough
-	case "returned-refund":
-		fallthrough
-	case "returned-transfer":
-		fallthrough
-	case "split-payment":
-		fallthrough
-	case "outgoing-transfer":
-		fallthrough
-	case "capture-commission":
-		fallthrough
-	case "canceled-outgoing-transfer":
-		fallthrough
-	case "incoming-transfer":
-		fallthrough
-	case "api-payment-rolling-reserve-release":
-		fallthrough
-	case "capture-rolling-reserve-release":
-		fallthrough
-	case "reimbursement-fee":
-		fallthrough
-	case "balance-correction":
-		fallthrough
-	case "unauthorized-direct-debit":
-		fallthrough
-	case "bank-charged-failure-fee":
-		fallthrough
-	case "platform-payment-refund":
-		fallthrough
-	case "refund-compensation":
-		fallthrough
-	case "returned-refund-compensation":
-		fallthrough
-	case "returned-platform-payment-refund":
-		fallthrough
-	case "platform-payment-chargeback":
-		fallthrough
-	case "chargeback-compensation":
-		fallthrough
-	case "reversed-platform-payment-chargeback":
-		fallthrough
-	case "reversed-chargeback-compensation":
-		fallthrough
-	case "failed-split-payment-platform":
-		fallthrough
-	case "failed-split-payment-compensation":
-		fallthrough
-	case "cash-advance-loan":
-		fallthrough
-	case "platform-connected-organizations-fee":
-		fallthrough
-	case "split-transaction":
-		fallthrough
-	case "managed-fee":
-		fallthrough
-	case "returned-managed-fee":
-		fallthrough
-	case "topup":
-		fallthrough
-	case "balance-reserve":
-		fallthrough
-	case "balance-reserve-return":
-		fallthrough
-	case "movement":
-		fallthrough
-	case "post-payment-split-payment":
-		fallthrough
-	case "cash-collateral-issuance":
-		fallthrough
-	case "cash-collateral-release":
-		*e = EntityBalanceTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntityBalanceTransactionType: %v", v)
-	}
-}
-
 type Payment struct {
 	PaymentID          *string `json:"paymentId,omitempty"`
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
@@ -1310,17 +1139,9 @@ func (o *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
 type EntityBalanceTransaction struct {
 	// Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
 	// for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
-	// The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-	// is not definitive.
-	//
-	// * Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-	// * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-	// * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-	// * Invoicing: `invoice-compensation` `balance-correction`
-	// * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-	Type *EntityBalanceTransactionType `json:"type,omitempty"`
+	Resource *string                 `json:"resource,omitempty"`
+	ID       *string                 `json:"id,omitempty"`
+	Type     *BalanceTransactionType `json:"type,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	ResultAmount *Amount `json:"resultAmount,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -1392,7 +1213,7 @@ func (o *EntityBalanceTransaction) GetID() *string {
 	return o.ID
 }
 
-func (o *EntityBalanceTransaction) GetType() *EntityBalanceTransactionType {
+func (o *EntityBalanceTransaction) GetType() *BalanceTransactionType {
 	if o == nil {
 		return nil
 	}

@@ -2,44 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// EntitySettlementStatus - The status of the settlement.
-type EntitySettlementStatus string
-
-const (
-	EntitySettlementStatusOpen    EntitySettlementStatus = "open"
-	EntitySettlementStatusPending EntitySettlementStatus = "pending"
-	EntitySettlementStatusPaidout EntitySettlementStatus = "paidout"
-	EntitySettlementStatusFailed  EntitySettlementStatus = "failed"
-)
-
-func (e EntitySettlementStatus) ToPointer() *EntitySettlementStatus {
-	return &e
-}
-func (e *EntitySettlementStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "open":
-		fallthrough
-	case "pending":
-		fallthrough
-	case "paidout":
-		fallthrough
-	case "failed":
-		*e = EntitySettlementStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EntitySettlementStatus: %v", v)
-	}
-}
-
 // EntitySettlementLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntitySettlementLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -122,7 +84,7 @@ type EntitySettlement struct {
 	// date is available.
 	SettledAt *string `json:"settledAt,omitempty"`
 	// The status of the settlement.
-	Status *EntitySettlementStatus `json:"status,omitempty"`
+	Status *SettlementStatus `json:"status,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount    *Amount `json:"amount,omitempty"`
 	BalanceID *string `json:"balanceId,omitempty"`
@@ -177,7 +139,7 @@ func (o *EntitySettlement) GetSettledAt() *string {
 	return o.SettledAt
 }
 
-func (o *EntitySettlement) GetStatus() *EntitySettlementStatus {
+func (o *EntitySettlement) GetStatus() *SettlementStatus {
 	if o == nil {
 		return nil
 	}

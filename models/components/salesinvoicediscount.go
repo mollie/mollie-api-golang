@@ -2,38 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SalesInvoiceDiscountType - The type of discount.
-type SalesInvoiceDiscountType string
-
-const (
-	SalesInvoiceDiscountTypeAmount     SalesInvoiceDiscountType = "amount"
-	SalesInvoiceDiscountTypePercentage SalesInvoiceDiscountType = "percentage"
-)
-
-func (e SalesInvoiceDiscountType) ToPointer() *SalesInvoiceDiscountType {
-	return &e
-}
-func (e *SalesInvoiceDiscountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "amount":
-		fallthrough
-	case "percentage":
-		*e = SalesInvoiceDiscountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesInvoiceDiscountType: %v", v)
-	}
-}
-
 type SalesInvoiceDiscount struct {
 	// The type of discount.
 	Type SalesInvoiceDiscountType `json:"type"`

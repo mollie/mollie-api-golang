@@ -43,7 +43,7 @@ func main() {
 
     res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", &components.EntityMandate{
         ID: client.String("mdt_5B8cwPMGnU"),
-        Method: components.EntityMandateMethodDirectdebit.ToPointer(),
+        Method: components.MandateMethodDirectdebit.ToPointer(),
         ConsumerName: client.String("John Doe"),
         ConsumerAccount: client.String("NL55INGB0000000000"),
         ConsumerBic: client.String("BANKBIC"),
@@ -52,6 +52,7 @@ func main() {
         MandateReference: client.String("ID-1023892"),
         PaypalBillingAgreementID: client.String("B-12A34567B8901234CD"),
         PayPalVaultID: client.String("8kk8451t"),
+        Status: components.MandateStatusValid.ToPointer(),
         CustomerID: client.String("cst_5B8cwPMGnU"),
         Testmode: client.Bool(false),
     })

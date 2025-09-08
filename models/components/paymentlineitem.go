@@ -7,53 +7,6 @@ import (
 	"fmt"
 )
 
-// PaymentLineItemType - The type of product purchased. For example, a physical or a digital product.
-//
-// The `tip` payment line type is not available when creating a payment.
-type PaymentLineItemType string
-
-const (
-	PaymentLineItemTypePhysical    PaymentLineItemType = "physical"
-	PaymentLineItemTypeDigital     PaymentLineItemType = "digital"
-	PaymentLineItemTypeShippingFee PaymentLineItemType = "shipping_fee"
-	PaymentLineItemTypeDiscount    PaymentLineItemType = "discount"
-	PaymentLineItemTypeStoreCredit PaymentLineItemType = "store_credit"
-	PaymentLineItemTypeGiftCard    PaymentLineItemType = "gift_card"
-	PaymentLineItemTypeSurcharge   PaymentLineItemType = "surcharge"
-	PaymentLineItemTypeTip         PaymentLineItemType = "tip"
-)
-
-func (e PaymentLineItemType) ToPointer() *PaymentLineItemType {
-	return &e
-}
-func (e *PaymentLineItemType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "physical":
-		fallthrough
-	case "digital":
-		fallthrough
-	case "shipping_fee":
-		fallthrough
-	case "discount":
-		fallthrough
-	case "store_credit":
-		fallthrough
-	case "gift_card":
-		fallthrough
-	case "surcharge":
-		fallthrough
-	case "tip":
-		*e = PaymentLineItemType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentLineItemType: %v", v)
-	}
-}
-
 type PaymentLineItemCategory string
 
 const (
@@ -90,7 +43,7 @@ type PaymentLineItem struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
 	// The `tip` payment line type is not available when creating a payment.
-	Type *PaymentLineItemType `json:"type,omitempty"`
+	Type *PaymentLineType `json:"type,omitempty"`
 	// A description of the line item. For example *LEGO 4440 Forest Police Station*.
 	Description string `json:"description"`
 	// The number of items.
@@ -119,7 +72,7 @@ type PaymentLineItem struct {
 	ProductURL *string `json:"productUrl,omitempty"`
 }
 
-func (o *PaymentLineItem) GetType() *PaymentLineItemType {
+func (o *PaymentLineItem) GetType() *PaymentLineType {
 	if o == nil {
 		return nil
 	}
