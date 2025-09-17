@@ -387,16 +387,16 @@ type StatusReason struct {
 	Message string `json:"message"`
 }
 
-func (o *StatusReason) GetCode() Code {
-	if o == nil {
+func (s *StatusReason) GetCode() Code {
+	if s == nil {
 		return Code("")
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *StatusReason) GetMessage() string {
-	if o == nil {
+func (s *StatusReason) GetMessage() string {
+	if s == nil {
 		return ""
 	}
-	return o.Message
+	return s.Message
 }

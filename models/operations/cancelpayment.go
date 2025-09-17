@@ -15,11 +15,11 @@ type CancelPaymentRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CancelPaymentRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (c *CancelPaymentRequestBody) GetTestmode() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Testmode
+	return c.Testmode
 }
 
 type CancelPaymentRequest struct {
@@ -30,25 +30,25 @@ type CancelPaymentRequest struct {
 	RequestBody    *CancelPaymentRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *CancelPaymentRequest) GetPaymentID() string {
-	if o == nil {
+func (c *CancelPaymentRequest) GetPaymentID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CancelPaymentRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CancelPaymentRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CancelPaymentRequest) GetRequestBody() *CancelPaymentRequestBody {
-	if o == nil {
+func (c *CancelPaymentRequest) GetRequestBody() *CancelPaymentRequestBody {
+	if c == nil {
 		return nil
 	}
-	return o.RequestBody
+	return c.RequestBody
 }
 
 type CancelPaymentResponse struct {
@@ -57,16 +57,16 @@ type CancelPaymentResponse struct {
 	PaymentResponse *components.PaymentResponse
 }
 
-func (o *CancelPaymentResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CancelPaymentResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CancelPaymentResponse) GetPaymentResponse() *components.PaymentResponse {
-	if o == nil {
+func (c *CancelPaymentResponse) GetPaymentResponse() *components.PaymentResponse {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentResponse
+	return c.PaymentResponse
 }

@@ -18,46 +18,46 @@ type CustomerResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *CustomerResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (c *CustomerResponseLinks) GetSelf() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return c.Self
 }
 
-func (o *CustomerResponseLinks) GetDashboard() URLObj {
-	if o == nil {
+func (c *CustomerResponseLinks) GetDashboard() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Dashboard
+	return c.Dashboard
 }
 
-func (o *CustomerResponseLinks) GetPayments() *URLNullable {
-	if o == nil {
+func (c *CustomerResponseLinks) GetPayments() *URLNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Payments
+	return c.Payments
 }
 
-func (o *CustomerResponseLinks) GetMandates() *URLNullable {
-	if o == nil {
+func (c *CustomerResponseLinks) GetMandates() *URLNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Mandates
+	return c.Mandates
 }
 
-func (o *CustomerResponseLinks) GetSubscriptions() *URLNullable {
-	if o == nil {
+func (c *CustomerResponseLinks) GetSubscriptions() *URLNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Subscriptions
+	return c.Subscriptions
 }
 
-func (o *CustomerResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (c *CustomerResponseLinks) GetDocumentation() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return c.Documentation
 }
 
 type CustomerResponse struct {
@@ -81,65 +81,65 @@ type CustomerResponse struct {
 	Links *CustomerResponseLinks `json:"_links,omitempty"`
 }
 
-func (o *CustomerResponse) GetResource() *string {
-	if o == nil {
+func (c *CustomerResponse) GetResource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Resource
+	return c.Resource
 }
 
-func (o *CustomerResponse) GetID() *string {
-	if o == nil {
+func (c *CustomerResponse) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CustomerResponse) GetMode() *Mode {
-	if o == nil {
+func (c *CustomerResponse) GetMode() *Mode {
+	if c == nil {
 		return nil
 	}
-	return o.Mode
+	return c.Mode
 }
 
-func (o *CustomerResponse) GetName() *string {
-	if o == nil {
+func (c *CustomerResponse) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CustomerResponse) GetEmail() *string {
-	if o == nil {
+func (c *CustomerResponse) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CustomerResponse) GetLocale() *LocaleResponse {
-	if o == nil {
+func (c *CustomerResponse) GetLocale() *LocaleResponse {
+	if c == nil {
 		return nil
 	}
-	return o.Locale
+	return c.Locale
 }
 
-func (o *CustomerResponse) GetMetadata() *Metadata {
-	if o == nil {
+func (c *CustomerResponse) GetMetadata() *Metadata {
+	if c == nil {
 		return nil
 	}
-	return o.Metadata
+	return c.Metadata
 }
 
-func (o *CustomerResponse) GetCreatedAt() *string {
-	if o == nil {
+func (c *CustomerResponse) GetCreatedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CustomerResponse) GetLinks() *CustomerResponseLinks {
-	if o == nil {
+func (c *CustomerResponse) GetLinks() *CustomerResponseLinks {
+	if c == nil {
 		return nil
 	}
-	return o.Links
+	return c.Links
 }

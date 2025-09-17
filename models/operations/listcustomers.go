@@ -25,39 +25,39 @@ type ListCustomersRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListCustomersRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListCustomersRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListCustomersRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListCustomersRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListCustomersRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListCustomersRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListCustomersRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListCustomersRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListCustomersRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListCustomersRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListCustomersEmbedded struct {
@@ -65,11 +65,11 @@ type ListCustomersEmbedded struct {
 	Customers []components.CustomerResponse `json:"customers"`
 }
 
-func (o *ListCustomersEmbedded) GetCustomers() []components.CustomerResponse {
-	if o == nil {
+func (l *ListCustomersEmbedded) GetCustomers() []components.CustomerResponse {
+	if l == nil {
 		return []components.CustomerResponse{}
 	}
-	return o.Customers
+	return l.Customers
 }
 
 // ListCustomersResponseBody - A list of customer objects.
@@ -85,25 +85,25 @@ type ListCustomersResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListCustomersResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListCustomersResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListCustomersResponseBody) GetEmbedded() ListCustomersEmbedded {
-	if o == nil {
+func (l *ListCustomersResponseBody) GetEmbedded() ListCustomersEmbedded {
+	if l == nil {
 		return ListCustomersEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListCustomersResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListCustomersResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListCustomersResponse struct {
@@ -112,16 +112,16 @@ type ListCustomersResponse struct {
 	Object *ListCustomersResponseBody
 }
 
-func (o *ListCustomersResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListCustomersResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListCustomersResponse) GetObject() *ListCustomersResponseBody {
-	if o == nil {
+func (l *ListCustomersResponse) GetObject() *ListCustomersResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

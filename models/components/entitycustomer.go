@@ -21,44 +21,44 @@ type EntityCustomer struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *EntityCustomer) GetID() *string {
-	if o == nil {
+func (e *EntityCustomer) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCustomer) GetName() *string {
-	if o == nil {
+func (e *EntityCustomer) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityCustomer) GetEmail() *string {
-	if o == nil {
+func (e *EntityCustomer) GetEmail() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Email
+	return e.Email
 }
 
-func (o *EntityCustomer) GetLocale() *LocaleResponse {
-	if o == nil {
+func (e *EntityCustomer) GetLocale() *LocaleResponse {
+	if e == nil {
 		return nil
 	}
-	return o.Locale
+	return e.Locale
 }
 
-func (o *EntityCustomer) GetMetadata() *Metadata {
-	if o == nil {
+func (e *EntityCustomer) GetMetadata() *Metadata {
+	if e == nil {
 		return nil
 	}
-	return o.Metadata
+	return e.Metadata
 }
 
-func (o *EntityCustomer) GetTestmode() *bool {
-	if o == nil {
+func (e *EntityCustomer) GetTestmode() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Testmode
+	return e.Testmode
 }

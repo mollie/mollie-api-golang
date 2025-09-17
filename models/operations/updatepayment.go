@@ -91,102 +91,102 @@ type UpdatePaymentRequestBody struct {
 	BillingEmail    *string                    `json:"billingEmail,omitempty"`
 }
 
-func (o *UpdatePaymentRequestBody) GetDescription() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdatePaymentRequestBody) GetRedirectURL() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetRedirectURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RedirectURL
+	return u.RedirectURL
 }
 
-func (o *UpdatePaymentRequestBody) GetCancelURL() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetCancelURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CancelURL
+	return u.CancelURL
 }
 
-func (o *UpdatePaymentRequestBody) GetWebhookURL() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetWebhookURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return u.WebhookURL
 }
 
-func (o *UpdatePaymentRequestBody) GetMetadata() *components.Metadata {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetMetadata() *components.Metadata {
+	if u == nil {
 		return nil
 	}
-	return o.Metadata
+	return u.Metadata
 }
 
-func (o *UpdatePaymentRequestBody) GetMethod() *components.Method {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetMethod() *components.Method {
+	if u == nil {
 		return nil
 	}
-	return o.Method
+	return u.Method
 }
 
-func (o *UpdatePaymentRequestBody) GetLocale() *components.Locale {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetLocale() *components.Locale {
+	if u == nil {
 		return nil
 	}
-	return o.Locale
+	return u.Locale
 }
 
-func (o *UpdatePaymentRequestBody) GetDueDate() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetDueDate() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DueDate
+	return u.DueDate
 }
 
-func (o *UpdatePaymentRequestBody) GetRestrictPaymentMethodsToCountry() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetRestrictPaymentMethodsToCountry() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RestrictPaymentMethodsToCountry
+	return u.RestrictPaymentMethodsToCountry
 }
 
-func (o *UpdatePaymentRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetTestmode() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Testmode
+	return u.Testmode
 }
 
-func (o *UpdatePaymentRequestBody) GetIssuer() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetIssuer() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Issuer
+	return u.Issuer
 }
 
-func (o *UpdatePaymentRequestBody) GetBillingAddress() *components.PaymentAddress {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetBillingAddress() *components.PaymentAddress {
+	if u == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return u.BillingAddress
 }
 
-func (o *UpdatePaymentRequestBody) GetShippingAddress() *components.PaymentAddress {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetShippingAddress() *components.PaymentAddress {
+	if u == nil {
 		return nil
 	}
-	return o.ShippingAddress
+	return u.ShippingAddress
 }
 
-func (o *UpdatePaymentRequestBody) GetBillingEmail() *string {
-	if o == nil {
+func (u *UpdatePaymentRequestBody) GetBillingEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.BillingEmail
+	return u.BillingEmail
 }
 
 type UpdatePaymentRequest struct {
@@ -197,25 +197,25 @@ type UpdatePaymentRequest struct {
 	RequestBody    *UpdatePaymentRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdatePaymentRequest) GetPaymentID() string {
-	if o == nil {
+func (u *UpdatePaymentRequest) GetPaymentID() string {
+	if u == nil {
 		return ""
 	}
-	return o.PaymentID
+	return u.PaymentID
 }
 
-func (o *UpdatePaymentRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdatePaymentRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdatePaymentRequest) GetRequestBody() *UpdatePaymentRequestBody {
-	if o == nil {
+func (u *UpdatePaymentRequest) GetRequestBody() *UpdatePaymentRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdatePaymentResponse struct {
@@ -224,16 +224,16 @@ type UpdatePaymentResponse struct {
 	PaymentResponse *components.PaymentResponse
 }
 
-func (o *UpdatePaymentResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdatePaymentResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdatePaymentResponse) GetPaymentResponse() *components.PaymentResponse {
-	if o == nil {
+func (u *UpdatePaymentResponse) GetPaymentResponse() *components.PaymentResponse {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentResponse
+	return u.PaymentResponse
 }

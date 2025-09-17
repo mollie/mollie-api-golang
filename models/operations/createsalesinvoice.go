@@ -12,18 +12,18 @@ type CreateSalesInvoiceRequest struct {
 	EntitySalesInvoice *components.EntitySalesInvoice `request:"mediaType=application/json"`
 }
 
-func (o *CreateSalesInvoiceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateSalesInvoiceRequest) GetEntitySalesInvoice() *components.EntitySalesInvoice {
-	if o == nil {
+func (c *CreateSalesInvoiceRequest) GetEntitySalesInvoice() *components.EntitySalesInvoice {
+	if c == nil {
 		return nil
 	}
-	return o.EntitySalesInvoice
+	return c.EntitySalesInvoice
 }
 
 type CreateSalesInvoiceResponse struct {
@@ -33,16 +33,16 @@ type CreateSalesInvoiceResponse struct {
 	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
 }
 
-func (o *CreateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
-	if o == nil {
+func (c *CreateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+	if c == nil {
 		return nil
 	}
-	return o.EntitySalesInvoiceResponse
+	return c.EntitySalesInvoiceResponse
 }

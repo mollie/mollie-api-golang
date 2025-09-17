@@ -8,16 +8,16 @@ type SubGroup struct {
 	Subtotals []ComponentsSubTotals `json:"subtotals,omitempty"`
 }
 
-func (o *SubGroup) GetAmount() *Amount {
-	if o == nil {
+func (s *SubGroup) GetAmount() *Amount {
+	if s == nil {
 		return nil
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *SubGroup) GetSubtotals() []ComponentsSubTotals {
-	if o == nil {
+func (s *SubGroup) GetSubtotals() []ComponentsSubTotals {
+	if s == nil {
 		return nil
 	}
-	return o.Subtotals
+	return s.Subtotals
 }

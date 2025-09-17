@@ -38,12 +38,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.PaymentLinks.Create(ctx, client.String("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
-        ID: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
+    res, err := s.PaymentLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
+        ID: client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"),
         Description: "Chess Board",
         Amount: &components.AmountNullable{
             Currency: "EUR",
@@ -53,14 +53,14 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
-        RedirectURL: client.String("https://webshop.example.org/payment-links/redirect/"),
-        WebhookURL: client.String("https://webshop.example.org/payment-links/webhook/"),
+        RedirectURL: client.Pointer("https://webshop.example.org/payment-links/redirect/"),
+        WebhookURL: client.Pointer("https://webshop.example.org/payment-links/webhook/"),
         Lines: []components.PaymentLineItem{
             components.PaymentLineItem{
                 Type: components.PaymentLineTypePhysical.ToPointer(),
                 Description: "LEGO 4440 Forest Police Station",
                 Quantity: 1,
-                QuantityUnit: client.String("pcs"),
+                QuantityUnit: client.Pointer("pcs"),
                 UnitPrice: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
@@ -73,51 +73,51 @@ func main() {
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                VatRate: client.String("21.00"),
+                VatRate: client.Pointer("21.00"),
                 VatAmount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Sku: client.String("9780241661628"),
+                Sku: client.Pointer("9780241661628"),
                 Categories: []components.PaymentLineItemCategory{
                     components.PaymentLineItemCategoryMeal,
                     components.PaymentLineItemCategoryEco,
                 },
-                ImageURL: client.String("https://..."),
-                ProductURL: client.String("https://..."),
+                ImageURL: client.Pointer("https://..."),
+                ProductURL: client.Pointer("https://..."),
             },
         },
         BillingAddress: &components.PaymentAddress{
-            Title: client.String("Mr."),
-            GivenName: client.String("Piet"),
-            FamilyName: client.String("Mondriaan"),
-            OrganizationName: client.String("Mollie B.V."),
-            StreetAndNumber: client.String("Keizersgracht 126"),
-            StreetAdditional: client.String("Apt. 1"),
-            PostalCode: client.String("1234AB"),
-            Email: client.String("piet@example.org"),
-            Phone: client.String("31208202070"),
-            City: client.String("Amsterdam"),
-            Region: client.String("Noord-Holland"),
-            Country: client.String("NL"),
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
         },
         ShippingAddress: &components.PaymentAddress{
-            Title: client.String("Mr."),
-            GivenName: client.String("Piet"),
-            FamilyName: client.String("Mondriaan"),
-            OrganizationName: client.String("Mollie B.V."),
-            StreetAndNumber: client.String("Keizersgracht 126"),
-            StreetAdditional: client.String("Apt. 1"),
-            PostalCode: client.String("1234AB"),
-            Email: client.String("piet@example.org"),
-            Phone: client.String("31208202070"),
-            City: client.String("Amsterdam"),
-            Region: client.String("Noord-Holland"),
-            Country: client.String("NL"),
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
         },
-        ProfileID: client.String("pfl_QkEhN94Ba"),
-        Reusable: client.Bool(false),
-        ExpiresAt: client.String("2025-12-24T11:00:16+00:00"),
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
+        Reusable: client.Pointer(false),
+        ExpiresAt: client.Pointer("2025-12-24T11:00:16+00:00"),
         AllowedMethods: nil,
         ApplicationFee: &operations.ApplicationFee{
             Amount: components.Amount{
@@ -127,8 +127,8 @@ func main() {
             Description: "Platform fee",
         },
         SequenceType: components.PaymentLinkSequenceTypeOneoff.ToPointer(),
-        CustomerID: client.String("cst_XimFHuaEzd"),
-        Testmode: client.Bool(false),
+        CustomerID: client.Pointer("cst_XimFHuaEzd"),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -184,11 +184,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.PaymentLinks.List(ctx, client.String("pl_d9fQur83kFdhH8hIhaZfq"), client.Int64(50), client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -243,11 +243,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.PaymentLinks.Get(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.PaymentLinks.Get(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -302,50 +302,50 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.PaymentLinks.Update(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.String("123e4567-e89b-12d3-a456-426"), &operations.UpdatePaymentLinkRequestBody{
-        Description: client.String("Chess Board"),
+    res, err := s.PaymentLinks.Update(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdatePaymentLinkRequestBody{
+        Description: client.Pointer("Chess Board"),
         MinimumAmount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Archived: client.Bool(false),
+        Archived: client.Pointer(false),
         AllowedMethods: []string{
             "ideal",
         },
         Lines: nil,
         BillingAddress: &components.PaymentAddress{
-            Title: client.String("Mr."),
-            GivenName: client.String("Piet"),
-            FamilyName: client.String("Mondriaan"),
-            OrganizationName: client.String("Mollie B.V."),
-            StreetAndNumber: client.String("Keizersgracht 126"),
-            StreetAdditional: client.String("Apt. 1"),
-            PostalCode: client.String("1234AB"),
-            Email: client.String("piet@example.org"),
-            Phone: client.String("31208202070"),
-            City: client.String("Amsterdam"),
-            Region: client.String("Noord-Holland"),
-            Country: client.String("NL"),
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
         },
         ShippingAddress: &components.PaymentAddress{
-            Title: client.String("Mr."),
-            GivenName: client.String("Piet"),
-            FamilyName: client.String("Mondriaan"),
-            OrganizationName: client.String("Mollie B.V."),
-            StreetAndNumber: client.String("Keizersgracht 126"),
-            StreetAdditional: client.String("Apt. 1"),
-            PostalCode: client.String("1234AB"),
-            Email: client.String("piet@example.org"),
-            Phone: client.String("31208202070"),
-            City: client.String("Amsterdam"),
-            Region: client.String("Noord-Holland"),
-            Country: client.String("NL"),
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
         },
-        Testmode: client.Bool(false),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -407,12 +407,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.PaymentLinks.Delete(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.String("123e4567-e89b-12d3-a456-426"), &operations.DeletePaymentLinkRequestBody{
-        Testmode: client.Bool(false),
+    res, err := s.PaymentLinks.Delete(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.DeletePaymentLinkRequestBody{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -470,17 +470,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.PaymentLinks.ListPayments(ctx, operations.GetPaymentLinkPaymentsRequest{
         PaymentLinkID: "pl_d9fQur83kFdhH8hIhaZfq",
-        From: client.String("tr_5B8cwPMGnU"),
-        Limit: client.Int64(50),
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

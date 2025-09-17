@@ -19,25 +19,25 @@ type GetPermissionRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPermissionRequest) GetPermissionID() string {
-	if o == nil {
+func (g *GetPermissionRequest) GetPermissionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PermissionID
+	return g.PermissionID
 }
 
-func (o *GetPermissionRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetPermissionRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetPermissionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPermissionRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetPermissionResponse struct {
@@ -46,16 +46,16 @@ type GetPermissionResponse struct {
 	EntityPermission *components.EntityPermission
 }
 
-func (o *GetPermissionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPermissionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPermissionResponse) GetEntityPermission() *components.EntityPermission {
-	if o == nil {
+func (g *GetPermissionResponse) GetEntityPermission() *components.EntityPermission {
+	if g == nil {
 		return nil
 	}
-	return o.EntityPermission
+	return g.EntityPermission
 }

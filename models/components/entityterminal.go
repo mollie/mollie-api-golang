@@ -10,18 +10,18 @@ type EntityTerminalLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *EntityTerminalLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityTerminalLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityTerminalLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (e *EntityTerminalLinks) GetDocumentation() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityTerminal struct {
@@ -59,93 +59,93 @@ type EntityTerminal struct {
 	Links EntityTerminalLinks `json:"_links"`
 }
 
-func (o *EntityTerminal) GetResource() string {
-	if o == nil {
+func (e *EntityTerminal) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityTerminal) GetID() string {
-	if o == nil {
+func (e *EntityTerminal) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityTerminal) GetMode() Mode {
-	if o == nil {
+func (e *EntityTerminal) GetMode() Mode {
+	if e == nil {
 		return Mode("")
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityTerminal) GetDescription() string {
-	if o == nil {
+func (e *EntityTerminal) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityTerminal) GetStatus() TerminalStatus {
-	if o == nil {
+func (e *EntityTerminal) GetStatus() TerminalStatus {
+	if e == nil {
 		return TerminalStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityTerminal) GetBrand() *TerminalBrand {
-	if o == nil {
+func (e *EntityTerminal) GetBrand() *TerminalBrand {
+	if e == nil {
 		return nil
 	}
-	return o.Brand
+	return e.Brand
 }
 
-func (o *EntityTerminal) GetModel() *TerminalModel {
-	if o == nil {
+func (e *EntityTerminal) GetModel() *TerminalModel {
+	if e == nil {
 		return nil
 	}
-	return o.Model
+	return e.Model
 }
 
-func (o *EntityTerminal) GetSerialNumber() *string {
-	if o == nil {
+func (e *EntityTerminal) GetSerialNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SerialNumber
+	return e.SerialNumber
 }
 
-func (o *EntityTerminal) GetCurrency() string {
-	if o == nil {
+func (e *EntityTerminal) GetCurrency() string {
+	if e == nil {
 		return ""
 	}
-	return o.Currency
+	return e.Currency
 }
 
-func (o *EntityTerminal) GetProfileID() string {
-	if o == nil {
+func (e *EntityTerminal) GetProfileID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ProfileID
+	return e.ProfileID
 }
 
-func (o *EntityTerminal) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityTerminal) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityTerminal) GetUpdatedAt() string {
-	if o == nil {
+func (e *EntityTerminal) GetUpdatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return e.UpdatedAt
 }
 
-func (o *EntityTerminal) GetLinks() EntityTerminalLinks {
-	if o == nil {
+func (e *EntityTerminal) GetLinks() EntityTerminalLinks {
+	if e == nil {
 		return EntityTerminalLinks{}
 	}
-	return o.Links
+	return e.Links
 }

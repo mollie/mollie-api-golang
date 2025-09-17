@@ -119,81 +119,81 @@ type ListMethodsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListMethodsRequest) GetSequenceType() *components.SequenceType {
-	if o == nil {
+func (l *ListMethodsRequest) GetSequenceType() *components.SequenceType {
+	if l == nil {
 		return nil
 	}
-	return o.SequenceType
+	return l.SequenceType
 }
 
-func (o *ListMethodsRequest) GetLocale() *components.LocaleParameter {
-	if o == nil {
+func (l *ListMethodsRequest) GetLocale() *components.LocaleParameter {
+	if l == nil {
 		return nil
 	}
-	return o.Locale
+	return l.Locale
 }
 
-func (o *ListMethodsRequest) GetAmount() *components.Amount {
-	if o == nil {
+func (l *ListMethodsRequest) GetAmount() *components.Amount {
+	if l == nil {
 		return nil
 	}
-	return o.Amount
+	return l.Amount
 }
 
-func (o *ListMethodsRequest) GetResource() *Resource {
-	if o == nil {
+func (l *ListMethodsRequest) GetResource() *Resource {
+	if l == nil {
 		return nil
 	}
-	return o.Resource
+	return l.Resource
 }
 
-func (o *ListMethodsRequest) GetBillingCountry() *string {
-	if o == nil {
+func (l *ListMethodsRequest) GetBillingCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.BillingCountry
+	return l.BillingCountry
 }
 
-func (o *ListMethodsRequest) GetIncludeWallets() *IncludeWallets {
-	if o == nil {
+func (l *ListMethodsRequest) GetIncludeWallets() *IncludeWallets {
+	if l == nil {
 		return nil
 	}
-	return o.IncludeWallets
+	return l.IncludeWallets
 }
 
-func (o *ListMethodsRequest) GetOrderLineCategories() *components.OrderLineCategories {
-	if o == nil {
+func (l *ListMethodsRequest) GetOrderLineCategories() *components.OrderLineCategories {
+	if l == nil {
 		return nil
 	}
-	return o.OrderLineCategories
+	return l.OrderLineCategories
 }
 
-func (o *ListMethodsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListMethodsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListMethodsRequest) GetInclude() *string {
-	if o == nil {
+func (l *ListMethodsRequest) GetInclude() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Include
+	return l.Include
 }
 
-func (o *ListMethodsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListMethodsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListMethodsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListMethodsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListMethodsEmbedded struct {
@@ -204,11 +204,11 @@ type ListMethodsEmbedded struct {
 	Methods []components.EntityMethod `json:"methods"`
 }
 
-func (o *ListMethodsEmbedded) GetMethods() []components.EntityMethod {
-	if o == nil {
+func (l *ListMethodsEmbedded) GetMethods() []components.EntityMethod {
+	if l == nil {
 		return []components.EntityMethod{}
 	}
-	return o.Methods
+	return l.Methods
 }
 
 type ListMethodsLinks struct {
@@ -218,18 +218,18 @@ type ListMethodsLinks struct {
 	Documentation components.URLObj `json:"documentation"`
 }
 
-func (o *ListMethodsLinks) GetSelf() components.URLObj {
-	if o == nil {
+func (l *ListMethodsLinks) GetSelf() components.URLObj {
+	if l == nil {
 		return components.URLObj{}
 	}
-	return o.Self
+	return l.Self
 }
 
-func (o *ListMethodsLinks) GetDocumentation() components.URLObj {
-	if o == nil {
+func (l *ListMethodsLinks) GetDocumentation() components.URLObj {
+	if l == nil {
 		return components.URLObj{}
 	}
-	return o.Documentation
+	return l.Documentation
 }
 
 // ListMethodsResponseBody - A list of payment method objects. For a complete reference of the
@@ -242,25 +242,25 @@ type ListMethodsResponseBody struct {
 	Links    ListMethodsLinks    `json:"_links"`
 }
 
-func (o *ListMethodsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListMethodsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListMethodsResponseBody) GetEmbedded() ListMethodsEmbedded {
-	if o == nil {
+func (l *ListMethodsResponseBody) GetEmbedded() ListMethodsEmbedded {
+	if l == nil {
 		return ListMethodsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListMethodsResponseBody) GetLinks() ListMethodsLinks {
-	if o == nil {
+func (l *ListMethodsResponseBody) GetLinks() ListMethodsLinks {
+	if l == nil {
 		return ListMethodsLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListMethodsResponse struct {
@@ -270,16 +270,16 @@ type ListMethodsResponse struct {
 	Object *ListMethodsResponseBody
 }
 
-func (o *ListMethodsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListMethodsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListMethodsResponse) GetObject() *ListMethodsResponseBody {
-	if o == nil {
+func (l *ListMethodsResponse) GetObject() *ListMethodsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

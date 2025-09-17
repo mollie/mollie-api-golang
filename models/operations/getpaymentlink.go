@@ -19,25 +19,25 @@ type GetPaymentLinkRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPaymentLinkRequest) GetPaymentLinkID() string {
-	if o == nil {
+func (g *GetPaymentLinkRequest) GetPaymentLinkID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentLinkID
+	return g.PaymentLinkID
 }
 
-func (o *GetPaymentLinkRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetPaymentLinkRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetPaymentLinkRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPaymentLinkRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetPaymentLinkResponse struct {
@@ -46,16 +46,16 @@ type GetPaymentLinkResponse struct {
 	PaymentLinkResponse *components.PaymentLinkResponse
 }
 
-func (o *GetPaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
-	if o == nil {
+func (g *GetPaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
+	if g == nil {
 		return nil
 	}
-	return o.PaymentLinkResponse
+	return g.PaymentLinkResponse
 }

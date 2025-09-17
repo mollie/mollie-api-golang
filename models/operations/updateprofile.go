@@ -60,60 +60,60 @@ type UpdateProfileRequestBody struct {
 	Mode *Mode `json:"mode,omitempty"`
 }
 
-func (o *UpdateProfileRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateProfileRequestBody) GetWebsite() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetWebsite() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Website
+	return u.Website
 }
 
-func (o *UpdateProfileRequestBody) GetEmail() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateProfileRequestBody) GetPhone() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetPhone() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Phone
+	return u.Phone
 }
 
-func (o *UpdateProfileRequestBody) GetDescription() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdateProfileRequestBody) GetCountriesOfActivity() []string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetCountriesOfActivity() []string {
+	if u == nil {
 		return nil
 	}
-	return o.CountriesOfActivity
+	return u.CountriesOfActivity
 }
 
-func (o *UpdateProfileRequestBody) GetBusinessCategory() *string {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetBusinessCategory() *string {
+	if u == nil {
 		return nil
 	}
-	return o.BusinessCategory
+	return u.BusinessCategory
 }
 
-func (o *UpdateProfileRequestBody) GetMode() *Mode {
-	if o == nil {
+func (u *UpdateProfileRequestBody) GetMode() *Mode {
+	if u == nil {
 		return nil
 	}
-	return o.Mode
+	return u.Mode
 }
 
 type UpdateProfileRequest struct {
@@ -124,25 +124,25 @@ type UpdateProfileRequest struct {
 	RequestBody    UpdateProfileRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateProfileRequest) GetID() string {
-	if o == nil {
+func (u *UpdateProfileRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateProfileRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdateProfileRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdateProfileRequest) GetRequestBody() UpdateProfileRequestBody {
-	if o == nil {
+func (u *UpdateProfileRequest) GetRequestBody() UpdateProfileRequestBody {
+	if u == nil {
 		return UpdateProfileRequestBody{}
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateProfileResponse struct {
@@ -151,16 +151,16 @@ type UpdateProfileResponse struct {
 	EntityProfileResponse *components.EntityProfileResponse
 }
 
-func (o *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
-	if o == nil {
+func (u *UpdateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+	if u == nil {
 		return nil
 	}
-	return o.EntityProfileResponse
+	return u.EntityProfileResponse
 }

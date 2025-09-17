@@ -14,25 +14,25 @@ type CreatePaymentRequest struct {
 	PaymentRequest *components.PaymentRequest `request:"mediaType=application/json"`
 }
 
-func (o *CreatePaymentRequest) GetInclude() *string {
-	if o == nil {
+func (c *CreatePaymentRequest) GetInclude() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Include
+	return c.Include
 }
 
-func (o *CreatePaymentRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreatePaymentRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreatePaymentRequest) GetPaymentRequest() *components.PaymentRequest {
-	if o == nil {
+func (c *CreatePaymentRequest) GetPaymentRequest() *components.PaymentRequest {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentRequest
+	return c.PaymentRequest
 }
 
 type CreatePaymentResponse struct {
@@ -41,16 +41,16 @@ type CreatePaymentResponse struct {
 	PaymentResponse *components.PaymentResponse
 }
 
-func (o *CreatePaymentResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreatePaymentResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreatePaymentResponse) GetPaymentResponse() *components.PaymentResponse {
-	if o == nil {
+func (c *CreatePaymentResponse) GetPaymentResponse() *components.PaymentResponse {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentResponse
+	return c.PaymentResponse
 }

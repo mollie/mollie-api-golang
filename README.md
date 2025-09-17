@@ -65,16 +65,16 @@ func main() {
 
 	s := client.New(
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -117,16 +117,16 @@ func main() {
 
 	s := client.New(
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -342,16 +342,16 @@ func main() {
 
 	s := client.New(
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -403,16 +403,16 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -460,16 +460,16 @@ func main() {
 
 	s := client.New(
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
 
@@ -514,16 +514,16 @@ func main() {
 	s := client.New(
 		client.WithServerURL("https://api.mollie.com/v2"),
 		client.WithSecurity(components.Security{
-			APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.String("EUR"),
-		From:           client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Int64(50),
-		Testmode:       client.Bool(false),
-		IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		Testmode:       client.Pointer(false),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
 		log.Fatal(err)

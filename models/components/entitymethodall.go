@@ -13,25 +13,25 @@ type EntityMethodAllImage struct {
 	Svg string `json:"svg"`
 }
 
-func (o *EntityMethodAllImage) GetSize1x() string {
-	if o == nil {
+func (e *EntityMethodAllImage) GetSize1x() string {
+	if e == nil {
 		return ""
 	}
-	return o.Size1x
+	return e.Size1x
 }
 
-func (o *EntityMethodAllImage) GetSize2x() string {
-	if o == nil {
+func (e *EntityMethodAllImage) GetSize2x() string {
+	if e == nil {
 		return ""
 	}
-	return o.Size2x
+	return e.Size2x
 }
 
-func (o *EntityMethodAllImage) GetSvg() string {
-	if o == nil {
+func (e *EntityMethodAllImage) GetSvg() string {
+	if e == nil {
 		return ""
 	}
-	return o.Svg
+	return e.Svg
 }
 
 // EntityMethodAllIssuerImage - URLs of images representing the issuer.
@@ -49,25 +49,25 @@ type EntityMethodAllIssuerImage struct {
 	Svg *string `json:"svg,omitempty"`
 }
 
-func (o *EntityMethodAllIssuerImage) GetSize1x() *string {
-	if o == nil {
+func (e *EntityMethodAllIssuerImage) GetSize1x() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Size1x
+	return e.Size1x
 }
 
-func (o *EntityMethodAllIssuerImage) GetSize2x() *string {
-	if o == nil {
+func (e *EntityMethodAllIssuerImage) GetSize2x() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Size2x
+	return e.Size2x
 }
 
-func (o *EntityMethodAllIssuerImage) GetSvg() *string {
-	if o == nil {
+func (e *EntityMethodAllIssuerImage) GetSvg() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Svg
+	return e.Svg
 }
 
 type EntityMethodAllIssuer struct {
@@ -83,32 +83,32 @@ type EntityMethodAllIssuer struct {
 	Image EntityMethodAllIssuerImage `json:"image"`
 }
 
-func (o *EntityMethodAllIssuer) GetResource() string {
-	if o == nil {
+func (e *EntityMethodAllIssuer) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityMethodAllIssuer) GetID() string {
-	if o == nil {
+func (e *EntityMethodAllIssuer) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityMethodAllIssuer) GetName() string {
-	if o == nil {
+func (e *EntityMethodAllIssuer) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityMethodAllIssuer) GetImage() EntityMethodAllIssuerImage {
-	if o == nil {
+func (e *EntityMethodAllIssuer) GetImage() EntityMethodAllIssuerImage {
+	if e == nil {
 		return EntityMethodAllIssuerImage{}
 	}
-	return o.Image
+	return e.Image
 }
 
 // EntityMethodAllLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -119,18 +119,18 @@ type EntityMethodAllLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityMethodAllLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityMethodAllLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityMethodAllLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityMethodAllLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type Pricing struct {
@@ -146,32 +146,32 @@ type Pricing struct {
 	FeeRegion *string `json:"feeRegion,omitempty"`
 }
 
-func (o *Pricing) GetDescription() string {
-	if o == nil {
+func (p *Pricing) GetDescription() string {
+	if p == nil {
 		return ""
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *Pricing) GetFixed() Amount {
-	if o == nil {
+func (p *Pricing) GetFixed() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.Fixed
+	return p.Fixed
 }
 
-func (o *Pricing) GetVariable() string {
-	if o == nil {
+func (p *Pricing) GetVariable() string {
+	if p == nil {
 		return ""
 	}
-	return o.Variable
+	return p.Variable
 }
 
-func (o *Pricing) GetFeeRegion() *string {
-	if o == nil {
+func (p *Pricing) GetFeeRegion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FeeRegion
+	return p.FeeRegion
 }
 
 type EntityMethodAll struct {
@@ -208,72 +208,72 @@ type EntityMethodAll struct {
 	Pricing []Pricing `json:"pricing,omitempty"`
 }
 
-func (o *EntityMethodAll) GetResource() string {
-	if o == nil {
+func (e *EntityMethodAll) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityMethodAll) GetID() *MethodResponse {
-	if o == nil {
+func (e *EntityMethodAll) GetID() *MethodResponse {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityMethodAll) GetDescription() string {
-	if o == nil {
+func (e *EntityMethodAll) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityMethodAll) GetMinimumAmount() Amount {
-	if o == nil {
+func (e *EntityMethodAll) GetMinimumAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.MinimumAmount
+	return e.MinimumAmount
 }
 
-func (o *EntityMethodAll) GetMaximumAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityMethodAll) GetMaximumAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.MaximumAmount
+	return e.MaximumAmount
 }
 
-func (o *EntityMethodAll) GetImage() EntityMethodAllImage {
-	if o == nil {
+func (e *EntityMethodAll) GetImage() EntityMethodAllImage {
+	if e == nil {
 		return EntityMethodAllImage{}
 	}
-	return o.Image
+	return e.Image
 }
 
-func (o *EntityMethodAll) GetStatus() MethodStatus {
-	if o == nil {
+func (e *EntityMethodAll) GetStatus() MethodStatus {
+	if e == nil {
 		return MethodStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityMethodAll) GetIssuers() []EntityMethodAllIssuer {
-	if o == nil {
+func (e *EntityMethodAll) GetIssuers() []EntityMethodAllIssuer {
+	if e == nil {
 		return nil
 	}
-	return o.Issuers
+	return e.Issuers
 }
 
-func (o *EntityMethodAll) GetLinks() EntityMethodAllLinks {
-	if o == nil {
+func (e *EntityMethodAll) GetLinks() EntityMethodAllLinks {
+	if e == nil {
 		return EntityMethodAllLinks{}
 	}
-	return o.Links
+	return e.Links
 }
 
-func (o *EntityMethodAll) GetPricing() []Pricing {
-	if o == nil {
+func (e *EntityMethodAll) GetPricing() []Pricing {
+	if e == nil {
 		return nil
 	}
-	return o.Pricing
+	return e.Pricing
 }

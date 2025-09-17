@@ -31,18 +31,18 @@ func (p *PaymentLinkResponseApplicationFee) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentLinkResponseApplicationFee) GetAmount() Amount {
-	if o == nil {
+func (p *PaymentLinkResponseApplicationFee) GetAmount() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return p.Amount
 }
 
-func (o *PaymentLinkResponseApplicationFee) GetDescription() string {
-	if o == nil {
+func (p *PaymentLinkResponseApplicationFee) GetDescription() string {
+	if p == nil {
 		return ""
 	}
-	return o.Description
+	return p.Description
 }
 
 // PaymentLinkResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -64,18 +64,18 @@ func (p *PaymentLinkResponseLinks) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentLinkResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (p *PaymentLinkResponseLinks) GetSelf() URLObj {
+	if p == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return p.Self
 }
 
-func (o *PaymentLinkResponseLinks) GetPaymentLink() URLObj {
-	if o == nil {
+func (p *PaymentLinkResponseLinks) GetPaymentLink() URLObj {
+	if p == nil {
 		return URLObj{}
 	}
-	return o.PaymentLink
+	return p.PaymentLink
 }
 
 type PaymentLinkResponse struct {
@@ -169,156 +169,156 @@ func (p *PaymentLinkResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentLinkResponse) GetResource() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetResource() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Resource
+	return p.Resource
 }
 
-func (o *PaymentLinkResponse) GetID() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PaymentLinkResponse) GetMode() *Mode {
-	if o == nil {
+func (p *PaymentLinkResponse) GetMode() *Mode {
+	if p == nil {
 		return nil
 	}
-	return o.Mode
+	return p.Mode
 }
 
-func (o *PaymentLinkResponse) GetDescription() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *PaymentLinkResponse) GetAmount() *AmountNullable {
-	if o == nil {
+func (p *PaymentLinkResponse) GetAmount() *AmountNullable {
+	if p == nil {
 		return nil
 	}
-	return o.Amount
+	return p.Amount
 }
 
-func (o *PaymentLinkResponse) GetMinimumAmount() *AmountNullable {
-	if o == nil {
+func (p *PaymentLinkResponse) GetMinimumAmount() *AmountNullable {
+	if p == nil {
 		return nil
 	}
-	return o.MinimumAmount
+	return p.MinimumAmount
 }
 
-func (o *PaymentLinkResponse) GetArchived() *bool {
-	if o == nil {
+func (p *PaymentLinkResponse) GetArchived() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Archived
+	return p.Archived
 }
 
-func (o *PaymentLinkResponse) GetRedirectURL() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetRedirectURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RedirectURL
+	return p.RedirectURL
 }
 
-func (o *PaymentLinkResponse) GetWebhookURL() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetWebhookURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return p.WebhookURL
 }
 
-func (o *PaymentLinkResponse) GetLines() []PaymentLineItemResponse {
-	if o == nil {
+func (p *PaymentLinkResponse) GetLines() []PaymentLineItemResponse {
+	if p == nil {
 		return nil
 	}
-	return o.Lines
+	return p.Lines
 }
 
-func (o *PaymentLinkResponse) GetBillingAddress() *PaymentAddress {
-	if o == nil {
+func (p *PaymentLinkResponse) GetBillingAddress() *PaymentAddress {
+	if p == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return p.BillingAddress
 }
 
-func (o *PaymentLinkResponse) GetShippingAddress() *PaymentAddress {
-	if o == nil {
+func (p *PaymentLinkResponse) GetShippingAddress() *PaymentAddress {
+	if p == nil {
 		return nil
 	}
-	return o.ShippingAddress
+	return p.ShippingAddress
 }
 
-func (o *PaymentLinkResponse) GetProfileID() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetProfileID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ProfileID
+	return p.ProfileID
 }
 
-func (o *PaymentLinkResponse) GetReusable() *bool {
-	if o == nil {
+func (p *PaymentLinkResponse) GetReusable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Reusable
+	return p.Reusable
 }
 
-func (o *PaymentLinkResponse) GetCreatedAt() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetCreatedAt() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *PaymentLinkResponse) GetPaidAt() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetPaidAt() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaidAt
+	return p.PaidAt
 }
 
-func (o *PaymentLinkResponse) GetExpiresAt() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetExpiresAt() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return p.ExpiresAt
 }
 
-func (o *PaymentLinkResponse) GetAllowedMethods() []string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetAllowedMethods() []string {
+	if p == nil {
 		return nil
 	}
-	return o.AllowedMethods
+	return p.AllowedMethods
 }
 
-func (o *PaymentLinkResponse) GetApplicationFee() *PaymentLinkResponseApplicationFee {
-	if o == nil {
+func (p *PaymentLinkResponse) GetApplicationFee() *PaymentLinkResponseApplicationFee {
+	if p == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return p.ApplicationFee
 }
 
-func (o *PaymentLinkResponse) GetSequenceType() *PaymentLinkSequenceTypeResponse {
-	if o == nil {
+func (p *PaymentLinkResponse) GetSequenceType() *PaymentLinkSequenceTypeResponse {
+	if p == nil {
 		return nil
 	}
-	return o.SequenceType
+	return p.SequenceType
 }
 
-func (o *PaymentLinkResponse) GetCustomerID() *string {
-	if o == nil {
+func (p *PaymentLinkResponse) GetCustomerID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CustomerID
+	return p.CustomerID
 }
 
-func (o *PaymentLinkResponse) GetLinks() *PaymentLinkResponseLinks {
-	if o == nil {
+func (p *PaymentLinkResponse) GetLinks() *PaymentLinkResponseLinks {
+	if p == nil {
 		return nil
 	}
-	return o.Links
+	return p.Links
 }

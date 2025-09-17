@@ -13,18 +13,18 @@ type GetSettlementRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetSettlementRequest) GetID() string {
-	if o == nil {
+func (g *GetSettlementRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSettlementRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetSettlementRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetSettlementResponse struct {
@@ -33,16 +33,16 @@ type GetSettlementResponse struct {
 	EntitySettlement *components.EntitySettlement
 }
 
-func (o *GetSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
-	if o == nil {
+func (g *GetSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
+	if g == nil {
 		return nil
 	}
-	return o.EntitySettlement
+	return g.EntitySettlement
 }

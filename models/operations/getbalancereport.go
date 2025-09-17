@@ -68,46 +68,46 @@ type GetBalanceReportRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetBalanceReportRequest) GetBalanceID() string {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetBalanceID() string {
+	if g == nil {
 		return ""
 	}
-	return o.BalanceID
+	return g.BalanceID
 }
 
-func (o *GetBalanceReportRequest) GetFrom() string {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetFrom() string {
+	if g == nil {
 		return ""
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetBalanceReportRequest) GetUntil() string {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetUntil() string {
+	if g == nil {
 		return ""
 	}
-	return o.Until
+	return g.Until
 }
 
-func (o *GetBalanceReportRequest) GetGrouping() *Grouping {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetGrouping() *Grouping {
+	if g == nil {
 		return nil
 	}
-	return o.Grouping
+	return g.Grouping
 }
 
-func (o *GetBalanceReportRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetBalanceReportRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetBalanceReportRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetBalanceReportResponse struct {
@@ -116,16 +116,16 @@ type GetBalanceReportResponse struct {
 	EntityBalanceReport *components.EntityBalanceReport
 }
 
-func (o *GetBalanceReportResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetBalanceReportResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetBalanceReportResponse) GetEntityBalanceReport() *components.EntityBalanceReport {
-	if o == nil {
+func (g *GetBalanceReportResponse) GetEntityBalanceReport() *components.EntityBalanceReport {
+	if g == nil {
 		return nil
 	}
-	return o.EntityBalanceReport
+	return g.EntityBalanceReport
 }

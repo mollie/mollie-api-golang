@@ -21,18 +21,18 @@ type ReleaseAuthorizationRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *ReleaseAuthorizationRequestBody) GetProfileID() *string {
-	if o == nil {
+func (r *ReleaseAuthorizationRequestBody) GetProfileID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ProfileID
+	return r.ProfileID
 }
 
-func (o *ReleaseAuthorizationRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (r *ReleaseAuthorizationRequestBody) GetTestmode() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Testmode
+	return r.Testmode
 }
 
 type ReleaseAuthorizationRequest struct {
@@ -43,25 +43,25 @@ type ReleaseAuthorizationRequest struct {
 	RequestBody    *ReleaseAuthorizationRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *ReleaseAuthorizationRequest) GetPaymentID() string {
-	if o == nil {
+func (r *ReleaseAuthorizationRequest) GetPaymentID() string {
+	if r == nil {
 		return ""
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReleaseAuthorizationRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (r *ReleaseAuthorizationRequest) GetIdempotencyKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return r.IdempotencyKey
 }
 
-func (o *ReleaseAuthorizationRequest) GetRequestBody() *ReleaseAuthorizationRequestBody {
-	if o == nil {
+func (r *ReleaseAuthorizationRequest) GetRequestBody() *ReleaseAuthorizationRequestBody {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type ReleaseAuthorizationResponse struct {
@@ -70,16 +70,16 @@ type ReleaseAuthorizationResponse struct {
 	Any any
 }
 
-func (o *ReleaseAuthorizationResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (r *ReleaseAuthorizationResponse) GetHTTPMeta() components.HTTPMetadata {
+	if r == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return r.HTTPMeta
 }
 
-func (o *ReleaseAuthorizationResponse) GetAny() any {
-	if o == nil {
+func (r *ReleaseAuthorizationResponse) GetAny() any {
+	if r == nil {
 		return nil
 	}
-	return o.Any
+	return r.Any
 }

@@ -10,18 +10,18 @@ type EntityPermissionLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityPermissionLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityPermissionLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityPermissionLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityPermissionLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityPermission struct {
@@ -37,37 +37,37 @@ type EntityPermission struct {
 	Links *EntityPermissionLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityPermission) GetResource() *string {
-	if o == nil {
+func (e *EntityPermission) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityPermission) GetID() *string {
-	if o == nil {
+func (e *EntityPermission) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityPermission) GetDescription() *string {
-	if o == nil {
+func (e *EntityPermission) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityPermission) GetGranted() *bool {
-	if o == nil {
+func (e *EntityPermission) GetGranted() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Granted
+	return e.Granted
 }
 
-func (o *EntityPermission) GetLinks() *EntityPermissionLinks {
-	if o == nil {
+func (e *EntityPermission) GetLinks() *EntityPermissionLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

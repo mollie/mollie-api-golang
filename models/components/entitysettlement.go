@@ -20,53 +20,53 @@ type EntitySettlementLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntitySettlementLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntitySettlementLinks) GetPayments() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetPayments() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Payments
+	return e.Payments
 }
 
-func (o *EntitySettlementLinks) GetCaptures() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetCaptures() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Captures
+	return e.Captures
 }
 
-func (o *EntitySettlementLinks) GetRefunds() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetRefunds() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Refunds
+	return e.Refunds
 }
 
-func (o *EntitySettlementLinks) GetChargebacks() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetChargebacks() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Chargebacks
+	return e.Chargebacks
 }
 
-func (o *EntitySettlementLinks) GetInvoice() *URLNullable {
-	if o == nil {
+func (e *EntitySettlementLinks) GetInvoice() *URLNullable {
+	if e == nil {
 		return nil
 	}
-	return o.Invoice
+	return e.Invoice
 }
 
-func (o *EntitySettlementLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntitySettlementLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntitySettlement struct {
@@ -104,79 +104,79 @@ type EntitySettlement struct {
 	Links *EntitySettlementLinks `json:"_links,omitempty"`
 }
 
-func (o *EntitySettlement) GetResource() *string {
-	if o == nil {
+func (e *EntitySettlement) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntitySettlement) GetID() *string {
-	if o == nil {
+func (e *EntitySettlement) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntitySettlement) GetCreatedAt() *string {
-	if o == nil {
+func (e *EntitySettlement) GetCreatedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntitySettlement) GetReference() *string {
-	if o == nil {
+func (e *EntitySettlement) GetReference() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Reference
+	return e.Reference
 }
 
-func (o *EntitySettlement) GetSettledAt() *string {
-	if o == nil {
+func (e *EntitySettlement) GetSettledAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SettledAt
+	return e.SettledAt
 }
 
-func (o *EntitySettlement) GetStatus() *SettlementStatus {
-	if o == nil {
+func (e *EntitySettlement) GetStatus() *SettlementStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntitySettlement) GetAmount() *Amount {
-	if o == nil {
+func (e *EntitySettlement) GetAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntitySettlement) GetBalanceID() *string {
-	if o == nil {
+func (e *EntitySettlement) GetBalanceID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.BalanceID
+	return e.BalanceID
 }
 
-func (o *EntitySettlement) GetInvoiceID() *string {
-	if o == nil {
+func (e *EntitySettlement) GetInvoiceID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return e.InvoiceID
 }
 
-func (o *EntitySettlement) GetPeriods() map[string]any {
-	if o == nil {
+func (e *EntitySettlement) GetPeriods() map[string]any {
+	if e == nil {
 		return nil
 	}
-	return o.Periods
+	return e.Periods
 }
 
-func (o *EntitySettlement) GetLinks() *EntitySettlementLinks {
-	if o == nil {
+func (e *EntitySettlement) GetLinks() *EntitySettlementLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

@@ -13,18 +13,18 @@ type DeleteProfileRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *DeleteProfileRequest) GetID() string {
-	if o == nil {
+func (d *DeleteProfileRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DeleteProfileRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (d *DeleteProfileRequest) GetIdempotencyKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return d.IdempotencyKey
 }
 
 type DeleteProfileResponse struct {
@@ -33,16 +33,16 @@ type DeleteProfileResponse struct {
 	Any any
 }
 
-func (o *DeleteProfileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeleteProfileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }
 
-func (o *DeleteProfileResponse) GetAny() any {
-	if o == nil {
+func (d *DeleteProfileResponse) GetAny() any {
+	if d == nil {
 		return nil
 	}
-	return o.Any
+	return d.Any
 }

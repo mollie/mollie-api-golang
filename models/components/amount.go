@@ -25,16 +25,16 @@ func (a *Amount) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Amount) GetCurrency() string {
-	if o == nil {
+func (a *Amount) GetCurrency() string {
+	if a == nil {
 		return ""
 	}
-	return o.Currency
+	return a.Currency
 }
 
-func (o *Amount) GetValue() string {
-	if o == nil {
+func (a *Amount) GetValue() string {
+	if a == nil {
 		return ""
 	}
-	return o.Value
+	return a.Value
 }

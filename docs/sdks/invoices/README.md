@@ -35,18 +35,18 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
-        Reference: client.String("2024.10000"),
-        Year: client.String("2024"),
-        Month: client.String("01"),
-        From: client.String("inv_xBEbP9rvAq"),
-        Limit: client.Int64(50),
+        Reference: client.Pointer("2024.10000"),
+        Year: client.Pointer("2024"),
+        Month: client.Pointer("01"),
+        From: client.Pointer("inv_xBEbP9rvAq"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -102,11 +102,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Invoices.Get(ctx, "inv_FrvewDA3Pr", client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Invoices.Get(ctx, "inv_FrvewDA3Pr", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }

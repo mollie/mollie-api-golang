@@ -14,25 +14,25 @@ type CreateRefundRequest struct {
 	EntityRefund   *components.EntityRefund `request:"mediaType=application/json"`
 }
 
-func (o *CreateRefundRequest) GetPaymentID() string {
-	if o == nil {
+func (c *CreateRefundRequest) GetPaymentID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CreateRefundRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateRefundRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateRefundRequest) GetEntityRefund() *components.EntityRefund {
-	if o == nil {
+func (c *CreateRefundRequest) GetEntityRefund() *components.EntityRefund {
+	if c == nil {
 		return nil
 	}
-	return o.EntityRefund
+	return c.EntityRefund
 }
 
 type CreateRefundResponse struct {
@@ -41,16 +41,16 @@ type CreateRefundResponse struct {
 	EntityRefundResponse *components.EntityRefundResponse
 }
 
-func (o *CreateRefundResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateRefundResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
-	if o == nil {
+func (c *CreateRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
+	if c == nil {
 		return nil
 	}
-	return o.EntityRefundResponse
+	return c.EntityRefundResponse
 }

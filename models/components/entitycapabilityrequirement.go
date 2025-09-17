@@ -11,18 +11,18 @@ type Dashboard struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *Dashboard) GetHref() *string {
-	if o == nil {
+func (d *Dashboard) GetHref() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Href
+	return d.Href
 }
 
-func (o *Dashboard) GetType() *string {
-	if o == nil {
+func (d *Dashboard) GetType() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Type
+	return d.Type
 }
 
 type EntityCapabilityRequirementLinks struct {
@@ -31,11 +31,11 @@ type EntityCapabilityRequirementLinks struct {
 	Dashboard *Dashboard `json:"dashboard,omitempty"`
 }
 
-func (o *EntityCapabilityRequirementLinks) GetDashboard() *Dashboard {
-	if o == nil {
+func (e *EntityCapabilityRequirementLinks) GetDashboard() *Dashboard {
+	if e == nil {
 		return nil
 	}
-	return o.Dashboard
+	return e.Dashboard
 }
 
 type EntityCapabilityRequirement struct {
@@ -51,30 +51,30 @@ type EntityCapabilityRequirement struct {
 	Links   *EntityCapabilityRequirementLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityCapabilityRequirement) GetID() *string {
-	if o == nil {
+func (e *EntityCapabilityRequirement) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCapabilityRequirement) GetStatus() *CapabilityRequirementStatus {
-	if o == nil {
+func (e *EntityCapabilityRequirement) GetStatus() *CapabilityRequirementStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityCapabilityRequirement) GetDueDate() *string {
-	if o == nil {
+func (e *EntityCapabilityRequirement) GetDueDate() *string {
+	if e == nil {
 		return nil
 	}
-	return o.DueDate
+	return e.DueDate
 }
 
-func (o *EntityCapabilityRequirement) GetLinks() *EntityCapabilityRequirementLinks {
-	if o == nil {
+func (e *EntityCapabilityRequirement) GetLinks() *EntityCapabilityRequirementLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

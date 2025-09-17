@@ -10,16 +10,16 @@ type URLNullable struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *URLNullable) GetHref() *string {
-	if o == nil {
+func (u *URLNullable) GetHref() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Href
+	return u.Href
 }
 
-func (o *URLNullable) GetType() *string {
-	if o == nil {
+func (u *URLNullable) GetType() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Type
+	return u.Type
 }

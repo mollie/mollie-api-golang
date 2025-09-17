@@ -24,39 +24,39 @@ type GetRefundRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetRefundRequest) GetPaymentID() string {
-	if o == nil {
+func (g *GetRefundRequest) GetPaymentID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentID
+	return g.PaymentID
 }
 
-func (o *GetRefundRequest) GetRefundID() string {
-	if o == nil {
+func (g *GetRefundRequest) GetRefundID() string {
+	if g == nil {
 		return ""
 	}
-	return o.RefundID
+	return g.RefundID
 }
 
-func (o *GetRefundRequest) GetEmbed() *string {
-	if o == nil {
+func (g *GetRefundRequest) GetEmbed() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Embed
+	return g.Embed
 }
 
-func (o *GetRefundRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetRefundRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetRefundRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetRefundRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetRefundResponse struct {
@@ -65,16 +65,16 @@ type GetRefundResponse struct {
 	EntityRefundResponse *components.EntityRefundResponse
 }
 
-func (o *GetRefundResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetRefundResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
-	if o == nil {
+func (g *GetRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
+	if g == nil {
 		return nil
 	}
-	return o.EntityRefundResponse
+	return g.EntityRefundResponse
 }

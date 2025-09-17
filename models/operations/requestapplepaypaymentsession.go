@@ -26,25 +26,25 @@ type RequestApplePayPaymentSessionRequestBody struct {
 	ProfileID *string `json:"profileId,omitempty"`
 }
 
-func (o *RequestApplePayPaymentSessionRequestBody) GetValidationURL() string {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionRequestBody) GetValidationURL() string {
+	if r == nil {
 		return ""
 	}
-	return o.ValidationURL
+	return r.ValidationURL
 }
 
-func (o *RequestApplePayPaymentSessionRequestBody) GetDomain() string {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionRequestBody) GetDomain() string {
+	if r == nil {
 		return ""
 	}
-	return o.Domain
+	return r.Domain
 }
 
-func (o *RequestApplePayPaymentSessionRequestBody) GetProfileID() *string {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionRequestBody) GetProfileID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ProfileID
+	return r.ProfileID
 }
 
 type RequestApplePayPaymentSessionRequest struct {
@@ -53,18 +53,18 @@ type RequestApplePayPaymentSessionRequest struct {
 	RequestBody    *RequestApplePayPaymentSessionRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *RequestApplePayPaymentSessionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionRequest) GetIdempotencyKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return r.IdempotencyKey
 }
 
-func (o *RequestApplePayPaymentSessionRequest) GetRequestBody() *RequestApplePayPaymentSessionRequestBody {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionRequest) GetRequestBody() *RequestApplePayPaymentSessionRequestBody {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type RequestApplePayPaymentSessionResponse struct {
@@ -74,16 +74,16 @@ type RequestApplePayPaymentSessionResponse struct {
 	EntitySession map[string]any
 }
 
-func (o *RequestApplePayPaymentSessionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if r == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return r.HTTPMeta
 }
 
-func (o *RequestApplePayPaymentSessionResponse) GetEntitySession() map[string]any {
-	if o == nil {
+func (r *RequestApplePayPaymentSessionResponse) GetEntitySession() map[string]any {
+	if r == nil {
 		return nil
 	}
-	return o.EntitySession
+	return r.EntitySession
 }

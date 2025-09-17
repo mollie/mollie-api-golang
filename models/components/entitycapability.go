@@ -12,37 +12,37 @@ type EntityCapability struct {
 	Requirements []EntityCapabilityRequirement `json:"requirements,omitempty"`
 }
 
-func (o *EntityCapability) GetResource() *string {
-	if o == nil {
+func (e *EntityCapability) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityCapability) GetName() *string {
-	if o == nil {
+func (e *EntityCapability) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityCapability) GetStatus() *CapabilityStatus {
-	if o == nil {
+func (e *EntityCapability) GetStatus() *CapabilityStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityCapability) GetStatusReason() *CapabilityStatusReason {
-	if o == nil {
+func (e *EntityCapability) GetStatusReason() *CapabilityStatusReason {
+	if e == nil {
 		return nil
 	}
-	return o.StatusReason
+	return e.StatusReason
 }
 
-func (o *EntityCapability) GetRequirements() []EntityCapabilityRequirement {
-	if o == nil {
+func (e *EntityCapability) GetRequirements() []EntityCapabilityRequirement {
+	if e == nil {
 		return nil
 	}
-	return o.Requirements
+	return e.Requirements
 }

@@ -25,11 +25,11 @@ func (r *Review) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Review) GetStatus() *ProfileReviewStatusResponse {
-	if o == nil {
+func (r *Review) GetStatus() *ProfileReviewStatusResponse {
+	if r == nil {
 		return nil
 	}
-	return o.Status
+	return r.Status
 }
 
 // EntityProfileResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -63,60 +63,60 @@ func (e *EntityProfileResponseLinks) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityProfileResponseLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityProfileResponseLinks) GetDashboard() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetDashboard() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Dashboard
+	return e.Dashboard
 }
 
-func (o *EntityProfileResponseLinks) GetChargebacks() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetChargebacks() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Chargebacks
+	return e.Chargebacks
 }
 
-func (o *EntityProfileResponseLinks) GetMethods() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetMethods() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Methods
+	return e.Methods
 }
 
-func (o *EntityProfileResponseLinks) GetPayments() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetPayments() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Payments
+	return e.Payments
 }
 
-func (o *EntityProfileResponseLinks) GetRefunds() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetRefunds() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Refunds
+	return e.Refunds
 }
 
-func (o *EntityProfileResponseLinks) GetCheckoutPreviewURL() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetCheckoutPreviewURL() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.CheckoutPreviewURL
+	return e.CheckoutPreviewURL
 }
 
-func (o *EntityProfileResponseLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityProfileResponseLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityProfileResponse struct {
@@ -171,100 +171,100 @@ func (e *EntityProfileResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityProfileResponse) GetResource() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityProfileResponse) GetID() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityProfileResponse) GetMode() *Mode {
-	if o == nil {
+func (e *EntityProfileResponse) GetMode() *Mode {
+	if e == nil {
 		return nil
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityProfileResponse) GetName() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityProfileResponse) GetWebsite() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetWebsite() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Website
+	return e.Website
 }
 
-func (o *EntityProfileResponse) GetEmail() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetEmail() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Email
+	return e.Email
 }
 
-func (o *EntityProfileResponse) GetPhone() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetPhone() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Phone
+	return e.Phone
 }
 
-func (o *EntityProfileResponse) GetDescription() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityProfileResponse) GetCountriesOfActivity() []string {
-	if o == nil {
+func (e *EntityProfileResponse) GetCountriesOfActivity() []string {
+	if e == nil {
 		return nil
 	}
-	return o.CountriesOfActivity
+	return e.CountriesOfActivity
 }
 
-func (o *EntityProfileResponse) GetBusinessCategory() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetBusinessCategory() *string {
+	if e == nil {
 		return nil
 	}
-	return o.BusinessCategory
+	return e.BusinessCategory
 }
 
-func (o *EntityProfileResponse) GetStatus() *ProfileStatus {
-	if o == nil {
+func (e *EntityProfileResponse) GetStatus() *ProfileStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityProfileResponse) GetReview() *Review {
-	if o == nil {
+func (e *EntityProfileResponse) GetReview() *Review {
+	if e == nil {
 		return nil
 	}
-	return o.Review
+	return e.Review
 }
 
-func (o *EntityProfileResponse) GetCreatedAt() *string {
-	if o == nil {
+func (e *EntityProfileResponse) GetCreatedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityProfileResponse) GetLinks() *EntityProfileResponseLinks {
-	if o == nil {
+func (e *EntityProfileResponse) GetLinks() *EntityProfileResponseLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

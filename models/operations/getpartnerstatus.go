@@ -13,11 +13,11 @@ type GetPartnerStatusRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPartnerStatusRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPartnerStatusRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 // PartnerType - Indicates the type of partner. Will be `null` if the currently authenticated organization is not
@@ -61,25 +61,25 @@ type UserAgentToken struct {
 	EndsAt *string `json:"endsAt,omitempty"`
 }
 
-func (o *UserAgentToken) GetToken() *string {
-	if o == nil {
+func (u *UserAgentToken) GetToken() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Token
+	return u.Token
 }
 
-func (o *UserAgentToken) GetStartsAt() *string {
-	if o == nil {
+func (u *UserAgentToken) GetStartsAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.StartsAt
+	return u.StartsAt
 }
 
-func (o *UserAgentToken) GetEndsAt() *string {
-	if o == nil {
+func (u *UserAgentToken) GetEndsAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.EndsAt
+	return u.EndsAt
 }
 
 // GetPartnerStatusLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -92,25 +92,25 @@ type GetPartnerStatusLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *GetPartnerStatusLinks) GetSelf() *components.URLObj {
-	if o == nil {
+func (g *GetPartnerStatusLinks) GetSelf() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Self
+	return g.Self
 }
 
-func (o *GetPartnerStatusLinks) GetSignuplink() *components.URLObj {
-	if o == nil {
+func (g *GetPartnerStatusLinks) GetSignuplink() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Signuplink
+	return g.Signuplink
 }
 
-func (o *GetPartnerStatusLinks) GetDocumentation() *components.URLObj {
-	if o == nil {
+func (g *GetPartnerStatusLinks) GetDocumentation() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Documentation
+	return g.Documentation
 }
 
 // GetPartnerStatusResponseBody - The partner status object.
@@ -138,60 +138,60 @@ type GetPartnerStatusResponseBody struct {
 	Links *GetPartnerStatusLinks `json:"_links,omitempty"`
 }
 
-func (o *GetPartnerStatusResponseBody) GetResource() string {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetResource() string {
+	if g == nil {
 		return ""
 	}
-	return o.Resource
+	return g.Resource
 }
 
-func (o *GetPartnerStatusResponseBody) GetPartnerType() *PartnerType {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetPartnerType() *PartnerType {
+	if g == nil {
 		return nil
 	}
-	return o.PartnerType
+	return g.PartnerType
 }
 
-func (o *GetPartnerStatusResponseBody) GetIsCommissionPartner() *bool {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetIsCommissionPartner() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsCommissionPartner
+	return g.IsCommissionPartner
 }
 
-func (o *GetPartnerStatusResponseBody) GetUserAgentTokens() []UserAgentToken {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetUserAgentTokens() []UserAgentToken {
+	if g == nil {
 		return nil
 	}
-	return o.UserAgentTokens
+	return g.UserAgentTokens
 }
 
-func (o *GetPartnerStatusResponseBody) GetPartnerContractSignedAt() *string {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetPartnerContractSignedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PartnerContractSignedAt
+	return g.PartnerContractSignedAt
 }
 
-func (o *GetPartnerStatusResponseBody) GetPartnerContractUpdateAvailable() *bool {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetPartnerContractUpdateAvailable() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.PartnerContractUpdateAvailable
+	return g.PartnerContractUpdateAvailable
 }
 
-func (o *GetPartnerStatusResponseBody) GetPartnerContractExpiresAt() *string {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetPartnerContractExpiresAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PartnerContractExpiresAt
+	return g.PartnerContractExpiresAt
 }
 
-func (o *GetPartnerStatusResponseBody) GetLinks() *GetPartnerStatusLinks {
-	if o == nil {
+func (g *GetPartnerStatusResponseBody) GetLinks() *GetPartnerStatusLinks {
+	if g == nil {
 		return nil
 	}
-	return o.Links
+	return g.Links
 }
 
 type GetPartnerStatusResponse struct {
@@ -200,16 +200,16 @@ type GetPartnerStatusResponse struct {
 	Object *GetPartnerStatusResponseBody
 }
 
-func (o *GetPartnerStatusResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPartnerStatusResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPartnerStatusResponse) GetObject() *GetPartnerStatusResponseBody {
-	if o == nil {
+func (g *GetPartnerStatusResponse) GetObject() *GetPartnerStatusResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

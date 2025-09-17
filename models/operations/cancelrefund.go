@@ -21,32 +21,32 @@ type CancelRefundRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *CancelRefundRequest) GetPaymentID() string {
-	if o == nil {
+func (c *CancelRefundRequest) GetPaymentID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CancelRefundRequest) GetRefundID() string {
-	if o == nil {
+func (c *CancelRefundRequest) GetRefundID() string {
+	if c == nil {
 		return ""
 	}
-	return o.RefundID
+	return c.RefundID
 }
 
-func (o *CancelRefundRequest) GetTestmode() *bool {
-	if o == nil {
+func (c *CancelRefundRequest) GetTestmode() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Testmode
+	return c.Testmode
 }
 
-func (o *CancelRefundRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CancelRefundRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
 type CancelRefundResponse struct {
@@ -55,16 +55,16 @@ type CancelRefundResponse struct {
 	Any any
 }
 
-func (o *CancelRefundResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CancelRefundResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CancelRefundResponse) GetAny() any {
-	if o == nil {
+func (c *CancelRefundResponse) GetAny() any {
+	if c == nil {
 		return nil
 	}
-	return o.Any
+	return c.Any
 }

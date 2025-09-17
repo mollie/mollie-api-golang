@@ -33,53 +33,53 @@ type ListSettlementPaymentsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSettlementPaymentsRequest) GetSettlementID() string {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetSettlementID() string {
+	if l == nil {
 		return ""
 	}
-	return o.SettlementID
+	return l.SettlementID
 }
 
-func (o *ListSettlementPaymentsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSettlementPaymentsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSettlementPaymentsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListSettlementPaymentsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListSettlementPaymentsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListSettlementPaymentsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSettlementPaymentsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSettlementPaymentsEmbedded struct {
@@ -87,11 +87,11 @@ type ListSettlementPaymentsEmbedded struct {
 	Payments []components.PaymentResponse `json:"payments,omitempty"`
 }
 
-func (o *ListSettlementPaymentsEmbedded) GetPayments() []components.PaymentResponse {
-	if o == nil {
+func (l *ListSettlementPaymentsEmbedded) GetPayments() []components.PaymentResponse {
+	if l == nil {
 		return nil
 	}
-	return o.Payments
+	return l.Payments
 }
 
 // ListSettlementPaymentsResponseBody - A list of payment objects.
@@ -107,25 +107,25 @@ type ListSettlementPaymentsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListSettlementPaymentsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListSettlementPaymentsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSettlementPaymentsResponseBody) GetEmbedded() ListSettlementPaymentsEmbedded {
-	if o == nil {
+func (l *ListSettlementPaymentsResponseBody) GetEmbedded() ListSettlementPaymentsEmbedded {
+	if l == nil {
 		return ListSettlementPaymentsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSettlementPaymentsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListSettlementPaymentsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSettlementPaymentsResponse struct {
@@ -134,16 +134,16 @@ type ListSettlementPaymentsResponse struct {
 	Object *ListSettlementPaymentsResponseBody
 }
 
-func (o *ListSettlementPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSettlementPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSettlementPaymentsResponse) GetObject() *ListSettlementPaymentsResponseBody {
-	if o == nil {
+func (l *ListSettlementPaymentsResponse) GetObject() *ListSettlementPaymentsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

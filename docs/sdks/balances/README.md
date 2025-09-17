@@ -37,16 +37,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-        Currency: client.String("EUR"),
-        From: client.String("bal_gVMhHKqSSRYJyPsuoPNFH"),
-        Limit: client.Int64(50),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Currency: client.Pointer("EUR"),
+        From: client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+        Limit: client.Pointer[int64](50),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -113,11 +113,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -175,11 +175,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Balances.GetPrimary(ctx, client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Balances.GetPrimary(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -237,7 +237,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
@@ -246,8 +246,8 @@ func main() {
         From: "2024-01-01",
         Until: "2024-02-01",
         Grouping: operations.GroupingStatusBalances.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -310,16 +310,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Balances.ListTransactions(ctx, operations.ListBalanceTransactionsRequest{
         BalanceID: "bal_gVMhHKqSSRYJyPsuoPNFH",
-        From: client.String("baltr_QM24QwzUWR4ev4Xfgyt29A"),
-        Limit: client.Int64(50),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        From: client.Pointer("baltr_QM24QwzUWR4ev4Xfgyt29A"),
+        Limit: client.Pointer[int64](50),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

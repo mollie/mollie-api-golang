@@ -14,25 +14,25 @@ type PaymentCreateRouteRequest struct {
 	RouteCreateRequest *components.RouteCreateRequest `request:"mediaType=application/json"`
 }
 
-func (o *PaymentCreateRouteRequest) GetPaymentID() string {
-	if o == nil {
+func (p *PaymentCreateRouteRequest) GetPaymentID() string {
+	if p == nil {
 		return ""
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PaymentCreateRouteRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (p *PaymentCreateRouteRequest) GetIdempotencyKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return p.IdempotencyKey
 }
 
-func (o *PaymentCreateRouteRequest) GetRouteCreateRequest() *components.RouteCreateRequest {
-	if o == nil {
+func (p *PaymentCreateRouteRequest) GetRouteCreateRequest() *components.RouteCreateRequest {
+	if p == nil {
 		return nil
 	}
-	return o.RouteCreateRequest
+	return p.RouteCreateRequest
 }
 
 type PaymentCreateRouteResponse struct {
@@ -41,16 +41,16 @@ type PaymentCreateRouteResponse struct {
 	RouteCreateResponse *components.RouteCreateResponse
 }
 
-func (o *PaymentCreateRouteResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PaymentCreateRouteResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PaymentCreateRouteResponse) GetRouteCreateResponse() *components.RouteCreateResponse {
-	if o == nil {
+func (p *PaymentCreateRouteResponse) GetRouteCreateResponse() *components.RouteCreateResponse {
+	if p == nil {
 		return nil
 	}
-	return o.RouteCreateResponse
+	return p.RouteCreateResponse
 }

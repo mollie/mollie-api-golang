@@ -14,32 +14,32 @@ type EntityOnboardingStatusLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityOnboardingStatusLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityOnboardingStatusLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityOnboardingStatusLinks) GetDashboard() *URLObj {
-	if o == nil {
+func (e *EntityOnboardingStatusLinks) GetDashboard() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Dashboard
+	return e.Dashboard
 }
 
-func (o *EntityOnboardingStatusLinks) GetOrganization() *URLObj {
-	if o == nil {
+func (e *EntityOnboardingStatusLinks) GetOrganization() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Organization
+	return e.Organization
 }
 
-func (o *EntityOnboardingStatusLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityOnboardingStatusLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityOnboardingStatus struct {
@@ -60,51 +60,51 @@ type EntityOnboardingStatus struct {
 	Links *EntityOnboardingStatusLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityOnboardingStatus) GetResource() *string {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityOnboardingStatus) GetName() *string {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityOnboardingStatus) GetStatus() *OnboardingStatus {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetStatus() *OnboardingStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityOnboardingStatus) GetCanReceivePayments() *bool {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetCanReceivePayments() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.CanReceivePayments
+	return e.CanReceivePayments
 }
 
-func (o *EntityOnboardingStatus) GetCanReceiveSettlements() *bool {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetCanReceiveSettlements() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.CanReceiveSettlements
+	return e.CanReceiveSettlements
 }
 
-func (o *EntityOnboardingStatus) GetSignedUpAt() *string {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetSignedUpAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SignedUpAt
+	return e.SignedUpAt
 }
 
-func (o *EntityOnboardingStatus) GetLinks() *EntityOnboardingStatusLinks {
-	if o == nil {
+func (e *EntityOnboardingStatus) GetLinks() *EntityOnboardingStatusLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

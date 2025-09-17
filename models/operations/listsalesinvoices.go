@@ -22,32 +22,32 @@ type ListSalesInvoicesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSalesInvoicesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSalesInvoicesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSalesInvoicesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSalesInvoicesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSalesInvoicesRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListSalesInvoicesRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListSalesInvoicesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSalesInvoicesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSalesInvoicesEmbedded struct {
@@ -56,11 +56,11 @@ type ListSalesInvoicesEmbedded struct {
 	SalesInvoices []components.EntitySalesInvoiceResponse `json:"sales_invoices,omitempty"`
 }
 
-func (o *ListSalesInvoicesEmbedded) GetSalesInvoices() []components.EntitySalesInvoiceResponse {
-	if o == nil {
+func (l *ListSalesInvoicesEmbedded) GetSalesInvoices() []components.EntitySalesInvoiceResponse {
+	if l == nil {
 		return nil
 	}
-	return o.SalesInvoices
+	return l.SalesInvoices
 }
 
 // ListSalesInvoicesResponseBody - A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
@@ -77,25 +77,25 @@ type ListSalesInvoicesResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListSalesInvoicesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListSalesInvoicesResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSalesInvoicesResponseBody) GetEmbedded() *ListSalesInvoicesEmbedded {
-	if o == nil {
+func (l *ListSalesInvoicesResponseBody) GetEmbedded() *ListSalesInvoicesEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSalesInvoicesResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListSalesInvoicesResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSalesInvoicesResponse struct {
@@ -105,16 +105,16 @@ type ListSalesInvoicesResponse struct {
 	Object *ListSalesInvoicesResponseBody
 }
 
-func (o *ListSalesInvoicesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSalesInvoicesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSalesInvoicesResponse) GetObject() *ListSalesInvoicesResponseBody {
-	if o == nil {
+func (l *ListSalesInvoicesResponse) GetObject() *ListSalesInvoicesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

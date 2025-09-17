@@ -10,16 +10,16 @@ type SalesInvoicePaymentDetailsResponse struct {
 	SourceReference *string `json:"sourceReference,omitempty"`
 }
 
-func (o *SalesInvoicePaymentDetailsResponse) GetSource() SalesInvoicePaymentDetailsSourceResponse {
-	if o == nil {
+func (s *SalesInvoicePaymentDetailsResponse) GetSource() SalesInvoicePaymentDetailsSourceResponse {
+	if s == nil {
 		return SalesInvoicePaymentDetailsSourceResponse("")
 	}
-	return o.Source
+	return s.Source
 }
 
-func (o *SalesInvoicePaymentDetailsResponse) GetSourceReference() *string {
-	if o == nil {
+func (s *SalesInvoicePaymentDetailsResponse) GetSourceReference() *string {
+	if s == nil {
 		return nil
 	}
-	return o.SourceReference
+	return s.SourceReference
 }

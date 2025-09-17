@@ -31,46 +31,46 @@ type ListPaymentsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListPaymentsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListPaymentsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListPaymentsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListPaymentsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListPaymentsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListPaymentsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListPaymentsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListPaymentsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListPaymentsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListPaymentsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListPaymentsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListPaymentsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListPaymentsEmbedded struct {
@@ -78,11 +78,11 @@ type ListPaymentsEmbedded struct {
 	Payments []components.PaymentResponse `json:"payments,omitempty"`
 }
 
-func (o *ListPaymentsEmbedded) GetPayments() []components.PaymentResponse {
-	if o == nil {
+func (l *ListPaymentsEmbedded) GetPayments() []components.PaymentResponse {
+	if l == nil {
 		return nil
 	}
-	return o.Payments
+	return l.Payments
 }
 
 // ListPaymentsResponseBody - A list of payment objects.
@@ -98,25 +98,25 @@ type ListPaymentsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListPaymentsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListPaymentsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListPaymentsResponseBody) GetEmbedded() ListPaymentsEmbedded {
-	if o == nil {
+func (l *ListPaymentsResponseBody) GetEmbedded() ListPaymentsEmbedded {
+	if l == nil {
 		return ListPaymentsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListPaymentsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListPaymentsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListPaymentsResponse struct {
@@ -125,16 +125,16 @@ type ListPaymentsResponse struct {
 	Object *ListPaymentsResponseBody
 }
 
-func (o *ListPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListPaymentsResponse) GetObject() *ListPaymentsResponseBody {
-	if o == nil {
+func (l *ListPaymentsResponse) GetObject() *ListPaymentsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

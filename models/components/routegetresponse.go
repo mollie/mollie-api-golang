@@ -9,18 +9,18 @@ type RouteGetResponseDestination struct {
 	OrganizationID string                       `json:"organizationId"`
 }
 
-func (o *RouteGetResponseDestination) GetType() RouteDestinationTypeResponse {
-	if o == nil {
+func (r *RouteGetResponseDestination) GetType() RouteDestinationTypeResponse {
+	if r == nil {
 		return RouteDestinationTypeResponse("")
 	}
-	return o.Type
+	return r.Type
 }
 
-func (o *RouteGetResponseDestination) GetOrganizationID() string {
-	if o == nil {
+func (r *RouteGetResponseDestination) GetOrganizationID() string {
+	if r == nil {
 		return ""
 	}
-	return o.OrganizationID
+	return r.OrganizationID
 }
 
 // RouteGetResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -31,18 +31,18 @@ type RouteGetResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *RouteGetResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (r *RouteGetResponseLinks) GetSelf() URLObj {
+	if r == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return r.Self
 }
 
-func (o *RouteGetResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (r *RouteGetResponseLinks) GetDocumentation() URLObj {
+	if r == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return r.Documentation
 }
 
 type RouteGetResponse struct {
@@ -62,58 +62,58 @@ type RouteGetResponse struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-func (o *RouteGetResponse) GetResource() string {
-	if o == nil {
+func (r *RouteGetResponse) GetResource() string {
+	if r == nil {
 		return ""
 	}
-	return o.Resource
+	return r.Resource
 }
 
-func (o *RouteGetResponse) GetID() string {
-	if o == nil {
+func (r *RouteGetResponse) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RouteGetResponse) GetPaymentID() string {
-	if o == nil {
+func (r *RouteGetResponse) GetPaymentID() string {
+	if r == nil {
 		return ""
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *RouteGetResponse) GetAmount() Amount {
-	if o == nil {
+func (r *RouteGetResponse) GetAmount() Amount {
+	if r == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return r.Amount
 }
 
-func (o *RouteGetResponse) GetDescription() string {
-	if o == nil {
+func (r *RouteGetResponse) GetDescription() string {
+	if r == nil {
 		return ""
 	}
-	return o.Description
+	return r.Description
 }
 
-func (o *RouteGetResponse) GetDestination() RouteGetResponseDestination {
-	if o == nil {
+func (r *RouteGetResponse) GetDestination() RouteGetResponseDestination {
+	if r == nil {
 		return RouteGetResponseDestination{}
 	}
-	return o.Destination
+	return r.Destination
 }
 
-func (o *RouteGetResponse) GetLinks() RouteGetResponseLinks {
-	if o == nil {
+func (r *RouteGetResponse) GetLinks() RouteGetResponseLinks {
+	if r == nil {
 		return RouteGetResponseLinks{}
 	}
-	return o.Links
+	return r.Links
 }
 
-func (o *RouteGetResponse) GetCreatedAt() string {
-	if o == nil {
+func (r *RouteGetResponse) GetCreatedAt() string {
+	if r == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return r.CreatedAt
 }

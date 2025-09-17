@@ -112,46 +112,46 @@ type Profile struct {
 	BusinessCategory *string `json:"businessCategory,omitempty"`
 }
 
-func (o *Profile) GetName() *string {
-	if o == nil {
+func (p *Profile) GetName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *Profile) GetURL() *string {
-	if o == nil {
+func (p *Profile) GetURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.URL
+	return p.URL
 }
 
-func (o *Profile) GetEmail() *string {
-	if o == nil {
+func (p *Profile) GetEmail() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Email
+	return p.Email
 }
 
-func (o *Profile) GetPhone() *string {
-	if o == nil {
+func (p *Profile) GetPhone() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Phone
+	return p.Phone
 }
 
-func (o *Profile) GetDescription() *string {
-	if o == nil {
+func (p *Profile) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *Profile) GetBusinessCategory() *string {
-	if o == nil {
+func (p *Profile) GetBusinessCategory() *string {
+	if p == nil {
 		return nil
 	}
-	return o.BusinessCategory
+	return p.BusinessCategory
 }
 
 type SubmitOnboardingDataRequestBody struct {
@@ -159,18 +159,18 @@ type SubmitOnboardingDataRequestBody struct {
 	Profile      *Profile      `json:"profile,omitempty"`
 }
 
-func (o *SubmitOnboardingDataRequestBody) GetOrganization() *Organization {
-	if o == nil {
+func (s *SubmitOnboardingDataRequestBody) GetOrganization() *Organization {
+	if s == nil {
 		return nil
 	}
-	return o.Organization
+	return s.Organization
 }
 
-func (o *SubmitOnboardingDataRequestBody) GetProfile() *Profile {
-	if o == nil {
+func (s *SubmitOnboardingDataRequestBody) GetProfile() *Profile {
+	if s == nil {
 		return nil
 	}
-	return o.Profile
+	return s.Profile
 }
 
 type SubmitOnboardingDataRequest struct {
@@ -179,18 +179,18 @@ type SubmitOnboardingDataRequest struct {
 	RequestBody    *SubmitOnboardingDataRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *SubmitOnboardingDataRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (s *SubmitOnboardingDataRequest) GetIdempotencyKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return s.IdempotencyKey
 }
 
-func (o *SubmitOnboardingDataRequest) GetRequestBody() *SubmitOnboardingDataRequestBody {
-	if o == nil {
+func (s *SubmitOnboardingDataRequest) GetRequestBody() *SubmitOnboardingDataRequestBody {
+	if s == nil {
 		return nil
 	}
-	return o.RequestBody
+	return s.RequestBody
 }
 
 type SubmitOnboardingDataResponse struct {
@@ -199,16 +199,16 @@ type SubmitOnboardingDataResponse struct {
 	Any any
 }
 
-func (o *SubmitOnboardingDataResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (s *SubmitOnboardingDataResponse) GetHTTPMeta() components.HTTPMetadata {
+	if s == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return s.HTTPMeta
 }
 
-func (o *SubmitOnboardingDataResponse) GetAny() any {
-	if o == nil {
+func (s *SubmitOnboardingDataResponse) GetAny() any {
+	if s == nil {
 		return nil
 	}
-	return o.Any
+	return s.Any
 }

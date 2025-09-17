@@ -38,45 +38,45 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.SalesInvoices.Create(ctx, client.String("123e4567-e89b-12d3-a456-426"), &components.EntitySalesInvoice{
-        ID: client.String("invoice_4Y0eZitmBnQ6IDoMqZQKh"),
-        Testmode: client.Bool(false),
-        ProfileID: client.String("pfl_QkEhN94Ba"),
+    res, err := s.SalesInvoices.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntitySalesInvoice{
+        ID: client.Pointer("invoice_4Y0eZitmBnQ6IDoMqZQKh"),
+        Testmode: client.Pointer(false),
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
         Status: components.SalesInvoiceStatusDraft.ToPointer(),
         VatScheme: components.SalesInvoiceVatSchemeStandard.ToPointer(),
         VatMode: components.SalesInvoiceVatModeExclusive.ToPointer(),
-        Memo: client.String("This is a memo!"),
+        Memo: client.Pointer("This is a memo!"),
         PaymentTerm: components.SalesInvoicePaymentTermThirtydays.ToPointer(),
         PaymentDetails: &components.SalesInvoicePaymentDetails{
             Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
-            SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
+            SourceReference: client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"),
         },
         EmailDetails: &components.SalesInvoiceEmailDetails{
             Subject: "Your invoice is available",
             Body: "Please find your invoice enclosed.",
         },
-        CustomerID: client.String("cst_8wmqcHMN4U"),
-        MandateID: client.String("mdt_pWUnw6pkBN"),
-        RecipientIdentifier: client.String("customer-xyz-0123"),
+        CustomerID: client.Pointer("cst_8wmqcHMN4U"),
+        MandateID: client.Pointer("mdt_pWUnw6pkBN"),
+        RecipientIdentifier: client.Pointer("customer-xyz-0123"),
         Recipient: &components.SalesInvoiceRecipient{
             Type: components.SalesInvoiceRecipientTypeConsumer,
-            Title: client.String("Mrs."),
-            GivenName: client.String("Jane"),
-            FamilyName: client.String("Doe"),
-            OrganizationName: client.String("Organization Corp."),
-            OrganizationNumber: client.String("12345678"),
-            VatNumber: client.String("NL123456789B01"),
+            Title: client.Pointer("Mrs."),
+            GivenName: client.Pointer("Jane"),
+            FamilyName: client.Pointer("Doe"),
+            OrganizationName: client.Pointer("Organization Corp."),
+            OrganizationNumber: client.Pointer("12345678"),
+            VatNumber: client.Pointer("NL123456789B01"),
             Email: "example@email.com",
-            Phone: client.String("+0123456789"),
+            Phone: client.Pointer("+0123456789"),
             StreetAndNumber: "Keizersgracht 126",
-            StreetAdditional: client.String("4th floor"),
+            StreetAdditional: client.Pointer("4th floor"),
             PostalCode: "5678AB",
             City: "Amsterdam",
-            Region: client.String("Noord-Holland"),
+            Region: client.Pointer("Noord-Holland"),
             Country: "NL",
             Locale: components.SalesInvoiceRecipientLocaleNlNl,
         },
@@ -85,6 +85,7 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
+        IsEInvoice: client.Pointer(false),
         AmountDue: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -164,11 +165,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.SalesInvoices.List(ctx, client.String("invoice_4Y0eZitmBnQ6IDoMqZQKh"), client.Int64(50), client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.SalesInvoices.List(ctx, client.Pointer("invoice_4Y0eZitmBnQ6IDoMqZQKh"), client.Pointer[int64](50), client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -227,11 +228,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.SalesInvoices.Get(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.SalesInvoices.Get(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -291,39 +292,39 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.String("123e4567-e89b-12d3-a456-426"), &components.UpdateValuesSalesInvoice{
-        Testmode: client.Bool(false),
+    res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.UpdateValuesSalesInvoice{
+        Testmode: client.Pointer(false),
         Status: components.SalesInvoiceStatusDraft.ToPointer(),
-        Memo: client.String("An updated memo!"),
+        Memo: client.Pointer("An updated memo!"),
         PaymentTerm: components.SalesInvoicePaymentTermThirtydays.ToPointer(),
         PaymentDetails: &components.SalesInvoicePaymentDetails{
             Source: components.SalesInvoicePaymentDetailsSourcePaymentLink,
-            SourceReference: client.String("pl_d9fQur83kFdhH8hIhaZfq"),
+            SourceReference: client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"),
         },
         EmailDetails: &components.SalesInvoiceEmailDetails{
             Subject: "Your invoice is available",
             Body: "Please find your invoice enclosed.",
         },
-        RecipientIdentifier: client.String("customer-xyz-0123"),
+        RecipientIdentifier: client.Pointer("customer-xyz-0123"),
         Recipient: &components.SalesInvoiceRecipient{
             Type: components.SalesInvoiceRecipientTypeConsumer,
-            Title: client.String("Mrs."),
-            GivenName: client.String("Jane"),
-            FamilyName: client.String("Doe"),
-            OrganizationName: client.String("Organization Corp."),
-            OrganizationNumber: client.String("12345678"),
-            VatNumber: client.String("NL123456789B01"),
+            Title: client.Pointer("Mrs."),
+            GivenName: client.Pointer("Jane"),
+            FamilyName: client.Pointer("Doe"),
+            OrganizationName: client.Pointer("Organization Corp."),
+            OrganizationNumber: client.Pointer("12345678"),
+            VatNumber: client.Pointer("NL123456789B01"),
             Email: "example@email.com",
-            Phone: client.String("+0123456789"),
+            Phone: client.Pointer("+0123456789"),
             StreetAndNumber: "Keizersgracht 126",
-            StreetAdditional: client.String("4th floor"),
+            StreetAdditional: client.Pointer("4th floor"),
             PostalCode: "5678AB",
             City: "Amsterdam",
-            Region: client.String("Noord-Holland"),
+            Region: client.Pointer("Noord-Holland"),
             Country: "NL",
             Locale: components.SalesInvoiceRecipientLocaleNlNl,
         },
@@ -346,6 +347,7 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
+        IsEInvoice: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -405,12 +407,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.SalesInvoices.Delete(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.String("123e4567-e89b-12d3-a456-426"), &components.DeleteValuesSalesInvoice{
-        Testmode: client.Bool(false),
+    res, err := s.SalesInvoices.Delete(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.DeleteValuesSalesInvoice{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

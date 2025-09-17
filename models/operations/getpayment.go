@@ -24,39 +24,39 @@ type GetPaymentRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPaymentRequest) GetPaymentID() string {
-	if o == nil {
+func (g *GetPaymentRequest) GetPaymentID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentID
+	return g.PaymentID
 }
 
-func (o *GetPaymentRequest) GetInclude() *string {
-	if o == nil {
+func (g *GetPaymentRequest) GetInclude() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Include
+	return g.Include
 }
 
-func (o *GetPaymentRequest) GetEmbed() *string {
-	if o == nil {
+func (g *GetPaymentRequest) GetEmbed() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Embed
+	return g.Embed
 }
 
-func (o *GetPaymentRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetPaymentRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetPaymentRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPaymentRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetPaymentResponse struct {
@@ -65,16 +65,16 @@ type GetPaymentResponse struct {
 	PaymentResponse *components.PaymentResponse
 }
 
-func (o *GetPaymentResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPaymentResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPaymentResponse) GetPaymentResponse() *components.PaymentResponse {
-	if o == nil {
+func (g *GetPaymentResponse) GetPaymentResponse() *components.PaymentResponse {
+	if g == nil {
 		return nil
 	}
-	return o.PaymentResponse
+	return g.PaymentResponse
 }

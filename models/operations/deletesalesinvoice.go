@@ -14,25 +14,25 @@ type DeleteSalesInvoiceRequest struct {
 	DeleteValuesSalesInvoice *components.DeleteValuesSalesInvoice `request:"mediaType=application/json"`
 }
 
-func (o *DeleteSalesInvoiceRequest) GetID() string {
-	if o == nil {
+func (d *DeleteSalesInvoiceRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DeleteSalesInvoiceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (d *DeleteSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return d.IdempotencyKey
 }
 
-func (o *DeleteSalesInvoiceRequest) GetDeleteValuesSalesInvoice() *components.DeleteValuesSalesInvoice {
-	if o == nil {
+func (d *DeleteSalesInvoiceRequest) GetDeleteValuesSalesInvoice() *components.DeleteValuesSalesInvoice {
+	if d == nil {
 		return nil
 	}
-	return o.DeleteValuesSalesInvoice
+	return d.DeleteValuesSalesInvoice
 }
 
 type DeleteSalesInvoiceResponse struct {
@@ -41,16 +41,16 @@ type DeleteSalesInvoiceResponse struct {
 	Any any
 }
 
-func (o *DeleteSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeleteSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }
 
-func (o *DeleteSalesInvoiceResponse) GetAny() any {
-	if o == nil {
+func (d *DeleteSalesInvoiceResponse) GetAny() any {
+	if d == nil {
 		return nil
 	}
-	return o.Any
+	return d.Any
 }

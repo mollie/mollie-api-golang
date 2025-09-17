@@ -76,11 +76,11 @@ type Embedded struct {
 	Entity *Entity `json:"entity,omitempty"`
 }
 
-func (o *Embedded) GetEntity() *Entity {
-	if o == nil {
+func (e *Embedded) GetEntity() *Entity {
+	if e == nil {
 		return nil
 	}
-	return o.Entity
+	return e.Entity
 }
 
 // EntityWebhookEventLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -93,25 +93,25 @@ type EntityWebhookEventLinks struct {
 	Entity *URLObj `json:"entity,omitempty"`
 }
 
-func (o *EntityWebhookEventLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityWebhookEventLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityWebhookEventLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (e *EntityWebhookEventLinks) GetDocumentation() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
-func (o *EntityWebhookEventLinks) GetEntity() *URLObj {
-	if o == nil {
+func (e *EntityWebhookEventLinks) GetEntity() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Entity
+	return e.Entity
 }
 
 type EntityWebhookEvent struct {
@@ -131,51 +131,51 @@ type EntityWebhookEvent struct {
 	Links EntityWebhookEventLinks `json:"_links"`
 }
 
-func (o *EntityWebhookEvent) GetResource() string {
-	if o == nil {
+func (e *EntityWebhookEvent) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityWebhookEvent) GetID() string {
-	if o == nil {
+func (e *EntityWebhookEvent) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityWebhookEvent) GetWebhookEventTypes() WebhookEventTypes {
-	if o == nil {
+func (e *EntityWebhookEvent) GetWebhookEventTypes() WebhookEventTypes {
+	if e == nil {
 		return WebhookEventTypes("")
 	}
-	return o.WebhookEventTypes
+	return e.WebhookEventTypes
 }
 
-func (o *EntityWebhookEvent) GetEntityID() string {
-	if o == nil {
+func (e *EntityWebhookEvent) GetEntityID() string {
+	if e == nil {
 		return ""
 	}
-	return o.EntityID
+	return e.EntityID
 }
 
-func (o *EntityWebhookEvent) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityWebhookEvent) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityWebhookEvent) GetEmbedded() *Embedded {
-	if o == nil {
+func (e *EntityWebhookEvent) GetEmbedded() *Embedded {
+	if e == nil {
 		return nil
 	}
-	return o.Embedded
+	return e.Embedded
 }
 
-func (o *EntityWebhookEvent) GetLinks() EntityWebhookEventLinks {
-	if o == nil {
+func (e *EntityWebhookEvent) GetLinks() EntityWebhookEventLinks {
+	if e == nil {
 		return EntityWebhookEventLinks{}
 	}
-	return o.Links
+	return e.Links
 }

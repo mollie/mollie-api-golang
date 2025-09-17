@@ -38,23 +38,23 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Profiles.Create(ctx, components.EntityProfile{
-        Name: client.String("My website name"),
-        Website: client.String("https://example.com"),
-        Email: client.String("test@mollie.com"),
-        Phone: client.String("+31208202070"),
-        Description: client.String("My website description"),
+        Name: client.Pointer("My website name"),
+        Website: client.Pointer("https://example.com"),
+        Email: client.Pointer("test@mollie.com"),
+        Phone: client.Pointer("+31208202070"),
+        Description: client.Pointer("My website description"),
         CountriesOfActivity: []string{
             "NL",
             "GB",
         },
-        BusinessCategory: client.String("OTHER_MERCHANDISE"),
+        BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
         Status: components.ProfileStatusUnverified.ToPointer(),
-    }, client.String("123e4567-e89b-12d3-a456-426"))
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -109,11 +109,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Profiles.List(ctx, client.String("pfl_QkEhN94Ba"), client.Int64(50), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.List(ctx, client.Pointer("pfl_QkEhN94Ba"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -167,11 +167,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Profiles.Get(ctx, "pfl_QkEhN94Ba", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.Get(ctx, "pfl_QkEhN94Ba", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -229,23 +229,23 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Profiles.Update(ctx, "pfl_QkEhN94Ba", operations.UpdateProfileRequestBody{
-        Name: client.String("My new website name"),
-        Website: client.String("https://example.com"),
-        Email: client.String("test@mollie.com"),
-        Phone: client.String("+31208202071"),
-        Description: client.String("My website description"),
+        Name: client.Pointer("My new website name"),
+        Website: client.Pointer("https://example.com"),
+        Email: client.Pointer("test@mollie.com"),
+        Phone: client.Pointer("+31208202071"),
+        Description: client.Pointer("My website description"),
         CountriesOfActivity: []string{
             "NL",
             "GB",
         },
-        BusinessCategory: client.String("OTHER_MERCHANDISE"),
+        BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
         Mode: operations.ModeLive.ToPointer(),
-    }, client.String("123e4567-e89b-12d3-a456-426"))
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -299,11 +299,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Profiles.Delete(ctx, "pfl_QkEhN94Ba", client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.Delete(ctx, "pfl_QkEhN94Ba", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -360,11 +360,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Profiles.GetCurrent(ctx, client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.GetCurrent(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }

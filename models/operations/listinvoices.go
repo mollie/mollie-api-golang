@@ -26,53 +26,53 @@ type ListInvoicesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListInvoicesRequest) GetReference() *string {
-	if o == nil {
+func (l *ListInvoicesRequest) GetReference() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Reference
+	return l.Reference
 }
 
-func (o *ListInvoicesRequest) GetYear() *string {
-	if o == nil {
+func (l *ListInvoicesRequest) GetYear() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Year
+	return l.Year
 }
 
-func (o *ListInvoicesRequest) GetMonth() *string {
-	if o == nil {
+func (l *ListInvoicesRequest) GetMonth() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Month
+	return l.Month
 }
 
-func (o *ListInvoicesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListInvoicesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListInvoicesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListInvoicesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListInvoicesRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListInvoicesRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListInvoicesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListInvoicesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type Invoice struct {
@@ -84,11 +84,11 @@ type ListInvoicesEmbedded struct {
 	Invoices []Invoice `json:"invoices,omitempty"`
 }
 
-func (o *ListInvoicesEmbedded) GetInvoices() []Invoice {
-	if o == nil {
+func (l *ListInvoicesEmbedded) GetInvoices() []Invoice {
+	if l == nil {
 		return nil
 	}
-	return o.Invoices
+	return l.Invoices
 }
 
 // ListInvoicesResponseBody - A list of invoice objects. For a complete reference of the invoice
@@ -105,25 +105,25 @@ type ListInvoicesResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListInvoicesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListInvoicesResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListInvoicesResponseBody) GetEmbedded() *ListInvoicesEmbedded {
-	if o == nil {
+func (l *ListInvoicesResponseBody) GetEmbedded() *ListInvoicesEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListInvoicesResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListInvoicesResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListInvoicesResponse struct {
@@ -133,16 +133,16 @@ type ListInvoicesResponse struct {
 	Object *ListInvoicesResponseBody
 }
 
-func (o *ListInvoicesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListInvoicesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListInvoicesResponse) GetObject() *ListInvoicesResponseBody {
-	if o == nil {
+func (l *ListInvoicesResponse) GetObject() *ListInvoicesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

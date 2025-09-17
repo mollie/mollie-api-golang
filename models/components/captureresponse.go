@@ -16,39 +16,39 @@ type CaptureResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *CaptureResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (c *CaptureResponseLinks) GetSelf() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return c.Self
 }
 
-func (o *CaptureResponseLinks) GetPayment() URLObj {
-	if o == nil {
+func (c *CaptureResponseLinks) GetPayment() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Payment
+	return c.Payment
 }
 
-func (o *CaptureResponseLinks) GetSettlement() *URLNullable {
-	if o == nil {
+func (c *CaptureResponseLinks) GetSettlement() *URLNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Settlement
+	return c.Settlement
 }
 
-func (o *CaptureResponseLinks) GetShipment() *URLNullable {
-	if o == nil {
+func (c *CaptureResponseLinks) GetShipment() *URLNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Shipment
+	return c.Shipment
 }
 
-func (o *CaptureResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (c *CaptureResponseLinks) GetDocumentation() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return c.Documentation
 }
 
 type CaptureResponse struct {
@@ -77,93 +77,93 @@ type CaptureResponse struct {
 	Links *CaptureResponseLinks `json:"_links,omitempty"`
 }
 
-func (o *CaptureResponse) GetResource() *string {
-	if o == nil {
+func (c *CaptureResponse) GetResource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Resource
+	return c.Resource
 }
 
-func (o *CaptureResponse) GetID() *string {
-	if o == nil {
+func (c *CaptureResponse) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CaptureResponse) GetMode() *Mode {
-	if o == nil {
+func (c *CaptureResponse) GetMode() *Mode {
+	if c == nil {
 		return nil
 	}
-	return o.Mode
+	return c.Mode
 }
 
-func (o *CaptureResponse) GetDescription() *string {
-	if o == nil {
+func (c *CaptureResponse) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CaptureResponse) GetAmount() *AmountNullable {
-	if o == nil {
+func (c *CaptureResponse) GetAmount() *AmountNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Amount
+	return c.Amount
 }
 
-func (o *CaptureResponse) GetSettlementAmount() *AmountNullable {
-	if o == nil {
+func (c *CaptureResponse) GetSettlementAmount() *AmountNullable {
+	if c == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return c.SettlementAmount
 }
 
-func (o *CaptureResponse) GetStatus() *CaptureStatus {
-	if o == nil {
+func (c *CaptureResponse) GetStatus() *CaptureStatus {
+	if c == nil {
 		return nil
 	}
-	return o.Status
+	return c.Status
 }
 
-func (o *CaptureResponse) GetMetadata() *Metadata {
-	if o == nil {
+func (c *CaptureResponse) GetMetadata() *Metadata {
+	if c == nil {
 		return nil
 	}
-	return o.Metadata
+	return c.Metadata
 }
 
-func (o *CaptureResponse) GetPaymentID() *string {
-	if o == nil {
+func (c *CaptureResponse) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CaptureResponse) GetShipmentID() *string {
-	if o == nil {
+func (c *CaptureResponse) GetShipmentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ShipmentID
+	return c.ShipmentID
 }
 
-func (o *CaptureResponse) GetSettlementID() *string {
-	if o == nil {
+func (c *CaptureResponse) GetSettlementID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.SettlementID
+	return c.SettlementID
 }
 
-func (o *CaptureResponse) GetCreatedAt() *string {
-	if o == nil {
+func (c *CaptureResponse) GetCreatedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CaptureResponse) GetLinks() *CaptureResponseLinks {
-	if o == nil {
+func (c *CaptureResponse) GetLinks() *CaptureResponseLinks {
+	if c == nil {
 		return nil
 	}
-	return o.Links
+	return c.Links
 }

@@ -15,18 +15,18 @@ type SubscriptionRequestApplicationFee struct {
 	Description string `json:"description"`
 }
 
-func (o *SubscriptionRequestApplicationFee) GetAmount() Amount {
-	if o == nil {
+func (s *SubscriptionRequestApplicationFee) GetAmount() Amount {
+	if s == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *SubscriptionRequestApplicationFee) GetDescription() string {
-	if o == nil {
+func (s *SubscriptionRequestApplicationFee) GetDescription() string {
+	if s == nil {
 		return ""
 	}
-	return o.Description
+	return s.Description
 }
 
 type SubscriptionRequest struct {
@@ -82,100 +82,100 @@ type SubscriptionRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *SubscriptionRequest) GetID() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SubscriptionRequest) GetStatus() *SubscriptionStatus {
-	if o == nil {
+func (s *SubscriptionRequest) GetStatus() *SubscriptionStatus {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
-func (o *SubscriptionRequest) GetAmount() *Amount {
-	if o == nil {
+func (s *SubscriptionRequest) GetAmount() *Amount {
+	if s == nil {
 		return nil
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *SubscriptionRequest) GetTimes() *int64 {
-	if o == nil {
+func (s *SubscriptionRequest) GetTimes() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Times
+	return s.Times
 }
 
-func (o *SubscriptionRequest) GetInterval() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetInterval() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Interval
+	return s.Interval
 }
 
-func (o *SubscriptionRequest) GetStartDate() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetStartDate() *string {
+	if s == nil {
 		return nil
 	}
-	return o.StartDate
+	return s.StartDate
 }
 
-func (o *SubscriptionRequest) GetDescription() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetDescription() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Description
+	return s.Description
 }
 
-func (o *SubscriptionRequest) GetMethod() *SubscriptionMethod {
-	if o == nil {
+func (s *SubscriptionRequest) GetMethod() *SubscriptionMethod {
+	if s == nil {
 		return nil
 	}
-	return o.Method
+	return s.Method
 }
 
-func (o *SubscriptionRequest) GetApplicationFee() *SubscriptionRequestApplicationFee {
-	if o == nil {
+func (s *SubscriptionRequest) GetApplicationFee() *SubscriptionRequestApplicationFee {
+	if s == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return s.ApplicationFee
 }
 
-func (o *SubscriptionRequest) GetMetadata() *Metadata {
-	if o == nil {
+func (s *SubscriptionRequest) GetMetadata() *Metadata {
+	if s == nil {
 		return nil
 	}
-	return o.Metadata
+	return s.Metadata
 }
 
-func (o *SubscriptionRequest) GetWebhookURL() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetWebhookURL() *string {
+	if s == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return s.WebhookURL
 }
 
-func (o *SubscriptionRequest) GetCustomerID() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetCustomerID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.CustomerID
+	return s.CustomerID
 }
 
-func (o *SubscriptionRequest) GetMandateID() *string {
-	if o == nil {
+func (s *SubscriptionRequest) GetMandateID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.MandateID
+	return s.MandateID
 }
 
-func (o *SubscriptionRequest) GetTestmode() *bool {
-	if o == nil {
+func (s *SubscriptionRequest) GetTestmode() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Testmode
+	return s.Testmode
 }

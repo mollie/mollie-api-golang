@@ -21,32 +21,32 @@ type CreateWebhookRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CreateWebhookRequestBody) GetName() string {
-	if o == nil {
+func (c *CreateWebhookRequestBody) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateWebhookRequestBody) GetURL() string {
-	if o == nil {
+func (c *CreateWebhookRequestBody) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreateWebhookRequestBody) GetWebhookEventTypes() components.WebhookEventTypes {
-	if o == nil {
+func (c *CreateWebhookRequestBody) GetWebhookEventTypes() components.WebhookEventTypes {
+	if c == nil {
 		return components.WebhookEventTypes("")
 	}
-	return o.WebhookEventTypes
+	return c.WebhookEventTypes
 }
 
-func (o *CreateWebhookRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (c *CreateWebhookRequestBody) GetTestmode() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Testmode
+	return c.Testmode
 }
 
 type CreateWebhookRequest struct {
@@ -55,18 +55,18 @@ type CreateWebhookRequest struct {
 	RequestBody    *CreateWebhookRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *CreateWebhookRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateWebhookRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateWebhookRequest) GetRequestBody() *CreateWebhookRequestBody {
-	if o == nil {
+func (c *CreateWebhookRequest) GetRequestBody() *CreateWebhookRequestBody {
+	if c == nil {
 		return nil
 	}
-	return o.RequestBody
+	return c.RequestBody
 }
 
 type CreateWebhookResponse struct {
@@ -75,16 +75,16 @@ type CreateWebhookResponse struct {
 	CreateWebhook *components.CreateWebhook
 }
 
-func (o *CreateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateWebhookResponse) GetCreateWebhook() *components.CreateWebhook {
-	if o == nil {
+func (c *CreateWebhookResponse) GetCreateWebhook() *components.CreateWebhook {
+	if c == nil {
 		return nil
 	}
-	return o.CreateWebhook
+	return c.CreateWebhook
 }

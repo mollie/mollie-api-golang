@@ -35,60 +35,60 @@ type ListSubscriptionPaymentsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetCustomerID() string {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetCustomerID() string {
+	if l == nil {
 		return ""
 	}
-	return o.CustomerID
+	return l.CustomerID
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetSubscriptionID() string {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetSubscriptionID() string {
+	if l == nil {
 		return ""
 	}
-	return o.SubscriptionID
+	return l.SubscriptionID
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListSubscriptionPaymentsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSubscriptionPaymentsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSubscriptionPaymentsEmbedded struct {
@@ -96,11 +96,11 @@ type ListSubscriptionPaymentsEmbedded struct {
 	Payments []components.PaymentResponse `json:"payments,omitempty"`
 }
 
-func (o *ListSubscriptionPaymentsEmbedded) GetPayments() []components.PaymentResponse {
-	if o == nil {
+func (l *ListSubscriptionPaymentsEmbedded) GetPayments() []components.PaymentResponse {
+	if l == nil {
 		return nil
 	}
-	return o.Payments
+	return l.Payments
 }
 
 // ListSubscriptionPaymentsResponseBody - A list of payment objects.
@@ -116,25 +116,25 @@ type ListSubscriptionPaymentsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListSubscriptionPaymentsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListSubscriptionPaymentsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSubscriptionPaymentsResponseBody) GetEmbedded() ListSubscriptionPaymentsEmbedded {
-	if o == nil {
+func (l *ListSubscriptionPaymentsResponseBody) GetEmbedded() ListSubscriptionPaymentsEmbedded {
+	if l == nil {
 		return ListSubscriptionPaymentsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSubscriptionPaymentsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListSubscriptionPaymentsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSubscriptionPaymentsResponse struct {
@@ -143,16 +143,16 @@ type ListSubscriptionPaymentsResponse struct {
 	Object *ListSubscriptionPaymentsResponseBody
 }
 
-func (o *ListSubscriptionPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSubscriptionPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSubscriptionPaymentsResponse) GetObject() *ListSubscriptionPaymentsResponseBody {
-	if o == nil {
+func (l *ListSubscriptionPaymentsResponse) GetObject() *ListSubscriptionPaymentsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

@@ -11,22 +11,22 @@ type ListCapabilitiesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListCapabilitiesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListCapabilitiesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListCapabilitiesEmbedded struct {
 	Capabilities []components.EntityCapability `json:"capabilities,omitempty"`
 }
 
-func (o *ListCapabilitiesEmbedded) GetCapabilities() []components.EntityCapability {
-	if o == nil {
+func (l *ListCapabilitiesEmbedded) GetCapabilities() []components.EntityCapability {
+	if l == nil {
 		return nil
 	}
-	return o.Capabilities
+	return l.Capabilities
 }
 
 type Documentation struct {
@@ -34,29 +34,29 @@ type Documentation struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *Documentation) GetHref() *string {
-	if o == nil {
+func (d *Documentation) GetHref() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Href
+	return d.Href
 }
 
-func (o *Documentation) GetType() *string {
-	if o == nil {
+func (d *Documentation) GetType() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Type
+	return d.Type
 }
 
 type ListCapabilitiesLinks struct {
 	Documentation *Documentation `json:"documentation,omitempty"`
 }
 
-func (o *ListCapabilitiesLinks) GetDocumentation() *Documentation {
-	if o == nil {
+func (l *ListCapabilitiesLinks) GetDocumentation() *Documentation {
+	if l == nil {
 		return nil
 	}
-	return o.Documentation
+	return l.Documentation
 }
 
 // ListCapabilitiesResponseBody - A list of capabilities.
@@ -67,25 +67,25 @@ type ListCapabilitiesResponseBody struct {
 	Links    *ListCapabilitiesLinks    `json:"_links,omitempty"`
 }
 
-func (o *ListCapabilitiesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListCapabilitiesResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListCapabilitiesResponseBody) GetEmbedded() *ListCapabilitiesEmbedded {
-	if o == nil {
+func (l *ListCapabilitiesResponseBody) GetEmbedded() *ListCapabilitiesEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListCapabilitiesResponseBody) GetLinks() *ListCapabilitiesLinks {
-	if o == nil {
+func (l *ListCapabilitiesResponseBody) GetLinks() *ListCapabilitiesLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListCapabilitiesResponse struct {
@@ -94,16 +94,16 @@ type ListCapabilitiesResponse struct {
 	Object *ListCapabilitiesResponseBody
 }
 
-func (o *ListCapabilitiesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListCapabilitiesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListCapabilitiesResponse) GetObject() *ListCapabilitiesResponseBody {
-	if o == nil {
+func (l *ListCapabilitiesResponse) GetObject() *ListCapabilitiesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

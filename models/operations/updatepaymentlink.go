@@ -40,60 +40,60 @@ type UpdatePaymentLinkRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetDescription() *string {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetMinimumAmount() *components.Amount {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetMinimumAmount() *components.Amount {
+	if u == nil {
 		return nil
 	}
-	return o.MinimumAmount
+	return u.MinimumAmount
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetArchived() *bool {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetArchived() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Archived
+	return u.Archived
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetAllowedMethods() []string {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetAllowedMethods() []string {
+	if u == nil {
 		return nil
 	}
-	return o.AllowedMethods
+	return u.AllowedMethods
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetLines() []components.PaymentLineItem {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetLines() []components.PaymentLineItem {
+	if u == nil {
 		return nil
 	}
-	return o.Lines
+	return u.Lines
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetBillingAddress() *components.PaymentAddress {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetBillingAddress() *components.PaymentAddress {
+	if u == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return u.BillingAddress
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetShippingAddress() *components.PaymentAddress {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetShippingAddress() *components.PaymentAddress {
+	if u == nil {
 		return nil
 	}
-	return o.ShippingAddress
+	return u.ShippingAddress
 }
 
-func (o *UpdatePaymentLinkRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (u *UpdatePaymentLinkRequestBody) GetTestmode() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Testmode
+	return u.Testmode
 }
 
 type UpdatePaymentLinkRequest struct {
@@ -104,25 +104,25 @@ type UpdatePaymentLinkRequest struct {
 	RequestBody    *UpdatePaymentLinkRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdatePaymentLinkRequest) GetPaymentLinkID() string {
-	if o == nil {
+func (u *UpdatePaymentLinkRequest) GetPaymentLinkID() string {
+	if u == nil {
 		return ""
 	}
-	return o.PaymentLinkID
+	return u.PaymentLinkID
 }
 
-func (o *UpdatePaymentLinkRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdatePaymentLinkRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdatePaymentLinkRequest) GetRequestBody() *UpdatePaymentLinkRequestBody {
-	if o == nil {
+func (u *UpdatePaymentLinkRequest) GetRequestBody() *UpdatePaymentLinkRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdatePaymentLinkResponse struct {
@@ -131,16 +131,16 @@ type UpdatePaymentLinkResponse struct {
 	PaymentLinkResponse *components.PaymentLinkResponse
 }
 
-func (o *UpdatePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdatePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdatePaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
-	if o == nil {
+func (u *UpdatePaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentLinkResponse
+	return u.PaymentLinkResponse
 }

@@ -20,65 +20,65 @@ type EntityCapture struct {
 	SettlementID *string   `json:"settlementId,omitempty"`
 }
 
-func (o *EntityCapture) GetID() *string {
-	if o == nil {
+func (e *EntityCapture) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCapture) GetDescription() *string {
-	if o == nil {
+func (e *EntityCapture) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityCapture) GetAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityCapture) GetAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityCapture) GetSettlementAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityCapture) GetSettlementAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return e.SettlementAmount
 }
 
-func (o *EntityCapture) GetStatus() *CaptureStatus {
-	if o == nil {
+func (e *EntityCapture) GetStatus() *CaptureStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityCapture) GetMetadata() *Metadata {
-	if o == nil {
+func (e *EntityCapture) GetMetadata() *Metadata {
+	if e == nil {
 		return nil
 	}
-	return o.Metadata
+	return e.Metadata
 }
 
-func (o *EntityCapture) GetPaymentID() *string {
-	if o == nil {
+func (e *EntityCapture) GetPaymentID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentID
+	return e.PaymentID
 }
 
-func (o *EntityCapture) GetShipmentID() *string {
-	if o == nil {
+func (e *EntityCapture) GetShipmentID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ShipmentID
+	return e.ShipmentID
 }
 
-func (o *EntityCapture) GetSettlementID() *string {
-	if o == nil {
+func (e *EntityCapture) GetSettlementID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementID
+	return e.SettlementID
 }

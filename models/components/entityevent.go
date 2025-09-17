@@ -8,11 +8,11 @@ type EntityEventLinks struct {
 	URL *URLObj `json:"url,omitempty"`
 }
 
-func (o *EntityEventLinks) GetURL() *URLObj {
-	if o == nil {
+func (e *EntityEventLinks) GetURL() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.URL
+	return e.URL
 }
 
 type EntityEvent struct {
@@ -25,37 +25,37 @@ type EntityEvent struct {
 	Links *EntityEventLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityEvent) GetResource() string {
-	if o == nil {
+func (e *EntityEvent) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityEvent) GetType() int64 {
-	if o == nil {
+func (e *EntityEvent) GetType() int64 {
+	if e == nil {
 		return 0
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityEvent) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityEvent) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityEvent) GetMessage() string {
-	if o == nil {
+func (e *EntityEvent) GetMessage() string {
+	if e == nil {
 		return ""
 	}
-	return o.Message
+	return e.Message
 }
 
-func (o *EntityEvent) GetLinks() *EntityEventLinks {
-	if o == nil {
+func (e *EntityEvent) GetLinks() *EntityEventLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

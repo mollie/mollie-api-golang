@@ -19,25 +19,25 @@ type GetOrganizationRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetOrganizationRequest) GetID() string {
-	if o == nil {
+func (g *GetOrganizationRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetOrganizationRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetOrganizationRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetOrganizationRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetOrganizationRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetOrganizationResponse struct {
@@ -46,16 +46,16 @@ type GetOrganizationResponse struct {
 	EntityOrganization *components.EntityOrganization
 }
 
-func (o *GetOrganizationResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetOrganizationResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetOrganizationResponse) GetEntityOrganization() *components.EntityOrganization {
-	if o == nil {
+func (g *GetOrganizationResponse) GetEntityOrganization() *components.EntityOrganization {
+	if g == nil {
 		return nil
 	}
-	return o.EntityOrganization
+	return g.EntityOrganization
 }

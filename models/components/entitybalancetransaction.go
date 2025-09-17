@@ -7,18 +7,18 @@ type Payment struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *Payment) GetPaymentID() *string {
-	if o == nil {
+func (p *Payment) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *Payment) GetPaymentDescription() *string {
-	if o == nil {
+func (p *Payment) GetPaymentDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return p.PaymentDescription
 }
 
 type Capture struct {
@@ -28,32 +28,32 @@ type Capture struct {
 	CaptureDescription *string `json:"captureDescription,omitempty"`
 }
 
-func (o *Capture) GetPaymentID() *string {
-	if o == nil {
+func (c *Capture) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *Capture) GetPaymentDescription() *string {
-	if o == nil {
+func (c *Capture) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *Capture) GetCaptureID() *string {
-	if o == nil {
+func (c *Capture) GetCaptureID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureID
+	return c.CaptureID
 }
 
-func (o *Capture) GetCaptureDescription() *string {
-	if o == nil {
+func (c *Capture) GetCaptureDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureDescription
+	return c.CaptureDescription
 }
 
 type CaptureCommision struct {
@@ -63,32 +63,32 @@ type CaptureCommision struct {
 	CaptureDescription *string `json:"captureDescription,omitempty"`
 }
 
-func (o *CaptureCommision) GetPaymentID() *string {
-	if o == nil {
+func (c *CaptureCommision) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CaptureCommision) GetPaymentDescription() *string {
-	if o == nil {
+func (c *CaptureCommision) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *CaptureCommision) GetCaptureID() *string {
-	if o == nil {
+func (c *CaptureCommision) GetCaptureID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureID
+	return c.CaptureID
 }
 
-func (o *CaptureCommision) GetCaptureDescription() *string {
-	if o == nil {
+func (c *CaptureCommision) GetCaptureDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureDescription
+	return c.CaptureDescription
 }
 
 type CaptureRollingReserveRelease struct {
@@ -98,32 +98,32 @@ type CaptureRollingReserveRelease struct {
 	CaptureDescription *string `json:"captureDescription,omitempty"`
 }
 
-func (o *CaptureRollingReserveRelease) GetPaymentID() *string {
-	if o == nil {
+func (c *CaptureRollingReserveRelease) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CaptureRollingReserveRelease) GetPaymentDescription() *string {
-	if o == nil {
+func (c *CaptureRollingReserveRelease) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *CaptureRollingReserveRelease) GetCaptureID() *string {
-	if o == nil {
+func (c *CaptureRollingReserveRelease) GetCaptureID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureID
+	return c.CaptureID
 }
 
-func (o *CaptureRollingReserveRelease) GetCaptureDescription() *string {
-	if o == nil {
+func (c *CaptureRollingReserveRelease) GetCaptureDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureDescription
+	return c.CaptureDescription
 }
 
 type UnauthorizedDirectDebit struct {
@@ -131,18 +131,18 @@ type UnauthorizedDirectDebit struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *UnauthorizedDirectDebit) GetPaymentID() *string {
-	if o == nil {
+func (u *UnauthorizedDirectDebit) GetPaymentID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentID
+	return u.PaymentID
 }
 
-func (o *UnauthorizedDirectDebit) GetPaymentDescription() *string {
-	if o == nil {
+func (u *UnauthorizedDirectDebit) GetPaymentDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return u.PaymentDescription
 }
 
 type FailedPayment struct {
@@ -150,18 +150,18 @@ type FailedPayment struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *FailedPayment) GetPaymentID() *string {
-	if o == nil {
+func (f *FailedPayment) GetPaymentID() *string {
+	if f == nil {
 		return nil
 	}
-	return o.PaymentID
+	return f.PaymentID
 }
 
-func (o *FailedPayment) GetPaymentDescription() *string {
-	if o == nil {
+func (f *FailedPayment) GetPaymentDescription() *string {
+	if f == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return f.PaymentDescription
 }
 
 type Refund struct {
@@ -171,32 +171,32 @@ type Refund struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *Refund) GetPaymentID() *string {
-	if o == nil {
+func (r *Refund) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *Refund) GetPaymentDescription() *string {
-	if o == nil {
+func (r *Refund) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *Refund) GetRefundID() *string {
-	if o == nil {
+func (r *Refund) GetRefundID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundID
+	return r.RefundID
 }
 
-func (o *Refund) GetRefundDescription() *string {
-	if o == nil {
+func (r *Refund) GetRefundDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return r.RefundDescription
 }
 
 type RefundCompensation struct {
@@ -206,32 +206,32 @@ type RefundCompensation struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *RefundCompensation) GetPaymentID() *string {
-	if o == nil {
+func (r *RefundCompensation) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *RefundCompensation) GetPaymentDescription() *string {
-	if o == nil {
+func (r *RefundCompensation) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *RefundCompensation) GetRefundID() *string {
-	if o == nil {
+func (r *RefundCompensation) GetRefundID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundID
+	return r.RefundID
 }
 
-func (o *RefundCompensation) GetRefundDescription() *string {
-	if o == nil {
+func (r *RefundCompensation) GetRefundDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return r.RefundDescription
 }
 
 type ReturnedRefund struct {
@@ -241,32 +241,32 @@ type ReturnedRefund struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *ReturnedRefund) GetPaymentID() *string {
-	if o == nil {
+func (r *ReturnedRefund) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReturnedRefund) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReturnedRefund) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *ReturnedRefund) GetRefundID() *string {
-	if o == nil {
+func (r *ReturnedRefund) GetRefundID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundID
+	return r.RefundID
 }
 
-func (o *ReturnedRefund) GetRefundDescription() *string {
-	if o == nil {
+func (r *ReturnedRefund) GetRefundDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return r.RefundDescription
 }
 
 type ReturnedRefundCompensation struct {
@@ -276,32 +276,32 @@ type ReturnedRefundCompensation struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *ReturnedRefundCompensation) GetPaymentID() *string {
-	if o == nil {
+func (r *ReturnedRefundCompensation) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReturnedRefundCompensation) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReturnedRefundCompensation) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *ReturnedRefundCompensation) GetRefundID() *string {
-	if o == nil {
+func (r *ReturnedRefundCompensation) GetRefundID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundID
+	return r.RefundID
 }
 
-func (o *ReturnedRefundCompensation) GetRefundDescription() *string {
-	if o == nil {
+func (r *ReturnedRefundCompensation) GetRefundDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return r.RefundDescription
 }
 
 type Chargeback struct {
@@ -311,32 +311,32 @@ type Chargeback struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *Chargeback) GetPaymentID() *string {
-	if o == nil {
+func (c *Chargeback) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *Chargeback) GetPaymentDescription() *string {
-	if o == nil {
+func (c *Chargeback) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *Chargeback) GetChargebackID() *string {
-	if o == nil {
+func (c *Chargeback) GetChargebackID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return c.ChargebackID
 }
 
-func (o *Chargeback) GetChargebackDescription() *string {
-	if o == nil {
+func (c *Chargeback) GetChargebackDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return c.ChargebackDescription
 }
 
 type ChargebackReversal struct {
@@ -346,32 +346,32 @@ type ChargebackReversal struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *ChargebackReversal) GetPaymentID() *string {
-	if o == nil {
+func (c *ChargebackReversal) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *ChargebackReversal) GetPaymentDescription() *string {
-	if o == nil {
+func (c *ChargebackReversal) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *ChargebackReversal) GetChargebackID() *string {
-	if o == nil {
+func (c *ChargebackReversal) GetChargebackID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return c.ChargebackID
 }
 
-func (o *ChargebackReversal) GetChargebackDescription() *string {
-	if o == nil {
+func (c *ChargebackReversal) GetChargebackDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return c.ChargebackDescription
 }
 
 type ChargebackCompensation struct {
@@ -381,32 +381,32 @@ type ChargebackCompensation struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *ChargebackCompensation) GetPaymentID() *string {
-	if o == nil {
+func (c *ChargebackCompensation) GetPaymentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *ChargebackCompensation) GetPaymentDescription() *string {
-	if o == nil {
+func (c *ChargebackCompensation) GetPaymentDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return c.PaymentDescription
 }
 
-func (o *ChargebackCompensation) GetChargebackID() *string {
-	if o == nil {
+func (c *ChargebackCompensation) GetChargebackID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return c.ChargebackID
 }
 
-func (o *ChargebackCompensation) GetChargebackDescription() *string {
-	if o == nil {
+func (c *ChargebackCompensation) GetChargebackDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return c.ChargebackDescription
 }
 
 type ReversedChargebackCompensation struct {
@@ -416,32 +416,32 @@ type ReversedChargebackCompensation struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *ReversedChargebackCompensation) GetPaymentID() *string {
-	if o == nil {
+func (r *ReversedChargebackCompensation) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReversedChargebackCompensation) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReversedChargebackCompensation) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *ReversedChargebackCompensation) GetChargebackID() *string {
-	if o == nil {
+func (r *ReversedChargebackCompensation) GetChargebackID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return r.ChargebackID
 }
 
-func (o *ReversedChargebackCompensation) GetChargebackDescription() *string {
-	if o == nil {
+func (r *ReversedChargebackCompensation) GetChargebackDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return r.ChargebackDescription
 }
 
 type OutgoingTransfer struct {
@@ -468,18 +468,18 @@ type CanceledOutgoingTransfer struct {
 	SettlementID *string `json:"settlementId,omitempty"`
 }
 
-func (o *CanceledOutgoingTransfer) GetTransferID() *string {
-	if o == nil {
+func (c *CanceledOutgoingTransfer) GetTransferID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TransferID
+	return c.TransferID
 }
 
-func (o *CanceledOutgoingTransfer) GetSettlementID() *string {
-	if o == nil {
+func (c *CanceledOutgoingTransfer) GetSettlementID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.SettlementID
+	return c.SettlementID
 }
 
 type ReturnedTransfer struct {
@@ -487,29 +487,29 @@ type ReturnedTransfer struct {
 	SettlementID *string `json:"settlementId,omitempty"`
 }
 
-func (o *ReturnedTransfer) GetTransferID() *string {
-	if o == nil {
+func (r *ReturnedTransfer) GetTransferID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TransferID
+	return r.TransferID
 }
 
-func (o *ReturnedTransfer) GetSettlementID() *string {
-	if o == nil {
+func (r *ReturnedTransfer) GetSettlementID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.SettlementID
+	return r.SettlementID
 }
 
 type InvoiceCompensation struct {
 	InvoiceID *string `json:"invoiceId,omitempty"`
 }
 
-func (o *InvoiceCompensation) GetInvoiceID() *string {
-	if o == nil {
+func (i *InvoiceCompensation) GetInvoiceID() *string {
+	if i == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return i.InvoiceID
 }
 
 type EntityBalanceTransactionApplicationFee struct {
@@ -518,25 +518,25 @@ type EntityBalanceTransactionApplicationFee struct {
 	PayingOwner        *string `json:"payingOwner,omitempty"`
 }
 
-func (o *EntityBalanceTransactionApplicationFee) GetPaymentID() *string {
-	if o == nil {
+func (e *EntityBalanceTransactionApplicationFee) GetPaymentID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentID
+	return e.PaymentID
 }
 
-func (o *EntityBalanceTransactionApplicationFee) GetPaymentDescription() *string {
-	if o == nil {
+func (e *EntityBalanceTransactionApplicationFee) GetPaymentDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return e.PaymentDescription
 }
 
-func (o *EntityBalanceTransactionApplicationFee) GetPayingOwner() *string {
-	if o == nil {
+func (e *EntityBalanceTransactionApplicationFee) GetPayingOwner() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PayingOwner
+	return e.PayingOwner
 }
 
 type SplitPayment struct {
@@ -545,25 +545,25 @@ type SplitPayment struct {
 	PaymentOnwer       *string `json:"paymentOnwer,omitempty"`
 }
 
-func (o *SplitPayment) GetPaymentID() *string {
-	if o == nil {
+func (s *SplitPayment) GetPaymentID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PaymentID
+	return s.PaymentID
 }
 
-func (o *SplitPayment) GetPaymentDescription() *string {
-	if o == nil {
+func (s *SplitPayment) GetPaymentDescription() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return s.PaymentDescription
 }
 
-func (o *SplitPayment) GetPaymentOnwer() *string {
-	if o == nil {
+func (s *SplitPayment) GetPaymentOnwer() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PaymentOnwer
+	return s.PaymentOnwer
 }
 
 type PlatformPaymentRefund struct {
@@ -573,32 +573,32 @@ type PlatformPaymentRefund struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *PlatformPaymentRefund) GetPaymentID() *string {
-	if o == nil {
+func (p *PlatformPaymentRefund) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PlatformPaymentRefund) GetPaymentDescription() *string {
-	if o == nil {
+func (p *PlatformPaymentRefund) GetPaymentDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return p.PaymentDescription
 }
 
-func (o *PlatformPaymentRefund) GetRefundID() *string {
-	if o == nil {
+func (p *PlatformPaymentRefund) GetRefundID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RefundID
+	return p.RefundID
 }
 
-func (o *PlatformPaymentRefund) GetRefundDescription() *string {
-	if o == nil {
+func (p *PlatformPaymentRefund) GetRefundDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return p.RefundDescription
 }
 
 type ReturnedPlatformPaymentRefund struct {
@@ -608,32 +608,32 @@ type ReturnedPlatformPaymentRefund struct {
 	RefundDescription  *string `json:"refundDescription,omitempty"`
 }
 
-func (o *ReturnedPlatformPaymentRefund) GetPaymentID() *string {
-	if o == nil {
+func (r *ReturnedPlatformPaymentRefund) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReturnedPlatformPaymentRefund) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReturnedPlatformPaymentRefund) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *ReturnedPlatformPaymentRefund) GetRefundID() *string {
-	if o == nil {
+func (r *ReturnedPlatformPaymentRefund) GetRefundID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundID
+	return r.RefundID
 }
 
-func (o *ReturnedPlatformPaymentRefund) GetRefundDescription() *string {
-	if o == nil {
+func (r *ReturnedPlatformPaymentRefund) GetRefundDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefundDescription
+	return r.RefundDescription
 }
 
 type PlatformPaymentChargeback struct {
@@ -643,32 +643,32 @@ type PlatformPaymentChargeback struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *PlatformPaymentChargeback) GetPaymentID() *string {
-	if o == nil {
+func (p *PlatformPaymentChargeback) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PlatformPaymentChargeback) GetPaymentDescription() *string {
-	if o == nil {
+func (p *PlatformPaymentChargeback) GetPaymentDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return p.PaymentDescription
 }
 
-func (o *PlatformPaymentChargeback) GetChargebackID() *string {
-	if o == nil {
+func (p *PlatformPaymentChargeback) GetChargebackID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return p.ChargebackID
 }
 
-func (o *PlatformPaymentChargeback) GetChargebackDescription() *string {
-	if o == nil {
+func (p *PlatformPaymentChargeback) GetChargebackDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return p.ChargebackDescription
 }
 
 type ReversedPlatformPaymentChargeback struct {
@@ -678,32 +678,32 @@ type ReversedPlatformPaymentChargeback struct {
 	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
 }
 
-func (o *ReversedPlatformPaymentChargeback) GetPaymentID() *string {
-	if o == nil {
+func (r *ReversedPlatformPaymentChargeback) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReversedPlatformPaymentChargeback) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReversedPlatformPaymentChargeback) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
-func (o *ReversedPlatformPaymentChargeback) GetChargebackID() *string {
-	if o == nil {
+func (r *ReversedPlatformPaymentChargeback) GetChargebackID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ChargebackID
+	return r.ChargebackID
 }
 
-func (o *ReversedPlatformPaymentChargeback) GetChargebackDescription() *string {
-	if o == nil {
+func (r *ReversedPlatformPaymentChargeback) GetChargebackDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ChargebackDescription
+	return r.ChargebackDescription
 }
 
 type PaymentCommission struct {
@@ -712,25 +712,25 @@ type PaymentCommission struct {
 	OrganizationID     *string `json:"organizationId,omitempty"`
 }
 
-func (o *PaymentCommission) GetPaymentID() *string {
-	if o == nil {
+func (p *PaymentCommission) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PaymentCommission) GetPaymentDescription() *string {
-	if o == nil {
+func (p *PaymentCommission) GetPaymentDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return p.PaymentDescription
 }
 
-func (o *PaymentCommission) GetOrganizationID() *string {
-	if o == nil {
+func (p *PaymentCommission) GetOrganizationID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrganizationID
+	return p.OrganizationID
 }
 
 type ReimbursementFee struct {
@@ -738,18 +738,18 @@ type ReimbursementFee struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *ReimbursementFee) GetPaymentID() *string {
-	if o == nil {
+func (r *ReimbursementFee) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *ReimbursementFee) GetPaymentDescription() *string {
-	if o == nil {
+func (r *ReimbursementFee) GetPaymentDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return r.PaymentDescription
 }
 
 type FailedPaymentFee struct {
@@ -757,18 +757,18 @@ type FailedPaymentFee struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *FailedPaymentFee) GetPaymentID() *string {
-	if o == nil {
+func (f *FailedPaymentFee) GetPaymentID() *string {
+	if f == nil {
 		return nil
 	}
-	return o.PaymentID
+	return f.PaymentID
 }
 
-func (o *FailedPaymentFee) GetPaymentDescription() *string {
-	if o == nil {
+func (f *FailedPaymentFee) GetPaymentDescription() *string {
+	if f == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return f.PaymentDescription
 }
 
 type PaymentFee struct {
@@ -776,18 +776,18 @@ type PaymentFee struct {
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (o *PaymentFee) GetPaymentID() *string {
-	if o == nil {
+func (p *PaymentFee) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PaymentFee) GetPaymentDescription() *string {
-	if o == nil {
+func (p *PaymentFee) GetPaymentDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentDescription
+	return p.PaymentDescription
 }
 
 type ManagedFee struct {
@@ -795,18 +795,18 @@ type ManagedFee struct {
 	FeeID   *string `json:"feeId,omitempty"`
 }
 
-func (o *ManagedFee) GetFeeType() *string {
-	if o == nil {
+func (m *ManagedFee) GetFeeType() *string {
+	if m == nil {
 		return nil
 	}
-	return o.FeeType
+	return m.FeeType
 }
 
-func (o *ManagedFee) GetFeeID() *string {
-	if o == nil {
+func (m *ManagedFee) GetFeeID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.FeeID
+	return m.FeeID
 }
 
 type ReturnedManagedFee struct {
@@ -814,29 +814,29 @@ type ReturnedManagedFee struct {
 	FeeID   *string `json:"feeId,omitempty"`
 }
 
-func (o *ReturnedManagedFee) GetFeeType() *string {
-	if o == nil {
+func (r *ReturnedManagedFee) GetFeeType() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FeeType
+	return r.FeeType
 }
 
-func (o *ReturnedManagedFee) GetFeeID() *string {
-	if o == nil {
+func (r *ReturnedManagedFee) GetFeeID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FeeID
+	return r.FeeID
 }
 
 type PostPaymentSplitPayment struct {
 	PaymentID *string `json:"paymentId,omitempty"`
 }
 
-func (o *PostPaymentSplitPayment) GetPaymentID() *string {
-	if o == nil {
+func (p *PostPaymentSplitPayment) GetPaymentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
 // Context - Depending on the type of the balance transaction, we will try to give more context about the specific event that
@@ -919,221 +919,221 @@ type Context struct {
 	PostPaymentSplitPayment           *PostPaymentSplitPayment                `json:"post-payment-split-payment,omitempty"`
 }
 
-func (o *Context) GetPayment() *Payment {
-	if o == nil {
+func (c *Context) GetPayment() *Payment {
+	if c == nil {
 		return nil
 	}
-	return o.Payment
+	return c.Payment
 }
 
-func (o *Context) GetCapture() *Capture {
-	if o == nil {
+func (c *Context) GetCapture() *Capture {
+	if c == nil {
 		return nil
 	}
-	return o.Capture
+	return c.Capture
 }
 
-func (o *Context) GetCaptureCommision() *CaptureCommision {
-	if o == nil {
+func (c *Context) GetCaptureCommision() *CaptureCommision {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureCommision
+	return c.CaptureCommision
 }
 
-func (o *Context) GetCaptureRollingReserveRelease() *CaptureRollingReserveRelease {
-	if o == nil {
+func (c *Context) GetCaptureRollingReserveRelease() *CaptureRollingReserveRelease {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureRollingReserveRelease
+	return c.CaptureRollingReserveRelease
 }
 
-func (o *Context) GetUnauthorizedDirectDebit() *UnauthorizedDirectDebit {
-	if o == nil {
+func (c *Context) GetUnauthorizedDirectDebit() *UnauthorizedDirectDebit {
+	if c == nil {
 		return nil
 	}
-	return o.UnauthorizedDirectDebit
+	return c.UnauthorizedDirectDebit
 }
 
-func (o *Context) GetFailedPayment() *FailedPayment {
-	if o == nil {
+func (c *Context) GetFailedPayment() *FailedPayment {
+	if c == nil {
 		return nil
 	}
-	return o.FailedPayment
+	return c.FailedPayment
 }
 
-func (o *Context) GetRefund() *Refund {
-	if o == nil {
+func (c *Context) GetRefund() *Refund {
+	if c == nil {
 		return nil
 	}
-	return o.Refund
+	return c.Refund
 }
 
-func (o *Context) GetRefundCompensation() *RefundCompensation {
-	if o == nil {
+func (c *Context) GetRefundCompensation() *RefundCompensation {
+	if c == nil {
 		return nil
 	}
-	return o.RefundCompensation
+	return c.RefundCompensation
 }
 
-func (o *Context) GetReturnedRefund() *ReturnedRefund {
-	if o == nil {
+func (c *Context) GetReturnedRefund() *ReturnedRefund {
+	if c == nil {
 		return nil
 	}
-	return o.ReturnedRefund
+	return c.ReturnedRefund
 }
 
-func (o *Context) GetReturnedRefundCompensation() *ReturnedRefundCompensation {
-	if o == nil {
+func (c *Context) GetReturnedRefundCompensation() *ReturnedRefundCompensation {
+	if c == nil {
 		return nil
 	}
-	return o.ReturnedRefundCompensation
+	return c.ReturnedRefundCompensation
 }
 
-func (o *Context) GetChargeback() *Chargeback {
-	if o == nil {
+func (c *Context) GetChargeback() *Chargeback {
+	if c == nil {
 		return nil
 	}
-	return o.Chargeback
+	return c.Chargeback
 }
 
-func (o *Context) GetChargebackReversal() *ChargebackReversal {
-	if o == nil {
+func (c *Context) GetChargebackReversal() *ChargebackReversal {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackReversal
+	return c.ChargebackReversal
 }
 
-func (o *Context) GetChargebackCompensation() *ChargebackCompensation {
-	if o == nil {
+func (c *Context) GetChargebackCompensation() *ChargebackCompensation {
+	if c == nil {
 		return nil
 	}
-	return o.ChargebackCompensation
+	return c.ChargebackCompensation
 }
 
-func (o *Context) GetReversedChargebackCompensation() *ReversedChargebackCompensation {
-	if o == nil {
+func (c *Context) GetReversedChargebackCompensation() *ReversedChargebackCompensation {
+	if c == nil {
 		return nil
 	}
-	return o.ReversedChargebackCompensation
+	return c.ReversedChargebackCompensation
 }
 
-func (o *Context) GetOutgoingTransfer() *OutgoingTransfer {
-	if o == nil {
+func (c *Context) GetOutgoingTransfer() *OutgoingTransfer {
+	if c == nil {
 		return nil
 	}
-	return o.OutgoingTransfer
+	return c.OutgoingTransfer
 }
 
-func (o *Context) GetCanceledOutgoingTransfer() *CanceledOutgoingTransfer {
-	if o == nil {
+func (c *Context) GetCanceledOutgoingTransfer() *CanceledOutgoingTransfer {
+	if c == nil {
 		return nil
 	}
-	return o.CanceledOutgoingTransfer
+	return c.CanceledOutgoingTransfer
 }
 
-func (o *Context) GetReturnedTransfer() *ReturnedTransfer {
-	if o == nil {
+func (c *Context) GetReturnedTransfer() *ReturnedTransfer {
+	if c == nil {
 		return nil
 	}
-	return o.ReturnedTransfer
+	return c.ReturnedTransfer
 }
 
-func (o *Context) GetInvoiceCompensation() *InvoiceCompensation {
-	if o == nil {
+func (c *Context) GetInvoiceCompensation() *InvoiceCompensation {
+	if c == nil {
 		return nil
 	}
-	return o.InvoiceCompensation
+	return c.InvoiceCompensation
 }
 
-func (o *Context) GetApplicationFee() *EntityBalanceTransactionApplicationFee {
-	if o == nil {
+func (c *Context) GetApplicationFee() *EntityBalanceTransactionApplicationFee {
+	if c == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return c.ApplicationFee
 }
 
-func (o *Context) GetSplitPayment() *SplitPayment {
-	if o == nil {
+func (c *Context) GetSplitPayment() *SplitPayment {
+	if c == nil {
 		return nil
 	}
-	return o.SplitPayment
+	return c.SplitPayment
 }
 
-func (o *Context) GetPlatformPaymentRefund() *PlatformPaymentRefund {
-	if o == nil {
+func (c *Context) GetPlatformPaymentRefund() *PlatformPaymentRefund {
+	if c == nil {
 		return nil
 	}
-	return o.PlatformPaymentRefund
+	return c.PlatformPaymentRefund
 }
 
-func (o *Context) GetReturnedPlatformPaymentRefund() *ReturnedPlatformPaymentRefund {
-	if o == nil {
+func (c *Context) GetReturnedPlatformPaymentRefund() *ReturnedPlatformPaymentRefund {
+	if c == nil {
 		return nil
 	}
-	return o.ReturnedPlatformPaymentRefund
+	return c.ReturnedPlatformPaymentRefund
 }
 
-func (o *Context) GetPlatformPaymentChargeback() *PlatformPaymentChargeback {
-	if o == nil {
+func (c *Context) GetPlatformPaymentChargeback() *PlatformPaymentChargeback {
+	if c == nil {
 		return nil
 	}
-	return o.PlatformPaymentChargeback
+	return c.PlatformPaymentChargeback
 }
 
-func (o *Context) GetReversedPlatformPaymentChargeback() *ReversedPlatformPaymentChargeback {
-	if o == nil {
+func (c *Context) GetReversedPlatformPaymentChargeback() *ReversedPlatformPaymentChargeback {
+	if c == nil {
 		return nil
 	}
-	return o.ReversedPlatformPaymentChargeback
+	return c.ReversedPlatformPaymentChargeback
 }
 
-func (o *Context) GetPaymentCommission() *PaymentCommission {
-	if o == nil {
+func (c *Context) GetPaymentCommission() *PaymentCommission {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentCommission
+	return c.PaymentCommission
 }
 
-func (o *Context) GetReimbursementFee() *ReimbursementFee {
-	if o == nil {
+func (c *Context) GetReimbursementFee() *ReimbursementFee {
+	if c == nil {
 		return nil
 	}
-	return o.ReimbursementFee
+	return c.ReimbursementFee
 }
 
-func (o *Context) GetFailedPaymentFee() *FailedPaymentFee {
-	if o == nil {
+func (c *Context) GetFailedPaymentFee() *FailedPaymentFee {
+	if c == nil {
 		return nil
 	}
-	return o.FailedPaymentFee
+	return c.FailedPaymentFee
 }
 
-func (o *Context) GetPaymentFee() *PaymentFee {
-	if o == nil {
+func (c *Context) GetPaymentFee() *PaymentFee {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentFee
+	return c.PaymentFee
 }
 
-func (o *Context) GetManagedFee() *ManagedFee {
-	if o == nil {
+func (c *Context) GetManagedFee() *ManagedFee {
+	if c == nil {
 		return nil
 	}
-	return o.ManagedFee
+	return c.ManagedFee
 }
 
-func (o *Context) GetReturnedManagedFee() *ReturnedManagedFee {
-	if o == nil {
+func (c *Context) GetReturnedManagedFee() *ReturnedManagedFee {
+	if c == nil {
 		return nil
 	}
-	return o.ReturnedManagedFee
+	return c.ReturnedManagedFee
 }
 
-func (o *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
-	if o == nil {
+func (c *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
+	if c == nil {
 		return nil
 	}
-	return o.PostPaymentSplitPayment
+	return c.PostPaymentSplitPayment
 }
 
 type EntityBalanceTransaction struct {
@@ -1199,58 +1199,58 @@ type EntityBalanceTransaction struct {
 	CreatedAt *string `json:"createdAt,omitempty"`
 }
 
-func (o *EntityBalanceTransaction) GetResource() *string {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityBalanceTransaction) GetID() *string {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityBalanceTransaction) GetType() *BalanceTransactionType {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetType() *BalanceTransactionType {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityBalanceTransaction) GetResultAmount() *Amount {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetResultAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.ResultAmount
+	return e.ResultAmount
 }
 
-func (o *EntityBalanceTransaction) GetInitialAmount() *Amount {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetInitialAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.InitialAmount
+	return e.InitialAmount
 }
 
-func (o *EntityBalanceTransaction) GetDeductions() *AmountNullable {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetDeductions() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.Deductions
+	return e.Deductions
 }
 
-func (o *EntityBalanceTransaction) GetContext() *Context {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetContext() *Context {
+	if e == nil {
 		return nil
 	}
-	return o.Context
+	return e.Context
 }
 
-func (o *EntityBalanceTransaction) GetCreatedAt() *string {
-	if o == nil {
+func (e *EntityBalanceTransaction) GetCreatedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }

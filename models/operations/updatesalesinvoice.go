@@ -14,25 +14,25 @@ type UpdateSalesInvoiceRequest struct {
 	UpdateValuesSalesInvoice *components.UpdateValuesSalesInvoice `request:"mediaType=application/json"`
 }
 
-func (o *UpdateSalesInvoiceRequest) GetID() string {
-	if o == nil {
+func (u *UpdateSalesInvoiceRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateSalesInvoiceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdateSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdateSalesInvoiceRequest) GetUpdateValuesSalesInvoice() *components.UpdateValuesSalesInvoice {
-	if o == nil {
+func (u *UpdateSalesInvoiceRequest) GetUpdateValuesSalesInvoice() *components.UpdateValuesSalesInvoice {
+	if u == nil {
 		return nil
 	}
-	return o.UpdateValuesSalesInvoice
+	return u.UpdateValuesSalesInvoice
 }
 
 type UpdateSalesInvoiceResponse struct {
@@ -41,16 +41,16 @@ type UpdateSalesInvoiceResponse struct {
 	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
 }
 
-func (o *UpdateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
-	if o == nil {
+func (u *UpdateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+	if u == nil {
 		return nil
 	}
-	return o.EntitySalesInvoiceResponse
+	return u.EntitySalesInvoiceResponse
 }

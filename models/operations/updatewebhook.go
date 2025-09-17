@@ -20,32 +20,32 @@ type UpdateWebhookRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *UpdateWebhookRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateWebhookRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateWebhookRequestBody) GetURL() *string {
-	if o == nil {
+func (u *UpdateWebhookRequestBody) GetURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.URL
+	return u.URL
 }
 
-func (o *UpdateWebhookRequestBody) GetWebhookEventTypes() *components.WebhookEventTypes {
-	if o == nil {
+func (u *UpdateWebhookRequestBody) GetWebhookEventTypes() *components.WebhookEventTypes {
+	if u == nil {
 		return nil
 	}
-	return o.WebhookEventTypes
+	return u.WebhookEventTypes
 }
 
-func (o *UpdateWebhookRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (u *UpdateWebhookRequestBody) GetTestmode() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Testmode
+	return u.Testmode
 }
 
 type UpdateWebhookRequest struct {
@@ -56,25 +56,25 @@ type UpdateWebhookRequest struct {
 	RequestBody    *UpdateWebhookRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateWebhookRequest) GetID() string {
-	if o == nil {
+func (u *UpdateWebhookRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateWebhookRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdateWebhookRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdateWebhookRequest) GetRequestBody() *UpdateWebhookRequestBody {
-	if o == nil {
+func (u *UpdateWebhookRequest) GetRequestBody() *UpdateWebhookRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateWebhookResponse struct {
@@ -83,16 +83,16 @@ type UpdateWebhookResponse struct {
 	EntityWebhook *components.EntityWebhook
 }
 
-func (o *UpdateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateWebhookResponse) GetEntityWebhook() *components.EntityWebhook {
-	if o == nil {
+func (u *UpdateWebhookResponse) GetEntityWebhook() *components.EntityWebhook {
+	if u == nil {
 		return nil
 	}
-	return o.EntityWebhook
+	return u.EntityWebhook
 }

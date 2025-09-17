@@ -14,11 +14,11 @@ type TestWebhookRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *TestWebhookRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (t *TestWebhookRequestBody) GetTestmode() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Testmode
+	return t.Testmode
 }
 
 type TestWebhookRequest struct {
@@ -29,25 +29,25 @@ type TestWebhookRequest struct {
 	RequestBody    *TestWebhookRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *TestWebhookRequest) GetID() string {
-	if o == nil {
+func (t *TestWebhookRequest) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TestWebhookRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (t *TestWebhookRequest) GetIdempotencyKey() *string {
+	if t == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return t.IdempotencyKey
 }
 
-func (o *TestWebhookRequest) GetRequestBody() *TestWebhookRequestBody {
-	if o == nil {
+func (t *TestWebhookRequest) GetRequestBody() *TestWebhookRequestBody {
+	if t == nil {
 		return nil
 	}
-	return o.RequestBody
+	return t.RequestBody
 }
 
 type TestWebhookResponse struct {
@@ -56,16 +56,16 @@ type TestWebhookResponse struct {
 	Any any
 }
 
-func (o *TestWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (t *TestWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
+	if t == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return t.HTTPMeta
 }
 
-func (o *TestWebhookResponse) GetAny() any {
-	if o == nil {
+func (t *TestWebhookResponse) GetAny() any {
+	if t == nil {
 		return nil
 	}
-	return o.Any
+	return t.Any
 }

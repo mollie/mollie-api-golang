@@ -14,25 +14,25 @@ type UpdateCustomerRequest struct {
 	EntityCustomer *components.EntityCustomer `request:"mediaType=application/json"`
 }
 
-func (o *UpdateCustomerRequest) GetCustomerID() string {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetCustomerID() string {
+	if u == nil {
 		return ""
 	}
-	return o.CustomerID
+	return u.CustomerID
 }
 
-func (o *UpdateCustomerRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
+	if u == nil {
 		return nil
 	}
-	return o.EntityCustomer
+	return u.EntityCustomer
 }
 
 type UpdateCustomerResponse struct {
@@ -41,16 +41,16 @@ type UpdateCustomerResponse struct {
 	CustomerResponse *components.CustomerResponse
 }
 
-func (o *UpdateCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateCustomerResponse) GetCustomerResponse() *components.CustomerResponse {
-	if o == nil {
+func (u *UpdateCustomerResponse) GetCustomerResponse() *components.CustomerResponse {
+	if u == nil {
 		return nil
 	}
-	return o.CustomerResponse
+	return u.CustomerResponse
 }

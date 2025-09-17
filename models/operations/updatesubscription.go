@@ -43,67 +43,67 @@ type UpdateSubscriptionRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *UpdateSubscriptionRequestBody) GetAmount() *components.Amount {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetAmount() *components.Amount {
+	if u == nil {
 		return nil
 	}
-	return o.Amount
+	return u.Amount
 }
 
-func (o *UpdateSubscriptionRequestBody) GetDescription() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdateSubscriptionRequestBody) GetInterval() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetInterval() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Interval
+	return u.Interval
 }
 
-func (o *UpdateSubscriptionRequestBody) GetStartDate() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetStartDate() *string {
+	if u == nil {
 		return nil
 	}
-	return o.StartDate
+	return u.StartDate
 }
 
-func (o *UpdateSubscriptionRequestBody) GetTimes() *int64 {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetTimes() *int64 {
+	if u == nil {
 		return nil
 	}
-	return o.Times
+	return u.Times
 }
 
-func (o *UpdateSubscriptionRequestBody) GetMetadata() *components.Metadata {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetMetadata() *components.Metadata {
+	if u == nil {
 		return nil
 	}
-	return o.Metadata
+	return u.Metadata
 }
 
-func (o *UpdateSubscriptionRequestBody) GetWebhookURL() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetWebhookURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return u.WebhookURL
 }
 
-func (o *UpdateSubscriptionRequestBody) GetMandateID() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetMandateID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.MandateID
+	return u.MandateID
 }
 
-func (o *UpdateSubscriptionRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (u *UpdateSubscriptionRequestBody) GetTestmode() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Testmode
+	return u.Testmode
 }
 
 type UpdateSubscriptionRequest struct {
@@ -116,32 +116,32 @@ type UpdateSubscriptionRequest struct {
 	RequestBody    *UpdateSubscriptionRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateSubscriptionRequest) GetCustomerID() string {
-	if o == nil {
+func (u *UpdateSubscriptionRequest) GetCustomerID() string {
+	if u == nil {
 		return ""
 	}
-	return o.CustomerID
+	return u.CustomerID
 }
 
-func (o *UpdateSubscriptionRequest) GetSubscriptionID() string {
-	if o == nil {
+func (u *UpdateSubscriptionRequest) GetSubscriptionID() string {
+	if u == nil {
 		return ""
 	}
-	return o.SubscriptionID
+	return u.SubscriptionID
 }
 
-func (o *UpdateSubscriptionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (u *UpdateSubscriptionRequest) GetIdempotencyKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return u.IdempotencyKey
 }
 
-func (o *UpdateSubscriptionRequest) GetRequestBody() *UpdateSubscriptionRequestBody {
-	if o == nil {
+func (u *UpdateSubscriptionRequest) GetRequestBody() *UpdateSubscriptionRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateSubscriptionResponse struct {
@@ -150,16 +150,16 @@ type UpdateSubscriptionResponse struct {
 	SubscriptionResponse *components.SubscriptionResponse
 }
 
-func (o *UpdateSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
-	if o == nil {
+func (u *UpdateSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
+	if u == nil {
 		return nil
 	}
-	return o.SubscriptionResponse
+	return u.SubscriptionResponse
 }

@@ -37,24 +37,24 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &components.EntityMandate{
-        ID: client.String("mdt_5B8cwPMGnU"),
+    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityMandate{
+        ID: client.Pointer("mdt_5B8cwPMGnU"),
         Method: components.MandateMethodDirectdebit.ToPointer(),
-        ConsumerName: client.String("John Doe"),
-        ConsumerAccount: client.String("NL55INGB0000000000"),
-        ConsumerBic: client.String("BANKBIC"),
-        ConsumerEmail: client.String("example@email.com"),
-        SignatureDate: client.String("2025-01-01"),
-        MandateReference: client.String("ID-1023892"),
-        PaypalBillingAgreementID: client.String("B-12A34567B8901234CD"),
-        PayPalVaultID: client.String("8kk8451t"),
+        ConsumerName: client.Pointer("John Doe"),
+        ConsumerAccount: client.Pointer("NL55INGB0000000000"),
+        ConsumerBic: client.Pointer("BANKBIC"),
+        ConsumerEmail: client.Pointer("example@email.com"),
+        SignatureDate: client.Pointer("2025-01-01"),
+        MandateReference: client.Pointer("ID-1023892"),
+        PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
+        PayPalVaultID: client.Pointer("8kk8451t"),
         Status: components.MandateStatusValid.ToPointer(),
-        CustomerID: client.String("cst_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
+        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -112,17 +112,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Mandates.List(ctx, operations.ListMandatesRequest{
         CustomerID: "cst_5B8cwPMGnU",
-        From: client.String("mdt_5B8cwPMGnU"),
-        Limit: client.Int64(50),
+        From: client.Pointer("mdt_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -176,11 +176,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Mandates.Get(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Mandates.Get(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -237,12 +237,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Mandates.Revoke(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &operations.RevokeMandateRequestBody{
-        Testmode: client.Bool(false),
+    res, err := s.Mandates.Revoke(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.RevokeMandateRequestBody{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

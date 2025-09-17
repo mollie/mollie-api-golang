@@ -25,39 +25,39 @@ type ListTerminalsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListTerminalsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListTerminalsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListTerminalsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListTerminalsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListTerminalsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListTerminalsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListTerminalsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListTerminalsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListTerminalsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListTerminalsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListTerminalsEmbedded struct {
@@ -65,11 +65,11 @@ type ListTerminalsEmbedded struct {
 	Terminals []components.EntityTerminal `json:"terminals,omitempty"`
 }
 
-func (o *ListTerminalsEmbedded) GetTerminals() []components.EntityTerminal {
-	if o == nil {
+func (l *ListTerminalsEmbedded) GetTerminals() []components.EntityTerminal {
+	if l == nil {
 		return nil
 	}
-	return o.Terminals
+	return l.Terminals
 }
 
 // ListTerminalsResponseBody - A list of terminal objects.
@@ -85,25 +85,25 @@ type ListTerminalsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListTerminalsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListTerminalsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListTerminalsResponseBody) GetEmbedded() ListTerminalsEmbedded {
-	if o == nil {
+func (l *ListTerminalsResponseBody) GetEmbedded() ListTerminalsEmbedded {
+	if l == nil {
 		return ListTerminalsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListTerminalsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListTerminalsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListTerminalsResponse struct {
@@ -112,16 +112,16 @@ type ListTerminalsResponse struct {
 	Object *ListTerminalsResponseBody
 }
 
-func (o *ListTerminalsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListTerminalsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListTerminalsResponse) GetObject() *ListTerminalsResponseBody {
-	if o == nil {
+func (l *ListTerminalsResponse) GetObject() *ListTerminalsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

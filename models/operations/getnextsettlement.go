@@ -11,11 +11,11 @@ type GetNextSettlementRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetNextSettlementRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetNextSettlementRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetNextSettlementResponse struct {
@@ -25,16 +25,16 @@ type GetNextSettlementResponse struct {
 	EntitySettlement *components.EntitySettlement
 }
 
-func (o *GetNextSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetNextSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetNextSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
-	if o == nil {
+func (g *GetNextSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
+	if g == nil {
 		return nil
 	}
-	return o.EntitySettlement
+	return g.EntitySettlement
 }

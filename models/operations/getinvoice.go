@@ -13,18 +13,18 @@ type GetInvoiceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetInvoiceRequest) GetID() string {
-	if o == nil {
+func (g *GetInvoiceRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetInvoiceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetInvoiceRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetInvoiceResponse struct {
@@ -33,16 +33,16 @@ type GetInvoiceResponse struct {
 	EntityInvoice *components.EntityInvoice
 }
 
-func (o *GetInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetInvoiceResponse) GetEntityInvoice() *components.EntityInvoice {
-	if o == nil {
+func (g *GetInvoiceResponse) GetEntityInvoice() *components.EntityInvoice {
+	if g == nil {
 		return nil
 	}
-	return o.EntityInvoice
+	return g.EntityInvoice
 }

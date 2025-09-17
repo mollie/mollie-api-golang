@@ -16,25 +16,25 @@ type GetClientRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetClientRequest) GetID() string {
-	if o == nil {
+func (g *GetClientRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetClientRequest) GetEmbed() *string {
-	if o == nil {
+func (g *GetClientRequest) GetEmbed() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Embed
+	return g.Embed
 }
 
-func (o *GetClientRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetClientRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 // GetClientCommission - The commission object.
@@ -43,11 +43,11 @@ type GetClientCommission struct {
 	Count *int64 `json:"count,omitempty"`
 }
 
-func (o *GetClientCommission) GetCount() *int64 {
-	if o == nil {
+func (g *GetClientCommission) GetCount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Count
+	return g.Count
 }
 
 // GetClientLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -62,32 +62,32 @@ type GetClientLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *GetClientLinks) GetSelf() *components.URLObj {
-	if o == nil {
+func (g *GetClientLinks) GetSelf() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Self
+	return g.Self
 }
 
-func (o *GetClientLinks) GetOrganization() *components.URLObj {
-	if o == nil {
+func (g *GetClientLinks) GetOrganization() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Organization
+	return g.Organization
 }
 
-func (o *GetClientLinks) GetOnboarding() *components.URLObj {
-	if o == nil {
+func (g *GetClientLinks) GetOnboarding() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Onboarding
+	return g.Onboarding
 }
 
-func (o *GetClientLinks) GetDocumentation() *components.URLObj {
-	if o == nil {
+func (g *GetClientLinks) GetDocumentation() *components.URLObj {
+	if g == nil {
 		return nil
 	}
-	return o.Documentation
+	return g.Documentation
 }
 
 type GetClientEmbedded struct {
@@ -96,25 +96,25 @@ type GetClientEmbedded struct {
 	Capabilities *components.EntityCapability       `json:"capabilities,omitempty"`
 }
 
-func (o *GetClientEmbedded) GetOrganization() *components.EntityOrganization {
-	if o == nil {
+func (g *GetClientEmbedded) GetOrganization() *components.EntityOrganization {
+	if g == nil {
 		return nil
 	}
-	return o.Organization
+	return g.Organization
 }
 
-func (o *GetClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
-	if o == nil {
+func (g *GetClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
+	if g == nil {
 		return nil
 	}
-	return o.Onboarding
+	return g.Onboarding
 }
 
-func (o *GetClientEmbedded) GetCapabilities() *components.EntityCapability {
-	if o == nil {
+func (g *GetClientEmbedded) GetCapabilities() *components.EntityCapability {
+	if g == nil {
 		return nil
 	}
-	return o.Capabilities
+	return g.Capabilities
 }
 
 // GetClientResponseBody - The client object.
@@ -133,46 +133,46 @@ type GetClientResponseBody struct {
 	Embedded *GetClientEmbedded `json:"_embedded,omitempty"`
 }
 
-func (o *GetClientResponseBody) GetResource() *string {
-	if o == nil {
+func (g *GetClientResponseBody) GetResource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Resource
+	return g.Resource
 }
 
-func (o *GetClientResponseBody) GetID() *string {
-	if o == nil {
+func (g *GetClientResponseBody) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetClientResponseBody) GetCommission() *GetClientCommission {
-	if o == nil {
+func (g *GetClientResponseBody) GetCommission() *GetClientCommission {
+	if g == nil {
 		return nil
 	}
-	return o.Commission
+	return g.Commission
 }
 
-func (o *GetClientResponseBody) GetOrganizationCreatedAt() *string {
-	if o == nil {
+func (g *GetClientResponseBody) GetOrganizationCreatedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OrganizationCreatedAt
+	return g.OrganizationCreatedAt
 }
 
-func (o *GetClientResponseBody) GetLinks() *GetClientLinks {
-	if o == nil {
+func (g *GetClientResponseBody) GetLinks() *GetClientLinks {
+	if g == nil {
 		return nil
 	}
-	return o.Links
+	return g.Links
 }
 
-func (o *GetClientResponseBody) GetEmbedded() *GetClientEmbedded {
-	if o == nil {
+func (g *GetClientResponseBody) GetEmbedded() *GetClientEmbedded {
+	if g == nil {
 		return nil
 	}
-	return o.Embedded
+	return g.Embedded
 }
 
 type GetClientResponse struct {
@@ -181,16 +181,16 @@ type GetClientResponse struct {
 	Object *GetClientResponseBody
 }
 
-func (o *GetClientResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetClientResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetClientResponse) GetObject() *GetClientResponseBody {
-	if o == nil {
+func (g *GetClientResponse) GetObject() *GetClientResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

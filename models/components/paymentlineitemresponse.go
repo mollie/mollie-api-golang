@@ -84,93 +84,93 @@ func (p *PaymentLineItemResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentLineItemResponse) GetType() *PaymentLineTypeResponse {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetType() *PaymentLineTypeResponse {
+	if p == nil {
 		return nil
 	}
-	return o.Type
+	return p.Type
 }
 
-func (o *PaymentLineItemResponse) GetDescription() string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetDescription() string {
+	if p == nil {
 		return ""
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *PaymentLineItemResponse) GetQuantity() int64 {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetQuantity() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.Quantity
+	return p.Quantity
 }
 
-func (o *PaymentLineItemResponse) GetQuantityUnit() *string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetQuantityUnit() *string {
+	if p == nil {
 		return nil
 	}
-	return o.QuantityUnit
+	return p.QuantityUnit
 }
 
-func (o *PaymentLineItemResponse) GetUnitPrice() Amount {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetUnitPrice() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.UnitPrice
+	return p.UnitPrice
 }
 
-func (o *PaymentLineItemResponse) GetDiscountAmount() *Amount {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetDiscountAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.DiscountAmount
+	return p.DiscountAmount
 }
 
-func (o *PaymentLineItemResponse) GetTotalAmount() Amount {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetTotalAmount() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.TotalAmount
+	return p.TotalAmount
 }
 
-func (o *PaymentLineItemResponse) GetVatRate() *string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetVatRate() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VatRate
+	return p.VatRate
 }
 
-func (o *PaymentLineItemResponse) GetVatAmount() *Amount {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetVatAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.VatAmount
+	return p.VatAmount
 }
 
-func (o *PaymentLineItemResponse) GetSku() *string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetSku() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Sku
+	return p.Sku
 }
 
-func (o *PaymentLineItemResponse) GetCategories() []PaymentLineItemResponseCategory {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetCategories() []PaymentLineItemResponseCategory {
+	if p == nil {
 		return nil
 	}
-	return o.Categories
+	return p.Categories
 }
 
-func (o *PaymentLineItemResponse) GetImageURL() *string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetImageURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ImageURL
+	return p.ImageURL
 }
 
-func (o *PaymentLineItemResponse) GetProductURL() *string {
-	if o == nil {
+func (p *PaymentLineItemResponse) GetProductURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ProductURL
+	return p.ProductURL
 }

@@ -11,11 +11,11 @@ type GetCurrentOrganizationRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetCurrentOrganizationRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetCurrentOrganizationRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetCurrentOrganizationResponse struct {
@@ -24,16 +24,16 @@ type GetCurrentOrganizationResponse struct {
 	EntityOrganization *components.EntityOrganization
 }
 
-func (o *GetCurrentOrganizationResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetCurrentOrganizationResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetCurrentOrganizationResponse) GetEntityOrganization() *components.EntityOrganization {
-	if o == nil {
+func (g *GetCurrentOrganizationResponse) GetEntityOrganization() *components.EntityOrganization {
+	if g == nil {
 		return nil
 	}
-	return o.EntityOrganization
+	return g.EntityOrganization
 }

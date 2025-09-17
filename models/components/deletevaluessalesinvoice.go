@@ -10,9 +10,9 @@ type DeleteValuesSalesInvoice struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *DeleteValuesSalesInvoice) GetTestmode() *bool {
-	if o == nil {
+func (d *DeleteValuesSalesInvoice) GetTestmode() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Testmode
+	return d.Testmode
 }

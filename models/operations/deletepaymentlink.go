@@ -14,11 +14,11 @@ type DeletePaymentLinkRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *DeletePaymentLinkRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (d *DeletePaymentLinkRequestBody) GetTestmode() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Testmode
+	return d.Testmode
 }
 
 type DeletePaymentLinkRequest struct {
@@ -29,25 +29,25 @@ type DeletePaymentLinkRequest struct {
 	RequestBody    *DeletePaymentLinkRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *DeletePaymentLinkRequest) GetPaymentLinkID() string {
-	if o == nil {
+func (d *DeletePaymentLinkRequest) GetPaymentLinkID() string {
+	if d == nil {
 		return ""
 	}
-	return o.PaymentLinkID
+	return d.PaymentLinkID
 }
 
-func (o *DeletePaymentLinkRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (d *DeletePaymentLinkRequest) GetIdempotencyKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return d.IdempotencyKey
 }
 
-func (o *DeletePaymentLinkRequest) GetRequestBody() *DeletePaymentLinkRequestBody {
-	if o == nil {
+func (d *DeletePaymentLinkRequest) GetRequestBody() *DeletePaymentLinkRequestBody {
+	if d == nil {
 		return nil
 	}
-	return o.RequestBody
+	return d.RequestBody
 }
 
 type DeletePaymentLinkResponse struct {
@@ -56,16 +56,16 @@ type DeletePaymentLinkResponse struct {
 	Any any
 }
 
-func (o *DeletePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeletePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }
 
-func (o *DeletePaymentLinkResponse) GetAny() any {
-	if o == nil {
+func (d *DeletePaymentLinkResponse) GetAny() any {
+	if d == nil {
 		return nil
 	}
-	return o.Any
+	return d.Any
 }

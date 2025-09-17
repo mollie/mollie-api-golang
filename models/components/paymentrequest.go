@@ -75,102 +75,102 @@ type PaymentRequestLine struct {
 	Recurring  *RecurringLineItem `json:"recurring,omitempty"`
 }
 
-func (o *PaymentRequestLine) GetType() *PaymentLineType {
-	if o == nil {
+func (p *PaymentRequestLine) GetType() *PaymentLineType {
+	if p == nil {
 		return nil
 	}
-	return o.Type
+	return p.Type
 }
 
-func (o *PaymentRequestLine) GetDescription() string {
-	if o == nil {
+func (p *PaymentRequestLine) GetDescription() string {
+	if p == nil {
 		return ""
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *PaymentRequestLine) GetQuantity() int64 {
-	if o == nil {
+func (p *PaymentRequestLine) GetQuantity() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.Quantity
+	return p.Quantity
 }
 
-func (o *PaymentRequestLine) GetQuantityUnit() *string {
-	if o == nil {
+func (p *PaymentRequestLine) GetQuantityUnit() *string {
+	if p == nil {
 		return nil
 	}
-	return o.QuantityUnit
+	return p.QuantityUnit
 }
 
-func (o *PaymentRequestLine) GetUnitPrice() Amount {
-	if o == nil {
+func (p *PaymentRequestLine) GetUnitPrice() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.UnitPrice
+	return p.UnitPrice
 }
 
-func (o *PaymentRequestLine) GetDiscountAmount() *Amount {
-	if o == nil {
+func (p *PaymentRequestLine) GetDiscountAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.DiscountAmount
+	return p.DiscountAmount
 }
 
-func (o *PaymentRequestLine) GetTotalAmount() Amount {
-	if o == nil {
+func (p *PaymentRequestLine) GetTotalAmount() Amount {
+	if p == nil {
 		return Amount{}
 	}
-	return o.TotalAmount
+	return p.TotalAmount
 }
 
-func (o *PaymentRequestLine) GetVatRate() *string {
-	if o == nil {
+func (p *PaymentRequestLine) GetVatRate() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VatRate
+	return p.VatRate
 }
 
-func (o *PaymentRequestLine) GetVatAmount() *Amount {
-	if o == nil {
+func (p *PaymentRequestLine) GetVatAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.VatAmount
+	return p.VatAmount
 }
 
-func (o *PaymentRequestLine) GetSku() *string {
-	if o == nil {
+func (p *PaymentRequestLine) GetSku() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Sku
+	return p.Sku
 }
 
-func (o *PaymentRequestLine) GetCategories() []PaymentRequestCategory {
-	if o == nil {
+func (p *PaymentRequestLine) GetCategories() []PaymentRequestCategory {
+	if p == nil {
 		return nil
 	}
-	return o.Categories
+	return p.Categories
 }
 
-func (o *PaymentRequestLine) GetImageURL() *string {
-	if o == nil {
+func (p *PaymentRequestLine) GetImageURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ImageURL
+	return p.ImageURL
 }
 
-func (o *PaymentRequestLine) GetProductURL() *string {
-	if o == nil {
+func (p *PaymentRequestLine) GetProductURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ProductURL
+	return p.ProductURL
 }
 
-func (o *PaymentRequestLine) GetRecurring() *RecurringLineItem {
-	if o == nil {
+func (p *PaymentRequestLine) GetRecurring() *RecurringLineItem {
+	if p == nil {
 		return nil
 	}
-	return o.Recurring
+	return p.Recurring
 }
 
 // PaymentRequestApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -190,18 +190,18 @@ type PaymentRequestApplicationFee struct {
 	Description *string `json:"description,omitempty"`
 }
 
-func (o *PaymentRequestApplicationFee) GetAmount() *Amount {
-	if o == nil {
+func (p *PaymentRequestApplicationFee) GetAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.Amount
+	return p.Amount
 }
 
-func (o *PaymentRequestApplicationFee) GetDescription() *string {
-	if o == nil {
+func (p *PaymentRequestApplicationFee) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Description
+	return p.Description
 }
 
 // Company - Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
@@ -216,25 +216,25 @@ type Company struct {
 	EntityType *string `json:"entityType,omitempty"`
 }
 
-func (o *Company) GetRegistrationNumber() *string {
-	if o == nil {
+func (c *Company) GetRegistrationNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return o.RegistrationNumber
+	return c.RegistrationNumber
 }
 
-func (o *Company) GetVatNumber() *string {
-	if o == nil {
+func (c *Company) GetVatNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return o.VatNumber
+	return c.VatNumber
 }
 
-func (o *Company) GetEntityType() *string {
-	if o == nil {
+func (c *Company) GetEntityType() *string {
+	if c == nil {
 		return nil
 	}
-	return o.EntityType
+	return c.EntityType
 }
 
 type PaymentRequest struct {
@@ -448,303 +448,303 @@ func (p *PaymentRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentRequest) GetID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PaymentRequest) GetDescription() *string {
-	if o == nil {
+func (p *PaymentRequest) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *PaymentRequest) GetAmount() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.Amount
+	return p.Amount
 }
 
-func (o *PaymentRequest) GetAmountRefunded() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetAmountRefunded() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.AmountRefunded
+	return p.AmountRefunded
 }
 
-func (o *PaymentRequest) GetAmountRemaining() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetAmountRemaining() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.AmountRemaining
+	return p.AmountRemaining
 }
 
-func (o *PaymentRequest) GetAmountCaptured() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetAmountCaptured() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.AmountCaptured
+	return p.AmountCaptured
 }
 
-func (o *PaymentRequest) GetAmountChargedBack() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetAmountChargedBack() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.AmountChargedBack
+	return p.AmountChargedBack
 }
 
-func (o *PaymentRequest) GetSettlementAmount() *Amount {
-	if o == nil {
+func (p *PaymentRequest) GetSettlementAmount() *Amount {
+	if p == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return p.SettlementAmount
 }
 
-func (o *PaymentRequest) GetRedirectURL() *string {
-	if o == nil {
+func (p *PaymentRequest) GetRedirectURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RedirectURL
+	return p.RedirectURL
 }
 
-func (o *PaymentRequest) GetCancelURL() *string {
-	if o == nil {
+func (p *PaymentRequest) GetCancelURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CancelURL
+	return p.CancelURL
 }
 
-func (o *PaymentRequest) GetWebhookURL() *string {
-	if o == nil {
+func (p *PaymentRequest) GetWebhookURL() *string {
+	if p == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return p.WebhookURL
 }
 
-func (o *PaymentRequest) GetLines() []PaymentRequestLine {
-	if o == nil {
+func (p *PaymentRequest) GetLines() []PaymentRequestLine {
+	if p == nil {
 		return nil
 	}
-	return o.Lines
+	return p.Lines
 }
 
-func (o *PaymentRequest) GetBillingAddress() *PaymentAddress {
-	if o == nil {
+func (p *PaymentRequest) GetBillingAddress() *PaymentAddress {
+	if p == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return p.BillingAddress
 }
 
-func (o *PaymentRequest) GetShippingAddress() *PaymentAddress {
-	if o == nil {
+func (p *PaymentRequest) GetShippingAddress() *PaymentAddress {
+	if p == nil {
 		return nil
 	}
-	return o.ShippingAddress
+	return p.ShippingAddress
 }
 
-func (o *PaymentRequest) GetLocale() *Locale {
-	if o == nil {
+func (p *PaymentRequest) GetLocale() *Locale {
+	if p == nil {
 		return nil
 	}
-	return o.Locale
+	return p.Locale
 }
 
-func (o *PaymentRequest) GetMethod() *Method {
-	if o == nil {
+func (p *PaymentRequest) GetMethod() *Method {
+	if p == nil {
 		return nil
 	}
-	return o.Method
+	return p.Method
 }
 
-func (o *PaymentRequest) GetIssuer() *string {
-	if o == nil {
+func (p *PaymentRequest) GetIssuer() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Issuer
+	return p.Issuer
 }
 
-func (o *PaymentRequest) GetRestrictPaymentMethodsToCountry() *string {
-	if o == nil {
+func (p *PaymentRequest) GetRestrictPaymentMethodsToCountry() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RestrictPaymentMethodsToCountry
+	return p.RestrictPaymentMethodsToCountry
 }
 
-func (o *PaymentRequest) GetMetadata() *Metadata {
-	if o == nil {
+func (p *PaymentRequest) GetMetadata() *Metadata {
+	if p == nil {
 		return nil
 	}
-	return o.Metadata
+	return p.Metadata
 }
 
-func (o *PaymentRequest) GetCaptureMode() *CaptureMode {
-	if o == nil {
+func (p *PaymentRequest) GetCaptureMode() *CaptureMode {
+	if p == nil {
 		return nil
 	}
-	return o.CaptureMode
+	return p.CaptureMode
 }
 
-func (o *PaymentRequest) GetCaptureDelay() *string {
-	if o == nil {
+func (p *PaymentRequest) GetCaptureDelay() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CaptureDelay
+	return p.CaptureDelay
 }
 
-func (o *PaymentRequest) GetApplicationFee() *PaymentRequestApplicationFee {
-	if o == nil {
+func (p *PaymentRequest) GetApplicationFee() *PaymentRequestApplicationFee {
+	if p == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return p.ApplicationFee
 }
 
-func (o *PaymentRequest) GetRouting() []EntityPaymentRoute {
-	if o == nil {
+func (p *PaymentRequest) GetRouting() []EntityPaymentRoute {
+	if p == nil {
 		return nil
 	}
-	return o.Routing
+	return p.Routing
 }
 
-func (o *PaymentRequest) GetSequenceType() *SequenceType {
-	if o == nil {
+func (p *PaymentRequest) GetSequenceType() *SequenceType {
+	if p == nil {
 		return nil
 	}
-	return o.SequenceType
+	return p.SequenceType
 }
 
-func (o *PaymentRequest) GetSubscriptionID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetSubscriptionID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SubscriptionID
+	return p.SubscriptionID
 }
 
-func (o *PaymentRequest) GetMandateID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetMandateID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.MandateID
+	return p.MandateID
 }
 
-func (o *PaymentRequest) GetCustomerID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetCustomerID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CustomerID
+	return p.CustomerID
 }
 
-func (o *PaymentRequest) GetProfileID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetProfileID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ProfileID
+	return p.ProfileID
 }
 
-func (o *PaymentRequest) GetSettlementID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetSettlementID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SettlementID
+	return p.SettlementID
 }
 
-func (o *PaymentRequest) GetOrderID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetOrderID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrderID
+	return p.OrderID
 }
 
-func (o *PaymentRequest) GetDueDate() *string {
-	if o == nil {
+func (p *PaymentRequest) GetDueDate() *string {
+	if p == nil {
 		return nil
 	}
-	return o.DueDate
+	return p.DueDate
 }
 
-func (o *PaymentRequest) GetTestmode() *bool {
-	if o == nil {
+func (p *PaymentRequest) GetTestmode() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Testmode
+	return p.Testmode
 }
 
-func (o *PaymentRequest) GetApplePayPaymentToken() *string {
-	if o == nil {
+func (p *PaymentRequest) GetApplePayPaymentToken() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ApplePayPaymentToken
+	return p.ApplePayPaymentToken
 }
 
-func (o *PaymentRequest) GetCompany() *Company {
-	if o == nil {
+func (p *PaymentRequest) GetCompany() *Company {
+	if p == nil {
 		return nil
 	}
-	return o.Company
+	return p.Company
 }
 
-func (o *PaymentRequest) GetCardToken() *string {
-	if o == nil {
+func (p *PaymentRequest) GetCardToken() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CardToken
+	return p.CardToken
 }
 
-func (o *PaymentRequest) GetVoucherNumber() *string {
-	if o == nil {
+func (p *PaymentRequest) GetVoucherNumber() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VoucherNumber
+	return p.VoucherNumber
 }
 
-func (o *PaymentRequest) GetVoucherPin() *string {
-	if o == nil {
+func (p *PaymentRequest) GetVoucherPin() *string {
+	if p == nil {
 		return nil
 	}
-	return o.VoucherPin
+	return p.VoucherPin
 }
 
-func (o *PaymentRequest) GetConsumerDateOfBirth() *types.Date {
-	if o == nil {
+func (p *PaymentRequest) GetConsumerDateOfBirth() *types.Date {
+	if p == nil {
 		return nil
 	}
-	return o.ConsumerDateOfBirth
+	return p.ConsumerDateOfBirth
 }
 
-func (o *PaymentRequest) GetExtraMerchantData() map[string]any {
-	if o == nil {
+func (p *PaymentRequest) GetExtraMerchantData() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.ExtraMerchantData
+	return p.ExtraMerchantData
 }
 
-func (o *PaymentRequest) GetSessionID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetSessionID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.SessionID
+	return p.SessionID
 }
 
-func (o *PaymentRequest) GetDigitalGoods() *bool {
-	if o == nil {
+func (p *PaymentRequest) GetDigitalGoods() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.DigitalGoods
+	return p.DigitalGoods
 }
 
-func (o *PaymentRequest) GetCustomerReference() *string {
-	if o == nil {
+func (p *PaymentRequest) GetCustomerReference() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CustomerReference
+	return p.CustomerReference
 }
 
-func (o *PaymentRequest) GetTerminalID() *string {
-	if o == nil {
+func (p *PaymentRequest) GetTerminalID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.TerminalID
+	return p.TerminalID
 }

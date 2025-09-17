@@ -12,25 +12,25 @@ type EntityOrganizationLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityOrganizationLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityOrganizationLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityOrganizationLinks) GetDashboard() *URLObj {
-	if o == nil {
+func (e *EntityOrganizationLinks) GetDashboard() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Dashboard
+	return e.Dashboard
 }
 
-func (o *EntityOrganizationLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityOrganizationLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityOrganization struct {
@@ -62,72 +62,72 @@ type EntityOrganization struct {
 	Links *EntityOrganizationLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityOrganization) GetResource() *string {
-	if o == nil {
+func (e *EntityOrganization) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityOrganization) GetID() *string {
-	if o == nil {
+func (e *EntityOrganization) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityOrganization) GetName() *string {
-	if o == nil {
+func (e *EntityOrganization) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityOrganization) GetEmail() *string {
-	if o == nil {
+func (e *EntityOrganization) GetEmail() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Email
+	return e.Email
 }
 
-func (o *EntityOrganization) GetLocale() *LocaleResponse {
-	if o == nil {
+func (e *EntityOrganization) GetLocale() *LocaleResponse {
+	if e == nil {
 		return nil
 	}
-	return o.Locale
+	return e.Locale
 }
 
-func (o *EntityOrganization) GetAddress() *Address {
-	if o == nil {
+func (e *EntityOrganization) GetAddress() *Address {
+	if e == nil {
 		return nil
 	}
-	return o.Address
+	return e.Address
 }
 
-func (o *EntityOrganization) GetRegistrationNumber() *string {
-	if o == nil {
+func (e *EntityOrganization) GetRegistrationNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RegistrationNumber
+	return e.RegistrationNumber
 }
 
-func (o *EntityOrganization) GetVatNumber() *string {
-	if o == nil {
+func (e *EntityOrganization) GetVatNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.VatNumber
+	return e.VatNumber
 }
 
-func (o *EntityOrganization) GetVatRegulation() *OrganizationVatRegulation {
-	if o == nil {
+func (e *EntityOrganization) GetVatRegulation() *OrganizationVatRegulation {
+	if e == nil {
 		return nil
 	}
-	return o.VatRegulation
+	return e.VatRegulation
 }
 
-func (o *EntityOrganization) GetLinks() *EntityOrganizationLinks {
-	if o == nil {
+func (e *EntityOrganization) GetLinks() *EntityOrganizationLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

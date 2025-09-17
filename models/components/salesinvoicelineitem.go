@@ -14,37 +14,37 @@ type SalesInvoiceLineItem struct {
 	Discount  *SalesInvoiceDiscount `json:"discount,omitempty"`
 }
 
-func (o *SalesInvoiceLineItem) GetDescription() string {
-	if o == nil {
+func (s *SalesInvoiceLineItem) GetDescription() string {
+	if s == nil {
 		return ""
 	}
-	return o.Description
+	return s.Description
 }
 
-func (o *SalesInvoiceLineItem) GetQuantity() int64 {
-	if o == nil {
+func (s *SalesInvoiceLineItem) GetQuantity() int64 {
+	if s == nil {
 		return 0
 	}
-	return o.Quantity
+	return s.Quantity
 }
 
-func (o *SalesInvoiceLineItem) GetVatRate() string {
-	if o == nil {
+func (s *SalesInvoiceLineItem) GetVatRate() string {
+	if s == nil {
 		return ""
 	}
-	return o.VatRate
+	return s.VatRate
 }
 
-func (o *SalesInvoiceLineItem) GetUnitPrice() Amount {
-	if o == nil {
+func (s *SalesInvoiceLineItem) GetUnitPrice() Amount {
+	if s == nil {
 		return Amount{}
 	}
-	return o.UnitPrice
+	return s.UnitPrice
 }
 
-func (o *SalesInvoiceLineItem) GetDiscount() *SalesInvoiceDiscount {
-	if o == nil {
+func (s *SalesInvoiceLineItem) GetDiscount() *SalesInvoiceDiscount {
+	if s == nil {
 		return nil
 	}
-	return o.Discount
+	return s.Discount
 }

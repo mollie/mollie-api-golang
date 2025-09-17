@@ -9,16 +9,16 @@ type SalesInvoiceDiscount struct {
 	Value string `json:"value"`
 }
 
-func (o *SalesInvoiceDiscount) GetType() SalesInvoiceDiscountType {
-	if o == nil {
+func (s *SalesInvoiceDiscount) GetType() SalesInvoiceDiscountType {
+	if s == nil {
 		return SalesInvoiceDiscountType("")
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *SalesInvoiceDiscount) GetValue() string {
-	if o == nil {
+func (s *SalesInvoiceDiscount) GetValue() string {
+	if s == nil {
 		return ""
 	}
-	return o.Value
+	return s.Value
 }

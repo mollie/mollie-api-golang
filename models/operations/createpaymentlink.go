@@ -20,18 +20,18 @@ type ApplicationFee struct {
 	Description string `json:"description"`
 }
 
-func (o *ApplicationFee) GetAmount() components.Amount {
-	if o == nil {
+func (a *ApplicationFee) GetAmount() components.Amount {
+	if a == nil {
 		return components.Amount{}
 	}
-	return o.Amount
+	return a.Amount
 }
 
-func (o *ApplicationFee) GetDescription() string {
-	if o == nil {
+func (a *ApplicationFee) GetDescription() string {
+	if a == nil {
 		return ""
 	}
-	return o.Description
+	return a.Description
 }
 
 type CreatePaymentLinkRequestBody struct {
@@ -107,123 +107,123 @@ type CreatePaymentLinkRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CreatePaymentLinkRequestBody) GetID() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreatePaymentLinkRequestBody) GetDescription() string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetDescription() string {
+	if c == nil {
 		return ""
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreatePaymentLinkRequestBody) GetAmount() *components.AmountNullable {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetAmount() *components.AmountNullable {
+	if c == nil {
 		return nil
 	}
-	return o.Amount
+	return c.Amount
 }
 
-func (o *CreatePaymentLinkRequestBody) GetMinimumAmount() *components.AmountNullable {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetMinimumAmount() *components.AmountNullable {
+	if c == nil {
 		return nil
 	}
-	return o.MinimumAmount
+	return c.MinimumAmount
 }
 
-func (o *CreatePaymentLinkRequestBody) GetRedirectURL() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetRedirectURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.RedirectURL
+	return c.RedirectURL
 }
 
-func (o *CreatePaymentLinkRequestBody) GetWebhookURL() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetWebhookURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return c.WebhookURL
 }
 
-func (o *CreatePaymentLinkRequestBody) GetLines() []components.PaymentLineItem {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetLines() []components.PaymentLineItem {
+	if c == nil {
 		return nil
 	}
-	return o.Lines
+	return c.Lines
 }
 
-func (o *CreatePaymentLinkRequestBody) GetBillingAddress() *components.PaymentAddress {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetBillingAddress() *components.PaymentAddress {
+	if c == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return c.BillingAddress
 }
 
-func (o *CreatePaymentLinkRequestBody) GetShippingAddress() *components.PaymentAddress {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetShippingAddress() *components.PaymentAddress {
+	if c == nil {
 		return nil
 	}
-	return o.ShippingAddress
+	return c.ShippingAddress
 }
 
-func (o *CreatePaymentLinkRequestBody) GetProfileID() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetProfileID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ProfileID
+	return c.ProfileID
 }
 
-func (o *CreatePaymentLinkRequestBody) GetReusable() *bool {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetReusable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Reusable
+	return c.Reusable
 }
 
-func (o *CreatePaymentLinkRequestBody) GetExpiresAt() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetExpiresAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return c.ExpiresAt
 }
 
-func (o *CreatePaymentLinkRequestBody) GetAllowedMethods() []string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetAllowedMethods() []string {
+	if c == nil {
 		return nil
 	}
-	return o.AllowedMethods
+	return c.AllowedMethods
 }
 
-func (o *CreatePaymentLinkRequestBody) GetApplicationFee() *ApplicationFee {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetApplicationFee() *ApplicationFee {
+	if c == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return c.ApplicationFee
 }
 
-func (o *CreatePaymentLinkRequestBody) GetSequenceType() *components.PaymentLinkSequenceType {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetSequenceType() *components.PaymentLinkSequenceType {
+	if c == nil {
 		return nil
 	}
-	return o.SequenceType
+	return c.SequenceType
 }
 
-func (o *CreatePaymentLinkRequestBody) GetCustomerID() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetCustomerID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CustomerID
+	return c.CustomerID
 }
 
-func (o *CreatePaymentLinkRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (c *CreatePaymentLinkRequestBody) GetTestmode() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Testmode
+	return c.Testmode
 }
 
 type CreatePaymentLinkRequest struct {
@@ -232,18 +232,18 @@ type CreatePaymentLinkRequest struct {
 	RequestBody    *CreatePaymentLinkRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *CreatePaymentLinkRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreatePaymentLinkRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreatePaymentLinkRequest) GetRequestBody() *CreatePaymentLinkRequestBody {
-	if o == nil {
+func (c *CreatePaymentLinkRequest) GetRequestBody() *CreatePaymentLinkRequestBody {
+	if c == nil {
 		return nil
 	}
-	return o.RequestBody
+	return c.RequestBody
 }
 
 type CreatePaymentLinkResponse struct {
@@ -252,16 +252,16 @@ type CreatePaymentLinkResponse struct {
 	PaymentLinkResponse *components.PaymentLinkResponse
 }
 
-func (o *CreatePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreatePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreatePaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
-	if o == nil {
+func (c *CreatePaymentLinkResponse) GetPaymentLinkResponse() *components.PaymentLinkResponse {
+	if c == nil {
 		return nil
 	}
-	return o.PaymentLinkResponse
+	return c.PaymentLinkResponse
 }

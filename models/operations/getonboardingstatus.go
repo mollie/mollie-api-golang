@@ -11,11 +11,11 @@ type GetOnboardingStatusRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetOnboardingStatusRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetOnboardingStatusRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetOnboardingStatusResponse struct {
@@ -24,16 +24,16 @@ type GetOnboardingStatusResponse struct {
 	EntityOnboardingStatus *components.EntityOnboardingStatus
 }
 
-func (o *GetOnboardingStatusResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetOnboardingStatusResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetOnboardingStatusResponse) GetEntityOnboardingStatus() *components.EntityOnboardingStatus {
-	if o == nil {
+func (g *GetOnboardingStatusResponse) GetEntityOnboardingStatus() *components.EntityOnboardingStatus {
+	if g == nil {
 		return nil
 	}
-	return o.EntityOnboardingStatus
+	return g.EntityOnboardingStatus
 }

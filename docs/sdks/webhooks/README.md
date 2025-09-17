@@ -36,15 +36,15 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Webhooks.Create(ctx, client.String("123e4567-e89b-12d3-a456-426"), &operations.CreateWebhookRequestBody{
+    res, err := s.Webhooks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreateWebhookRequestBody{
         Name: "Webhook #1",
         URL: "https://mollie.com/",
         WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid,
-        Testmode: client.Bool(false),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -99,17 +99,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Webhooks.List(ctx, operations.ListWebhooksRequest{
-        From: client.String("hook_B2EyhTH5N4KWUnoYPcgiH"),
-        Limit: client.Int64(50),
+        From: client.Pointer("hook_B2EyhTH5N4KWUnoYPcgiH"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
         EventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -163,15 +163,15 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.String("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
-        Name: client.String("Webhook #1"),
-        URL: client.String("https://mollie.com/"),
+    res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
+        Name: client.Pointer("Webhook #1"),
+        URL: client.Pointer("https://mollie.com/"),
         WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
-        Testmode: client.Bool(false),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -226,11 +226,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Webhooks.Get(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Webhooks.Get(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -285,12 +285,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Webhooks.Delete(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.String("123e4567-e89b-12d3-a456-426"), &operations.DeleteWebhookRequestBody{
-        Testmode: client.Bool(false),
+    res, err := s.Webhooks.Delete(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.DeleteWebhookRequestBody{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -346,12 +346,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Webhooks.Test(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.String("123e4567-e89b-12d3-a456-426"), &operations.TestWebhookRequestBody{
-        Testmode: client.Bool(false),
+    res, err := s.Webhooks.Test(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.TestWebhookRequestBody{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

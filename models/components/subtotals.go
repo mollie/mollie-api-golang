@@ -395,58 +395,58 @@ type SubTotals struct {
 	TransactionType *SubTotalsTransactionType `json:"transactionType,omitempty"`
 }
 
-func (o *SubTotals) GetCount() *int64 {
-	if o == nil {
+func (s *SubTotals) GetCount() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Count
+	return s.Count
 }
 
-func (o *SubTotals) GetMethod() *PaymentMethod {
-	if o == nil {
+func (s *SubTotals) GetMethod() *PaymentMethod {
+	if s == nil {
 		return nil
 	}
-	return o.Method
+	return s.Method
 }
 
-func (o *SubTotals) GetCardIssuer() *SubTotalsCardIssuer {
-	if o == nil {
+func (s *SubTotals) GetCardIssuer() *SubTotalsCardIssuer {
+	if s == nil {
 		return nil
 	}
-	return o.CardIssuer
+	return s.CardIssuer
 }
 
-func (o *SubTotals) GetCardAudience() *SubTotalsCardAudience {
-	if o == nil {
+func (s *SubTotals) GetCardAudience() *SubTotalsCardAudience {
+	if s == nil {
 		return nil
 	}
-	return o.CardAudience
+	return s.CardAudience
 }
 
-func (o *SubTotals) GetCardRegion() *SubTotalsCardRegion {
-	if o == nil {
+func (s *SubTotals) GetCardRegion() *SubTotalsCardRegion {
+	if s == nil {
 		return nil
 	}
-	return o.CardRegion
+	return s.CardRegion
 }
 
-func (o *SubTotals) GetFeeType() *SubTotalsFeeType {
-	if o == nil {
+func (s *SubTotals) GetFeeType() *SubTotalsFeeType {
+	if s == nil {
 		return nil
 	}
-	return o.FeeType
+	return s.FeeType
 }
 
-func (o *SubTotals) GetPrepaymentPartType() *SubTotalsPrepaymentPartType {
-	if o == nil {
+func (s *SubTotals) GetPrepaymentPartType() *SubTotalsPrepaymentPartType {
+	if s == nil {
 		return nil
 	}
-	return o.PrepaymentPartType
+	return s.PrepaymentPartType
 }
 
-func (o *SubTotals) GetTransactionType() *SubTotalsTransactionType {
-	if o == nil {
+func (s *SubTotals) GetTransactionType() *SubTotalsTransactionType {
+	if s == nil {
 		return nil
 	}
-	return o.TransactionType
+	return s.TransactionType
 }

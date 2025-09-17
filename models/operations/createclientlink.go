@@ -12,18 +12,18 @@ type CreateClientLinkRequest struct {
 	EntityClientLink *components.EntityClientLink `request:"mediaType=application/json"`
 }
 
-func (o *CreateClientLinkRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateClientLinkRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateClientLinkRequest) GetEntityClientLink() *components.EntityClientLink {
-	if o == nil {
+func (c *CreateClientLinkRequest) GetEntityClientLink() *components.EntityClientLink {
+	if c == nil {
 		return nil
 	}
-	return o.EntityClientLink
+	return c.EntityClientLink
 }
 
 type CreateClientLinkResponse struct {
@@ -32,16 +32,16 @@ type CreateClientLinkResponse struct {
 	EntityClientLinkResponse *components.EntityClientLinkResponse
 }
 
-func (o *CreateClientLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateClientLinkResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateClientLinkResponse) GetEntityClientLinkResponse() *components.EntityClientLinkResponse {
-	if o == nil {
+func (c *CreateClientLinkResponse) GetEntityClientLinkResponse() *components.EntityClientLinkResponse {
+	if c == nil {
 		return nil
 	}
-	return o.EntityClientLinkResponse
+	return c.EntityClientLinkResponse
 }

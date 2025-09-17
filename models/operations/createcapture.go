@@ -14,25 +14,25 @@ type CreateCaptureRequest struct {
 	EntityCapture  *components.EntityCapture `request:"mediaType=application/json"`
 }
 
-func (o *CreateCaptureRequest) GetPaymentID() string {
-	if o == nil {
+func (c *CreateCaptureRequest) GetPaymentID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PaymentID
+	return c.PaymentID
 }
 
-func (o *CreateCaptureRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateCaptureRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateCaptureRequest) GetEntityCapture() *components.EntityCapture {
-	if o == nil {
+func (c *CreateCaptureRequest) GetEntityCapture() *components.EntityCapture {
+	if c == nil {
 		return nil
 	}
-	return o.EntityCapture
+	return c.EntityCapture
 }
 
 type CreateCaptureResponse struct {
@@ -42,16 +42,16 @@ type CreateCaptureResponse struct {
 	CaptureResponse *components.CaptureResponse
 }
 
-func (o *CreateCaptureResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateCaptureResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateCaptureResponse) GetCaptureResponse() *components.CaptureResponse {
-	if o == nil {
+func (c *CreateCaptureResponse) GetCaptureResponse() *components.CaptureResponse {
+	if c == nil {
 		return nil
 	}
-	return o.CaptureResponse
+	return c.CaptureResponse
 }

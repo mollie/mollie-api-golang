@@ -66,6 +66,11 @@ type EntitySalesInvoice struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
+	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+	// after the invoice has been issued.
+	//
+	// When `emailDetails` is provided, an additional email is sent to the recipient.
+	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountDue *Amount `json:"amountDue,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -78,156 +83,163 @@ type EntitySalesInvoice struct {
 	DiscountedSubtotalAmount *Amount `json:"discountedSubtotalAmount,omitempty"`
 }
 
-func (o *EntitySalesInvoice) GetID() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntitySalesInvoice) GetTestmode() *bool {
-	if o == nil {
+func (e *EntitySalesInvoice) GetTestmode() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Testmode
+	return e.Testmode
 }
 
-func (o *EntitySalesInvoice) GetProfileID() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetProfileID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ProfileID
+	return e.ProfileID
 }
 
-func (o *EntitySalesInvoice) GetStatus() *SalesInvoiceStatus {
-	if o == nil {
+func (e *EntitySalesInvoice) GetStatus() *SalesInvoiceStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntitySalesInvoice) GetVatScheme() *SalesInvoiceVatScheme {
-	if o == nil {
+func (e *EntitySalesInvoice) GetVatScheme() *SalesInvoiceVatScheme {
+	if e == nil {
 		return nil
 	}
-	return o.VatScheme
+	return e.VatScheme
 }
 
-func (o *EntitySalesInvoice) GetVatMode() *SalesInvoiceVatMode {
-	if o == nil {
+func (e *EntitySalesInvoice) GetVatMode() *SalesInvoiceVatMode {
+	if e == nil {
 		return nil
 	}
-	return o.VatMode
+	return e.VatMode
 }
 
-func (o *EntitySalesInvoice) GetMemo() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetMemo() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Memo
+	return e.Memo
 }
 
-func (o *EntitySalesInvoice) GetMetadata() *EntitySalesInvoiceMetadata {
-	if o == nil {
+func (e *EntitySalesInvoice) GetMetadata() *EntitySalesInvoiceMetadata {
+	if e == nil {
 		return nil
 	}
-	return o.Metadata
+	return e.Metadata
 }
 
-func (o *EntitySalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
-	if o == nil {
+func (e *EntitySalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentTerm
+	return e.PaymentTerm
 }
 
-func (o *EntitySalesInvoice) GetPaymentDetails() *SalesInvoicePaymentDetails {
-	if o == nil {
+func (e *EntitySalesInvoice) GetPaymentDetails() *SalesInvoicePaymentDetails {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentDetails
+	return e.PaymentDetails
 }
 
-func (o *EntitySalesInvoice) GetEmailDetails() *SalesInvoiceEmailDetails {
-	if o == nil {
+func (e *EntitySalesInvoice) GetEmailDetails() *SalesInvoiceEmailDetails {
+	if e == nil {
 		return nil
 	}
-	return o.EmailDetails
+	return e.EmailDetails
 }
 
-func (o *EntitySalesInvoice) GetCustomerID() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetCustomerID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CustomerID
+	return e.CustomerID
 }
 
-func (o *EntitySalesInvoice) GetMandateID() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetMandateID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.MandateID
+	return e.MandateID
 }
 
-func (o *EntitySalesInvoice) GetRecipientIdentifier() *string {
-	if o == nil {
+func (e *EntitySalesInvoice) GetRecipientIdentifier() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RecipientIdentifier
+	return e.RecipientIdentifier
 }
 
-func (o *EntitySalesInvoice) GetRecipient() *SalesInvoiceRecipient {
-	if o == nil {
+func (e *EntitySalesInvoice) GetRecipient() *SalesInvoiceRecipient {
+	if e == nil {
 		return nil
 	}
-	return o.Recipient
+	return e.Recipient
 }
 
-func (o *EntitySalesInvoice) GetLines() []SalesInvoiceLineItem {
-	if o == nil {
+func (e *EntitySalesInvoice) GetLines() []SalesInvoiceLineItem {
+	if e == nil {
 		return nil
 	}
-	return o.Lines
+	return e.Lines
 }
 
-func (o *EntitySalesInvoice) GetDiscount() *SalesInvoiceDiscount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetDiscount() *SalesInvoiceDiscount {
+	if e == nil {
 		return nil
 	}
-	return o.Discount
+	return e.Discount
 }
 
-func (o *EntitySalesInvoice) GetAmountDue() *Amount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetIsEInvoice() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.AmountDue
+	return e.IsEInvoice
 }
 
-func (o *EntitySalesInvoice) GetSubtotalAmount() *Amount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetAmountDue() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.SubtotalAmount
+	return e.AmountDue
 }
 
-func (o *EntitySalesInvoice) GetTotalAmount() *Amount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetSubtotalAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.TotalAmount
+	return e.SubtotalAmount
 }
 
-func (o *EntitySalesInvoice) GetTotalVatAmount() *Amount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetTotalAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.TotalVatAmount
+	return e.TotalAmount
 }
 
-func (o *EntitySalesInvoice) GetDiscountedSubtotalAmount() *Amount {
-	if o == nil {
+func (e *EntitySalesInvoice) GetTotalVatAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.DiscountedSubtotalAmount
+	return e.TotalVatAmount
+}
+
+func (e *EntitySalesInvoice) GetDiscountedSubtotalAmount() *Amount {
+	if e == nil {
+		return nil
+	}
+	return e.DiscountedSubtotalAmount
 }

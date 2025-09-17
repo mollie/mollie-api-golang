@@ -11,11 +11,11 @@ type GetPrimaryBalanceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPrimaryBalanceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPrimaryBalanceRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetPrimaryBalanceResponse struct {
@@ -24,16 +24,16 @@ type GetPrimaryBalanceResponse struct {
 	EntityBalance *components.EntityBalance
 }
 
-func (o *GetPrimaryBalanceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPrimaryBalanceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPrimaryBalanceResponse) GetEntityBalance() *components.EntityBalance {
-	if o == nil {
+func (g *GetPrimaryBalanceResponse) GetEntityBalance() *components.EntityBalance {
+	if g == nil {
 		return nil
 	}
-	return o.EntityBalance
+	return g.EntityBalance
 }

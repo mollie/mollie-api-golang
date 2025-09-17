@@ -39,93 +39,93 @@ type EntityMandate struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *EntityMandate) GetID() *string {
-	if o == nil {
+func (e *EntityMandate) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityMandate) GetMethod() *MandateMethod {
-	if o == nil {
+func (e *EntityMandate) GetMethod() *MandateMethod {
+	if e == nil {
 		return nil
 	}
-	return o.Method
+	return e.Method
 }
 
-func (o *EntityMandate) GetConsumerName() *string {
-	if o == nil {
+func (e *EntityMandate) GetConsumerName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConsumerName
+	return e.ConsumerName
 }
 
-func (o *EntityMandate) GetConsumerAccount() *string {
-	if o == nil {
+func (e *EntityMandate) GetConsumerAccount() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConsumerAccount
+	return e.ConsumerAccount
 }
 
-func (o *EntityMandate) GetConsumerBic() *string {
-	if o == nil {
+func (e *EntityMandate) GetConsumerBic() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConsumerBic
+	return e.ConsumerBic
 }
 
-func (o *EntityMandate) GetConsumerEmail() *string {
-	if o == nil {
+func (e *EntityMandate) GetConsumerEmail() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConsumerEmail
+	return e.ConsumerEmail
 }
 
-func (o *EntityMandate) GetSignatureDate() *string {
-	if o == nil {
+func (e *EntityMandate) GetSignatureDate() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SignatureDate
+	return e.SignatureDate
 }
 
-func (o *EntityMandate) GetMandateReference() *string {
-	if o == nil {
+func (e *EntityMandate) GetMandateReference() *string {
+	if e == nil {
 		return nil
 	}
-	return o.MandateReference
+	return e.MandateReference
 }
 
-func (o *EntityMandate) GetPaypalBillingAgreementID() *string {
-	if o == nil {
+func (e *EntityMandate) GetPaypalBillingAgreementID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaypalBillingAgreementID
+	return e.PaypalBillingAgreementID
 }
 
-func (o *EntityMandate) GetPayPalVaultID() *string {
-	if o == nil {
+func (e *EntityMandate) GetPayPalVaultID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PayPalVaultID
+	return e.PayPalVaultID
 }
 
-func (o *EntityMandate) GetStatus() *MandateStatus {
-	if o == nil {
+func (e *EntityMandate) GetStatus() *MandateStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityMandate) GetCustomerID() *string {
-	if o == nil {
+func (e *EntityMandate) GetCustomerID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CustomerID
+	return e.CustomerID
 }
 
-func (o *EntityMandate) GetTestmode() *bool {
-	if o == nil {
+func (e *EntityMandate) GetTestmode() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Testmode
+	return e.Testmode
 }

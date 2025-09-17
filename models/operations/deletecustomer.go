@@ -14,11 +14,11 @@ type DeleteCustomerRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *DeleteCustomerRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (d *DeleteCustomerRequestBody) GetTestmode() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Testmode
+	return d.Testmode
 }
 
 type DeleteCustomerRequest struct {
@@ -29,25 +29,25 @@ type DeleteCustomerRequest struct {
 	RequestBody    *DeleteCustomerRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *DeleteCustomerRequest) GetCustomerID() string {
-	if o == nil {
+func (d *DeleteCustomerRequest) GetCustomerID() string {
+	if d == nil {
 		return ""
 	}
-	return o.CustomerID
+	return d.CustomerID
 }
 
-func (o *DeleteCustomerRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (d *DeleteCustomerRequest) GetIdempotencyKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return d.IdempotencyKey
 }
 
-func (o *DeleteCustomerRequest) GetRequestBody() *DeleteCustomerRequestBody {
-	if o == nil {
+func (d *DeleteCustomerRequest) GetRequestBody() *DeleteCustomerRequestBody {
+	if d == nil {
 		return nil
 	}
-	return o.RequestBody
+	return d.RequestBody
 }
 
 type DeleteCustomerResponse struct {
@@ -56,16 +56,16 @@ type DeleteCustomerResponse struct {
 	Any any
 }
 
-func (o *DeleteCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeleteCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }
 
-func (o *DeleteCustomerResponse) GetAny() any {
-	if o == nil {
+func (d *DeleteCustomerResponse) GetAny() any {
+	if d == nil {
 		return nil
 	}
-	return o.Any
+	return d.Any
 }

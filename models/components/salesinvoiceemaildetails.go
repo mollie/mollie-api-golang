@@ -9,16 +9,16 @@ type SalesInvoiceEmailDetails struct {
 	Body string `json:"body"`
 }
 
-func (o *SalesInvoiceEmailDetails) GetSubject() string {
-	if o == nil {
+func (s *SalesInvoiceEmailDetails) GetSubject() string {
+	if s == nil {
 		return ""
 	}
-	return o.Subject
+	return s.Subject
 }
 
-func (o *SalesInvoiceEmailDetails) GetBody() string {
-	if o == nil {
+func (s *SalesInvoiceEmailDetails) GetBody() string {
+	if s == nil {
 		return ""
 	}
-	return o.Body
+	return s.Body
 }

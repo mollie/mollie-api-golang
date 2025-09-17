@@ -19,25 +19,25 @@ type GetTerminalRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetTerminalRequest) GetTerminalID() string {
-	if o == nil {
+func (g *GetTerminalRequest) GetTerminalID() string {
+	if g == nil {
 		return ""
 	}
-	return o.TerminalID
+	return g.TerminalID
 }
 
-func (o *GetTerminalRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetTerminalRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetTerminalRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetTerminalRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetTerminalResponse struct {
@@ -46,16 +46,16 @@ type GetTerminalResponse struct {
 	EntityTerminal *components.EntityTerminal
 }
 
-func (o *GetTerminalResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetTerminalResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetTerminalResponse) GetEntityTerminal() *components.EntityTerminal {
-	if o == nil {
+func (g *GetTerminalResponse) GetEntityTerminal() *components.EntityTerminal {
+	if g == nil {
 		return nil
 	}
-	return o.EntityTerminal
+	return g.EntityTerminal
 }

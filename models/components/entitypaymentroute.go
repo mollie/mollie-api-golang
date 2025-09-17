@@ -9,18 +9,18 @@ type EntityPaymentRouteDestination struct {
 	OrganizationID string               `json:"organizationId"`
 }
 
-func (o *EntityPaymentRouteDestination) GetType() RouteDestinationType {
-	if o == nil {
+func (e *EntityPaymentRouteDestination) GetType() RouteDestinationType {
+	if e == nil {
 		return RouteDestinationType("")
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityPaymentRouteDestination) GetOrganizationID() string {
-	if o == nil {
+func (e *EntityPaymentRouteDestination) GetOrganizationID() string {
+	if e == nil {
 		return ""
 	}
-	return o.OrganizationID
+	return e.OrganizationID
 }
 
 // EntityPaymentRouteLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -31,18 +31,18 @@ type EntityPaymentRouteLinks struct {
 	Payment URLObj `json:"payment"`
 }
 
-func (o *EntityPaymentRouteLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityPaymentRouteLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityPaymentRouteLinks) GetPayment() URLObj {
-	if o == nil {
+func (e *EntityPaymentRouteLinks) GetPayment() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Payment
+	return e.Payment
 }
 
 type EntityPaymentRoute struct {
@@ -60,37 +60,37 @@ type EntityPaymentRoute struct {
 	Links EntityPaymentRouteLinks `json:"_links"`
 }
 
-func (o *EntityPaymentRoute) GetID() string {
-	if o == nil {
+func (e *EntityPaymentRoute) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityPaymentRoute) GetAmount() Amount {
-	if o == nil {
+func (e *EntityPaymentRoute) GetAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityPaymentRoute) GetDestination() EntityPaymentRouteDestination {
-	if o == nil {
+func (e *EntityPaymentRoute) GetDestination() EntityPaymentRouteDestination {
+	if e == nil {
 		return EntityPaymentRouteDestination{}
 	}
-	return o.Destination
+	return e.Destination
 }
 
-func (o *EntityPaymentRoute) GetReleaseDate() *string {
-	if o == nil {
+func (e *EntityPaymentRoute) GetReleaseDate() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ReleaseDate
+	return e.ReleaseDate
 }
 
-func (o *EntityPaymentRoute) GetLinks() EntityPaymentRouteLinks {
-	if o == nil {
+func (e *EntityPaymentRoute) GetLinks() EntityPaymentRouteLinks {
+	if e == nil {
 		return EntityPaymentRouteLinks{}
 	}
-	return o.Links
+	return e.Links
 }

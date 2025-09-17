@@ -10,18 +10,18 @@ type Reason struct {
 	Description string `json:"description"`
 }
 
-func (o *Reason) GetCode() string {
-	if o == nil {
+func (r *Reason) GetCode() string {
+	if r == nil {
 		return ""
 	}
-	return o.Code
+	return r.Code
 }
 
-func (o *Reason) GetDescription() string {
-	if o == nil {
+func (r *Reason) GetDescription() string {
+	if r == nil {
 		return ""
 	}
-	return o.Description
+	return r.Description
 }
 
 // EntityChargebackLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -36,32 +36,32 @@ type EntityChargebackLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *EntityChargebackLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityChargebackLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityChargebackLinks) GetPayment() URLObj {
-	if o == nil {
+func (e *EntityChargebackLinks) GetPayment() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Payment
+	return e.Payment
 }
 
-func (o *EntityChargebackLinks) GetSettlement() *URLNullable {
-	if o == nil {
+func (e *EntityChargebackLinks) GetSettlement() *URLNullable {
+	if e == nil {
 		return nil
 	}
-	return o.Settlement
+	return e.Settlement
 }
 
-func (o *EntityChargebackLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (e *EntityChargebackLinks) GetDocumentation() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityChargeback struct {
@@ -86,72 +86,72 @@ type EntityChargeback struct {
 	Links EntityChargebackLinks `json:"_links"`
 }
 
-func (o *EntityChargeback) GetResource() string {
-	if o == nil {
+func (e *EntityChargeback) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityChargeback) GetID() string {
-	if o == nil {
+func (e *EntityChargeback) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityChargeback) GetAmount() Amount {
-	if o == nil {
+func (e *EntityChargeback) GetAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityChargeback) GetSettlementAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityChargeback) GetSettlementAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return e.SettlementAmount
 }
 
-func (o *EntityChargeback) GetReason() *Reason {
-	if o == nil {
+func (e *EntityChargeback) GetReason() *Reason {
+	if e == nil {
 		return nil
 	}
-	return o.Reason
+	return e.Reason
 }
 
-func (o *EntityChargeback) GetPaymentID() string {
-	if o == nil {
+func (e *EntityChargeback) GetPaymentID() string {
+	if e == nil {
 		return ""
 	}
-	return o.PaymentID
+	return e.PaymentID
 }
 
-func (o *EntityChargeback) GetSettlementID() *string {
-	if o == nil {
+func (e *EntityChargeback) GetSettlementID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementID
+	return e.SettlementID
 }
 
-func (o *EntityChargeback) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityChargeback) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityChargeback) GetReversedAt() *string {
-	if o == nil {
+func (e *EntityChargeback) GetReversedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ReversedAt
+	return e.ReversedAt
 }
 
-func (o *EntityChargeback) GetLinks() EntityChargebackLinks {
-	if o == nil {
+func (e *EntityChargeback) GetLinks() EntityChargebackLinks {
+	if e == nil {
 		return EntityChargebackLinks{}
 	}
-	return o.Links
+	return e.Links
 }

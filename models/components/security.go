@@ -7,16 +7,16 @@ type Security struct {
 	OAuth  *string `security:"scheme,type=oauth2,name=Authorization,env=client_o_auth"`
 }
 
-func (o *Security) GetAPIKey() *string {
-	if o == nil {
+func (s *Security) GetAPIKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.APIKey
+	return s.APIKey
 }
 
-func (o *Security) GetOAuth() *string {
-	if o == nil {
+func (s *Security) GetOAuth() *string {
+	if s == nil {
 		return nil
 	}
-	return o.OAuth
+	return s.OAuth
 }

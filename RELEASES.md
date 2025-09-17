@@ -49,3 +49,13 @@ Based on:
 - [go v0.2.3] .
 ### Releases
 - [Go v0.2.3] https://github.com/mollie/mollie-api-golang/releases/tag/v0.2.3 - .
+
+## 2025-09-17 00:06:22
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.617.1 (2.701.8) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.3.0] .
+### Releases
+- [Go v0.3.0] https://github.com/mollie/mollie-api-golang/releases/tag/v0.3.0 - .

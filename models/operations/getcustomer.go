@@ -21,32 +21,32 @@ type GetCustomerRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetCustomerRequest) GetCustomerID() string {
-	if o == nil {
+func (g *GetCustomerRequest) GetCustomerID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CustomerID
+	return g.CustomerID
 }
 
-func (o *GetCustomerRequest) GetInclude() *string {
-	if o == nil {
+func (g *GetCustomerRequest) GetInclude() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Include
+	return g.Include
 }
 
-func (o *GetCustomerRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetCustomerRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetCustomerRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetCustomerRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 // GetCustomerLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -65,46 +65,46 @@ type GetCustomerLinks struct {
 	Documentation components.URLObj `json:"documentation"`
 }
 
-func (o *GetCustomerLinks) GetSelf() components.URLObj {
-	if o == nil {
+func (g *GetCustomerLinks) GetSelf() components.URLObj {
+	if g == nil {
 		return components.URLObj{}
 	}
-	return o.Self
+	return g.Self
 }
 
-func (o *GetCustomerLinks) GetDashboard() components.URLObj {
-	if o == nil {
+func (g *GetCustomerLinks) GetDashboard() components.URLObj {
+	if g == nil {
 		return components.URLObj{}
 	}
-	return o.Dashboard
+	return g.Dashboard
 }
 
-func (o *GetCustomerLinks) GetPayments() *components.URLNullable {
-	if o == nil {
+func (g *GetCustomerLinks) GetPayments() *components.URLNullable {
+	if g == nil {
 		return nil
 	}
-	return o.Payments
+	return g.Payments
 }
 
-func (o *GetCustomerLinks) GetMandates() *components.URLNullable {
-	if o == nil {
+func (g *GetCustomerLinks) GetMandates() *components.URLNullable {
+	if g == nil {
 		return nil
 	}
-	return o.Mandates
+	return g.Mandates
 }
 
-func (o *GetCustomerLinks) GetSubscriptions() *components.URLNullable {
-	if o == nil {
+func (g *GetCustomerLinks) GetSubscriptions() *components.URLNullable {
+	if g == nil {
 		return nil
 	}
-	return o.Subscriptions
+	return g.Subscriptions
 }
 
-func (o *GetCustomerLinks) GetDocumentation() components.URLObj {
-	if o == nil {
+func (g *GetCustomerLinks) GetDocumentation() components.URLObj {
+	if g == nil {
 		return components.URLObj{}
 	}
-	return o.Documentation
+	return g.Documentation
 }
 
 // GetCustomerResponseBody - The customer object.
@@ -130,74 +130,74 @@ type GetCustomerResponseBody struct {
 	Events []components.EntityEvent `json:"events,omitempty"`
 }
 
-func (o *GetCustomerResponseBody) GetResource() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetResource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Resource
+	return g.Resource
 }
 
-func (o *GetCustomerResponseBody) GetID() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerResponseBody) GetMode() *components.Mode {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetMode() *components.Mode {
+	if g == nil {
 		return nil
 	}
-	return o.Mode
+	return g.Mode
 }
 
-func (o *GetCustomerResponseBody) GetName() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetCustomerResponseBody) GetEmail() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetEmail() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Email
+	return g.Email
 }
 
-func (o *GetCustomerResponseBody) GetLocale() *components.LocaleResponse {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetLocale() *components.LocaleResponse {
+	if g == nil {
 		return nil
 	}
-	return o.Locale
+	return g.Locale
 }
 
-func (o *GetCustomerResponseBody) GetMetadata() *components.Metadata {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetMetadata() *components.Metadata {
+	if g == nil {
 		return nil
 	}
-	return o.Metadata
+	return g.Metadata
 }
 
-func (o *GetCustomerResponseBody) GetCreatedAt() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetCreatedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetCustomerResponseBody) GetLinks() *GetCustomerLinks {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetLinks() *GetCustomerLinks {
+	if g == nil {
 		return nil
 	}
-	return o.Links
+	return g.Links
 }
 
-func (o *GetCustomerResponseBody) GetEvents() []components.EntityEvent {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetEvents() []components.EntityEvent {
+	if g == nil {
 		return nil
 	}
-	return o.Events
+	return g.Events
 }
 
 type GetCustomerResponse struct {
@@ -206,16 +206,16 @@ type GetCustomerResponse struct {
 	Object *GetCustomerResponseBody
 }
 
-func (o *GetCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetCustomerResponse) GetObject() *GetCustomerResponseBody {
-	if o == nil {
+func (g *GetCustomerResponse) GetObject() *GetCustomerResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

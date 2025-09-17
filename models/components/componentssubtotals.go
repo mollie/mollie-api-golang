@@ -396,65 +396,65 @@ type ComponentsSubTotals struct {
 	TransactionType *ComponentsSubTotalsTransactionType `json:"transactionType,omitempty"`
 }
 
-func (o *ComponentsSubTotals) GetSubTotals() []SubTotals {
-	if o == nil {
+func (c *ComponentsSubTotals) GetSubTotals() []SubTotals {
+	if c == nil {
 		return nil
 	}
-	return o.SubTotals
+	return c.SubTotals
 }
 
-func (o *ComponentsSubTotals) GetCount() *int64 {
-	if o == nil {
+func (c *ComponentsSubTotals) GetCount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.Count
+	return c.Count
 }
 
-func (o *ComponentsSubTotals) GetMethod() *PaymentMethod {
-	if o == nil {
+func (c *ComponentsSubTotals) GetMethod() *PaymentMethod {
+	if c == nil {
 		return nil
 	}
-	return o.Method
+	return c.Method
 }
 
-func (o *ComponentsSubTotals) GetCardIssuer() *ComponentsSubTotalsCardIssuer {
-	if o == nil {
+func (c *ComponentsSubTotals) GetCardIssuer() *ComponentsSubTotalsCardIssuer {
+	if c == nil {
 		return nil
 	}
-	return o.CardIssuer
+	return c.CardIssuer
 }
 
-func (o *ComponentsSubTotals) GetCardAudience() *ComponentsSubTotalsCardAudience {
-	if o == nil {
+func (c *ComponentsSubTotals) GetCardAudience() *ComponentsSubTotalsCardAudience {
+	if c == nil {
 		return nil
 	}
-	return o.CardAudience
+	return c.CardAudience
 }
 
-func (o *ComponentsSubTotals) GetCardRegion() *ComponentsSubTotalsCardRegion {
-	if o == nil {
+func (c *ComponentsSubTotals) GetCardRegion() *ComponentsSubTotalsCardRegion {
+	if c == nil {
 		return nil
 	}
-	return o.CardRegion
+	return c.CardRegion
 }
 
-func (o *ComponentsSubTotals) GetFeeType() *ComponentsSubTotalsFeeType {
-	if o == nil {
+func (c *ComponentsSubTotals) GetFeeType() *ComponentsSubTotalsFeeType {
+	if c == nil {
 		return nil
 	}
-	return o.FeeType
+	return c.FeeType
 }
 
-func (o *ComponentsSubTotals) GetPrepaymentPartType() *ComponentsSubTotalsPrepaymentPartType {
-	if o == nil {
+func (c *ComponentsSubTotals) GetPrepaymentPartType() *ComponentsSubTotalsPrepaymentPartType {
+	if c == nil {
 		return nil
 	}
-	return o.PrepaymentPartType
+	return c.PrepaymentPartType
 }
 
-func (o *ComponentsSubTotals) GetTransactionType() *ComponentsSubTotalsTransactionType {
-	if o == nil {
+func (c *ComponentsSubTotals) GetTransactionType() *ComponentsSubTotalsTransactionType {
+	if c == nil {
 		return nil
 	}
-	return o.TransactionType
+	return c.TransactionType
 }

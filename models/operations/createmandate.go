@@ -14,25 +14,25 @@ type CreateMandateRequest struct {
 	EntityMandate  *components.EntityMandate `request:"mediaType=application/json"`
 }
 
-func (o *CreateMandateRequest) GetCustomerID() string {
-	if o == nil {
+func (c *CreateMandateRequest) GetCustomerID() string {
+	if c == nil {
 		return ""
 	}
-	return o.CustomerID
+	return c.CustomerID
 }
 
-func (o *CreateMandateRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateMandateRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateMandateRequest) GetEntityMandate() *components.EntityMandate {
-	if o == nil {
+func (c *CreateMandateRequest) GetEntityMandate() *components.EntityMandate {
+	if c == nil {
 		return nil
 	}
-	return o.EntityMandate
+	return c.EntityMandate
 }
 
 type CreateMandateResponse struct {
@@ -41,16 +41,16 @@ type CreateMandateResponse struct {
 	MandateResponse *components.MandateResponse
 }
 
-func (o *CreateMandateResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateMandateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateMandateResponse) GetMandateResponse() *components.MandateResponse {
-	if o == nil {
+func (c *CreateMandateResponse) GetMandateResponse() *components.MandateResponse {
+	if c == nil {
 		return nil
 	}
-	return o.MandateResponse
+	return c.MandateResponse
 }

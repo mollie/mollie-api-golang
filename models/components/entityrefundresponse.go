@@ -9,18 +9,18 @@ type EntityRefundResponseExternalReference struct {
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *EntityRefundResponseExternalReference) GetType() *RefundExternalReferenceTypeResponse {
-	if o == nil {
+func (e *EntityRefundResponseExternalReference) GetType() *RefundExternalReferenceTypeResponse {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityRefundResponseExternalReference) GetID() *string {
-	if o == nil {
+func (e *EntityRefundResponseExternalReference) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
 // EntityRefundResponseSource - Where the funds will be pulled back from.
@@ -30,18 +30,18 @@ type EntityRefundResponseSource struct {
 	OrganizationID *string                           `json:"organizationId,omitempty"`
 }
 
-func (o *EntityRefundResponseSource) GetType() *RefundRoutingReversalsSourceType {
-	if o == nil {
+func (e *EntityRefundResponseSource) GetType() *RefundRoutingReversalsSourceType {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityRefundResponseSource) GetOrganizationID() *string {
-	if o == nil {
+func (e *EntityRefundResponseSource) GetOrganizationID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OrganizationID
+	return e.OrganizationID
 }
 
 type EntityRefundResponseRoutingReversal struct {
@@ -51,18 +51,18 @@ type EntityRefundResponseRoutingReversal struct {
 	Source *EntityRefundResponseSource `json:"source,omitempty"`
 }
 
-func (o *EntityRefundResponseRoutingReversal) GetAmount() *Amount {
-	if o == nil {
+func (e *EntityRefundResponseRoutingReversal) GetAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityRefundResponseRoutingReversal) GetSource() *EntityRefundResponseSource {
-	if o == nil {
+func (e *EntityRefundResponseRoutingReversal) GetSource() *EntityRefundResponseSource {
+	if e == nil {
 		return nil
 	}
-	return o.Source
+	return e.Source
 }
 
 // EntityRefundResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -77,32 +77,32 @@ type EntityRefundResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *EntityRefundResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityRefundResponseLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityRefundResponseLinks) GetPayment() URLObj {
-	if o == nil {
+func (e *EntityRefundResponseLinks) GetPayment() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Payment
+	return e.Payment
 }
 
-func (o *EntityRefundResponseLinks) GetSettlement() *URLNullable {
-	if o == nil {
+func (e *EntityRefundResponseLinks) GetSettlement() *URLNullable {
+	if e == nil {
 		return nil
 	}
-	return o.Settlement
+	return e.Settlement
 }
 
-func (o *EntityRefundResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (e *EntityRefundResponseLinks) GetDocumentation() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityRefundResponse struct {
@@ -139,100 +139,100 @@ type EntityRefundResponse struct {
 	Links EntityRefundResponseLinks `json:"_links"`
 }
 
-func (o *EntityRefundResponse) GetResource() string {
-	if o == nil {
+func (e *EntityRefundResponse) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityRefundResponse) GetID() string {
-	if o == nil {
+func (e *EntityRefundResponse) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityRefundResponse) GetMode() Mode {
-	if o == nil {
+func (e *EntityRefundResponse) GetMode() Mode {
+	if e == nil {
 		return Mode("")
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityRefundResponse) GetDescription() string {
-	if o == nil {
+func (e *EntityRefundResponse) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityRefundResponse) GetAmount() Amount {
-	if o == nil {
+func (e *EntityRefundResponse) GetAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityRefundResponse) GetSettlementAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityRefundResponse) GetSettlementAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return e.SettlementAmount
 }
 
-func (o *EntityRefundResponse) GetMetadata() *Metadata {
-	if o == nil {
+func (e *EntityRefundResponse) GetMetadata() *Metadata {
+	if e == nil {
 		return nil
 	}
-	return o.Metadata
+	return e.Metadata
 }
 
-func (o *EntityRefundResponse) GetPaymentID() *string {
-	if o == nil {
+func (e *EntityRefundResponse) GetPaymentID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentID
+	return e.PaymentID
 }
 
-func (o *EntityRefundResponse) GetSettlementID() *string {
-	if o == nil {
+func (e *EntityRefundResponse) GetSettlementID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementID
+	return e.SettlementID
 }
 
-func (o *EntityRefundResponse) GetStatus() RefundStatus {
-	if o == nil {
+func (e *EntityRefundResponse) GetStatus() RefundStatus {
+	if e == nil {
 		return RefundStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityRefundResponse) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityRefundResponse) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityRefundResponse) GetExternalReference() *EntityRefundResponseExternalReference {
-	if o == nil {
+func (e *EntityRefundResponse) GetExternalReference() *EntityRefundResponseExternalReference {
+	if e == nil {
 		return nil
 	}
-	return o.ExternalReference
+	return e.ExternalReference
 }
 
-func (o *EntityRefundResponse) GetRoutingReversals() []EntityRefundResponseRoutingReversal {
-	if o == nil {
+func (e *EntityRefundResponse) GetRoutingReversals() []EntityRefundResponseRoutingReversal {
+	if e == nil {
 		return nil
 	}
-	return o.RoutingReversals
+	return e.RoutingReversals
 }
 
-func (o *EntityRefundResponse) GetLinks() EntityRefundResponseLinks {
-	if o == nil {
+func (e *EntityRefundResponse) GetLinks() EntityRefundResponseLinks {
+	if e == nil {
 		return EntityRefundResponseLinks{}
 	}
-	return o.Links
+	return e.Links
 }

@@ -9,18 +9,18 @@ type EntityPaymentRouteResponseDestination struct {
 	OrganizationID string                       `json:"organizationId"`
 }
 
-func (o *EntityPaymentRouteResponseDestination) GetType() RouteDestinationTypeResponse {
-	if o == nil {
+func (e *EntityPaymentRouteResponseDestination) GetType() RouteDestinationTypeResponse {
+	if e == nil {
 		return RouteDestinationTypeResponse("")
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityPaymentRouteResponseDestination) GetOrganizationID() string {
-	if o == nil {
+func (e *EntityPaymentRouteResponseDestination) GetOrganizationID() string {
+	if e == nil {
 		return ""
 	}
-	return o.OrganizationID
+	return e.OrganizationID
 }
 
 // EntityPaymentRouteResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -31,18 +31,18 @@ type EntityPaymentRouteResponseLinks struct {
 	Payment URLObj `json:"payment"`
 }
 
-func (o *EntityPaymentRouteResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityPaymentRouteResponseLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityPaymentRouteResponseLinks) GetPayment() URLObj {
-	if o == nil {
+func (e *EntityPaymentRouteResponseLinks) GetPayment() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Payment
+	return e.Payment
 }
 
 type EntityPaymentRouteResponse struct {
@@ -66,58 +66,58 @@ type EntityPaymentRouteResponse struct {
 	Links EntityPaymentRouteResponseLinks `json:"_links"`
 }
 
-func (o *EntityPaymentRouteResponse) GetResource() string {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityPaymentRouteResponse) GetID() string {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityPaymentRouteResponse) GetMode() Mode {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetMode() Mode {
+	if e == nil {
 		return Mode("")
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityPaymentRouteResponse) GetAmount() Amount {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityPaymentRouteResponse) GetDestination() EntityPaymentRouteResponseDestination {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetDestination() EntityPaymentRouteResponseDestination {
+	if e == nil {
 		return EntityPaymentRouteResponseDestination{}
 	}
-	return o.Destination
+	return e.Destination
 }
 
-func (o *EntityPaymentRouteResponse) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityPaymentRouteResponse) GetReleaseDate() *string {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetReleaseDate() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ReleaseDate
+	return e.ReleaseDate
 }
 
-func (o *EntityPaymentRouteResponse) GetLinks() EntityPaymentRouteResponseLinks {
-	if o == nil {
+func (e *EntityPaymentRouteResponse) GetLinks() EntityPaymentRouteResponseLinks {
+	if e == nil {
 		return EntityPaymentRouteResponseLinks{}
 	}
-	return o.Links
+	return e.Links
 }

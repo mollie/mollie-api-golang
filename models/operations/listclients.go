@@ -19,32 +19,32 @@ type ListClientsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListClientsRequest) GetEmbed() *string {
-	if o == nil {
+func (l *ListClientsRequest) GetEmbed() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Embed
+	return l.Embed
 }
 
-func (o *ListClientsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListClientsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListClientsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListClientsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListClientsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListClientsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 // ListClientsCommission - The commission object.
@@ -53,11 +53,11 @@ type ListClientsCommission struct {
 	Count *int64 `json:"count,omitempty"`
 }
 
-func (o *ListClientsCommission) GetCount() *int64 {
-	if o == nil {
+func (l *ListClientsCommission) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
 // ListClientsLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -72,32 +72,32 @@ type ListClientsLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *ListClientsLinks) GetSelf() *components.URLObj {
-	if o == nil {
+func (l *ListClientsLinks) GetSelf() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Self
+	return l.Self
 }
 
-func (o *ListClientsLinks) GetOrganization() *components.URLObj {
-	if o == nil {
+func (l *ListClientsLinks) GetOrganization() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Organization
+	return l.Organization
 }
 
-func (o *ListClientsLinks) GetOnboarding() *components.URLObj {
-	if o == nil {
+func (l *ListClientsLinks) GetOnboarding() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Onboarding
+	return l.Onboarding
 }
 
-func (o *ListClientsLinks) GetDocumentation() *components.URLObj {
-	if o == nil {
+func (l *ListClientsLinks) GetDocumentation() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Documentation
+	return l.Documentation
 }
 
 type ClientEmbedded struct {
@@ -106,25 +106,25 @@ type ClientEmbedded struct {
 	Capabilities *components.EntityCapability       `json:"capabilities,omitempty"`
 }
 
-func (o *ClientEmbedded) GetOrganization() *components.EntityOrganization {
-	if o == nil {
+func (c *ClientEmbedded) GetOrganization() *components.EntityOrganization {
+	if c == nil {
 		return nil
 	}
-	return o.Organization
+	return c.Organization
 }
 
-func (o *ClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
-	if o == nil {
+func (c *ClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
+	if c == nil {
 		return nil
 	}
-	return o.Onboarding
+	return c.Onboarding
 }
 
-func (o *ClientEmbedded) GetCapabilities() *components.EntityCapability {
-	if o == nil {
+func (c *ClientEmbedded) GetCapabilities() *components.EntityCapability {
+	if c == nil {
 		return nil
 	}
-	return o.Capabilities
+	return c.Capabilities
 }
 
 type Client struct {
@@ -142,46 +142,46 @@ type Client struct {
 	Embedded *ClientEmbedded   `json:"_embedded,omitempty"`
 }
 
-func (o *Client) GetResource() *string {
-	if o == nil {
+func (c *Client) GetResource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Resource
+	return c.Resource
 }
 
-func (o *Client) GetID() *string {
-	if o == nil {
+func (c *Client) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Client) GetCommission() *ListClientsCommission {
-	if o == nil {
+func (c *Client) GetCommission() *ListClientsCommission {
+	if c == nil {
 		return nil
 	}
-	return o.Commission
+	return c.Commission
 }
 
-func (o *Client) GetOrganizationCreatedAt() *string {
-	if o == nil {
+func (c *Client) GetOrganizationCreatedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.OrganizationCreatedAt
+	return c.OrganizationCreatedAt
 }
 
-func (o *Client) GetLinks() *ListClientsLinks {
-	if o == nil {
+func (c *Client) GetLinks() *ListClientsLinks {
+	if c == nil {
 		return nil
 	}
-	return o.Links
+	return c.Links
 }
 
-func (o *Client) GetEmbedded() *ClientEmbedded {
-	if o == nil {
+func (c *Client) GetEmbedded() *ClientEmbedded {
+	if c == nil {
 		return nil
 	}
-	return o.Embedded
+	return c.Embedded
 }
 
 type ListClientsEmbedded struct {
@@ -190,11 +190,11 @@ type ListClientsEmbedded struct {
 	Clients []Client `json:"clients,omitempty"`
 }
 
-func (o *ListClientsEmbedded) GetClients() []Client {
-	if o == nil {
+func (l *ListClientsEmbedded) GetClients() []Client {
+	if l == nil {
 		return nil
 	}
-	return o.Clients
+	return l.Clients
 }
 
 // ListClientsResponseBody - A list of client objects. For a complete reference of the client object, refer to the
@@ -211,25 +211,25 @@ type ListClientsResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListClientsResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListClientsResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListClientsResponseBody) GetEmbedded() *ListClientsEmbedded {
-	if o == nil {
+func (l *ListClientsResponseBody) GetEmbedded() *ListClientsEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListClientsResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListClientsResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListClientsResponse struct {
@@ -239,16 +239,16 @@ type ListClientsResponse struct {
 	Object *ListClientsResponseBody
 }
 
-func (o *ListClientsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListClientsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListClientsResponse) GetObject() *ListClientsResponseBody {
-	if o == nil {
+func (l *ListClientsResponse) GetObject() *ListClientsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

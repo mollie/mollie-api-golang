@@ -14,11 +14,11 @@ type DeleteWebhookRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *DeleteWebhookRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (d *DeleteWebhookRequestBody) GetTestmode() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Testmode
+	return d.Testmode
 }
 
 type DeleteWebhookRequest struct {
@@ -29,25 +29,25 @@ type DeleteWebhookRequest struct {
 	RequestBody    *DeleteWebhookRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *DeleteWebhookRequest) GetID() string {
-	if o == nil {
+func (d *DeleteWebhookRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DeleteWebhookRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (d *DeleteWebhookRequest) GetIdempotencyKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return d.IdempotencyKey
 }
 
-func (o *DeleteWebhookRequest) GetRequestBody() *DeleteWebhookRequestBody {
-	if o == nil {
+func (d *DeleteWebhookRequest) GetRequestBody() *DeleteWebhookRequestBody {
+	if d == nil {
 		return nil
 	}
-	return o.RequestBody
+	return d.RequestBody
 }
 
 type DeleteWebhookResponse struct {
@@ -56,16 +56,16 @@ type DeleteWebhookResponse struct {
 	Any any
 }
 
-func (o *DeleteWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeleteWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }
 
-func (o *DeleteWebhookResponse) GetAny() any {
-	if o == nil {
+func (d *DeleteWebhookResponse) GetAny() any {
+	if d == nil {
 		return nil
 	}
-	return o.Any
+	return d.Any
 }

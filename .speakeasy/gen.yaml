@@ -19,13 +19,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   sdkHooksConfigAccess: true
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.2.3
+  version: 0.3.0
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
@@ -44,6 +45,7 @@ go:
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modulePath: github.com/mollie/mollie-api-golang
+  nullableOptionalWrapper: false
   outputModelSuffix: output
   respectRequiredFields: false
   responseFormat: envelope-http

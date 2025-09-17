@@ -17,37 +17,37 @@ type RecurringLineItem struct {
 	StartDate *string `json:"startDate,omitempty"`
 }
 
-func (o *RecurringLineItem) GetDescription() *string {
-	if o == nil {
+func (r *RecurringLineItem) GetDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Description
+	return r.Description
 }
 
-func (o *RecurringLineItem) GetInterval() string {
-	if o == nil {
+func (r *RecurringLineItem) GetInterval() string {
+	if r == nil {
 		return ""
 	}
-	return o.Interval
+	return r.Interval
 }
 
-func (o *RecurringLineItem) GetAmount() *Amount {
-	if o == nil {
+func (r *RecurringLineItem) GetAmount() *Amount {
+	if r == nil {
 		return nil
 	}
-	return o.Amount
+	return r.Amount
 }
 
-func (o *RecurringLineItem) GetTimes() *int64 {
-	if o == nil {
+func (r *RecurringLineItem) GetTimes() *int64 {
+	if r == nil {
 		return nil
 	}
-	return o.Times
+	return r.Times
 }
 
-func (o *RecurringLineItem) GetStartDate() *string {
-	if o == nil {
+func (r *RecurringLineItem) GetStartDate() *string {
+	if r == nil {
 		return nil
 	}
-	return o.StartDate
+	return r.StartDate
 }

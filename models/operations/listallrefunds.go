@@ -34,53 +34,53 @@ type ListAllRefundsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListAllRefundsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListAllRefundsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListAllRefundsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListAllRefundsRequest) GetEmbed() *string {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetEmbed() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Embed
+	return l.Embed
 }
 
-func (o *ListAllRefundsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListAllRefundsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListAllRefundsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListAllRefundsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListAllRefundsEmbedded struct {
@@ -88,11 +88,11 @@ type ListAllRefundsEmbedded struct {
 	Refunds []components.EntityRefundResponse `json:"refunds"`
 }
 
-func (o *ListAllRefundsEmbedded) GetRefunds() []components.EntityRefundResponse {
-	if o == nil {
+func (l *ListAllRefundsEmbedded) GetRefunds() []components.EntityRefundResponse {
+	if l == nil {
 		return []components.EntityRefundResponse{}
 	}
-	return o.Refunds
+	return l.Refunds
 }
 
 // ListAllRefundsResponseBody - A list of refund objects
@@ -108,25 +108,25 @@ type ListAllRefundsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListAllRefundsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListAllRefundsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListAllRefundsResponseBody) GetEmbedded() ListAllRefundsEmbedded {
-	if o == nil {
+func (l *ListAllRefundsResponseBody) GetEmbedded() ListAllRefundsEmbedded {
+	if l == nil {
 		return ListAllRefundsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListAllRefundsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListAllRefundsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListAllRefundsResponse struct {
@@ -135,16 +135,16 @@ type ListAllRefundsResponse struct {
 	Object *ListAllRefundsResponseBody
 }
 
-func (o *ListAllRefundsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListAllRefundsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListAllRefundsResponse) GetObject() *ListAllRefundsResponseBody {
-	if o == nil {
+func (l *ListAllRefundsResponse) GetObject() *ListAllRefundsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

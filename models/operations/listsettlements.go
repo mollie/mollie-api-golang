@@ -25,53 +25,53 @@ type ListSettlementsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSettlementsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSettlementsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSettlementsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSettlementsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSettlementsRequest) GetBalanceID() *string {
-	if o == nil {
+func (l *ListSettlementsRequest) GetBalanceID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.BalanceID
+	return l.BalanceID
 }
 
-func (o *ListSettlementsRequest) GetYear() *string {
-	if o == nil {
+func (l *ListSettlementsRequest) GetYear() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Year
+	return l.Year
 }
 
-func (o *ListSettlementsRequest) GetMonth() *string {
-	if o == nil {
+func (l *ListSettlementsRequest) GetMonth() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Month
+	return l.Month
 }
 
-func (o *ListSettlementsRequest) GetCurrencies() *components.Currencies {
-	if o == nil {
+func (l *ListSettlementsRequest) GetCurrencies() *components.Currencies {
+	if l == nil {
 		return nil
 	}
-	return o.Currencies
+	return l.Currencies
 }
 
-func (o *ListSettlementsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSettlementsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSettlementsEmbedded struct {
@@ -80,11 +80,11 @@ type ListSettlementsEmbedded struct {
 	Settlements []components.EntitySettlement `json:"settlements,omitempty"`
 }
 
-func (o *ListSettlementsEmbedded) GetSettlements() []components.EntitySettlement {
-	if o == nil {
+func (l *ListSettlementsEmbedded) GetSettlements() []components.EntitySettlement {
+	if l == nil {
 		return nil
 	}
-	return o.Settlements
+	return l.Settlements
 }
 
 // ListSettlementsResponseBody - A list of settlement objects. For a complete reference of the settlement
@@ -101,25 +101,25 @@ type ListSettlementsResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListSettlementsResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListSettlementsResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSettlementsResponseBody) GetEmbedded() *ListSettlementsEmbedded {
-	if o == nil {
+func (l *ListSettlementsResponseBody) GetEmbedded() *ListSettlementsEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSettlementsResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListSettlementsResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSettlementsResponse struct {
@@ -129,16 +129,16 @@ type ListSettlementsResponse struct {
 	Object *ListSettlementsResponseBody
 }
 
-func (o *ListSettlementsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSettlementsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSettlementsResponse) GetObject() *ListSettlementsResponseBody {
-	if o == nil {
+func (l *ListSettlementsResponse) GetObject() *ListSettlementsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

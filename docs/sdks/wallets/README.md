@@ -49,14 +49,14 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Wallets.RequestApplePaySession(ctx, client.String("123e4567-e89b-12d3-a456-426"), &operations.RequestApplePayPaymentSessionRequestBody{
+    res, err := s.Wallets.RequestApplePaySession(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.RequestApplePayPaymentSessionRequestBody{
         ValidationURL: "https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession",
         Domain: "pay.myshop.com",
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
     })
     if err != nil {
         log.Fatal(err)

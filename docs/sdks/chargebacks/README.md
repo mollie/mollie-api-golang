@@ -35,17 +35,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Chargebacks.List(ctx, operations.ListChargebacksRequest{
         PaymentID: "tr_5B8cwPMGnU",
-        From: client.String("chb_xFzwUN4ci8HAmSGUACS4J"),
-        Limit: client.Int64(50),
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -99,16 +99,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Chargebacks.Get(ctx, operations.GetChargebackRequest{
         PaymentID: "tr_5B8cwPMGnU",
         ChargebackID: "chb_xFzwUN4ci8HAmSGUACS4J",
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -164,18 +164,18 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Chargebacks.All(ctx, operations.ListAllChargebacksRequest{
-        From: client.String("chb_xFzwUN4ci8HAmSGUACS4J"),
-        Limit: client.Int64(50),
-        Embed: client.String("payment"),
+        From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
         Sort: components.ListSortDesc.ToPointer(),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

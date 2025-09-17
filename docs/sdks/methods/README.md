@@ -48,7 +48,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
@@ -59,13 +59,13 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
-        BillingCountry: client.String("DE"),
+        BillingCountry: client.Pointer("DE"),
         IncludeWallets: operations.IncludeWalletsApplepay.ToPointer(),
         OrderLineCategories: components.OrderLineCategoriesEco.ToPointer(),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Include: client.String("issuers"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Include: client.Pointer("issuers"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -122,7 +122,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
@@ -132,11 +132,11 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
-        Include: client.String("issuers"),
+        Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -201,19 +201,19 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
         ID: "ideal",
         Locale: components.LocaleParameterEnUs.ToPointer(),
-        Currency: client.String("EUR"),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Include: client.String("issuers"),
+        Currency: client.Pointer("EUR"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

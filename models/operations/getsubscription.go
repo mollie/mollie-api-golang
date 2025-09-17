@@ -21,32 +21,32 @@ type GetSubscriptionRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetSubscriptionRequest) GetCustomerID() string {
-	if o == nil {
+func (g *GetSubscriptionRequest) GetCustomerID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CustomerID
+	return g.CustomerID
 }
 
-func (o *GetSubscriptionRequest) GetSubscriptionID() string {
-	if o == nil {
+func (g *GetSubscriptionRequest) GetSubscriptionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.SubscriptionID
+	return g.SubscriptionID
 }
 
-func (o *GetSubscriptionRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetSubscriptionRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetSubscriptionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetSubscriptionRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetSubscriptionResponse struct {
@@ -55,16 +55,16 @@ type GetSubscriptionResponse struct {
 	SubscriptionResponse *components.SubscriptionResponse
 }
 
-func (o *GetSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
-	if o == nil {
+func (g *GetSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
+	if g == nil {
 		return nil
 	}
-	return o.SubscriptionResponse
+	return g.SubscriptionResponse
 }

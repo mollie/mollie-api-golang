@@ -8,11 +8,11 @@ type CreateWebhookLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *CreateWebhookLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (c *CreateWebhookLinks) GetDocumentation() URLObj {
+	if c == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return c.Documentation
 }
 
 type CreateWebhook struct {
@@ -40,79 +40,79 @@ type CreateWebhook struct {
 	Links CreateWebhookLinks `json:"_links"`
 }
 
-func (o *CreateWebhook) GetResource() string {
-	if o == nil {
+func (c *CreateWebhook) GetResource() string {
+	if c == nil {
 		return ""
 	}
-	return o.Resource
+	return c.Resource
 }
 
-func (o *CreateWebhook) GetID() string {
-	if o == nil {
+func (c *CreateWebhook) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateWebhook) GetURL() string {
-	if o == nil {
+func (c *CreateWebhook) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreateWebhook) GetProfileID() string {
-	if o == nil {
+func (c *CreateWebhook) GetProfileID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ProfileID
+	return c.ProfileID
 }
 
-func (o *CreateWebhook) GetCreatedAt() string {
-	if o == nil {
+func (c *CreateWebhook) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CreateWebhook) GetName() string {
-	if o == nil {
+func (c *CreateWebhook) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateWebhook) GetEventTypes() []WebhookEventTypes {
-	if o == nil {
+func (c *CreateWebhook) GetEventTypes() []WebhookEventTypes {
+	if c == nil {
 		return []WebhookEventTypes{}
 	}
-	return o.EventTypes
+	return c.EventTypes
 }
 
-func (o *CreateWebhook) GetStatus() WebhookStatus {
-	if o == nil {
+func (c *CreateWebhook) GetStatus() WebhookStatus {
+	if c == nil {
 		return WebhookStatus("")
 	}
-	return o.Status
+	return c.Status
 }
 
-func (o *CreateWebhook) GetMode() Mode {
-	if o == nil {
+func (c *CreateWebhook) GetMode() Mode {
+	if c == nil {
 		return Mode("")
 	}
-	return o.Mode
+	return c.Mode
 }
 
-func (o *CreateWebhook) GetWebhookSecret() string {
-	if o == nil {
+func (c *CreateWebhook) GetWebhookSecret() string {
+	if c == nil {
 		return ""
 	}
-	return o.WebhookSecret
+	return c.WebhookSecret
 }
 
-func (o *CreateWebhook) GetLinks() CreateWebhookLinks {
-	if o == nil {
+func (c *CreateWebhook) GetLinks() CreateWebhookLinks {
+	if c == nil {
 		return CreateWebhookLinks{}
 	}
-	return o.Links
+	return c.Links
 }

@@ -14,11 +14,11 @@ type RevokeMandateRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *RevokeMandateRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (r *RevokeMandateRequestBody) GetTestmode() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Testmode
+	return r.Testmode
 }
 
 type RevokeMandateRequest struct {
@@ -31,32 +31,32 @@ type RevokeMandateRequest struct {
 	RequestBody    *RevokeMandateRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *RevokeMandateRequest) GetCustomerID() string {
-	if o == nil {
+func (r *RevokeMandateRequest) GetCustomerID() string {
+	if r == nil {
 		return ""
 	}
-	return o.CustomerID
+	return r.CustomerID
 }
 
-func (o *RevokeMandateRequest) GetMandateID() string {
-	if o == nil {
+func (r *RevokeMandateRequest) GetMandateID() string {
+	if r == nil {
 		return ""
 	}
-	return o.MandateID
+	return r.MandateID
 }
 
-func (o *RevokeMandateRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (r *RevokeMandateRequest) GetIdempotencyKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return r.IdempotencyKey
 }
 
-func (o *RevokeMandateRequest) GetRequestBody() *RevokeMandateRequestBody {
-	if o == nil {
+func (r *RevokeMandateRequest) GetRequestBody() *RevokeMandateRequestBody {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type RevokeMandateResponse struct {
@@ -65,16 +65,16 @@ type RevokeMandateResponse struct {
 	Any any
 }
 
-func (o *RevokeMandateResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (r *RevokeMandateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if r == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return r.HTTPMeta
 }
 
-func (o *RevokeMandateResponse) GetAny() any {
-	if o == nil {
+func (r *RevokeMandateResponse) GetAny() any {
+	if r == nil {
 		return nil
 	}
-	return o.Any
+	return r.Any
 }

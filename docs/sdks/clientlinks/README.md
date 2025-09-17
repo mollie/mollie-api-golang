@@ -82,26 +82,26 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.ClientLinks.Create(ctx, client.String("123e4567-e89b-12d3-a456-426"), &components.EntityClientLink{
+    res, err := s.ClientLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityClientLink{
         Owner: &components.Owner{
             Email: "john@example.org",
             GivenName: "John",
             FamilyName: "Doe",
             Locale: components.LocaleResponseEnUs.ToPointer(),
         },
-        Name: client.String("Acme Corporation"),
+        Name: client.Pointer("Acme Corporation"),
         Address: &components.EntityClientLinkAddress{
-            StreetAndNumber: client.String("Main Street 123"),
-            PostalCode: client.String("1234AB"),
-            City: client.String("Amsterdam"),
+            StreetAndNumber: client.Pointer("Main Street 123"),
+            PostalCode: client.Pointer("1234AB"),
+            City: client.Pointer("Amsterdam"),
             Country: "NL",
         },
-        RegistrationNumber: client.String("12345678"),
-        VatNumber: client.String("123456789B01"),
+        RegistrationNumber: client.Pointer("12345678"),
+        VatNumber: client.Pointer("123456789B01"),
     })
     if err != nil {
         log.Fatal(err)

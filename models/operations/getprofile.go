@@ -19,25 +19,25 @@ type GetProfileRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetProfileRequest) GetID() string {
-	if o == nil {
+func (g *GetProfileRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetProfileRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetProfileRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetProfileRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetProfileRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetProfileResponse struct {
@@ -46,16 +46,16 @@ type GetProfileResponse struct {
 	EntityProfileResponse *components.EntityProfileResponse
 }
 
-func (o *GetProfileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetProfileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
-	if o == nil {
+func (g *GetProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+	if g == nil {
 		return nil
 	}
-	return o.EntityProfileResponse
+	return g.EntityProfileResponse
 }

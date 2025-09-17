@@ -9,18 +9,18 @@ type RouteCreateRequestDestination struct {
 	OrganizationID string               `json:"organizationId"`
 }
 
-func (o *RouteCreateRequestDestination) GetType() RouteDestinationType {
-	if o == nil {
+func (r *RouteCreateRequestDestination) GetType() RouteDestinationType {
+	if r == nil {
 		return RouteDestinationType("")
 	}
-	return o.Type
+	return r.Type
 }
 
-func (o *RouteCreateRequestDestination) GetOrganizationID() string {
-	if o == nil {
+func (r *RouteCreateRequestDestination) GetOrganizationID() string {
+	if r == nil {
 		return ""
 	}
-	return o.OrganizationID
+	return r.OrganizationID
 }
 
 type RouteCreateRequest struct {
@@ -40,44 +40,44 @@ type RouteCreateRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *RouteCreateRequest) GetID() *string {
-	if o == nil {
+func (r *RouteCreateRequest) GetID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RouteCreateRequest) GetPaymentID() *string {
-	if o == nil {
+func (r *RouteCreateRequest) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PaymentID
+	return r.PaymentID
 }
 
-func (o *RouteCreateRequest) GetAmount() *Amount {
-	if o == nil {
+func (r *RouteCreateRequest) GetAmount() *Amount {
+	if r == nil {
 		return nil
 	}
-	return o.Amount
+	return r.Amount
 }
 
-func (o *RouteCreateRequest) GetDescription() *string {
-	if o == nil {
+func (r *RouteCreateRequest) GetDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Description
+	return r.Description
 }
 
-func (o *RouteCreateRequest) GetDestination() *RouteCreateRequestDestination {
-	if o == nil {
+func (r *RouteCreateRequest) GetDestination() *RouteCreateRequestDestination {
+	if r == nil {
 		return nil
 	}
-	return o.Destination
+	return r.Destination
 }
 
-func (o *RouteCreateRequest) GetTestmode() *bool {
-	if o == nil {
+func (r *RouteCreateRequest) GetTestmode() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Testmode
+	return r.Testmode
 }

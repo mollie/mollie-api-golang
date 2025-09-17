@@ -8,18 +8,18 @@ type Documentation struct {
 	Type string `json:"type"`
 }
 
-func (o *Documentation) GetHref() string {
-	if o == nil {
+func (d *Documentation) GetHref() string {
+	if d == nil {
 		return ""
 	}
-	return o.Href
+	return d.Href
 }
 
-func (o *Documentation) GetType() string {
-	if o == nil {
+func (d *Documentation) GetType() string {
+	if d == nil {
 		return ""
 	}
-	return o.Type
+	return d.Type
 }
 
 type ErrorResponseLinks struct {
@@ -27,9 +27,9 @@ type ErrorResponseLinks struct {
 	Documentation Documentation `json:"documentation"`
 }
 
-func (o *ErrorResponseLinks) GetDocumentation() Documentation {
-	if o == nil {
+func (e *ErrorResponseLinks) GetDocumentation() Documentation {
+	if e == nil {
 		return Documentation{}
 	}
-	return o.Documentation
+	return e.Documentation
 }

@@ -27,46 +27,46 @@ type ListWebhooksRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListWebhooksRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListWebhooksRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListWebhooksRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListWebhooksRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListWebhooksRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListWebhooksRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListWebhooksRequest) GetEventTypes() *components.WebhookEventTypes {
-	if o == nil {
+func (l *ListWebhooksRequest) GetEventTypes() *components.WebhookEventTypes {
+	if l == nil {
 		return nil
 	}
-	return o.EventTypes
+	return l.EventTypes
 }
 
-func (o *ListWebhooksRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListWebhooksRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListWebhooksRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListWebhooksRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListWebhooksEmbedded struct {
@@ -74,11 +74,11 @@ type ListWebhooksEmbedded struct {
 	Webhooks []components.EntityWebhook `json:"webhooks"`
 }
 
-func (o *ListWebhooksEmbedded) GetWebhooks() []components.EntityWebhook {
-	if o == nil {
+func (l *ListWebhooksEmbedded) GetWebhooks() []components.EntityWebhook {
+	if l == nil {
 		return []components.EntityWebhook{}
 	}
-	return o.Webhooks
+	return l.Webhooks
 }
 
 // ListWebhooksResponseBody - A list of webhooks. For a complete reference of the webhook
@@ -95,25 +95,25 @@ type ListWebhooksResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListWebhooksResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListWebhooksResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListWebhooksResponseBody) GetEmbedded() ListWebhooksEmbedded {
-	if o == nil {
+func (l *ListWebhooksResponseBody) GetEmbedded() ListWebhooksEmbedded {
+	if l == nil {
 		return ListWebhooksEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListWebhooksResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListWebhooksResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListWebhooksResponse struct {
@@ -123,16 +123,16 @@ type ListWebhooksResponse struct {
 	Object *ListWebhooksResponseBody
 }
 
-func (o *ListWebhooksResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListWebhooksResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListWebhooksResponse) GetObject() *ListWebhooksResponseBody {
-	if o == nil {
+func (l *ListWebhooksResponse) GetObject() *ListWebhooksResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

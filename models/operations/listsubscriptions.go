@@ -27,46 +27,46 @@ type ListSubscriptionsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSubscriptionsRequest) GetCustomerID() string {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetCustomerID() string {
+	if l == nil {
 		return ""
 	}
-	return o.CustomerID
+	return l.CustomerID
 }
 
-func (o *ListSubscriptionsRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSubscriptionsRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSubscriptionsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListSubscriptionsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListSubscriptionsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSubscriptionsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSubscriptionsEmbedded struct {
@@ -74,11 +74,11 @@ type ListSubscriptionsEmbedded struct {
 	Subscriptions []components.SubscriptionResponse `json:"subscriptions,omitempty"`
 }
 
-func (o *ListSubscriptionsEmbedded) GetSubscriptions() []components.SubscriptionResponse {
-	if o == nil {
+func (l *ListSubscriptionsEmbedded) GetSubscriptions() []components.SubscriptionResponse {
+	if l == nil {
 		return nil
 	}
-	return o.Subscriptions
+	return l.Subscriptions
 }
 
 // ListSubscriptionsResponseBody - A list of subscription objects.
@@ -94,25 +94,25 @@ type ListSubscriptionsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListSubscriptionsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListSubscriptionsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSubscriptionsResponseBody) GetEmbedded() ListSubscriptionsEmbedded {
-	if o == nil {
+func (l *ListSubscriptionsResponseBody) GetEmbedded() ListSubscriptionsEmbedded {
+	if l == nil {
 		return ListSubscriptionsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSubscriptionsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListSubscriptionsResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSubscriptionsResponse struct {
@@ -121,16 +121,16 @@ type ListSubscriptionsResponse struct {
 	Object *ListSubscriptionsResponseBody
 }
 
-func (o *ListSubscriptionsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSubscriptionsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSubscriptionsResponse) GetObject() *ListSubscriptionsResponseBody {
-	if o == nil {
+func (l *ListSubscriptionsResponse) GetObject() *ListSubscriptionsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

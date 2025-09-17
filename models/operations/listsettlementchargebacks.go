@@ -27,46 +27,46 @@ type ListSettlementChargebacksRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListSettlementChargebacksRequest) GetSettlementID() string {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetSettlementID() string {
+	if l == nil {
 		return ""
 	}
-	return o.SettlementID
+	return l.SettlementID
 }
 
-func (o *ListSettlementChargebacksRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSettlementChargebacksRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListSettlementChargebacksRequest) GetEmbed() *string {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetEmbed() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Embed
+	return l.Embed
 }
 
-func (o *ListSettlementChargebacksRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListSettlementChargebacksRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListSettlementChargebacksRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListSettlementChargebacksEmbedded struct {
@@ -74,11 +74,11 @@ type ListSettlementChargebacksEmbedded struct {
 	Chargebacks []components.EntityChargeback `json:"chargebacks,omitempty"`
 }
 
-func (o *ListSettlementChargebacksEmbedded) GetChargebacks() []components.EntityChargeback {
-	if o == nil {
+func (l *ListSettlementChargebacksEmbedded) GetChargebacks() []components.EntityChargeback {
+	if l == nil {
 		return nil
 	}
-	return o.Chargebacks
+	return l.Chargebacks
 }
 
 // ListSettlementChargebacksResponseBody - A list of chargeback objects.
@@ -94,25 +94,25 @@ type ListSettlementChargebacksResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListSettlementChargebacksResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListSettlementChargebacksResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListSettlementChargebacksResponseBody) GetEmbedded() *ListSettlementChargebacksEmbedded {
-	if o == nil {
+func (l *ListSettlementChargebacksResponseBody) GetEmbedded() *ListSettlementChargebacksEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListSettlementChargebacksResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListSettlementChargebacksResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListSettlementChargebacksResponse struct {
@@ -121,16 +121,16 @@ type ListSettlementChargebacksResponse struct {
 	Object *ListSettlementChargebacksResponseBody
 }
 
-func (o *ListSettlementChargebacksResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListSettlementChargebacksResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListSettlementChargebacksResponse) GetObject() *ListSettlementChargebacksResponseBody {
-	if o == nil {
+func (l *ListSettlementChargebacksResponse) GetObject() *ListSettlementChargebacksResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

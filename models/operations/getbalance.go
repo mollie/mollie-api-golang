@@ -19,25 +19,25 @@ type GetBalanceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetBalanceRequest) GetID() string {
-	if o == nil {
+func (g *GetBalanceRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetBalanceRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetBalanceRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetBalanceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetBalanceRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetBalanceResponse struct {
@@ -46,16 +46,16 @@ type GetBalanceResponse struct {
 	EntityBalance *components.EntityBalance
 }
 
-func (o *GetBalanceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetBalanceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetBalanceResponse) GetEntityBalance() *components.EntityBalance {
-	if o == nil {
+func (g *GetBalanceResponse) GetEntityBalance() *components.EntityBalance {
+	if g == nil {
 		return nil
 	}
-	return o.EntityBalance
+	return g.EntityBalance
 }

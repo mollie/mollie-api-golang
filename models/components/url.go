@@ -25,16 +25,16 @@ func (u *URLObj) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *URLObj) GetHref() string {
-	if o == nil {
+func (u *URLObj) GetHref() string {
+	if u == nil {
 		return ""
 	}
-	return o.Href
+	return u.Href
 }
 
-func (o *URLObj) GetType() string {
-	if o == nil {
+func (u *URLObj) GetType() string {
+	if u == nil {
 		return ""
 	}
-	return o.Type
+	return u.Type
 }

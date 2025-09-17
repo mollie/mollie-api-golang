@@ -19,25 +19,25 @@ type PaymentListRoutesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *PaymentListRoutesRequest) GetPaymentID() string {
-	if o == nil {
+func (p *PaymentListRoutesRequest) GetPaymentID() string {
+	if p == nil {
 		return ""
 	}
-	return o.PaymentID
+	return p.PaymentID
 }
 
-func (o *PaymentListRoutesRequest) GetTestmode() *bool {
-	if o == nil {
+func (p *PaymentListRoutesRequest) GetTestmode() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Testmode
+	return p.Testmode
 }
 
-func (o *PaymentListRoutesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (p *PaymentListRoutesRequest) GetIdempotencyKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return p.IdempotencyKey
 }
 
 type PaymentListRoutesEmbedded struct {
@@ -45,11 +45,11 @@ type PaymentListRoutesEmbedded struct {
 	Routes []components.RouteGetResponse `json:"routes,omitempty"`
 }
 
-func (o *PaymentListRoutesEmbedded) GetRoutes() []components.RouteGetResponse {
-	if o == nil {
+func (p *PaymentListRoutesEmbedded) GetRoutes() []components.RouteGetResponse {
+	if p == nil {
 		return nil
 	}
-	return o.Routes
+	return p.Routes
 }
 
 // PaymentListRoutesLinks - Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -60,18 +60,18 @@ type PaymentListRoutesLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *PaymentListRoutesLinks) GetSelf() *components.URLObj {
-	if o == nil {
+func (p *PaymentListRoutesLinks) GetSelf() *components.URLObj {
+	if p == nil {
 		return nil
 	}
-	return o.Self
+	return p.Self
 }
 
-func (o *PaymentListRoutesLinks) GetDocumentation() *components.URLObj {
-	if o == nil {
+func (p *PaymentListRoutesLinks) GetDocumentation() *components.URLObj {
+	if p == nil {
 		return nil
 	}
-	return o.Documentation
+	return p.Documentation
 }
 
 // PaymentListRoutesResponseBody - A list of route objects.
@@ -87,25 +87,25 @@ type PaymentListRoutesResponseBody struct {
 	Links *PaymentListRoutesLinks `json:"_links,omitempty"`
 }
 
-func (o *PaymentListRoutesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (p *PaymentListRoutesResponseBody) GetCount() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.Count
+	return p.Count
 }
 
-func (o *PaymentListRoutesResponseBody) GetEmbedded() *PaymentListRoutesEmbedded {
-	if o == nil {
+func (p *PaymentListRoutesResponseBody) GetEmbedded() *PaymentListRoutesEmbedded {
+	if p == nil {
 		return nil
 	}
-	return o.Embedded
+	return p.Embedded
 }
 
-func (o *PaymentListRoutesResponseBody) GetLinks() *PaymentListRoutesLinks {
-	if o == nil {
+func (p *PaymentListRoutesResponseBody) GetLinks() *PaymentListRoutesLinks {
+	if p == nil {
 		return nil
 	}
-	return o.Links
+	return p.Links
 }
 
 type PaymentListRoutesResponse struct {
@@ -114,16 +114,16 @@ type PaymentListRoutesResponse struct {
 	Object *PaymentListRoutesResponseBody
 }
 
-func (o *PaymentListRoutesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PaymentListRoutesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PaymentListRoutesResponse) GetObject() *PaymentListRoutesResponseBody {
-	if o == nil {
+func (p *PaymentListRoutesResponse) GetObject() *PaymentListRoutesResponseBody {
+	if p == nil {
 		return nil
 	}
-	return o.Object
+	return p.Object
 }

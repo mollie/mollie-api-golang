@@ -11,11 +11,11 @@ type ListPermissionsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListPermissionsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListPermissionsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListPermissionsEmbedded struct {
@@ -23,11 +23,11 @@ type ListPermissionsEmbedded struct {
 	Permissions []components.EntityPermission `json:"permissions,omitempty"`
 }
 
-func (o *ListPermissionsEmbedded) GetPermissions() []components.EntityPermission {
-	if o == nil {
+func (l *ListPermissionsEmbedded) GetPermissions() []components.EntityPermission {
+	if l == nil {
 		return nil
 	}
-	return o.Permissions
+	return l.Permissions
 }
 
 // ListPermissionsLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -38,18 +38,18 @@ type ListPermissionsLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (o *ListPermissionsLinks) GetSelf() *components.URLObj {
-	if o == nil {
+func (l *ListPermissionsLinks) GetSelf() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Self
+	return l.Self
 }
 
-func (o *ListPermissionsLinks) GetDocumentation() *components.URLObj {
-	if o == nil {
+func (l *ListPermissionsLinks) GetDocumentation() *components.URLObj {
+	if l == nil {
 		return nil
 	}
-	return o.Documentation
+	return l.Documentation
 }
 
 // ListPermissionsResponseBody - A list of permission objects.
@@ -65,25 +65,25 @@ type ListPermissionsResponseBody struct {
 	Links *ListPermissionsLinks `json:"_links,omitempty"`
 }
 
-func (o *ListPermissionsResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListPermissionsResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListPermissionsResponseBody) GetEmbedded() *ListPermissionsEmbedded {
-	if o == nil {
+func (l *ListPermissionsResponseBody) GetEmbedded() *ListPermissionsEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListPermissionsResponseBody) GetLinks() *ListPermissionsLinks {
-	if o == nil {
+func (l *ListPermissionsResponseBody) GetLinks() *ListPermissionsLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListPermissionsResponse struct {
@@ -92,16 +92,16 @@ type ListPermissionsResponse struct {
 	Object *ListPermissionsResponseBody
 }
 
-func (o *ListPermissionsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListPermissionsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListPermissionsResponse) GetObject() *ListPermissionsResponseBody {
-	if o == nil {
+func (l *ListPermissionsResponse) GetObject() *ListPermissionsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

@@ -56,32 +56,32 @@ type EntityClientLinkAddress struct {
 	Country string `json:"country"`
 }
 
-func (o *EntityClientLinkAddress) GetStreetAndNumber() *string {
-	if o == nil {
+func (e *EntityClientLinkAddress) GetStreetAndNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.StreetAndNumber
+	return e.StreetAndNumber
 }
 
-func (o *EntityClientLinkAddress) GetPostalCode() *string {
-	if o == nil {
+func (e *EntityClientLinkAddress) GetPostalCode() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PostalCode
+	return e.PostalCode
 }
 
-func (o *EntityClientLinkAddress) GetCity() *string {
-	if o == nil {
+func (e *EntityClientLinkAddress) GetCity() *string {
+	if e == nil {
 		return nil
 	}
-	return o.City
+	return e.City
 }
 
-func (o *EntityClientLinkAddress) GetCountry() string {
-	if o == nil {
+func (e *EntityClientLinkAddress) GetCountry() string {
+	if e == nil {
 		return ""
 	}
-	return o.Country
+	return e.Country
 }
 
 type EntityClientLink struct {
@@ -98,37 +98,37 @@ type EntityClientLink struct {
 	VatNumber *string `json:"vatNumber,omitempty"`
 }
 
-func (o *EntityClientLink) GetOwner() *Owner {
-	if o == nil {
+func (e *EntityClientLink) GetOwner() *Owner {
+	if e == nil {
 		return nil
 	}
-	return o.Owner
+	return e.Owner
 }
 
-func (o *EntityClientLink) GetName() *string {
-	if o == nil {
+func (e *EntityClientLink) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityClientLink) GetAddress() *EntityClientLinkAddress {
-	if o == nil {
+func (e *EntityClientLink) GetAddress() *EntityClientLinkAddress {
+	if e == nil {
 		return nil
 	}
-	return o.Address
+	return e.Address
 }
 
-func (o *EntityClientLink) GetRegistrationNumber() *string {
-	if o == nil {
+func (e *EntityClientLink) GetRegistrationNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RegistrationNumber
+	return e.RegistrationNumber
 }
 
-func (o *EntityClientLink) GetVatNumber() *string {
-	if o == nil {
+func (e *EntityClientLink) GetVatNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.VatNumber
+	return e.VatNumber
 }

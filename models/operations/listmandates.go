@@ -27,46 +27,46 @@ type ListMandatesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListMandatesRequest) GetCustomerID() string {
-	if o == nil {
+func (l *ListMandatesRequest) GetCustomerID() string {
+	if l == nil {
 		return ""
 	}
-	return o.CustomerID
+	return l.CustomerID
 }
 
-func (o *ListMandatesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListMandatesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListMandatesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListMandatesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListMandatesRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (l *ListMandatesRequest) GetSort() *components.ListSort {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListMandatesRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListMandatesRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListMandatesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListMandatesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListMandatesEmbedded struct {
@@ -74,11 +74,11 @@ type ListMandatesEmbedded struct {
 	Mandates []components.MandateResponse `json:"mandates"`
 }
 
-func (o *ListMandatesEmbedded) GetMandates() []components.MandateResponse {
-	if o == nil {
+func (l *ListMandatesEmbedded) GetMandates() []components.MandateResponse {
+	if l == nil {
 		return []components.MandateResponse{}
 	}
-	return o.Mandates
+	return l.Mandates
 }
 
 // ListMandatesResponseBody - A list of mandate objects.
@@ -94,25 +94,25 @@ type ListMandatesResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListMandatesResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListMandatesResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListMandatesResponseBody) GetEmbedded() ListMandatesEmbedded {
-	if o == nil {
+func (l *ListMandatesResponseBody) GetEmbedded() ListMandatesEmbedded {
+	if l == nil {
 		return ListMandatesEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListMandatesResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListMandatesResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListMandatesResponse struct {
@@ -121,16 +121,16 @@ type ListMandatesResponse struct {
 	Object *ListMandatesResponseBody
 }
 
-func (o *ListMandatesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListMandatesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListMandatesResponse) GetObject() *ListMandatesResponseBody {
-	if o == nil {
+func (l *ListMandatesResponse) GetObject() *ListMandatesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

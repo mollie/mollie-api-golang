@@ -14,11 +14,11 @@ type CancelSubscriptionRequestBody struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *CancelSubscriptionRequestBody) GetTestmode() *bool {
-	if o == nil {
+func (c *CancelSubscriptionRequestBody) GetTestmode() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Testmode
+	return c.Testmode
 }
 
 type CancelSubscriptionRequest struct {
@@ -31,32 +31,32 @@ type CancelSubscriptionRequest struct {
 	RequestBody    *CancelSubscriptionRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *CancelSubscriptionRequest) GetCustomerID() string {
-	if o == nil {
+func (c *CancelSubscriptionRequest) GetCustomerID() string {
+	if c == nil {
 		return ""
 	}
-	return o.CustomerID
+	return c.CustomerID
 }
 
-func (o *CancelSubscriptionRequest) GetSubscriptionID() string {
-	if o == nil {
+func (c *CancelSubscriptionRequest) GetSubscriptionID() string {
+	if c == nil {
 		return ""
 	}
-	return o.SubscriptionID
+	return c.SubscriptionID
 }
 
-func (o *CancelSubscriptionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CancelSubscriptionRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CancelSubscriptionRequest) GetRequestBody() *CancelSubscriptionRequestBody {
-	if o == nil {
+func (c *CancelSubscriptionRequest) GetRequestBody() *CancelSubscriptionRequestBody {
+	if c == nil {
 		return nil
 	}
-	return o.RequestBody
+	return c.RequestBody
 }
 
 type CancelSubscriptionResponse struct {
@@ -66,16 +66,16 @@ type CancelSubscriptionResponse struct {
 	SubscriptionResponse *components.SubscriptionResponse
 }
 
-func (o *CancelSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CancelSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CancelSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
-	if o == nil {
+func (c *CancelSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
+	if c == nil {
 		return nil
 	}
-	return o.SubscriptionResponse
+	return c.SubscriptionResponse
 }

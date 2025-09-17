@@ -21,32 +21,32 @@ type GetMandateRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetMandateRequest) GetCustomerID() string {
-	if o == nil {
+func (g *GetMandateRequest) GetCustomerID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CustomerID
+	return g.CustomerID
 }
 
-func (o *GetMandateRequest) GetMandateID() string {
-	if o == nil {
+func (g *GetMandateRequest) GetMandateID() string {
+	if g == nil {
 		return ""
 	}
-	return o.MandateID
+	return g.MandateID
 }
 
-func (o *GetMandateRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetMandateRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetMandateRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetMandateRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetMandateResponse struct {
@@ -55,16 +55,16 @@ type GetMandateResponse struct {
 	MandateResponse *components.MandateResponse
 }
 
-func (o *GetMandateResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetMandateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetMandateResponse) GetMandateResponse() *components.MandateResponse {
-	if o == nil {
+func (g *GetMandateResponse) GetMandateResponse() *components.MandateResponse {
+	if g == nil {
 		return nil
 	}
-	return o.MandateResponse
+	return g.MandateResponse
 }

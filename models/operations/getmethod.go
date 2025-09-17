@@ -37,60 +37,60 @@ type GetMethodRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetMethodRequest) GetID() string {
-	if o == nil {
+func (g *GetMethodRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetMethodRequest) GetLocale() *components.LocaleParameter {
-	if o == nil {
+func (g *GetMethodRequest) GetLocale() *components.LocaleParameter {
+	if g == nil {
 		return nil
 	}
-	return o.Locale
+	return g.Locale
 }
 
-func (o *GetMethodRequest) GetCurrency() *string {
-	if o == nil {
+func (g *GetMethodRequest) GetCurrency() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Currency
+	return g.Currency
 }
 
-func (o *GetMethodRequest) GetProfileID() *string {
-	if o == nil {
+func (g *GetMethodRequest) GetProfileID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ProfileID
+	return g.ProfileID
 }
 
-func (o *GetMethodRequest) GetInclude() *string {
-	if o == nil {
+func (g *GetMethodRequest) GetInclude() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Include
+	return g.Include
 }
 
-func (o *GetMethodRequest) GetSequenceType() *components.SequenceType {
-	if o == nil {
+func (g *GetMethodRequest) GetSequenceType() *components.SequenceType {
+	if g == nil {
 		return nil
 	}
-	return o.SequenceType
+	return g.SequenceType
 }
 
-func (o *GetMethodRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetMethodRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetMethodRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetMethodRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetMethodResponse struct {
@@ -99,16 +99,16 @@ type GetMethodResponse struct {
 	EntityMethod *components.EntityMethod
 }
 
-func (o *GetMethodResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetMethodResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetMethodResponse) GetEntityMethod() *components.EntityMethod {
-	if o == nil {
+func (g *GetMethodResponse) GetEntityMethod() *components.EntityMethod {
+	if g == nil {
 		return nil
 	}
-	return o.EntityMethod
+	return g.EntityMethod
 }

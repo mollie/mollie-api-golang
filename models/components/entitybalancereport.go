@@ -10,32 +10,32 @@ type PendingBalance struct {
 	MovedToAvailable *SubGroup `json:"movedToAvailable,omitempty"`
 }
 
-func (o *PendingBalance) GetOpen() *SubGroup {
-	if o == nil {
+func (p *PendingBalance) GetOpen() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.Open
+	return p.Open
 }
 
-func (o *PendingBalance) GetClose() *SubGroup {
-	if o == nil {
+func (p *PendingBalance) GetClose() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.Close
+	return p.Close
 }
 
-func (o *PendingBalance) GetPending() *SubGroup {
-	if o == nil {
+func (p *PendingBalance) GetPending() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.Pending
+	return p.Pending
 }
 
-func (o *PendingBalance) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (p *PendingBalance) GetMovedToAvailable() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return p.MovedToAvailable
 }
 
 // AvailableBalance - The available balance. Only available if grouping is `status-balances`.
@@ -46,32 +46,32 @@ type AvailableBalance struct {
 	Close                *SubGroup `json:"close,omitempty"`
 }
 
-func (o *AvailableBalance) GetOpen() *SubGroup {
-	if o == nil {
+func (a *AvailableBalance) GetOpen() *SubGroup {
+	if a == nil {
 		return nil
 	}
-	return o.Open
+	return a.Open
 }
 
-func (o *AvailableBalance) GetMovedFromPending() *SubGroup {
-	if o == nil {
+func (a *AvailableBalance) GetMovedFromPending() *SubGroup {
+	if a == nil {
 		return nil
 	}
-	return o.MovedFromPending
+	return a.MovedFromPending
 }
 
-func (o *AvailableBalance) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (a *AvailableBalance) GetImmediatelyAvailable() *SubGroup {
+	if a == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return a.ImmediatelyAvailable
 }
 
-func (o *AvailableBalance) GetClose() *SubGroup {
-	if o == nil {
+func (a *AvailableBalance) GetClose() *SubGroup {
+	if a == nil {
 		return nil
 	}
-	return o.Close
+	return a.Close
 }
 
 // Open - Only available on `transaction-categories` grouping.
@@ -100,18 +100,18 @@ type Close struct {
 	Available *SubGroup `json:"available,omitempty"`
 }
 
-func (o *Close) GetPending() *SubGroup {
-	if o == nil {
+func (c *Close) GetPending() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.Pending
+	return c.Pending
 }
 
-func (o *Close) GetAvailable() *SubGroup {
-	if o == nil {
+func (c *Close) GetAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.Available
+	return c.Available
 }
 
 // Payments - Only available on `transaction-categories` grouping.
@@ -121,25 +121,25 @@ type Payments struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Payments) GetPending() *SubGroup {
-	if o == nil {
+func (p *Payments) GetPending() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.Pending
+	return p.Pending
 }
 
-func (o *Payments) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (p *Payments) GetMovedToAvailable() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return p.MovedToAvailable
 }
 
-func (o *Payments) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (p *Payments) GetImmediatelyAvailable() *SubGroup {
+	if p == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return p.ImmediatelyAvailable
 }
 
 // Refunds - Only available on `transaction-categories` grouping.
@@ -149,25 +149,25 @@ type Refunds struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Refunds) GetPending() *SubGroup {
-	if o == nil {
+func (r *Refunds) GetPending() *SubGroup {
+	if r == nil {
 		return nil
 	}
-	return o.Pending
+	return r.Pending
 }
 
-func (o *Refunds) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (r *Refunds) GetMovedToAvailable() *SubGroup {
+	if r == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return r.MovedToAvailable
 }
 
-func (o *Refunds) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (r *Refunds) GetImmediatelyAvailable() *SubGroup {
+	if r == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return r.ImmediatelyAvailable
 }
 
 // Chargebacks - Only available on `transaction-categories` grouping.
@@ -177,25 +177,25 @@ type Chargebacks struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Chargebacks) GetPending() *SubGroup {
-	if o == nil {
+func (c *Chargebacks) GetPending() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.Pending
+	return c.Pending
 }
 
-func (o *Chargebacks) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (c *Chargebacks) GetMovedToAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return c.MovedToAvailable
 }
 
-func (o *Chargebacks) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (c *Chargebacks) GetImmediatelyAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return c.ImmediatelyAvailable
 }
 
 // Capital - Only available on `transaction-categories` grouping.
@@ -205,25 +205,25 @@ type Capital struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Capital) GetPending() *SubGroup {
-	if o == nil {
+func (c *Capital) GetPending() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.Pending
+	return c.Pending
 }
 
-func (o *Capital) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (c *Capital) GetMovedToAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return c.MovedToAvailable
 }
 
-func (o *Capital) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (c *Capital) GetImmediatelyAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return c.ImmediatelyAvailable
 }
 
 // Transfers - Only available on `transaction-categories` grouping.
@@ -233,25 +233,25 @@ type Transfers struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Transfers) GetPending() *SubGroup {
-	if o == nil {
+func (t *Transfers) GetPending() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.Pending
+	return t.Pending
 }
 
-func (o *Transfers) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (t *Transfers) GetMovedToAvailable() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return t.MovedToAvailable
 }
 
-func (o *Transfers) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (t *Transfers) GetImmediatelyAvailable() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return t.ImmediatelyAvailable
 }
 
 // FeePrepayments - Only available on `transaction-categories` grouping.
@@ -261,25 +261,25 @@ type FeePrepayments struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *FeePrepayments) GetPending() *SubGroup {
-	if o == nil {
+func (f *FeePrepayments) GetPending() *SubGroup {
+	if f == nil {
 		return nil
 	}
-	return o.Pending
+	return f.Pending
 }
 
-func (o *FeePrepayments) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (f *FeePrepayments) GetMovedToAvailable() *SubGroup {
+	if f == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return f.MovedToAvailable
 }
 
-func (o *FeePrepayments) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (f *FeePrepayments) GetImmediatelyAvailable() *SubGroup {
+	if f == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return f.ImmediatelyAvailable
 }
 
 // Corrections - Only available on `transaction-categories` grouping.
@@ -289,25 +289,25 @@ type Corrections struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Corrections) GetPending() *SubGroup {
-	if o == nil {
+func (c *Corrections) GetPending() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.Pending
+	return c.Pending
 }
 
-func (o *Corrections) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (c *Corrections) GetMovedToAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return c.MovedToAvailable
 }
 
-func (o *Corrections) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (c *Corrections) GetImmediatelyAvailable() *SubGroup {
+	if c == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return c.ImmediatelyAvailable
 }
 
 // Topups - Only available on `transaction-categories` grouping.
@@ -317,25 +317,25 @@ type Topups struct {
 	ImmediatelyAvailable *SubGroup `json:"immediatelyAvailable,omitempty"`
 }
 
-func (o *Topups) GetPending() *SubGroup {
-	if o == nil {
+func (t *Topups) GetPending() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.Pending
+	return t.Pending
 }
 
-func (o *Topups) GetMovedToAvailable() *SubGroup {
-	if o == nil {
+func (t *Topups) GetMovedToAvailable() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.MovedToAvailable
+	return t.MovedToAvailable
 }
 
-func (o *Topups) GetImmediatelyAvailable() *SubGroup {
-	if o == nil {
+func (t *Topups) GetImmediatelyAvailable() *SubGroup {
+	if t == nil {
 		return nil
 	}
-	return o.ImmediatelyAvailable
+	return t.ImmediatelyAvailable
 }
 
 // Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
@@ -385,88 +385,88 @@ type Totals struct {
 	Topups *Topups `json:"topups,omitempty"`
 }
 
-func (o *Totals) GetPendingBalance() *PendingBalance {
-	if o == nil {
+func (t *Totals) GetPendingBalance() *PendingBalance {
+	if t == nil {
 		return nil
 	}
-	return o.PendingBalance
+	return t.PendingBalance
 }
 
-func (o *Totals) GetAvailableBalance() *AvailableBalance {
-	if o == nil {
+func (t *Totals) GetAvailableBalance() *AvailableBalance {
+	if t == nil {
 		return nil
 	}
-	return o.AvailableBalance
+	return t.AvailableBalance
 }
 
-func (o *Totals) GetOpen() *Open {
-	if o == nil {
+func (t *Totals) GetOpen() *Open {
+	if t == nil {
 		return nil
 	}
-	return o.Open
+	return t.Open
 }
 
-func (o *Totals) GetClose() *Close {
-	if o == nil {
+func (t *Totals) GetClose() *Close {
+	if t == nil {
 		return nil
 	}
-	return o.Close
+	return t.Close
 }
 
-func (o *Totals) GetPayments() *Payments {
-	if o == nil {
+func (t *Totals) GetPayments() *Payments {
+	if t == nil {
 		return nil
 	}
-	return o.Payments
+	return t.Payments
 }
 
-func (o *Totals) GetRefunds() *Refunds {
-	if o == nil {
+func (t *Totals) GetRefunds() *Refunds {
+	if t == nil {
 		return nil
 	}
-	return o.Refunds
+	return t.Refunds
 }
 
-func (o *Totals) GetChargebacks() *Chargebacks {
-	if o == nil {
+func (t *Totals) GetChargebacks() *Chargebacks {
+	if t == nil {
 		return nil
 	}
-	return o.Chargebacks
+	return t.Chargebacks
 }
 
-func (o *Totals) GetCapital() *Capital {
-	if o == nil {
+func (t *Totals) GetCapital() *Capital {
+	if t == nil {
 		return nil
 	}
-	return o.Capital
+	return t.Capital
 }
 
-func (o *Totals) GetTransfers() *Transfers {
-	if o == nil {
+func (t *Totals) GetTransfers() *Transfers {
+	if t == nil {
 		return nil
 	}
-	return o.Transfers
+	return t.Transfers
 }
 
-func (o *Totals) GetFeePrepayments() *FeePrepayments {
-	if o == nil {
+func (t *Totals) GetFeePrepayments() *FeePrepayments {
+	if t == nil {
 		return nil
 	}
-	return o.FeePrepayments
+	return t.FeePrepayments
 }
 
-func (o *Totals) GetCorrections() *Corrections {
-	if o == nil {
+func (t *Totals) GetCorrections() *Corrections {
+	if t == nil {
 		return nil
 	}
-	return o.Corrections
+	return t.Corrections
 }
 
-func (o *Totals) GetTopups() *Topups {
-	if o == nil {
+func (t *Totals) GetTopups() *Topups {
+	if t == nil {
 		return nil
 	}
-	return o.Topups
+	return t.Topups
 }
 
 // EntityBalanceReportLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -477,18 +477,18 @@ type EntityBalanceReportLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityBalanceReportLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityBalanceReportLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityBalanceReportLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityBalanceReportLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityBalanceReport struct {
@@ -531,58 +531,58 @@ type EntityBalanceReport struct {
 	Links *EntityBalanceReportLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityBalanceReport) GetResource() *string {
-	if o == nil {
+func (e *EntityBalanceReport) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityBalanceReport) GetBalanceID() *string {
-	if o == nil {
+func (e *EntityBalanceReport) GetBalanceID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.BalanceID
+	return e.BalanceID
 }
 
-func (o *EntityBalanceReport) GetTimeZone() *string {
-	if o == nil {
+func (e *EntityBalanceReport) GetTimeZone() *string {
+	if e == nil {
 		return nil
 	}
-	return o.TimeZone
+	return e.TimeZone
 }
 
-func (o *EntityBalanceReport) GetFrom() *string {
-	if o == nil {
+func (e *EntityBalanceReport) GetFrom() *string {
+	if e == nil {
 		return nil
 	}
-	return o.From
+	return e.From
 }
 
-func (o *EntityBalanceReport) GetUntil() *string {
-	if o == nil {
+func (e *EntityBalanceReport) GetUntil() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Until
+	return e.Until
 }
 
-func (o *EntityBalanceReport) GetGrouping() *BalanceReportGrouping {
-	if o == nil {
+func (e *EntityBalanceReport) GetGrouping() *BalanceReportGrouping {
+	if e == nil {
 		return nil
 	}
-	return o.Grouping
+	return e.Grouping
 }
 
-func (o *EntityBalanceReport) GetTotals() *Totals {
-	if o == nil {
+func (e *EntityBalanceReport) GetTotals() *Totals {
+	if e == nil {
 		return nil
 	}
-	return o.Totals
+	return e.Totals
 }
 
-func (o *EntityBalanceReport) GetLinks() *EntityBalanceReportLinks {
-	if o == nil {
+func (e *EntityBalanceReport) GetLinks() *EntityBalanceReportLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

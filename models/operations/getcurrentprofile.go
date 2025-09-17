@@ -11,11 +11,11 @@ type GetCurrentProfileRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetCurrentProfileRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetCurrentProfileRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetCurrentProfileResponse struct {
@@ -25,16 +25,16 @@ type GetCurrentProfileResponse struct {
 	EntityProfileResponse *components.EntityProfileResponse
 }
 
-func (o *GetCurrentProfileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetCurrentProfileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetCurrentProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
-	if o == nil {
+func (g *GetCurrentProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+	if g == nil {
 		return nil
 	}
-	return o.EntityProfileResponse
+	return g.EntityProfileResponse
 }

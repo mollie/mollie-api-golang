@@ -12,18 +12,18 @@ type CreateProfileRequest struct {
 	EntityProfile  components.EntityProfile `request:"mediaType=application/json"`
 }
 
-func (o *CreateProfileRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateProfileRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateProfileRequest) GetEntityProfile() components.EntityProfile {
-	if o == nil {
+func (c *CreateProfileRequest) GetEntityProfile() components.EntityProfile {
+	if c == nil {
 		return components.EntityProfile{}
 	}
-	return o.EntityProfile
+	return c.EntityProfile
 }
 
 type CreateProfileResponse struct {
@@ -32,16 +32,16 @@ type CreateProfileResponse struct {
 	EntityProfileResponse *components.EntityProfileResponse
 }
 
-func (o *CreateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
-	if o == nil {
+func (c *CreateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+	if c == nil {
 		return nil
 	}
-	return o.EntityProfileResponse
+	return c.EntityProfileResponse
 }

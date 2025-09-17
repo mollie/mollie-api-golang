@@ -32,23 +32,23 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &components.RouteCreateRequest{
-        ID: client.String("crt_dyARQ3JzCgtPDhU2Pbq3J"),
-        PaymentID: client.String("tr_5B8cwPMGnU"),
+    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RouteCreateRequest{
+        ID: client.Pointer("crt_dyARQ3JzCgtPDhU2Pbq3J"),
+        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Description: client.String("Payment for Order #12345"),
+        Description: client.Pointer("Payment for Order #12345"),
         Destination: &components.RouteCreateRequestDestination{
             Type: components.RouteDestinationTypeOrganization,
             OrganizationID: "org_1234567",
         },
-        Testmode: client.Bool(false),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -103,11 +103,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.DelayedRouting.List(ctx, "tr_5B8cwPMGnU", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.DelayedRouting.List(ctx, "tr_5B8cwPMGnU", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }

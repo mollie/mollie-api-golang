@@ -13,25 +13,25 @@ type EntityMethodImage struct {
 	Svg string `json:"svg"`
 }
 
-func (o *EntityMethodImage) GetSize1x() string {
-	if o == nil {
+func (e *EntityMethodImage) GetSize1x() string {
+	if e == nil {
 		return ""
 	}
-	return o.Size1x
+	return e.Size1x
 }
 
-func (o *EntityMethodImage) GetSize2x() string {
-	if o == nil {
+func (e *EntityMethodImage) GetSize2x() string {
+	if e == nil {
 		return ""
 	}
-	return o.Size2x
+	return e.Size2x
 }
 
-func (o *EntityMethodImage) GetSvg() string {
-	if o == nil {
+func (e *EntityMethodImage) GetSvg() string {
+	if e == nil {
 		return ""
 	}
-	return o.Svg
+	return e.Svg
 }
 
 // EntityMethodIssuerImage - URLs of images representing the issuer.
@@ -49,25 +49,25 @@ type EntityMethodIssuerImage struct {
 	Svg *string `json:"svg,omitempty"`
 }
 
-func (o *EntityMethodIssuerImage) GetSize1x() *string {
-	if o == nil {
+func (e *EntityMethodIssuerImage) GetSize1x() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Size1x
+	return e.Size1x
 }
 
-func (o *EntityMethodIssuerImage) GetSize2x() *string {
-	if o == nil {
+func (e *EntityMethodIssuerImage) GetSize2x() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Size2x
+	return e.Size2x
 }
 
-func (o *EntityMethodIssuerImage) GetSvg() *string {
-	if o == nil {
+func (e *EntityMethodIssuerImage) GetSvg() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Svg
+	return e.Svg
 }
 
 type EntityMethodIssuer struct {
@@ -83,32 +83,32 @@ type EntityMethodIssuer struct {
 	Image EntityMethodIssuerImage `json:"image"`
 }
 
-func (o *EntityMethodIssuer) GetResource() string {
-	if o == nil {
+func (e *EntityMethodIssuer) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityMethodIssuer) GetID() string {
-	if o == nil {
+func (e *EntityMethodIssuer) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityMethodIssuer) GetName() string {
-	if o == nil {
+func (e *EntityMethodIssuer) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityMethodIssuer) GetImage() EntityMethodIssuerImage {
-	if o == nil {
+func (e *EntityMethodIssuer) GetImage() EntityMethodIssuerImage {
+	if e == nil {
 		return EntityMethodIssuerImage{}
 	}
-	return o.Image
+	return e.Image
 }
 
 // EntityMethodLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -119,18 +119,18 @@ type EntityMethodLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityMethodLinks) GetSelf() URLObj {
-	if o == nil {
+func (e *EntityMethodLinks) GetSelf() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityMethodLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityMethodLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityMethod struct {
@@ -164,65 +164,65 @@ type EntityMethod struct {
 	Links EntityMethodLinks `json:"_links"`
 }
 
-func (o *EntityMethod) GetResource() string {
-	if o == nil {
+func (e *EntityMethod) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityMethod) GetID() *MethodResponse {
-	if o == nil {
+func (e *EntityMethod) GetID() *MethodResponse {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityMethod) GetDescription() string {
-	if o == nil {
+func (e *EntityMethod) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityMethod) GetMinimumAmount() Amount {
-	if o == nil {
+func (e *EntityMethod) GetMinimumAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.MinimumAmount
+	return e.MinimumAmount
 }
 
-func (o *EntityMethod) GetMaximumAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityMethod) GetMaximumAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.MaximumAmount
+	return e.MaximumAmount
 }
 
-func (o *EntityMethod) GetImage() EntityMethodImage {
-	if o == nil {
+func (e *EntityMethod) GetImage() EntityMethodImage {
+	if e == nil {
 		return EntityMethodImage{}
 	}
-	return o.Image
+	return e.Image
 }
 
-func (o *EntityMethod) GetStatus() MethodStatus {
-	if o == nil {
+func (e *EntityMethod) GetStatus() MethodStatus {
+	if e == nil {
 		return MethodStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityMethod) GetIssuers() []EntityMethodIssuer {
-	if o == nil {
+func (e *EntityMethod) GetIssuers() []EntityMethodIssuer {
+	if e == nil {
 		return nil
 	}
-	return o.Issuers
+	return e.Issuers
 }
 
-func (o *EntityMethod) GetLinks() EntityMethodLinks {
-	if o == nil {
+func (e *EntityMethod) GetLinks() EntityMethodLinks {
+	if e == nil {
 		return EntityMethodLinks{}
 	}
-	return o.Links
+	return e.Links
 }

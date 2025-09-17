@@ -35,11 +35,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &components.EntityRefund{
+    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityRefund{
         ID: "re_5B8cwPMGnU",
         Description: "Refunding a Chess Board",
         Amount: components.Amount{
@@ -55,14 +55,14 @@ func main() {
 
             },
         )),
-        PaymentID: client.String("tr_5B8cwPMGnU"),
-        SettlementID: client.String("stl_5B8cwPMGnU"),
+        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
+        SettlementID: client.Pointer("stl_5B8cwPMGnU"),
         Status: components.RefundStatusQueued,
         ExternalReference: &components.EntityRefundExternalReference{
             Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
-            ID: client.String("123456789012345"),
+            ID: client.Pointer("123456789012345"),
         },
-        ReverseRouting: client.Bool(false),
+        ReverseRouting: client.Pointer(false),
         RoutingReversals: []components.EntityRefundRoutingReversal{
             components.EntityRefundRoutingReversal{
                 Amount: &components.Amount{
@@ -71,11 +71,11 @@ func main() {
                 },
                 Source: &components.EntityRefundSource{
                     Type: components.RefundRoutingReversalsSourceTypeOrganization.ToPointer(),
-                    OrganizationID: client.String("org_1234567"),
+                    OrganizationID: client.Pointer("org_1234567"),
                 },
             },
         },
-        Testmode: client.Bool(false),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -133,17 +133,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Refunds.List(ctx, operations.ListRefundsRequest{
         PaymentID: "tr_5B8cwPMGnU",
-        From: client.String("re_5B8cwPMGnU"),
-        Limit: client.Int64(50),
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        From: client.Pointer("re_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -197,16 +197,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Refunds.Get(ctx, operations.GetRefundRequest{
         PaymentID: "tr_5B8cwPMGnU",
         RefundID: "re_5B8cwPMGnU",
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -263,11 +263,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -325,18 +325,18 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Refunds.All(ctx, operations.ListAllRefundsRequest{
-        From: client.String("re_5B8cwPMGnU"),
-        Limit: client.Int64(50),
+        From: client.Pointer("re_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        Embed: client.String("payment"),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Embed: client.Pointer("payment"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

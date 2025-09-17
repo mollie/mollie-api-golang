@@ -14,25 +14,25 @@ type CreateSubscriptionRequest struct {
 	SubscriptionRequest *components.SubscriptionRequest `request:"mediaType=application/json"`
 }
 
-func (o *CreateSubscriptionRequest) GetCustomerID() string {
-	if o == nil {
+func (c *CreateSubscriptionRequest) GetCustomerID() string {
+	if c == nil {
 		return ""
 	}
-	return o.CustomerID
+	return c.CustomerID
 }
 
-func (o *CreateSubscriptionRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateSubscriptionRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateSubscriptionRequest) GetSubscriptionRequest() *components.SubscriptionRequest {
-	if o == nil {
+func (c *CreateSubscriptionRequest) GetSubscriptionRequest() *components.SubscriptionRequest {
+	if c == nil {
 		return nil
 	}
-	return o.SubscriptionRequest
+	return c.SubscriptionRequest
 }
 
 type CreateSubscriptionResponse struct {
@@ -41,16 +41,16 @@ type CreateSubscriptionResponse struct {
 	SubscriptionResponse *components.SubscriptionResponse
 }
 
-func (o *CreateSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateSubscriptionResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
-	if o == nil {
+func (c *CreateSubscriptionResponse) GetSubscriptionResponse() *components.SubscriptionResponse {
+	if c == nil {
 		return nil
 	}
-	return o.SubscriptionResponse
+	return c.SubscriptionResponse
 }

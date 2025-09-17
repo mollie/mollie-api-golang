@@ -24,39 +24,39 @@ type GetCaptureRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetCaptureRequest) GetPaymentID() string {
-	if o == nil {
+func (g *GetCaptureRequest) GetPaymentID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentID
+	return g.PaymentID
 }
 
-func (o *GetCaptureRequest) GetCaptureID() string {
-	if o == nil {
+func (g *GetCaptureRequest) GetCaptureID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CaptureID
+	return g.CaptureID
 }
 
-func (o *GetCaptureRequest) GetEmbed() *string {
-	if o == nil {
+func (g *GetCaptureRequest) GetEmbed() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Embed
+	return g.Embed
 }
 
-func (o *GetCaptureRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetCaptureRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetCaptureRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetCaptureRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetCaptureResponse struct {
@@ -65,16 +65,16 @@ type GetCaptureResponse struct {
 	CaptureResponse *components.CaptureResponse
 }
 
-func (o *GetCaptureResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetCaptureResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetCaptureResponse) GetCaptureResponse() *components.CaptureResponse {
-	if o == nil {
+func (g *GetCaptureResponse) GetCaptureResponse() *components.CaptureResponse {
+	if g == nil {
 		return nil
 	}
-	return o.CaptureResponse
+	return g.CaptureResponse
 }

@@ -31,11 +31,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Onboarding.Get(ctx, client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Onboarding.Get(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -92,24 +92,24 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Onboarding.Submit(ctx, client.String("123e4567-e89b-12d3-a456-426"), &operations.SubmitOnboardingDataRequestBody{
+    res, err := s.Onboarding.Submit(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.SubmitOnboardingDataRequestBody{
         Organization: &operations.Organization{
-            Name: client.String("Mollie B.V."),
-            RegistrationNumber: client.String("30204462"),
-            VatNumber: client.String("NL815839091B01"),
+            Name: client.Pointer("Mollie B.V."),
+            RegistrationNumber: client.Pointer("30204462"),
+            VatNumber: client.Pointer("NL815839091B01"),
             VatRegulation: operations.VatRegulationDutch.ToPointer(),
         },
         Profile: &operations.Profile{
-            Name: client.String("Mollie"),
-            URL: client.String("https://www.mollie.com"),
-            Email: client.String("info@mollie.com"),
-            Phone: client.String("+31208202070"),
-            Description: client.String("Payment service provider"),
-            BusinessCategory: client.String("MONEY_SERVICES"),
+            Name: client.Pointer("Mollie"),
+            URL: client.Pointer("https://www.mollie.com"),
+            Email: client.Pointer("info@mollie.com"),
+            Phone: client.Pointer("+31208202070"),
+            Description: client.Pointer("Payment service provider"),
+            BusinessCategory: client.Pointer("MONEY_SERVICES"),
         },
     })
     if err != nil {

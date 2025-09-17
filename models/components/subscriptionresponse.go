@@ -15,18 +15,18 @@ type SubscriptionResponseApplicationFee struct {
 	Description string `json:"description"`
 }
 
-func (o *SubscriptionResponseApplicationFee) GetAmount() Amount {
-	if o == nil {
+func (s *SubscriptionResponseApplicationFee) GetAmount() Amount {
+	if s == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *SubscriptionResponseApplicationFee) GetDescription() string {
-	if o == nil {
+func (s *SubscriptionResponseApplicationFee) GetDescription() string {
+	if s == nil {
 		return ""
 	}
-	return o.Description
+	return s.Description
 }
 
 // SubscriptionResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -45,46 +45,46 @@ type SubscriptionResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *SubscriptionResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetSelf() URLObj {
+	if s == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return s.Self
 }
 
-func (o *SubscriptionResponseLinks) GetCustomer() *URLNullable {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetCustomer() *URLNullable {
+	if s == nil {
 		return nil
 	}
-	return o.Customer
+	return s.Customer
 }
 
-func (o *SubscriptionResponseLinks) GetMandate() *URLNullable {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetMandate() *URLNullable {
+	if s == nil {
 		return nil
 	}
-	return o.Mandate
+	return s.Mandate
 }
 
-func (o *SubscriptionResponseLinks) GetProfile() *URLNullable {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetProfile() *URLNullable {
+	if s == nil {
 		return nil
 	}
-	return o.Profile
+	return s.Profile
 }
 
-func (o *SubscriptionResponseLinks) GetPayments() *URLNullable {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetPayments() *URLNullable {
+	if s == nil {
 		return nil
 	}
-	return o.Payments
+	return s.Payments
 }
 
-func (o *SubscriptionResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (s *SubscriptionResponseLinks) GetDocumentation() URLObj {
+	if s == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return s.Documentation
 }
 
 type SubscriptionResponse struct {
@@ -151,142 +151,142 @@ type SubscriptionResponse struct {
 	Links *SubscriptionResponseLinks `json:"_links,omitempty"`
 }
 
-func (o *SubscriptionResponse) GetResource() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetResource() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Resource
+	return s.Resource
 }
 
-func (o *SubscriptionResponse) GetID() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SubscriptionResponse) GetMode() *Mode {
-	if o == nil {
+func (s *SubscriptionResponse) GetMode() *Mode {
+	if s == nil {
 		return nil
 	}
-	return o.Mode
+	return s.Mode
 }
 
-func (o *SubscriptionResponse) GetStatus() *SubscriptionStatus {
-	if o == nil {
+func (s *SubscriptionResponse) GetStatus() *SubscriptionStatus {
+	if s == nil {
 		return nil
 	}
-	return o.Status
+	return s.Status
 }
 
-func (o *SubscriptionResponse) GetAmount() *Amount {
-	if o == nil {
+func (s *SubscriptionResponse) GetAmount() *Amount {
+	if s == nil {
 		return nil
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *SubscriptionResponse) GetTimes() *int64 {
-	if o == nil {
+func (s *SubscriptionResponse) GetTimes() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Times
+	return s.Times
 }
 
-func (o *SubscriptionResponse) GetTimesRemaining() *int64 {
-	if o == nil {
+func (s *SubscriptionResponse) GetTimesRemaining() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.TimesRemaining
+	return s.TimesRemaining
 }
 
-func (o *SubscriptionResponse) GetInterval() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetInterval() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Interval
+	return s.Interval
 }
 
-func (o *SubscriptionResponse) GetStartDate() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetStartDate() *string {
+	if s == nil {
 		return nil
 	}
-	return o.StartDate
+	return s.StartDate
 }
 
-func (o *SubscriptionResponse) GetNextPaymentDate() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetNextPaymentDate() *string {
+	if s == nil {
 		return nil
 	}
-	return o.NextPaymentDate
+	return s.NextPaymentDate
 }
 
-func (o *SubscriptionResponse) GetDescription() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetDescription() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Description
+	return s.Description
 }
 
-func (o *SubscriptionResponse) GetMethod() *SubscriptionMethodResponse {
-	if o == nil {
+func (s *SubscriptionResponse) GetMethod() *SubscriptionMethodResponse {
+	if s == nil {
 		return nil
 	}
-	return o.Method
+	return s.Method
 }
 
-func (o *SubscriptionResponse) GetApplicationFee() *SubscriptionResponseApplicationFee {
-	if o == nil {
+func (s *SubscriptionResponse) GetApplicationFee() *SubscriptionResponseApplicationFee {
+	if s == nil {
 		return nil
 	}
-	return o.ApplicationFee
+	return s.ApplicationFee
 }
 
-func (o *SubscriptionResponse) GetMetadata() *Metadata {
-	if o == nil {
+func (s *SubscriptionResponse) GetMetadata() *Metadata {
+	if s == nil {
 		return nil
 	}
-	return o.Metadata
+	return s.Metadata
 }
 
-func (o *SubscriptionResponse) GetWebhookURL() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetWebhookURL() *string {
+	if s == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return s.WebhookURL
 }
 
-func (o *SubscriptionResponse) GetCustomerID() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetCustomerID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.CustomerID
+	return s.CustomerID
 }
 
-func (o *SubscriptionResponse) GetMandateID() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetMandateID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.MandateID
+	return s.MandateID
 }
 
-func (o *SubscriptionResponse) GetCreatedAt() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetCreatedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return s.CreatedAt
 }
 
-func (o *SubscriptionResponse) GetCanceledAt() *string {
-	if o == nil {
+func (s *SubscriptionResponse) GetCanceledAt() *string {
+	if s == nil {
 		return nil
 	}
-	return o.CanceledAt
+	return s.CanceledAt
 }
 
-func (o *SubscriptionResponse) GetLinks() *SubscriptionResponseLinks {
-	if o == nil {
+func (s *SubscriptionResponse) GetLinks() *SubscriptionResponseLinks {
+	if s == nil {
 		return nil
 	}
-	return o.Links
+	return s.Links
 }

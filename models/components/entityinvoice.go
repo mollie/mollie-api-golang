@@ -15,39 +15,39 @@ type EntityInvoiceLine struct {
 	Amount *Amount `json:"amount,omitempty"`
 }
 
-func (o *EntityInvoiceLine) GetPeriod() *string {
-	if o == nil {
+func (e *EntityInvoiceLine) GetPeriod() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Period
+	return e.Period
 }
 
-func (o *EntityInvoiceLine) GetDescription() *string {
-	if o == nil {
+func (e *EntityInvoiceLine) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityInvoiceLine) GetCount() *int64 {
-	if o == nil {
+func (e *EntityInvoiceLine) GetCount() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Count
+	return e.Count
 }
 
-func (o *EntityInvoiceLine) GetVatPercentage() *int64 {
-	if o == nil {
+func (e *EntityInvoiceLine) GetVatPercentage() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.VatPercentage
+	return e.VatPercentage
 }
 
-func (o *EntityInvoiceLine) GetAmount() *Amount {
-	if o == nil {
+func (e *EntityInvoiceLine) GetAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.Amount
+	return e.Amount
 }
 
 // EntityInvoiceLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -60,25 +60,25 @@ type EntityInvoiceLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityInvoiceLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityInvoiceLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityInvoiceLinks) GetPdf() *URLObj {
-	if o == nil {
+func (e *EntityInvoiceLinks) GetPdf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Pdf
+	return e.Pdf
 }
 
-func (o *EntityInvoiceLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityInvoiceLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityInvoice struct {
@@ -111,93 +111,93 @@ type EntityInvoice struct {
 	Links *EntityInvoiceLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityInvoice) GetResource() *string {
-	if o == nil {
+func (e *EntityInvoice) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityInvoice) GetID() *string {
-	if o == nil {
+func (e *EntityInvoice) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityInvoice) GetReference() *string {
-	if o == nil {
+func (e *EntityInvoice) GetReference() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Reference
+	return e.Reference
 }
 
-func (o *EntityInvoice) GetVatNumber() *string {
-	if o == nil {
+func (e *EntityInvoice) GetVatNumber() *string {
+	if e == nil {
 		return nil
 	}
-	return o.VatNumber
+	return e.VatNumber
 }
 
-func (o *EntityInvoice) GetStatus() *InvoiceStatus {
-	if o == nil {
+func (e *EntityInvoice) GetStatus() *InvoiceStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityInvoice) GetNetAmount() *Amount {
-	if o == nil {
+func (e *EntityInvoice) GetNetAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.NetAmount
+	return e.NetAmount
 }
 
-func (o *EntityInvoice) GetVatAmount() *Amount {
-	if o == nil {
+func (e *EntityInvoice) GetVatAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.VatAmount
+	return e.VatAmount
 }
 
-func (o *EntityInvoice) GetGrossAmount() *Amount {
-	if o == nil {
+func (e *EntityInvoice) GetGrossAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.GrossAmount
+	return e.GrossAmount
 }
 
-func (o *EntityInvoice) GetLines() []EntityInvoiceLine {
-	if o == nil {
+func (e *EntityInvoice) GetLines() []EntityInvoiceLine {
+	if e == nil {
 		return nil
 	}
-	return o.Lines
+	return e.Lines
 }
 
-func (o *EntityInvoice) GetIssuedAt() *string {
-	if o == nil {
+func (e *EntityInvoice) GetIssuedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.IssuedAt
+	return e.IssuedAt
 }
 
-func (o *EntityInvoice) GetPaidAt() *string {
-	if o == nil {
+func (e *EntityInvoice) GetPaidAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaidAt
+	return e.PaidAt
 }
 
-func (o *EntityInvoice) GetDueAt() *string {
-	if o == nil {
+func (e *EntityInvoice) GetDueAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.DueAt
+	return e.DueAt
 }
 
-func (o *EntityInvoice) GetLinks() *EntityInvoiceLinks {
-	if o == nil {
+func (e *EntityInvoice) GetLinks() *EntityInvoiceLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

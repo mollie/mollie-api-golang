@@ -27,46 +27,46 @@ type GetPaymentLinkPaymentsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetPaymentLinkID() string {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetPaymentLinkID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentLinkID
+	return g.PaymentLinkID
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetFrom() *string {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetFrom() *string {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetLimit() *int64 {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetLimit() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Limit
+	return g.Limit
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetSort() *components.ListSort {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetSort() *components.ListSort {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetPaymentLinkPaymentsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetPaymentLinkPaymentsEmbedded struct {
@@ -74,11 +74,11 @@ type GetPaymentLinkPaymentsEmbedded struct {
 	Payments []components.PaymentResponse `json:"payments,omitempty"`
 }
 
-func (o *GetPaymentLinkPaymentsEmbedded) GetPayments() []components.PaymentResponse {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsEmbedded) GetPayments() []components.PaymentResponse {
+	if g == nil {
 		return nil
 	}
-	return o.Payments
+	return g.Payments
 }
 
 // GetPaymentLinkPaymentsResponseBody - A list of payment objects.
@@ -94,25 +94,25 @@ type GetPaymentLinkPaymentsResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *GetPaymentLinkPaymentsResponseBody) GetCount() int64 {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsResponseBody) GetCount() int64 {
+	if g == nil {
 		return 0
 	}
-	return o.Count
+	return g.Count
 }
 
-func (o *GetPaymentLinkPaymentsResponseBody) GetEmbedded() GetPaymentLinkPaymentsEmbedded {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsResponseBody) GetEmbedded() GetPaymentLinkPaymentsEmbedded {
+	if g == nil {
 		return GetPaymentLinkPaymentsEmbedded{}
 	}
-	return o.Embedded
+	return g.Embedded
 }
 
-func (o *GetPaymentLinkPaymentsResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsResponseBody) GetLinks() components.ListLinks {
+	if g == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return g.Links
 }
 
 type GetPaymentLinkPaymentsResponse struct {
@@ -121,16 +121,16 @@ type GetPaymentLinkPaymentsResponse struct {
 	Object *GetPaymentLinkPaymentsResponseBody
 }
 
-func (o *GetPaymentLinkPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPaymentLinkPaymentsResponse) GetObject() *GetPaymentLinkPaymentsResponseBody {
-	if o == nil {
+func (g *GetPaymentLinkPaymentsResponse) GetObject() *GetPaymentLinkPaymentsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -12,18 +12,18 @@ type CreateCustomerRequest struct {
 	EntityCustomer *components.EntityCustomer `request:"mediaType=application/json"`
 }
 
-func (o *CreateCustomerRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (c *CreateCustomerRequest) GetIdempotencyKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return c.IdempotencyKey
 }
 
-func (o *CreateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
-	if o == nil {
+func (c *CreateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
+	if c == nil {
 		return nil
 	}
-	return o.EntityCustomer
+	return c.EntityCustomer
 }
 
 type CreateCustomerResponse struct {
@@ -32,16 +32,16 @@ type CreateCustomerResponse struct {
 	CustomerResponse *components.CustomerResponse
 }
 
-func (o *CreateCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateCustomerResponse) GetCustomerResponse() *components.CustomerResponse {
-	if o == nil {
+func (c *CreateCustomerResponse) GetCustomerResponse() *components.CustomerResponse {
+	if c == nil {
 		return nil
 	}
-	return o.CustomerResponse
+	return c.CustomerResponse
 }

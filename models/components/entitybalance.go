@@ -15,25 +15,25 @@ type TransferDestination struct {
 	BeneficiaryName *string `json:"beneficiaryName,omitempty"`
 }
 
-func (o *TransferDestination) GetType() *BalanceTransferDestinationType {
-	if o == nil {
+func (t *TransferDestination) GetType() *BalanceTransferDestinationType {
+	if t == nil {
 		return nil
 	}
-	return o.Type
+	return t.Type
 }
 
-func (o *TransferDestination) GetBankAccount() *string {
-	if o == nil {
+func (t *TransferDestination) GetBankAccount() *string {
+	if t == nil {
 		return nil
 	}
-	return o.BankAccount
+	return t.BankAccount
 }
 
-func (o *TransferDestination) GetBeneficiaryName() *string {
-	if o == nil {
+func (t *TransferDestination) GetBeneficiaryName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.BeneficiaryName
+	return t.BeneficiaryName
 }
 
 // EntityBalanceLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -44,18 +44,18 @@ type EntityBalanceLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityBalanceLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityBalanceLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityBalanceLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityBalanceLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityBalance struct {
@@ -91,100 +91,100 @@ type EntityBalance struct {
 	Links *EntityBalanceLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityBalance) GetResource() *string {
-	if o == nil {
+func (e *EntityBalance) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityBalance) GetID() *string {
-	if o == nil {
+func (e *EntityBalance) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityBalance) GetMode() *Mode {
-	if o == nil {
+func (e *EntityBalance) GetMode() *Mode {
+	if e == nil {
 		return nil
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityBalance) GetCreatedAt() *string {
-	if o == nil {
+func (e *EntityBalance) GetCreatedAt() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityBalance) GetCurrency() *Currencies {
-	if o == nil {
+func (e *EntityBalance) GetCurrency() *Currencies {
+	if e == nil {
 		return nil
 	}
-	return o.Currency
+	return e.Currency
 }
 
-func (o *EntityBalance) GetDescription() *string {
-	if o == nil {
+func (e *EntityBalance) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityBalance) GetStatus() *BalanceStatus {
-	if o == nil {
+func (e *EntityBalance) GetStatus() *BalanceStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityBalance) GetTransferFrequency() *BalanceTransferFrequency {
-	if o == nil {
+func (e *EntityBalance) GetTransferFrequency() *BalanceTransferFrequency {
+	if e == nil {
 		return nil
 	}
-	return o.TransferFrequency
+	return e.TransferFrequency
 }
 
-func (o *EntityBalance) GetTransferThreshold() *Amount {
-	if o == nil {
+func (e *EntityBalance) GetTransferThreshold() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.TransferThreshold
+	return e.TransferThreshold
 }
 
-func (o *EntityBalance) GetTransferReference() *string {
-	if o == nil {
+func (e *EntityBalance) GetTransferReference() *string {
+	if e == nil {
 		return nil
 	}
-	return o.TransferReference
+	return e.TransferReference
 }
 
-func (o *EntityBalance) GetTransferDestination() *TransferDestination {
-	if o == nil {
+func (e *EntityBalance) GetTransferDestination() *TransferDestination {
+	if e == nil {
 		return nil
 	}
-	return o.TransferDestination
+	return e.TransferDestination
 }
 
-func (o *EntityBalance) GetAvailableAmount() *Amount {
-	if o == nil {
+func (e *EntityBalance) GetAvailableAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.AvailableAmount
+	return e.AvailableAmount
 }
 
-func (o *EntityBalance) GetPendingAmount() *Amount {
-	if o == nil {
+func (e *EntityBalance) GetPendingAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.PendingAmount
+	return e.PendingAmount
 }
 
-func (o *EntityBalance) GetLinks() *EntityBalanceLinks {
-	if o == nil {
+func (e *EntityBalance) GetLinks() *EntityBalanceLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

@@ -39,74 +39,86 @@ type UpdateValuesSalesInvoice struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
+	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+	// after the invoice has been issued.
+	//
+	// When `emailDetails` is provided, an additional email is sent to the recipient.
+	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 }
 
-func (o *UpdateValuesSalesInvoice) GetTestmode() *bool {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetTestmode() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Testmode
+	return u.Testmode
 }
 
-func (o *UpdateValuesSalesInvoice) GetStatus() *SalesInvoiceStatus {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetStatus() *SalesInvoiceStatus {
+	if u == nil {
 		return nil
 	}
-	return o.Status
+	return u.Status
 }
 
-func (o *UpdateValuesSalesInvoice) GetMemo() *string {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetMemo() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Memo
+	return u.Memo
 }
 
-func (o *UpdateValuesSalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentTerm
+	return u.PaymentTerm
 }
 
-func (o *UpdateValuesSalesInvoice) GetPaymentDetails() *SalesInvoicePaymentDetails {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetPaymentDetails() *SalesInvoicePaymentDetails {
+	if u == nil {
 		return nil
 	}
-	return o.PaymentDetails
+	return u.PaymentDetails
 }
 
-func (o *UpdateValuesSalesInvoice) GetEmailDetails() *SalesInvoiceEmailDetails {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetEmailDetails() *SalesInvoiceEmailDetails {
+	if u == nil {
 		return nil
 	}
-	return o.EmailDetails
+	return u.EmailDetails
 }
 
-func (o *UpdateValuesSalesInvoice) GetRecipientIdentifier() *string {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetRecipientIdentifier() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RecipientIdentifier
+	return u.RecipientIdentifier
 }
 
-func (o *UpdateValuesSalesInvoice) GetRecipient() *SalesInvoiceRecipient {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetRecipient() *SalesInvoiceRecipient {
+	if u == nil {
 		return nil
 	}
-	return o.Recipient
+	return u.Recipient
 }
 
-func (o *UpdateValuesSalesInvoice) GetLines() []SalesInvoiceLineItem {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetLines() []SalesInvoiceLineItem {
+	if u == nil {
 		return nil
 	}
-	return o.Lines
+	return u.Lines
 }
 
-func (o *UpdateValuesSalesInvoice) GetDiscount() *SalesInvoiceDiscount {
-	if o == nil {
+func (u *UpdateValuesSalesInvoice) GetDiscount() *SalesInvoiceDiscount {
+	if u == nil {
 		return nil
 	}
-	return o.Discount
+	return u.Discount
+}
+
+func (u *UpdateValuesSalesInvoice) GetIsEInvoice() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.IsEInvoice
 }

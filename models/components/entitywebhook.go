@@ -8,11 +8,11 @@ type EntityWebhookLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *EntityWebhookLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (e *EntityWebhookLinks) GetDocumentation() URLObj {
+	if e == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityWebhook struct {
@@ -39,72 +39,72 @@ type EntityWebhook struct {
 	Links EntityWebhookLinks `json:"_links"`
 }
 
-func (o *EntityWebhook) GetResource() string {
-	if o == nil {
+func (e *EntityWebhook) GetResource() string {
+	if e == nil {
 		return ""
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityWebhook) GetID() string {
-	if o == nil {
+func (e *EntityWebhook) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityWebhook) GetURL() string {
-	if o == nil {
+func (e *EntityWebhook) GetURL() string {
+	if e == nil {
 		return ""
 	}
-	return o.URL
+	return e.URL
 }
 
-func (o *EntityWebhook) GetProfileID() *string {
-	if o == nil {
+func (e *EntityWebhook) GetProfileID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ProfileID
+	return e.ProfileID
 }
 
-func (o *EntityWebhook) GetCreatedAt() string {
-	if o == nil {
+func (e *EntityWebhook) GetCreatedAt() string {
+	if e == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return e.CreatedAt
 }
 
-func (o *EntityWebhook) GetName() string {
-	if o == nil {
+func (e *EntityWebhook) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityWebhook) GetEventTypes() []WebhookEventTypes {
-	if o == nil {
+func (e *EntityWebhook) GetEventTypes() []WebhookEventTypes {
+	if e == nil {
 		return []WebhookEventTypes{}
 	}
-	return o.EventTypes
+	return e.EventTypes
 }
 
-func (o *EntityWebhook) GetStatus() WebhookStatus {
-	if o == nil {
+func (e *EntityWebhook) GetStatus() WebhookStatus {
+	if e == nil {
 		return WebhookStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityWebhook) GetMode() Mode {
-	if o == nil {
+func (e *EntityWebhook) GetMode() Mode {
+	if e == nil {
 		return Mode("")
 	}
-	return o.Mode
+	return e.Mode
 }
 
-func (o *EntityWebhook) GetLinks() EntityWebhookLinks {
-	if o == nil {
+func (e *EntityWebhook) GetLinks() EntityWebhookLinks {
+	if e == nil {
 		return EntityWebhookLinks{}
 	}
-	return o.Links
+	return e.Links
 }

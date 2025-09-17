@@ -37,53 +37,53 @@ type ListAllMethodsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListAllMethodsRequest) GetLocale() *components.LocaleParameter {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetLocale() *components.LocaleParameter {
+	if l == nil {
 		return nil
 	}
-	return o.Locale
+	return l.Locale
 }
 
-func (o *ListAllMethodsRequest) GetAmount() *components.Amount {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetAmount() *components.Amount {
+	if l == nil {
 		return nil
 	}
-	return o.Amount
+	return l.Amount
 }
 
-func (o *ListAllMethodsRequest) GetInclude() *string {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetInclude() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Include
+	return l.Include
 }
 
-func (o *ListAllMethodsRequest) GetSequenceType() *components.SequenceType {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetSequenceType() *components.SequenceType {
+	if l == nil {
 		return nil
 	}
-	return o.SequenceType
+	return l.SequenceType
 }
 
-func (o *ListAllMethodsRequest) GetProfileID() *string {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetProfileID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProfileID
+	return l.ProfileID
 }
 
-func (o *ListAllMethodsRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListAllMethodsRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListAllMethodsRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListAllMethodsEmbedded struct {
@@ -93,11 +93,11 @@ type ListAllMethodsEmbedded struct {
 	Methods []components.EntityMethodAll `json:"methods"`
 }
 
-func (o *ListAllMethodsEmbedded) GetMethods() []components.EntityMethodAll {
-	if o == nil {
+func (l *ListAllMethodsEmbedded) GetMethods() []components.EntityMethodAll {
+	if l == nil {
 		return []components.EntityMethodAll{}
 	}
-	return o.Methods
+	return l.Methods
 }
 
 type ListAllMethodsLinks struct {
@@ -107,18 +107,18 @@ type ListAllMethodsLinks struct {
 	Documentation components.URLObj `json:"documentation"`
 }
 
-func (o *ListAllMethodsLinks) GetSelf() components.URLObj {
-	if o == nil {
+func (l *ListAllMethodsLinks) GetSelf() components.URLObj {
+	if l == nil {
 		return components.URLObj{}
 	}
-	return o.Self
+	return l.Self
 }
 
-func (o *ListAllMethodsLinks) GetDocumentation() components.URLObj {
-	if o == nil {
+func (l *ListAllMethodsLinks) GetDocumentation() components.URLObj {
+	if l == nil {
 		return components.URLObj{}
 	}
-	return o.Documentation
+	return l.Documentation
 }
 
 // ListAllMethodsResponseBody - A list of payment method objects. For a complete reference of the
@@ -130,25 +130,25 @@ type ListAllMethodsResponseBody struct {
 	Links    ListAllMethodsLinks    `json:"_links"`
 }
 
-func (o *ListAllMethodsResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListAllMethodsResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListAllMethodsResponseBody) GetEmbedded() ListAllMethodsEmbedded {
-	if o == nil {
+func (l *ListAllMethodsResponseBody) GetEmbedded() ListAllMethodsEmbedded {
+	if l == nil {
 		return ListAllMethodsEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListAllMethodsResponseBody) GetLinks() ListAllMethodsLinks {
-	if o == nil {
+func (l *ListAllMethodsResponseBody) GetLinks() ListAllMethodsLinks {
+	if l == nil {
 		return ListAllMethodsLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListAllMethodsResponse struct {
@@ -158,16 +158,16 @@ type ListAllMethodsResponse struct {
 	Object *ListAllMethodsResponseBody
 }
 
-func (o *ListAllMethodsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListAllMethodsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListAllMethodsResponse) GetObject() *ListAllMethodsResponseBody {
-	if o == nil {
+func (l *ListAllMethodsResponse) GetObject() *ListAllMethodsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

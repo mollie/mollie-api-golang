@@ -16,25 +16,25 @@ type ListProfilesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListProfilesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListProfilesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListProfilesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListProfilesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListProfilesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListProfilesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListProfilesEmbedded struct {
@@ -42,11 +42,11 @@ type ListProfilesEmbedded struct {
 	Profiles []components.EntityProfileResponse `json:"profiles,omitempty"`
 }
 
-func (o *ListProfilesEmbedded) GetProfiles() []components.EntityProfileResponse {
-	if o == nil {
+func (l *ListProfilesEmbedded) GetProfiles() []components.EntityProfileResponse {
+	if l == nil {
 		return nil
 	}
-	return o.Profiles
+	return l.Profiles
 }
 
 // ListProfilesResponseBody - A list of profile objects.
@@ -62,25 +62,25 @@ type ListProfilesResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListProfilesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListProfilesResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListProfilesResponseBody) GetEmbedded() *ListProfilesEmbedded {
-	if o == nil {
+func (l *ListProfilesResponseBody) GetEmbedded() *ListProfilesEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListProfilesResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListProfilesResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListProfilesResponse struct {
@@ -89,16 +89,16 @@ type ListProfilesResponse struct {
 	Object *ListProfilesResponseBody
 }
 
-func (o *ListProfilesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListProfilesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListProfilesResponse) GetObject() *ListProfilesResponseBody {
-	if o == nil {
+func (l *ListProfilesResponse) GetObject() *ListProfilesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

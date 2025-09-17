@@ -12,30 +12,30 @@ type Address struct {
 	Country *string `json:"country,omitempty"`
 }
 
-func (o *Address) GetStreetAndNumber() *string {
-	if o == nil {
+func (a *Address) GetStreetAndNumber() *string {
+	if a == nil {
 		return nil
 	}
-	return o.StreetAndNumber
+	return a.StreetAndNumber
 }
 
-func (o *Address) GetPostalCode() *string {
-	if o == nil {
+func (a *Address) GetPostalCode() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PostalCode
+	return a.PostalCode
 }
 
-func (o *Address) GetCity() *string {
-	if o == nil {
+func (a *Address) GetCity() *string {
+	if a == nil {
 		return nil
 	}
-	return o.City
+	return a.City
 }
 
-func (o *Address) GetCountry() *string {
-	if o == nil {
+func (a *Address) GetCountry() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Country
+	return a.Country
 }

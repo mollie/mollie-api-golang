@@ -12,25 +12,25 @@ type EntityClientLinkResponseLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (o *EntityClientLinkResponseLinks) GetSelf() *URLObj {
-	if o == nil {
+func (e *EntityClientLinkResponseLinks) GetSelf() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Self
+	return e.Self
 }
 
-func (o *EntityClientLinkResponseLinks) GetClientLink() *URLObj {
-	if o == nil {
+func (e *EntityClientLinkResponseLinks) GetClientLink() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.ClientLink
+	return e.ClientLink
 }
 
-func (o *EntityClientLinkResponseLinks) GetDocumentation() *URLObj {
-	if o == nil {
+func (e *EntityClientLinkResponseLinks) GetDocumentation() *URLObj {
+	if e == nil {
 		return nil
 	}
-	return o.Documentation
+	return e.Documentation
 }
 
 type EntityClientLinkResponse struct {
@@ -43,23 +43,23 @@ type EntityClientLinkResponse struct {
 	Links *EntityClientLinkResponseLinks `json:"_links,omitempty"`
 }
 
-func (o *EntityClientLinkResponse) GetResource() *string {
-	if o == nil {
+func (e *EntityClientLinkResponse) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-func (o *EntityClientLinkResponse) GetID() *string {
-	if o == nil {
+func (e *EntityClientLinkResponse) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityClientLinkResponse) GetLinks() *EntityClientLinkResponseLinks {
-	if o == nil {
+func (e *EntityClientLinkResponse) GetLinks() *EntityClientLinkResponseLinks {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }

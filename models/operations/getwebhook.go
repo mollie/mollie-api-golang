@@ -19,25 +19,25 @@ type GetWebhookRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetWebhookRequest) GetID() string {
-	if o == nil {
+func (g *GetWebhookRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetWebhookRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetWebhookRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetWebhookRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetWebhookRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetWebhookResponse struct {
@@ -46,16 +46,16 @@ type GetWebhookResponse struct {
 	EntityWebhook *components.EntityWebhook
 }
 
-func (o *GetWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetWebhookResponse) GetEntityWebhook() *components.EntityWebhook {
-	if o == nil {
+func (g *GetWebhookResponse) GetEntityWebhook() *components.EntityWebhook {
+	if g == nil {
 		return nil
 	}
-	return o.EntityWebhook
+	return g.EntityWebhook
 }

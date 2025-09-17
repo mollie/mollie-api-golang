@@ -24,39 +24,39 @@ type GetChargebackRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetChargebackRequest) GetPaymentID() string {
-	if o == nil {
+func (g *GetChargebackRequest) GetPaymentID() string {
+	if g == nil {
 		return ""
 	}
-	return o.PaymentID
+	return g.PaymentID
 }
 
-func (o *GetChargebackRequest) GetChargebackID() string {
-	if o == nil {
+func (g *GetChargebackRequest) GetChargebackID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ChargebackID
+	return g.ChargebackID
 }
 
-func (o *GetChargebackRequest) GetEmbed() *string {
-	if o == nil {
+func (g *GetChargebackRequest) GetEmbed() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Embed
+	return g.Embed
 }
 
-func (o *GetChargebackRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetChargebackRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetChargebackRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetChargebackRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetChargebackResponse struct {
@@ -65,16 +65,16 @@ type GetChargebackResponse struct {
 	EntityChargeback *components.EntityChargeback
 }
 
-func (o *GetChargebackResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetChargebackResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetChargebackResponse) GetEntityChargeback() *components.EntityChargeback {
-	if o == nil {
+func (g *GetChargebackResponse) GetEntityChargeback() *components.EntityChargeback {
+	if g == nil {
 		return nil
 	}
-	return o.EntityChargeback
+	return g.EntityChargeback
 }

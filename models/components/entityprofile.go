@@ -29,58 +29,58 @@ type EntityProfile struct {
 	Status *ProfileStatus `json:"status,omitempty"`
 }
 
-func (o *EntityProfile) GetName() *string {
-	if o == nil {
+func (e *EntityProfile) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityProfile) GetWebsite() *string {
-	if o == nil {
+func (e *EntityProfile) GetWebsite() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Website
+	return e.Website
 }
 
-func (o *EntityProfile) GetEmail() *string {
-	if o == nil {
+func (e *EntityProfile) GetEmail() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Email
+	return e.Email
 }
 
-func (o *EntityProfile) GetPhone() *string {
-	if o == nil {
+func (e *EntityProfile) GetPhone() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Phone
+	return e.Phone
 }
 
-func (o *EntityProfile) GetDescription() *string {
-	if o == nil {
+func (e *EntityProfile) GetDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityProfile) GetCountriesOfActivity() []string {
-	if o == nil {
+func (e *EntityProfile) GetCountriesOfActivity() []string {
+	if e == nil {
 		return nil
 	}
-	return o.CountriesOfActivity
+	return e.CountriesOfActivity
 }
 
-func (o *EntityProfile) GetBusinessCategory() *string {
-	if o == nil {
+func (e *EntityProfile) GetBusinessCategory() *string {
+	if e == nil {
 		return nil
 	}
-	return o.BusinessCategory
+	return e.BusinessCategory
 }
 
-func (o *EntityProfile) GetStatus() *ProfileStatus {
-	if o == nil {
+func (e *EntityProfile) GetStatus() *ProfileStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }

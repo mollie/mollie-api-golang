@@ -24,39 +24,39 @@ type ListBalancesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListBalancesRequest) GetCurrency() *string {
-	if o == nil {
+func (l *ListBalancesRequest) GetCurrency() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Currency
+	return l.Currency
 }
 
-func (o *ListBalancesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListBalancesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListBalancesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListBalancesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListBalancesRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListBalancesRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListBalancesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListBalancesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListBalancesEmbedded struct {
@@ -65,11 +65,11 @@ type ListBalancesEmbedded struct {
 	Balances []components.EntityBalance `json:"balances,omitempty"`
 }
 
-func (o *ListBalancesEmbedded) GetBalances() []components.EntityBalance {
-	if o == nil {
+func (l *ListBalancesEmbedded) GetBalances() []components.EntityBalance {
+	if l == nil {
 		return nil
 	}
-	return o.Balances
+	return l.Balances
 }
 
 // ListBalancesResponseBody - A list of balance objects. For a complete reference of the balance
@@ -86,25 +86,25 @@ type ListBalancesResponseBody struct {
 	Links *components.ListLinks `json:"_links,omitempty"`
 }
 
-func (o *ListBalancesResponseBody) GetCount() *int64 {
-	if o == nil {
+func (l *ListBalancesResponseBody) GetCount() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListBalancesResponseBody) GetEmbedded() *ListBalancesEmbedded {
-	if o == nil {
+func (l *ListBalancesResponseBody) GetEmbedded() *ListBalancesEmbedded {
+	if l == nil {
 		return nil
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListBalancesResponseBody) GetLinks() *components.ListLinks {
-	if o == nil {
+func (l *ListBalancesResponseBody) GetLinks() *components.ListLinks {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListBalancesResponse struct {
@@ -114,16 +114,16 @@ type ListBalancesResponse struct {
 	Object *ListBalancesResponseBody
 }
 
-func (o *ListBalancesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListBalancesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListBalancesResponse) GetObject() *ListBalancesResponseBody {
-	if o == nil {
+func (l *ListBalancesResponse) GetObject() *ListBalancesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

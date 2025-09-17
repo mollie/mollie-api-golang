@@ -42,114 +42,114 @@ type SalesInvoiceRecipientResponse struct {
 	Locale SalesInvoiceRecipientLocaleResponse `json:"locale"`
 }
 
-func (o *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientTypeResponse {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientTypeResponse {
+	if s == nil {
 		return SalesInvoiceRecipientTypeResponse("")
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *SalesInvoiceRecipientResponse) GetTitle() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetTitle() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Title
+	return s.Title
 }
 
-func (o *SalesInvoiceRecipientResponse) GetGivenName() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetGivenName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.GivenName
+	return s.GivenName
 }
 
-func (o *SalesInvoiceRecipientResponse) GetFamilyName() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetFamilyName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.FamilyName
+	return s.FamilyName
 }
 
-func (o *SalesInvoiceRecipientResponse) GetOrganizationName() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetOrganizationName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.OrganizationName
+	return s.OrganizationName
 }
 
-func (o *SalesInvoiceRecipientResponse) GetOrganizationNumber() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetOrganizationNumber() *string {
+	if s == nil {
 		return nil
 	}
-	return o.OrganizationNumber
+	return s.OrganizationNumber
 }
 
-func (o *SalesInvoiceRecipientResponse) GetVatNumber() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetVatNumber() *string {
+	if s == nil {
 		return nil
 	}
-	return o.VatNumber
+	return s.VatNumber
 }
 
-func (o *SalesInvoiceRecipientResponse) GetEmail() string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetEmail() string {
+	if s == nil {
 		return ""
 	}
-	return o.Email
+	return s.Email
 }
 
-func (o *SalesInvoiceRecipientResponse) GetPhone() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetPhone() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Phone
+	return s.Phone
 }
 
-func (o *SalesInvoiceRecipientResponse) GetStreetAndNumber() string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetStreetAndNumber() string {
+	if s == nil {
 		return ""
 	}
-	return o.StreetAndNumber
+	return s.StreetAndNumber
 }
 
-func (o *SalesInvoiceRecipientResponse) GetStreetAdditional() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetStreetAdditional() *string {
+	if s == nil {
 		return nil
 	}
-	return o.StreetAdditional
+	return s.StreetAdditional
 }
 
-func (o *SalesInvoiceRecipientResponse) GetPostalCode() string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetPostalCode() string {
+	if s == nil {
 		return ""
 	}
-	return o.PostalCode
+	return s.PostalCode
 }
 
-func (o *SalesInvoiceRecipientResponse) GetCity() string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetCity() string {
+	if s == nil {
 		return ""
 	}
-	return o.City
+	return s.City
 }
 
-func (o *SalesInvoiceRecipientResponse) GetRegion() *string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetRegion() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Region
+	return s.Region
 }
 
-func (o *SalesInvoiceRecipientResponse) GetCountry() string {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetCountry() string {
+	if s == nil {
 		return ""
 	}
-	return o.Country
+	return s.Country
 }
 
-func (o *SalesInvoiceRecipientResponse) GetLocale() SalesInvoiceRecipientLocaleResponse {
-	if o == nil {
+func (s *SalesInvoiceRecipientResponse) GetLocale() SalesInvoiceRecipientLocaleResponse {
+	if s == nil {
 		return SalesInvoiceRecipientLocaleResponse("")
 	}
-	return o.Locale
+	return s.Locale
 }

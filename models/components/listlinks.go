@@ -14,30 +14,30 @@ type ListLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *ListLinks) GetSelf() URLObj {
-	if o == nil {
+func (l *ListLinks) GetSelf() URLObj {
+	if l == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return l.Self
 }
 
-func (o *ListLinks) GetPrevious() *URLNullable {
-	if o == nil {
+func (l *ListLinks) GetPrevious() *URLNullable {
+	if l == nil {
 		return nil
 	}
-	return o.Previous
+	return l.Previous
 }
 
-func (o *ListLinks) GetNext() *URLNullable {
-	if o == nil {
+func (l *ListLinks) GetNext() *URLNullable {
+	if l == nil {
 		return nil
 	}
-	return o.Next
+	return l.Next
 }
 
-func (o *ListLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (l *ListLinks) GetDocumentation() URLObj {
+	if l == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return l.Documentation
 }

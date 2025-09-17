@@ -54,21 +54,21 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &components.SubscriptionRequest{
-        ID: client.String("sub_5B8cwPMGnU"),
+    res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.SubscriptionRequest{
+        ID: client.Pointer("sub_5B8cwPMGnU"),
         Status: components.SubscriptionStatusActive.ToPointer(),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Times: client.Int64(6),
-        Interval: client.String("2 days"),
-        StartDate: client.String("2025-01-01"),
-        Description: client.String("Subscription of streaming channel"),
+        Times: client.Pointer[int64](6),
+        Interval: client.Pointer("2 days"),
+        StartDate: client.Pointer("2025-01-01"),
+        Description: client.Pointer("Subscription of streaming channel"),
         Method: components.SubscriptionMethodPaypal.ToPointer(),
         ApplicationFee: &components.SubscriptionRequestApplicationFee{
             Amount: components.Amount{
@@ -77,10 +77,10 @@ func main() {
             },
             Description: "Platform fee",
         },
-        WebhookURL: client.String("https://example.com/webhook"),
-        CustomerID: client.String("cst_5B8cwPMGnU"),
-        MandateID: client.String("mdt_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
+        WebhookURL: client.Pointer("https://example.com/webhook"),
+        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -138,17 +138,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Subscriptions.List(ctx, operations.ListSubscriptionsRequest{
         CustomerID: "cst_5B8cwPMGnU",
-        From: client.String("sub_5B8cwPMGnU"),
-        Limit: client.Int64(50),
+        From: client.Pointer("sub_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -201,11 +201,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Subscriptions.Get(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Bool(false), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Subscriptions.Get(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer(false), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -265,22 +265,22 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &operations.UpdateSubscriptionRequestBody{
+    res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateSubscriptionRequestBody{
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Description: client.String("Subscription of streaming channel"),
-        Interval: client.String("1 months"),
-        StartDate: client.String("2025-01-01"),
-        Times: client.Int64(6),
-        WebhookURL: client.String("https://example.com/webhook"),
-        MandateID: client.String("mdt_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
+        Description: client.Pointer("Subscription of streaming channel"),
+        Interval: client.Pointer("1 months"),
+        StartDate: client.Pointer("2025-01-01"),
+        Times: client.Pointer[int64](6),
+        WebhookURL: client.Pointer("https://example.com/webhook"),
+        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -337,12 +337,12 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Subscriptions.Cancel(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &operations.CancelSubscriptionRequestBody{
-        Testmode: client.Bool(false),
+    res, err := s.Subscriptions.Cancel(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CancelSubscriptionRequestBody{
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -401,16 +401,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Subscriptions.All(ctx, operations.ListAllSubscriptionsRequest{
-        From: client.String("sub_rVKGtNd6s3"),
-        Limit: client.Int64(50),
-        ProfileID: client.String("pfl_QkEhN94Ba"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        From: client.Pointer("sub_rVKGtNd6s3"),
+        Limit: client.Pointer[int64](50),
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -466,19 +466,19 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Subscriptions.ListPayments(ctx, operations.ListSubscriptionPaymentsRequest{
         CustomerID: "cst_5B8cwPMGnU",
         SubscriptionID: "sub_5B8cwPMGnU",
-        From: client.String("tr_5B8cwPMGnU"),
-        Limit: client.Int64(50),
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         Sort: components.ListSortDesc.ToPointer(),
-        ProfileID: client.String("pfl_5B8cwPMGnU"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

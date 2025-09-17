@@ -39,13 +39,13 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.String("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
-        ID: client.String("cpt_vytxeTZskVKR7C7WgdSP3d"),
-        Description: client.String("Capture for cart #12345"),
+    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
+        ID: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
+        Description: client.Pointer("Capture for cart #12345"),
         Amount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
@@ -55,9 +55,9 @@ func main() {
             Value: "10.00",
         },
         Status: components.CaptureStatusSucceeded.ToPointer(),
-        PaymentID: client.String("tr_5B8cwPMGnU"),
-        ShipmentID: client.String("shp_5x4xQJDWGNcY3tKGL7X5J"),
-        SettlementID: client.String("stl_5B8cwPMGnU"),
+        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
+        ShipmentID: client.Pointer("shp_5x4xQJDWGNcY3tKGL7X5J"),
+        SettlementID: client.Pointer("stl_5B8cwPMGnU"),
     })
     if err != nil {
         log.Fatal(err)
@@ -115,17 +115,17 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Captures.List(ctx, operations.ListCapturesRequest{
         PaymentID: "tr_5B8cwPMGnU",
-        From: client.String("cpt_vytxeTZskVKR7C7WgdSP3d"),
-        Limit: client.Int64(50),
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        From: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)
@@ -180,16 +180,16 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
     res, err := s.Captures.Get(ctx, operations.GetCaptureRequest{
         PaymentID: "tr_5B8cwPMGnU",
         CaptureID: "cpt_gVMhHKqSSRYJyPsuoPNFH",
-        Embed: client.String("payment"),
-        Testmode: client.Bool(false),
-        IdempotencyKey: client.String("123e4567-e89b-12d3-a456-426"),
+        Embed: client.Pointer("payment"),
+        Testmode: client.Pointer(false),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
         log.Fatal(err)

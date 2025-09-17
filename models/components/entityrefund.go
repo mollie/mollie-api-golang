@@ -9,18 +9,18 @@ type EntityRefundExternalReference struct {
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *EntityRefundExternalReference) GetType() *RefundExternalReferenceType {
-	if o == nil {
+func (e *EntityRefundExternalReference) GetType() *RefundExternalReferenceType {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityRefundExternalReference) GetID() *string {
-	if o == nil {
+func (e *EntityRefundExternalReference) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
 // EntityRefundSource - Where the funds will be pulled back from.
@@ -30,18 +30,18 @@ type EntityRefundSource struct {
 	OrganizationID *string                           `json:"organizationId,omitempty"`
 }
 
-func (o *EntityRefundSource) GetType() *RefundRoutingReversalsSourceType {
-	if o == nil {
+func (e *EntityRefundSource) GetType() *RefundRoutingReversalsSourceType {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntityRefundSource) GetOrganizationID() *string {
-	if o == nil {
+func (e *EntityRefundSource) GetOrganizationID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OrganizationID
+	return e.OrganizationID
 }
 
 type EntityRefundRoutingReversal struct {
@@ -51,18 +51,18 @@ type EntityRefundRoutingReversal struct {
 	Source *EntityRefundSource `json:"source,omitempty"`
 }
 
-func (o *EntityRefundRoutingReversal) GetAmount() *Amount {
-	if o == nil {
+func (e *EntityRefundRoutingReversal) GetAmount() *Amount {
+	if e == nil {
 		return nil
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityRefundRoutingReversal) GetSource() *EntityRefundSource {
-	if o == nil {
+func (e *EntityRefundRoutingReversal) GetSource() *EntityRefundSource {
+	if e == nil {
 		return nil
 	}
-	return o.Source
+	return e.Source
 }
 
 type EntityRefund struct {
@@ -109,86 +109,86 @@ type EntityRefund struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (o *EntityRefund) GetID() string {
-	if o == nil {
+func (e *EntityRefund) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityRefund) GetDescription() string {
-	if o == nil {
+func (e *EntityRefund) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *EntityRefund) GetAmount() Amount {
-	if o == nil {
+func (e *EntityRefund) GetAmount() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return o.Amount
+	return e.Amount
 }
 
-func (o *EntityRefund) GetSettlementAmount() *AmountNullable {
-	if o == nil {
+func (e *EntityRefund) GetSettlementAmount() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementAmount
+	return e.SettlementAmount
 }
 
-func (o *EntityRefund) GetMetadata() *Metadata {
-	if o == nil {
+func (e *EntityRefund) GetMetadata() *Metadata {
+	if e == nil {
 		return nil
 	}
-	return o.Metadata
+	return e.Metadata
 }
 
-func (o *EntityRefund) GetPaymentID() *string {
-	if o == nil {
+func (e *EntityRefund) GetPaymentID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PaymentID
+	return e.PaymentID
 }
 
-func (o *EntityRefund) GetSettlementID() *string {
-	if o == nil {
+func (e *EntityRefund) GetSettlementID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.SettlementID
+	return e.SettlementID
 }
 
-func (o *EntityRefund) GetStatus() RefundStatus {
-	if o == nil {
+func (e *EntityRefund) GetStatus() RefundStatus {
+	if e == nil {
 		return RefundStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityRefund) GetExternalReference() *EntityRefundExternalReference {
-	if o == nil {
+func (e *EntityRefund) GetExternalReference() *EntityRefundExternalReference {
+	if e == nil {
 		return nil
 	}
-	return o.ExternalReference
+	return e.ExternalReference
 }
 
-func (o *EntityRefund) GetReverseRouting() *bool {
-	if o == nil {
+func (e *EntityRefund) GetReverseRouting() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.ReverseRouting
+	return e.ReverseRouting
 }
 
-func (o *EntityRefund) GetRoutingReversals() []EntityRefundRoutingReversal {
-	if o == nil {
+func (e *EntityRefund) GetRoutingReversals() []EntityRefundRoutingReversal {
+	if e == nil {
 		return nil
 	}
-	return o.RoutingReversals
+	return e.RoutingReversals
 }
 
-func (o *EntityRefund) GetTestmode() *bool {
-	if o == nil {
+func (e *EntityRefund) GetTestmode() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Testmode
+	return e.Testmode
 }

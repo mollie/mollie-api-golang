@@ -19,25 +19,25 @@ type GetSalesInvoiceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *GetSalesInvoiceRequest) GetID() string {
-	if o == nil {
+func (g *GetSalesInvoiceRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSalesInvoiceRequest) GetTestmode() *bool {
-	if o == nil {
+func (g *GetSalesInvoiceRequest) GetTestmode() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Testmode
+	return g.Testmode
 }
 
-func (o *GetSalesInvoiceRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (g *GetSalesInvoiceRequest) GetIdempotencyKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return g.IdempotencyKey
 }
 
 type GetSalesInvoiceResponse struct {
@@ -46,16 +46,16 @@ type GetSalesInvoiceResponse struct {
 	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
 }
 
-func (o *GetSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
-	if o == nil {
+func (g *GetSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+	if g == nil {
 		return nil
 	}
-	return o.EntitySalesInvoiceResponse
+	return g.EntitySalesInvoiceResponse
 }

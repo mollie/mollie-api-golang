@@ -63,86 +63,86 @@ func (p *PaymentAddress) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentAddress) GetTitle() *string {
-	if o == nil {
+func (p *PaymentAddress) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *PaymentAddress) GetGivenName() *string {
-	if o == nil {
+func (p *PaymentAddress) GetGivenName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.GivenName
+	return p.GivenName
 }
 
-func (o *PaymentAddress) GetFamilyName() *string {
-	if o == nil {
+func (p *PaymentAddress) GetFamilyName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FamilyName
+	return p.FamilyName
 }
 
-func (o *PaymentAddress) GetOrganizationName() *string {
-	if o == nil {
+func (p *PaymentAddress) GetOrganizationName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrganizationName
+	return p.OrganizationName
 }
 
-func (o *PaymentAddress) GetStreetAndNumber() *string {
-	if o == nil {
+func (p *PaymentAddress) GetStreetAndNumber() *string {
+	if p == nil {
 		return nil
 	}
-	return o.StreetAndNumber
+	return p.StreetAndNumber
 }
 
-func (o *PaymentAddress) GetStreetAdditional() *string {
-	if o == nil {
+func (p *PaymentAddress) GetStreetAdditional() *string {
+	if p == nil {
 		return nil
 	}
-	return o.StreetAdditional
+	return p.StreetAdditional
 }
 
-func (o *PaymentAddress) GetPostalCode() *string {
-	if o == nil {
+func (p *PaymentAddress) GetPostalCode() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PostalCode
+	return p.PostalCode
 }
 
-func (o *PaymentAddress) GetEmail() *string {
-	if o == nil {
+func (p *PaymentAddress) GetEmail() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Email
+	return p.Email
 }
 
-func (o *PaymentAddress) GetPhone() *string {
-	if o == nil {
+func (p *PaymentAddress) GetPhone() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Phone
+	return p.Phone
 }
 
-func (o *PaymentAddress) GetCity() *string {
-	if o == nil {
+func (p *PaymentAddress) GetCity() *string {
+	if p == nil {
 		return nil
 	}
-	return o.City
+	return p.City
 }
 
-func (o *PaymentAddress) GetRegion() *string {
-	if o == nil {
+func (p *PaymentAddress) GetRegion() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Region
+	return p.Region
 }
 
-func (o *PaymentAddress) GetCountry() *string {
-	if o == nil {
+func (p *PaymentAddress) GetCountry() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Country
+	return p.Country
 }

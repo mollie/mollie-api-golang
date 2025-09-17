@@ -27,46 +27,46 @@ type ListCapturesRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (o *ListCapturesRequest) GetPaymentID() string {
-	if o == nil {
+func (l *ListCapturesRequest) GetPaymentID() string {
+	if l == nil {
 		return ""
 	}
-	return o.PaymentID
+	return l.PaymentID
 }
 
-func (o *ListCapturesRequest) GetFrom() *string {
-	if o == nil {
+func (l *ListCapturesRequest) GetFrom() *string {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListCapturesRequest) GetLimit() *int64 {
-	if o == nil {
+func (l *ListCapturesRequest) GetLimit() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Limit
 }
 
-func (o *ListCapturesRequest) GetEmbed() *string {
-	if o == nil {
+func (l *ListCapturesRequest) GetEmbed() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Embed
+	return l.Embed
 }
 
-func (o *ListCapturesRequest) GetTestmode() *bool {
-	if o == nil {
+func (l *ListCapturesRequest) GetTestmode() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Testmode
+	return l.Testmode
 }
 
-func (o *ListCapturesRequest) GetIdempotencyKey() *string {
-	if o == nil {
+func (l *ListCapturesRequest) GetIdempotencyKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IdempotencyKey
+	return l.IdempotencyKey
 }
 
 type ListCapturesEmbedded struct {
@@ -74,11 +74,11 @@ type ListCapturesEmbedded struct {
 	Captures []components.CaptureResponse `json:"captures"`
 }
 
-func (o *ListCapturesEmbedded) GetCaptures() []components.CaptureResponse {
-	if o == nil {
+func (l *ListCapturesEmbedded) GetCaptures() []components.CaptureResponse {
+	if l == nil {
 		return []components.CaptureResponse{}
 	}
-	return o.Captures
+	return l.Captures
 }
 
 // ListCapturesResponseBody - A list of capture objects.
@@ -94,25 +94,25 @@ type ListCapturesResponseBody struct {
 	Links components.ListLinks `json:"_links"`
 }
 
-func (o *ListCapturesResponseBody) GetCount() int64 {
-	if o == nil {
+func (l *ListCapturesResponseBody) GetCount() int64 {
+	if l == nil {
 		return 0
 	}
-	return o.Count
+	return l.Count
 }
 
-func (o *ListCapturesResponseBody) GetEmbedded() ListCapturesEmbedded {
-	if o == nil {
+func (l *ListCapturesResponseBody) GetEmbedded() ListCapturesEmbedded {
+	if l == nil {
 		return ListCapturesEmbedded{}
 	}
-	return o.Embedded
+	return l.Embedded
 }
 
-func (o *ListCapturesResponseBody) GetLinks() components.ListLinks {
-	if o == nil {
+func (l *ListCapturesResponseBody) GetLinks() components.ListLinks {
+	if l == nil {
 		return components.ListLinks{}
 	}
-	return o.Links
+	return l.Links
 }
 
 type ListCapturesResponse struct {
@@ -121,16 +121,16 @@ type ListCapturesResponse struct {
 	Object *ListCapturesResponseBody
 }
 
-func (o *ListCapturesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListCapturesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListCapturesResponse) GetObject() *ListCapturesResponseBody {
-	if o == nil {
+func (l *ListCapturesResponse) GetObject() *ListCapturesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

@@ -22,60 +22,60 @@ type MandateResponseDetails struct {
 	CardFingerprint *string `json:"cardFingerprint,omitempty"`
 }
 
-func (o *MandateResponseDetails) GetConsumerName() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetConsumerName() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ConsumerName
+	return m.ConsumerName
 }
 
-func (o *MandateResponseDetails) GetConsumerAccount() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetConsumerAccount() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ConsumerAccount
+	return m.ConsumerAccount
 }
 
-func (o *MandateResponseDetails) GetConsumerBic() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetConsumerBic() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ConsumerBic
+	return m.ConsumerBic
 }
 
-func (o *MandateResponseDetails) GetCardHolder() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetCardHolder() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CardHolder
+	return m.CardHolder
 }
 
-func (o *MandateResponseDetails) GetCardNumber() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetCardNumber() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CardNumber
+	return m.CardNumber
 }
 
-func (o *MandateResponseDetails) GetCardExpiryDate() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetCardExpiryDate() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CardExpiryDate
+	return m.CardExpiryDate
 }
 
-func (o *MandateResponseDetails) GetCardLabel() *MandateDetailsCardLabelResponse {
-	if o == nil {
+func (m *MandateResponseDetails) GetCardLabel() *MandateDetailsCardLabelResponse {
+	if m == nil {
 		return nil
 	}
-	return o.CardLabel
+	return m.CardLabel
 }
 
-func (o *MandateResponseDetails) GetCardFingerprint() *string {
-	if o == nil {
+func (m *MandateResponseDetails) GetCardFingerprint() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CardFingerprint
+	return m.CardFingerprint
 }
 
 // MandateResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -88,25 +88,25 @@ type MandateResponseLinks struct {
 	Documentation URLObj `json:"documentation"`
 }
 
-func (o *MandateResponseLinks) GetSelf() URLObj {
-	if o == nil {
+func (m *MandateResponseLinks) GetSelf() URLObj {
+	if m == nil {
 		return URLObj{}
 	}
-	return o.Self
+	return m.Self
 }
 
-func (o *MandateResponseLinks) GetCustomer() URLObj {
-	if o == nil {
+func (m *MandateResponseLinks) GetCustomer() URLObj {
+	if m == nil {
 		return URLObj{}
 	}
-	return o.Customer
+	return m.Customer
 }
 
-func (o *MandateResponseLinks) GetDocumentation() URLObj {
-	if o == nil {
+func (m *MandateResponseLinks) GetDocumentation() URLObj {
+	if m == nil {
 		return URLObj{}
 	}
-	return o.Documentation
+	return m.Documentation
 }
 
 type MandateResponse struct {
@@ -135,79 +135,79 @@ type MandateResponse struct {
 	Links *MandateResponseLinks `json:"_links,omitempty"`
 }
 
-func (o *MandateResponse) GetResource() *string {
-	if o == nil {
+func (m *MandateResponse) GetResource() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Resource
+	return m.Resource
 }
 
-func (o *MandateResponse) GetID() *string {
-	if o == nil {
+func (m *MandateResponse) GetID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *MandateResponse) GetMode() *Mode {
-	if o == nil {
+func (m *MandateResponse) GetMode() *Mode {
+	if m == nil {
 		return nil
 	}
-	return o.Mode
+	return m.Mode
 }
 
-func (o *MandateResponse) GetMethod() *MandateMethodResponse {
-	if o == nil {
+func (m *MandateResponse) GetMethod() *MandateMethodResponse {
+	if m == nil {
 		return nil
 	}
-	return o.Method
+	return m.Method
 }
 
-func (o *MandateResponse) GetDetails() *MandateResponseDetails {
-	if o == nil {
+func (m *MandateResponse) GetDetails() *MandateResponseDetails {
+	if m == nil {
 		return nil
 	}
-	return o.Details
+	return m.Details
 }
 
-func (o *MandateResponse) GetSignatureDate() *string {
-	if o == nil {
+func (m *MandateResponse) GetSignatureDate() *string {
+	if m == nil {
 		return nil
 	}
-	return o.SignatureDate
+	return m.SignatureDate
 }
 
-func (o *MandateResponse) GetMandateReference() *string {
-	if o == nil {
+func (m *MandateResponse) GetMandateReference() *string {
+	if m == nil {
 		return nil
 	}
-	return o.MandateReference
+	return m.MandateReference
 }
 
-func (o *MandateResponse) GetStatus() *MandateStatus {
-	if o == nil {
+func (m *MandateResponse) GetStatus() *MandateStatus {
+	if m == nil {
 		return nil
 	}
-	return o.Status
+	return m.Status
 }
 
-func (o *MandateResponse) GetCustomerID() *string {
-	if o == nil {
+func (m *MandateResponse) GetCustomerID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CustomerID
+	return m.CustomerID
 }
 
-func (o *MandateResponse) GetCreatedAt() *string {
-	if o == nil {
+func (m *MandateResponse) GetCreatedAt() *string {
+	if m == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return m.CreatedAt
 }
 
-func (o *MandateResponse) GetLinks() *MandateResponseLinks {
-	if o == nil {
+func (m *MandateResponse) GetLinks() *MandateResponseLinks {
+	if m == nil {
 		return nil
 	}
-	return o.Links
+	return m.Links
 }

@@ -33,11 +33,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Clients.List(ctx, client.String("organization"), client.String("org_12345678"), client.Int64(50), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Clients.List(ctx, client.Pointer("organization"), client.Pointer("org_12345678"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -92,11 +92,11 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.String(os.Getenv("CLIENT_API_KEY")),
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
     )
 
-    res, err := s.Clients.Get(ctx, "org_12345678", client.String("organization"), client.String("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Clients.Get(ctx, "org_12345678", client.Pointer("organization"), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
