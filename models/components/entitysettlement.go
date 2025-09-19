@@ -2,6 +2,189 @@
 
 package components
 
+// Rate - The service rates, further divided into `fixed` and `percentage` costs.
+type Rate struct {
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Fixed *Amount `json:"fixed,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Percentage *Amount `json:"percentage,omitempty"`
+}
+
+func (r *Rate) GetFixed() *Amount {
+	if r == nil {
+		return nil
+	}
+	return r.Fixed
+}
+
+func (r *Rate) GetPercentage() *Amount {
+	if r == nil {
+		return nil
+	}
+	return r.Percentage
+}
+
+type Cost struct {
+	// A description of the cost subtotal
+	Description *string `json:"description,omitempty"`
+	// The payment method, if applicable
+	Method *PaymentMethod `json:"method,omitempty"`
+	// The number of fees
+	Count *int64 `json:"count,omitempty"`
+	// The service rates, further divided into `fixed` and `percentage` costs.
+	Rate *Rate `json:"rate,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet *Amount `json:"amountNet,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *Amount `json:"amountVat,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross *Amount `json:"amountGross,omitempty"`
+}
+
+func (c *Cost) GetDescription() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Description
+}
+
+func (c *Cost) GetMethod() *PaymentMethod {
+	if c == nil {
+		return nil
+	}
+	return c.Method
+}
+
+func (c *Cost) GetCount() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.Count
+}
+
+func (c *Cost) GetRate() *Rate {
+	if c == nil {
+		return nil
+	}
+	return c.Rate
+}
+
+func (c *Cost) GetAmountNet() *Amount {
+	if c == nil {
+		return nil
+	}
+	return c.AmountNet
+}
+
+func (c *Cost) GetAmountVat() *Amount {
+	if c == nil {
+		return nil
+	}
+	return c.AmountVat
+}
+
+func (c *Cost) GetAmountGross() *Amount {
+	if c == nil {
+		return nil
+	}
+	return c.AmountGross
+}
+
+type Revenue struct {
+	// A description of the revenue subtotal
+	Description *string `json:"description,omitempty"`
+	// The payment method, if applicable
+	Method *PaymentMethod `json:"method,omitempty"`
+	// The number of payments
+	Count *int64 `json:"count,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet *Amount `json:"amountNet,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *Amount `json:"amountVat,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross *Amount `json:"amountGross,omitempty"`
+}
+
+func (r *Revenue) GetDescription() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Description
+}
+
+func (r *Revenue) GetMethod() *PaymentMethod {
+	if r == nil {
+		return nil
+	}
+	return r.Method
+}
+
+func (r *Revenue) GetCount() *int64 {
+	if r == nil {
+		return nil
+	}
+	return r.Count
+}
+
+func (r *Revenue) GetAmountNet() *Amount {
+	if r == nil {
+		return nil
+	}
+	return r.AmountNet
+}
+
+func (r *Revenue) GetAmountVat() *Amount {
+	if r == nil {
+		return nil
+	}
+	return r.AmountVat
+}
+
+func (r *Revenue) GetAmountGross() *Amount {
+	if r == nil {
+		return nil
+	}
+	return r.AmountGross
+}
+
+type Periods struct {
+	// An array of cost objects, describing the fees withheld for each payment method during this period.
+	Costs []Cost `json:"costs,omitempty"`
+	// An array of revenue objects containing the total revenue for each payment method during this period.
+	Revenue   []Revenue `json:"revenue,omitempty"`
+	InvoiceID *string   `json:"invoiceId,omitempty"`
+	// The invoice reference, if the invoice has been created already.
+	InvoiceReference *string `json:"invoiceReference,omitempty"`
+}
+
+func (p *Periods) GetCosts() []Cost {
+	if p == nil {
+		return nil
+	}
+	return p.Costs
+}
+
+func (p *Periods) GetRevenue() []Revenue {
+	if p == nil {
+		return nil
+	}
+	return p.Revenue
+}
+
+func (p *Periods) GetInvoiceID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.InvoiceID
+}
+
+func (p *Periods) GetInvoiceReference() *string {
+	if p == nil {
+		return nil
+	}
+	return p.InvoiceReference
+}
+
 // EntitySettlementLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntitySettlementLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -99,7 +282,7 @@ type EntitySettlement struct {
 	// look as follows: `{"2024": {"04": {...}, "05": {...}}}`. The year and month in this documentation are referred as `<year>` and `<month>`.
 	//
 	// The example response should give a good idea of what this looks like in practise.
-	Periods map[string]any `json:"periods,omitempty"`
+	Periods map[string]map[string]Periods `json:"periods,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links *EntitySettlementLinks `json:"_links,omitempty"`
 }
@@ -167,7 +350,7 @@ func (e *EntitySettlement) GetInvoiceID() *string {
 	return e.InvoiceID
 }
 
-func (e *EntitySettlement) GetPeriods() map[string]any {
+func (e *EntitySettlement) GetPeriods() map[string]map[string]Periods {
 	if e == nil {
 		return nil
 	}
