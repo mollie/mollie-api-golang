@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 5f770e879f4e0cd204315098145b861b
+  docChecksum: 843a5fcda17e62c6c7e2027ada861883
   docVersion: 1.0.0
   speakeasyVersion: 1.622.1
   generationVersion: 2.709.0
-  releaseVersion: 0.4.1
-  configChecksum: 73f342a6794b8c77406ee7eff452781b
+  releaseVersion: 0.4.2
+  configChecksum: 69a4e0cb5e78897016fdafa15226c84d
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -4137,7 +4137,7 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes Detected:
-  * `Client.Settlements.List()`:  `response` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get()`:  `response` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get-Open()`:  `response` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get-Next()`:  `response` **Changed** **Breaking** :warning:
+  * `Client.Settlements.List()`:  `response.Embedded.Settlements.[].Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
+  * `Client.Settlements.Get()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
+  * `Client.Settlements.Get-Open()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
+  * `Client.Settlements.Get-Next()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:

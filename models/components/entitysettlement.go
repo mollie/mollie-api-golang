@@ -35,7 +35,7 @@ type Cost struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountNet Amount `json:"amountNet"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountVat Amount `json:"amountVat"`
+	AmountVat *AmountNullable `json:"amountVat"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountGross Amount `json:"amountGross"`
 }
@@ -75,9 +75,9 @@ func (c *Cost) GetAmountNet() Amount {
 	return c.AmountNet
 }
 
-func (c *Cost) GetAmountVat() Amount {
+func (c *Cost) GetAmountVat() *AmountNullable {
 	if c == nil {
-		return Amount{}
+		return nil
 	}
 	return c.AmountVat
 }
