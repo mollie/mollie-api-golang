@@ -5,9 +5,8 @@ package components
 // Rate - The service rates, further divided into `fixed` and `percentage` costs.
 type Rate struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Fixed *Amount `json:"fixed,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Percentage *Amount `json:"percentage,omitempty"`
+	Fixed      *Amount `json:"fixed,omitempty"`
+	Percentage *string `json:"percentage,omitempty"`
 }
 
 func (r *Rate) GetFixed() *Amount {
@@ -17,7 +16,7 @@ func (r *Rate) GetFixed() *Amount {
 	return r.Fixed
 }
 
-func (r *Rate) GetPercentage() *Amount {
+func (r *Rate) GetPercentage() *string {
 	if r == nil {
 		return nil
 	}
@@ -26,24 +25,24 @@ func (r *Rate) GetPercentage() *Amount {
 
 type Cost struct {
 	// A description of the cost subtotal
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// The payment method, if applicable
-	Method *PaymentMethod `json:"method,omitempty"`
+	Method *PaymentMethod `json:"method"`
 	// The number of fees
-	Count *int64 `json:"count,omitempty"`
+	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
-	Rate *Rate `json:"rate,omitempty"`
+	Rate Rate `json:"rate"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountNet *Amount `json:"amountNet,omitempty"`
+	AmountNet Amount `json:"amountNet"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountVat *Amount `json:"amountVat,omitempty"`
+	AmountVat Amount `json:"amountVat"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountGross *Amount `json:"amountGross,omitempty"`
+	AmountGross Amount `json:"amountGross"`
 }
 
-func (c *Cost) GetDescription() *string {
+func (c *Cost) GetDescription() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.Description
 }
@@ -55,59 +54,59 @@ func (c *Cost) GetMethod() *PaymentMethod {
 	return c.Method
 }
 
-func (c *Cost) GetCount() *int64 {
+func (c *Cost) GetCount() int64 {
 	if c == nil {
-		return nil
+		return 0
 	}
 	return c.Count
 }
 
-func (c *Cost) GetRate() *Rate {
+func (c *Cost) GetRate() Rate {
 	if c == nil {
-		return nil
+		return Rate{}
 	}
 	return c.Rate
 }
 
-func (c *Cost) GetAmountNet() *Amount {
+func (c *Cost) GetAmountNet() Amount {
 	if c == nil {
-		return nil
+		return Amount{}
 	}
 	return c.AmountNet
 }
 
-func (c *Cost) GetAmountVat() *Amount {
+func (c *Cost) GetAmountVat() Amount {
 	if c == nil {
-		return nil
+		return Amount{}
 	}
 	return c.AmountVat
 }
 
-func (c *Cost) GetAmountGross() *Amount {
+func (c *Cost) GetAmountGross() Amount {
 	if c == nil {
-		return nil
+		return Amount{}
 	}
 	return c.AmountGross
 }
 
 type Revenue struct {
 	// A description of the revenue subtotal
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// The payment method, if applicable
-	Method *PaymentMethod `json:"method,omitempty"`
+	Method *PaymentMethod `json:"method"`
 	// The number of payments
-	Count *int64 `json:"count,omitempty"`
+	Count int64 `json:"count"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountNet *Amount `json:"amountNet,omitempty"`
+	AmountNet Amount `json:"amountNet"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountVat *Amount `json:"amountVat,omitempty"`
+	AmountVat *AmountNullable `json:"amountVat"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountGross *Amount `json:"amountGross,omitempty"`
+	AmountGross Amount `json:"amountGross"`
 }
 
-func (r *Revenue) GetDescription() *string {
+func (r *Revenue) GetDescription() string {
 	if r == nil {
-		return nil
+		return ""
 	}
 	return r.Description
 }
@@ -119,30 +118,30 @@ func (r *Revenue) GetMethod() *PaymentMethod {
 	return r.Method
 }
 
-func (r *Revenue) GetCount() *int64 {
+func (r *Revenue) GetCount() int64 {
 	if r == nil {
-		return nil
+		return 0
 	}
 	return r.Count
 }
 
-func (r *Revenue) GetAmountNet() *Amount {
+func (r *Revenue) GetAmountNet() Amount {
 	if r == nil {
-		return nil
+		return Amount{}
 	}
 	return r.AmountNet
 }
 
-func (r *Revenue) GetAmountVat() *Amount {
+func (r *Revenue) GetAmountVat() *AmountNullable {
 	if r == nil {
 		return nil
 	}
 	return r.AmountVat
 }
 
-func (r *Revenue) GetAmountGross() *Amount {
+func (r *Revenue) GetAmountGross() Amount {
 	if r == nil {
-		return nil
+		return Amount{}
 	}
 	return r.AmountGross
 }
@@ -188,7 +187,7 @@ func (p *Periods) GetInvoiceReference() *string {
 // EntitySettlementLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntitySettlementLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *URLObj `json:"self,omitempty"`
+	Self URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Payments *URLObj `json:"payments,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -203,9 +202,9 @@ type EntitySettlementLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (e *EntitySettlementLinks) GetSelf() *URLObj {
+func (e *EntitySettlementLinks) GetSelf() URLObj {
 	if e == nil {
-		return nil
+		return URLObj{}
 	}
 	return e.Self
 }
@@ -255,8 +254,8 @@ func (e *EntitySettlementLinks) GetDocumentation() *URLObj {
 type EntitySettlement struct {
 	// Indicates the response contains a settlement object. Will always contain the string `settlement` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// The settlement's bank reference, as found in your Mollie account and on your bank statement.
@@ -267,10 +266,10 @@ type EntitySettlement struct {
 	// date is available.
 	SettledAt *string `json:"settledAt,omitempty"`
 	// The status of the settlement.
-	Status *SettlementStatus `json:"status,omitempty"`
+	Status SettlementStatus `json:"status"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount    *Amount `json:"amount,omitempty"`
-	BalanceID *string `json:"balanceId,omitempty"`
+	Amount    Amount  `json:"amount"`
+	BalanceID string  `json:"balanceId"`
 	InvoiceID *string `json:"invoiceId,omitempty"`
 	// For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
 	// transactions are grouped into 'period' objects — one for each calendar month.
@@ -284,19 +283,19 @@ type EntitySettlement struct {
 	// The example response should give a good idea of what this looks like in practise.
 	Periods map[string]map[string]Periods `json:"periods,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntitySettlementLinks `json:"_links,omitempty"`
+	Links EntitySettlementLinks `json:"_links"`
 }
 
-func (e *EntitySettlement) GetResource() *string {
+func (e *EntitySettlement) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntitySettlement) GetID() *string {
+func (e *EntitySettlement) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
@@ -322,23 +321,23 @@ func (e *EntitySettlement) GetSettledAt() *string {
 	return e.SettledAt
 }
 
-func (e *EntitySettlement) GetStatus() *SettlementStatus {
+func (e *EntitySettlement) GetStatus() SettlementStatus {
 	if e == nil {
-		return nil
+		return SettlementStatus("")
 	}
 	return e.Status
 }
 
-func (e *EntitySettlement) GetAmount() *Amount {
+func (e *EntitySettlement) GetAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.Amount
 }
 
-func (e *EntitySettlement) GetBalanceID() *string {
+func (e *EntitySettlement) GetBalanceID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.BalanceID
 }
@@ -357,9 +356,9 @@ func (e *EntitySettlement) GetPeriods() map[string]map[string]Periods {
 	return e.Periods
 }
 
-func (e *EntitySettlement) GetLinks() *EntitySettlementLinks {
+func (e *EntitySettlement) GetLinks() EntitySettlementLinks {
 	if e == nil {
-		return nil
+		return EntitySettlementLinks{}
 	}
 	return e.Links
 }

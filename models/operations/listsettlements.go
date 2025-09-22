@@ -77,12 +77,12 @@ func (l *ListSettlementsRequest) GetIdempotencyKey() *string {
 type ListSettlementsEmbedded struct {
 	// An array of settlement objects. For a complete reference
 	// of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
-	Settlements []components.EntitySettlement `json:"settlements,omitempty"`
+	Settlements []components.EntitySettlement `json:"settlements"`
 }
 
 func (l *ListSettlementsEmbedded) GetSettlements() []components.EntitySettlement {
 	if l == nil {
-		return nil
+		return []components.EntitySettlement{}
 	}
 	return l.Settlements
 }
@@ -95,29 +95,29 @@ type ListSettlementsResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                   `json:"count,omitempty"`
-	Embedded *ListSettlementsEmbedded `json:"_embedded,omitempty"`
+	Count    int64                   `json:"count"`
+	Embedded ListSettlementsEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *components.ListLinks `json:"_links,omitempty"`
+	Links components.ListLinks `json:"_links"`
 }
 
-func (l *ListSettlementsResponseBody) GetCount() *int64 {
+func (l *ListSettlementsResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListSettlementsResponseBody) GetEmbedded() *ListSettlementsEmbedded {
+func (l *ListSettlementsResponseBody) GetEmbedded() ListSettlementsEmbedded {
 	if l == nil {
-		return nil
+		return ListSettlementsEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListSettlementsResponseBody) GetLinks() *components.ListLinks {
+func (l *ListSettlementsResponseBody) GetLinks() components.ListLinks {
 	if l == nil {
-		return nil
+		return components.ListLinks{}
 	}
 	return l.Links
 }
