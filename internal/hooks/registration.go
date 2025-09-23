@@ -9,10 +9,7 @@ package hooks
  */
 
 func initHooks(h *Hooks) {
-	// exampleHook := &ExampleHook{}
+	exampleHook := &MollieHooks{}
 
-	// h.registerSDKInitHook(exampleHook)
-	// h.registerBeforeRequestHook(exampleHook)
-	// h.registerAfterErrorHook(exampleHook)
-	// h.registerAfterSuccessHook(exampleHook)
+	h.registerBeforeRequestHook(exampleHook)
 }

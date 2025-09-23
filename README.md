@@ -22,6 +22,7 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
+  * [Idempotency Key](#idempotency-key)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
@@ -138,6 +139,66 @@ func main() {
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Idempotency Key -->
+## Idempotency Key
+
+This SDK supports the usage of Idempotency Keys. See our [documentation](https://docs.mollie.com/reference/api-idempotency) on how to use it.
+
+```golang
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("MOLLIE_API_KEY")),
+        }),
+    )
+
+	request := &components.PaymentRequest{
+		Description: client.Pointer("Description"),
+		Amount: &components.Amount{
+			Currency: "EUR",
+			Value: "5.00",
+		},
+		RedirectURL: client.Pointer("https://example.org/redirect"),
+	}
+
+	idempotencyKey := client.Pointer("<some-idempotency-key>")
+
+    payment1, _ := s.Payments.Create(
+		ctx,
+		nil, idempotencyKey,
+		request,
+	)
+
+	payment2, _ := s.Payments.Create(
+		ctx,
+		nil, idempotencyKey,
+		request,
+	)
+
+	log.Println("Payment with ID:", *payment1.PaymentResponse.ID)
+	log.Println("Payment with ID:", *payment2.PaymentResponse.ID)
+
+	if *payment1.PaymentResponse.ID == *payment2.PaymentResponse.ID {
+		log.Println("Payments are the same")
+	} else {
+		log.Println("Payments are different")
+	}
+}
+```
+<!-- End Idempotency Key -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
