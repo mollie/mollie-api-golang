@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 843a5fcda17e62c6c7e2027ada861883
+  docChecksum: 16b0726675943aa6a17c5fe9184c33cb
   docVersion: 1.0.0
   speakeasyVersion: 1.622.1
   generationVersion: 2.709.0
-  releaseVersion: 0.4.2
-  configChecksum: 69a4e0cb5e78897016fdafa15226c84d
+  releaseVersion: 0.4.3
+  configChecksum: ae131c4a762f5c947e16c402c8b4a7e6
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -90,6 +90,8 @@ generatedFiles:
   - /models/components/errorresponse.go
   - /models/components/httpmetadata.go
   - /models/components/invoicestatus.go
+  - /models/components/linecategories.go
+  - /models/components/linecategoriesresponse.go
   - /models/components/listlinks.go
   - /models/components/listsort.go
   - /models/components/locale.go
@@ -106,7 +108,6 @@ generatedFiles:
   - /models/components/methodstatus.go
   - /models/components/mode.go
   - /models/components/onboardingstatus.go
-  - /models/components/orderlinecategories.go
   - /models/components/organizationvatregulation.go
   - /models/components/paymentaddress.go
   - /models/components/paymentdetailscardauditionresponse.go
@@ -417,6 +418,8 @@ generatedFiles:
   - docs/models/components/httpmetadata.md
   - docs/models/components/invoicecompensation.md
   - docs/models/components/invoicestatus.md
+  - docs/models/components/linecategories.md
+  - docs/models/components/linecategoriesresponse.md
   - docs/models/components/listlinks.md
   - docs/models/components/listsort.md
   - docs/models/components/locale.md
@@ -437,7 +440,6 @@ generatedFiles:
   - docs/models/components/mode.md
   - docs/models/components/onboardingstatus.md
   - docs/models/components/open.md
-  - docs/models/components/orderlinecategories.md
   - docs/models/components/organizationvatregulation.md
   - docs/models/components/outgoingtransfer.md
   - docs/models/components/owner.md
@@ -456,9 +458,7 @@ generatedFiles:
   - docs/models/components/paymentdetailswalletresponse.md
   - docs/models/components/paymentfee.md
   - docs/models/components/paymentlineitem.md
-  - docs/models/components/paymentlineitemcategory.md
   - docs/models/components/paymentlineitemresponse.md
-  - docs/models/components/paymentlineitemresponsecategory.md
   - docs/models/components/paymentlinetype.md
   - docs/models/components/paymentlinetyperesponse.md
   - docs/models/components/paymentlinkresponse.md
@@ -469,11 +469,9 @@ generatedFiles:
   - docs/models/components/paymentmethod.md
   - docs/models/components/paymentrequest.md
   - docs/models/components/paymentrequestapplicationfee.md
-  - docs/models/components/paymentrequestcategory.md
   - docs/models/components/paymentrequestline.md
   - docs/models/components/paymentresponse.md
   - docs/models/components/paymentresponseapplicationfee.md
-  - docs/models/components/paymentresponsecategory.md
   - docs/models/components/paymentresponsedetails.md
   - docs/models/components/paymentresponseline.md
   - docs/models/components/paymentresponselinks.md
@@ -4135,9 +4133,3 @@ examples:
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Client.Settlements.List()`:  `response.Embedded.Settlements.[].Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get-Open()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:
-  * `Client.Settlements.Get-Next()`:  `response.Periods.{}.{}.Costs.[].AmountVat` **Changed** **Breaking** :warning:

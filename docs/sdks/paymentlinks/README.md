@@ -79,9 +79,9 @@ func main() {
                     Value: "10.00",
                 },
                 Sku: client.Pointer("9780241661628"),
-                Categories: []components.PaymentLineItemCategory{
-                    components.PaymentLineItemCategoryMeal,
-                    components.PaymentLineItemCategoryEco,
+                Categories: []components.LineCategories{
+                    components.LineCategoriesMeal,
+                    components.LineCategoriesEco,
                 },
                 ImageURL: client.Pointer("https://..."),
                 ProductURL: client.Pointer("https://..."),

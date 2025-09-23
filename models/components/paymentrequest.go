@@ -3,43 +3,9 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/types"
 )
-
-type PaymentRequestCategory string
-
-const (
-	PaymentRequestCategoryMeal         PaymentRequestCategory = "meal"
-	PaymentRequestCategoryEco          PaymentRequestCategory = "eco"
-	PaymentRequestCategoryGift         PaymentRequestCategory = "gift"
-	PaymentRequestCategorySportCulture PaymentRequestCategory = "sport_culture"
-)
-
-func (e PaymentRequestCategory) ToPointer() *PaymentRequestCategory {
-	return &e
-}
-func (e *PaymentRequestCategory) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "meal":
-		fallthrough
-	case "eco":
-		fallthrough
-	case "gift":
-		fallthrough
-	case "sport_culture":
-		*e = PaymentRequestCategory(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentRequestCategory: %v", v)
-	}
-}
 
 type PaymentRequestLine struct {
 	// The type of product purchased. For example, a physical or a digital product.
@@ -67,7 +33,7 @@ type PaymentRequestLine struct {
 	Sku *string `json:"sku,omitempty"`
 	// An array with the voucher categories, in case of a line eligible for a voucher. See the
 	// [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
-	Categories []PaymentRequestCategory `json:"categories,omitempty"`
+	Categories []LineCategories `json:"categories,omitempty"`
 	// A link pointing to an image of the product sold.
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// A link pointing to the product page in your web shop of the product sold.
@@ -145,7 +111,7 @@ func (p *PaymentRequestLine) GetSku() *string {
 	return p.Sku
 }
 
-func (p *PaymentRequestLine) GetCategories() []PaymentRequestCategory {
+func (p *PaymentRequestLine) GetCategories() []LineCategories {
 	if p == nil {
 		return nil
 	}

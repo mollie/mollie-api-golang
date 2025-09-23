@@ -3,42 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
-
-type PaymentLineItemResponseCategory string
-
-const (
-	PaymentLineItemResponseCategoryMeal         PaymentLineItemResponseCategory = "meal"
-	PaymentLineItemResponseCategoryEco          PaymentLineItemResponseCategory = "eco"
-	PaymentLineItemResponseCategoryGift         PaymentLineItemResponseCategory = "gift"
-	PaymentLineItemResponseCategorySportCulture PaymentLineItemResponseCategory = "sport_culture"
-)
-
-func (e PaymentLineItemResponseCategory) ToPointer() *PaymentLineItemResponseCategory {
-	return &e
-}
-func (e *PaymentLineItemResponseCategory) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "meal":
-		fallthrough
-	case "eco":
-		fallthrough
-	case "gift":
-		fallthrough
-	case "sport_culture":
-		*e = PaymentLineItemResponseCategory(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentLineItemResponseCategory: %v", v)
-	}
-}
 
 type PaymentLineItemResponse struct {
 	// The type of product purchased. For example, a physical or a digital product.
@@ -66,7 +32,7 @@ type PaymentLineItemResponse struct {
 	Sku *string `json:"sku,omitempty"`
 	// An array with the voucher categories, in case of a line eligible for a voucher. See the
 	// [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
-	Categories []PaymentLineItemResponseCategory `json:"categories,omitempty"`
+	Categories []LineCategoriesResponse `json:"categories,omitempty"`
 	// A link pointing to an image of the product sold.
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// A link pointing to the product page in your web shop of the product sold.
@@ -154,7 +120,7 @@ func (p *PaymentLineItemResponse) GetSku() *string {
 	return p.Sku
 }
 
-func (p *PaymentLineItemResponse) GetCategories() []PaymentLineItemResponseCategory {
+func (p *PaymentLineItemResponse) GetCategories() []LineCategoriesResponse {
 	if p == nil {
 		return nil
 	}

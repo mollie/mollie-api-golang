@@ -2,43 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type PaymentLineItemCategory string
-
-const (
-	PaymentLineItemCategoryMeal         PaymentLineItemCategory = "meal"
-	PaymentLineItemCategoryEco          PaymentLineItemCategory = "eco"
-	PaymentLineItemCategoryGift         PaymentLineItemCategory = "gift"
-	PaymentLineItemCategorySportCulture PaymentLineItemCategory = "sport_culture"
-)
-
-func (e PaymentLineItemCategory) ToPointer() *PaymentLineItemCategory {
-	return &e
-}
-func (e *PaymentLineItemCategory) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "meal":
-		fallthrough
-	case "eco":
-		fallthrough
-	case "gift":
-		fallthrough
-	case "sport_culture":
-		*e = PaymentLineItemCategory(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentLineItemCategory: %v", v)
-	}
-}
-
 type PaymentLineItem struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
@@ -65,7 +28,7 @@ type PaymentLineItem struct {
 	Sku *string `json:"sku,omitempty"`
 	// An array with the voucher categories, in case of a line eligible for a voucher. See the
 	// [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
-	Categories []PaymentLineItemCategory `json:"categories,omitempty"`
+	Categories []LineCategories `json:"categories,omitempty"`
 	// A link pointing to an image of the product sold.
 	ImageURL *string `json:"imageUrl,omitempty"`
 	// A link pointing to the product page in your web shop of the product sold.
@@ -142,7 +105,7 @@ func (p *PaymentLineItem) GetSku() *string {
 	return p.Sku
 }
 
-func (p *PaymentLineItem) GetCategories() []PaymentLineItemCategory {
+func (p *PaymentLineItem) GetCategories() []LineCategories {
 	if p == nil {
 		return nil
 	}

@@ -100,7 +100,7 @@ type ListMethodsRequest struct {
 	// A comma-separated list of the line categories you support in your checkout.
 	//
 	// Example: `/v2/methods?orderLineCategories=eco,meal`
-	OrderLineCategories *components.OrderLineCategories `queryParam:"style=form,explode=true,name=orderLineCategories"`
+	OrderLineCategories *components.LineCategories `queryParam:"style=form,explode=true,name=orderLineCategories"`
 	// The identifier referring to the [profile](get-profile) you wish to
 	// retrieve the resources for.
 	//
@@ -161,7 +161,7 @@ func (l *ListMethodsRequest) GetIncludeWallets() *IncludeWallets {
 	return l.IncludeWallets
 }
 
-func (l *ListMethodsRequest) GetOrderLineCategories() *components.OrderLineCategories {
+func (l *ListMethodsRequest) GetOrderLineCategories() *components.LineCategories {
 	if l == nil {
 		return nil
 	}
