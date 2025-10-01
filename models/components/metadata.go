@@ -19,9 +19,9 @@ const (
 // Metadata - Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type Metadata struct {
-	Str        *string        `queryParam:"inline" name:"metadata"`
-	MapOfAny   map[string]any `queryParam:"inline" name:"metadata"`
-	ArrayOfStr []string       `queryParam:"inline" name:"metadata"`
+	Str        *string        `queryParam:"inline,name=metadata"`
+	MapOfAny   map[string]any `queryParam:"inline,name=metadata"`
+	ArrayOfStr []string       `queryParam:"inline,name=metadata"`
 
 	Type MetadataType
 }

@@ -16,8 +16,8 @@ const (
 )
 
 type Entity struct {
-	PaymentLinkResponse   *PaymentLinkResponse   `queryParam:"inline" name:"entity"`
-	EntityProfileResponse *EntityProfileResponse `queryParam:"inline" name:"entity"`
+	PaymentLinkResponse   *PaymentLinkResponse   `queryParam:"inline,name=entity"`
+	EntityProfileResponse *EntityProfileResponse `queryParam:"inline,name=entity"`
 
 	Type EntityType
 }
