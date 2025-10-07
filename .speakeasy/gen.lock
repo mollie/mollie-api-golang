@@ -3,10 +3,10 @@ id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
   docChecksum: 0861d41c8e1ca302fd725a04cdeef785
   docVersion: 1.0.0
-  speakeasyVersion: 1.631.5
-  generationVersion: 2.716.16
-  releaseVersion: 0.4.4
-  configChecksum: 683c5329b1131e81eef087f8f5d305cd
+  speakeasyVersion: 1.635.1
+  generationVersion: 2.722.2
+  releaseVersion: 0.5.0
+  configChecksum: 373bdf6e0d1200a3757b6e48a9360aaa
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -25,12 +25,12 @@ features:
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.2.0
+    nullables: 0.2.1
     openEnums: 0.1.0
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.85.14
+    unions: 2.86.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
