@@ -5,7 +5,16 @@ package components
 // EntityWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityWebhookLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Self URLObj `json:"self"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation URLObj `json:"documentation"`
+}
+
+func (e *EntityWebhookLinks) GetSelf() URLObj {
+	if e == nil {
+		return URLObj{}
+	}
+	return e.Self
 }
 
 func (e *EntityWebhookLinks) GetDocumentation() URLObj {

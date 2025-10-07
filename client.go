@@ -48,32 +48,33 @@ func Float64(f float64) *float64 { return &f }
 func Pointer[T any](v T) *T { return &v }
 
 type Client struct {
-	SDKVersion     string
-	Balances       *Balances
-	Settlements    *Settlements
-	Invoices       *Invoices
-	Permissions    *Permissions
-	Organizations  *Organizations
-	Profiles       *Profiles
-	Onboarding     *Onboarding
-	Capabilities   *Capabilities
-	Clients        *Clients
-	ClientLinks    *ClientLinks
-	Webhooks       *Webhooks
-	WebhookEvents  *WebhookEvents
-	Payments       *Payments
-	Methods        *Methods
-	Refunds        *Refunds
-	Chargebacks    *Chargebacks
-	Captures       *Captures
-	Wallets        *Wallets
-	PaymentLinks   *PaymentLinks
-	Terminals      *Terminals
-	DelayedRouting *DelayedRouting
-	Customers      *Customers
-	Mandates       *Mandates
-	Subscriptions  *Subscriptions
-	SalesInvoices  *SalesInvoices
+	SDKVersion       string
+	Balances         *Balances
+	Settlements      *Settlements
+	Invoices         *Invoices
+	Permissions      *Permissions
+	Organizations    *Organizations
+	Profiles         *Profiles
+	Onboarding       *Onboarding
+	Capabilities     *Capabilities
+	Clients          *Clients
+	ClientLinks      *ClientLinks
+	Webhooks         *Webhooks
+	WebhookEvents    *WebhookEvents
+	BalanceTransfers *BalanceTransfers
+	Payments         *Payments
+	Methods          *Methods
+	Refunds          *Refunds
+	Chargebacks      *Chargebacks
+	Captures         *Captures
+	Wallets          *Wallets
+	PaymentLinks     *PaymentLinks
+	Terminals        *Terminals
+	DelayedRouting   *DelayedRouting
+	Customers        *Customers
+	Mandates         *Mandates
+	Subscriptions    *Subscriptions
+	SalesInvoices    *SalesInvoices
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -149,9 +150,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.5.0",
+		SDKVersion: "0.5.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.5.0 2.722.2 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.5.1 2.722.2 1.0.0 github.com/mollie/mollie-api-golang",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -186,6 +187,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.ClientLinks = newClientLinks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Webhooks = newWebhooks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.WebhookEvents = newWebhookEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.BalanceTransfers = newBalanceTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Methods = newMethods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)

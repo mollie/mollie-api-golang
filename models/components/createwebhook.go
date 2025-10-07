@@ -5,7 +5,16 @@ package components
 // CreateWebhookLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type CreateWebhookLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Self URLObj `json:"self"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation URLObj `json:"documentation"`
+}
+
+func (c *CreateWebhookLinks) GetSelf() URLObj {
+	if c == nil {
+		return URLObj{}
+	}
+	return c.Self
 }
 
 func (c *CreateWebhookLinks) GetDocumentation() URLObj {
