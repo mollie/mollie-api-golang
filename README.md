@@ -236,7 +236,6 @@ func main() {
 * [Get](docs/sdks/chargebacks/README.md#get) - Get payment chargeback
 * [All](docs/sdks/chargebacks/README.md#all) - List all chargebacks
 
-
 ### [ClientLinks](docs/sdks/clientlinks/README.md)
 
 * [Create](docs/sdks/clientlinks/README.md#create) - Create client link

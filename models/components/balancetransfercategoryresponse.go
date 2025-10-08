@@ -13,7 +13,7 @@ const (
 	BalanceTransferCategoryResponseServicePenalty       BalanceTransferCategoryResponse = "service_penalty"
 	BalanceTransferCategoryResponseDiscountCompensation BalanceTransferCategoryResponse = "discount_compensation"
 	BalanceTransferCategoryResponseManualCorrection     BalanceTransferCategoryResponse = "manual_correction"
-	BalanceTransferCategoryResponseFee                  BalanceTransferCategoryResponse = "fee"
+	BalanceTransferCategoryResponseOtherFee             BalanceTransferCategoryResponse = "other_fee"
 )
 
 func (e BalanceTransferCategoryResponse) ToPointer() *BalanceTransferCategoryResponse {

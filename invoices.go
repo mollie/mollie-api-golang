@@ -66,7 +66,7 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-invoices",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -319,7 +319,7 @@ func (s *Invoices) Get(ctx context.Context, id string, idempotencyKey *string, o
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-invoice",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

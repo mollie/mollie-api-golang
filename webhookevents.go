@@ -68,7 +68,7 @@ func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, idem
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-webhook-event",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 76f737bf3d711e5294198ae05444d97c
+  docChecksum: d4c86af0b942215e7a70f30230ce4fd7
   docVersion: 1.0.0
-  speakeasyVersion: 1.635.1
-  generationVersion: 2.722.2
-  releaseVersion: 0.5.1
-  configChecksum: 106b6f154b9280abb124c4969264795a
+  speakeasyVersion: 1.636.0
+  generationVersion: 2.723.2
+  releaseVersion: 0.5.2
+  configChecksum: 0aedd5feed5bca0b6d356ee62144b5d0
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -21,7 +21,7 @@ features:
     globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.3
-    groups: 2.81.2
+    groups: 2.81.3
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
@@ -912,7 +912,6 @@ generatedFiles:
   - docs/sdks/capabilities/README.md
   - docs/sdks/captures/README.md
   - docs/sdks/chargebacks/README.md
-  - docs/sdks/client/README.md
   - docs/sdks/clientlinks/README.md
   - docs/sdks/clients/README.md
   - docs/sdks/customers/README.md
@@ -4235,12 +4234,3 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Client.Balance-Transfers.Create()`: **Added**
-  * `Client.Balance-Transfers.List()`: **Added**
-  * `Client.Balance-Transfers.Get()`: **Added**
-  * `Client.Webhooks.Create()`:  `response.Links.Self` **Added**
-  * `Client.Webhooks.List()`:  `response.Embedded.Webhooks.[].Links.Self` **Added**
-  * `Client.Webhooks.Update()`:  `response.Links.Self` **Added**
-  * `Client.Webhooks.Get()`:  `response.Links.Self` **Added**

@@ -72,7 +72,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-mandate",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityMandate", "json", `request:"mediaType=application/json"`)
@@ -320,7 +320,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-mandates",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -573,7 +573,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-mandate",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -824,7 +824,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "revoke-mandate",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

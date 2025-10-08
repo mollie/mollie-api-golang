@@ -79,7 +79,7 @@ func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ..
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-capabilities",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

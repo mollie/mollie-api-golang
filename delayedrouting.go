@@ -69,7 +69,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "payment-create-route",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RouteCreateRequest", "json", `request:"mediaType=application/json"`)
@@ -321,7 +321,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "payment-list-routes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

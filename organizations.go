@@ -74,7 +74,7 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idem
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-organization",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -325,7 +325,7 @@ func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-current-organization",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -544,7 +544,7 @@ func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-partner-status",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

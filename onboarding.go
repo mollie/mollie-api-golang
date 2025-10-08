@@ -67,7 +67,7 @@ func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...op
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-onboarding-status",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -291,7 +291,7 @@ func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, request
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "submit-onboarding-data",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

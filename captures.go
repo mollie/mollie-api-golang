@@ -75,7 +75,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-capture",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCapture", "json", `request:"mediaType=application/json"`)
@@ -325,7 +325,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-captures",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -571,7 +571,7 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-capture",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

@@ -70,7 +70,7 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-payment-link",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -327,7 +327,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-payment-links",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -576,7 +576,7 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-payment-link",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -825,7 +825,7 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-payment-link",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1085,7 +1085,7 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-payment-link",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1335,7 +1335,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-payment-link-payments",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

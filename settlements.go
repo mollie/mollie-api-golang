@@ -65,7 +65,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-settlements",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -326,7 +326,7 @@ func (s *Settlements) Get(ctx context.Context, id string, idempotencyKey *string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-settlement",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -576,7 +576,7 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-open-settlement",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -800,7 +800,7 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-next-settlement",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1019,7 +1019,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-settlement-payments",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1264,7 +1264,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-settlement-captures",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1511,7 +1511,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-settlement-refunds",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1758,7 +1758,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-settlement-chargebacks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

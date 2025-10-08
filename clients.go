@@ -72,7 +72,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-clients",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -323,7 +323,7 @@ func (s *Clients) Get(ctx context.Context, id string, embed *string, idempotency
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-client",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

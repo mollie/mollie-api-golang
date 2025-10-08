@@ -71,7 +71,7 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-customer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCustomer", "json", `request:"mediaType=application/json"`)
@@ -319,7 +319,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-customers",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -571,7 +571,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-customer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -822,7 +822,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-customer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCustomer", "json", `request:"mediaType=application/json"`)
@@ -1074,7 +1074,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-customer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1336,7 +1336,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-customer-payment",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PaymentRequest", "json", `request:"mediaType=application/json"`)
@@ -1607,7 +1607,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-customer-payments",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

@@ -65,7 +65,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-terminals",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -314,7 +314,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-terminal",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

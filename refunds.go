@@ -70,7 +70,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-refund",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityRefund", "json", `request:"mediaType=application/json"`)
@@ -322,7 +322,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-refunds",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -567,7 +567,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-refund",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -821,7 +821,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "cancel-refund",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1066,7 +1066,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-all-refunds",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

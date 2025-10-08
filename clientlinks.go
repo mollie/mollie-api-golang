@@ -120,7 +120,7 @@ func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, entity
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-client-link",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityClientLink", "json", `request:"mediaType=application/json"`)

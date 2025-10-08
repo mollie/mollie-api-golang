@@ -86,7 +86,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "request-apple-pay-payment-session",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

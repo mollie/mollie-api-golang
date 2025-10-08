@@ -65,7 +65,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-chargebacks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -310,7 +310,7 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-chargeback",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -555,7 +555,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-all-chargebacks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

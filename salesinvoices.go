@@ -72,7 +72,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, enti
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-sales-invoice",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySalesInvoice", "json", `request:"mediaType=application/json"`)
@@ -333,7 +333,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-sales-invoices",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -586,7 +586,7 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idem
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-sales-invoice",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -841,7 +841,7 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *s
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-sales-invoice",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "UpdateValuesSalesInvoice", "json", `request:"mediaType=application/json"`)
@@ -1100,7 +1100,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, idempotencyKey *s
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-sales-invoice",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "DeleteValuesSalesInvoice", "json", `request:"mediaType=application/json"`)

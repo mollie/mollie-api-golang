@@ -14,4 +14,4 @@ The type of the transfer. Different fees may apply to different types of transfe
 | `BalanceTransferCategoryServicePenalty`       | service_penalty                               |
 | `BalanceTransferCategoryDiscountCompensation` | discount_compensation                         |
 | `BalanceTransferCategoryManualCorrection`     | manual_correction                             |
-| `BalanceTransferCategoryFee`                  | fee                                           |
+| `BalanceTransferCategoryOtherFee`             | other_fee                                     |

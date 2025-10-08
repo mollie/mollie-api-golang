@@ -71,7 +71,7 @@ func (s *Profiles) Create(ctx context.Context, entityProfile components.EntityPr
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-profile",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntityProfile", "json", `request:"mediaType=application/json"`)
@@ -325,7 +325,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-profiles",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -574,7 +574,7 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempoten
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-profile",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -828,7 +828,7 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-profile",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1083,7 +1083,7 @@ func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-profile",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1332,7 +1332,7 @@ func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-current-profile",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

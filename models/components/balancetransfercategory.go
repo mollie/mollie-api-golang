@@ -18,7 +18,7 @@ const (
 	BalanceTransferCategoryServicePenalty       BalanceTransferCategory = "service_penalty"
 	BalanceTransferCategoryDiscountCompensation BalanceTransferCategory = "discount_compensation"
 	BalanceTransferCategoryManualCorrection     BalanceTransferCategory = "manual_correction"
-	BalanceTransferCategoryFee                  BalanceTransferCategory = "fee"
+	BalanceTransferCategoryOtherFee             BalanceTransferCategory = "other_fee"
 )
 
 func (e BalanceTransferCategory) ToPointer() *BalanceTransferCategory {
@@ -44,7 +44,7 @@ func (e *BalanceTransferCategory) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "manual_correction":
 		fallthrough
-	case "fee":
+	case "other_fee":
 		*e = BalanceTransferCategory(v)
 		return nil
 	default:

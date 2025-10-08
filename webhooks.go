@@ -68,7 +68,7 @@ func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-webhook",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -314,7 +314,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-webhooks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -563,7 +563,7 @@ func (s *Webhooks) Update(ctx context.Context, id string, idempotencyKey *string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-webhook",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -817,7 +817,7 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-webhook",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1068,7 +1068,7 @@ func (s *Webhooks) Delete(ctx context.Context, id string, idempotencyKey *string
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-webhook",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1322,7 +1322,7 @@ func (s *Webhooks) Test(ctx context.Context, id string, idempotencyKey *string, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "test-webhook",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

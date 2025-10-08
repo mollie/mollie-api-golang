@@ -65,7 +65,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-balances",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -330,7 +330,7 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempoten
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-balance",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -581,7 +581,7 @@ func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-primary-balance",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -801,7 +801,7 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-balance-report",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1055,7 +1055,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-balance-transactions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

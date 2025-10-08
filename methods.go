@@ -78,7 +78,7 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-methods",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -324,7 +324,7 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-all-methods",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -578,7 +578,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-method",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

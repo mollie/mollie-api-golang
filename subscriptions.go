@@ -87,7 +87,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-subscription",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SubscriptionRequest", "json", `request:"mediaType=application/json"`)
@@ -335,7 +335,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-subscriptions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -587,7 +587,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-subscription",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -841,7 +841,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-subscription",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1094,7 +1094,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "cancel-subscription",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1342,7 +1342,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-all-subscriptions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1589,7 +1589,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-subscription-payments",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

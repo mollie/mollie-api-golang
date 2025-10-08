@@ -80,7 +80,7 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-payment",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PaymentRequest", "json", `request:"mediaType=application/json"`)
@@ -357,7 +357,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-payments",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -600,7 +600,7 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-payment",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -851,7 +851,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-payment",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1110,7 +1110,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "cancel-payment",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1371,7 +1371,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "release-authorization",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

@@ -69,7 +69,7 @@ func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-permissions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -314,7 +314,7 @@ func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-permission",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

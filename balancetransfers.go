@@ -71,7 +71,7 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-connect-balance-transfer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityBalanceTransfer", "json", `request:"mediaType=application/json"`)
@@ -317,7 +317,7 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-connect-balance-transfers",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -566,7 +566,7 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-connect-balance-transfer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
