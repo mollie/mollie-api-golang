@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: d4c86af0b942215e7a70f30230ce4fd7
+  docChecksum: 248ec6075df6729e0719102b6630ab61
   docVersion: 1.0.0
   speakeasyVersion: 1.636.0
   generationVersion: 2.723.2
-  releaseVersion: 0.5.2
-  configChecksum: 0aedd5feed5bca0b6d356ee62144b5d0
+  releaseVersion: 0.5.3
+  configChecksum: e33720f963ab8393999422c932cfa5fd
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -4234,3 +4234,6 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: |
+  ## Go SDK Changes Detected:
+  * `Client.Webhooks.Create()`:  `response.ProfileId` **Changed** **Breaking** :warning:

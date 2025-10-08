@@ -32,7 +32,7 @@ type CreateWebhook struct {
 	// The subscription's events destination.
 	URL string `json:"url"`
 	// The identifier uniquely referring to the profile that created the subscription.
-	ProfileID string `json:"profileId"`
+	ProfileID *string `json:"profileId"`
 	// The subscription's date time of creation.
 	CreatedAt string `json:"createdAt"`
 	// The subscription's name.
@@ -70,9 +70,9 @@ func (c *CreateWebhook) GetURL() string {
 	return c.URL
 }
 
-func (c *CreateWebhook) GetProfileID() string {
+func (c *CreateWebhook) GetProfileID() *string {
 	if c == nil {
-		return ""
+		return nil
 	}
 	return c.ProfileID
 }
