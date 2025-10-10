@@ -85,8 +85,15 @@ type UpdatePaymentRequestBody struct {
 	// `issuers` include.
 	//
 	// A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
-	Issuer          *string                    `json:"issuer,omitempty"`
-	BillingAddress  *components.PaymentAddress `json:"billingAddress,omitempty"`
+	Issuer *string `json:"issuer,omitempty"`
+	// The customer's billing address details. We advise to provide these details to improve fraud protection and
+	// conversion.
+	//
+	// Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+	// `country`.
+	//
+	// Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+	BillingAddress  *components.BillingAddress `json:"billingAddress,omitempty"`
 	ShippingAddress *components.PaymentAddress `json:"shippingAddress,omitempty"`
 	BillingEmail    *string                    `json:"billingEmail,omitempty"`
 }
@@ -168,7 +175,7 @@ func (u *UpdatePaymentRequestBody) GetIssuer() *string {
 	return u.Issuer
 }
 
-func (u *UpdatePaymentRequestBody) GetBillingAddress() *components.PaymentAddress {
+func (u *UpdatePaymentRequestBody) GetBillingAddress() *components.BillingAddress {
 	if u == nil {
 		return nil
 	}

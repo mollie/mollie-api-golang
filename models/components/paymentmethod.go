@@ -32,6 +32,7 @@ const (
 	PaymentMethodKlarnasliceit     PaymentMethod = "klarnasliceit"
 	PaymentMethodKlarna            PaymentMethod = "klarna"
 	PaymentMethodMbway             PaymentMethod = "mbway"
+	PaymentMethodMobilepay         PaymentMethod = "mobilepay"
 	PaymentMethodMultibanco        PaymentMethod = "multibanco"
 	PaymentMethodMybank            PaymentMethod = "mybank"
 	PaymentMethodPaybybank         PaymentMethod = "paybybank"
@@ -47,6 +48,7 @@ const (
 	PaymentMethodSwish             PaymentMethod = "swish"
 	PaymentMethodTrustly           PaymentMethod = "trustly"
 	PaymentMethodTwint             PaymentMethod = "twint"
+	PaymentMethodVipps             PaymentMethod = "vipps"
 	PaymentMethodVoucher           PaymentMethod = "voucher"
 )
 

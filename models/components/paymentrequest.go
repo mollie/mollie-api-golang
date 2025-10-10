@@ -139,6 +139,145 @@ func (p *PaymentRequestLine) GetRecurring() *RecurringLineItem {
 	return p.Recurring
 }
 
+// PaymentRequestBillingAddress - The customer's billing address details. We advise to provide these details to improve fraud protection and
+// conversion.
+//
+// Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+// `country`.
+//
+// Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+type PaymentRequestBillingAddress struct {
+	// The title of the person, for example *Mr.* or *Mrs.*.
+	Title *string `json:"title,omitempty"`
+	// The given name (first name) of the person should be at least two characters and cannot contain only
+	// numbers.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	GivenName *string `json:"givenName,omitempty"`
+	// The given family name (surname) of the person should be at least two characters and cannot contain only
+	// numbers.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	FamilyName *string `json:"familyName,omitempty"`
+	// The name of the organization, in case the addressee is an organization.
+	//
+	// Required for payment method `billie`.
+	OrganizationName any `json:"organizationName,omitempty"`
+	// A street and street number.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
+	// Any additional addressing details, for example an apartment number.
+	StreetAdditional *string `json:"streetAdditional,omitempty"`
+	// A postal code. This field may be required if the provided country has a postal code system.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	PostalCode *string `json:"postalCode,omitempty"`
+	// A valid e-mail address.
+	//
+	// If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+	// email upon payment creation. The language of the email will follow the locale parameter of the payment.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	Email *string `json:"email,omitempty"`
+	// If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+	Phone *string `json:"phone,omitempty"`
+	// A city name.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	City *string `json:"city,omitempty"`
+	// The top-level administrative subdivision of the country. For example: Noord-Holland.
+	Region *string `json:"region,omitempty"`
+	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+	//
+	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	Country *string `json:"country,omitempty"`
+}
+
+func (p *PaymentRequestBillingAddress) GetTitle() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Title
+}
+
+func (p *PaymentRequestBillingAddress) GetGivenName() *string {
+	if p == nil {
+		return nil
+	}
+	return p.GivenName
+}
+
+func (p *PaymentRequestBillingAddress) GetFamilyName() *string {
+	if p == nil {
+		return nil
+	}
+	return p.FamilyName
+}
+
+func (p *PaymentRequestBillingAddress) GetOrganizationName() any {
+	if p == nil {
+		return nil
+	}
+	return p.OrganizationName
+}
+
+func (p *PaymentRequestBillingAddress) GetStreetAndNumber() *string {
+	if p == nil {
+		return nil
+	}
+	return p.StreetAndNumber
+}
+
+func (p *PaymentRequestBillingAddress) GetStreetAdditional() *string {
+	if p == nil {
+		return nil
+	}
+	return p.StreetAdditional
+}
+
+func (p *PaymentRequestBillingAddress) GetPostalCode() *string {
+	if p == nil {
+		return nil
+	}
+	return p.PostalCode
+}
+
+func (p *PaymentRequestBillingAddress) GetEmail() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Email
+}
+
+func (p *PaymentRequestBillingAddress) GetPhone() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Phone
+}
+
+func (p *PaymentRequestBillingAddress) GetCity() *string {
+	if p == nil {
+		return nil
+	}
+	return p.City
+}
+
+func (p *PaymentRequestBillingAddress) GetRegion() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Region
+}
+
+func (p *PaymentRequestBillingAddress) GetCountry() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Country
+}
+
 // PaymentRequestApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //
@@ -256,9 +395,16 @@ type PaymentRequest struct {
 	// All lines must have the same currency as the payment.
 	//
 	// Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
-	Lines           []PaymentRequestLine `json:"lines,omitempty"`
-	BillingAddress  *PaymentAddress      `json:"billingAddress,omitempty"`
-	ShippingAddress *PaymentAddress      `json:"shippingAddress,omitempty"`
+	Lines []PaymentRequestLine `json:"lines,omitempty"`
+	// The customer's billing address details. We advise to provide these details to improve fraud protection and
+	// conversion.
+	//
+	// Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+	// `country`.
+	//
+	// Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+	BillingAddress  *PaymentRequestBillingAddress `json:"billingAddress,omitempty"`
+	ShippingAddress *PaymentAddress               `json:"shippingAddress,omitempty"`
 	// Allows you to preset the language to be used.
 	Locale *Locale `json:"locale,omitempty"`
 	// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
@@ -498,7 +644,7 @@ func (p *PaymentRequest) GetLines() []PaymentRequestLine {
 	return p.Lines
 }
 
-func (p *PaymentRequest) GetBillingAddress() *PaymentAddress {
+func (p *PaymentRequest) GetBillingAddress() *PaymentRequestBillingAddress {
 	if p == nil {
 		return nil
 	}

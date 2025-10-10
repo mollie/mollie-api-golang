@@ -34,6 +34,7 @@ const (
 	MethodResponseKlarnapaynow   MethodResponse = "klarnapaynow"
 	MethodResponseKlarnasliceit  MethodResponse = "klarnasliceit"
 	MethodResponseMbway          MethodResponse = "mbway"
+	MethodResponseMobilepay      MethodResponse = "mobilepay"
 	MethodResponseMultibanco     MethodResponse = "multibanco"
 	MethodResponseMybank         MethodResponse = "mybank"
 	MethodResponsePaybybank      MethodResponse = "paybybank"
@@ -47,6 +48,7 @@ const (
 	MethodResponseSwish          MethodResponse = "swish"
 	MethodResponseTrustly        MethodResponse = "trustly"
 	MethodResponseTwint          MethodResponse = "twint"
+	MethodResponseVipps          MethodResponse = "vipps"
 	MethodResponseVoucher        MethodResponse = "voucher"
 )
 

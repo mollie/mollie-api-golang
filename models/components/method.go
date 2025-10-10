@@ -39,6 +39,7 @@ const (
 	MethodKlarnapaynow   Method = "klarnapaynow"
 	MethodKlarnasliceit  Method = "klarnasliceit"
 	MethodMbway          Method = "mbway"
+	MethodMobilepay      Method = "mobilepay"
 	MethodMultibanco     Method = "multibanco"
 	MethodMybank         Method = "mybank"
 	MethodPaybybank      Method = "paybybank"
@@ -52,6 +53,7 @@ const (
 	MethodSwish          Method = "swish"
 	MethodTrustly        Method = "trustly"
 	MethodTwint          Method = "twint"
+	MethodVipps          Method = "vipps"
 	MethodVoucher        Method = "voucher"
 )
 
@@ -108,6 +110,8 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "mbway":
 		fallthrough
+	case "mobilepay":
+		fallthrough
 	case "multibanco":
 		fallthrough
 	case "mybank":
@@ -133,6 +137,8 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 	case "trustly":
 		fallthrough
 	case "twint":
+		fallthrough
+	case "vipps":
 		fallthrough
 	case "voucher":
 		*e = Method(v)

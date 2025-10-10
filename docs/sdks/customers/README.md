@@ -440,11 +440,10 @@ func main() {
                 },
             },
         },
-        BillingAddress: &components.PaymentAddress{
+        BillingAddress: &components.PaymentRequestBillingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
             StreetAndNumber: client.Pointer("Keizersgracht 126"),
             StreetAdditional: client.Pointer("Apt. 1"),
             PostalCode: client.Pointer("1234AB"),

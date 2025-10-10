@@ -33,6 +33,7 @@ The payment method, if applicable
 | `PaymentMethodKlarnasliceit`     | klarnasliceit                    |
 | `PaymentMethodKlarna`            | klarna                           |
 | `PaymentMethodMbway`             | mbway                            |
+| `PaymentMethodMobilepay`         | mobilepay                        |
 | `PaymentMethodMultibanco`        | multibanco                       |
 | `PaymentMethodMybank`            | mybank                           |
 | `PaymentMethodPaybybank`         | paybybank                        |
@@ -48,4 +49,5 @@ The payment method, if applicable
 | `PaymentMethodSwish`             | swish                            |
 | `PaymentMethodTrustly`           | trustly                          |
 | `PaymentMethodTwint`             | twint                            |
+| `PaymentMethodVipps`             | vipps                            |
 | `PaymentMethodVoucher`           | voucher                          |
