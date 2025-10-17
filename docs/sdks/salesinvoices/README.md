@@ -85,7 +85,6 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
-        IsEInvoice: client.Pointer(false),
         AmountDue: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -347,7 +346,6 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
-        IsEInvoice: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

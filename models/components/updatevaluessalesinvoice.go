@@ -39,11 +39,6 @@ type UpdateValuesSalesInvoice struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
-	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-	// after the invoice has been issued.
-	//
-	// When `emailDetails` is provided, an additional email is sent to the recipient.
-	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 }
 
 func (u *UpdateValuesSalesInvoice) GetTestmode() *bool {
@@ -114,11 +109,4 @@ func (u *UpdateValuesSalesInvoice) GetDiscount() *SalesInvoiceDiscount {
 		return nil
 	}
 	return u.Discount
-}
-
-func (u *UpdateValuesSalesInvoice) GetIsEInvoice() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.IsEInvoice
 }

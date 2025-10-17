@@ -66,13 +66,6 @@ type EntitySalesInvoice struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
-	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-	// after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to the
-	// recipient.
-	//
-	// E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only when
-	// the recipient is also located in one of these countries.
-	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountDue *Amount `json:"amountDue,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -202,13 +195,6 @@ func (e *EntitySalesInvoice) GetDiscount() *SalesInvoiceDiscount {
 		return nil
 	}
 	return e.Discount
-}
-
-func (e *EntitySalesInvoice) GetIsEInvoice() *bool {
-	if e == nil {
-		return nil
-	}
-	return e.IsEInvoice
 }
 
 func (e *EntitySalesInvoice) GetAmountDue() *Amount {
