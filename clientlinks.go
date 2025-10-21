@@ -272,12 +272,12 @@ func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, entity
 				return nil, err
 			}
 
-			var out components.EntityClientLinkResponse
+			var out components.ClientLinkResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityClientLinkResponse = &out
+			res.ClientLinkResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

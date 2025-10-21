@@ -29,7 +29,7 @@ func (c *CreateProfileRequest) GetEntityProfile() components.EntityProfile {
 type CreateProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created profile object.
-	EntityProfileResponse *components.EntityProfileResponse
+	ProfileResponse *components.ProfileResponse
 }
 
 func (c *CreateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -39,9 +39,9 @@ func (c *CreateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+func (c *CreateProfileResponse) GetProfileResponse() *components.ProfileResponse {
 	if c == nil {
 		return nil
 	}
-	return c.EntityProfileResponse
+	return c.ProfileResponse
 }

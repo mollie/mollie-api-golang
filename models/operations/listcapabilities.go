@@ -19,40 +19,22 @@ func (l *ListCapabilitiesRequest) GetIdempotencyKey() *string {
 }
 
 type ListCapabilitiesEmbedded struct {
-	Capabilities []components.EntityCapability `json:"capabilities,omitempty"`
+	Capabilities []components.EntityCapability `json:"capabilities"`
 }
 
 func (l *ListCapabilitiesEmbedded) GetCapabilities() []components.EntityCapability {
 	if l == nil {
-		return nil
+		return []components.EntityCapability{}
 	}
 	return l.Capabilities
 }
 
-type Documentation struct {
-	Href *string `json:"href,omitempty"`
-	Type *string `json:"type,omitempty"`
-}
-
-func (d *Documentation) GetHref() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Href
-}
-
-func (d *Documentation) GetType() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Type
-}
-
 type ListCapabilitiesLinks struct {
-	Documentation *Documentation `json:"documentation,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (l *ListCapabilitiesLinks) GetDocumentation() *Documentation {
+func (l *ListCapabilitiesLinks) GetDocumentation() *components.URLObj {
 	if l == nil {
 		return nil
 	}
@@ -62,28 +44,28 @@ func (l *ListCapabilitiesLinks) GetDocumentation() *Documentation {
 // ListCapabilitiesResponseBody - A list of capabilities.
 type ListCapabilitiesResponseBody struct {
 	// The number of items in this result set.
-	Count    *int64                    `json:"count,omitempty"`
-	Embedded *ListCapabilitiesEmbedded `json:"_embedded,omitempty"`
-	Links    *ListCapabilitiesLinks    `json:"_links,omitempty"`
+	Count    int64                    `json:"count"`
+	Embedded ListCapabilitiesEmbedded `json:"_embedded"`
+	Links    ListCapabilitiesLinks    `json:"_links"`
 }
 
-func (l *ListCapabilitiesResponseBody) GetCount() *int64 {
+func (l *ListCapabilitiesResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListCapabilitiesResponseBody) GetEmbedded() *ListCapabilitiesEmbedded {
+func (l *ListCapabilitiesResponseBody) GetEmbedded() ListCapabilitiesEmbedded {
 	if l == nil {
-		return nil
+		return ListCapabilitiesEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListCapabilitiesResponseBody) GetLinks() *ListCapabilitiesLinks {
+func (l *ListCapabilitiesResponseBody) GetLinks() ListCapabilitiesLinks {
 	if l == nil {
-		return nil
+		return ListCapabilitiesLinks{}
 	}
 	return l.Links
 }

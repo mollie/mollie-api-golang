@@ -62,12 +62,12 @@ func (l *ListBalancesRequest) GetIdempotencyKey() *string {
 type ListBalancesEmbedded struct {
 	// An array of balance objects. For a complete reference of
 	// the balance object, refer to the [Get balance endpoint](get-balance) documentation.
-	Balances []components.EntityBalance `json:"balances,omitempty"`
+	Balances []components.EntityBalance `json:"balances"`
 }
 
 func (l *ListBalancesEmbedded) GetBalances() []components.EntityBalance {
 	if l == nil {
-		return nil
+		return []components.EntityBalance{}
 	}
 	return l.Balances
 }
@@ -80,29 +80,29 @@ type ListBalancesResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                `json:"count,omitempty"`
-	Embedded *ListBalancesEmbedded `json:"_embedded,omitempty"`
+	Count    int64                `json:"count"`
+	Embedded ListBalancesEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *components.ListLinks `json:"_links,omitempty"`
+	Links components.ListLinks `json:"_links"`
 }
 
-func (l *ListBalancesResponseBody) GetCount() *int64 {
+func (l *ListBalancesResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListBalancesResponseBody) GetEmbedded() *ListBalancesEmbedded {
+func (l *ListBalancesResponseBody) GetEmbedded() ListBalancesEmbedded {
 	if l == nil {
-		return nil
+		return ListBalancesEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListBalancesResponseBody) GetLinks() *components.ListLinks {
+func (l *ListBalancesResponseBody) GetLinks() components.ListLinks {
 	if l == nil {
-		return nil
+		return components.ListLinks{}
 	}
 	return l.Links
 }

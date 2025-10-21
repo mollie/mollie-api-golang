@@ -494,18 +494,18 @@ func (e *EntityBalanceReportLinks) GetDocumentation() *URLObj {
 type EntityBalanceReport struct {
 	// Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
 	// endpoint.
-	Resource  *string `json:"resource,omitempty"`
-	BalanceID *string `json:"balanceId,omitempty"`
+	Resource  string `json:"resource"`
+	BalanceID string `json:"balanceId"`
 	// The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
-	TimeZone *string `json:"timeZone,omitempty"`
+	TimeZone string `json:"timeZone"`
 	// The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
 	// This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
 	// onwards.
-	From *string `json:"from,omitempty"`
+	From string `json:"from"`
 	// The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
 	// This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
-	Until    *string                `json:"until,omitempty"`
-	Grouping *BalanceReportGrouping `json:"grouping,omitempty"`
+	Until    string                `json:"until"`
+	Grouping BalanceReportGrouping `json:"grouping"`
 	// Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
 	// typical grouping looks like.
 	//
@@ -526,63 +526,63 @@ type EntityBalanceReport struct {
 	// * An `amount` object containing the group's total amount
 	// * A `count` integer if relevant (for example, counting the number of refunds)
 	// * A `subtotals` array containing more sub-group objects if applicable
-	Totals *Totals `json:"totals,omitempty"`
+	Totals Totals `json:"totals"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityBalanceReportLinks `json:"_links,omitempty"`
+	Links EntityBalanceReportLinks `json:"_links"`
 }
 
-func (e *EntityBalanceReport) GetResource() *string {
+func (e *EntityBalanceReport) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityBalanceReport) GetBalanceID() *string {
+func (e *EntityBalanceReport) GetBalanceID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.BalanceID
 }
 
-func (e *EntityBalanceReport) GetTimeZone() *string {
+func (e *EntityBalanceReport) GetTimeZone() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.TimeZone
 }
 
-func (e *EntityBalanceReport) GetFrom() *string {
+func (e *EntityBalanceReport) GetFrom() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.From
 }
 
-func (e *EntityBalanceReport) GetUntil() *string {
+func (e *EntityBalanceReport) GetUntil() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Until
 }
 
-func (e *EntityBalanceReport) GetGrouping() *BalanceReportGrouping {
+func (e *EntityBalanceReport) GetGrouping() BalanceReportGrouping {
 	if e == nil {
-		return nil
+		return BalanceReportGrouping("")
 	}
 	return e.Grouping
 }
 
-func (e *EntityBalanceReport) GetTotals() *Totals {
+func (e *EntityBalanceReport) GetTotals() Totals {
 	if e == nil {
-		return nil
+		return Totals{}
 	}
 	return e.Totals
 }
 
-func (e *EntityBalanceReport) GetLinks() *EntityBalanceReportLinks {
+func (e *EntityBalanceReport) GetLinks() EntityBalanceReportLinks {
 	if e == nil {
-		return nil
+		return EntityBalanceReportLinks{}
 	}
 	return e.Links
 }

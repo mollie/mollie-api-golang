@@ -3,68 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// Resource - **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
-//
-// Indicate if you will use the result for the [Create order](create-order)
-// or the [Create payment](create-payment) endpoint.
-//
-// When passing the value `orders`, the result will include payment methods
-// that are only available for payments created via the Orders API.
-type Resource string
-
-const (
-	ResourcePayments Resource = "payments"
-	ResourceOrders   Resource = "orders"
-)
-
-func (e Resource) ToPointer() *Resource {
-	return &e
-}
-func (e *Resource) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payments":
-		fallthrough
-	case "orders":
-		*e = Resource(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Resource: %v", v)
-	}
-}
-
-// IncludeWallets - A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-// to check if they are available on the shoppers device, hence the need to indicate your support.
-type IncludeWallets string
-
-const (
-	IncludeWalletsApplepay IncludeWallets = "applepay"
-)
-
-func (e IncludeWallets) ToPointer() *IncludeWallets {
-	return &e
-}
-func (e *IncludeWallets) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "applepay":
-		*e = IncludeWallets(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for IncludeWallets: %v", v)
-	}
-}
 
 type ListMethodsRequest struct {
 	// Set this parameter to `first` to only return the enabled methods that
@@ -88,7 +28,7 @@ type ListMethodsRequest struct {
 	// that are only available for payments created via the Orders API.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Resource *Resource `queryParam:"style=form,explode=true,name=resource"`
+	Resource *components.MethodResourceParameter `queryParam:"style=form,explode=true,name=resource"`
 	// The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
 	// to check whether your customer is eligible for certain payment methods, for example for Klarna.
 	//
@@ -96,7 +36,7 @@ type ListMethodsRequest struct {
 	BillingCountry *string `queryParam:"style=form,explode=true,name=billingCountry"`
 	// A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
 	// to check if they are available on the shoppers device, hence the need to indicate your support.
-	IncludeWallets *IncludeWallets `queryParam:"style=form,explode=true,name=includeWallets"`
+	IncludeWallets *components.MethodIncludeWalletsParameter `queryParam:"style=form,explode=true,name=includeWallets"`
 	// A comma-separated list of the line categories you support in your checkout.
 	//
 	// Example: `/v2/methods?orderLineCategories=eco,meal`
@@ -140,7 +80,7 @@ func (l *ListMethodsRequest) GetAmount() *components.Amount {
 	return l.Amount
 }
 
-func (l *ListMethodsRequest) GetResource() *Resource {
+func (l *ListMethodsRequest) GetResource() *components.MethodResourceParameter {
 	if l == nil {
 		return nil
 	}
@@ -154,7 +94,7 @@ func (l *ListMethodsRequest) GetBillingCountry() *string {
 	return l.BillingCountry
 }
 
-func (l *ListMethodsRequest) GetIncludeWallets() *IncludeWallets {
+func (l *ListMethodsRequest) GetIncludeWallets() *components.MethodIncludeWalletsParameter {
 	if l == nil {
 		return nil
 	}

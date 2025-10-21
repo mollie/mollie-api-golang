@@ -36,7 +36,7 @@ func main() {
         }),
     )
 
-    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RouteCreateRequest{
+    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityRoute{
         ID: client.Pointer("crt_dyARQ3JzCgtPDhU2Pbq3J"),
         PaymentID: client.Pointer("tr_5B8cwPMGnU"),
         Amount: &components.Amount{
@@ -44,8 +44,8 @@ func main() {
             Value: "10.00",
         },
         Description: client.Pointer("Payment for Order #12345"),
-        Destination: &components.RouteCreateRequestDestination{
-            Type: components.RouteDestinationTypeOrganization,
+        Destination: &components.EntityRouteDestination{
+            Type: components.RouteDestinationTypeResponseOrganization,
             OrganizationID: "org_1234567",
         },
         Testmode: client.Pointer(false),
@@ -66,7 +66,7 @@ func main() {
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `paymentID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `routeCreateRequest`                                                             | [*components.RouteCreateRequest](../../models/components/routecreaterequest.md)  | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `entityRoute`                                                                    | [*components.EntityRoute](../../models/components/entityroute.md)                | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response

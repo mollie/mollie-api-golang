@@ -47,64 +47,64 @@ func (r *RouteCreateResponseLinks) GetDocumentation() URLObj {
 
 type RouteCreateResponse struct {
 	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-	Resource  string `json:"resource"`
-	ID        string `json:"id"`
-	PaymentID string `json:"paymentId"`
+	Resource  *string `json:"resource,omitempty"`
+	ID        *string `json:"id,omitempty"`
+	PaymentID *string `json:"paymentId,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount Amount `json:"amount"`
+	Amount *Amount `json:"amount,omitempty"`
 	// The description of the route. This description is shown in the reports.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 	// The destination of the route.
-	Destination RouteCreateResponseDestination `json:"destination"`
+	Destination *RouteCreateResponseDestination `json:"destination,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links RouteCreateResponseLinks `json:"_links"`
+	Links *RouteCreateResponseLinks `json:"_links,omitempty"`
 }
 
-func (r *RouteCreateResponse) GetResource() string {
+func (r *RouteCreateResponse) GetResource() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Resource
 }
 
-func (r *RouteCreateResponse) GetID() string {
+func (r *RouteCreateResponse) GetID() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.ID
 }
 
-func (r *RouteCreateResponse) GetPaymentID() string {
+func (r *RouteCreateResponse) GetPaymentID() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.PaymentID
 }
 
-func (r *RouteCreateResponse) GetAmount() Amount {
+func (r *RouteCreateResponse) GetAmount() *Amount {
 	if r == nil {
-		return Amount{}
+		return nil
 	}
 	return r.Amount
 }
 
-func (r *RouteCreateResponse) GetDescription() string {
+func (r *RouteCreateResponse) GetDescription() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Description
 }
 
-func (r *RouteCreateResponse) GetDestination() RouteCreateResponseDestination {
+func (r *RouteCreateResponse) GetDestination() *RouteCreateResponseDestination {
 	if r == nil {
-		return RouteCreateResponseDestination{}
+		return nil
 	}
 	return r.Destination
 }
 
-func (r *RouteCreateResponse) GetLinks() RouteCreateResponseLinks {
+func (r *RouteCreateResponse) GetLinks() *RouteCreateResponseLinks {
 	if r == nil {
-		return RouteCreateResponseLinks{}
+		return nil
 	}
 	return r.Links
 }

@@ -29,7 +29,7 @@ func (c *CreateClientLinkRequest) GetEntityClientLink() *components.EntityClient
 type CreateClientLinkResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created client link object.
-	EntityClientLinkResponse *components.EntityClientLinkResponse
+	ClientLinkResponse *components.ClientLinkResponse
 }
 
 func (c *CreateClientLinkResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -39,9 +39,9 @@ func (c *CreateClientLinkResponse) GetHTTPMeta() components.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateClientLinkResponse) GetEntityClientLinkResponse() *components.EntityClientLinkResponse {
+func (c *CreateClientLinkResponse) GetClientLinkResponse() *components.ClientLinkResponse {
 	if c == nil {
 		return nil
 	}
-	return c.EntityClientLinkResponse
+	return c.ClientLinkResponse
 }

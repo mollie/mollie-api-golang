@@ -81,12 +81,12 @@ type Invoice struct {
 type ListInvoicesEmbedded struct {
 	// An array of invoice objects. For a complete reference of
 	// the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
-	Invoices []Invoice `json:"invoices,omitempty"`
+	Invoices []Invoice `json:"invoices"`
 }
 
 func (l *ListInvoicesEmbedded) GetInvoices() []Invoice {
 	if l == nil {
-		return nil
+		return []Invoice{}
 	}
 	return l.Invoices
 }
@@ -99,29 +99,29 @@ type ListInvoicesResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                `json:"count,omitempty"`
-	Embedded *ListInvoicesEmbedded `json:"_embedded,omitempty"`
+	Count    int64                `json:"count"`
+	Embedded ListInvoicesEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *components.ListLinks `json:"_links,omitempty"`
+	Links components.ListLinks `json:"_links"`
 }
 
-func (l *ListInvoicesResponseBody) GetCount() *int64 {
+func (l *ListInvoicesResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListInvoicesResponseBody) GetEmbedded() *ListInvoicesEmbedded {
+func (l *ListInvoicesResponseBody) GetEmbedded() ListInvoicesEmbedded {
 	if l == nil {
-		return nil
+		return ListInvoicesEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListInvoicesResponseBody) GetLinks() *components.ListLinks {
+func (l *ListInvoicesResponseBody) GetLinks() components.ListLinks {
 	if l == nil {
-		return nil
+		return components.ListLinks{}
 	}
 	return l.Links
 }

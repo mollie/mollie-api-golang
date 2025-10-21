@@ -4,38 +4,38 @@ package components
 
 type Address struct {
 	// A street and street number.
-	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
+	StreetAndNumber string `json:"streetAndNumber"`
 	// A postal code. This field may be required if the provided country has a postal code system.
-	PostalCode *string `json:"postalCode,omitempty"`
-	City       *string `json:"city,omitempty"`
+	PostalCode string `json:"postalCode"`
+	City       string `json:"city"`
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	Country *string `json:"country,omitempty"`
+	Country string `json:"country"`
 }
 
-func (a *Address) GetStreetAndNumber() *string {
+func (a *Address) GetStreetAndNumber() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.StreetAndNumber
 }
 
-func (a *Address) GetPostalCode() *string {
+func (a *Address) GetPostalCode() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.PostalCode
 }
 
-func (a *Address) GetCity() *string {
+func (a *Address) GetCity() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.City
 }
 
-func (a *Address) GetCountry() *string {
+func (a *Address) GetCountry() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Country
 }

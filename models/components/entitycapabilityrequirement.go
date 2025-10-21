@@ -2,36 +2,12 @@
 
 package components
 
-// Dashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-// For example, where necessary documents are to be uploaded.
-type Dashboard struct {
-	// The actual URL string.
-	Href *string `json:"href,omitempty"`
-	// The content type of the page or endpoint the URL points to.
-	Type *string `json:"type,omitempty"`
-}
-
-func (d *Dashboard) GetHref() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Href
-}
-
-func (d *Dashboard) GetType() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Type
-}
-
 type EntityCapabilityRequirementLinks struct {
-	// If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-	// For example, where necessary documents are to be uploaded.
-	Dashboard *Dashboard `json:"dashboard,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Dashboard *URLObj `json:"dashboard,omitempty"`
 }
 
-func (e *EntityCapabilityRequirementLinks) GetDashboard() *Dashboard {
+func (e *EntityCapabilityRequirementLinks) GetDashboard() *URLObj {
 	if e == nil {
 		return nil
 	}
@@ -42,25 +18,25 @@ type EntityCapabilityRequirement struct {
 	// The name of this requirement, referring to the task to be fulfilled by the organization
 	// to enable or re-enable the capability. The name is unique among other requirements
 	// of the same capability.
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id"`
 	// The status of the requirement depends on its due date.
 	// If no due date is given, the status will be `requested`.
-	Status *CapabilityRequirementStatus `json:"status,omitempty"`
+	Status CapabilityRequirementStatus `json:"status"`
 	// Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
-	DueDate *string                           `json:"dueDate,omitempty"`
-	Links   *EntityCapabilityRequirementLinks `json:"_links,omitempty"`
+	DueDate *string                          `json:"dueDate"`
+	Links   EntityCapabilityRequirementLinks `json:"_links"`
 }
 
-func (e *EntityCapabilityRequirement) GetID() *string {
+func (e *EntityCapabilityRequirement) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityCapabilityRequirement) GetStatus() *CapabilityRequirementStatus {
+func (e *EntityCapabilityRequirement) GetStatus() CapabilityRequirementStatus {
 	if e == nil {
-		return nil
+		return CapabilityRequirementStatus("")
 	}
 	return e.Status
 }
@@ -72,9 +48,9 @@ func (e *EntityCapabilityRequirement) GetDueDate() *string {
 	return e.DueDate
 }
 
-func (e *EntityCapabilityRequirement) GetLinks() *EntityCapabilityRequirementLinks {
+func (e *EntityCapabilityRequirement) GetLinks() EntityCapabilityRequirementLinks {
 	if e == nil {
-		return nil
+		return EntityCapabilityRequirementLinks{}
 	}
 	return e.Links
 }

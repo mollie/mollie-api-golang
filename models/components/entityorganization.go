@@ -36,18 +36,17 @@ func (e *EntityOrganizationLinks) GetDocumentation() *URLObj {
 type EntityOrganization struct {
 	// Indicates the response contains an organization object. Will always contain the string `organization` for this
 	// resource type.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this organization. Example: `org_12345678`.
-	ID *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// The name of the organization.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The email address associated with the organization.
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email"`
 	// Allows you to preset the language to be used.
-	Locale  *LocaleResponse `json:"locale,omitempty"`
-	Address *Address        `json:"address,omitempty"`
+	Locale  *LocaleResponse `json:"locale"`
+	Address Address         `json:"address"`
 	// The registration number of the organization at their local chamber of commerce.
-	RegistrationNumber *string `json:"registrationNumber,omitempty"`
+	RegistrationNumber string `json:"registrationNumber"`
 	// The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
 	// verified against the international registry *VIES*.
 	//
@@ -59,33 +58,33 @@ type EntityOrganization struct {
 	// The field is not present for merchants residing in other countries.
 	VatRegulation *OrganizationVatRegulation `json:"vatRegulation,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityOrganizationLinks `json:"_links,omitempty"`
+	Links EntityOrganizationLinks `json:"_links"`
 }
 
-func (e *EntityOrganization) GetResource() *string {
+func (e *EntityOrganization) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityOrganization) GetID() *string {
+func (e *EntityOrganization) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityOrganization) GetName() *string {
+func (e *EntityOrganization) GetName() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Name
 }
 
-func (e *EntityOrganization) GetEmail() *string {
+func (e *EntityOrganization) GetEmail() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Email
 }
@@ -97,16 +96,16 @@ func (e *EntityOrganization) GetLocale() *LocaleResponse {
 	return e.Locale
 }
 
-func (e *EntityOrganization) GetAddress() *Address {
+func (e *EntityOrganization) GetAddress() Address {
 	if e == nil {
-		return nil
+		return Address{}
 	}
 	return e.Address
 }
 
-func (e *EntityOrganization) GetRegistrationNumber() *string {
+func (e *EntityOrganization) GetRegistrationNumber() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.RegistrationNumber
 }
@@ -125,9 +124,9 @@ func (e *EntityOrganization) GetVatRegulation() *OrganizationVatRegulation {
 	return e.VatRegulation
 }
 
-func (e *EntityOrganization) GetLinks() *EntityOrganizationLinks {
+func (e *EntityOrganization) GetLinks() EntityOrganizationLinks {
 	if e == nil {
-		return nil
+		return EntityOrganizationLinks{}
 	}
 	return e.Links
 }

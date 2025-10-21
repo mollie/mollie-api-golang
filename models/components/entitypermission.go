@@ -27,47 +27,47 @@ func (e *EntityPermissionLinks) GetDocumentation() *URLObj {
 type EntityPermission struct {
 	// Indicates the response contains a permission object. Will always contain the string `permission` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// A short description of what kind of access the permission enables.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// Whether this permission is granted to the app by the organization.
-	Granted *bool `json:"granted,omitempty"`
+	Granted bool `json:"granted"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityPermissionLinks `json:"_links,omitempty"`
+	Links EntityPermissionLinks `json:"_links"`
 }
 
-func (e *EntityPermission) GetResource() *string {
+func (e *EntityPermission) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityPermission) GetID() *string {
+func (e *EntityPermission) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityPermission) GetDescription() *string {
+func (e *EntityPermission) GetDescription() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Description
 }
 
-func (e *EntityPermission) GetGranted() *bool {
+func (e *EntityPermission) GetGranted() bool {
 	if e == nil {
-		return nil
+		return false
 	}
 	return e.Granted
 }
 
-func (e *EntityPermission) GetLinks() *EntityPermissionLinks {
+func (e *EntityPermission) GetLinks() EntityPermissionLinks {
 	if e == nil {
-		return nil
+		return EntityPermissionLinks{}
 	}
 	return e.Links
 }

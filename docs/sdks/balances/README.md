@@ -245,7 +245,7 @@ func main() {
         BalanceID: "bal_gVMhHKqSSRYJyPsuoPNFH",
         From: "2024-01-01",
         Until: "2024-02-01",
-        Grouping: operations.GroupingStatusBalances.ToPointer(),
+        Grouping: components.BalanceReportGroupingStatusBalances.ToPointer(),
         Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })

@@ -9,9 +9,9 @@
 entity := components.CreateEntityPaymentLinkResponse(components.PaymentLinkResponse{/* values here */})
 ```
 
-### EntityProfileResponse
+### ProfileResponse
 
 ```go
-entity := components.CreateEntityEntityProfileResponse(components.EntityProfileResponse{/* values here */})
+entity := components.CreateEntityProfileResponse(components.ProfileResponse{/* values here */})
 ```
 

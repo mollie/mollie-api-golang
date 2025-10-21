@@ -58,7 +58,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityProfileResponse != nil {
+    if res.ProfileResponse != nil {
         // handle response
     }
 }
@@ -175,7 +175,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityProfileResponse != nil {
+    if res.ProfileResponse != nil {
         // handle response
     }
 }
@@ -244,12 +244,11 @@ func main() {
             "GB",
         },
         BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
-        Mode: operations.ModeLive.ToPointer(),
     }, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityProfileResponse != nil {
+    if res.ProfileResponse != nil {
         // handle response
     }
 }
@@ -368,7 +367,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityProfileResponse != nil {
+    if res.ProfileResponse != nil {
         // handle response
     }
 }

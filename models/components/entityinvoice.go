@@ -4,48 +4,48 @@ package components
 
 type EntityInvoiceLine struct {
 	// The administrative period in `YYYY-MM` on which the line should be booked.
-	Period *string `json:"period,omitempty"`
+	Period string `json:"period"`
 	// Description of the product.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// Number of products invoiced. For example, the number of payments.
-	Count *int64 `json:"count,omitempty"`
+	Count int64 `json:"count"`
 	// VAT percentage rate that applies to this product.
-	VatPercentage *int64 `json:"vatPercentage,omitempty"`
+	VatPercentage int64 `json:"vatPercentage"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 }
 
-func (e *EntityInvoiceLine) GetPeriod() *string {
+func (e *EntityInvoiceLine) GetPeriod() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Period
 }
 
-func (e *EntityInvoiceLine) GetDescription() *string {
+func (e *EntityInvoiceLine) GetDescription() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Description
 }
 
-func (e *EntityInvoiceLine) GetCount() *int64 {
+func (e *EntityInvoiceLine) GetCount() int64 {
 	if e == nil {
-		return nil
+		return 0
 	}
 	return e.Count
 }
 
-func (e *EntityInvoiceLine) GetVatPercentage() *int64 {
+func (e *EntityInvoiceLine) GetVatPercentage() int64 {
 	if e == nil {
-		return nil
+		return 0
 	}
 	return e.VatPercentage
 }
 
-func (e *EntityInvoiceLine) GetAmount() *Amount {
+func (e *EntityInvoiceLine) GetAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.Amount
 }
@@ -84,50 +84,49 @@ func (e *EntityInvoiceLinks) GetDocumentation() *URLObj {
 type EntityInvoice struct {
 	// Indicates that the response contains an invoice object.
 	// Will always contain the string `invoice` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-	ID *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// The reference number of the invoice. An example value would be: `2024.10000`.
-	Reference *string `json:"reference,omitempty"`
+	Reference string `json:"reference"`
 	// The VAT number to which the invoice was issued to, if applicable.
-	VatNumber *string `json:"vatNumber,omitempty"`
+	VatNumber *string `json:"vatNumber"`
 	// Status of the invoice.
-	Status *InvoiceStatus `json:"status,omitempty"`
+	Status InvoiceStatus `json:"status"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	NetAmount *Amount `json:"netAmount,omitempty"`
+	NetAmount Amount `json:"netAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	VatAmount *Amount `json:"vatAmount,omitempty"`
+	VatAmount Amount `json:"vatAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	GrossAmount *Amount `json:"grossAmount,omitempty"`
+	GrossAmount Amount `json:"grossAmount"`
 	// The collection of products which make up the invoice.
-	Lines []EntityInvoiceLine `json:"lines,omitempty"`
+	Lines []EntityInvoiceLine `json:"lines"`
 	// The invoice date in `YYYY-MM-DD` format.
-	IssuedAt *string `json:"issuedAt,omitempty"`
+	IssuedAt string `json:"issuedAt"`
 	// The date on which the invoice was paid, if applicable, in `YYYY-MM-DD` format.
 	PaidAt *string `json:"paidAt,omitempty"`
 	// The date on which the invoice is due, if applicable, in `YYYY-MM-DD` format.
 	DueAt *string `json:"dueAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityInvoiceLinks `json:"_links,omitempty"`
+	Links EntityInvoiceLinks `json:"_links"`
 }
 
-func (e *EntityInvoice) GetResource() *string {
+func (e *EntityInvoice) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityInvoice) GetID() *string {
+func (e *EntityInvoice) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityInvoice) GetReference() *string {
+func (e *EntityInvoice) GetReference() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Reference
 }
@@ -139,44 +138,44 @@ func (e *EntityInvoice) GetVatNumber() *string {
 	return e.VatNumber
 }
 
-func (e *EntityInvoice) GetStatus() *InvoiceStatus {
+func (e *EntityInvoice) GetStatus() InvoiceStatus {
 	if e == nil {
-		return nil
+		return InvoiceStatus("")
 	}
 	return e.Status
 }
 
-func (e *EntityInvoice) GetNetAmount() *Amount {
+func (e *EntityInvoice) GetNetAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.NetAmount
 }
 
-func (e *EntityInvoice) GetVatAmount() *Amount {
+func (e *EntityInvoice) GetVatAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.VatAmount
 }
 
-func (e *EntityInvoice) GetGrossAmount() *Amount {
+func (e *EntityInvoice) GetGrossAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.GrossAmount
 }
 
 func (e *EntityInvoice) GetLines() []EntityInvoiceLine {
 	if e == nil {
-		return nil
+		return []EntityInvoiceLine{}
 	}
 	return e.Lines
 }
 
-func (e *EntityInvoice) GetIssuedAt() *string {
+func (e *EntityInvoice) GetIssuedAt() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.IssuedAt
 }
@@ -195,9 +194,9 @@ func (e *EntityInvoice) GetDueAt() *string {
 	return e.DueAt
 }
 
-func (e *EntityInvoice) GetLinks() *EntityInvoiceLinks {
+func (e *EntityInvoice) GetLinks() EntityInvoiceLinks {
 	if e == nil {
-		return nil
+		return EntityInvoiceLinks{}
 	}
 	return e.Links
 }

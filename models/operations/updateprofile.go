@@ -3,38 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// Mode - Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
-// the profile before it can start accepting payments.
-type Mode string
-
-const (
-	ModeLive Mode = "live"
-	ModeTest Mode = "test"
-)
-
-func (e Mode) ToPointer() *Mode {
-	return &e
-}
-func (e *Mode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "test":
-		*e = Mode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Mode: %v", v)
-	}
-}
 
 type UpdateProfileRequestBody struct {
 	// The profile's name, this will usually reflect the trade name or brand name of the profile's website or
@@ -55,9 +25,6 @@ type UpdateProfileRequestBody struct {
 	// The industry associated with the profile's trade name or brand. Please refer to the
 	// [business category list](common-data-types) for all possible options.
 	BusinessCategory *string `json:"businessCategory,omitempty"`
-	// Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
-	// the profile before it can start accepting payments.
-	Mode *Mode `json:"mode,omitempty"`
 }
 
 func (u *UpdateProfileRequestBody) GetName() *string {
@@ -109,13 +76,6 @@ func (u *UpdateProfileRequestBody) GetBusinessCategory() *string {
 	return u.BusinessCategory
 }
 
-func (u *UpdateProfileRequestBody) GetMode() *Mode {
-	if u == nil {
-		return nil
-	}
-	return u.Mode
-}
-
 type UpdateProfileRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
@@ -148,7 +108,7 @@ func (u *UpdateProfileRequest) GetRequestBody() UpdateProfileRequestBody {
 type UpdateProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The updated profile object.
-	EntityProfileResponse *components.EntityProfileResponse
+	ProfileResponse *components.ProfileResponse
 }
 
 func (u *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -158,9 +118,9 @@ func (u *UpdateProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+func (u *UpdateProfileResponse) GetProfileResponse() *components.ProfileResponse {
 	if u == nil {
 		return nil
 	}
-	return u.EntityProfileResponse
+	return u.ProfileResponse
 }

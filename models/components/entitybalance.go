@@ -60,17 +60,17 @@ func (e *EntityBalanceLinks) GetDocumentation() *URLObj {
 
 type EntityBalance struct {
 	// Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string     `json:"createdAt,omitempty"`
-	Currency  *Currencies `json:"currency,omitempty"`
+	CreatedAt string     `json:"createdAt"`
+	Currency  Currencies `json:"currency"`
 	// The description or name of the balance. Can be used to denote the purpose of the balance.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// The status of the balance.
-	Status *BalanceStatus `json:"status,omitempty"`
+	Status BalanceStatus `json:"status"`
 	// The frequency with which the available amount on the balance will be settled to the configured transfer
 	// destination.
 	//
@@ -84,58 +84,58 @@ type EntityBalance struct {
 	// transfer frequency.
 	TransferDestination *TransferDestination `json:"transferDestination,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AvailableAmount *Amount `json:"availableAmount,omitempty"`
+	AvailableAmount Amount `json:"availableAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	PendingAmount *Amount `json:"pendingAmount,omitempty"`
+	PendingAmount Amount `json:"pendingAmount"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityBalanceLinks `json:"_links,omitempty"`
+	Links EntityBalanceLinks `json:"_links"`
 }
 
-func (e *EntityBalance) GetResource() *string {
+func (e *EntityBalance) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityBalance) GetID() *string {
+func (e *EntityBalance) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityBalance) GetMode() *Mode {
+func (e *EntityBalance) GetMode() Mode {
 	if e == nil {
-		return nil
+		return Mode("")
 	}
 	return e.Mode
 }
 
-func (e *EntityBalance) GetCreatedAt() *string {
+func (e *EntityBalance) GetCreatedAt() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.CreatedAt
 }
 
-func (e *EntityBalance) GetCurrency() *Currencies {
+func (e *EntityBalance) GetCurrency() Currencies {
 	if e == nil {
-		return nil
+		return Currencies("")
 	}
 	return e.Currency
 }
 
-func (e *EntityBalance) GetDescription() *string {
+func (e *EntityBalance) GetDescription() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Description
 }
 
-func (e *EntityBalance) GetStatus() *BalanceStatus {
+func (e *EntityBalance) GetStatus() BalanceStatus {
 	if e == nil {
-		return nil
+		return BalanceStatus("")
 	}
 	return e.Status
 }
@@ -168,23 +168,23 @@ func (e *EntityBalance) GetTransferDestination() *TransferDestination {
 	return e.TransferDestination
 }
 
-func (e *EntityBalance) GetAvailableAmount() *Amount {
+func (e *EntityBalance) GetAvailableAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.AvailableAmount
 }
 
-func (e *EntityBalance) GetPendingAmount() *Amount {
+func (e *EntityBalance) GetPendingAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.PendingAmount
 }
 
-func (e *EntityBalance) GetLinks() *EntityBalanceLinks {
+func (e *EntityBalance) GetLinks() EntityBalanceLinks {
 	if e == nil {
-		return nil
+		return EntityBalanceLinks{}
 	}
 	return e.Links
 }

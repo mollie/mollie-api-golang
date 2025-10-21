@@ -3,42 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// Grouping - You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-// by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-// available (e.g. payment method).
-//
-// With the `transaction-categories` format, transactions are grouped by
-// transaction type, then by status, and then again by other sub-groupings where available.
-type Grouping string
-
-const (
-	GroupingStatusBalances        Grouping = "status-balances"
-	GroupingTransactionCategories Grouping = "transaction-categories"
-)
-
-func (e Grouping) ToPointer() *Grouping {
-	return &e
-}
-func (e *Grouping) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "status-balances":
-		fallthrough
-	case "transaction-categories":
-		*e = Grouping(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Grouping: %v", v)
-	}
-}
 
 type GetBalanceReportRequest struct {
 	// Provide the ID of the related balance.
@@ -57,7 +23,7 @@ type GetBalanceReportRequest struct {
 	//
 	// With the `transaction-categories` format, transactions are grouped by
 	// transaction type, then by status, and then again by other sub-groupings where available.
-	Grouping *Grouping `queryParam:"style=form,explode=true,name=grouping"`
+	Grouping *components.BalanceReportGrouping `queryParam:"style=form,explode=true,name=grouping"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -89,7 +55,7 @@ func (g *GetBalanceReportRequest) GetUntil() string {
 	return g.Until
 }
 
-func (g *GetBalanceReportRequest) GetGrouping() *Grouping {
+func (g *GetBalanceReportRequest) GetGrouping() *components.BalanceReportGrouping {
 	if g == nil {
 		return nil
 	}

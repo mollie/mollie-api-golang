@@ -33,11 +33,11 @@ func newDelayedRouting(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // Create a delayed route
 // Create a route for a specific payment.
 // The routed amount is credited to the account of your customer.
-func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempotencyKey *string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
+func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityRoute *components.EntityRoute, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
 	request := operations.PaymentCreateRouteRequest{
-		PaymentID:          paymentID,
-		IdempotencyKey:     idempotencyKey,
-		RouteCreateRequest: routeCreateRequest,
+		PaymentID:      paymentID,
+		IdempotencyKey: idempotencyKey,
+		EntityRoute:    entityRoute,
 	}
 
 	o := operations.Options{}
@@ -72,7 +72,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RouteCreateRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityRoute", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}

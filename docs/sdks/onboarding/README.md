@@ -101,7 +101,7 @@ func main() {
             Name: client.Pointer("Mollie B.V."),
             RegistrationNumber: client.Pointer("30204462"),
             VatNumber: client.Pointer("NL815839091B01"),
-            VatRegulation: operations.VatRegulationDutch.ToPointer(),
+            VatRegulation: components.OnboardingVatRegulationDutch.ToPointer(),
         },
         Profile: &operations.Profile{
             Name: client.Pointer("Mollie"),

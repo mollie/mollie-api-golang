@@ -2,8 +2,8 @@
 
 package components
 
-// EntityClientLinkResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type EntityClientLinkResponseLinks struct {
+// ClientLinkResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+type ClientLinkResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Self *URLObj `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -12,54 +12,54 @@ type EntityClientLinkResponseLinks struct {
 	Documentation *URLObj `json:"documentation,omitempty"`
 }
 
-func (e *EntityClientLinkResponseLinks) GetSelf() *URLObj {
-	if e == nil {
+func (c *ClientLinkResponseLinks) GetSelf() *URLObj {
+	if c == nil {
 		return nil
 	}
-	return e.Self
+	return c.Self
 }
 
-func (e *EntityClientLinkResponseLinks) GetClientLink() *URLObj {
-	if e == nil {
+func (c *ClientLinkResponseLinks) GetClientLink() *URLObj {
+	if c == nil {
 		return nil
 	}
-	return e.ClientLink
+	return c.ClientLink
 }
 
-func (e *EntityClientLinkResponseLinks) GetDocumentation() *URLObj {
-	if e == nil {
+func (c *ClientLinkResponseLinks) GetDocumentation() *URLObj {
+	if c == nil {
 		return nil
 	}
-	return e.Documentation
+	return c.Documentation
 }
 
-type EntityClientLinkResponse struct {
+type ClientLinkResponse struct {
 	// Indicates the response contains a client link object. Will always contain the string `client-link` for this
 	// endpoint.
 	Resource *string `json:"resource,omitempty"`
 	// The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
 	ID *string `json:"id,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityClientLinkResponseLinks `json:"_links,omitempty"`
+	Links *ClientLinkResponseLinks `json:"_links,omitempty"`
 }
 
-func (e *EntityClientLinkResponse) GetResource() *string {
-	if e == nil {
+func (c *ClientLinkResponse) GetResource() *string {
+	if c == nil {
 		return nil
 	}
-	return e.Resource
+	return c.Resource
 }
 
-func (e *EntityClientLinkResponse) GetID() *string {
-	if e == nil {
+func (c *ClientLinkResponse) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return e.ID
+	return c.ID
 }
 
-func (e *EntityClientLinkResponse) GetLinks() *EntityClientLinkResponseLinks {
-	if e == nil {
+func (c *ClientLinkResponse) GetLinks() *ClientLinkResponseLinks {
+	if c == nil {
 		return nil
 	}
-	return e.Links
+	return c.Links
 }

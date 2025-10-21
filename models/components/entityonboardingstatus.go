@@ -45,66 +45,66 @@ func (e *EntityOnboardingStatusLinks) GetDocumentation() *URLObj {
 type EntityOnboardingStatus struct {
 	// Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
 	// resource type.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The name of the organization.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The current status of the organization's onboarding process.
-	Status *OnboardingStatus `json:"status,omitempty"`
+	Status OnboardingStatus `json:"status"`
 	// Whether the organization can receive payments.
-	CanReceivePayments *bool `json:"canReceivePayments,omitempty"`
+	CanReceivePayments bool `json:"canReceivePayments"`
 	// Whether the organization can receive settlements to their external bank account.
-	CanReceiveSettlements *bool `json:"canReceiveSettlements,omitempty"`
+	CanReceiveSettlements bool `json:"canReceiveSettlements"`
 	// The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	SignedUpAt *string `json:"signedUpAt,omitempty"`
+	SignedUpAt string `json:"signedUpAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntityOnboardingStatusLinks `json:"_links,omitempty"`
+	Links EntityOnboardingStatusLinks `json:"_links"`
 }
 
-func (e *EntityOnboardingStatus) GetResource() *string {
+func (e *EntityOnboardingStatus) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityOnboardingStatus) GetName() *string {
+func (e *EntityOnboardingStatus) GetName() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Name
 }
 
-func (e *EntityOnboardingStatus) GetStatus() *OnboardingStatus {
+func (e *EntityOnboardingStatus) GetStatus() OnboardingStatus {
 	if e == nil {
-		return nil
+		return OnboardingStatus("")
 	}
 	return e.Status
 }
 
-func (e *EntityOnboardingStatus) GetCanReceivePayments() *bool {
+func (e *EntityOnboardingStatus) GetCanReceivePayments() bool {
 	if e == nil {
-		return nil
+		return false
 	}
 	return e.CanReceivePayments
 }
 
-func (e *EntityOnboardingStatus) GetCanReceiveSettlements() *bool {
+func (e *EntityOnboardingStatus) GetCanReceiveSettlements() bool {
 	if e == nil {
-		return nil
+		return false
 	}
 	return e.CanReceiveSettlements
 }
 
-func (e *EntityOnboardingStatus) GetSignedUpAt() *string {
+func (e *EntityOnboardingStatus) GetSignedUpAt() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.SignedUpAt
 }
 
-func (e *EntityOnboardingStatus) GetLinks() *EntityOnboardingStatusLinks {
+func (e *EntityOnboardingStatus) GetLinks() EntityOnboardingStatusLinks {
 	if e == nil {
-		return nil
+		return EntityOnboardingStatusLinks{}
 	}
 	return e.Links
 }

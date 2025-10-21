@@ -11,13 +11,13 @@ import (
 type EntityType string
 
 const (
-	EntityTypePaymentLinkResponse   EntityType = "payment-link-response"
-	EntityTypeEntityProfileResponse EntityType = "entity-profile-response"
+	EntityTypePaymentLinkResponse EntityType = "payment-link-response"
+	EntityTypeProfileResponse     EntityType = "profile-response"
 )
 
 type Entity struct {
-	PaymentLinkResponse   *PaymentLinkResponse   `queryParam:"inline,name=entity"`
-	EntityProfileResponse *EntityProfileResponse `queryParam:"inline,name=entity"`
+	PaymentLinkResponse *PaymentLinkResponse `queryParam:"inline,name=entity"`
+	ProfileResponse     *ProfileResponse     `queryParam:"inline,name=entity"`
 
 	Type EntityType
 }
@@ -31,12 +31,12 @@ func CreateEntityPaymentLinkResponse(paymentLinkResponse PaymentLinkResponse) En
 	}
 }
 
-func CreateEntityEntityProfileResponse(entityProfileResponse EntityProfileResponse) Entity {
-	typ := EntityTypeEntityProfileResponse
+func CreateEntityProfileResponse(profileResponse ProfileResponse) Entity {
+	typ := EntityTypeProfileResponse
 
 	return Entity{
-		EntityProfileResponse: &entityProfileResponse,
-		Type:                  typ,
+		ProfileResponse: &profileResponse,
+		Type:            typ,
 	}
 }
 
@@ -49,10 +49,10 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var entityProfileResponse EntityProfileResponse = EntityProfileResponse{}
-	if err := utils.UnmarshalJSON(data, &entityProfileResponse, "", true, nil); err == nil {
-		u.EntityProfileResponse = &entityProfileResponse
-		u.Type = EntityTypeEntityProfileResponse
+	var profileResponse ProfileResponse = ProfileResponse{}
+	if err := utils.UnmarshalJSON(data, &profileResponse, "", true, nil); err == nil {
+		u.ProfileResponse = &profileResponse
+		u.Type = EntityTypeProfileResponse
 		return nil
 	}
 
@@ -64,8 +64,8 @@ func (u Entity) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PaymentLinkResponse, "", true)
 	}
 
-	if u.EntityProfileResponse != nil {
-		return utils.MarshalJSON(u.EntityProfileResponse, "", true)
+	if u.ProfileResponse != nil {
+		return utils.MarshalJSON(u.ProfileResponse, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Entity: all fields are null")

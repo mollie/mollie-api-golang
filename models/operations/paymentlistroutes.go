@@ -42,12 +42,12 @@ func (p *PaymentListRoutesRequest) GetIdempotencyKey() *string {
 
 type PaymentListRoutesEmbedded struct {
 	// An array of route objects.
-	Routes []components.RouteGetResponse `json:"routes,omitempty"`
+	Routes []components.RouteGetResponse `json:"routes"`
 }
 
 func (p *PaymentListRoutesEmbedded) GetRoutes() []components.RouteGetResponse {
 	if p == nil {
-		return nil
+		return []components.RouteGetResponse{}
 	}
 	return p.Routes
 }
@@ -81,29 +81,29 @@ type PaymentListRoutesResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                     `json:"count,omitempty"`
-	Embedded *PaymentListRoutesEmbedded `json:"_embedded,omitempty"`
+	Count    int64                     `json:"count"`
+	Embedded PaymentListRoutesEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *PaymentListRoutesLinks `json:"_links,omitempty"`
+	Links PaymentListRoutesLinks `json:"_links"`
 }
 
-func (p *PaymentListRoutesResponseBody) GetCount() *int64 {
+func (p *PaymentListRoutesResponseBody) GetCount() int64 {
 	if p == nil {
-		return nil
+		return 0
 	}
 	return p.Count
 }
 
-func (p *PaymentListRoutesResponseBody) GetEmbedded() *PaymentListRoutesEmbedded {
+func (p *PaymentListRoutesResponseBody) GetEmbedded() PaymentListRoutesEmbedded {
 	if p == nil {
-		return nil
+		return PaymentListRoutesEmbedded{}
 	}
 	return p.Embedded
 }
 
-func (p *PaymentListRoutesResponseBody) GetLinks() *PaymentListRoutesLinks {
+func (p *PaymentListRoutesResponseBody) GetLinks() PaymentListRoutesLinks {
 	if p == nil {
-		return nil
+		return PaymentListRoutesLinks{}
 	}
 	return p.Links
 }

@@ -39,12 +39,12 @@ func (l *ListProfilesRequest) GetIdempotencyKey() *string {
 
 type ListProfilesEmbedded struct {
 	// An array of profile objects.
-	Profiles []components.EntityProfileResponse `json:"profiles,omitempty"`
+	Profiles []components.ProfileResponse `json:"profiles"`
 }
 
-func (l *ListProfilesEmbedded) GetProfiles() []components.EntityProfileResponse {
+func (l *ListProfilesEmbedded) GetProfiles() []components.ProfileResponse {
 	if l == nil {
-		return nil
+		return []components.ProfileResponse{}
 	}
 	return l.Profiles
 }
@@ -56,29 +56,29 @@ type ListProfilesResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                `json:"count,omitempty"`
-	Embedded *ListProfilesEmbedded `json:"_embedded,omitempty"`
+	Count    int64                `json:"count"`
+	Embedded ListProfilesEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *components.ListLinks `json:"_links,omitempty"`
+	Links components.ListLinks `json:"_links"`
 }
 
-func (l *ListProfilesResponseBody) GetCount() *int64 {
+func (l *ListProfilesResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListProfilesResponseBody) GetEmbedded() *ListProfilesEmbedded {
+func (l *ListProfilesResponseBody) GetEmbedded() ListProfilesEmbedded {
 	if l == nil {
-		return nil
+		return ListProfilesEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListProfilesResponseBody) GetLinks() *components.ListLinks {
+func (l *ListProfilesResponseBody) GetLinks() components.ListLinks {
 	if l == nil {
-		return nil
+		return components.ListLinks{}
 	}
 	return l.Links
 }

@@ -1139,13 +1139,13 @@ func (c *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
 type EntityBalanceTransaction struct {
 	// Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
 	// for this endpoint.
-	Resource *string                 `json:"resource,omitempty"`
-	ID       *string                 `json:"id,omitempty"`
-	Type     *BalanceTransactionType `json:"type,omitempty"`
+	Resource string                 `json:"resource"`
+	ID       string                 `json:"id"`
+	Type     BalanceTransactionType `json:"type"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	ResultAmount *Amount `json:"resultAmount,omitempty"`
+	ResultAmount Amount `json:"resultAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	InitialAmount *Amount `json:"initialAmount,omitempty"`
+	InitialAmount Amount `json:"initialAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Deductions *AmountNullable `json:"deductions,omitempty"`
 	// Depending on the type of the balance transaction, we will try to give more context about the specific event that
@@ -1196,40 +1196,40 @@ type EntityBalanceTransaction struct {
 	// * Type `cash-collateral-release`: none
 	Context *Context `json:"context,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 }
 
-func (e *EntityBalanceTransaction) GetResource() *string {
+func (e *EntityBalanceTransaction) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityBalanceTransaction) GetID() *string {
+func (e *EntityBalanceTransaction) GetID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.ID
 }
 
-func (e *EntityBalanceTransaction) GetType() *BalanceTransactionType {
+func (e *EntityBalanceTransaction) GetType() BalanceTransactionType {
 	if e == nil {
-		return nil
+		return BalanceTransactionType("")
 	}
 	return e.Type
 }
 
-func (e *EntityBalanceTransaction) GetResultAmount() *Amount {
+func (e *EntityBalanceTransaction) GetResultAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.ResultAmount
 }
 
-func (e *EntityBalanceTransaction) GetInitialAmount() *Amount {
+func (e *EntityBalanceTransaction) GetInitialAmount() Amount {
 	if e == nil {
-		return nil
+		return Amount{}
 	}
 	return e.InitialAmount
 }
@@ -1248,9 +1248,9 @@ func (e *EntityBalanceTransaction) GetContext() *Context {
 	return e.Context
 }
 
-func (e *EntityBalanceTransaction) GetCreatedAt() *string {
+func (e *EntityBalanceTransaction) GetCreatedAt() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.CreatedAt
 }

@@ -223,12 +223,12 @@ func (s *Profiles) Create(ctx context.Context, entityProfile components.EntityPr
 				return nil, err
 			}
 
-			var out components.EntityProfileResponse
+			var out components.ProfileResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityProfileResponse = &out
+			res.ProfileResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -723,12 +723,12 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempoten
 				return nil, err
 			}
 
-			var out components.EntityProfileResponse
+			var out components.ProfileResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityProfileResponse = &out
+			res.ProfileResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -980,12 +980,12 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 				return nil, err
 			}
 
-			var out components.EntityProfileResponse
+			var out components.ProfileResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityProfileResponse = &out
+			res.ProfileResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1477,12 +1477,12 @@ func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts 
 				return nil, err
 			}
 
-			var out components.EntityProfileResponse
+			var out components.ProfileResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityProfileResponse = &out
+			res.ProfileResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

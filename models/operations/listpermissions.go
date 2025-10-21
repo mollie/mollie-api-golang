@@ -20,12 +20,12 @@ func (l *ListPermissionsRequest) GetIdempotencyKey() *string {
 
 type ListPermissionsEmbedded struct {
 	// An array of permission objects.
-	Permissions []components.EntityPermission `json:"permissions,omitempty"`
+	Permissions []components.EntityPermission `json:"permissions"`
 }
 
 func (l *ListPermissionsEmbedded) GetPermissions() []components.EntityPermission {
 	if l == nil {
-		return nil
+		return []components.EntityPermission{}
 	}
 	return l.Permissions
 }
@@ -59,29 +59,29 @@ type ListPermissionsResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                   `json:"count,omitempty"`
-	Embedded *ListPermissionsEmbedded `json:"_embedded,omitempty"`
+	Count    int64                   `json:"count"`
+	Embedded ListPermissionsEmbedded `json:"_embedded"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *ListPermissionsLinks `json:"_links,omitempty"`
+	Links ListPermissionsLinks `json:"_links"`
 }
 
-func (l *ListPermissionsResponseBody) GetCount() *int64 {
+func (l *ListPermissionsResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListPermissionsResponseBody) GetEmbedded() *ListPermissionsEmbedded {
+func (l *ListPermissionsResponseBody) GetEmbedded() ListPermissionsEmbedded {
 	if l == nil {
-		return nil
+		return ListPermissionsEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListPermissionsResponseBody) GetLinks() *ListPermissionsLinks {
+func (l *ListPermissionsResponseBody) GetLinks() ListPermissionsLinks {
 	if l == nil {
-		return nil
+		return ListPermissionsLinks{}
 	}
 	return l.Links
 }

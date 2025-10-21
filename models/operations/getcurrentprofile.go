@@ -22,7 +22,7 @@ type GetCurrentProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The current profile object. For a complete reference of the profile object, refer to the
 	// [Get profile](get-profile) endpoint documentation.
-	EntityProfileResponse *components.EntityProfileResponse
+	ProfileResponse *components.ProfileResponse
 }
 
 func (g *GetCurrentProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -32,9 +32,9 @@ func (g *GetCurrentProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCurrentProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+func (g *GetCurrentProfileResponse) GetProfileResponse() *components.ProfileResponse {
 	if g == nil {
 		return nil
 	}
-	return g.EntityProfileResponse
+	return g.ProfileResponse
 }

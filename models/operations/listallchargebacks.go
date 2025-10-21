@@ -88,12 +88,12 @@ func (l *ListAllChargebacksRequest) GetIdempotencyKey() *string {
 
 type ListAllChargebacksEmbedded struct {
 	// A list of chargeback objects.
-	Chargebacks []components.EntityChargeback `json:"chargebacks,omitempty"`
+	Chargebacks []components.EntityChargeback `json:"chargebacks"`
 }
 
 func (l *ListAllChargebacksEmbedded) GetChargebacks() []components.EntityChargeback {
 	if l == nil {
-		return nil
+		return []components.EntityChargeback{}
 	}
 	return l.Chargebacks
 }
@@ -105,29 +105,29 @@ type ListAllChargebacksResponseBody struct {
 	//
 	// The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
 	// limit is 50 items.
-	Count    *int64                      `json:"count,omitempty"`
-	Embedded *ListAllChargebacksEmbedded `json:"_embedded,omitempty"`
+	Count    int64                      `json:"count"`
+	Embedded ListAllChargebacksEmbedded `json:"_embedded"`
 	// Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-	Links *components.ListLinks `json:"_links,omitempty"`
+	Links components.ListLinks `json:"_links"`
 }
 
-func (l *ListAllChargebacksResponseBody) GetCount() *int64 {
+func (l *ListAllChargebacksResponseBody) GetCount() int64 {
 	if l == nil {
-		return nil
+		return 0
 	}
 	return l.Count
 }
 
-func (l *ListAllChargebacksResponseBody) GetEmbedded() *ListAllChargebacksEmbedded {
+func (l *ListAllChargebacksResponseBody) GetEmbedded() ListAllChargebacksEmbedded {
 	if l == nil {
-		return nil
+		return ListAllChargebacksEmbedded{}
 	}
 	return l.Embedded
 }
 
-func (l *ListAllChargebacksResponseBody) GetLinks() *components.ListLinks {
+func (l *ListAllChargebacksResponseBody) GetLinks() components.ListLinks {
 	if l == nil {
-		return nil
+		return components.ListLinks{}
 	}
 	return l.Links
 }

@@ -43,7 +43,7 @@ func (g *GetProfileRequest) GetIdempotencyKey() *string {
 type GetProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The profile object.
-	EntityProfileResponse *components.EntityProfileResponse
+	ProfileResponse *components.ProfileResponse
 }
 
 func (g *GetProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -53,9 +53,9 @@ func (g *GetProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetProfileResponse) GetEntityProfileResponse() *components.EntityProfileResponse {
+func (g *GetProfileResponse) GetProfileResponse() *components.ProfileResponse {
 	if g == nil {
 		return nil
 	}
-	return g.EntityProfileResponse
+	return g.ProfileResponse
 }

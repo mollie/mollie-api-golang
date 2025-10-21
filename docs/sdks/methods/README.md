@@ -60,7 +60,7 @@ func main() {
             Value: "10.00",
         },
         BillingCountry: client.Pointer("DE"),
-        IncludeWallets: operations.IncludeWalletsApplepay.ToPointer(),
+        IncludeWallets: components.MethodIncludeWalletsParameterApplepay.ToPointer(),
         OrderLineCategories: components.LineCategoriesEco.ToPointer(),
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Include: client.Pointer("issuers"),

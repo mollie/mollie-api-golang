@@ -47,66 +47,66 @@ func (r *RouteGetResponseLinks) GetDocumentation() URLObj {
 
 type RouteGetResponse struct {
 	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-	Resource  string `json:"resource"`
-	ID        string `json:"id"`
-	PaymentID string `json:"paymentId"`
+	Resource  *string `json:"resource,omitempty"`
+	ID        *string `json:"id,omitempty"`
+	PaymentID *string `json:"paymentId,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount Amount `json:"amount"`
+	Amount *Amount `json:"amount,omitempty"`
 	// The description of the route. This description is shown in the reports.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 	// The destination of the route.
-	Destination RouteGetResponseDestination `json:"destination"`
+	Destination *RouteGetResponseDestination `json:"destination,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links RouteGetResponseLinks `json:"_links"`
+	Links *RouteGetResponseLinks `json:"_links,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 }
 
-func (r *RouteGetResponse) GetResource() string {
+func (r *RouteGetResponse) GetResource() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Resource
 }
 
-func (r *RouteGetResponse) GetID() string {
+func (r *RouteGetResponse) GetID() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.ID
 }
 
-func (r *RouteGetResponse) GetPaymentID() string {
+func (r *RouteGetResponse) GetPaymentID() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.PaymentID
 }
 
-func (r *RouteGetResponse) GetAmount() Amount {
+func (r *RouteGetResponse) GetAmount() *Amount {
 	if r == nil {
-		return Amount{}
+		return nil
 	}
 	return r.Amount
 }
 
-func (r *RouteGetResponse) GetDescription() string {
+func (r *RouteGetResponse) GetDescription() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Description
 }
 
-func (r *RouteGetResponse) GetDestination() RouteGetResponseDestination {
+func (r *RouteGetResponse) GetDestination() *RouteGetResponseDestination {
 	if r == nil {
-		return RouteGetResponseDestination{}
+		return nil
 	}
 	return r.Destination
 }
 
-func (r *RouteGetResponse) GetLinks() RouteGetResponseLinks {
+func (r *RouteGetResponse) GetLinks() *RouteGetResponseLinks {
 	if r == nil {
-		return RouteGetResponseLinks{}
+		return nil
 	}
 	return r.Links
 }

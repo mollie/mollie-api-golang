@@ -3,43 +3,8 @@
 package operations
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
-
-// VatRegulation - Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-// The United Kingdom, and shifted VAT for merchants in the European Union.
-//
-// The field can be omitted for merchants residing in other countries.
-type VatRegulation string
-
-const (
-	VatRegulationDutch   VatRegulation = "dutch"
-	VatRegulationBritish VatRegulation = "british"
-	VatRegulationShifted VatRegulation = "shifted"
-)
-
-func (e VatRegulation) ToPointer() *VatRegulation {
-	return &e
-}
-func (e *VatRegulation) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "dutch":
-		fallthrough
-	case "british":
-		fallthrough
-	case "shifted":
-		*e = VatRegulation(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for VatRegulation: %v", v)
-	}
-}
 
 type Organization struct {
 	// The name of the organization.
@@ -56,7 +21,7 @@ type Organization struct {
 	// The United Kingdom, and shifted VAT for merchants in the European Union.
 	//
 	// The field can be omitted for merchants residing in other countries.
-	VatRegulation *VatRegulation `json:"vatRegulation,omitempty"`
+	VatRegulation *components.OnboardingVatRegulation `json:"vatRegulation,omitempty"`
 }
 
 func (o *Organization) GetName() *string {
@@ -87,7 +52,7 @@ func (o *Organization) GetVatNumber() *string {
 	return o.VatNumber
 }
 
-func (o *Organization) GetVatRegulation() *VatRegulation {
+func (o *Organization) GetVatRegulation() *components.OnboardingVatRegulation {
 	if o == nil {
 		return nil
 	}

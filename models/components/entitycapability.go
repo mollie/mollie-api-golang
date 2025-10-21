@@ -4,31 +4,31 @@ package components
 
 type EntityCapability struct {
 	// Always the word `capability` for this resource type.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// A unique name for this capability like `payments` / `settlements`.
-	Name         *string                       `json:"name,omitempty"`
-	Status       *CapabilityStatus             `json:"status,omitempty"`
-	StatusReason *CapabilityStatusReason       `json:"statusReason,omitempty"`
-	Requirements []EntityCapabilityRequirement `json:"requirements,omitempty"`
+	Name         string                        `json:"name"`
+	Status       CapabilityStatus              `json:"status"`
+	StatusReason *CapabilityStatusReason       `json:"statusReason"`
+	Requirements []EntityCapabilityRequirement `json:"requirements"`
 }
 
-func (e *EntityCapability) GetResource() *string {
+func (e *EntityCapability) GetResource() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Resource
 }
 
-func (e *EntityCapability) GetName() *string {
+func (e *EntityCapability) GetName() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.Name
 }
 
-func (e *EntityCapability) GetStatus() *CapabilityStatus {
+func (e *EntityCapability) GetStatus() CapabilityStatus {
 	if e == nil {
-		return nil
+		return CapabilityStatus("")
 	}
 	return e.Status
 }
@@ -42,7 +42,7 @@ func (e *EntityCapability) GetStatusReason() *CapabilityStatusReason {
 
 func (e *EntityCapability) GetRequirements() []EntityCapabilityRequirement {
 	if e == nil {
-		return nil
+		return []EntityCapabilityRequirement{}
 	}
 	return e.Requirements
 }
