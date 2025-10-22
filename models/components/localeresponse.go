@@ -28,6 +28,7 @@ const (
 	LocaleResponsePlPl LocaleResponse = "pl_PL"
 	LocaleResponseLvLv LocaleResponse = "lv_LV"
 	LocaleResponseLtLt LocaleResponse = "lt_LT"
+	LocaleResponseNull LocaleResponse = "null"
 )
 
 func (e LocaleResponse) ToPointer() *LocaleResponse {

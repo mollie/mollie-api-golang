@@ -29,3 +29,4 @@ Allows you to preset the language to be used.
 | `LocalePlPl` | pl_PL        |
 | `LocaleLvLv` | lv_LV        |
 | `LocaleLtLt` | lt_LT        |
+| `LocaleNull` | null         |

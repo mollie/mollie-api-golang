@@ -172,7 +172,7 @@ func main() {
         From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
-        Sort: components.ListSortDesc.ToPointer(),
+        Sort: components.SortingDesc.ToPointer(),
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),

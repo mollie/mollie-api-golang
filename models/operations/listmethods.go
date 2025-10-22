@@ -13,7 +13,7 @@ type ListMethodsRequest struct {
 	// Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
 	SequenceType *components.SequenceType `queryParam:"style=form,explode=true,name=sequenceType"`
 	// Response language
-	Locale *components.LocaleParameter `queryParam:"style=form,explode=true,name=locale"`
+	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If supplied, only payment methods that support the amount and currency
 	// are returned.
 	//
@@ -66,7 +66,7 @@ func (l *ListMethodsRequest) GetSequenceType() *components.SequenceType {
 	return l.SequenceType
 }
 
-func (l *ListMethodsRequest) GetLocale() *components.LocaleParameter {
+func (l *ListMethodsRequest) GetLocale() *components.Locale {
 	if l == nil {
 		return nil
 	}

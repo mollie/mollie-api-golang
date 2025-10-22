@@ -45,7 +45,7 @@ func main() {
         Month: client.Pointer("01"),
         From: client.Pointer("inv_xBEbP9rvAq"),
         Limit: client.Pointer[int64](50),
-        Sort: components.ListSortDesc.ToPointer(),
+        Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {

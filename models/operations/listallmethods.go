@@ -8,7 +8,7 @@ import (
 
 type ListAllMethodsRequest struct {
 	// Response language
-	Locale *components.LocaleParameter `queryParam:"style=form,explode=true,name=locale"`
+	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If supplied, only payment methods that support the amount and currency
 	// are returned.
 	//
@@ -37,7 +37,7 @@ type ListAllMethodsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (l *ListAllMethodsRequest) GetLocale() *components.LocaleParameter {
+func (l *ListAllMethodsRequest) GetLocale() *components.Locale {
 	if l == nil {
 		return nil
 	}

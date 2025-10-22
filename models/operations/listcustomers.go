@@ -14,7 +14,7 @@ type ListCustomersRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -39,7 +39,7 @@ func (l *ListCustomersRequest) GetLimit() *int64 {
 	return l.Limit
 }
 
-func (l *ListCustomersRequest) GetSort() *components.ListSort {
+func (l *ListCustomersRequest) GetSort() *components.Sorting {
 	if l == nil {
 		return nil
 	}

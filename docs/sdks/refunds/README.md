@@ -332,7 +332,7 @@ func main() {
     res, err := s.Refunds.All(ctx, operations.ListAllRefundsRequest{
         From: client.Pointer("re_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
-        Sort: components.ListSortDesc.ToPointer(),
+        Sort: components.SortingDesc.ToPointer(),
         Embed: client.Pointer("payment"),
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Testmode: client.Pointer(false),

@@ -106,7 +106,7 @@ func main() {
     res, err := s.Webhooks.List(ctx, operations.ListWebhooksRequest{
         From: client.Pointer("hook_B2EyhTH5N4KWUnoYPcgiH"),
         Limit: client.Pointer[int64](50),
-        Sort: components.ListSortDesc.ToPointer(),
+        Sort: components.SortingDesc.ToPointer(),
         EventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
         Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),

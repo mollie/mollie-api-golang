@@ -14,7 +14,7 @@ type ListAllRefundsRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
 	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
 	// parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
@@ -48,7 +48,7 @@ func (l *ListAllRefundsRequest) GetLimit() *int64 {
 	return l.Limit
 }
 
-func (l *ListAllRefundsRequest) GetSort() *components.ListSort {
+func (l *ListAllRefundsRequest) GetSort() *components.Sorting {
 	if l == nil {
 		return nil
 	}

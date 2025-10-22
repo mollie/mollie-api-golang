@@ -16,7 +16,7 @@ type GetPaymentLinkPaymentsRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -48,7 +48,7 @@ func (g *GetPaymentLinkPaymentsRequest) GetLimit() *int64 {
 	return g.Limit
 }
 
-func (g *GetPaymentLinkPaymentsRequest) GetSort() *components.ListSort {
+func (g *GetPaymentLinkPaymentsRequest) GetSort() *components.Sorting {
 	if g == nil {
 		return nil
 	}

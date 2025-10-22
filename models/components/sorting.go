@@ -7,17 +7,17 @@ import (
 	"fmt"
 )
 
-type ListSort string
+type Sorting string
 
 const (
-	ListSortAsc  ListSort = "asc"
-	ListSortDesc ListSort = "desc"
+	SortingAsc  Sorting = "asc"
+	SortingDesc Sorting = "desc"
 )
 
-func (e ListSort) ToPointer() *ListSort {
+func (e Sorting) ToPointer() *Sorting {
 	return &e
 }
-func (e *ListSort) UnmarshalJSON(data []byte) error {
+func (e *Sorting) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -26,9 +26,9 @@ func (e *ListSort) UnmarshalJSON(data []byte) error {
 	case "asc":
 		fallthrough
 	case "desc":
-		*e = ListSort(v)
+		*e = Sorting(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListSort: %v", v)
+		return fmt.Errorf("invalid value for Sorting: %v", v)
 	}
 }

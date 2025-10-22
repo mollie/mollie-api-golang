@@ -10,7 +10,7 @@ type GetMethodRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Response language
-	Locale *components.LocaleParameter `queryParam:"style=form,explode=true,name=locale"`
+	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If provided, the `minimumAmount` and `maximumAmount` will be converted
 	// to the given currency. An error is returned if the currency is not supported by the payment method.
 	Currency *string `queryParam:"style=form,explode=true,name=currency"`
@@ -44,7 +44,7 @@ func (g *GetMethodRequest) GetID() string {
 	return g.ID
 }
 
-func (g *GetMethodRequest) GetLocale() *components.LocaleParameter {
+func (g *GetMethodRequest) GetLocale() *components.Locale {
 	if g == nil {
 		return nil
 	}

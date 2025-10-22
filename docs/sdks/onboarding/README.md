@@ -99,6 +99,12 @@ func main() {
     res, err := s.Onboarding.Submit(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.SubmitOnboardingDataRequestBody{
         Organization: &operations.Organization{
             Name: client.Pointer("Mollie B.V."),
+            Address: &components.Address{
+                StreetAndNumber: "Keizersgracht 126",
+                PostalCode: "1015 CW",
+                City: "Amsterdam",
+                Country: "NL",
+            },
             RegistrationNumber: client.Pointer("30204462"),
             VatNumber: client.Pointer("NL815839091B01"),
             VatRegulation: components.OnboardingVatRegulationDutch.ToPointer(),

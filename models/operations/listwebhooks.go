@@ -14,7 +14,7 @@ type ListWebhooksRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
 	// Used to filter out only the webhooks that are subscribed to certain types of events.
 	EventTypes *components.WebhookEventTypes `queryParam:"style=form,explode=true,name=eventTypes"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -41,7 +41,7 @@ func (l *ListWebhooksRequest) GetLimit() *int64 {
 	return l.Limit
 }
 
-func (l *ListWebhooksRequest) GetSort() *components.ListSort {
+func (l *ListWebhooksRequest) GetSort() *components.Sorting {
 	if l == nil {
 		return nil
 	}

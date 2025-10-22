@@ -14,7 +14,7 @@ type ListPaymentsRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
-	Sort *components.ListSort `queryParam:"style=form,explode=true,name=sort"`
+	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
 	// The identifier referring to the [profile](get-profile) you wish to
 	// retrieve the resources for.
 	//
@@ -45,7 +45,7 @@ func (l *ListPaymentsRequest) GetLimit() *int64 {
 	return l.Limit
 }
 
-func (l *ListPaymentsRequest) GetSort() *components.ListSort {
+func (l *ListPaymentsRequest) GetSort() *components.Sorting {
 	if l == nil {
 		return nil
 	}

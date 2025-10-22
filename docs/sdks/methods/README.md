@@ -54,7 +54,7 @@ func main() {
 
     res, err := s.Methods.List(ctx, operations.ListMethodsRequest{
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        Locale: components.LocaleParameterEnUs.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -127,7 +127,7 @@ func main() {
     )
 
     res, err := s.Methods.All(ctx, operations.ListAllMethodsRequest{
-        Locale: components.LocaleParameterEnUs.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -207,7 +207,7 @@ func main() {
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
         ID: "ideal",
-        Locale: components.LocaleParameterEnUs.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
         Currency: client.Pointer("EUR"),
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Include: client.Pointer("issuers"),

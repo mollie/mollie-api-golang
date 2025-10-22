@@ -120,7 +120,7 @@ func main() {
         CustomerID: "cst_5B8cwPMGnU",
         From: client.Pointer("mdt_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
-        Sort: components.ListSortDesc.ToPointer(),
+        Sort: components.SortingDesc.ToPointer(),
         Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })

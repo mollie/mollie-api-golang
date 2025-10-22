@@ -29,3 +29,4 @@ Allows you to preset the language to be used.
 | `LocaleResponsePlPl` | pl_PL                |
 | `LocaleResponseLvLv` | lv_LV                |
 | `LocaleResponseLtLt` | lt_LT                |
+| `LocaleResponseNull` | null                 |
