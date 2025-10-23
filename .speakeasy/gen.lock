@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 3326eaca21c1637f3b75a6c4f0058439
+  docChecksum: 2dec71b80177f9595e3514414246ba59
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.0
-  generationVersion: 2.728.0
-  releaseVersion: 0.6.2
-  configChecksum: bd9049361ba524b89306e70e420d4acb
+  speakeasyVersion: 1.638.1
+  generationVersion: 2.729.2
+  releaseVersion: 0.6.3
+  configChecksum: 63b1834cb2ff7bd9fba039a26b715a68
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -4235,4 +4235,3 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes Detected:\n* `Client.Refunds.All()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Customers.List-Payments()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Webhooks.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Balance-Transfers.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Payments.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.List-Payments()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Mandates.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Invoices.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Chargebacks.All()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Settlements.List-Payments()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Terminals.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Customers.List()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Payment-Links.List-Payments()`: \n  *  `request.Request.Sort` **Changed** **Breaking** :warning:\n* `Client.Methods.Get()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.All()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.List()`: \n  *  `request.Request.Locale` **Changed**\n"

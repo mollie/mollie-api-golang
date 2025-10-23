@@ -81,9 +81,9 @@ type CreatePaymentLinkRequestBody struct {
 	// An array of payment methods that are allowed to be used for this payment link. When this parameter is
 	// not provided or is an empty array, all enabled payment methods will be available.
 	//
-	// Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-	// 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
-	// 'in3', 'riverty', 'klarna', 'billie'.
+	// Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik', 'creditcard', 'eps',
+	// 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal', 'paysafecard',
+	// 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
 	AllowedMethods []string `json:"allowedMethods,omitempty"`
 	// With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
 	// merchants.
