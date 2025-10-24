@@ -19,11 +19,7 @@ type UpdatePaymentLinkRequestBody struct {
 	Archived *bool `json:"archived,omitempty"`
 	// An array of payment methods that are allowed to be used for this payment link. When this parameter is
 	// not provided or is an empty array, all enabled payment methods will be available.
-	//
-	// Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik', 'creditcard', 'eps',
-	// 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal', 'paysafecard',
-	// 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
-	AllowedMethods []string `json:"allowedMethods,omitempty"`
+	AllowedMethods []components.PaymentLinkMethod `json:"allowedMethods,omitempty"`
 	// Optionally provide the order lines for the payment. Each line contains details such as a description of the item
 	// ordered and its price.
 	//
@@ -61,7 +57,7 @@ func (u *UpdatePaymentLinkRequestBody) GetArchived() *bool {
 	return u.Archived
 }
 
-func (u *UpdatePaymentLinkRequestBody) GetAllowedMethods() []string {
+func (u *UpdatePaymentLinkRequestBody) GetAllowedMethods() []components.PaymentLinkMethod {
 	if u == nil {
 		return nil
 	}

@@ -313,8 +313,8 @@ func main() {
             Value: "10.00",
         },
         Archived: client.Pointer(false),
-        AllowedMethods: []string{
-            "ideal",
+        AllowedMethods: []components.PaymentLinkMethod{
+            components.PaymentLinkMethodIdeal,
         },
         Lines: nil,
         BillingAddress: &components.PaymentAddress{

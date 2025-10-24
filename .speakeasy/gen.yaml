@@ -28,7 +28,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.6.3
+  version: 0.7.0
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
@@ -52,3 +52,4 @@ go:
   respectRequiredFields: false
   responseFormat: envelope-http
   sdkPackageName: Client
+  unionDeserializationStrategy: left-to-right

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 2dec71b80177f9595e3514414246ba59
+  docChecksum: 0598dfa4879965fe4af6bb050f7b9d65
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.1
-  generationVersion: 2.729.2
-  releaseVersion: 0.6.3
-  configChecksum: 63b1834cb2ff7bd9fba039a26b715a68
+  speakeasyVersion: 1.639.1
+  generationVersion: 2.730.0
+  releaseVersion: 0.7.0
+  configChecksum: e034da5b513fe33078dc43a8abb7158d
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
@@ -30,7 +30,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.86.0
+    unions: 2.87.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -136,6 +136,8 @@ generatedFiles:
   - /models/components/paymentlineitemresponse.go
   - /models/components/paymentlinetype.go
   - /models/components/paymentlinetyperesponse.go
+  - /models/components/paymentlinkmethod.go
+  - /models/components/paymentlinkmethodresponse.go
   - /models/components/paymentlinkresponse.go
   - /models/components/paymentlinksequencetype.go
   - /models/components/paymentlinksequencetyperesponse.go
@@ -490,6 +492,8 @@ generatedFiles:
   - docs/models/components/paymentlineitemresponse.md
   - docs/models/components/paymentlinetype.md
   - docs/models/components/paymentlinetyperesponse.md
+  - docs/models/components/paymentlinkmethod.md
+  - docs/models/components/paymentlinkmethodresponse.md
   - docs/models/components/paymentlinkresponse.md
   - docs/models/components/paymentlinkresponseapplicationfee.md
   - docs/models/components/paymentlinkresponselinks.md
@@ -4235,3 +4239,4 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes Detected:\n* `Client.Webhook-Events.Get()`:  `response.Embedded.Entity.[payment-Link-Response].AllowedMethods.[]` **Changed** **Breaking** :warning:\n* `Client.Payment-Links.Create()`: \n  *  `request.RequestBody.AllowedMethods.[]` **Changed** **Breaking** :warning:\n  *  `response.AllowedMethods.[]` **Changed** **Breaking** :warning:\n* `Client.Payment-Links.List()`:  `response.Embedded.PaymentLinks.[].AllowedMethods.[]` **Changed** **Breaking** :warning:\n* `Client.Payment-Links.Get()`:  `response.AllowedMethods.[]` **Changed** **Breaking** :warning:\n* `Client.Payment-Links.Update()`: \n  *  `request.RequestBody.AllowedMethods.[]` **Changed** **Breaking** :warning:\n  *  `response.AllowedMethods.[]` **Changed** **Breaking** :warning:\n"

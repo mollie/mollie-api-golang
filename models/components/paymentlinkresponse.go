@@ -135,11 +135,7 @@ type PaymentLinkResponse struct {
 	ExpiresAt *string `json:"expiresAt,omitempty"`
 	// An array of payment methods that are allowed to be used for this payment link. When this parameter is
 	// not provided or is an empty array, all enabled payment methods will be available.
-	//
-	// Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik', 'creditcard', 'eps',
-	// 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal', 'paysafecard',
-	// 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
-	AllowedMethods []string `json:"allowedMethods,omitempty"`
+	AllowedMethods []PaymentLinkMethodResponse `json:"allowedMethods,omitempty"`
 	// With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
 	// merchants.
 	//
@@ -288,7 +284,7 @@ func (p *PaymentLinkResponse) GetExpiresAt() *string {
 	return p.ExpiresAt
 }
 
-func (p *PaymentLinkResponse) GetAllowedMethods() []string {
+func (p *PaymentLinkResponse) GetAllowedMethods() []PaymentLinkMethodResponse {
 	if p == nil {
 		return nil
 	}
