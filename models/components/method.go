@@ -17,44 +17,41 @@ import (
 type Method string
 
 const (
-	MethodAlma           Method = "alma"
-	MethodApplepay       Method = "applepay"
-	MethodBacs           Method = "bacs"
-	MethodBancomatpay    Method = "bancomatpay"
-	MethodBancontact     Method = "bancontact"
-	MethodBanktransfer   Method = "banktransfer"
-	MethodBelfius        Method = "belfius"
-	MethodBillie         Method = "billie"
-	MethodBizum          Method = "bizum"
-	MethodBlik           Method = "blik"
-	MethodCreditcard     Method = "creditcard"
-	MethodDirectdebit    Method = "directdebit"
-	MethodEps            Method = "eps"
-	MethodGiftcard       Method = "giftcard"
-	MethodIdeal          Method = "ideal"
-	MethodIn3            Method = "in3"
-	MethodKbc            Method = "kbc"
-	MethodKlarna         Method = "klarna"
-	MethodKlarnapaylater Method = "klarnapaylater"
-	MethodKlarnapaynow   Method = "klarnapaynow"
-	MethodKlarnasliceit  Method = "klarnasliceit"
-	MethodMbway          Method = "mbway"
-	MethodMobilepay      Method = "mobilepay"
-	MethodMultibanco     Method = "multibanco"
-	MethodMybank         Method = "mybank"
-	MethodPaybybank      Method = "paybybank"
-	MethodPayconiq       Method = "payconiq"
-	MethodPaypal         Method = "paypal"
-	MethodPaysafecard    Method = "paysafecard"
-	MethodPointofsale    Method = "pointofsale"
-	MethodPrzelewy24     Method = "przelewy24"
-	MethodRiverty        Method = "riverty"
-	MethodSatispay       Method = "satispay"
-	MethodSwish          Method = "swish"
-	MethodTrustly        Method = "trustly"
-	MethodTwint          Method = "twint"
-	MethodVipps          Method = "vipps"
-	MethodVoucher        Method = "voucher"
+	MethodAlma         Method = "alma"
+	MethodApplepay     Method = "applepay"
+	MethodBacs         Method = "bacs"
+	MethodBancomatpay  Method = "bancomatpay"
+	MethodBancontact   Method = "bancontact"
+	MethodBanktransfer Method = "banktransfer"
+	MethodBelfius      Method = "belfius"
+	MethodBillie       Method = "billie"
+	MethodBizum        Method = "bizum"
+	MethodBlik         Method = "blik"
+	MethodCreditcard   Method = "creditcard"
+	MethodDirectdebit  Method = "directdebit"
+	MethodEps          Method = "eps"
+	MethodGiftcard     Method = "giftcard"
+	MethodIdeal        Method = "ideal"
+	MethodIn3          Method = "in3"
+	MethodKbc          Method = "kbc"
+	MethodKlarna       Method = "klarna"
+	MethodMbway        Method = "mbway"
+	MethodMobilepay    Method = "mobilepay"
+	MethodMultibanco   Method = "multibanco"
+	MethodMybank       Method = "mybank"
+	MethodPaybybank    Method = "paybybank"
+	MethodPayconiq     Method = "payconiq"
+	MethodPaypal       Method = "paypal"
+	MethodPaysafecard  Method = "paysafecard"
+	MethodPointofsale  Method = "pointofsale"
+	MethodPrzelewy24   Method = "przelewy24"
+	MethodRiverty      Method = "riverty"
+	MethodSatispay     Method = "satispay"
+	MethodSwish        Method = "swish"
+	MethodTrustly      Method = "trustly"
+	MethodTwint        Method = "twint"
+	MethodVipps        Method = "vipps"
+	MethodVoucher      Method = "voucher"
 )
 
 func (e Method) ToPointer() *Method {
@@ -101,12 +98,6 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 	case "kbc":
 		fallthrough
 	case "klarna":
-		fallthrough
-	case "klarnapaylater":
-		fallthrough
-	case "klarnapaynow":
-		fallthrough
-	case "klarnasliceit":
 		fallthrough
 	case "mbway":
 		fallthrough
