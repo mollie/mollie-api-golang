@@ -47,6 +47,12 @@ const (
 	MethodResponseTwint        MethodResponse = "twint"
 	MethodResponseVipps        MethodResponse = "vipps"
 	MethodResponseVoucher      MethodResponse = "voucher"
+	// MethodResponseKlarnapaylater Deprecated, use 'klarna' instead
+	MethodResponseKlarnapaylater MethodResponse = "klarnapaylater"
+	// MethodResponseKlarnapaynow Deprecated, use 'klarna' instead
+	MethodResponseKlarnapaynow MethodResponse = "klarnapaynow"
+	// MethodResponseKlarnasliceit Deprecated, use 'klarna' instead
+	MethodResponseKlarnasliceit MethodResponse = "klarnasliceit"
 )
 
 func (e MethodResponse) ToPointer() *MethodResponse {
