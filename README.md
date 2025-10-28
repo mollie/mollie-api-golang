@@ -213,7 +213,7 @@ s := client.New(
 	client.WithSecurity(components.Security{
 		APIKey: client.Pointer(os.Getenv("MOLLIE_API_KEY")),
 	}),
-	client.WithCustomUserAgent("my-custom-app/1.0.0"),
+	client.WithCustomUserAgent("insert something here"),
 )
 ```
 
