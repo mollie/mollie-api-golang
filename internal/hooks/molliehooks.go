@@ -5,6 +5,8 @@ import (
 	"crypto/rand"
 	"fmt"
 	"net/http"
+	"runtime"
+	"strings"
 )
 
 var (
@@ -32,6 +34,32 @@ func (h *MollieHooks) generateIdempotencyKey() (string, error) {
 	return fmt.Sprintf("%x-%x-%x-%x-%x", u[0:4], u[4:6], u[6:8], u[8:10], u[10:16]), nil
 }
 
+func (h *MollieHooks) customizeUserAgent(req *http.Request, hookCtx BeforeRequestContext) {
+    const userAgentKey = "User-Agent"
+
+    customUserAgent := hookCtx.SDKConfiguration.Globals.CustomUserAgent
+
+    // Parse from existing UserAgent string: "speakeasy-sdk/go 0.8.1 2.730.5 1.0.0 github.com/mollie/mollie-api-golang"
+    userAgentParts := strings.Split(hookCtx.SDKConfiguration.UserAgent, " ")
+    
+    sdkVersion := userAgentParts[1]   // "0.8.1"
+    genVersion := userAgentParts[2]   // "2.730.5"
+    packageName := userAgentParts[4]  // "github.com/mollie/mollie-api-golang"
+
+    // Get Go runtime version (e.g., "go1.21.0")
+    goVersion := runtime.Version()
+
+    mollieUserAgent := fmt.Sprintf("Speakeasy/%s Golang/%s %s/%s", genVersion, goVersion, packageName, sdkVersion)
+    
+    if customUserAgent != nil && *customUserAgent != "" {
+        mollieUserAgent = fmt.Sprintf("%s %s", mollieUserAgent, *customUserAgent)
+    }
+
+	fmt.Println("Custom User-Agent:", mollieUserAgent)
+
+    req.Header.Set(userAgentKey, mollieUserAgent)
+}
+
 func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Request) (*http.Request, error) {
 	const (
 		idempotencyKey = "idempotency-key"
@@ -46,6 +74,9 @@ func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Requ
 		
 		req.Header.Set(idempotencyKey, key)
 	}
+
+	// Customize the User-Agent header
+	h.customizeUserAgent(req, hookCtx)
 
 	return req, nil
 }
