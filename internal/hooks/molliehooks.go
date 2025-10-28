@@ -55,8 +55,6 @@ func (h *MollieHooks) customizeUserAgent(req *http.Request, hookCtx BeforeReques
         mollieUserAgent = fmt.Sprintf("%s %s", mollieUserAgent, *customUserAgent)
     }
 
-	fmt.Println("Custom User-Agent:", mollieUserAgent)
-
     req.Header.Set(userAgentKey, mollieUserAgent)
 }
 
