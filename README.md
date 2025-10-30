@@ -24,6 +24,7 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [Authentication](#authentication)
   * [Idempotency Key](#idempotency-key)
   * [Add Custom User-Agent Header](#add-custom-user-agent-header)
+  * [Add Profile ID and Testmode to Client](#add-profile-id-and-testmode-to-client)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
@@ -218,6 +219,25 @@ s := client.New(
 ```
 
 <!-- End Add Custom User-Agent Header -->
+
+<!-- Start Add Profile ID and Testmode to Client -->
+
+## Add Profile ID and Testmode to Client
+The SDK allows you to define the `profileId` and `testmode` in the client. This way, you don't need to add this
+information to the payload every time when using OAuth. This will not override the details provided in the individual
+requests.
+
+```go
+s := client.New(
+	client.WithSecurity(components.Security{
+		OAuth: client.Pointer(os.Getenv("MOLLIE_OAUTH_KEY")),
+	}),
+	client.WithTestmode(true),
+	client.WithProfileID("pfl_RjC8giiTQU"),
+)
+```
+
+<!-- End Add Profile ID and Testmode to Client -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations

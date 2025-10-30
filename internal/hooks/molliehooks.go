@@ -1,12 +1,20 @@
 package hooks
 
 import (
-	"sync"
+	"bytes"
+	"context"
 	"crypto/rand"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"net/url"
 	"runtime"
+	"strconv"
 	"strings"
+	"sync"
+
+	"github.com/mollie/mollie-api-golang/models/components"
 )
 
 var (
@@ -76,5 +84,156 @@ func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Requ
 	// Customize the User-Agent header
 	h.customizeUserAgent(req, hookCtx)
 
+	// Handle OAuth, testmode and profileId population
+	if h.isOAuthRequest(req, hookCtx) {
+		modifiedReq, err := h.populateProfileIdAndTestmode(req, hookCtx)
+		if err != nil {
+			return req, err
+		}
+		req = modifiedReq
+	}
+
 	return req, nil
+}
+
+// isOAuthRequest checks if the request is using OAuth authentication
+func (h *MollieHooks) isOAuthRequest(req *http.Request, hookCtx BeforeRequestContext) bool {
+	if hookCtx.SecuritySource == nil {
+		return false
+	}
+
+	security, err := hookCtx.SecuritySource(context.Background())
+	if err != nil || security == nil {
+		return false
+	}
+	
+	// Try both pointer and value types
+	var securityStruct *components.Security
+	
+	if ptr, ok := security.(*components.Security); ok {
+		securityStruct = ptr
+	} else if val, ok := security.(components.Security); ok {
+		securityStruct = &val
+	} else {
+		return false
+	}
+
+	if securityStruct == nil {
+		return false
+	}
+
+	oauth := securityStruct.GetOAuth()
+	if oauth == nil {
+		return false
+	}
+
+	authHeader := req.Header.Get("Authorization")
+	expectedAuth := fmt.Sprintf("Bearer %s", *oauth)
+	
+	return authHeader == expectedAuth
+}
+
+// populateProfileIdAndTestmode adds profileId and testmode to requests when using OAuth
+func (h *MollieHooks) populateProfileIdAndTestmode(req *http.Request, hookCtx BeforeRequestContext) (*http.Request, error) {
+	clientProfileId := hookCtx.SDKConfiguration.Globals.GetProfileID()
+	clientTestmode := hookCtx.SDKConfiguration.Globals.GetTestmode()
+
+	method := req.Method
+
+	if method == "GET" {
+		return h.addToQueryParams(req, clientProfileId, clientTestmode)
+	}
+
+	// For POST, PATCH, DELETE - update JSON body
+	return h.addToJSONBody(req, clientProfileId, clientTestmode)
+}
+
+// addToQueryParams adds profileId and testmode to URL query parameters for GET requests
+func (h *MollieHooks) addToQueryParams(req *http.Request, clientProfileId *string, clientTestmode *bool) (*http.Request, error) {
+	u, err := url.Parse(req.URL.String())
+	if err != nil {
+		return req, err
+	}
+
+	queryParams := u.Query()
+
+	// Add profileId if not already present
+	if clientProfileId != nil && !queryParams.Has("profileId") {
+		queryParams.Set("profileId", *clientProfileId)
+	}
+
+	// Add testmode if not already present  
+	if clientTestmode != nil && !queryParams.Has("testmode") {
+		queryParams.Set("testmode", strconv.FormatBool(*clientTestmode))
+	}
+
+	u.RawQuery = queryParams.Encode()
+
+	// Create new request with updated URL
+	newReq, err := http.NewRequest(req.Method, u.String(), req.Body)
+	if err != nil {
+		return req, err
+	}
+
+	// Copy headers
+	newReq.Header = req.Header.Clone()
+	
+	return newReq, nil
+}
+
+// addToJSONBody adds profileId and testmode to JSON request body for POST/PATCH/DELETE requests
+func (h *MollieHooks) addToJSONBody(req *http.Request, clientProfileId *string, clientTestmode *bool) (*http.Request, error) {
+	var body map[string]interface{}
+
+	// Read existing body
+	if req.Body != nil {
+		bodyBytes, err := io.ReadAll(req.Body)
+		if err != nil {
+			return req, err
+		}
+
+		if len(bodyBytes) > 0 {
+			if err := json.Unmarshal(bodyBytes, &body); err != nil {
+				// If it's not JSON, return the request unchanged
+				req.Body = io.NopCloser(bytes.NewReader(bodyBytes))
+				return req, nil
+			}
+		}
+	}
+
+	if body == nil {
+		body = make(map[string]interface{})
+	}
+
+	// Add profileId if not already present
+	if clientProfileId != nil {
+		if _, exists := body["profileId"]; !exists {
+			body["profileId"] = *clientProfileId
+		}
+	}
+
+	// Add testmode if not already present
+	if clientTestmode != nil {
+		if _, exists := body["testmode"]; !exists {
+			body["testmode"] = *clientTestmode
+		}
+	}
+
+	// Marshal back to JSON
+	newBodyBytes, err := json.Marshal(body)
+	if err != nil {
+		return req, err
+	}
+
+	// Create new request with updated body
+	newReq, err := http.NewRequest(req.Method, req.URL.String(), bytes.NewReader(newBodyBytes))
+	if err != nil {
+		return req, err
+	}
+
+	// Copy and update headers
+	newReq.Header = req.Header.Clone()
+	newReq.Header.Set("Content-Length", strconv.Itoa(len(newBodyBytes)))
+
+	return newReq, nil
 }
