@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 	"runtime"
 	"strconv"
 	"strings"
@@ -141,44 +140,12 @@ func (h *MollieHooks) populateProfileIdAndTestmode(req *http.Request, hookCtx Be
 	method := req.Method
 
 	if method == "GET" {
-		return h.addToQueryParams(req, clientProfileId, clientTestmode)
+		// SDK already handles Query Parameters automatically
+		return req, nil
 	}
 
 	// For POST, PATCH, DELETE - update JSON body
 	return h.addToJSONBody(req, clientProfileId, clientTestmode)
-}
-
-// addToQueryParams adds profileId and testmode to URL query parameters for GET requests
-func (h *MollieHooks) addToQueryParams(req *http.Request, clientProfileId *string, clientTestmode *bool) (*http.Request, error) {
-	u, err := url.Parse(req.URL.String())
-	if err != nil {
-		return req, err
-	}
-
-	queryParams := u.Query()
-
-	// Add profileId if not already present
-	if clientProfileId != nil && !queryParams.Has("profileId") {
-		queryParams.Set("profileId", *clientProfileId)
-	}
-
-	// Add testmode if not already present  
-	if clientTestmode != nil && !queryParams.Has("testmode") {
-		queryParams.Set("testmode", strconv.FormatBool(*clientTestmode))
-	}
-
-	u.RawQuery = queryParams.Encode()
-
-	// Create new request with updated URL
-	newReq, err := http.NewRequest(req.Method, u.String(), req.Body)
-	if err != nil {
-		return req, err
-	}
-
-	// Copy headers
-	newReq.Header = req.Header.Clone()
-	
-	return newReq, nil
 }
 
 // addToJSONBody adds profileId and testmode to JSON request body for POST/PATCH/DELETE requests
