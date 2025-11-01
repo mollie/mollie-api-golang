@@ -6,6 +6,22 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type ListSalesInvoicesGlobals struct {
+	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// setting the `testmode` query parameter to `true`.
+	//
+	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
+}
+
+func (l *ListSalesInvoicesGlobals) GetTestmode() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.Testmode
+}
+
 type ListSalesInvoicesRequest struct {
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
 	// result set.

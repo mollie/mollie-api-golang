@@ -293,6 +293,10 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 //
 // The results are paginated.
 func (s *Refunds) List(ctx context.Context, request operations.ListRefundsRequest, opts ...operations.Option) (*operations.ListRefundsResponse, error) {
+	globals := operations.ListRefundsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -311,7 +315,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -344,9 +348,9 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -538,6 +542,10 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 // Get payment refund
 // Retrieve a single payment refund by its ID and the ID of its parent payment.
 func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, opts ...operations.Option) (*operations.GetRefundResponse, error) {
+	globals := operations.GetRefundGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -556,7 +564,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -589,9 +597,9 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -792,6 +800,10 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.CancelRefundGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -810,7 +822,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -843,9 +855,9 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1037,6 +1049,11 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 //
 // The results are paginated.
 func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequest, opts ...operations.Option) (*operations.ListAllRefundsResponse, error) {
+	globals := operations.ListAllRefundsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1088,9 +1105,9 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

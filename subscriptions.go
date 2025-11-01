@@ -306,6 +306,10 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 //
 // The results are paginated.
 func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscriptionsRequest, opts ...operations.Option) (*operations.ListSubscriptionsResponse, error) {
+	globals := operations.ListSubscriptionsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -324,7 +328,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -357,9 +361,9 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -558,6 +562,10 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetSubscriptionGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -576,7 +584,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -609,9 +617,9 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1313,6 +1321,11 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 //
 // The results are paginated.
 func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubscriptionsRequest, opts ...operations.Option) (*operations.ListAllSubscriptionsResponse, error) {
+	globals := operations.ListAllSubscriptionsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1364,9 +1377,9 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1560,6 +1573,11 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 //
 // The results are paginated.
 func (s *Subscriptions) ListPayments(ctx context.Context, request operations.ListSubscriptionPaymentsRequest, opts ...operations.Option) (*operations.ListSubscriptionPaymentsResponse, error) {
+	globals := operations.ListSubscriptionPaymentsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1578,7 +1596,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}/payments", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1611,9 +1629,9 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -2,12 +2,13 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.730.5
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.735.1
 
 import (
 	"context"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/config"
+	"github.com/mollie/mollie-api-golang/internal/globals"
 	"github.com/mollie/mollie-api-golang/internal/hooks"
 	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/models/components"
@@ -134,6 +135,27 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
+// WithProfileID allows setting the ProfileID parameter for all supported operations
+func WithProfileID(profileID string) SDKOption {
+	return func(sdk *Client) {
+		sdk.sdkConfiguration.Globals.ProfileID = &profileID
+	}
+}
+
+// WithTestmode allows setting the Testmode parameter for all supported operations
+func WithTestmode(testmode bool) SDKOption {
+	return func(sdk *Client) {
+		sdk.sdkConfiguration.Globals.Testmode = &testmode
+	}
+}
+
+// WithCustomUserAgent allows setting the CustomUserAgent parameter for all supported operations
+func WithCustomUserAgent(customUserAgent string) SDKOption {
+	return func(sdk *Client) {
+		sdk.sdkConfiguration.Globals.CustomUserAgent = &customUserAgent
+	}
+}
+
 func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *Client) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -150,9 +172,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.7.2",
+		SDKVersion: "0.8.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.7.2 2.730.5 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.8.0 2.735.1 1.0.0 github.com/mollie/mollie-api-golang",
+			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -160,6 +183,8 @@ func New(opts ...SDKOption) *Client {
 	for _, opt := range opts {
 		opt(sdk)
 	}
+
+	sdk.sdkConfiguration.FillGlobalsFromEnv()
 
 	if sdk.sdkConfiguration.Security == nil {
 		var envVarSecurity components.Security

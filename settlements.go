@@ -990,6 +990,11 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 // For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
 // [List captures endpoint](list-captures) endpoint instead.
 func (s *Settlements) ListPayments(ctx context.Context, request operations.ListSettlementPaymentsRequest, opts ...operations.Option) (*operations.ListSettlementPaymentsResponse, error) {
+	globals := operations.ListSettlementPaymentsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1008,7 +1013,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/payments", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1041,9 +1046,9 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1235,6 +1240,10 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 //
 // The response is in the same format as the response of the [List captures endpoint](list-captures).
 func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListSettlementCapturesRequest, opts ...operations.Option) (*operations.ListSettlementCapturesResponse, error) {
+	globals := operations.ListSettlementCapturesGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1253,7 +1262,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/captures", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/captures", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1286,9 +1295,9 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1482,6 +1491,10 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 //
 // The response is in the same format as the response of the [List refunds endpoint](list-refunds).
 func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSettlementRefundsRequest, opts ...operations.Option) (*operations.ListSettlementRefundsResponse, error) {
+	globals := operations.ListSettlementRefundsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1500,7 +1513,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/refunds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/refunds", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1533,9 +1546,9 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1729,6 +1742,10 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 //
 // The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
 func (s *Settlements) ListChargebacks(ctx context.Context, request operations.ListSettlementChargebacksRequest, opts ...operations.Option) (*operations.ListSettlementChargebacksResponse, error) {
+	globals := operations.ListSettlementChargebacksGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1747,7 +1764,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/chargebacks", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/chargebacks", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1780,9 +1797,9 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

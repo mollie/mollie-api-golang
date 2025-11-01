@@ -296,6 +296,10 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 //
 // The results are paginated.
 func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequest, opts ...operations.Option) (*operations.ListCapturesResponse, error) {
+	globals := operations.ListCapturesGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -314,7 +318,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -347,9 +351,9 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -542,6 +546,10 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 // Retrieve a single payment capture by its ID and the ID of its parent
 // payment.
 func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
+	globals := operations.GetCaptureGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -560,7 +568,7 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures/{captureId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures/{captureId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -593,9 +601,9 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

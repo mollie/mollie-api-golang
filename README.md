@@ -26,6 +26,7 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [Add Custom User-Agent Header](#add-custom-user-agent-header)
   * [Add Profile ID and Testmode to Client](#add-profile-id-and-testmode-to-client)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Global Parameters](#global-parameters)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -67,6 +68,7 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -76,7 +78,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
@@ -122,13 +123,13 @@ func main() {
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
+		client.WithTestmode(false),
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
@@ -422,6 +423,68 @@ s := client.New(
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `profileId` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `List`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameters are available.
+Global parameters can also be set via environment variable.
+
+| Name            | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                            | Environment              |
+| --------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ |
+| ProfileID       | string | The identifier referring to the [profile](get-profile) you wish to<br/>retrieve the resources for.<br/><br/>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For<br/>organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.                                                                     | CLIENT_PROFILE_ID        |
+| Testmode        | bool   | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | CLIENT_TESTMODE          |
+| CustomUserAgent | string | Custom user agent string to be appended to the default Mollie SDK user agent.                                                                                                                                                                                                                                                                                                                          | CLIENT_CUSTOM_USER_AGENT |
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+	"os"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := client.New(
+		client.WithTestmode(false),
+		client.WithProfileID("<id>"),
+		client.WithCustomUserAgent("<value>"),
+		client.WithSecurity(components.Security{
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+		}),
+	)
+
+	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Global Parameters [global-parameters] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -446,6 +509,7 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -455,7 +519,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	}, operations.WithRetries(
 		retry.Config{
@@ -507,6 +570,7 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -516,7 +580,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
@@ -564,6 +627,7 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -573,7 +637,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {
@@ -618,6 +681,7 @@ func main() {
 
 	s := client.New(
 		client.WithServerURL("https://api.mollie.com/v2"),
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -627,7 +691,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {

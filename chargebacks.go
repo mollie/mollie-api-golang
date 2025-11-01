@@ -36,6 +36,10 @@ func newChargebacks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 //
 // The results are paginated.
 func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebacksRequest, opts ...operations.Option) (*operations.ListChargebacksResponse, error) {
+	globals := operations.ListChargebacksGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +58,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -87,9 +91,9 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -281,6 +285,10 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 // Get payment chargeback
 // Retrieve a single payment chargeback by its ID and the ID of its parent payment.
 func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackRequest, opts ...operations.Option) (*operations.GetChargebackResponse, error) {
+	globals := operations.GetChargebackGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -299,7 +307,7 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks/{chargebackId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks/{chargebackId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -332,9 +340,9 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -526,6 +534,11 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 //
 // The results are paginated.
 func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargebacksRequest, opts ...operations.Option) (*operations.ListAllChargebacksResponse, error) {
+	globals := operations.ListAllChargebacksGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -577,9 +590,9 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

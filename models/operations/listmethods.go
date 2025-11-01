@@ -6,6 +6,35 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type ListMethodsGlobals struct {
+	// The identifier referring to the [profile](get-profile) you wish to
+	// retrieve the resources for.
+	//
+	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+	// organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+	ProfileID *string `queryParam:"style=form,explode=true,name=profileId"`
+	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// setting the `testmode` query parameter to `true`.
+	//
+	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
+}
+
+func (l *ListMethodsGlobals) GetProfileID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ProfileID
+}
+
+func (l *ListMethodsGlobals) GetTestmode() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.Testmode
+}
+
 type ListMethodsRequest struct {
 	// Set this parameter to `first` to only return the enabled methods that
 	// can be used for the first payment of a recurring sequence.

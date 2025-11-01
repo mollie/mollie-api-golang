@@ -15,6 +15,7 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
+		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
@@ -24,7 +25,6 @@ func main() {
 		Currency:       client.Pointer("EUR"),
 		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
 		Limit:          client.Pointer[int64](50),
-		Testmode:       client.Pointer(false),
 		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
 	})
 	if err != nil {

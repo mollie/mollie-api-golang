@@ -49,6 +49,11 @@ func newMethods(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
 // `amount` parameters.
 func (s *Methods) List(ctx context.Context, request operations.ListMethodsRequest, opts ...operations.Option) (*operations.ListMethodsResponse, error) {
+	globals := operations.ListMethodsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -100,9 +105,9 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -295,6 +300,11 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 //
 // The list can optionally be filtered using a number of parameters described below.
 func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequest, opts ...operations.Option) (*operations.ListAllMethodsResponse, error) {
+	globals := operations.ListAllMethodsGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -346,9 +356,9 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -549,6 +559,11 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 // Additionally, it is possible to check if wallet methods such as Apple Pay
 // are enabled by passing the wallet ID (`applepay`) as the method ID.
 func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, opts ...operations.Option) (*operations.GetMethodResponse, error) {
+	globals := operations.GetMethodGlobals{
+		ProfileID: s.sdkConfiguration.Globals.ProfileID,
+		Testmode:  s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -567,7 +582,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/methods/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/methods/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -600,9 +615,9 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

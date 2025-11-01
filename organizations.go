@@ -45,6 +45,10 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idem
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetOrganizationGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -63,7 +67,7 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idem
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/organizations/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/organizations/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -96,9 +100,9 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idem
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

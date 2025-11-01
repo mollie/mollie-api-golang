@@ -36,6 +36,10 @@ func newBalances(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // The results are paginated.
 func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequest, opts ...operations.Option) (*operations.ListBalancesResponse, error) {
+	globals := operations.ListBalancesGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -87,9 +91,9 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -301,6 +305,10 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempoten
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetBalanceGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -319,7 +327,7 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -352,9 +360,9 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempoten
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -772,6 +780,10 @@ func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts 
 // The alias `primary` can be used instead of the balance ID to refer to the
 // organization's primary balance.
 func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceReportRequest, opts ...operations.Option) (*operations.GetBalanceReportResponse, error) {
+	globals := operations.GetBalanceReportGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -790,7 +802,7 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/report", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/report", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -823,9 +835,9 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1026,6 +1038,10 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 //
 // The results are paginated.
 func (s *Balances) ListTransactions(ctx context.Context, request operations.ListBalanceTransactionsRequest, opts ...operations.Option) (*operations.ListBalanceTransactionsResponse, error) {
+	globals := operations.ListBalanceTransactionsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1044,7 +1060,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/transactions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/transactions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1077,9 +1093,9 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

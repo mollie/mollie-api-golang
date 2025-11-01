@@ -267,6 +267,8 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -276,8 +278,6 @@ func main() {
         From: client.Pointer("tr_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
@@ -331,6 +331,7 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -340,7 +341,6 @@ func main() {
         PaymentID: "tr_5B8cwPMGnU",
         Include: client.Pointer("details.qrCode"),
         Embed: client.Pointer("captures"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {

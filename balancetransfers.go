@@ -288,6 +288,10 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 // List all Connect balance transfers
 // Returns a paginated list of balance transfers associated with your organization. These may be a balance transfer that was received or sent from your balance, or a balance transfer that you initiated on behalf of your clients. If no balance transfers are available, the resulting array will be empty. This request should never throw an error.
 func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConnectBalanceTransfersRequest, opts ...operations.Option) (*operations.ListConnectBalanceTransfersResponse, error) {
+	globals := operations.ListConnectBalanceTransfersGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -339,9 +343,9 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -537,6 +541,10 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetConnectBalanceTransferGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -555,7 +563,7 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/connect/balance-transfers/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/connect/balance-transfers/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -588,9 +596,9 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -34,6 +34,7 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -44,7 +45,6 @@ func main() {
         From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
@@ -98,6 +98,7 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -107,7 +108,6 @@ func main() {
         PaymentID: "tr_5B8cwPMGnU",
         ChargebackID: "chb_xFzwUN4ci8HAmSGUACS4J",
         Embed: client.Pointer("payment"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
@@ -163,6 +163,8 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -173,8 +175,6 @@ func main() {
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
         Sort: components.SortingDesc.ToPointer(),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {

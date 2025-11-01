@@ -285,6 +285,10 @@ func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBo
 // List all webhooks
 // Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
 func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequest, opts ...operations.Option) (*operations.ListWebhooksResponse, error) {
+	globals := operations.ListWebhooksGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -336,9 +340,9 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -788,6 +792,10 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetWebhookGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -806,7 +814,7 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -839,9 +847,9 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

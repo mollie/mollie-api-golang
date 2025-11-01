@@ -298,6 +298,10 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.ListPaymentLinksGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -349,9 +353,9 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -547,6 +551,10 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetPaymentLinkGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -565,7 +573,7 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payment-links/{paymentLinkId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payment-links/{paymentLinkId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -598,9 +606,9 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1306,6 +1314,10 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 //
 // The results are paginated.
 func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetPaymentLinkPaymentsRequest, opts ...operations.Option) (*operations.GetPaymentLinkPaymentsResponse, error) {
+	globals := operations.GetPaymentLinkPaymentsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1324,7 +1336,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payment-links/{paymentLinkId}/payments", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/payment-links/{paymentLinkId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1357,9 +1369,9 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

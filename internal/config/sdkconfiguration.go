@@ -4,6 +4,8 @@ package config
 
 import (
 	"context"
+	"github.com/mollie/mollie-api-golang/internal/globals"
+	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/retry"
 	"net/http"
 	"time"
@@ -20,6 +22,7 @@ type SDKConfiguration struct {
 	ServerIndex int
 	ServerList  []string
 	UserAgent   string
+	Globals     globals.Globals
 	RetryConfig *retry.Config
 	Timeout     *time.Duration
 }
@@ -30,4 +33,28 @@ func (c *SDKConfiguration) GetServerDetails() (string, map[string]string) {
 	}
 
 	return c.ServerList[c.ServerIndex], nil
+}
+
+func (c *SDKConfiguration) FillGlobalsFromEnv() {
+	if c.Globals.ProfileID == nil {
+		if val := utils.ValueFromEnvVar("CLIENT_PROFILE_ID", c.Globals.ProfileID); val != nil {
+			if typedVal, ok := val.(string); ok {
+				c.Globals.ProfileID = &typedVal
+			}
+		}
+	}
+	if c.Globals.Testmode == nil {
+		if val := utils.ValueFromEnvVar("CLIENT_TESTMODE", c.Globals.Testmode); val != nil {
+			if typedVal, ok := val.(bool); ok {
+				c.Globals.Testmode = &typedVal
+			}
+		}
+	}
+	if c.Globals.CustomUserAgent == nil {
+		if val := utils.ValueFromEnvVar("CLIENT_CUSTOM_USER_AGENT", c.Globals.CustomUserAgent); val != nil {
+			if typedVal, ok := val.(string); ok {
+				c.Globals.CustomUserAgent = &typedVal
+			}
+		}
+	}
 }

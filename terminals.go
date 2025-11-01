@@ -36,6 +36,10 @@ func newTerminals(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 //
 // The results are paginated.
 func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRequest, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
+	globals := operations.ListTerminalsGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -87,9 +91,9 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -285,6 +289,10 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 		IdempotencyKey: idempotencyKey,
 	}
 
+	globals := operations.GetTerminalGlobals{
+		Testmode: s.sdkConfiguration.Globals.Testmode,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -303,7 +311,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/terminals/{terminalId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/terminals/{terminalId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -336,9 +344,9 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

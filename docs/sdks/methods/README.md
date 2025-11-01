@@ -47,6 +47,8 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -62,9 +64,7 @@ func main() {
         BillingCountry: client.Pointer("DE"),
         IncludeWallets: components.MethodIncludeWalletsParameterApplepay.ToPointer(),
         OrderLineCategories: components.LineCategoriesEco.ToPointer(),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Include: client.Pointer("issuers"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
@@ -121,6 +121,8 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -134,8 +136,6 @@ func main() {
         },
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
@@ -200,6 +200,8 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
         }),
@@ -209,10 +211,8 @@ func main() {
         ID: "ideal",
         Locale: components.LocaleEnUs.ToPointer(),
         Currency: client.Pointer("EUR"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        Testmode: client.Pointer(false),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
