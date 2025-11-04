@@ -512,6 +512,10 @@ type PaymentResponseDetails struct {
 	RemainderMethod *string `json:"remainderMethod,omitempty"`
 	// Optional include. The full payment method details of the remainder payment.
 	RemainderDetails map[string]any `json:"remainderDetails,omitempty"`
+	// Multibanco payment reference of the transaction
+	MultibancoReference *string `json:"multibancoReference,omitempty"`
+	// Multibanco entity reference of the transaction
+	MultibancoEntity *string `json:"multibancoEntity,omitempty"`
 }
 
 func (p PaymentResponseDetails) MarshalJSON() ([]byte, error) {
@@ -873,6 +877,20 @@ func (p *PaymentResponseDetails) GetRemainderDetails() map[string]any {
 		return nil
 	}
 	return p.RemainderDetails
+}
+
+func (p *PaymentResponseDetails) GetMultibancoReference() *string {
+	if p == nil {
+		return nil
+	}
+	return p.MultibancoReference
+}
+
+func (p *PaymentResponseDetails) GetMultibancoEntity() *string {
+	if p == nil {
+		return nil
+	}
+	return p.MultibancoEntity
 }
 
 // PaymentResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
