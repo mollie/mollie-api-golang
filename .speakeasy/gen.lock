@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 3aa14a6670ca743ca161fe3bee4d0251
+  docChecksum: 3101d53cbe06acbc04397305ff448453
   docVersion: 1.0.0
-  speakeasyVersion: 1.648.0
-  generationVersion: 2.737.0
-  releaseVersion: 0.8.1
-  configChecksum: fe5574f34a0c333971cb1ab6fbb1ce7a
+  speakeasyVersion: 1.653.0
+  generationVersion: 2.748.0
+  releaseVersion: 0.8.2
+  configChecksum: d9e9b8960e4949586481ee5a9a641754
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.0
+    core: 3.13.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -4288,15 +4288,3 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Client.Settlements.List-Payments()`:  `response.Embedded.Payments.[].Details` **Changed**
-  * `Client.Payments.Create()`:  `response.Details` **Changed**
-  * `Client.Payments.List()`:  `response.Embedded.Payments.[].Details` **Changed**
-  * `Client.Payments.Get()`:  `response.Details` **Changed**
-  * `Client.Payments.Update()`:  `response.Details` **Changed**
-  * `Client.Payments.Cancel()`:  `response.Details` **Changed**
-  * `Client.Payment-Links.List-Payments()`:  `response.Embedded.Payments.[].Details` **Changed**
-  * `Client.Customers.Create-Payment()`:  `response.Details` **Changed**
-  * `Client.Customers.List-Payments()`:  `response.Embedded.Payments.[].Details` **Changed**
-  * `Client.Subscriptions.List-Payments()`:  `response.Embedded.Payments.[].Details` **Changed**
