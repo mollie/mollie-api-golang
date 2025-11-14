@@ -111,61 +111,61 @@ func (m *MandateResponseLinks) GetDocumentation() URLObj {
 
 type MandateResponse struct {
 	// Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// Payment method of the mandate.
 	//
 	// SEPA Direct Debit and PayPal mandates can be created directly.
-	Method  *MandateMethodResponse  `json:"method,omitempty"`
-	Details *MandateResponseDetails `json:"details,omitempty"`
+	Method  MandateMethodResponse  `json:"method"`
+	Details MandateResponseDetails `json:"details"`
 	// The date when the mandate was signed in `YYYY-MM-DD` format.
-	SignatureDate *string `json:"signatureDate,omitempty"`
+	SignatureDate *string `json:"signatureDate"`
 	// A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
 	// decline Direct Debit payments if the mandate reference is not unique.
-	MandateReference *string `json:"mandateReference,omitempty"`
+	MandateReference *string `json:"mandateReference"`
 	// The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
 	// when we did not received the IBAN yet from the first payment.
-	Status     *MandateStatus `json:"status,omitempty"`
-	CustomerID *string        `json:"customerId,omitempty"`
+	Status     MandateStatus `json:"status"`
+	CustomerID string        `json:"customerId"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *MandateResponseLinks `json:"_links,omitempty"`
+	Links MandateResponseLinks `json:"_links"`
 }
 
-func (m *MandateResponse) GetResource() *string {
+func (m *MandateResponse) GetResource() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.Resource
 }
 
-func (m *MandateResponse) GetID() *string {
+func (m *MandateResponse) GetID() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.ID
 }
 
-func (m *MandateResponse) GetMode() *Mode {
+func (m *MandateResponse) GetMode() Mode {
 	if m == nil {
-		return nil
+		return Mode("")
 	}
 	return m.Mode
 }
 
-func (m *MandateResponse) GetMethod() *MandateMethodResponse {
+func (m *MandateResponse) GetMethod() MandateMethodResponse {
 	if m == nil {
-		return nil
+		return MandateMethodResponse("")
 	}
 	return m.Method
 }
 
-func (m *MandateResponse) GetDetails() *MandateResponseDetails {
+func (m *MandateResponse) GetDetails() MandateResponseDetails {
 	if m == nil {
-		return nil
+		return MandateResponseDetails{}
 	}
 	return m.Details
 }
@@ -184,30 +184,30 @@ func (m *MandateResponse) GetMandateReference() *string {
 	return m.MandateReference
 }
 
-func (m *MandateResponse) GetStatus() *MandateStatus {
+func (m *MandateResponse) GetStatus() MandateStatus {
 	if m == nil {
-		return nil
+		return MandateStatus("")
 	}
 	return m.Status
 }
 
-func (m *MandateResponse) GetCustomerID() *string {
+func (m *MandateResponse) GetCustomerID() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.CustomerID
 }
 
-func (m *MandateResponse) GetCreatedAt() *string {
+func (m *MandateResponse) GetCreatedAt() string {
 	if m == nil {
-		return nil
+		return ""
 	}
 	return m.CreatedAt
 }
 
-func (m *MandateResponse) GetLinks() *MandateResponseLinks {
+func (m *MandateResponse) GetLinks() MandateResponseLinks {
 	if m == nil {
-		return nil
+		return MandateResponseLinks{}
 	}
 	return m.Links
 }

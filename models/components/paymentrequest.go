@@ -353,9 +353,9 @@ type PaymentRequest struct {
 	//
 	// The maximum length of the description field differs per payment method, with the absolute maximum being 255
 	// characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountRefunded *Amount `json:"amountRefunded,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -373,7 +373,7 @@ type PaymentRequest struct {
 	//
 	// The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
 	// Apple Pay payments with an `applePayPaymentToken`.
-	RedirectURL *string `json:"redirectUrl,omitempty"`
+	RedirectURL *string `json:"redirectUrl"`
 	// The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
 	// provided, the customer will be redirected to the `redirectUrl` instead — see above.
 	//
@@ -554,7 +554,7 @@ func (p PaymentRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"description", "amount"}); err != nil {
 		return err
 	}
 	return nil
@@ -567,16 +567,16 @@ func (p *PaymentRequest) GetID() *string {
 	return p.ID
 }
 
-func (p *PaymentRequest) GetDescription() *string {
+func (p *PaymentRequest) GetDescription() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Description
 }
 
-func (p *PaymentRequest) GetAmount() *Amount {
+func (p *PaymentRequest) GetAmount() Amount {
 	if p == nil {
-		return nil
+		return Amount{}
 	}
 	return p.Amount
 }

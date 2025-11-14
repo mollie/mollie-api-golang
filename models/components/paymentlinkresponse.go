@@ -81,22 +81,22 @@ func (p *PaymentLinkResponseLinks) GetPaymentLink() URLObj {
 type PaymentLinkResponse struct {
 	// Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// A short description of the payment link. The description is visible in the Dashboard and will be shown on the
 	// customer's bank or card statement when possible.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *AmountNullable `json:"amount,omitempty"`
+	Amount *AmountNullable `json:"amount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	MinimumAmount *AmountNullable `json:"minimumAmount,omitempty"`
 	// Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
-	Archived *bool `json:"archived,omitempty"`
+	Archived bool `json:"archived"`
 	// The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
 	// the customer will be shown a generic message after completing the payment.
-	RedirectURL *string `json:"redirectUrl,omitempty"`
+	RedirectURL *string `json:"redirectUrl"`
 	// The webhook URL where we will send payment status updates to.
 	//
 	// The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
@@ -105,7 +105,7 @@ type PaymentLinkResponse struct {
 	// The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
 	// webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
 	// local machine.
-	WebhookURL *string `json:"webhookUrl,omitempty"`
+	WebhookURL *string `json:"webhookUrl"`
 	// Optionally provide the order lines for the payment. Each line contains details such as a description of the item
 	// ordered and its price.
 	//
@@ -120,22 +120,22 @@ type PaymentLinkResponse struct {
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
 	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
 	// required.
-	ProfileID *string `json:"profileId,omitempty"`
+	ProfileID *string `json:"profileId"`
 	// Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
 	// payments using the same link.
 	//
 	// If no value is specified, the field defaults to `false`, allowing only a single payment per link.
-	Reusable *bool `json:"reusable,omitempty"`
+	Reusable *bool `json:"reusable"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// The date and time the payment link became paid, in ISO 8601 format.
-	PaidAt *string `json:"paidAt,omitempty"`
+	PaidAt *string `json:"paidAt"`
 	// The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
 	// the payment link will not expire automatically.
-	ExpiresAt *string `json:"expiresAt,omitempty"`
+	ExpiresAt *string `json:"expiresAt"`
 	// An array of payment methods that are allowed to be used for this payment link. When this parameter is
 	// not provided or is an empty array, all enabled payment methods will be available.
-	AllowedMethods []PaymentLinkMethodResponse `json:"allowedMethods,omitempty"`
+	AllowedMethods []PaymentLinkMethodResponse `json:"allowedMethods"`
 	// With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
 	// merchants.
 	//
@@ -151,7 +151,7 @@ type PaymentLinkResponse struct {
 	// the payment is made.
 	CustomerID *string `json:"customerId,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *PaymentLinkResponseLinks `json:"_links,omitempty"`
+	Links PaymentLinkResponseLinks `json:"_links"`
 }
 
 func (p PaymentLinkResponse) MarshalJSON() ([]byte, error) {
@@ -159,36 +159,36 @@ func (p PaymentLinkResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentLinkResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "description", "archived", "createdAt", "_links"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PaymentLinkResponse) GetResource() *string {
+func (p *PaymentLinkResponse) GetResource() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Resource
 }
 
-func (p *PaymentLinkResponse) GetID() *string {
+func (p *PaymentLinkResponse) GetID() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.ID
 }
 
-func (p *PaymentLinkResponse) GetMode() *Mode {
+func (p *PaymentLinkResponse) GetMode() Mode {
 	if p == nil {
-		return nil
+		return Mode("")
 	}
 	return p.Mode
 }
 
-func (p *PaymentLinkResponse) GetDescription() *string {
+func (p *PaymentLinkResponse) GetDescription() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Description
 }
@@ -207,9 +207,9 @@ func (p *PaymentLinkResponse) GetMinimumAmount() *AmountNullable {
 	return p.MinimumAmount
 }
 
-func (p *PaymentLinkResponse) GetArchived() *bool {
+func (p *PaymentLinkResponse) GetArchived() bool {
 	if p == nil {
-		return nil
+		return false
 	}
 	return p.Archived
 }
@@ -263,9 +263,9 @@ func (p *PaymentLinkResponse) GetReusable() *bool {
 	return p.Reusable
 }
 
-func (p *PaymentLinkResponse) GetCreatedAt() *string {
+func (p *PaymentLinkResponse) GetCreatedAt() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.CreatedAt
 }
@@ -312,9 +312,9 @@ func (p *PaymentLinkResponse) GetCustomerID() *string {
 	return p.CustomerID
 }
 
-func (p *PaymentLinkResponse) GetLinks() *PaymentLinkResponseLinks {
+func (p *PaymentLinkResponse) GetLinks() PaymentLinkResponseLinks {
 	if p == nil {
-		return nil
+		return PaymentLinkResponseLinks{}
 	}
 	return p.Links
 }

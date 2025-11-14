@@ -2,17 +2,17 @@
 
 package components
 
-type EntityProfile struct {
+type ProfileRequest struct {
 	// The profile's name, this will usually reflect the trade name or brand name of the profile's website or
 	// application.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
 	// allowed.
-	Website *string `json:"website,omitempty"`
+	Website string `json:"website"`
 	// The email address associated with the profile's trade name or brand.
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email"`
 	// The phone number associated with the profile's trade name or brand.
-	Phone *string `json:"phone,omitempty"`
+	Phone string `json:"phone"`
 	// The products or services offered by the profile's website or application.
 	Description *string `json:"description,omitempty"`
 	// A list of countries where you expect that the majority of the profile's customers reside,
@@ -29,58 +29,58 @@ type EntityProfile struct {
 	Status *ProfileStatus `json:"status,omitempty"`
 }
 
-func (e *EntityProfile) GetName() *string {
-	if e == nil {
-		return nil
+func (p *ProfileRequest) GetName() string {
+	if p == nil {
+		return ""
 	}
-	return e.Name
+	return p.Name
 }
 
-func (e *EntityProfile) GetWebsite() *string {
-	if e == nil {
-		return nil
+func (p *ProfileRequest) GetWebsite() string {
+	if p == nil {
+		return ""
 	}
-	return e.Website
+	return p.Website
 }
 
-func (e *EntityProfile) GetEmail() *string {
-	if e == nil {
-		return nil
+func (p *ProfileRequest) GetEmail() string {
+	if p == nil {
+		return ""
 	}
-	return e.Email
+	return p.Email
 }
 
-func (e *EntityProfile) GetPhone() *string {
-	if e == nil {
-		return nil
+func (p *ProfileRequest) GetPhone() string {
+	if p == nil {
+		return ""
 	}
-	return e.Phone
+	return p.Phone
 }
 
-func (e *EntityProfile) GetDescription() *string {
-	if e == nil {
+func (p *ProfileRequest) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return e.Description
+	return p.Description
 }
 
-func (e *EntityProfile) GetCountriesOfActivity() []string {
-	if e == nil {
+func (p *ProfileRequest) GetCountriesOfActivity() []string {
+	if p == nil {
 		return nil
 	}
-	return e.CountriesOfActivity
+	return p.CountriesOfActivity
 }
 
-func (e *EntityProfile) GetBusinessCategory() *string {
-	if e == nil {
+func (p *ProfileRequest) GetBusinessCategory() *string {
+	if p == nil {
 		return nil
 	}
-	return e.BusinessCategory
+	return p.BusinessCategory
 }
 
-func (e *EntityProfile) GetStatus() *ProfileStatus {
-	if e == nil {
+func (p *ProfileRequest) GetStatus() *ProfileStatus {
+	if p == nil {
 		return nil
 	}
-	return e.Status
+	return p.Status
 }

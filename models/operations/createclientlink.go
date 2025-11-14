@@ -8,8 +8,8 @@ import (
 
 type CreateClientLinkRequest struct {
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey   *string                      `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityClientLink *components.EntityClientLink `request:"mediaType=application/json"`
+	IdempotencyKey    *string                       `header:"style=simple,explode=false,name=idempotency-key"`
+	ClientLinkRequest *components.ClientLinkRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateClientLinkRequest) GetIdempotencyKey() *string {
@@ -19,11 +19,11 @@ func (c *CreateClientLinkRequest) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreateClientLinkRequest) GetEntityClientLink() *components.EntityClientLink {
+func (c *CreateClientLinkRequest) GetClientLinkRequest() *components.ClientLinkRequest {
 	if c == nil {
 		return nil
 	}
-	return c.EntityClientLink
+	return c.ClientLinkRequest
 }
 
 type CreateClientLinkResponse struct {

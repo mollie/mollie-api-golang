@@ -2,14 +2,14 @@
 
 package components
 
-type EntityMandate struct {
+type MandateRequest struct {
 	ID *string `json:"id,omitempty"`
 	// Payment method of the mandate.
 	//
 	// SEPA Direct Debit and PayPal mandates can be created directly.
-	Method *MandateMethod `json:"method,omitempty"`
+	Method MandateMethod `json:"method"`
 	// The customer's name.
-	ConsumerName *string `json:"consumerName,omitempty"`
+	ConsumerName string `json:"consumerName"`
 	// The customer's IBAN. Required for SEPA Direct Debit mandates.
 	ConsumerAccount *string `json:"consumerAccount,omitempty"`
 	// The BIC of the customer's bank.
@@ -39,93 +39,93 @@ type EntityMandate struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (e *EntityMandate) GetID() *string {
-	if e == nil {
+func (m *MandateRequest) GetID() *string {
+	if m == nil {
 		return nil
 	}
-	return e.ID
+	return m.ID
 }
 
-func (e *EntityMandate) GetMethod() *MandateMethod {
-	if e == nil {
-		return nil
+func (m *MandateRequest) GetMethod() MandateMethod {
+	if m == nil {
+		return MandateMethod("")
 	}
-	return e.Method
+	return m.Method
 }
 
-func (e *EntityMandate) GetConsumerName() *string {
-	if e == nil {
-		return nil
+func (m *MandateRequest) GetConsumerName() string {
+	if m == nil {
+		return ""
 	}
-	return e.ConsumerName
+	return m.ConsumerName
 }
 
-func (e *EntityMandate) GetConsumerAccount() *string {
-	if e == nil {
+func (m *MandateRequest) GetConsumerAccount() *string {
+	if m == nil {
 		return nil
 	}
-	return e.ConsumerAccount
+	return m.ConsumerAccount
 }
 
-func (e *EntityMandate) GetConsumerBic() *string {
-	if e == nil {
+func (m *MandateRequest) GetConsumerBic() *string {
+	if m == nil {
 		return nil
 	}
-	return e.ConsumerBic
+	return m.ConsumerBic
 }
 
-func (e *EntityMandate) GetConsumerEmail() *string {
-	if e == nil {
+func (m *MandateRequest) GetConsumerEmail() *string {
+	if m == nil {
 		return nil
 	}
-	return e.ConsumerEmail
+	return m.ConsumerEmail
 }
 
-func (e *EntityMandate) GetSignatureDate() *string {
-	if e == nil {
+func (m *MandateRequest) GetSignatureDate() *string {
+	if m == nil {
 		return nil
 	}
-	return e.SignatureDate
+	return m.SignatureDate
 }
 
-func (e *EntityMandate) GetMandateReference() *string {
-	if e == nil {
+func (m *MandateRequest) GetMandateReference() *string {
+	if m == nil {
 		return nil
 	}
-	return e.MandateReference
+	return m.MandateReference
 }
 
-func (e *EntityMandate) GetPaypalBillingAgreementID() *string {
-	if e == nil {
+func (m *MandateRequest) GetPaypalBillingAgreementID() *string {
+	if m == nil {
 		return nil
 	}
-	return e.PaypalBillingAgreementID
+	return m.PaypalBillingAgreementID
 }
 
-func (e *EntityMandate) GetPayPalVaultID() *string {
-	if e == nil {
+func (m *MandateRequest) GetPayPalVaultID() *string {
+	if m == nil {
 		return nil
 	}
-	return e.PayPalVaultID
+	return m.PayPalVaultID
 }
 
-func (e *EntityMandate) GetStatus() *MandateStatus {
-	if e == nil {
+func (m *MandateRequest) GetStatus() *MandateStatus {
+	if m == nil {
 		return nil
 	}
-	return e.Status
+	return m.Status
 }
 
-func (e *EntityMandate) GetCustomerID() *string {
-	if e == nil {
+func (m *MandateRequest) GetCustomerID() *string {
+	if m == nil {
 		return nil
 	}
-	return e.CustomerID
+	return m.CustomerID
 }
 
-func (e *EntityMandate) GetTestmode() *bool {
-	if e == nil {
+func (m *MandateRequest) GetTestmode() *bool {
+	if m == nil {
 		return nil
 	}
-	return e.Testmode
+	return m.Testmode
 }

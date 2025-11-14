@@ -67,8 +67,6 @@ func (c *CancelRefundRequest) GetIdempotencyKey() *string {
 
 type CancelRefundResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response if the refund was successfully canceled.
-	Any any
 }
 
 func (c *CancelRefundResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -76,11 +74,4 @@ func (c *CancelRefundResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return c.HTTPMeta
-}
-
-func (c *CancelRefundResponse) GetAny() any {
-	if c == nil {
-		return nil
-	}
-	return c.Any
 }

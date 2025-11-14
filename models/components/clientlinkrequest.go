@@ -42,8 +42,8 @@ func (o *Owner) GetLocale() *LocaleResponse {
 	return o.Locale
 }
 
-// EntityClientLinkAddress - Address of the organization.
-type EntityClientLinkAddress struct {
+// ClientLinkRequestAddress - Address of the organization.
+type ClientLinkRequestAddress struct {
 	// The street name and house number of the organization.
 	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
 	// The postal code of the organization. Required if a street address is provided and if the country has a postal
@@ -56,41 +56,41 @@ type EntityClientLinkAddress struct {
 	Country string `json:"country"`
 }
 
-func (e *EntityClientLinkAddress) GetStreetAndNumber() *string {
-	if e == nil {
+func (c *ClientLinkRequestAddress) GetStreetAndNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return e.StreetAndNumber
+	return c.StreetAndNumber
 }
 
-func (e *EntityClientLinkAddress) GetPostalCode() *string {
-	if e == nil {
+func (c *ClientLinkRequestAddress) GetPostalCode() *string {
+	if c == nil {
 		return nil
 	}
-	return e.PostalCode
+	return c.PostalCode
 }
 
-func (e *EntityClientLinkAddress) GetCity() *string {
-	if e == nil {
+func (c *ClientLinkRequestAddress) GetCity() *string {
+	if c == nil {
 		return nil
 	}
-	return e.City
+	return c.City
 }
 
-func (e *EntityClientLinkAddress) GetCountry() string {
-	if e == nil {
+func (c *ClientLinkRequestAddress) GetCountry() string {
+	if c == nil {
 		return ""
 	}
-	return e.Country
+	return c.Country
 }
 
-type EntityClientLink struct {
+type ClientLinkRequest struct {
 	// Personal data of your customer.
-	Owner *Owner `json:"owner,omitempty"`
+	Owner Owner `json:"owner"`
 	// Name of the organization.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Address of the organization.
-	Address *EntityClientLinkAddress `json:"address,omitempty"`
+	Address ClientLinkRequestAddress `json:"address"`
 	// The registration number of the organization at their local chamber of commerce.
 	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
@@ -98,37 +98,37 @@ type EntityClientLink struct {
 	VatNumber *string `json:"vatNumber,omitempty"`
 }
 
-func (e *EntityClientLink) GetOwner() *Owner {
-	if e == nil {
-		return nil
+func (c *ClientLinkRequest) GetOwner() Owner {
+	if c == nil {
+		return Owner{}
 	}
-	return e.Owner
+	return c.Owner
 }
 
-func (e *EntityClientLink) GetName() *string {
-	if e == nil {
-		return nil
+func (c *ClientLinkRequest) GetName() string {
+	if c == nil {
+		return ""
 	}
-	return e.Name
+	return c.Name
 }
 
-func (e *EntityClientLink) GetAddress() *EntityClientLinkAddress {
-	if e == nil {
-		return nil
+func (c *ClientLinkRequest) GetAddress() ClientLinkRequestAddress {
+	if c == nil {
+		return ClientLinkRequestAddress{}
 	}
-	return e.Address
+	return c.Address
 }
 
-func (e *EntityClientLink) GetRegistrationNumber() *string {
-	if e == nil {
+func (c *ClientLinkRequest) GetRegistrationNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return e.RegistrationNumber
+	return c.RegistrationNumber
 }
 
-func (e *EntityClientLink) GetVatNumber() *string {
-	if e == nil {
+func (c *ClientLinkRequest) GetVatNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return e.VatNumber
+	return c.VatNumber
 }

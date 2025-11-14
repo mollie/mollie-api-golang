@@ -121,21 +121,21 @@ func (p *ProfileResponseLinks) GetDocumentation() *URLObj {
 
 type ProfileResponse struct {
 	// Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The profile's name, this will usually reflect the trade name or brand name of the profile's website or
 	// application.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
 	// allowed.
-	Website *string `json:"website,omitempty"`
+	Website string `json:"website"`
 	// The email address associated with the profile's trade name or brand.
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email"`
 	// The phone number associated with the profile's trade name or brand.
-	Phone *string `json:"phone,omitempty"`
+	Phone string `json:"phone"`
 	// The products or services offered by the profile's website or application.
 	Description *string `json:"description,omitempty"`
 	// A list of countries where you expect that the majority of the profile's customers reside,
@@ -143,21 +143,21 @@ type ProfileResponse struct {
 	CountriesOfActivity []string `json:"countriesOfActivity,omitempty"`
 	// The industry associated with the profile's trade name or brand. Please refer to the
 	// [business category list](common-data-types#business-category) for all possible options.
-	BusinessCategory *string `json:"businessCategory,omitempty"`
+	BusinessCategory string `json:"businessCategory"`
 	// The profile status determines whether the profile is able to receive live payments.
 	//
 	// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
 	// * `verified`: The profile has been verified and can be used to create live payments and test payments.
 	// * `blocked`: The profile is blocked and can no longer be used or changed.
-	Status *ProfileStatus `json:"status,omitempty"`
+	Status ProfileStatus `json:"status"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 	// `null` in test mode.
 	Review *Review `json:"review,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *ProfileResponseLinks `json:"_links,omitempty"`
+	Links ProfileResponseLinks `json:"_links"`
 }
 
 func (p ProfileResponse) MarshalJSON() ([]byte, error) {
@@ -165,57 +165,57 @@ func (p ProfileResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *ProfileResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "name", "website", "email", "phone", "businessCategory", "status", "createdAt", "_links"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *ProfileResponse) GetResource() *string {
+func (p *ProfileResponse) GetResource() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Resource
 }
 
-func (p *ProfileResponse) GetID() *string {
+func (p *ProfileResponse) GetID() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.ID
 }
 
-func (p *ProfileResponse) GetMode() *Mode {
+func (p *ProfileResponse) GetMode() Mode {
 	if p == nil {
-		return nil
+		return Mode("")
 	}
 	return p.Mode
 }
 
-func (p *ProfileResponse) GetName() *string {
+func (p *ProfileResponse) GetName() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Name
 }
 
-func (p *ProfileResponse) GetWebsite() *string {
+func (p *ProfileResponse) GetWebsite() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Website
 }
 
-func (p *ProfileResponse) GetEmail() *string {
+func (p *ProfileResponse) GetEmail() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Email
 }
 
-func (p *ProfileResponse) GetPhone() *string {
+func (p *ProfileResponse) GetPhone() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Phone
 }
@@ -234,16 +234,16 @@ func (p *ProfileResponse) GetCountriesOfActivity() []string {
 	return p.CountriesOfActivity
 }
 
-func (p *ProfileResponse) GetBusinessCategory() *string {
+func (p *ProfileResponse) GetBusinessCategory() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.BusinessCategory
 }
 
-func (p *ProfileResponse) GetStatus() *ProfileStatus {
+func (p *ProfileResponse) GetStatus() ProfileStatus {
 	if p == nil {
-		return nil
+		return ProfileStatus("")
 	}
 	return p.Status
 }
@@ -255,16 +255,16 @@ func (p *ProfileResponse) GetReview() *Review {
 	return p.Review
 }
 
-func (p *ProfileResponse) GetCreatedAt() *string {
+func (p *ProfileResponse) GetCreatedAt() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.CreatedAt
 }
 
-func (p *ProfileResponse) GetLinks() *ProfileResponseLinks {
+func (p *ProfileResponse) GetLinks() ProfileResponseLinks {
 	if p == nil {
-		return nil
+		return ProfileResponseLinks{}
 	}
 	return p.Links
 }

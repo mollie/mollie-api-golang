@@ -36,10 +36,10 @@ func newProfiles(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
 // can use this endpoint to automate profile creation.
-func (s *Profiles) Create(ctx context.Context, entityProfile components.EntityProfile, idempotencyKey *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
+func (s *Profiles) Create(ctx context.Context, profileRequest components.ProfileRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
 	request := operations.CreateProfileRequest{
 		IdempotencyKey: idempotencyKey,
-		EntityProfile:  entityProfile,
+		ProfileRequest: profileRequest,
 	}
 
 	o := operations.Options{}
@@ -74,7 +74,7 @@ func (s *Profiles) Create(ctx context.Context, entityProfile components.EntityPr
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntityProfile", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "ProfileRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1225,26 +1225,6 @@ func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string
 
 	switch {
 	case httpRes.StatusCode == 204:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out any
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.Any = out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 410:

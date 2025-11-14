@@ -37,8 +37,6 @@ func (d *DeleteSalesInvoiceRequest) GetDeleteValuesSalesInvoice() *components.De
 
 type DeleteSalesInvoiceResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response.
-	Any any
 }
 
 func (d *DeleteSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -46,11 +44,4 @@ func (d *DeleteSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return d.HTTPMeta
-}
-
-func (d *DeleteSalesInvoiceResponse) GetAny() any {
-	if d == nil {
-		return nil
-	}
-	return d.Any
 }

@@ -52,8 +52,6 @@ func (d *DeletePaymentLinkRequest) GetRequestBody() *DeletePaymentLinkRequestBod
 
 type DeletePaymentLinkResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response.
-	Any any
 }
 
 func (d *DeletePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -61,11 +59,4 @@ func (d *DeletePaymentLinkResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return d.HTTPMeta
-}
-
-func (d *DeletePaymentLinkResponse) GetAny() any {
-	if d == nil {
-		return nil
-	}
-	return d.Any
 }

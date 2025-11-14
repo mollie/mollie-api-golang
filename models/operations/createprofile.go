@@ -8,8 +8,8 @@ import (
 
 type CreateProfileRequest struct {
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityProfile  components.EntityProfile `request:"mediaType=application/json"`
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	ProfileRequest components.ProfileRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateProfileRequest) GetIdempotencyKey() *string {
@@ -19,11 +19,11 @@ func (c *CreateProfileRequest) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreateProfileRequest) GetEntityProfile() components.EntityProfile {
+func (c *CreateProfileRequest) GetProfileRequest() components.ProfileRequest {
 	if c == nil {
-		return components.EntityProfile{}
+		return components.ProfileRequest{}
 	}
-	return c.EntityProfile
+	return c.ProfileRequest
 }
 
 type CreateProfileResponse struct {

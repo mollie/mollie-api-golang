@@ -66,8 +66,6 @@ func (r *ReleaseAuthorizationRequest) GetRequestBody() *ReleaseAuthorizationRequ
 
 type ReleaseAuthorizationResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The request was accepted and will be processed asynchronously.
-	Any any
 }
 
 func (r *ReleaseAuthorizationResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -75,11 +73,4 @@ func (r *ReleaseAuthorizationResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return r.HTTPMeta
-}
-
-func (r *ReleaseAuthorizationResponse) GetAny() any {
-	if r == nil {
-		return nil
-	}
-	return r.Any
 }

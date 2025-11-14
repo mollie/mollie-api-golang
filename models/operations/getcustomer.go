@@ -126,43 +126,43 @@ func (g *GetCustomerLinks) GetDocumentation() components.URLObj {
 // GetCustomerResponseBody - The customer object.
 type GetCustomerResponseBody struct {
 	// Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *components.Mode `json:"mode,omitempty"`
+	Mode components.Mode `json:"mode"`
 	// The full name of the customer.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name"`
 	// The email address of the customer.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email"`
 	// Allows you to preset the language to be used.
-	Locale *components.LocaleResponse `json:"locale,omitempty"`
+	Locale *components.LocaleResponse `json:"locale"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *components.Metadata `json:"metadata,omitempty"`
+	Metadata *components.Metadata `json:"metadata"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links  *GetCustomerLinks        `json:"_links,omitempty"`
+	Links  GetCustomerLinks         `json:"_links"`
 	Events []components.EntityEvent `json:"events,omitempty"`
 }
 
-func (g *GetCustomerResponseBody) GetResource() *string {
+func (g *GetCustomerResponseBody) GetResource() string {
 	if g == nil {
-		return nil
+		return ""
 	}
 	return g.Resource
 }
 
-func (g *GetCustomerResponseBody) GetID() *string {
+func (g *GetCustomerResponseBody) GetID() string {
 	if g == nil {
-		return nil
+		return ""
 	}
 	return g.ID
 }
 
-func (g *GetCustomerResponseBody) GetMode() *components.Mode {
+func (g *GetCustomerResponseBody) GetMode() components.Mode {
 	if g == nil {
-		return nil
+		return components.Mode("")
 	}
 	return g.Mode
 }
@@ -195,16 +195,16 @@ func (g *GetCustomerResponseBody) GetMetadata() *components.Metadata {
 	return g.Metadata
 }
 
-func (g *GetCustomerResponseBody) GetCreatedAt() *string {
+func (g *GetCustomerResponseBody) GetCreatedAt() string {
 	if g == nil {
-		return nil
+		return ""
 	}
 	return g.CreatedAt
 }
 
-func (g *GetCustomerResponseBody) GetLinks() *GetCustomerLinks {
+func (g *GetCustomerResponseBody) GetLinks() GetCustomerLinks {
 	if g == nil {
-		return nil
+		return GetCustomerLinks{}
 	}
 	return g.Links
 }

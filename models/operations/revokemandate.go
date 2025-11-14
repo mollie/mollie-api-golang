@@ -61,8 +61,6 @@ func (r *RevokeMandateRequest) GetRequestBody() *RevokeMandateRequestBody {
 
 type RevokeMandateResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response.
-	Any any
 }
 
 func (r *RevokeMandateResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -70,11 +68,4 @@ func (r *RevokeMandateResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return r.HTTPMeta
-}
-
-func (r *RevokeMandateResponse) GetAny() any {
-	if r == nil {
-		return nil
-	}
-	return r.Any
 }

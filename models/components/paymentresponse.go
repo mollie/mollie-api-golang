@@ -1052,10 +1052,10 @@ func (p *PaymentResponseLinks) GetPayOnline() *URLObj {
 
 type PaymentResponse struct {
 	// Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The description of the payment. This will be shown to your customer on their card or bank statement when possible.
 	// We truncate the description automatically according to the limits of the used payment method. The description is
 	// also visible in any exports you generate.
@@ -1065,9 +1065,9 @@ type PaymentResponse struct {
 	//
 	// The maximum length of the description field differs per payment method, with the absolute maximum being 255
 	// characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountRefunded *Amount `json:"amountRefunded,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -1192,7 +1192,7 @@ type PaymentResponse struct {
 	// If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
 	// parameter.
 	Routing        []EntityPaymentRouteResponse `json:"routing,omitempty"`
-	SequenceType   *SequenceTypeResponse        `json:"sequenceType,omitempty"`
+	SequenceType   SequenceTypeResponse         `json:"sequenceType"`
 	SubscriptionID *string                      `json:"subscriptionId,omitempty"`
 	MandateID      *string                      `json:"mandateId,omitempty"`
 	CustomerID     *string                      `json:"customerId,omitempty"`
@@ -1201,12 +1201,12 @@ type PaymentResponse struct {
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
 	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
 	// required.
-	ProfileID    *string `json:"profileId,omitempty"`
+	ProfileID    string  `json:"profileId"`
 	SettlementID *string `json:"settlementId,omitempty"`
 	OrderID      *string `json:"orderId,omitempty"`
 	// The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
 	// statuses occur at what point.
-	Status *PaymentStatus `json:"status,omitempty"`
+	Status PaymentStatus `json:"status"`
 	// This object offers details about the status of a payment. Currently it is only available for point-of-sale
 	// payments.
 	//
@@ -1220,7 +1220,7 @@ type PaymentResponse struct {
 	// [method-specific parameters](extra-payment-parameters) guide.
 	Details *PaymentResponseDetails `json:"details,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
 	// not authorized (yet).
 	AuthorizedAt *string `json:"authorizedAt,omitempty"`
@@ -1240,40 +1240,40 @@ type PaymentResponse struct {
 	// (yet).
 	FailedAt *string `json:"failedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *PaymentResponseLinks `json:"_links,omitempty"`
+	Links PaymentResponseLinks `json:"_links"`
 }
 
-func (p *PaymentResponse) GetResource() *string {
+func (p *PaymentResponse) GetResource() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Resource
 }
 
-func (p *PaymentResponse) GetID() *string {
+func (p *PaymentResponse) GetID() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.ID
 }
 
-func (p *PaymentResponse) GetMode() *Mode {
+func (p *PaymentResponse) GetMode() Mode {
 	if p == nil {
-		return nil
+		return Mode("")
 	}
 	return p.Mode
 }
 
-func (p *PaymentResponse) GetDescription() *string {
+func (p *PaymentResponse) GetDescription() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Description
 }
 
-func (p *PaymentResponse) GetAmount() *Amount {
+func (p *PaymentResponse) GetAmount() Amount {
 	if p == nil {
-		return nil
+		return Amount{}
 	}
 	return p.Amount
 }
@@ -1425,9 +1425,9 @@ func (p *PaymentResponse) GetRouting() []EntityPaymentRouteResponse {
 	return p.Routing
 }
 
-func (p *PaymentResponse) GetSequenceType() *SequenceTypeResponse {
+func (p *PaymentResponse) GetSequenceType() SequenceTypeResponse {
 	if p == nil {
-		return nil
+		return SequenceTypeResponse("")
 	}
 	return p.SequenceType
 }
@@ -1453,9 +1453,9 @@ func (p *PaymentResponse) GetCustomerID() *string {
 	return p.CustomerID
 }
 
-func (p *PaymentResponse) GetProfileID() *string {
+func (p *PaymentResponse) GetProfileID() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.ProfileID
 }
@@ -1474,9 +1474,9 @@ func (p *PaymentResponse) GetOrderID() *string {
 	return p.OrderID
 }
 
-func (p *PaymentResponse) GetStatus() *PaymentStatus {
+func (p *PaymentResponse) GetStatus() PaymentStatus {
 	if p == nil {
-		return nil
+		return PaymentStatus("")
 	}
 	return p.Status
 }
@@ -1502,9 +1502,9 @@ func (p *PaymentResponse) GetDetails() *PaymentResponseDetails {
 	return p.Details
 }
 
-func (p *PaymentResponse) GetCreatedAt() *string {
+func (p *PaymentResponse) GetCreatedAt() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.CreatedAt
 }
@@ -1551,9 +1551,9 @@ func (p *PaymentResponse) GetFailedAt() *string {
 	return p.FailedAt
 }
 
-func (p *PaymentResponse) GetLinks() *PaymentResponseLinks {
+func (p *PaymentResponse) GetLinks() PaymentResponseLinks {
 	if p == nil {
-		return nil
+		return PaymentResponseLinks{}
 	}
 	return p.Links
 }

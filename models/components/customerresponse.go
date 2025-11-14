@@ -62,42 +62,42 @@ func (c *CustomerResponseLinks) GetDocumentation() URLObj {
 
 type CustomerResponse struct {
 	// Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The full name of the customer.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name"`
 	// The email address of the customer.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email"`
 	// Allows you to preset the language to be used.
-	Locale *LocaleResponse `json:"locale,omitempty"`
+	Locale *LocaleResponse `json:"locale"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *Metadata `json:"metadata,omitempty"`
+	Metadata *Metadata `json:"metadata"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *CustomerResponseLinks `json:"_links,omitempty"`
+	Links CustomerResponseLinks `json:"_links"`
 }
 
-func (c *CustomerResponse) GetResource() *string {
+func (c *CustomerResponse) GetResource() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.Resource
 }
 
-func (c *CustomerResponse) GetID() *string {
+func (c *CustomerResponse) GetID() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.ID
 }
 
-func (c *CustomerResponse) GetMode() *Mode {
+func (c *CustomerResponse) GetMode() Mode {
 	if c == nil {
-		return nil
+		return Mode("")
 	}
 	return c.Mode
 }
@@ -130,16 +130,16 @@ func (c *CustomerResponse) GetMetadata() *Metadata {
 	return c.Metadata
 }
 
-func (c *CustomerResponse) GetCreatedAt() *string {
+func (c *CustomerResponse) GetCreatedAt() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.CreatedAt
 }
 
-func (c *CustomerResponse) GetLinks() *CustomerResponseLinks {
+func (c *CustomerResponse) GetLinks() CustomerResponseLinks {
 	if c == nil {
-		return nil
+		return CustomerResponseLinks{}
 	}
 	return c.Links
 }

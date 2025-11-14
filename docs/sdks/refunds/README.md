@@ -39,7 +39,7 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityRefund{
+    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
         ID: "re_5B8cwPMGnU",
         Description: "Refunding a Chess Board",
         Amount: components.Amount{
@@ -58,18 +58,18 @@ func main() {
         PaymentID: client.Pointer("tr_5B8cwPMGnU"),
         SettlementID: client.Pointer("stl_5B8cwPMGnU"),
         Status: components.RefundStatusQueued,
-        ExternalReference: &components.EntityRefundExternalReference{
+        ExternalReference: &components.RefundRequestExternalReference{
             Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
             ID: client.Pointer("123456789012345"),
         },
         ReverseRouting: client.Pointer(false),
-        RoutingReversals: []components.EntityRefundRoutingReversal{
-            components.EntityRefundRoutingReversal{
+        RoutingReversals: []components.RefundRequestRoutingReversal{
+            components.RefundRequestRoutingReversal{
                 Amount: &components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Source: &components.EntityRefundSource{
+                Source: &components.RefundRequestSource{
                     Type: components.RefundRoutingReversalsSourceTypeOrganization.ToPointer(),
                     OrganizationID: client.Pointer("org_1234567"),
                 },
@@ -93,7 +93,7 @@ func main() {
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `paymentID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityRefund`                                                                   | [*components.EntityRefund](../../models/components/entityrefund.md)              | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `refundRequest`                                                                  | [*components.RefundRequest](../../models/components/refundrequest.md)            | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
@@ -272,7 +272,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Any != nil {
+    if res != nil {
         // handle response
     }
 }

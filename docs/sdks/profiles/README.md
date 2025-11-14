@@ -42,11 +42,11 @@ func main() {
         }),
     )
 
-    res, err := s.Profiles.Create(ctx, components.EntityProfile{
-        Name: client.Pointer("My website name"),
-        Website: client.Pointer("https://example.com"),
-        Email: client.Pointer("test@mollie.com"),
-        Phone: client.Pointer("+31208202070"),
+    res, err := s.Profiles.Create(ctx, components.ProfileRequest{
+        Name: "My website name",
+        Website: "https://example.com",
+        Email: "test@mollie.com",
+        Phone: "+31208202070",
         Description: client.Pointer("My website description"),
         CountriesOfActivity: []string{
             "NL",
@@ -69,7 +69,7 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `entityProfile`                                                                  | [components.EntityProfile](../../models/components/entityprofile.md)             | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+| `profileRequest`                                                                 | [components.ProfileRequest](../../models/components/profilerequest.md)           | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
@@ -307,7 +307,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Any != nil {
+    if res != nil {
         // handle response
     }
 }

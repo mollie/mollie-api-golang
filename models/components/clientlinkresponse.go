@@ -36,30 +36,30 @@ func (c *ClientLinkResponseLinks) GetDocumentation() *URLObj {
 type ClientLinkResponse struct {
 	// Indicates the response contains a client link object. Will always contain the string `client-link` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *ClientLinkResponseLinks `json:"_links,omitempty"`
+	Links ClientLinkResponseLinks `json:"_links"`
 }
 
-func (c *ClientLinkResponse) GetResource() *string {
+func (c *ClientLinkResponse) GetResource() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.Resource
 }
 
-func (c *ClientLinkResponse) GetID() *string {
+func (c *ClientLinkResponse) GetID() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.ID
 }
 
-func (c *ClientLinkResponse) GetLinks() *ClientLinkResponseLinks {
+func (c *ClientLinkResponse) GetLinks() ClientLinkResponseLinks {
 	if c == nil {
-		return nil
+		return ClientLinkResponseLinks{}
 	}
 	return c.Links
 }

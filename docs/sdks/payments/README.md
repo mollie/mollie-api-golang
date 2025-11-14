@@ -53,8 +53,8 @@ func main() {
 
     res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
         ID: client.Pointer("tr_5B8cwPMGnU"),
-        Description: client.Pointer("Chess Board"),
-        Amount: &components.Amount{
+        Description: "Chess Board",
+        Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
@@ -579,7 +579,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Any != nil {
+    if res != nil {
         // handle response
     }
 }

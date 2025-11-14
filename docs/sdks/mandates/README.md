@@ -41,10 +41,10 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityMandate{
+    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.MandateRequest{
         ID: client.Pointer("mdt_5B8cwPMGnU"),
-        Method: components.MandateMethodDirectdebit.ToPointer(),
-        ConsumerName: client.Pointer("John Doe"),
+        Method: components.MandateMethodDirectdebit,
+        ConsumerName: "John Doe",
         ConsumerAccount: client.Pointer("NL55INGB0000000000"),
         ConsumerBic: client.Pointer("BANKBIC"),
         ConsumerEmail: client.Pointer("example@email.com"),
@@ -72,7 +72,7 @@ func main() {
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `customerID`                                                                     | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityMandate`                                                                  | [*components.EntityMandate](../../models/components/entitymandate.md)            | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `mandateRequest`                                                                 | [*components.MandateRequest](../../models/components/mandaterequest.md)          | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
@@ -248,7 +248,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Any != nil {
+    if res != nil {
         // handle response
     }
 }

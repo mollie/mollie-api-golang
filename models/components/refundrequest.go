@@ -2,70 +2,70 @@
 
 package components
 
-type EntityRefundExternalReference struct {
+type RefundRequestExternalReference struct {
 	// Specifies the reference type
 	Type *RefundExternalReferenceType `json:"type,omitempty"`
 	// Unique reference from the payment provider
 	ID *string `json:"id,omitempty"`
 }
 
-func (e *EntityRefundExternalReference) GetType() *RefundExternalReferenceType {
-	if e == nil {
+func (r *RefundRequestExternalReference) GetType() *RefundExternalReferenceType {
+	if r == nil {
 		return nil
 	}
-	return e.Type
+	return r.Type
 }
 
-func (e *EntityRefundExternalReference) GetID() *string {
-	if e == nil {
+func (r *RefundRequestExternalReference) GetID() *string {
+	if r == nil {
 		return nil
 	}
-	return e.ID
+	return r.ID
 }
 
-// EntityRefundSource - Where the funds will be pulled back from.
-type EntityRefundSource struct {
+// RefundRequestSource - Where the funds will be pulled back from.
+type RefundRequestSource struct {
 	// The type of source. Currently only the source type `organization` is supported.
 	Type           *RefundRoutingReversalsSourceType `json:"type,omitempty"`
 	OrganizationID *string                           `json:"organizationId,omitempty"`
 }
 
-func (e *EntityRefundSource) GetType() *RefundRoutingReversalsSourceType {
-	if e == nil {
+func (r *RefundRequestSource) GetType() *RefundRoutingReversalsSourceType {
+	if r == nil {
 		return nil
 	}
-	return e.Type
+	return r.Type
 }
 
-func (e *EntityRefundSource) GetOrganizationID() *string {
-	if e == nil {
+func (r *RefundRequestSource) GetOrganizationID() *string {
+	if r == nil {
 		return nil
 	}
-	return e.OrganizationID
+	return r.OrganizationID
 }
 
-type EntityRefundRoutingReversal struct {
+type RefundRequestRoutingReversal struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *Amount `json:"amount,omitempty"`
 	// Where the funds will be pulled back from.
-	Source *EntityRefundSource `json:"source,omitempty"`
+	Source *RefundRequestSource `json:"source,omitempty"`
 }
 
-func (e *EntityRefundRoutingReversal) GetAmount() *Amount {
-	if e == nil {
+func (r *RefundRequestRoutingReversal) GetAmount() *Amount {
+	if r == nil {
 		return nil
 	}
-	return e.Amount
+	return r.Amount
 }
 
-func (e *EntityRefundRoutingReversal) GetSource() *EntityRefundSource {
-	if e == nil {
+func (r *RefundRequestRoutingReversal) GetSource() *RefundRequestSource {
+	if r == nil {
 		return nil
 	}
-	return e.Source
+	return r.Source
 }
 
-type EntityRefund struct {
+type RefundRequest struct {
 	ID string `json:"id"`
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
 	Description string `json:"description"`
@@ -75,11 +75,11 @@ type EntityRefund struct {
 	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata          *Metadata                      `json:"metadata"`
-	PaymentID         *string                        `json:"paymentId,omitempty"`
-	SettlementID      *string                        `json:"settlementId,omitempty"`
-	Status            RefundStatus                   `json:"status"`
-	ExternalReference *EntityRefundExternalReference `json:"externalReference,omitempty"`
+	Metadata          *Metadata                       `json:"metadata"`
+	PaymentID         *string                         `json:"paymentId,omitempty"`
+	SettlementID      *string                         `json:"settlementId,omitempty"`
+	Status            RefundStatus                    `json:"status"`
+	ExternalReference *RefundRequestExternalReference `json:"externalReference,omitempty"`
 	// *This feature is only available to marketplace operators.*
 	//
 	// With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -100,7 +100,7 @@ type EntityRefund struct {
 	// needs to be reversed from which merchant(s).
 	//
 	// If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
-	RoutingReversals []EntityRefundRoutingReversal `json:"routingReversals,omitempty"`
+	RoutingReversals []RefundRequestRoutingReversal `json:"routingReversals,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -109,86 +109,86 @@ type EntityRefund struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (e *EntityRefund) GetID() string {
-	if e == nil {
+func (r *RefundRequest) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return e.ID
+	return r.ID
 }
 
-func (e *EntityRefund) GetDescription() string {
-	if e == nil {
+func (r *RefundRequest) GetDescription() string {
+	if r == nil {
 		return ""
 	}
-	return e.Description
+	return r.Description
 }
 
-func (e *EntityRefund) GetAmount() Amount {
-	if e == nil {
+func (r *RefundRequest) GetAmount() Amount {
+	if r == nil {
 		return Amount{}
 	}
-	return e.Amount
+	return r.Amount
 }
 
-func (e *EntityRefund) GetSettlementAmount() *AmountNullable {
-	if e == nil {
+func (r *RefundRequest) GetSettlementAmount() *AmountNullable {
+	if r == nil {
 		return nil
 	}
-	return e.SettlementAmount
+	return r.SettlementAmount
 }
 
-func (e *EntityRefund) GetMetadata() *Metadata {
-	if e == nil {
+func (r *RefundRequest) GetMetadata() *Metadata {
+	if r == nil {
 		return nil
 	}
-	return e.Metadata
+	return r.Metadata
 }
 
-func (e *EntityRefund) GetPaymentID() *string {
-	if e == nil {
+func (r *RefundRequest) GetPaymentID() *string {
+	if r == nil {
 		return nil
 	}
-	return e.PaymentID
+	return r.PaymentID
 }
 
-func (e *EntityRefund) GetSettlementID() *string {
-	if e == nil {
+func (r *RefundRequest) GetSettlementID() *string {
+	if r == nil {
 		return nil
 	}
-	return e.SettlementID
+	return r.SettlementID
 }
 
-func (e *EntityRefund) GetStatus() RefundStatus {
-	if e == nil {
+func (r *RefundRequest) GetStatus() RefundStatus {
+	if r == nil {
 		return RefundStatus("")
 	}
-	return e.Status
+	return r.Status
 }
 
-func (e *EntityRefund) GetExternalReference() *EntityRefundExternalReference {
-	if e == nil {
+func (r *RefundRequest) GetExternalReference() *RefundRequestExternalReference {
+	if r == nil {
 		return nil
 	}
-	return e.ExternalReference
+	return r.ExternalReference
 }
 
-func (e *EntityRefund) GetReverseRouting() *bool {
-	if e == nil {
+func (r *RefundRequest) GetReverseRouting() *bool {
+	if r == nil {
 		return nil
 	}
-	return e.ReverseRouting
+	return r.ReverseRouting
 }
 
-func (e *EntityRefund) GetRoutingReversals() []EntityRefundRoutingReversal {
-	if e == nil {
+func (r *RefundRequest) GetRoutingReversals() []RefundRequestRoutingReversal {
+	if r == nil {
 		return nil
 	}
-	return e.RoutingReversals
+	return r.RoutingReversals
 }
 
-func (e *EntityRefund) GetTestmode() *bool {
-	if e == nil {
+func (r *RefundRequest) GetTestmode() *bool {
+	if r == nil {
 		return nil
 	}
-	return e.Testmode
+	return r.Testmode
 }

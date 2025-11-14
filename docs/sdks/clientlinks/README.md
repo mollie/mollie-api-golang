@@ -86,15 +86,15 @@ func main() {
         }),
     )
 
-    res, err := s.ClientLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityClientLink{
-        Owner: &components.Owner{
+    res, err := s.ClientLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.ClientLinkRequest{
+        Owner: components.Owner{
             Email: "john@example.org",
             GivenName: "John",
             FamilyName: "Doe",
             Locale: components.LocaleResponseEnUs.ToPointer(),
         },
-        Name: client.Pointer("Acme Corporation"),
-        Address: &components.EntityClientLinkAddress{
+        Name: "Acme Corporation",
+        Address: components.ClientLinkRequestAddress{
             StreetAndNumber: client.Pointer("Main Street 123"),
             PostalCode: client.Pointer("1234AB"),
             City: client.Pointer("Amsterdam"),
@@ -118,7 +118,7 @@ func main() {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityClientLink`                                                               | [*components.EntityClientLink](../../models/components/entityclientlink.md)      | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `clientLinkRequest`                                                              | [*components.ClientLinkRequest](../../models/components/clientlinkrequest.md)    | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response

@@ -34,11 +34,11 @@ func newRefunds(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Create payment refund
 // Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 // transfer or by refunding the amount to your customer's credit card.
-func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityRefund *components.EntityRefund, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
+func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *string, refundRequest *components.RefundRequest, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
 	request := operations.CreateRefundRequest{
 		PaymentID:      paymentID,
 		IdempotencyKey: idempotencyKey,
-		EntityRefund:   entityRefund,
+		RefundRequest:  refundRequest,
 	}
 
 	o := operations.Options{}
@@ -73,7 +73,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityRefund", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RefundRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -975,26 +975,6 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 
 	switch {
 	case httpRes.StatusCode == 204:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out any
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.Any = out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):

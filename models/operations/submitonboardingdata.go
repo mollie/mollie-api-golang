@@ -160,8 +160,6 @@ func (s *SubmitOnboardingDataRequest) GetRequestBody() *SubmitOnboardingDataRequ
 
 type SubmitOnboardingDataResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response.
-	Any any
 }
 
 func (s *SubmitOnboardingDataResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -169,11 +167,4 @@ func (s *SubmitOnboardingDataResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return s.HTTPMeta
-}
-
-func (s *SubmitOnboardingDataResponse) GetAny() any {
-	if s == nil {
-		return nil
-	}
-	return s.Any
 }

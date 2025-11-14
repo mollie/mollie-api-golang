@@ -52,8 +52,6 @@ func (d *DeleteWebhookRequest) GetRequestBody() *DeleteWebhookRequestBody {
 
 type DeleteWebhookResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// No content.
-	Any any
 }
 
 func (d *DeleteWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -61,11 +59,4 @@ func (d *DeleteWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return d.HTTPMeta
-}
-
-func (d *DeleteWebhookResponse) GetAny() any {
-	if d == nil {
-		return nil
-	}
-	return d.Any
 }

@@ -10,8 +10,8 @@ type CreateMandateRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityMandate  *components.EntityMandate `request:"mediaType=application/json"`
+	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
+	MandateRequest *components.MandateRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateMandateRequest) GetCustomerID() string {
@@ -28,11 +28,11 @@ func (c *CreateMandateRequest) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreateMandateRequest) GetEntityMandate() *components.EntityMandate {
+func (c *CreateMandateRequest) GetMandateRequest() *components.MandateRequest {
 	if c == nil {
 		return nil
 	}
-	return c.EntityMandate
+	return c.MandateRequest
 }
 
 type CreateMandateResponse struct {

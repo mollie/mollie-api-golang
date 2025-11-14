@@ -29,8 +29,6 @@ func (d *DeleteProfileRequest) GetIdempotencyKey() *string {
 
 type DeleteProfileResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An empty response.
-	Any any
 }
 
 func (d *DeleteProfileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -38,11 +36,4 @@ func (d *DeleteProfileResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return d.HTTPMeta
-}
-
-func (d *DeleteProfileResponse) GetAny() any {
-	if d == nil {
-		return nil
-	}
-	return d.Any
 }

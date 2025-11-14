@@ -53,47 +53,47 @@ func (c *CaptureResponseLinks) GetDocumentation() URLObj {
 
 type CaptureResponse struct {
 	// Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The description of the capture.
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *AmountNullable `json:"amount,omitempty"`
+	Amount *AmountNullable `json:"amount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
 	// The capture's status.
-	Status *CaptureStatus `json:"status,omitempty"`
+	Status CaptureStatus `json:"status"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata     *Metadata `json:"metadata,omitempty"`
-	PaymentID    *string   `json:"paymentId,omitempty"`
+	PaymentID    string    `json:"paymentId"`
 	ShipmentID   *string   `json:"shipmentId,omitempty"`
 	SettlementID *string   `json:"settlementId,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *CaptureResponseLinks `json:"_links,omitempty"`
+	Links CaptureResponseLinks `json:"_links"`
 }
 
-func (c *CaptureResponse) GetResource() *string {
+func (c *CaptureResponse) GetResource() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.Resource
 }
 
-func (c *CaptureResponse) GetID() *string {
+func (c *CaptureResponse) GetID() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.ID
 }
 
-func (c *CaptureResponse) GetMode() *Mode {
+func (c *CaptureResponse) GetMode() Mode {
 	if c == nil {
-		return nil
+		return Mode("")
 	}
 	return c.Mode
 }
@@ -119,9 +119,9 @@ func (c *CaptureResponse) GetSettlementAmount() *AmountNullable {
 	return c.SettlementAmount
 }
 
-func (c *CaptureResponse) GetStatus() *CaptureStatus {
+func (c *CaptureResponse) GetStatus() CaptureStatus {
 	if c == nil {
-		return nil
+		return CaptureStatus("")
 	}
 	return c.Status
 }
@@ -133,9 +133,9 @@ func (c *CaptureResponse) GetMetadata() *Metadata {
 	return c.Metadata
 }
 
-func (c *CaptureResponse) GetPaymentID() *string {
+func (c *CaptureResponse) GetPaymentID() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.PaymentID
 }
@@ -154,16 +154,16 @@ func (c *CaptureResponse) GetSettlementID() *string {
 	return c.SettlementID
 }
 
-func (c *CaptureResponse) GetCreatedAt() *string {
+func (c *CaptureResponse) GetCreatedAt() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.CreatedAt
 }
 
-func (c *CaptureResponse) GetLinks() *CaptureResponseLinks {
+func (c *CaptureResponse) GetLinks() CaptureResponseLinks {
 	if c == nil {
-		return nil
+		return CaptureResponseLinks{}
 	}
 	return c.Links
 }

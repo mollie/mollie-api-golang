@@ -90,30 +90,30 @@ func (s *SubscriptionResponseLinks) GetDocumentation() URLObj {
 type SubscriptionResponse struct {
 	// Indicates the response contains a subscription object. Will always contain the string `subscription` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode Mode `json:"mode"`
 	// The subscription's current status is directly related to the status of the underlying customer or mandate that is
 	// enabling the subscription.
-	Status *SubscriptionStatus `json:"status,omitempty"`
+	Status SubscriptionStatus `json:"status"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// Total number of payments for the subscription. Once this number of payments is reached, the subscription is
 	// considered completed.
 	//
 	// Test mode subscriptions will get canceled automatically after 10 payments.
-	Times *int64 `json:"times,omitempty"`
+	Times *int64 `json:"times"`
 	// Number of payments left for the subscription.
-	TimesRemaining *int64 `json:"timesRemaining,omitempty"`
+	TimesRemaining *int64 `json:"timesRemaining"`
 	// Interval to wait between payments, for example `1 month` or `14 days`.
 	//
 	// The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
 	//
 	// Possible values: `... days`, `... weeks`, `... months`.
-	Interval *string `json:"interval,omitempty"`
+	Interval string `json:"interval"`
 	// The start date of the subscription in `YYYY-MM-DD` format.
-	StartDate *string `json:"startDate,omitempty"`
+	StartDate string `json:"startDate"`
 	// The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
 	// this parameter will not be returned.
 	NextPaymentDate *string `json:"nextPaymentDate,omitempty"`
@@ -121,9 +121,9 @@ type SubscriptionResponse struct {
 	// up on the bank statement of the consumer.
 	//
 	// **Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-	Method *SubscriptionMethodResponse `json:"method,omitempty"`
+	Method *SubscriptionMethodResponse `json:"method"`
 	// With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 	// merchants.
 	//
@@ -134,54 +134,54 @@ type SubscriptionResponse struct {
 	ApplicationFee *SubscriptionResponseApplicationFee `json:"applicationFee,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *Metadata `json:"metadata,omitempty"`
+	Metadata *Metadata `json:"metadata"`
 	// We will call this URL for any payment status changes of payments resulting from this subscription.
 	//
 	// This webhook will receive **all** events for the subscription's payments. This may include payment failures as
 	// well. Be sure to verify the payment's subscription ID and its status.
-	WebhookURL *string `json:"webhookUrl,omitempty"`
-	CustomerID *string `json:"customerId,omitempty"`
+	WebhookURL string  `json:"webhookUrl"`
+	CustomerID string  `json:"customerId"`
 	MandateID  *string `json:"mandateId,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt *string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
 	// The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
 	// subscription is not canceled (yet).
 	CanceledAt *string `json:"canceledAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *SubscriptionResponseLinks `json:"_links,omitempty"`
+	Links SubscriptionResponseLinks `json:"_links"`
 }
 
-func (s *SubscriptionResponse) GetResource() *string {
+func (s *SubscriptionResponse) GetResource() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.Resource
 }
 
-func (s *SubscriptionResponse) GetID() *string {
+func (s *SubscriptionResponse) GetID() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.ID
 }
 
-func (s *SubscriptionResponse) GetMode() *Mode {
+func (s *SubscriptionResponse) GetMode() Mode {
 	if s == nil {
-		return nil
+		return Mode("")
 	}
 	return s.Mode
 }
 
-func (s *SubscriptionResponse) GetStatus() *SubscriptionStatus {
+func (s *SubscriptionResponse) GetStatus() SubscriptionStatus {
 	if s == nil {
-		return nil
+		return SubscriptionStatus("")
 	}
 	return s.Status
 }
 
-func (s *SubscriptionResponse) GetAmount() *Amount {
+func (s *SubscriptionResponse) GetAmount() Amount {
 	if s == nil {
-		return nil
+		return Amount{}
 	}
 	return s.Amount
 }
@@ -200,16 +200,16 @@ func (s *SubscriptionResponse) GetTimesRemaining() *int64 {
 	return s.TimesRemaining
 }
 
-func (s *SubscriptionResponse) GetInterval() *string {
+func (s *SubscriptionResponse) GetInterval() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.Interval
 }
 
-func (s *SubscriptionResponse) GetStartDate() *string {
+func (s *SubscriptionResponse) GetStartDate() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.StartDate
 }
@@ -221,9 +221,9 @@ func (s *SubscriptionResponse) GetNextPaymentDate() *string {
 	return s.NextPaymentDate
 }
 
-func (s *SubscriptionResponse) GetDescription() *string {
+func (s *SubscriptionResponse) GetDescription() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.Description
 }
@@ -249,16 +249,16 @@ func (s *SubscriptionResponse) GetMetadata() *Metadata {
 	return s.Metadata
 }
 
-func (s *SubscriptionResponse) GetWebhookURL() *string {
+func (s *SubscriptionResponse) GetWebhookURL() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.WebhookURL
 }
 
-func (s *SubscriptionResponse) GetCustomerID() *string {
+func (s *SubscriptionResponse) GetCustomerID() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.CustomerID
 }
@@ -270,9 +270,9 @@ func (s *SubscriptionResponse) GetMandateID() *string {
 	return s.MandateID
 }
 
-func (s *SubscriptionResponse) GetCreatedAt() *string {
+func (s *SubscriptionResponse) GetCreatedAt() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.CreatedAt
 }
@@ -284,9 +284,9 @@ func (s *SubscriptionResponse) GetCanceledAt() *string {
 	return s.CanceledAt
 }
 
-func (s *SubscriptionResponse) GetLinks() *SubscriptionResponseLinks {
+func (s *SubscriptionResponse) GetLinks() SubscriptionResponseLinks {
 	if s == nil {
-		return nil
+		return SubscriptionResponseLinks{}
 	}
 	return s.Links
 }

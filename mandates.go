@@ -36,11 +36,11 @@ func newMandates(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 // mandates for cards, your customers need to perform a 'first payment' with their card.
-func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey *string, entityMandate *components.EntityMandate, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
+func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey *string, mandateRequest *components.MandateRequest, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
 	request := operations.CreateMandateRequest{
 		CustomerID:     customerID,
 		IdempotencyKey: idempotencyKey,
-		EntityMandate:  entityMandate,
+		MandateRequest: mandateRequest,
 	}
 
 	o := operations.Options{}
@@ -75,7 +75,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityMandate", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "MandateRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -977,26 +977,6 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 
 	switch {
 	case httpRes.StatusCode == 204:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out any
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.Any = out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):

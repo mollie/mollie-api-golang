@@ -10,8 +10,8 @@ type CreateRefundRequest struct {
 	// Provide the ID of the related payment.
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityRefund   *components.EntityRefund `request:"mediaType=application/json"`
+	IdempotencyKey *string                   `header:"style=simple,explode=false,name=idempotency-key"`
+	RefundRequest  *components.RefundRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateRefundRequest) GetPaymentID() string {
@@ -28,11 +28,11 @@ func (c *CreateRefundRequest) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreateRefundRequest) GetEntityRefund() *components.EntityRefund {
+func (c *CreateRefundRequest) GetRefundRequest() *components.RefundRequest {
 	if c == nil {
 		return nil
 	}
-	return c.EntityRefund
+	return c.RefundRequest
 }
 
 type CreateRefundResponse struct {

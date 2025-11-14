@@ -52,8 +52,6 @@ func (t *TestWebhookRequest) GetRequestBody() *TestWebhookRequestBody {
 
 type TestWebhookResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// Accepted.
-	Any any
 }
 
 func (t *TestWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -61,11 +59,4 @@ func (t *TestWebhookResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return t.HTTPMeta
-}
-
-func (t *TestWebhookResponse) GetAny() any {
-	if t == nil {
-		return nil
-	}
-	return t.Any
 }
