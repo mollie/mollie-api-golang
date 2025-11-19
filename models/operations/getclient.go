@@ -53,7 +53,7 @@ func (g *GetClientCommission) GetCount() *int64 {
 // GetClientLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type GetClientLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *components.URLObj `json:"self,omitempty"`
+	Self components.URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Organization *components.URLObj `json:"organization,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -62,9 +62,9 @@ type GetClientLinks struct {
 	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
-func (g *GetClientLinks) GetSelf() *components.URLObj {
+func (g *GetClientLinks) GetSelf() components.URLObj {
 	if g == nil {
-		return nil
+		return components.URLObj{}
 	}
 	return g.Self
 }
@@ -120,29 +120,28 @@ func (g *GetClientEmbedded) GetCapabilities() *components.EntityCapability {
 // GetClientResponseBody - The client object.
 type GetClientResponseBody struct {
 	// Indicates the response contains a client object. Will always contain the string `client` for this resource type.
-	Resource *string `json:"resource,omitempty"`
-	// The identifier uniquely referring to this client. Example: `org_12345678`.
-	ID *string `json:"id,omitempty"`
+	Resource string `json:"resource"`
+	ID       string `json:"id"`
 	// The commission object.
 	Commission *GetClientCommission `json:"commission,omitempty"`
 	// The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 	// format.
 	OrganizationCreatedAt *string `json:"organizationCreatedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links    *GetClientLinks    `json:"_links,omitempty"`
+	Links    GetClientLinks     `json:"_links"`
 	Embedded *GetClientEmbedded `json:"_embedded,omitempty"`
 }
 
-func (g *GetClientResponseBody) GetResource() *string {
+func (g *GetClientResponseBody) GetResource() string {
 	if g == nil {
-		return nil
+		return ""
 	}
 	return g.Resource
 }
 
-func (g *GetClientResponseBody) GetID() *string {
+func (g *GetClientResponseBody) GetID() string {
 	if g == nil {
-		return nil
+		return ""
 	}
 	return g.ID
 }
@@ -161,9 +160,9 @@ func (g *GetClientResponseBody) GetOrganizationCreatedAt() *string {
 	return g.OrganizationCreatedAt
 }
 
-func (g *GetClientResponseBody) GetLinks() *GetClientLinks {
+func (g *GetClientResponseBody) GetLinks() GetClientLinks {
 	if g == nil {
-		return nil
+		return GetClientLinks{}
 	}
 	return g.Links
 }
