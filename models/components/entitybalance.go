@@ -2,6 +2,85 @@
 
 package components
 
+// Currency - The balance's ISO 4217 currency code.
+type Currency string
+
+const (
+	CurrencyEur Currency = "EUR"
+	CurrencyGbp Currency = "GBP"
+	CurrencyChf Currency = "CHF"
+	CurrencyDkk Currency = "DKK"
+	CurrencyNok Currency = "NOK"
+	CurrencyPln Currency = "PLN"
+	CurrencySek Currency = "SEK"
+	CurrencyUsd Currency = "USD"
+	CurrencyCzk Currency = "CZK"
+	CurrencyHuf Currency = "HUF"
+	CurrencyAud Currency = "AUD"
+	CurrencyCad Currency = "CAD"
+)
+
+func (e Currency) ToPointer() *Currency {
+	return &e
+}
+
+// EntityBalanceStatus - The status of the balance.
+type EntityBalanceStatus string
+
+const (
+	EntityBalanceStatusActive   EntityBalanceStatus = "active"
+	EntityBalanceStatusInactive EntityBalanceStatus = "inactive"
+)
+
+func (e EntityBalanceStatus) ToPointer() *EntityBalanceStatus {
+	return &e
+}
+
+// TransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
+// destination.
+//
+// Settlements created during weekends or on bank holidays will take place on the next business day.
+type TransferFrequency string
+
+const (
+	TransferFrequencyDaily          TransferFrequency = "daily"
+	TransferFrequencyEveryMonday    TransferFrequency = "every-monday"
+	TransferFrequencyEveryTuesday   TransferFrequency = "every-tuesday"
+	TransferFrequencyEveryWednesday TransferFrequency = "every-wednesday"
+	TransferFrequencyEveryThursday  TransferFrequency = "every-thursday"
+	TransferFrequencyEveryFriday    TransferFrequency = "every-friday"
+	TransferFrequencyMonthly        TransferFrequency = "monthly"
+	TransferFrequencyNever          TransferFrequency = "never"
+)
+
+func (e TransferFrequency) ToPointer() *TransferFrequency {
+	return &e
+}
+
+// TransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+// this threshold, the complete balance will be paid out to the transfer destination according to the configured
+// frequency.
+type TransferThreshold struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (t *TransferThreshold) GetCurrency() string {
+	if t == nil {
+		return ""
+	}
+	return t.Currency
+}
+
+func (t *TransferThreshold) GetValue() string {
+	if t == nil {
+		return ""
+	}
+	return t.Value
+}
+
 // TransferDestination - The destination where the available amount will be automatically transferred to according to the configured
 // transfer frequency.
 type TransferDestination struct {
@@ -36,6 +115,51 @@ func (t *TransferDestination) GetBeneficiaryName() *string {
 	return t.BeneficiaryName
 }
 
+// AvailableAmount - The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
+type AvailableAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AvailableAmount) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AvailableAmount) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// PendingAmount - The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+// few days to clear.
+type PendingAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (p *PendingAmount) GetCurrency() string {
+	if p == nil {
+		return ""
+	}
+	return p.Currency
+}
+
+func (p *PendingAmount) GetValue() string {
+	if p == nil {
+		return ""
+	}
+	return p.Value
+}
+
 // EntityBalanceLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityBalanceLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -61,32 +185,32 @@ func (e *EntityBalanceLinks) GetDocumentation() *URLObj {
 type EntityBalance struct {
 	// Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this balance.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string     `json:"createdAt"`
-	Currency  Currencies `json:"currency"`
+	CreatedAt string `json:"createdAt"`
+	// The balance's ISO 4217 currency code.
+	Currency Currency `json:"currency"`
 	// The description or name of the balance. Can be used to denote the purpose of the balance.
-	Description string `json:"description"`
-	// The status of the balance.
-	Status BalanceStatus `json:"status"`
-	// The frequency with which the available amount on the balance will be settled to the configured transfer
-	// destination.
-	//
-	// Settlements created during weekends or on bank holidays will take place on the next business day.
-	TransferFrequency *BalanceTransferFrequency `json:"transferFrequency,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	TransferThreshold *Amount `json:"transferThreshold,omitempty"`
+	Description       string              `json:"description"`
+	Status            EntityBalanceStatus `json:"status"`
+	TransferFrequency *TransferFrequency  `json:"transferFrequency,omitempty"`
+	// The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+	// this threshold, the complete balance will be paid out to the transfer destination according to the configured
+	// frequency.
+	TransferThreshold *TransferThreshold `json:"transferThreshold,omitempty"`
 	// The transfer reference set to be included in all the transfers for this balance.
 	TransferReference *string `json:"transferReference,omitempty"`
 	// The destination where the available amount will be automatically transferred to according to the configured
 	// transfer frequency.
 	TransferDestination *TransferDestination `json:"transferDestination,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AvailableAmount Amount `json:"availableAmount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	PendingAmount Amount `json:"pendingAmount"`
+	// The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
+	AvailableAmount AvailableAmount `json:"availableAmount"`
+	// The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+	// few days to clear.
+	PendingAmount PendingAmount `json:"pendingAmount"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityBalanceLinks `json:"_links"`
 }
@@ -119,9 +243,9 @@ func (e *EntityBalance) GetCreatedAt() string {
 	return e.CreatedAt
 }
 
-func (e *EntityBalance) GetCurrency() Currencies {
+func (e *EntityBalance) GetCurrency() Currency {
 	if e == nil {
-		return Currencies("")
+		return Currency("")
 	}
 	return e.Currency
 }
@@ -133,21 +257,21 @@ func (e *EntityBalance) GetDescription() string {
 	return e.Description
 }
 
-func (e *EntityBalance) GetStatus() BalanceStatus {
+func (e *EntityBalance) GetStatus() EntityBalanceStatus {
 	if e == nil {
-		return BalanceStatus("")
+		return EntityBalanceStatus("")
 	}
 	return e.Status
 }
 
-func (e *EntityBalance) GetTransferFrequency() *BalanceTransferFrequency {
+func (e *EntityBalance) GetTransferFrequency() *TransferFrequency {
 	if e == nil {
 		return nil
 	}
 	return e.TransferFrequency
 }
 
-func (e *EntityBalance) GetTransferThreshold() *Amount {
+func (e *EntityBalance) GetTransferThreshold() *TransferThreshold {
 	if e == nil {
 		return nil
 	}
@@ -168,16 +292,16 @@ func (e *EntityBalance) GetTransferDestination() *TransferDestination {
 	return e.TransferDestination
 }
 
-func (e *EntityBalance) GetAvailableAmount() Amount {
+func (e *EntityBalance) GetAvailableAmount() AvailableAmount {
 	if e == nil {
-		return Amount{}
+		return AvailableAmount{}
 	}
 	return e.AvailableAmount
 }
 
-func (e *EntityBalance) GetPendingAmount() Amount {
+func (e *EntityBalance) GetPendingAmount() PendingAmount {
 	if e == nil {
-		return Amount{}
+		return PendingAmount{}
 	}
 	return e.PendingAmount
 }

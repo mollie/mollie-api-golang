@@ -46,7 +46,6 @@ func (e *EntityPaymentRouteLinks) GetPayment() URLObj {
 }
 
 type EntityPaymentRoute struct {
-	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// The destination of this portion of the payment.
@@ -58,13 +57,6 @@ type EntityPaymentRoute struct {
 	ReleaseDate *string `json:"releaseDate,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityPaymentRouteLinks `json:"_links"`
-}
-
-func (e *EntityPaymentRoute) GetID() string {
-	if e == nil {
-		return ""
-	}
-	return e.ID
 }
 
 func (e *EntityPaymentRoute) GetAmount() Amount {

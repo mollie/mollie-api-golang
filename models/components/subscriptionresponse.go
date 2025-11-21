@@ -2,6 +2,22 @@
 
 package components
 
+// SubscriptionResponseStatus - The subscription's current status is directly related to the status of the underlying customer or mandate that is
+// enabling the subscription.
+type SubscriptionResponseStatus string
+
+const (
+	SubscriptionResponseStatusPending   SubscriptionResponseStatus = "pending"
+	SubscriptionResponseStatusActive    SubscriptionResponseStatus = "active"
+	SubscriptionResponseStatusCanceled  SubscriptionResponseStatus = "canceled"
+	SubscriptionResponseStatusSuspended SubscriptionResponseStatus = "suspended"
+	SubscriptionResponseStatusCompleted SubscriptionResponseStatus = "completed"
+)
+
+func (e SubscriptionResponseStatus) ToPointer() *SubscriptionResponseStatus {
+	return &e
+}
+
 // SubscriptionResponseApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //
@@ -91,12 +107,11 @@ type SubscriptionResponse struct {
 	// Indicates the response contains a subscription object. Will always contain the string `subscription` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
-	Mode Mode `json:"mode"`
-	// The subscription's current status is directly related to the status of the underlying customer or mandate that is
-	// enabling the subscription.
-	Status SubscriptionStatus `json:"status"`
+	Mode   Mode                       `json:"mode"`
+	Status SubscriptionResponseStatus `json:"status"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// Total number of payments for the subscription. Once this number of payments is reached, the subscription is
@@ -139,7 +154,8 @@ type SubscriptionResponse struct {
 	//
 	// This webhook will receive **all** events for the subscription's payments. This may include payment failures as
 	// well. Be sure to verify the payment's subscription ID and its status.
-	WebhookURL string  `json:"webhookUrl"`
+	WebhookURL string `json:"webhookUrl"`
+	// The customer this subscription belongs to.
 	CustomerID string  `json:"customerId"`
 	MandateID  *string `json:"mandateId,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -172,9 +188,9 @@ func (s *SubscriptionResponse) GetMode() Mode {
 	return s.Mode
 }
 
-func (s *SubscriptionResponse) GetStatus() SubscriptionStatus {
+func (s *SubscriptionResponse) GetStatus() SubscriptionResponseStatus {
 	if s == nil {
-		return SubscriptionStatus("")
+		return SubscriptionResponseStatus("")
 	}
 	return s.Status
 }

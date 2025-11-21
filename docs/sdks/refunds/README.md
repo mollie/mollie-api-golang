@@ -40,13 +40,8 @@ func main() {
     )
 
     res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
-        ID: "re_5B8cwPMGnU",
         Description: "Refunding a Chess Board",
         Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        SettlementAmount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
         },
@@ -55,9 +50,6 @@ func main() {
 
             },
         )),
-        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
-        SettlementID: client.Pointer("stl_5B8cwPMGnU"),
-        Status: components.RefundStatusQueued,
         ExternalReference: &components.RefundRequestExternalReference{
             Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
             ID: client.Pointer("123456789012345"),
@@ -70,7 +62,7 @@ func main() {
                     Value: "10.00",
                 },
                 Source: &components.RefundRequestSource{
-                    Type: components.RefundRoutingReversalsSourceTypeOrganization.ToPointer(),
+                    Type: components.TypeOrganization.ToPointer(),
                     OrganizationID: client.Pointer("org_1234567"),
                 },
             },

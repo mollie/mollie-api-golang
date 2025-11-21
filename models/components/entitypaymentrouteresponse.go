@@ -48,7 +48,9 @@ func (e *EntityPaymentRouteResponseLinks) GetPayment() URLObj {
 type EntityPaymentRouteResponse struct {
 	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+	// Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.

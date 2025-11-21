@@ -8,6 +8,23 @@ import (
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
 
+// EntityWebhookEventWebhookEventTypes - The event's type
+type EntityWebhookEventWebhookEventTypes string
+
+const (
+	EntityWebhookEventWebhookEventTypesPaymentLinkPaid           EntityWebhookEventWebhookEventTypes = "payment-link.paid"
+	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceCreated       EntityWebhookEventWebhookEventTypes = "sales-invoice.created"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceIssued        EntityWebhookEventWebhookEventTypes = "sales-invoice.issued"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled      EntityWebhookEventWebhookEventTypes = "sales-invoice.canceled"
+	EntityWebhookEventWebhookEventTypesSalesInvoicePaid          EntityWebhookEventWebhookEventTypes = "sales-invoice.paid"
+	EntityWebhookEventWebhookEventTypesWildcard                  EntityWebhookEventWebhookEventTypes = "*"
+)
+
+func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebhookEventTypes {
+	return &e
+}
+
 type EntityType string
 
 const (
@@ -118,9 +135,8 @@ type EntityWebhookEvent struct {
 	// Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
 	Resource string `json:"resource"`
 	// The identifier uniquely referring to this event.
-	ID string `json:"id"`
-	// The event's type
-	WebhookEventTypes WebhookEventTypes `json:"type"`
+	ID                string                              `json:"id"`
+	WebhookEventTypes EntityWebhookEventWebhookEventTypes `json:"type"`
 	// The entity token that triggered the event
 	EntityID string `json:"entityId"`
 	// The event's date time of creation.
@@ -145,9 +161,9 @@ func (e *EntityWebhookEvent) GetID() string {
 	return e.ID
 }
 
-func (e *EntityWebhookEvent) GetWebhookEventTypes() WebhookEventTypes {
+func (e *EntityWebhookEvent) GetWebhookEventTypes() EntityWebhookEventWebhookEventTypes {
 	if e == nil {
-		return WebhookEventTypes("")
+		return EntityWebhookEventWebhookEventTypes("")
 	}
 	return e.WebhookEventTypes
 }

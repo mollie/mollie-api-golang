@@ -2,6 +2,55 @@
 
 package components
 
+// EntityRefundResponseSettlementAmount - This optional field will contain the approximate amount that will be deducted from your account balance, converted
+// to the currency your account is settled in.
+//
+// The amount is a **negative** amount.
+//
+// If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+// zero.
+//
+// Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+// the refund is queued the settlement amount is likely not yet available.
+//
+// To retrieve accurate settlement amounts we recommend using the
+// [List balance transactions endpoint](list-balance-transactions) instead.
+type EntityRefundResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntityRefundResponseSettlementAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntityRefundResponseSettlementAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
+type EntityRefundResponseStatus string
+
+const (
+	EntityRefundResponseStatusQueued     EntityRefundResponseStatus = "queued"
+	EntityRefundResponseStatusPending    EntityRefundResponseStatus = "pending"
+	EntityRefundResponseStatusProcessing EntityRefundResponseStatus = "processing"
+	EntityRefundResponseStatusRefunded   EntityRefundResponseStatus = "refunded"
+	EntityRefundResponseStatusFailed     EntityRefundResponseStatus = "failed"
+	EntityRefundResponseStatusCanceled   EntityRefundResponseStatus = "canceled"
+)
+
+func (e EntityRefundResponseStatus) ToPointer() *EntityRefundResponseStatus {
+	return &e
+}
+
 type EntityRefundResponseExternalReference struct {
 	// Specifies the reference type
 	Type *RefundExternalReferenceTypeResponse `json:"type,omitempty"`
@@ -25,16 +74,7 @@ func (e *EntityRefundResponseExternalReference) GetID() *string {
 
 // EntityRefundResponseSource - Where the funds will be pulled back from.
 type EntityRefundResponseSource struct {
-	// The type of source. Currently only the source type `organization` is supported.
-	Type           *RefundRoutingReversalsSourceType `json:"type,omitempty"`
-	OrganizationID *string                           `json:"organizationId,omitempty"`
-}
-
-func (e *EntityRefundResponseSource) GetType() *RefundRoutingReversalsSourceType {
-	if e == nil {
-		return nil
-	}
-	return e.Type
+	OrganizationID *string `json:"organizationId,omitempty"`
 }
 
 func (e *EntityRefundResponseSource) GetOrganizationID() *string {
@@ -108,21 +148,38 @@ func (e *EntityRefundResponseLinks) GetDocumentation() URLObj {
 type EntityRefundResponse struct {
 	// Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+	// will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
+	// This optional field will contain the approximate amount that will be deducted from your account balance, converted
+	// to the currency your account is settled in.
+	//
+	// The amount is a **negative** amount.
+	//
+	// If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+	// zero.
+	//
+	// Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+	// the refund is queued the settlement amount is likely not yet available.
+	//
+	// To retrieve accurate settlement amounts we recommend using the
+	// [List balance transactions endpoint](list-balance-transactions) instead.
+	SettlementAmount *EntityRefundResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata     *Metadata    `json:"metadata"`
-	PaymentID    *string      `json:"paymentId,omitempty"`
-	SettlementID *string      `json:"settlementId,omitempty"`
-	Status       RefundStatus `json:"status"`
+	Metadata *Metadata `json:"metadata"`
+	// The unique identifier of the payment this refund was created for.
+	// The full payment object can be retrieved via the payment URL in the `_links` object.
+	PaymentID *string `json:"paymentId,omitempty"`
+	// The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
+	SettlementID *string                    `json:"settlementId,omitempty"`
+	Status       EntityRefundResponseStatus `json:"status"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt         string                                 `json:"createdAt"`
 	ExternalReference *EntityRefundResponseExternalReference `json:"externalReference,omitempty"`
@@ -174,7 +231,7 @@ func (e *EntityRefundResponse) GetAmount() Amount {
 	return e.Amount
 }
 
-func (e *EntityRefundResponse) GetSettlementAmount() *AmountNullable {
+func (e *EntityRefundResponse) GetSettlementAmount() *EntityRefundResponseSettlementAmount {
 	if e == nil {
 		return nil
 	}
@@ -202,9 +259,9 @@ func (e *EntityRefundResponse) GetSettlementID() *string {
 	return e.SettlementID
 }
 
-func (e *EntityRefundResponse) GetStatus() RefundStatus {
+func (e *EntityRefundResponse) GetStatus() EntityRefundResponseStatus {
 	if e == nil {
-		return RefundStatus("")
+		return EntityRefundResponseStatus("")
 	}
 	return e.Status
 }

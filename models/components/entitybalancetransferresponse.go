@@ -27,7 +27,9 @@ func (e *EntityBalanceTransferResponseStatusReason) GetMessage() string {
 type EntityBalanceTransferResponse struct {
 	// Indicates the response contains a balance transfer object. Will always contain the string `connect-balance-transfer` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this balance transfer. Mollie assigns this identifier at balance transfer creation time. Mollie
+	// will always refer to the balance transfer by this ID. Example: `cbtr_j8NvRAM2WNZtsykpLEX8J`.
+	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// A party involved in the balance transfer, either the sender or the receiver.

@@ -2,6 +2,46 @@
 
 package components
 
+// CaptureResponseSettlementAmount - This optional field will contain the approximate amount that will be settled to your account, converted to the
+// currency your account is settled in.
+//
+// Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+// instead.
+type CaptureResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (c *CaptureResponseSettlementAmount) GetCurrency() string {
+	if c == nil {
+		return ""
+	}
+	return c.Currency
+}
+
+func (c *CaptureResponseSettlementAmount) GetValue() string {
+	if c == nil {
+		return ""
+	}
+	return c.Value
+}
+
+// CaptureResponseStatus - The capture's status.
+type CaptureResponseStatus string
+
+const (
+	CaptureResponseStatusPending   CaptureResponseStatus = "pending"
+	CaptureResponseStatusSucceeded CaptureResponseStatus = "succeeded"
+	CaptureResponseStatusFailed    CaptureResponseStatus = "failed"
+)
+
+func (e CaptureResponseStatus) ToPointer() *CaptureResponseStatus {
+	return &e
+}
+
 // CaptureResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type CaptureResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -54,23 +94,34 @@ func (c *CaptureResponseLinks) GetDocumentation() URLObj {
 type CaptureResponse struct {
 	// Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The description of the capture.
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *AmountNullable `json:"amount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
-	// The capture's status.
-	Status CaptureStatus `json:"status"`
+	// This optional field will contain the approximate amount that will be settled to your account, converted to the
+	// currency your account is settled in.
+	//
+	// Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+	// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+	// instead.
+	SettlementAmount *CaptureResponseSettlementAmount `json:"settlementAmount,omitempty"`
+	Status           CaptureResponseStatus            `json:"status"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata     *Metadata `json:"metadata,omitempty"`
-	PaymentID    string    `json:"paymentId"`
-	ShipmentID   *string   `json:"shipmentId,omitempty"`
-	SettlementID *string   `json:"settlementId,omitempty"`
+	Metadata *Metadata `json:"metadata,omitempty"`
+	// The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+	// The full payment object can be retrieved via the payment URL in the `_links` object.
+	PaymentID string `json:"paymentId"`
+	// The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+	// `shp_gNapNy9qQTUFZYnCrCF7J`.
+	ShipmentID *string `json:"shipmentId,omitempty"`
+	// The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+	// is omitted if the capture is not settled (yet).
+	SettlementID *string `json:"settlementId,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -112,16 +163,16 @@ func (c *CaptureResponse) GetAmount() *AmountNullable {
 	return c.Amount
 }
 
-func (c *CaptureResponse) GetSettlementAmount() *AmountNullable {
+func (c *CaptureResponse) GetSettlementAmount() *CaptureResponseSettlementAmount {
 	if c == nil {
 		return nil
 	}
 	return c.SettlementAmount
 }
 
-func (c *CaptureResponse) GetStatus() CaptureStatus {
+func (c *CaptureResponse) GetStatus() CaptureResponseStatus {
 	if c == nil {
-		return CaptureStatus("")
+		return CaptureResponseStatus("")
 	}
 	return c.Status
 }

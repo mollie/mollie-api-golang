@@ -8,7 +8,6 @@ type EntitySalesInvoiceMetadata struct {
 }
 
 type EntitySalesInvoice struct {
-	ID *string `json:"id,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -66,23 +65,6 @@ type EntitySalesInvoice struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountDue *Amount `json:"amountDue,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SubtotalAmount *Amount `json:"subtotalAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	TotalAmount *Amount `json:"totalAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	TotalVatAmount *Amount `json:"totalVatAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	DiscountedSubtotalAmount *Amount `json:"discountedSubtotalAmount,omitempty"`
-}
-
-func (e *EntitySalesInvoice) GetID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.ID
 }
 
 func (e *EntitySalesInvoice) GetTestmode() *bool {
@@ -195,39 +177,4 @@ func (e *EntitySalesInvoice) GetDiscount() *SalesInvoiceDiscount {
 		return nil
 	}
 	return e.Discount
-}
-
-func (e *EntitySalesInvoice) GetAmountDue() *Amount {
-	if e == nil {
-		return nil
-	}
-	return e.AmountDue
-}
-
-func (e *EntitySalesInvoice) GetSubtotalAmount() *Amount {
-	if e == nil {
-		return nil
-	}
-	return e.SubtotalAmount
-}
-
-func (e *EntitySalesInvoice) GetTotalAmount() *Amount {
-	if e == nil {
-		return nil
-	}
-	return e.TotalAmount
-}
-
-func (e *EntitySalesInvoice) GetTotalVatAmount() *Amount {
-	if e == nil {
-		return nil
-	}
-	return e.TotalVatAmount
-}
-
-func (e *EntitySalesInvoice) GetDiscountedSubtotalAmount() *Amount {
-	if e == nil {
-		return nil
-	}
-	return e.DiscountedSubtotalAmount
 }

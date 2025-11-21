@@ -6,6 +6,23 @@ import (
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
 
+// ProfileResponseStatus - The profile status determines whether the profile is able to receive live payments.
+//
+// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
+// * `verified`: The profile has been verified and can be used to create live payments and test payments.
+// * `blocked`: The profile is blocked and can no longer be used or changed.
+type ProfileResponseStatus string
+
+const (
+	ProfileResponseStatusUnverified ProfileResponseStatus = "unverified"
+	ProfileResponseStatusVerified   ProfileResponseStatus = "verified"
+	ProfileResponseStatusBlocked    ProfileResponseStatus = "blocked"
+)
+
+func (e ProfileResponseStatus) ToPointer() *ProfileResponseStatus {
+	return &e
+}
+
 // Review - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 // automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 // `null` in test mode.
@@ -143,13 +160,8 @@ type ProfileResponse struct {
 	CountriesOfActivity []string `json:"countriesOfActivity,omitempty"`
 	// The industry associated with the profile's trade name or brand. Please refer to the
 	// [business category list](common-data-types#business-category) for all possible options.
-	BusinessCategory string `json:"businessCategory"`
-	// The profile status determines whether the profile is able to receive live payments.
-	//
-	// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
-	// * `verified`: The profile has been verified and can be used to create live payments and test payments.
-	// * `blocked`: The profile is blocked and can no longer be used or changed.
-	Status ProfileStatus `json:"status"`
+	BusinessCategory string                `json:"businessCategory"`
+	Status           ProfileResponseStatus `json:"status"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 	// `null` in test mode.
@@ -241,9 +253,9 @@ func (p *ProfileResponse) GetBusinessCategory() string {
 	return p.BusinessCategory
 }
 
-func (p *ProfileResponse) GetStatus() ProfileStatus {
+func (p *ProfileResponse) GetStatus() ProfileResponseStatus {
 	if p == nil {
-		return ProfileStatus("")
+		return ProfileResponseStatus("")
 	}
 	return p.Status
 }

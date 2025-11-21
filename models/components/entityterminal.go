@@ -2,6 +2,19 @@
 
 package components
 
+// EntityTerminalStatus - The status of the terminal.
+type EntityTerminalStatus string
+
+const (
+	EntityTerminalStatusPending  EntityTerminalStatus = "pending"
+	EntityTerminalStatusActive   EntityTerminalStatus = "active"
+	EntityTerminalStatusInactive EntityTerminalStatus = "inactive"
+)
+
+func (e EntityTerminalStatus) ToPointer() *EntityTerminalStatus {
+	return &e
+}
+
 // EntityTerminalLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityTerminalLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -27,15 +40,15 @@ func (e *EntityTerminalLinks) GetDocumentation() URLObj {
 type EntityTerminal struct {
 	// Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
 	// description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
 	// may be visible on the device itself depending on the device.
-	Description string `json:"description"`
-	// The status of the terminal.
-	Status TerminalStatus `json:"status"`
+	Description string               `json:"description"`
+	Status      EntityTerminalStatus `json:"status"`
 	// The brand of the terminal.
 	Brand *TerminalBrand `json:"brand"`
 	// The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
@@ -87,9 +100,9 @@ func (e *EntityTerminal) GetDescription() string {
 	return e.Description
 }
 
-func (e *EntityTerminal) GetStatus() TerminalStatus {
+func (e *EntityTerminal) GetStatus() EntityTerminalStatus {
 	if e == nil {
-		return TerminalStatus("")
+		return EntityTerminalStatus("")
 	}
 	return e.Status
 }

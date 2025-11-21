@@ -7,6 +7,116 @@ package components
 type EntitySalesInvoiceResponseMetadata struct {
 }
 
+// AmountDue - The amount that is left to be paid.
+type AmountDue struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AmountDue) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AmountDue) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// SubtotalAmount - The total amount without VAT before discounts.
+type SubtotalAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (s *SubtotalAmount) GetCurrency() string {
+	if s == nil {
+		return ""
+	}
+	return s.Currency
+}
+
+func (s *SubtotalAmount) GetValue() string {
+	if s == nil {
+		return ""
+	}
+	return s.Value
+}
+
+// TotalAmount - The total amount with VAT.
+type TotalAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (t *TotalAmount) GetCurrency() string {
+	if t == nil {
+		return ""
+	}
+	return t.Currency
+}
+
+func (t *TotalAmount) GetValue() string {
+	if t == nil {
+		return ""
+	}
+	return t.Value
+}
+
+// TotalVatAmount - The total VAT amount.
+type TotalVatAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (t *TotalVatAmount) GetCurrency() string {
+	if t == nil {
+		return ""
+	}
+	return t.Currency
+}
+
+func (t *TotalVatAmount) GetValue() string {
+	if t == nil {
+		return ""
+	}
+	return t.Value
+}
+
+// DiscountedSubtotalAmount - The total amount without VAT after discounts.
+type DiscountedSubtotalAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (d *DiscountedSubtotalAmount) GetCurrency() string {
+	if d == nil {
+		return ""
+	}
+	return d.Currency
+}
+
+func (d *DiscountedSubtotalAmount) GetValue() string {
+	if d == nil {
+		return ""
+	}
+	return d.Value
+}
+
 // EntitySalesInvoiceResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntitySalesInvoiceResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -69,7 +179,8 @@ type EntitySalesInvoiceResponse struct {
 	// Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
 	// endpoint.
 	Resource *string `json:"resource,omitempty"`
-	ID       *string `json:"id,omitempty"`
+	// The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+	ID *string `json:"id,omitempty"`
 	// When issued, an invoice number will be set for the sales invoice.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// The status for the invoice to end up in.
@@ -117,16 +228,16 @@ type EntitySalesInvoiceResponse struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItemResponse `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscountResponse  `json:"discount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountDue *Amount `json:"amountDue,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SubtotalAmount *Amount `json:"subtotalAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	TotalAmount *Amount `json:"totalAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	TotalVatAmount *Amount `json:"totalVatAmount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	DiscountedSubtotalAmount *Amount `json:"discountedSubtotalAmount,omitempty"`
+	// The amount that is left to be paid.
+	AmountDue *AmountDue `json:"amountDue,omitempty"`
+	// The total amount without VAT before discounts.
+	SubtotalAmount *SubtotalAmount `json:"subtotalAmount,omitempty"`
+	// The total amount with VAT.
+	TotalAmount *TotalAmount `json:"totalAmount,omitempty"`
+	// The total VAT amount.
+	TotalVatAmount *TotalVatAmount `json:"totalVatAmount,omitempty"`
+	// The total amount without VAT after discounts.
+	DiscountedSubtotalAmount *DiscountedSubtotalAmount `json:"discountedSubtotalAmount,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -261,35 +372,35 @@ func (e *EntitySalesInvoiceResponse) GetDiscount() *SalesInvoiceDiscountResponse
 	return e.Discount
 }
 
-func (e *EntitySalesInvoiceResponse) GetAmountDue() *Amount {
+func (e *EntitySalesInvoiceResponse) GetAmountDue() *AmountDue {
 	if e == nil {
 		return nil
 	}
 	return e.AmountDue
 }
 
-func (e *EntitySalesInvoiceResponse) GetSubtotalAmount() *Amount {
+func (e *EntitySalesInvoiceResponse) GetSubtotalAmount() *SubtotalAmount {
 	if e == nil {
 		return nil
 	}
 	return e.SubtotalAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetTotalAmount() *Amount {
+func (e *EntitySalesInvoiceResponse) GetTotalAmount() *TotalAmount {
 	if e == nil {
 		return nil
 	}
 	return e.TotalAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetTotalVatAmount() *Amount {
+func (e *EntitySalesInvoiceResponse) GetTotalVatAmount() *TotalVatAmount {
 	if e == nil {
 		return nil
 	}
 	return e.TotalVatAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetDiscountedSubtotalAmount() *Amount {
+func (e *EntitySalesInvoiceResponse) GetDiscountedSubtotalAmount() *DiscountedSubtotalAmount {
 	if e == nil {
 		return nil
 	}

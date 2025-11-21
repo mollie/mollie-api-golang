@@ -59,8 +59,6 @@ func main() {
     )
 
     res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.SubscriptionRequest{
-        ID: client.Pointer("sub_5B8cwPMGnU"),
-        Status: components.SubscriptionStatusActive.ToPointer(),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
@@ -78,7 +76,6 @@ func main() {
             Description: "Platform fee",
         },
         WebhookURL: client.Pointer("https://example.com/webhook"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         MandateID: client.Pointer("mdt_5B8cwPMGnU"),
         Testmode: client.Pointer(false),
     })

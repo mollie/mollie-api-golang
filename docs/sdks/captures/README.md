@@ -44,20 +44,11 @@ func main() {
     )
 
     res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
-        ID: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
         Description: client.Pointer("Capture for cart #12345"),
         Amount: &components.AmountNullable{
             Currency: "EUR",
             Value: "10.00",
         },
-        SettlementAmount: &components.AmountNullable{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        Status: components.CaptureStatusSucceeded.ToPointer(),
-        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
-        ShipmentID: client.Pointer("shp_5x4xQJDWGNcY3tKGL7X5J"),
-        SettlementID: client.Pointer("stl_5B8cwPMGnU"),
     })
     if err != nil {
         log.Fatal(err)

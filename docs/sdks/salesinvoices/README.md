@@ -43,7 +43,6 @@ func main() {
     )
 
     res, err := s.SalesInvoices.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntitySalesInvoice{
-        ID: client.Pointer("invoice_4Y0eZitmBnQ6IDoMqZQKh"),
         Testmode: client.Pointer(false),
         ProfileID: client.Pointer("pfl_QkEhN94Ba"),
         Status: components.SalesInvoiceStatusDraft.ToPointer(),
@@ -83,26 +82,6 @@ func main() {
         Lines: []components.SalesInvoiceLineItem{},
         Discount: &components.SalesInvoiceDiscount{
             Type: components.SalesInvoiceDiscountTypeAmount,
-            Value: "10.00",
-        },
-        AmountDue: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        SubtotalAmount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        TotalAmount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        TotalVatAmount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        DiscountedSubtotalAmount: &components.Amount{
-            Currency: "EUR",
             Value: "10.00",
         },
     })

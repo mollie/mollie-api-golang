@@ -43,7 +43,6 @@ func main() {
     )
 
     res, err := s.PaymentLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
-        ID: client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"),
         Description: "Chess Board",
         Amount: &components.AmountNullable{
             Currency: "EUR",

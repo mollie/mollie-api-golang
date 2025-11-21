@@ -2,397 +2,17 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// SubTotalsCardIssuer - In case of payments transactions with card, the card issuer will be available
-type SubTotalsCardIssuer string
-
-const (
-	SubTotalsCardIssuerAmex          SubTotalsCardIssuer = "amex"
-	SubTotalsCardIssuerMaestro       SubTotalsCardIssuer = "maestro"
-	SubTotalsCardIssuerCarteBancaire SubTotalsCardIssuer = "carte-bancaire"
-	SubTotalsCardIssuerOther         SubTotalsCardIssuer = "other"
-)
-
-func (e SubTotalsCardIssuer) ToPointer() *SubTotalsCardIssuer {
-	return &e
-}
-func (e *SubTotalsCardIssuer) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "amex":
-		fallthrough
-	case "maestro":
-		fallthrough
-	case "carte-bancaire":
-		fallthrough
-	case "other":
-		*e = SubTotalsCardIssuer(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsCardIssuer: %v", v)
-	}
-}
-
-// SubTotalsCardAudience - In case of payments trnsactions with card, the card audience will be available.
-type SubTotalsCardAudience string
-
-const (
-	SubTotalsCardAudienceCorporate SubTotalsCardAudience = "corporate"
-	SubTotalsCardAudienceOther     SubTotalsCardAudience = "other"
-)
-
-func (e SubTotalsCardAudience) ToPointer() *SubTotalsCardAudience {
-	return &e
-}
-func (e *SubTotalsCardAudience) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "corporate":
-		fallthrough
-	case "other":
-		*e = SubTotalsCardAudience(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsCardAudience: %v", v)
-	}
-}
-
-// SubTotalsCardRegion - In case of payments transactions with card, the card region will be available.
-type SubTotalsCardRegion string
-
-const (
-	SubTotalsCardRegionIntraEea SubTotalsCardRegion = "intra-eea"
-	SubTotalsCardRegionIntraEu  SubTotalsCardRegion = "intra-eu"
-	SubTotalsCardRegionDomestic SubTotalsCardRegion = "domestic"
-	SubTotalsCardRegionOther    SubTotalsCardRegion = "other"
-)
-
-func (e SubTotalsCardRegion) ToPointer() *SubTotalsCardRegion {
-	return &e
-}
-func (e *SubTotalsCardRegion) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "intra-eea":
-		fallthrough
-	case "intra-eu":
-		fallthrough
-	case "domestic":
-		fallthrough
-	case "other":
-		*e = SubTotalsCardRegion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsCardRegion: %v", v)
-	}
-}
-
-// SubTotalsFeeType - Present when the transaction represents a fee.
-type SubTotalsFeeType string
-
-const (
-	SubTotalsFeeTypePaymentFee                                        SubTotalsFeeType = "payment-fee"
-	SubTotalsFeeTypeDirectDebitFailureFee                             SubTotalsFeeType = "direct-debit-failure-fee"
-	SubTotalsFeeTypeUnauthorizedDirectDebitFee                        SubTotalsFeeType = "unauthorized-direct-debit-fee"
-	SubTotalsFeeTypeBankChargedDirectDebitFailureFee                  SubTotalsFeeType = "bank-charged-direct-debit-failure-fee"
-	SubTotalsFeeTypePartnerCommission                                 SubTotalsFeeType = "partner-commission"
-	SubTotalsFeeTypeApplicationFee                                    SubTotalsFeeType = "application-fee"
-	SubTotalsFeeTypeCaptureFee                                        SubTotalsFeeType = "capture-fee"
-	SubTotalsFeeTypeRefundFee                                         SubTotalsFeeType = "refund-fee"
-	SubTotalsFeeTypeChargebackFee                                     SubTotalsFeeType = "chargeback-fee"
-	SubTotalsFeeTypePaymentNotificationFee                            SubTotalsFeeType = "payment-notification-fee"
-	SubTotalsFeeTypeTransferNotificationFee                           SubTotalsFeeType = "transfer-notification-fee"
-	SubTotalsFeeTypePayoutFee                                         SubTotalsFeeType = "payout-fee"
-	SubTotalsFeeTypeFeeDiscount                                       SubTotalsFeeType = "fee-discount"
-	SubTotalsFeeTypeFeeReimbursement                                  SubTotalsFeeType = "fee-reimbursement"
-	SubTotalsFeeTypePlatformVolumeFee                                 SubTotalsFeeType = "platform-volume-fee"
-	SubTotalsFeeTypePlatformConnectedOrganizationsFee                 SubTotalsFeeType = "platform-connected-organizations-fee"
-	SubTotalsFeeTypeBalanceChargeFee                                  SubTotalsFeeType = "balance-charge-fee"
-	SubTotalsFeeTypeThreedsAuthenticationAttemptFee                   SubTotalsFeeType = "3ds-authentication-attempt-fee"
-	SubTotalsFeeTypeTerminalMonthlyFee                                SubTotalsFeeType = "terminal-monthly-fee"
-	SubTotalsFeeTypeAcceptanceRiskFee                                 SubTotalsFeeType = "acceptance-risk-fee"
-	SubTotalsFeeTypeTopUpFee                                          SubTotalsFeeType = "top-up-fee"
-	SubTotalsFeeTypePaymentGatewayFee                                 SubTotalsFeeType = "payment-gateway-fee"
-	SubTotalsFeeTypeMastercardSpecialtyMerchantProgramProcessingFee   SubTotalsFeeType = "mastercard-specialty-merchant-program-processing-fee"
-	SubTotalsFeeTypeMastercardSpecialtyMerchantProgramRegistrationFee SubTotalsFeeType = "mastercard-specialty-merchant-program-registration-fee"
-	SubTotalsFeeTypeVisaIntegrityRiskProgramProcessingFee             SubTotalsFeeType = "visa-integrity-risk-program-processing-fee"
-	SubTotalsFeeTypeVisaIntegrityRiskProgramRegistrationFee           SubTotalsFeeType = "visa-integrity-risk-program-registration-fee"
-	SubTotalsFeeTypeMinimumInvoiceAmountFee                           SubTotalsFeeType = "minimum-invoice-amount-fee"
-)
-
-func (e SubTotalsFeeType) ToPointer() *SubTotalsFeeType {
-	return &e
-}
-func (e *SubTotalsFeeType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-fee":
-		fallthrough
-	case "direct-debit-failure-fee":
-		fallthrough
-	case "unauthorized-direct-debit-fee":
-		fallthrough
-	case "bank-charged-direct-debit-failure-fee":
-		fallthrough
-	case "partner-commission":
-		fallthrough
-	case "application-fee":
-		fallthrough
-	case "capture-fee":
-		fallthrough
-	case "refund-fee":
-		fallthrough
-	case "chargeback-fee":
-		fallthrough
-	case "payment-notification-fee":
-		fallthrough
-	case "transfer-notification-fee":
-		fallthrough
-	case "payout-fee":
-		fallthrough
-	case "fee-discount":
-		fallthrough
-	case "fee-reimbursement":
-		fallthrough
-	case "platform-volume-fee":
-		fallthrough
-	case "platform-connected-organizations-fee":
-		fallthrough
-	case "balance-charge-fee":
-		fallthrough
-	case "3ds-authentication-attempt-fee":
-		fallthrough
-	case "terminal-monthly-fee":
-		fallthrough
-	case "acceptance-risk-fee":
-		fallthrough
-	case "top-up-fee":
-		fallthrough
-	case "payment-gateway-fee":
-		fallthrough
-	case "mastercard-specialty-merchant-program-processing-fee":
-		fallthrough
-	case "mastercard-specialty-merchant-program-registration-fee":
-		fallthrough
-	case "visa-integrity-risk-program-processing-fee":
-		fallthrough
-	case "visa-integrity-risk-program-registration-fee":
-		fallthrough
-	case "minimum-invoice-amount-fee":
-		*e = SubTotalsFeeType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsFeeType: %v", v)
-	}
-}
-
-// SubTotalsPrepaymentPartType - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-type SubTotalsPrepaymentPartType string
-
-const (
-	SubTotalsPrepaymentPartTypeFee                     SubTotalsPrepaymentPartType = "fee"
-	SubTotalsPrepaymentPartTypeFeeReimbursement        SubTotalsPrepaymentPartType = "fee-reimbursement"
-	SubTotalsPrepaymentPartTypeFeeDiscount             SubTotalsPrepaymentPartType = "fee-discount"
-	SubTotalsPrepaymentPartTypeFeeVat                  SubTotalsPrepaymentPartType = "fee-vat"
-	SubTotalsPrepaymentPartTypeFeeRoundingCompensation SubTotalsPrepaymentPartType = "fee-rounding-compensation"
-)
-
-func (e SubTotalsPrepaymentPartType) ToPointer() *SubTotalsPrepaymentPartType {
-	return &e
-}
-func (e *SubTotalsPrepaymentPartType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "fee":
-		fallthrough
-	case "fee-reimbursement":
-		fallthrough
-	case "fee-discount":
-		fallthrough
-	case "fee-vat":
-		fallthrough
-	case "fee-rounding-compensation":
-		*e = SubTotalsPrepaymentPartType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsPrepaymentPartType: %v", v)
-	}
-}
-
-// SubTotalsTransactionType - Represents the transaction type
-type SubTotalsTransactionType string
-
-const (
-	SubTotalsTransactionTypePayment                           SubTotalsTransactionType = "payment"
-	SubTotalsTransactionTypeSplitPayment                      SubTotalsTransactionType = "split-payment"
-	SubTotalsTransactionTypeFailedPayment                     SubTotalsTransactionType = "failed-payment"
-	SubTotalsTransactionTypeFailedPlatformSplitPayment        SubTotalsTransactionType = "failed-platform-split-payment"
-	SubTotalsTransactionTypeFailedSplitPaymentCompensation    SubTotalsTransactionType = "failed-split-payment-compensation"
-	SubTotalsTransactionTypeCapture                           SubTotalsTransactionType = "capture"
-	SubTotalsTransactionTypeSplitTransaction                  SubTotalsTransactionType = "split-transaction"
-	SubTotalsTransactionTypeRefund                            SubTotalsTransactionType = "refund"
-	SubTotalsTransactionTypePlatformPaymentRefund             SubTotalsTransactionType = "platform-payment-refund"
-	SubTotalsTransactionTypeReturnedPlatformPaymentRefund     SubTotalsTransactionType = "returned-platform-payment-refund"
-	SubTotalsTransactionTypeRefundCompensation                SubTotalsTransactionType = "refund-compensation"
-	SubTotalsTransactionTypeReturnedRefundCompensation        SubTotalsTransactionType = "returned-refund-compensation"
-	SubTotalsTransactionTypeReturnedRefund                    SubTotalsTransactionType = "returned-refund"
-	SubTotalsTransactionTypeChargeback                        SubTotalsTransactionType = "chargeback"
-	SubTotalsTransactionTypeChargebackReversal                SubTotalsTransactionType = "chargeback-reversal"
-	SubTotalsTransactionTypeChargebackCompensation            SubTotalsTransactionType = "chargeback-compensation"
-	SubTotalsTransactionTypeReversedChargebackCompensation    SubTotalsTransactionType = "reversed-chargeback-compensation"
-	SubTotalsTransactionTypePlatformPaymentChargeback         SubTotalsTransactionType = "platform-payment-chargeback"
-	SubTotalsTransactionTypeReversedPlatformPaymentChargeback SubTotalsTransactionType = "reversed-platform-payment-chargeback"
-	SubTotalsTransactionTypeFeePrepayment                     SubTotalsTransactionType = "fee-prepayment"
-	SubTotalsTransactionTypeOutgoingTransfer                  SubTotalsTransactionType = "outgoing-transfer"
-	SubTotalsTransactionTypeIncomingTransfer                  SubTotalsTransactionType = "incoming-transfer"
-	SubTotalsTransactionTypeCanceledTransfer                  SubTotalsTransactionType = "canceled-transfer"
-	SubTotalsTransactionTypeReturnedTransfer                  SubTotalsTransactionType = "returned-transfer"
-	SubTotalsTransactionTypeBalanceReserve                    SubTotalsTransactionType = "balance-reserve"
-	SubTotalsTransactionTypeBalanceReserveReturn              SubTotalsTransactionType = "balance-reserve-return"
-	SubTotalsTransactionTypeInvoiceRoundingCompensation       SubTotalsTransactionType = "invoice-rounding-compensation"
-	SubTotalsTransactionTypeRollingReserveHold                SubTotalsTransactionType = "rolling-reserve-hold"
-	SubTotalsTransactionTypeRollingReserveRelease             SubTotalsTransactionType = "rolling-reserve-release"
-	SubTotalsTransactionTypeBalanceCorrection                 SubTotalsTransactionType = "balance-correction"
-	SubTotalsTransactionTypeRepayment                         SubTotalsTransactionType = "repayment"
-	SubTotalsTransactionTypeLoan                              SubTotalsTransactionType = "loan"
-	SubTotalsTransactionTypeBalanceTopup                      SubTotalsTransactionType = "balance-topup"
-	SubTotalsTransactionTypeCashCollateralIssuance            SubTotalsTransactionType = "cash-collateral-issuance';"
-	SubTotalsTransactionTypeCashCollateralRelease             SubTotalsTransactionType = "cash-collateral-release"
-	SubTotalsTransactionTypePendingRollingReserve             SubTotalsTransactionType = "pending-rolling-reserve"
-	SubTotalsTransactionTypeToBeReleasedRollingReserve        SubTotalsTransactionType = "to-be-released-rolling-reserve"
-	SubTotalsTransactionTypeHeldRollingReserve                SubTotalsTransactionType = "held-rolling-reserve"
-	SubTotalsTransactionTypeReleasedRollingReserve            SubTotalsTransactionType = "released-rolling-reserve"
-)
-
-func (e SubTotalsTransactionType) ToPointer() *SubTotalsTransactionType {
-	return &e
-}
-func (e *SubTotalsTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment":
-		fallthrough
-	case "split-payment":
-		fallthrough
-	case "failed-payment":
-		fallthrough
-	case "failed-platform-split-payment":
-		fallthrough
-	case "failed-split-payment-compensation":
-		fallthrough
-	case "capture":
-		fallthrough
-	case "split-transaction":
-		fallthrough
-	case "refund":
-		fallthrough
-	case "platform-payment-refund":
-		fallthrough
-	case "returned-platform-payment-refund":
-		fallthrough
-	case "refund-compensation":
-		fallthrough
-	case "returned-refund-compensation":
-		fallthrough
-	case "returned-refund":
-		fallthrough
-	case "chargeback":
-		fallthrough
-	case "chargeback-reversal":
-		fallthrough
-	case "chargeback-compensation":
-		fallthrough
-	case "reversed-chargeback-compensation":
-		fallthrough
-	case "platform-payment-chargeback":
-		fallthrough
-	case "reversed-platform-payment-chargeback":
-		fallthrough
-	case "fee-prepayment":
-		fallthrough
-	case "outgoing-transfer":
-		fallthrough
-	case "incoming-transfer":
-		fallthrough
-	case "canceled-transfer":
-		fallthrough
-	case "returned-transfer":
-		fallthrough
-	case "balance-reserve":
-		fallthrough
-	case "balance-reserve-return":
-		fallthrough
-	case "invoice-rounding-compensation":
-		fallthrough
-	case "rolling-reserve-hold":
-		fallthrough
-	case "rolling-reserve-release":
-		fallthrough
-	case "balance-correction":
-		fallthrough
-	case "repayment":
-		fallthrough
-	case "loan":
-		fallthrough
-	case "balance-topup":
-		fallthrough
-	case "cash-collateral-issuance';":
-		fallthrough
-	case "cash-collateral-release":
-		fallthrough
-	case "pending-rolling-reserve":
-		fallthrough
-	case "to-be-released-rolling-reserve":
-		fallthrough
-	case "held-rolling-reserve":
-		fallthrough
-	case "released-rolling-reserve":
-		*e = SubTotalsTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubTotalsTransactionType: %v", v)
-	}
-}
-
 type SubTotals struct {
 	// Number of transactions of this type
 	Count *int64 `json:"count,omitempty"`
 	// The payment method, if applicable
-	Method *PaymentMethod `json:"method,omitempty"`
-	// In case of payments transactions with card, the card issuer will be available
-	CardIssuer *SubTotalsCardIssuer `json:"cardIssuer,omitempty"`
-	// In case of payments trnsactions with card, the card audience will be available.
-	CardAudience *SubTotalsCardAudience `json:"cardAudience,omitempty"`
-	// In case of payments transactions with card, the card region will be available.
-	CardRegion *SubTotalsCardRegion `json:"cardRegion,omitempty"`
-	// Present when the transaction represents a fee.
-	FeeType *SubTotalsFeeType `json:"feeType,omitempty"`
-	// Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-	PrepaymentPartType *SubTotalsPrepaymentPartType `json:"prepaymentPartType,omitempty"`
-	// Represents the transaction type
-	TransactionType *SubTotalsTransactionType `json:"transactionType,omitempty"`
+	Method             *PaymentMethod             `json:"method,omitempty"`
+	CardIssuer         *BalanceCardIssuer         `json:"cardIssuer,omitempty"`
+	CardAudience       *BalanceCardAudience       `json:"cardAudience,omitempty"`
+	CardRegion         *BalanceCardRegion         `json:"cardRegion,omitempty"`
+	FeeType            *BalanceFeeType            `json:"feeType,omitempty"`
+	PrepaymentPartType *BalancePrepaymentPartType `json:"prepaymentPartType,omitempty"`
+	TransactionType    *BalanceTransactionType    `json:"transactionType,omitempty"`
 }
 
 func (s *SubTotals) GetCount() *int64 {
@@ -409,42 +29,42 @@ func (s *SubTotals) GetMethod() *PaymentMethod {
 	return s.Method
 }
 
-func (s *SubTotals) GetCardIssuer() *SubTotalsCardIssuer {
+func (s *SubTotals) GetCardIssuer() *BalanceCardIssuer {
 	if s == nil {
 		return nil
 	}
 	return s.CardIssuer
 }
 
-func (s *SubTotals) GetCardAudience() *SubTotalsCardAudience {
+func (s *SubTotals) GetCardAudience() *BalanceCardAudience {
 	if s == nil {
 		return nil
 	}
 	return s.CardAudience
 }
 
-func (s *SubTotals) GetCardRegion() *SubTotalsCardRegion {
+func (s *SubTotals) GetCardRegion() *BalanceCardRegion {
 	if s == nil {
 		return nil
 	}
 	return s.CardRegion
 }
 
-func (s *SubTotals) GetFeeType() *SubTotalsFeeType {
+func (s *SubTotals) GetFeeType() *BalanceFeeType {
 	if s == nil {
 		return nil
 	}
 	return s.FeeType
 }
 
-func (s *SubTotals) GetPrepaymentPartType() *SubTotalsPrepaymentPartType {
+func (s *SubTotals) GetPrepaymentPartType() *BalancePrepaymentPartType {
 	if s == nil {
 		return nil
 	}
 	return s.PrepaymentPartType
 }
 
-func (s *SubTotals) GetTransactionType() *SubTotalsTransactionType {
+func (s *SubTotals) GetTransactionType() *BalanceTransactionType {
 	if s == nil {
 		return nil
 	}

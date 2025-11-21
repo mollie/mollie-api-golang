@@ -2,6 +2,103 @@
 
 package components
 
+// EntityMethodAllID - The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+// method selection screen will be skipped.
+type EntityMethodAllID string
+
+const (
+	EntityMethodAllIDAlma         EntityMethodAllID = "alma"
+	EntityMethodAllIDApplepay     EntityMethodAllID = "applepay"
+	EntityMethodAllIDBacs         EntityMethodAllID = "bacs"
+	EntityMethodAllIDBancomatpay  EntityMethodAllID = "bancomatpay"
+	EntityMethodAllIDBancontact   EntityMethodAllID = "bancontact"
+	EntityMethodAllIDBanktransfer EntityMethodAllID = "banktransfer"
+	EntityMethodAllIDBelfius      EntityMethodAllID = "belfius"
+	EntityMethodAllIDBillie       EntityMethodAllID = "billie"
+	EntityMethodAllIDBizum        EntityMethodAllID = "bizum"
+	EntityMethodAllIDBlik         EntityMethodAllID = "blik"
+	EntityMethodAllIDCreditcard   EntityMethodAllID = "creditcard"
+	EntityMethodAllIDDirectdebit  EntityMethodAllID = "directdebit"
+	EntityMethodAllIDEps          EntityMethodAllID = "eps"
+	EntityMethodAllIDGiftcard     EntityMethodAllID = "giftcard"
+	EntityMethodAllIDIdeal        EntityMethodAllID = "ideal"
+	EntityMethodAllIDIn3          EntityMethodAllID = "in3"
+	EntityMethodAllIDKbc          EntityMethodAllID = "kbc"
+	EntityMethodAllIDKlarna       EntityMethodAllID = "klarna"
+	EntityMethodAllIDMbway        EntityMethodAllID = "mbway"
+	EntityMethodAllIDMobilepay    EntityMethodAllID = "mobilepay"
+	EntityMethodAllIDMultibanco   EntityMethodAllID = "multibanco"
+	EntityMethodAllIDMybank       EntityMethodAllID = "mybank"
+	EntityMethodAllIDPaybybank    EntityMethodAllID = "paybybank"
+	EntityMethodAllIDPayconiq     EntityMethodAllID = "payconiq"
+	EntityMethodAllIDPaypal       EntityMethodAllID = "paypal"
+	EntityMethodAllIDPaysafecard  EntityMethodAllID = "paysafecard"
+	EntityMethodAllIDPointofsale  EntityMethodAllID = "pointofsale"
+	EntityMethodAllIDPrzelewy24   EntityMethodAllID = "przelewy24"
+	EntityMethodAllIDRiverty      EntityMethodAllID = "riverty"
+	EntityMethodAllIDSatispay     EntityMethodAllID = "satispay"
+	EntityMethodAllIDSwish        EntityMethodAllID = "swish"
+	EntityMethodAllIDTrustly      EntityMethodAllID = "trustly"
+	EntityMethodAllIDTwint        EntityMethodAllID = "twint"
+	EntityMethodAllIDVipps        EntityMethodAllID = "vipps"
+	EntityMethodAllIDVoucher      EntityMethodAllID = "voucher"
+	// EntityMethodAllIDKlarnapaylater Deprecated, use 'klarna' instead
+	EntityMethodAllIDKlarnapaylater EntityMethodAllID = "klarnapaylater"
+	// EntityMethodAllIDKlarnapaynow Deprecated, use 'klarna' instead
+	EntityMethodAllIDKlarnapaynow EntityMethodAllID = "klarnapaynow"
+	// EntityMethodAllIDKlarnasliceit Deprecated, use 'klarna' instead
+	EntityMethodAllIDKlarnasliceit EntityMethodAllID = "klarnasliceit"
+)
+
+func (e EntityMethodAllID) ToPointer() *EntityMethodAllID {
+	return &e
+}
+
+// EntityMethodAllMinimumAmount - The minimum payment amount required to use this payment method.
+type EntityMethodAllMinimumAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntityMethodAllMinimumAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntityMethodAllMinimumAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
+// EntityMethodAllMaximumAmount - The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+// is returned instead.
+type EntityMethodAllMaximumAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntityMethodAllMaximumAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntityMethodAllMaximumAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
 // EntityMethodAllImage - URLs of images representing the payment method.
 type EntityMethodAllImage struct {
 	// The URL pointing to an icon of 32 by 24 pixels.
@@ -178,22 +275,18 @@ type EntityMethodAll struct {
 	// Indicates the response contains a payment method object. Will always contain the string `method` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-	// method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-	// parameter enables you to fully integrate the payment method selection into your website.
-	//
-	// You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-	// but will only show the methods specified in the array. For example, you can use this functionality to only show
-	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-	ID *MethodResponse `json:"id"`
+	// The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+	// method selection screen will be skipped.
+	ID *EntityMethodAllID `json:"id"`
 	// The full name of the payment method.
 	//
 	// If a `locale` parameter is provided, the name is translated to the given locale if possible.
 	Description string `json:"description"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	MinimumAmount Amount `json:"minimumAmount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	MaximumAmount *AmountNullable `json:"maximumAmount"`
+	// The minimum payment amount required to use this payment method.
+	MinimumAmount EntityMethodAllMinimumAmount `json:"minimumAmount"`
+	// The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+	// is returned instead.
+	MaximumAmount *EntityMethodAllMaximumAmount `json:"maximumAmount"`
 	// URLs of images representing the payment method.
 	Image EntityMethodAllImage `json:"image"`
 	// The payment method's activation status for this profile.
@@ -215,7 +308,7 @@ func (e *EntityMethodAll) GetResource() string {
 	return e.Resource
 }
 
-func (e *EntityMethodAll) GetID() *MethodResponse {
+func (e *EntityMethodAll) GetID() *EntityMethodAllID {
 	if e == nil {
 		return nil
 	}
@@ -229,14 +322,14 @@ func (e *EntityMethodAll) GetDescription() string {
 	return e.Description
 }
 
-func (e *EntityMethodAll) GetMinimumAmount() Amount {
+func (e *EntityMethodAll) GetMinimumAmount() EntityMethodAllMinimumAmount {
 	if e == nil {
-		return Amount{}
+		return EntityMethodAllMinimumAmount{}
 	}
 	return e.MinimumAmount
 }
 
-func (e *EntityMethodAll) GetMaximumAmount() *AmountNullable {
+func (e *EntityMethodAll) GetMaximumAmount() *EntityMethodAllMaximumAmount {
 	if e == nil {
 		return nil
 	}

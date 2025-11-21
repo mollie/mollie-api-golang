@@ -24,8 +24,6 @@ func (e *EntityRouteDestination) GetOrganizationID() string {
 }
 
 type EntityRoute struct {
-	ID        *string `json:"id,omitempty"`
-	PaymentID *string `json:"paymentId,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *Amount `json:"amount,omitempty"`
 	// The description of the route. This description is shown in the reports.
@@ -38,20 +36,6 @@ type EntityRoute struct {
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (e *EntityRoute) GetID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.ID
-}
-
-func (e *EntityRoute) GetPaymentID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentID
 }
 
 func (e *EntityRoute) GetAmount() *Amount {

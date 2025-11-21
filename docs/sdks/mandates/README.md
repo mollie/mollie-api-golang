@@ -52,8 +52,6 @@ func main() {
         MandateReference: client.Pointer("ID-1023892"),
         PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
         PayPalVaultID: client.Pointer("8kk8451t"),
-        Status: components.MandateStatusValid.ToPointer(),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         Testmode: client.Pointer(false),
     })
     if err != nil {

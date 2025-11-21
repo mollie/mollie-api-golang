@@ -127,7 +127,8 @@ func (g *GetCustomerLinks) GetDocumentation() components.URLObj {
 type GetCustomerResponseBody struct {
 	// Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode components.Mode `json:"mode"`
 	// The full name of the customer.

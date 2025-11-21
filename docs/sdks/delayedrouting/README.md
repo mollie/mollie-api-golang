@@ -37,8 +37,6 @@ func main() {
     )
 
     res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityRoute{
-        ID: client.Pointer("crt_dyARQ3JzCgtPDhU2Pbq3J"),
-        PaymentID: client.Pointer("tr_5B8cwPMGnU"),
         Amount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",

@@ -2,6 +2,42 @@
 
 package components
 
+// EntitySettlementStatus - The status of the settlement.
+type EntitySettlementStatus string
+
+const (
+	EntitySettlementStatusOpen    EntitySettlementStatus = "open"
+	EntitySettlementStatusPending EntitySettlementStatus = "pending"
+	EntitySettlementStatusPaidout EntitySettlementStatus = "paidout"
+	EntitySettlementStatusFailed  EntitySettlementStatus = "failed"
+)
+
+func (e EntitySettlementStatus) ToPointer() *EntitySettlementStatus {
+	return &e
+}
+
+// EntitySettlementAmount - The total amount of the settlement.
+type EntitySettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntitySettlementAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntitySettlementAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
 // Rate - The service rates, further divided into `fixed` and `percentage` costs.
 type Rate struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -255,7 +291,8 @@ type EntitySettlement struct {
 	// Indicates the response contains a settlement object. Will always contain the string `settlement` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this settlement.
+	ID string `json:"id"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// The settlement's bank reference, as found in your Mollie account and on your bank statement.
@@ -264,12 +301,13 @@ type EntitySettlement struct {
 	//
 	// For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
 	// date is available.
-	SettledAt *string `json:"settledAt,omitempty"`
-	// The status of the settlement.
-	Status SettlementStatus `json:"status"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount    Amount  `json:"amount"`
-	BalanceID string  `json:"balanceId"`
+	SettledAt *string                `json:"settledAt,omitempty"`
+	Status    EntitySettlementStatus `json:"status"`
+	// The total amount of the settlement.
+	Amount EntitySettlementAmount `json:"amount"`
+	// The balance token that the settlement was settled to.
+	BalanceID string `json:"balanceId"`
+	// The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
 	InvoiceID *string `json:"invoiceId,omitempty"`
 	// For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
 	// transactions are grouped into 'period' objects — one for each calendar month.
@@ -321,16 +359,16 @@ func (e *EntitySettlement) GetSettledAt() *string {
 	return e.SettledAt
 }
 
-func (e *EntitySettlement) GetStatus() SettlementStatus {
+func (e *EntitySettlement) GetStatus() EntitySettlementStatus {
 	if e == nil {
-		return SettlementStatus("")
+		return EntitySettlementStatus("")
 	}
 	return e.Status
 }
 
-func (e *EntitySettlement) GetAmount() Amount {
+func (e *EntitySettlement) GetAmount() EntitySettlementAmount {
 	if e == nil {
-		return Amount{}
+		return EntitySettlementAmount{}
 	}
 	return e.Amount
 }

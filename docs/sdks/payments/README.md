@@ -52,29 +52,8 @@ func main() {
     )
 
     res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        ID: client.Pointer("tr_5B8cwPMGnU"),
         Description: "Chess Board",
         Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        AmountRefunded: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        AmountRemaining: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        AmountCaptured: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        AmountChargedBack: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        SettlementAmount: &components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
@@ -165,7 +144,6 @@ func main() {
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
-                ID: "rt_5B8cwPMGnU",
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
@@ -188,12 +166,9 @@ func main() {
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        SubscriptionID: client.Pointer("sub_5B8cwPMGnU"),
         MandateID: client.Pointer("mdt_5B8cwPMGnU"),
         CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        SettlementID: client.Pointer("stl_5B8cwPMGnU"),
-        OrderID: client.Pointer("ord_5B8cwPMGnU"),
         DueDate: client.Pointer("2025-01-01"),
         Testmode: client.Pointer(false),
         ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),

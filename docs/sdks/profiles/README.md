@@ -53,7 +53,6 @@ func main() {
             "GB",
         },
         BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
-        Status: components.ProfileStatusUnverified.ToPointer(),
     }, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)

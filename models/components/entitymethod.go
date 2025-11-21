@@ -2,6 +2,103 @@
 
 package components
 
+// EntityMethodID - The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+// method selection screen will be skipped.
+type EntityMethodID string
+
+const (
+	EntityMethodIDAlma         EntityMethodID = "alma"
+	EntityMethodIDApplepay     EntityMethodID = "applepay"
+	EntityMethodIDBacs         EntityMethodID = "bacs"
+	EntityMethodIDBancomatpay  EntityMethodID = "bancomatpay"
+	EntityMethodIDBancontact   EntityMethodID = "bancontact"
+	EntityMethodIDBanktransfer EntityMethodID = "banktransfer"
+	EntityMethodIDBelfius      EntityMethodID = "belfius"
+	EntityMethodIDBillie       EntityMethodID = "billie"
+	EntityMethodIDBizum        EntityMethodID = "bizum"
+	EntityMethodIDBlik         EntityMethodID = "blik"
+	EntityMethodIDCreditcard   EntityMethodID = "creditcard"
+	EntityMethodIDDirectdebit  EntityMethodID = "directdebit"
+	EntityMethodIDEps          EntityMethodID = "eps"
+	EntityMethodIDGiftcard     EntityMethodID = "giftcard"
+	EntityMethodIDIdeal        EntityMethodID = "ideal"
+	EntityMethodIDIn3          EntityMethodID = "in3"
+	EntityMethodIDKbc          EntityMethodID = "kbc"
+	EntityMethodIDKlarna       EntityMethodID = "klarna"
+	EntityMethodIDMbway        EntityMethodID = "mbway"
+	EntityMethodIDMobilepay    EntityMethodID = "mobilepay"
+	EntityMethodIDMultibanco   EntityMethodID = "multibanco"
+	EntityMethodIDMybank       EntityMethodID = "mybank"
+	EntityMethodIDPaybybank    EntityMethodID = "paybybank"
+	EntityMethodIDPayconiq     EntityMethodID = "payconiq"
+	EntityMethodIDPaypal       EntityMethodID = "paypal"
+	EntityMethodIDPaysafecard  EntityMethodID = "paysafecard"
+	EntityMethodIDPointofsale  EntityMethodID = "pointofsale"
+	EntityMethodIDPrzelewy24   EntityMethodID = "przelewy24"
+	EntityMethodIDRiverty      EntityMethodID = "riverty"
+	EntityMethodIDSatispay     EntityMethodID = "satispay"
+	EntityMethodIDSwish        EntityMethodID = "swish"
+	EntityMethodIDTrustly      EntityMethodID = "trustly"
+	EntityMethodIDTwint        EntityMethodID = "twint"
+	EntityMethodIDVipps        EntityMethodID = "vipps"
+	EntityMethodIDVoucher      EntityMethodID = "voucher"
+	// EntityMethodIDKlarnapaylater Deprecated, use 'klarna' instead
+	EntityMethodIDKlarnapaylater EntityMethodID = "klarnapaylater"
+	// EntityMethodIDKlarnapaynow Deprecated, use 'klarna' instead
+	EntityMethodIDKlarnapaynow EntityMethodID = "klarnapaynow"
+	// EntityMethodIDKlarnasliceit Deprecated, use 'klarna' instead
+	EntityMethodIDKlarnasliceit EntityMethodID = "klarnasliceit"
+)
+
+func (e EntityMethodID) ToPointer() *EntityMethodID {
+	return &e
+}
+
+// EntityMethodMinimumAmount - The minimum payment amount required to use this payment method.
+type EntityMethodMinimumAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntityMethodMinimumAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntityMethodMinimumAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
+// EntityMethodMaximumAmount - The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+// is returned instead.
+type EntityMethodMaximumAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (e *EntityMethodMaximumAmount) GetCurrency() string {
+	if e == nil {
+		return ""
+	}
+	return e.Currency
+}
+
+func (e *EntityMethodMaximumAmount) GetValue() string {
+	if e == nil {
+		return ""
+	}
+	return e.Value
+}
+
 // EntityMethodImage - URLs of images representing the payment method.
 type EntityMethodImage struct {
 	// The URL pointing to an icon of 32 by 24 pixels.
@@ -137,22 +234,18 @@ type EntityMethod struct {
 	// Indicates the response contains a payment method object. Will always contain the string `method` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-	// method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-	// parameter enables you to fully integrate the payment method selection into your website.
-	//
-	// You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-	// but will only show the methods specified in the array. For example, you can use this functionality to only show
-	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-	ID *MethodResponse `json:"id"`
+	// The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+	// method selection screen will be skipped.
+	ID *EntityMethodID `json:"id"`
 	// The full name of the payment method.
 	//
 	// If a `locale` parameter is provided, the name is translated to the given locale if possible.
 	Description string `json:"description"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	MinimumAmount Amount `json:"minimumAmount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	MaximumAmount *AmountNullable `json:"maximumAmount"`
+	// The minimum payment amount required to use this payment method.
+	MinimumAmount EntityMethodMinimumAmount `json:"minimumAmount"`
+	// The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+	// is returned instead.
+	MaximumAmount *EntityMethodMaximumAmount `json:"maximumAmount"`
 	// URLs of images representing the payment method.
 	Image EntityMethodImage `json:"image"`
 	// The payment method's activation status for this profile.
@@ -171,7 +264,7 @@ func (e *EntityMethod) GetResource() string {
 	return e.Resource
 }
 
-func (e *EntityMethod) GetID() *MethodResponse {
+func (e *EntityMethod) GetID() *EntityMethodID {
 	if e == nil {
 		return nil
 	}
@@ -185,14 +278,14 @@ func (e *EntityMethod) GetDescription() string {
 	return e.Description
 }
 
-func (e *EntityMethod) GetMinimumAmount() Amount {
+func (e *EntityMethod) GetMinimumAmount() EntityMethodMinimumAmount {
 	if e == nil {
-		return Amount{}
+		return EntityMethodMinimumAmount{}
 	}
 	return e.MinimumAmount
 }
 
-func (e *EntityMethod) GetMaximumAmount() *AmountNullable {
+func (e *EntityMethod) GetMaximumAmount() *EntityMethodMaximumAmount {
 	if e == nil {
 		return nil
 	}

@@ -21,12 +21,6 @@ type ProfileRequest struct {
 	// The industry associated with the profile's trade name or brand. Please refer to the
 	// [business category list](common-data-types#business-category) for all possible options.
 	BusinessCategory *string `json:"businessCategory,omitempty"`
-	// The profile status determines whether the profile is able to receive live payments.
-	//
-	// * `unverified`: The profile has not been verified yet and can only be used to create test payments.
-	// * `verified`: The profile has been verified and can be used to create live payments and test payments.
-	// * `blocked`: The profile is blocked and can no longer be used or changed.
-	Status *ProfileStatus `json:"status,omitempty"`
 }
 
 func (p *ProfileRequest) GetName() string {
@@ -76,11 +70,4 @@ func (p *ProfileRequest) GetBusinessCategory() *string {
 		return nil
 	}
 	return p.BusinessCategory
-}
-
-func (p *ProfileRequest) GetStatus() *ProfileStatus {
-	if p == nil {
-		return nil
-	}
-	return p.Status
 }

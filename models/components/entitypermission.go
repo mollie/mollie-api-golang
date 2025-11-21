@@ -28,7 +28,8 @@ type EntityPermission struct {
 	// Indicates the response contains a permission object. Will always contain the string `permission` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this permission. Example: `payments.read`.
+	ID string `json:"id"`
 	// A short description of what kind of access the permission enables.
 	Description string `json:"description"`
 	// Whether this permission is granted to the app by the organization.

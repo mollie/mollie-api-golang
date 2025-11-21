@@ -40,7 +40,6 @@ func main() {
     )
 
     res, err := s.BalanceTransfers.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityBalanceTransfer{
-        ID: "cbtr_j8NvRAM2WNZtsykpLEX8J",
         Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",

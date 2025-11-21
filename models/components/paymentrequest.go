@@ -343,7 +343,6 @@ func (c *Company) GetEntityType() *string {
 }
 
 type PaymentRequest struct {
-	ID *string `json:"id,omitempty"`
 	// The description of the payment. This will be shown to your customer on their card or bank statement when possible.
 	// We truncate the description automatically according to the limits of the used payment method. The description is
 	// also visible in any exports you generate.
@@ -356,16 +355,6 @@ type PaymentRequest struct {
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountRefunded *Amount `json:"amountRefunded,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountRemaining *Amount `json:"amountRemaining,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountCaptured *Amount `json:"amountCaptured,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountChargedBack *Amount `json:"amountChargedBack,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *Amount `json:"settlementAmount,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
@@ -489,19 +478,20 @@ type PaymentRequest struct {
 	//
 	// If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
 	// parameter.
-	Routing        []EntityPaymentRoute `json:"routing,omitempty"`
-	SequenceType   *SequenceType        `json:"sequenceType,omitempty"`
-	SubscriptionID *string              `json:"subscriptionId,omitempty"`
-	MandateID      *string              `json:"mandateId,omitempty"`
-	CustomerID     *string              `json:"customerId,omitempty"`
+	Routing      []EntityPaymentRoute `json:"routing,omitempty"`
+	SequenceType *SequenceType        `json:"sequenceType,omitempty"`
+	// **Only relevant for recurring payments.**
+	//
+	// When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+	// the customer's accounts should be credited.
+	MandateID  *string `json:"mandateId,omitempty"`
+	CustomerID *string `json:"customerId,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
 	//
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
 	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
 	// required.
-	ProfileID    *string `json:"profileId,omitempty"`
-	SettlementID *string `json:"settlementId,omitempty"`
-	OrderID      *string `json:"orderId,omitempty"`
+	ProfileID *string `json:"profileId,omitempty"`
 	// The date by which the payment should be completed in `YYYY-MM-DD` format
 	DueDate *string `json:"dueDate,omitempty"`
 	// Whether to create the entity in test mode or live mode.
@@ -560,13 +550,6 @@ func (p *PaymentRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (p *PaymentRequest) GetID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.ID
-}
-
 func (p *PaymentRequest) GetDescription() string {
 	if p == nil {
 		return ""
@@ -579,41 +562,6 @@ func (p *PaymentRequest) GetAmount() Amount {
 		return Amount{}
 	}
 	return p.Amount
-}
-
-func (p *PaymentRequest) GetAmountRefunded() *Amount {
-	if p == nil {
-		return nil
-	}
-	return p.AmountRefunded
-}
-
-func (p *PaymentRequest) GetAmountRemaining() *Amount {
-	if p == nil {
-		return nil
-	}
-	return p.AmountRemaining
-}
-
-func (p *PaymentRequest) GetAmountCaptured() *Amount {
-	if p == nil {
-		return nil
-	}
-	return p.AmountCaptured
-}
-
-func (p *PaymentRequest) GetAmountChargedBack() *Amount {
-	if p == nil {
-		return nil
-	}
-	return p.AmountChargedBack
-}
-
-func (p *PaymentRequest) GetSettlementAmount() *Amount {
-	if p == nil {
-		return nil
-	}
-	return p.SettlementAmount
 }
 
 func (p *PaymentRequest) GetRedirectURL() *string {
@@ -728,13 +676,6 @@ func (p *PaymentRequest) GetSequenceType() *SequenceType {
 	return p.SequenceType
 }
 
-func (p *PaymentRequest) GetSubscriptionID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.SubscriptionID
-}
-
 func (p *PaymentRequest) GetMandateID() *string {
 	if p == nil {
 		return nil
@@ -754,20 +695,6 @@ func (p *PaymentRequest) GetProfileID() *string {
 		return nil
 	}
 	return p.ProfileID
-}
-
-func (p *PaymentRequest) GetSettlementID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.SettlementID
-}
-
-func (p *PaymentRequest) GetOrderID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.OrderID
 }
 
 func (p *PaymentRequest) GetDueDate() *string {

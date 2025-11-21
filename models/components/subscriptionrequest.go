@@ -30,10 +30,6 @@ func (s *SubscriptionRequestApplicationFee) GetDescription() string {
 }
 
 type SubscriptionRequest struct {
-	ID *string `json:"id,omitempty"`
-	// The subscription's current status is directly related to the status of the underlying customer or mandate that is
-	// enabling the subscription.
-	Status *SubscriptionStatus `json:"status,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *Amount `json:"amount,omitempty"`
 	// Total number of payments for the subscription. Once this number of payments is reached, the subscription is
@@ -72,7 +68,6 @@ type SubscriptionRequest struct {
 	// This webhook will receive **all** events for the subscription's payments. This may include payment failures as
 	// well. Be sure to verify the payment's subscription ID and its status.
 	WebhookURL *string `json:"webhookUrl,omitempty"`
-	CustomerID *string `json:"customerId,omitempty"`
 	MandateID  *string `json:"mandateId,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
@@ -80,20 +75,6 @@ type SubscriptionRequest struct {
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (s *SubscriptionRequest) GetID() *string {
-	if s == nil {
-		return nil
-	}
-	return s.ID
-}
-
-func (s *SubscriptionRequest) GetStatus() *SubscriptionStatus {
-	if s == nil {
-		return nil
-	}
-	return s.Status
 }
 
 func (s *SubscriptionRequest) GetAmount() *Amount {
@@ -157,13 +138,6 @@ func (s *SubscriptionRequest) GetWebhookURL() *string {
 		return nil
 	}
 	return s.WebhookURL
-}
-
-func (s *SubscriptionRequest) GetCustomerID() *string {
-	if s == nil {
-		return nil
-	}
-	return s.CustomerID
 }
 
 func (s *SubscriptionRequest) GetMandateID() *string {

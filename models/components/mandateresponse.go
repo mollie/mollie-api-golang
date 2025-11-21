@@ -78,6 +78,20 @@ func (m *MandateResponseDetails) GetCardFingerprint() *string {
 	return m.CardFingerprint
 }
 
+// MandateResponseStatus - The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+// when we did not received the IBAN yet from the first payment.
+type MandateResponseStatus string
+
+const (
+	MandateResponseStatusValid   MandateResponseStatus = "valid"
+	MandateResponseStatusPending MandateResponseStatus = "pending"
+	MandateResponseStatusInvalid MandateResponseStatus = "invalid"
+)
+
+func (e MandateResponseStatus) ToPointer() *MandateResponseStatus {
+	return &e
+}
+
 // MandateResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type MandateResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -112,7 +126,8 @@ func (m *MandateResponseLinks) GetDocumentation() URLObj {
 type MandateResponse struct {
 	// Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// Payment method of the mandate.
@@ -124,11 +139,10 @@ type MandateResponse struct {
 	SignatureDate *string `json:"signatureDate"`
 	// A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
 	// decline Direct Debit payments if the mandate reference is not unique.
-	MandateReference *string `json:"mandateReference"`
-	// The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-	// when we did not received the IBAN yet from the first payment.
-	Status     MandateStatus `json:"status"`
-	CustomerID string        `json:"customerId"`
+	MandateReference *string               `json:"mandateReference"`
+	Status           MandateResponseStatus `json:"status"`
+	// The identifier referring to the [customer](get-customer) this mandate was linked to.
+	CustomerID string `json:"customerId"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -184,9 +198,9 @@ func (m *MandateResponse) GetMandateReference() *string {
 	return m.MandateReference
 }
 
-func (m *MandateResponse) GetStatus() MandateStatus {
+func (m *MandateResponse) GetStatus() MandateResponseStatus {
 	if m == nil {
-		return MandateStatus("")
+		return MandateResponseStatus("")
 	}
 	return m.Status
 }

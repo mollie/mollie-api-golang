@@ -1139,9 +1139,10 @@ func (c *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
 type EntityBalanceTransaction struct {
 	// Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
 	// for this endpoint.
-	Resource string                 `json:"resource"`
-	ID       string                 `json:"id"`
-	Type     BalanceTransactionType `json:"type"`
+	Resource string `json:"resource"`
+	// The identifier uniquely referring to this balance transaction.
+	ID   string                 `json:"id"`
+	Type BalanceTransactionType `json:"type"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	ResultAmount Amount `json:"resultAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.

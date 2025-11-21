@@ -3,7 +3,6 @@
 package components
 
 type EntityBalanceTransfer struct {
-	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// A party involved in the balance transfer, either the sender or the receiver.
@@ -20,13 +19,6 @@ type EntityBalanceTransfer struct {
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (e *EntityBalanceTransfer) GetID() string {
-	if e == nil {
-		return ""
-	}
-	return e.ID
 }
 
 func (e *EntityBalanceTransfer) GetAmount() Amount {

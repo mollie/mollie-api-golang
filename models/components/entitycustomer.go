@@ -3,7 +3,6 @@
 package components
 
 type EntityCustomer struct {
-	ID *string `json:"id,omitempty"`
 	// The full name of the customer.
 	Name *string `json:"name,omitempty"`
 	// The email address of the customer.
@@ -19,13 +18,6 @@ type EntityCustomer struct {
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (e *EntityCustomer) GetID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.ID
 }
 
 func (e *EntityCustomer) GetName() *string {

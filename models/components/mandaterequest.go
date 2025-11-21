@@ -3,6 +3,7 @@
 package components
 
 type MandateRequest struct {
+	// The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
 	ID *string `json:"id,omitempty"`
 	// Payment method of the mandate.
 	//
@@ -27,10 +28,6 @@ type MandateRequest struct {
 	// The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
 	// Must provide either this field or `paypalBillingAgreementId`, but not both.
 	PayPalVaultID *string `json:"payPalVaultId,omitempty"`
-	// The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-	// when we did not received the IBAN yet from the first payment.
-	Status     *MandateStatus `json:"status,omitempty"`
-	CustomerID *string        `json:"customerId,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -107,20 +104,6 @@ func (m *MandateRequest) GetPayPalVaultID() *string {
 		return nil
 	}
 	return m.PayPalVaultID
-}
-
-func (m *MandateRequest) GetStatus() *MandateStatus {
-	if m == nil {
-		return nil
-	}
-	return m.Status
-}
-
-func (m *MandateRequest) GetCustomerID() *string {
-	if m == nil {
-		return nil
-	}
-	return m.CustomerID
 }
 
 func (m *MandateRequest) GetTestmode() *bool {

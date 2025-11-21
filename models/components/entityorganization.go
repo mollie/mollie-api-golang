@@ -2,6 +2,39 @@
 
 package components
 
+// EntityOrganizationLocale - The preferred locale of the merchant, as set in their Mollie dashboard.
+type EntityOrganizationLocale string
+
+const (
+	EntityOrganizationLocaleEnUs EntityOrganizationLocale = "en_US"
+	EntityOrganizationLocaleEnGb EntityOrganizationLocale = "en_GB"
+	EntityOrganizationLocaleNlNl EntityOrganizationLocale = "nl_NL"
+	EntityOrganizationLocaleNlBe EntityOrganizationLocale = "nl_BE"
+	EntityOrganizationLocaleDeDe EntityOrganizationLocale = "de_DE"
+	EntityOrganizationLocaleDeAt EntityOrganizationLocale = "de_AT"
+	EntityOrganizationLocaleDeCh EntityOrganizationLocale = "de_CH"
+	EntityOrganizationLocaleFrFr EntityOrganizationLocale = "fr_FR"
+	EntityOrganizationLocaleFrBe EntityOrganizationLocale = "fr_BE"
+	EntityOrganizationLocaleEsEs EntityOrganizationLocale = "es_ES"
+	EntityOrganizationLocaleCaEs EntityOrganizationLocale = "ca_ES"
+	EntityOrganizationLocalePtPt EntityOrganizationLocale = "pt_PT"
+	EntityOrganizationLocaleItIt EntityOrganizationLocale = "it_IT"
+	EntityOrganizationLocaleNbNo EntityOrganizationLocale = "nb_NO"
+	EntityOrganizationLocaleSvSe EntityOrganizationLocale = "sv_SE"
+	EntityOrganizationLocaleFiFi EntityOrganizationLocale = "fi_FI"
+	EntityOrganizationLocaleDaDk EntityOrganizationLocale = "da_DK"
+	EntityOrganizationLocaleIsIs EntityOrganizationLocale = "is_IS"
+	EntityOrganizationLocaleHuHu EntityOrganizationLocale = "hu_HU"
+	EntityOrganizationLocalePlPl EntityOrganizationLocale = "pl_PL"
+	EntityOrganizationLocaleLvLv EntityOrganizationLocale = "lv_LV"
+	EntityOrganizationLocaleLtLt EntityOrganizationLocale = "lt_LT"
+	EntityOrganizationLocaleNull EntityOrganizationLocale = "null"
+)
+
+func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
+	return &e
+}
+
 // EntityOrganizationLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityOrganizationLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -42,9 +75,9 @@ type EntityOrganization struct {
 	Name string `json:"name"`
 	// The email address associated with the organization.
 	Email string `json:"email"`
-	// Allows you to preset the language to be used.
-	Locale  *LocaleResponse `json:"locale"`
-	Address Address         `json:"address"`
+	// The preferred locale of the merchant, as set in their Mollie dashboard.
+	Locale  *EntityOrganizationLocale `json:"locale"`
+	Address Address                   `json:"address"`
 	// The registration number of the organization at their local chamber of commerce.
 	RegistrationNumber string `json:"registrationNumber"`
 	// The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
@@ -89,7 +122,7 @@ func (e *EntityOrganization) GetEmail() string {
 	return e.Email
 }
 
-func (e *EntityOrganization) GetLocale() *LocaleResponse {
+func (e *EntityOrganization) GetLocale() *EntityOrganizationLocale {
 	if e == nil {
 		return nil
 	}

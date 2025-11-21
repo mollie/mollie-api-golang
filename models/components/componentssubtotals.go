@@ -2,398 +2,18 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// ComponentsSubTotalsCardIssuer - In case of payments transactions with card, the card issuer will be available
-type ComponentsSubTotalsCardIssuer string
-
-const (
-	ComponentsSubTotalsCardIssuerAmex          ComponentsSubTotalsCardIssuer = "amex"
-	ComponentsSubTotalsCardIssuerMaestro       ComponentsSubTotalsCardIssuer = "maestro"
-	ComponentsSubTotalsCardIssuerCarteBancaire ComponentsSubTotalsCardIssuer = "carte-bancaire"
-	ComponentsSubTotalsCardIssuerOther         ComponentsSubTotalsCardIssuer = "other"
-)
-
-func (e ComponentsSubTotalsCardIssuer) ToPointer() *ComponentsSubTotalsCardIssuer {
-	return &e
-}
-func (e *ComponentsSubTotalsCardIssuer) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "amex":
-		fallthrough
-	case "maestro":
-		fallthrough
-	case "carte-bancaire":
-		fallthrough
-	case "other":
-		*e = ComponentsSubTotalsCardIssuer(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsCardIssuer: %v", v)
-	}
-}
-
-// ComponentsSubTotalsCardAudience - In case of payments trnsactions with card, the card audience will be available.
-type ComponentsSubTotalsCardAudience string
-
-const (
-	ComponentsSubTotalsCardAudienceCorporate ComponentsSubTotalsCardAudience = "corporate"
-	ComponentsSubTotalsCardAudienceOther     ComponentsSubTotalsCardAudience = "other"
-)
-
-func (e ComponentsSubTotalsCardAudience) ToPointer() *ComponentsSubTotalsCardAudience {
-	return &e
-}
-func (e *ComponentsSubTotalsCardAudience) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "corporate":
-		fallthrough
-	case "other":
-		*e = ComponentsSubTotalsCardAudience(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsCardAudience: %v", v)
-	}
-}
-
-// ComponentsSubTotalsCardRegion - In case of payments transactions with card, the card region will be available.
-type ComponentsSubTotalsCardRegion string
-
-const (
-	ComponentsSubTotalsCardRegionIntraEea ComponentsSubTotalsCardRegion = "intra-eea"
-	ComponentsSubTotalsCardRegionIntraEu  ComponentsSubTotalsCardRegion = "intra-eu"
-	ComponentsSubTotalsCardRegionDomestic ComponentsSubTotalsCardRegion = "domestic"
-	ComponentsSubTotalsCardRegionOther    ComponentsSubTotalsCardRegion = "other"
-)
-
-func (e ComponentsSubTotalsCardRegion) ToPointer() *ComponentsSubTotalsCardRegion {
-	return &e
-}
-func (e *ComponentsSubTotalsCardRegion) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "intra-eea":
-		fallthrough
-	case "intra-eu":
-		fallthrough
-	case "domestic":
-		fallthrough
-	case "other":
-		*e = ComponentsSubTotalsCardRegion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsCardRegion: %v", v)
-	}
-}
-
-// ComponentsSubTotalsFeeType - Present when the transaction represents a fee.
-type ComponentsSubTotalsFeeType string
-
-const (
-	ComponentsSubTotalsFeeTypePaymentFee                                        ComponentsSubTotalsFeeType = "payment-fee"
-	ComponentsSubTotalsFeeTypeDirectDebitFailureFee                             ComponentsSubTotalsFeeType = "direct-debit-failure-fee"
-	ComponentsSubTotalsFeeTypeUnauthorizedDirectDebitFee                        ComponentsSubTotalsFeeType = "unauthorized-direct-debit-fee"
-	ComponentsSubTotalsFeeTypeBankChargedDirectDebitFailureFee                  ComponentsSubTotalsFeeType = "bank-charged-direct-debit-failure-fee"
-	ComponentsSubTotalsFeeTypePartnerCommission                                 ComponentsSubTotalsFeeType = "partner-commission"
-	ComponentsSubTotalsFeeTypeApplicationFee                                    ComponentsSubTotalsFeeType = "application-fee"
-	ComponentsSubTotalsFeeTypeCaptureFee                                        ComponentsSubTotalsFeeType = "capture-fee"
-	ComponentsSubTotalsFeeTypeRefundFee                                         ComponentsSubTotalsFeeType = "refund-fee"
-	ComponentsSubTotalsFeeTypeChargebackFee                                     ComponentsSubTotalsFeeType = "chargeback-fee"
-	ComponentsSubTotalsFeeTypePaymentNotificationFee                            ComponentsSubTotalsFeeType = "payment-notification-fee"
-	ComponentsSubTotalsFeeTypeTransferNotificationFee                           ComponentsSubTotalsFeeType = "transfer-notification-fee"
-	ComponentsSubTotalsFeeTypePayoutFee                                         ComponentsSubTotalsFeeType = "payout-fee"
-	ComponentsSubTotalsFeeTypeFeeDiscount                                       ComponentsSubTotalsFeeType = "fee-discount"
-	ComponentsSubTotalsFeeTypeFeeReimbursement                                  ComponentsSubTotalsFeeType = "fee-reimbursement"
-	ComponentsSubTotalsFeeTypePlatformVolumeFee                                 ComponentsSubTotalsFeeType = "platform-volume-fee"
-	ComponentsSubTotalsFeeTypePlatformConnectedOrganizationsFee                 ComponentsSubTotalsFeeType = "platform-connected-organizations-fee"
-	ComponentsSubTotalsFeeTypeBalanceChargeFee                                  ComponentsSubTotalsFeeType = "balance-charge-fee"
-	ComponentsSubTotalsFeeTypeThreedsAuthenticationAttemptFee                   ComponentsSubTotalsFeeType = "3ds-authentication-attempt-fee"
-	ComponentsSubTotalsFeeTypeTerminalMonthlyFee                                ComponentsSubTotalsFeeType = "terminal-monthly-fee"
-	ComponentsSubTotalsFeeTypeAcceptanceRiskFee                                 ComponentsSubTotalsFeeType = "acceptance-risk-fee"
-	ComponentsSubTotalsFeeTypeTopUpFee                                          ComponentsSubTotalsFeeType = "top-up-fee"
-	ComponentsSubTotalsFeeTypePaymentGatewayFee                                 ComponentsSubTotalsFeeType = "payment-gateway-fee"
-	ComponentsSubTotalsFeeTypeMastercardSpecialtyMerchantProgramProcessingFee   ComponentsSubTotalsFeeType = "mastercard-specialty-merchant-program-processing-fee"
-	ComponentsSubTotalsFeeTypeMastercardSpecialtyMerchantProgramRegistrationFee ComponentsSubTotalsFeeType = "mastercard-specialty-merchant-program-registration-fee"
-	ComponentsSubTotalsFeeTypeVisaIntegrityRiskProgramProcessingFee             ComponentsSubTotalsFeeType = "visa-integrity-risk-program-processing-fee"
-	ComponentsSubTotalsFeeTypeVisaIntegrityRiskProgramRegistrationFee           ComponentsSubTotalsFeeType = "visa-integrity-risk-program-registration-fee"
-	ComponentsSubTotalsFeeTypeMinimumInvoiceAmountFee                           ComponentsSubTotalsFeeType = "minimum-invoice-amount-fee"
-)
-
-func (e ComponentsSubTotalsFeeType) ToPointer() *ComponentsSubTotalsFeeType {
-	return &e
-}
-func (e *ComponentsSubTotalsFeeType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment-fee":
-		fallthrough
-	case "direct-debit-failure-fee":
-		fallthrough
-	case "unauthorized-direct-debit-fee":
-		fallthrough
-	case "bank-charged-direct-debit-failure-fee":
-		fallthrough
-	case "partner-commission":
-		fallthrough
-	case "application-fee":
-		fallthrough
-	case "capture-fee":
-		fallthrough
-	case "refund-fee":
-		fallthrough
-	case "chargeback-fee":
-		fallthrough
-	case "payment-notification-fee":
-		fallthrough
-	case "transfer-notification-fee":
-		fallthrough
-	case "payout-fee":
-		fallthrough
-	case "fee-discount":
-		fallthrough
-	case "fee-reimbursement":
-		fallthrough
-	case "platform-volume-fee":
-		fallthrough
-	case "platform-connected-organizations-fee":
-		fallthrough
-	case "balance-charge-fee":
-		fallthrough
-	case "3ds-authentication-attempt-fee":
-		fallthrough
-	case "terminal-monthly-fee":
-		fallthrough
-	case "acceptance-risk-fee":
-		fallthrough
-	case "top-up-fee":
-		fallthrough
-	case "payment-gateway-fee":
-		fallthrough
-	case "mastercard-specialty-merchant-program-processing-fee":
-		fallthrough
-	case "mastercard-specialty-merchant-program-registration-fee":
-		fallthrough
-	case "visa-integrity-risk-program-processing-fee":
-		fallthrough
-	case "visa-integrity-risk-program-registration-fee":
-		fallthrough
-	case "minimum-invoice-amount-fee":
-		*e = ComponentsSubTotalsFeeType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsFeeType: %v", v)
-	}
-}
-
-// ComponentsSubTotalsPrepaymentPartType - Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-type ComponentsSubTotalsPrepaymentPartType string
-
-const (
-	ComponentsSubTotalsPrepaymentPartTypeFee                     ComponentsSubTotalsPrepaymentPartType = "fee"
-	ComponentsSubTotalsPrepaymentPartTypeFeeReimbursement        ComponentsSubTotalsPrepaymentPartType = "fee-reimbursement"
-	ComponentsSubTotalsPrepaymentPartTypeFeeDiscount             ComponentsSubTotalsPrepaymentPartType = "fee-discount"
-	ComponentsSubTotalsPrepaymentPartTypeFeeVat                  ComponentsSubTotalsPrepaymentPartType = "fee-vat"
-	ComponentsSubTotalsPrepaymentPartTypeFeeRoundingCompensation ComponentsSubTotalsPrepaymentPartType = "fee-rounding-compensation"
-)
-
-func (e ComponentsSubTotalsPrepaymentPartType) ToPointer() *ComponentsSubTotalsPrepaymentPartType {
-	return &e
-}
-func (e *ComponentsSubTotalsPrepaymentPartType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "fee":
-		fallthrough
-	case "fee-reimbursement":
-		fallthrough
-	case "fee-discount":
-		fallthrough
-	case "fee-vat":
-		fallthrough
-	case "fee-rounding-compensation":
-		*e = ComponentsSubTotalsPrepaymentPartType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsPrepaymentPartType: %v", v)
-	}
-}
-
-// ComponentsSubTotalsTransactionType - Represents the transaction type
-type ComponentsSubTotalsTransactionType string
-
-const (
-	ComponentsSubTotalsTransactionTypePayment                           ComponentsSubTotalsTransactionType = "payment"
-	ComponentsSubTotalsTransactionTypeSplitPayment                      ComponentsSubTotalsTransactionType = "split-payment"
-	ComponentsSubTotalsTransactionTypeFailedPayment                     ComponentsSubTotalsTransactionType = "failed-payment"
-	ComponentsSubTotalsTransactionTypeFailedPlatformSplitPayment        ComponentsSubTotalsTransactionType = "failed-platform-split-payment"
-	ComponentsSubTotalsTransactionTypeFailedSplitPaymentCompensation    ComponentsSubTotalsTransactionType = "failed-split-payment-compensation"
-	ComponentsSubTotalsTransactionTypeCapture                           ComponentsSubTotalsTransactionType = "capture"
-	ComponentsSubTotalsTransactionTypeSplitTransaction                  ComponentsSubTotalsTransactionType = "split-transaction"
-	ComponentsSubTotalsTransactionTypeRefund                            ComponentsSubTotalsTransactionType = "refund"
-	ComponentsSubTotalsTransactionTypePlatformPaymentRefund             ComponentsSubTotalsTransactionType = "platform-payment-refund"
-	ComponentsSubTotalsTransactionTypeReturnedPlatformPaymentRefund     ComponentsSubTotalsTransactionType = "returned-platform-payment-refund"
-	ComponentsSubTotalsTransactionTypeRefundCompensation                ComponentsSubTotalsTransactionType = "refund-compensation"
-	ComponentsSubTotalsTransactionTypeReturnedRefundCompensation        ComponentsSubTotalsTransactionType = "returned-refund-compensation"
-	ComponentsSubTotalsTransactionTypeReturnedRefund                    ComponentsSubTotalsTransactionType = "returned-refund"
-	ComponentsSubTotalsTransactionTypeChargeback                        ComponentsSubTotalsTransactionType = "chargeback"
-	ComponentsSubTotalsTransactionTypeChargebackReversal                ComponentsSubTotalsTransactionType = "chargeback-reversal"
-	ComponentsSubTotalsTransactionTypeChargebackCompensation            ComponentsSubTotalsTransactionType = "chargeback-compensation"
-	ComponentsSubTotalsTransactionTypeReversedChargebackCompensation    ComponentsSubTotalsTransactionType = "reversed-chargeback-compensation"
-	ComponentsSubTotalsTransactionTypePlatformPaymentChargeback         ComponentsSubTotalsTransactionType = "platform-payment-chargeback"
-	ComponentsSubTotalsTransactionTypeReversedPlatformPaymentChargeback ComponentsSubTotalsTransactionType = "reversed-platform-payment-chargeback"
-	ComponentsSubTotalsTransactionTypeFeePrepayment                     ComponentsSubTotalsTransactionType = "fee-prepayment"
-	ComponentsSubTotalsTransactionTypeOutgoingTransfer                  ComponentsSubTotalsTransactionType = "outgoing-transfer"
-	ComponentsSubTotalsTransactionTypeIncomingTransfer                  ComponentsSubTotalsTransactionType = "incoming-transfer"
-	ComponentsSubTotalsTransactionTypeCanceledTransfer                  ComponentsSubTotalsTransactionType = "canceled-transfer"
-	ComponentsSubTotalsTransactionTypeReturnedTransfer                  ComponentsSubTotalsTransactionType = "returned-transfer"
-	ComponentsSubTotalsTransactionTypeBalanceReserve                    ComponentsSubTotalsTransactionType = "balance-reserve"
-	ComponentsSubTotalsTransactionTypeBalanceReserveReturn              ComponentsSubTotalsTransactionType = "balance-reserve-return"
-	ComponentsSubTotalsTransactionTypeInvoiceRoundingCompensation       ComponentsSubTotalsTransactionType = "invoice-rounding-compensation"
-	ComponentsSubTotalsTransactionTypeRollingReserveHold                ComponentsSubTotalsTransactionType = "rolling-reserve-hold"
-	ComponentsSubTotalsTransactionTypeRollingReserveRelease             ComponentsSubTotalsTransactionType = "rolling-reserve-release"
-	ComponentsSubTotalsTransactionTypeBalanceCorrection                 ComponentsSubTotalsTransactionType = "balance-correction"
-	ComponentsSubTotalsTransactionTypeRepayment                         ComponentsSubTotalsTransactionType = "repayment"
-	ComponentsSubTotalsTransactionTypeLoan                              ComponentsSubTotalsTransactionType = "loan"
-	ComponentsSubTotalsTransactionTypeBalanceTopup                      ComponentsSubTotalsTransactionType = "balance-topup"
-	ComponentsSubTotalsTransactionTypeCashCollateralIssuance            ComponentsSubTotalsTransactionType = "cash-collateral-issuance';"
-	ComponentsSubTotalsTransactionTypeCashCollateralRelease             ComponentsSubTotalsTransactionType = "cash-collateral-release"
-	ComponentsSubTotalsTransactionTypePendingRollingReserve             ComponentsSubTotalsTransactionType = "pending-rolling-reserve"
-	ComponentsSubTotalsTransactionTypeToBeReleasedRollingReserve        ComponentsSubTotalsTransactionType = "to-be-released-rolling-reserve"
-	ComponentsSubTotalsTransactionTypeHeldRollingReserve                ComponentsSubTotalsTransactionType = "held-rolling-reserve"
-	ComponentsSubTotalsTransactionTypeReleasedRollingReserve            ComponentsSubTotalsTransactionType = "released-rolling-reserve"
-)
-
-func (e ComponentsSubTotalsTransactionType) ToPointer() *ComponentsSubTotalsTransactionType {
-	return &e
-}
-func (e *ComponentsSubTotalsTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "payment":
-		fallthrough
-	case "split-payment":
-		fallthrough
-	case "failed-payment":
-		fallthrough
-	case "failed-platform-split-payment":
-		fallthrough
-	case "failed-split-payment-compensation":
-		fallthrough
-	case "capture":
-		fallthrough
-	case "split-transaction":
-		fallthrough
-	case "refund":
-		fallthrough
-	case "platform-payment-refund":
-		fallthrough
-	case "returned-platform-payment-refund":
-		fallthrough
-	case "refund-compensation":
-		fallthrough
-	case "returned-refund-compensation":
-		fallthrough
-	case "returned-refund":
-		fallthrough
-	case "chargeback":
-		fallthrough
-	case "chargeback-reversal":
-		fallthrough
-	case "chargeback-compensation":
-		fallthrough
-	case "reversed-chargeback-compensation":
-		fallthrough
-	case "platform-payment-chargeback":
-		fallthrough
-	case "reversed-platform-payment-chargeback":
-		fallthrough
-	case "fee-prepayment":
-		fallthrough
-	case "outgoing-transfer":
-		fallthrough
-	case "incoming-transfer":
-		fallthrough
-	case "canceled-transfer":
-		fallthrough
-	case "returned-transfer":
-		fallthrough
-	case "balance-reserve":
-		fallthrough
-	case "balance-reserve-return":
-		fallthrough
-	case "invoice-rounding-compensation":
-		fallthrough
-	case "rolling-reserve-hold":
-		fallthrough
-	case "rolling-reserve-release":
-		fallthrough
-	case "balance-correction":
-		fallthrough
-	case "repayment":
-		fallthrough
-	case "loan":
-		fallthrough
-	case "balance-topup":
-		fallthrough
-	case "cash-collateral-issuance';":
-		fallthrough
-	case "cash-collateral-release":
-		fallthrough
-	case "pending-rolling-reserve":
-		fallthrough
-	case "to-be-released-rolling-reserve":
-		fallthrough
-	case "held-rolling-reserve":
-		fallthrough
-	case "released-rolling-reserve":
-		*e = ComponentsSubTotalsTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ComponentsSubTotalsTransactionType: %v", v)
-	}
-}
-
 type ComponentsSubTotals struct {
 	SubTotals []SubTotals `json:"sub-totals,omitempty"`
 	// Number of transactions of this type
 	Count *int64 `json:"count,omitempty"`
 	// The payment method, if applicable
-	Method *PaymentMethod `json:"method,omitempty"`
-	// In case of payments transactions with card, the card issuer will be available
-	CardIssuer *ComponentsSubTotalsCardIssuer `json:"cardIssuer,omitempty"`
-	// In case of payments trnsactions with card, the card audience will be available.
-	CardAudience *ComponentsSubTotalsCardAudience `json:"cardAudience,omitempty"`
-	// In case of payments transactions with card, the card region will be available.
-	CardRegion *ComponentsSubTotalsCardRegion `json:"cardRegion,omitempty"`
-	// Present when the transaction represents a fee.
-	FeeType *ComponentsSubTotalsFeeType `json:"feeType,omitempty"`
-	// Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-	PrepaymentPartType *ComponentsSubTotalsPrepaymentPartType `json:"prepaymentPartType,omitempty"`
-	// Represents the transaction type
-	TransactionType *ComponentsSubTotalsTransactionType `json:"transactionType,omitempty"`
+	Method             *PaymentMethod             `json:"method,omitempty"`
+	CardIssuer         *BalanceCardIssuer         `json:"cardIssuer,omitempty"`
+	CardAudience       *BalanceCardAudience       `json:"cardAudience,omitempty"`
+	CardRegion         *BalanceCardRegion         `json:"cardRegion,omitempty"`
+	FeeType            *BalanceFeeType            `json:"feeType,omitempty"`
+	PrepaymentPartType *BalancePrepaymentPartType `json:"prepaymentPartType,omitempty"`
+	TransactionType    *BalanceTransactionType    `json:"transactionType,omitempty"`
 }
 
 func (c *ComponentsSubTotals) GetSubTotals() []SubTotals {
@@ -417,42 +37,42 @@ func (c *ComponentsSubTotals) GetMethod() *PaymentMethod {
 	return c.Method
 }
 
-func (c *ComponentsSubTotals) GetCardIssuer() *ComponentsSubTotalsCardIssuer {
+func (c *ComponentsSubTotals) GetCardIssuer() *BalanceCardIssuer {
 	if c == nil {
 		return nil
 	}
 	return c.CardIssuer
 }
 
-func (c *ComponentsSubTotals) GetCardAudience() *ComponentsSubTotalsCardAudience {
+func (c *ComponentsSubTotals) GetCardAudience() *BalanceCardAudience {
 	if c == nil {
 		return nil
 	}
 	return c.CardAudience
 }
 
-func (c *ComponentsSubTotals) GetCardRegion() *ComponentsSubTotalsCardRegion {
+func (c *ComponentsSubTotals) GetCardRegion() *BalanceCardRegion {
 	if c == nil {
 		return nil
 	}
 	return c.CardRegion
 }
 
-func (c *ComponentsSubTotals) GetFeeType() *ComponentsSubTotalsFeeType {
+func (c *ComponentsSubTotals) GetFeeType() *BalanceFeeType {
 	if c == nil {
 		return nil
 	}
 	return c.FeeType
 }
 
-func (c *ComponentsSubTotals) GetPrepaymentPartType() *ComponentsSubTotalsPrepaymentPartType {
+func (c *ComponentsSubTotals) GetPrepaymentPartType() *BalancePrepaymentPartType {
 	if c == nil {
 		return nil
 	}
 	return c.PrepaymentPartType
 }
 
-func (c *ComponentsSubTotals) GetTransactionType() *ComponentsSubTotalsTransactionType {
+func (c *ComponentsSubTotals) GetTransactionType() *BalanceTransactionType {
 	if c == nil {
 		return nil
 	}

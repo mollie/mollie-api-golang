@@ -2,6 +2,19 @@
 
 package components
 
+// EntityOnboardingStatusStatus - The current status of the organization's onboarding process.
+type EntityOnboardingStatusStatus string
+
+const (
+	EntityOnboardingStatusStatusNeedsData EntityOnboardingStatusStatus = "needs-data"
+	EntityOnboardingStatusStatusInReview  EntityOnboardingStatusStatus = "in-review"
+	EntityOnboardingStatusStatusCompleted EntityOnboardingStatusStatus = "completed"
+)
+
+func (e EntityOnboardingStatusStatus) ToPointer() *EntityOnboardingStatusStatus {
+	return &e
+}
+
 // EntityOnboardingStatusLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityOnboardingStatusLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -47,9 +60,8 @@ type EntityOnboardingStatus struct {
 	// resource type.
 	Resource string `json:"resource"`
 	// The name of the organization.
-	Name string `json:"name"`
-	// The current status of the organization's onboarding process.
-	Status OnboardingStatus `json:"status"`
+	Name   string                       `json:"name"`
+	Status EntityOnboardingStatusStatus `json:"status"`
 	// Whether the organization can receive payments.
 	CanReceivePayments bool `json:"canReceivePayments"`
 	// Whether the organization can receive settlements to their external bank account.
@@ -74,9 +86,9 @@ func (e *EntityOnboardingStatus) GetName() string {
 	return e.Name
 }
 
-func (e *EntityOnboardingStatus) GetStatus() OnboardingStatus {
+func (e *EntityOnboardingStatus) GetStatus() EntityOnboardingStatusStatus {
 	if e == nil {
-		return OnboardingStatus("")
+		return EntityOnboardingStatusStatus("")
 	}
 	return e.Status
 }

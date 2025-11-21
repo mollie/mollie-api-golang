@@ -7,6 +7,126 @@ import (
 	"github.com/mollie/mollie-api-golang/types"
 )
 
+// AmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
+// payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+// costs for a return shipment to the customer.
+type AmountRefunded struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AmountRefunded) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AmountRefunded) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// AmountRemaining - The remaining amount that can be refunded. Only available when refunds are available for this payment.
+type AmountRemaining struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AmountRemaining) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AmountRemaining) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// AmountCaptured - The total amount that is already captured for this payment. Only available when this payment supports captures.
+type AmountCaptured struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AmountCaptured) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AmountCaptured) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// AmountChargedBack - The total amount that was charged back for this payment. Only available when the total charged back amount is not
+// zero.
+type AmountChargedBack struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (a *AmountChargedBack) GetCurrency() string {
+	if a == nil {
+		return ""
+	}
+	return a.Currency
+}
+
+func (a *AmountChargedBack) GetValue() string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// PaymentResponseSettlementAmount - This optional field will contain the approximate amount that will be settled to your account, converted to the
+// currency your account is settled in.
+//
+// Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+// settled by Mollie the `settlementAmount` is omitted from the response.
+//
+// Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+// using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+type PaymentResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (p *PaymentResponseSettlementAmount) GetCurrency() string {
+	if p == nil {
+		return ""
+	}
+	return p.Currency
+}
+
+func (p *PaymentResponseSettlementAmount) GetValue() string {
+	if p == nil {
+		return ""
+	}
+	return p.Value
+}
+
 type PaymentResponseLine struct {
 	// The type of product purchased. For example, a physical or a digital product.
 	//
@@ -307,6 +427,24 @@ func (p *PaymentResponseApplicationFee) GetDescription() *string {
 		return nil
 	}
 	return p.Description
+}
+
+// PaymentResponseStatus - The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+// statuses occur at what point.
+type PaymentResponseStatus string
+
+const (
+	PaymentResponseStatusOpen       PaymentResponseStatus = "open"
+	PaymentResponseStatusPending    PaymentResponseStatus = "pending"
+	PaymentResponseStatusAuthorized PaymentResponseStatus = "authorized"
+	PaymentResponseStatusPaid       PaymentResponseStatus = "paid"
+	PaymentResponseStatusCanceled   PaymentResponseStatus = "canceled"
+	PaymentResponseStatusExpired    PaymentResponseStatus = "expired"
+	PaymentResponseStatusFailed     PaymentResponseStatus = "failed"
+)
+
+func (e PaymentResponseStatus) ToPointer() *PaymentResponseStatus {
+	return &e
 }
 
 // Receipt - The Point of sale receipt object.
@@ -1053,7 +1191,9 @@ func (p *PaymentResponseLinks) GetPayOnline() *URLObj {
 type PaymentResponse struct {
 	// Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie
+	// will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The description of the payment. This will be shown to your customer on their card or bank statement when possible.
@@ -1068,16 +1208,26 @@ type PaymentResponse struct {
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountRefunded *Amount `json:"amountRefunded,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountRemaining *Amount `json:"amountRemaining,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountCaptured *Amount `json:"amountCaptured,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	AmountChargedBack *Amount `json:"amountChargedBack,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *Amount `json:"settlementAmount,omitempty"`
+	// The total amount that is already refunded. Only available when refunds are available for this payment. For some
+	// payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+	// costs for a return shipment to the customer.
+	AmountRefunded *AmountRefunded `json:"amountRefunded,omitempty"`
+	// The remaining amount that can be refunded. Only available when refunds are available for this payment.
+	AmountRemaining *AmountRemaining `json:"amountRemaining,omitempty"`
+	// The total amount that is already captured for this payment. Only available when this payment supports captures.
+	AmountCaptured *AmountCaptured `json:"amountCaptured,omitempty"`
+	// The total amount that was charged back for this payment. Only available when the total charged back amount is not
+	// zero.
+	AmountChargedBack *AmountChargedBack `json:"amountChargedBack,omitempty"`
+	// This optional field will contain the approximate amount that will be settled to your account, converted to the
+	// currency your account is settled in.
+	//
+	// Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+	// settled by Mollie the `settlementAmount` is omitted from the response.
+	//
+	// Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+	// using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+	SettlementAmount *PaymentResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
@@ -1191,22 +1341,28 @@ type PaymentResponse struct {
 	//
 	// If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
 	// parameter.
-	Routing        []EntityPaymentRouteResponse `json:"routing,omitempty"`
-	SequenceType   SequenceTypeResponse         `json:"sequenceType"`
-	SubscriptionID *string                      `json:"subscriptionId,omitempty"`
-	MandateID      *string                      `json:"mandateId,omitempty"`
-	CustomerID     *string                      `json:"customerId,omitempty"`
+	Routing      []EntityPaymentRouteResponse `json:"routing,omitempty"`
+	SequenceType SequenceTypeResponse         `json:"sequenceType"`
+	// If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+	// be added to the response.
+	SubscriptionID *string `json:"subscriptionId,omitempty"`
+	// **Only relevant for recurring payments.**
+	//
+	// When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+	// the customer's accounts should be credited.
+	MandateID  *string `json:"mandateId,omitempty"`
+	CustomerID *string `json:"customerId,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
 	//
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
 	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
 	// required.
-	ProfileID    string  `json:"profileId"`
+	ProfileID string `json:"profileId"`
+	// The identifier referring to the [settlement](get-settlement) this payment was settled with.
 	SettlementID *string `json:"settlementId,omitempty"`
-	OrderID      *string `json:"orderId,omitempty"`
-	// The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-	// statuses occur at what point.
-	Status PaymentStatus `json:"status"`
+	// If the payment was created for an [order](get-order), the ID of that order will be part of the response.
+	OrderID *string               `json:"orderId,omitempty"`
+	Status  PaymentResponseStatus `json:"status"`
 	// This object offers details about the status of a payment. Currently it is only available for point-of-sale
 	// payments.
 	//
@@ -1278,35 +1434,35 @@ func (p *PaymentResponse) GetAmount() Amount {
 	return p.Amount
 }
 
-func (p *PaymentResponse) GetAmountRefunded() *Amount {
+func (p *PaymentResponse) GetAmountRefunded() *AmountRefunded {
 	if p == nil {
 		return nil
 	}
 	return p.AmountRefunded
 }
 
-func (p *PaymentResponse) GetAmountRemaining() *Amount {
+func (p *PaymentResponse) GetAmountRemaining() *AmountRemaining {
 	if p == nil {
 		return nil
 	}
 	return p.AmountRemaining
 }
 
-func (p *PaymentResponse) GetAmountCaptured() *Amount {
+func (p *PaymentResponse) GetAmountCaptured() *AmountCaptured {
 	if p == nil {
 		return nil
 	}
 	return p.AmountCaptured
 }
 
-func (p *PaymentResponse) GetAmountChargedBack() *Amount {
+func (p *PaymentResponse) GetAmountChargedBack() *AmountChargedBack {
 	if p == nil {
 		return nil
 	}
 	return p.AmountChargedBack
 }
 
-func (p *PaymentResponse) GetSettlementAmount() *Amount {
+func (p *PaymentResponse) GetSettlementAmount() *PaymentResponseSettlementAmount {
 	if p == nil {
 		return nil
 	}
@@ -1474,9 +1630,9 @@ func (p *PaymentResponse) GetOrderID() *string {
 	return p.OrderID
 }
 
-func (p *PaymentResponse) GetStatus() PaymentStatus {
+func (p *PaymentResponse) GetStatus() PaymentResponseStatus {
 	if p == nil {
-		return PaymentStatus("")
+		return PaymentResponseStatus("")
 	}
 	return p.Status
 }

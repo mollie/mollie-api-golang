@@ -82,7 +82,8 @@ type PaymentLinkResponse struct {
 	// Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
 	// endpoint.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
+	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// A short description of the payment link. The description is visible in the Dashboard and will be shown on the

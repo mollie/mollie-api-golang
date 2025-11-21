@@ -47,8 +47,12 @@ func (r *RouteGetResponseLinks) GetDocumentation() URLObj {
 
 type RouteGetResponse struct {
 	// Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-	Resource  string `json:"resource"`
-	ID        string `json:"id"`
+	Resource string `json:"resource"`
+	// The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
+	// will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+	ID string `json:"id"`
+	// The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+	// The full payment object can be retrieved via the payment URL in the `_links` object.
 	PaymentID string `json:"paymentId"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`

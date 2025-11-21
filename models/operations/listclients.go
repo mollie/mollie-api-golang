@@ -130,7 +130,8 @@ func (c *ClientEmbedded) GetCapabilities() *components.EntityCapability {
 type Client struct {
 	// Indicates the response contains a client object. Will always contain the string `client` for this resource type.
 	Resource string `json:"resource"`
-	ID       string `json:"id"`
+	// The identifier uniquely referring to this client. Example: `org_12345678`.
+	ID string `json:"id"`
 	// The commission object.
 	Commission *ListClientsCommission `json:"commission,omitempty"`
 	// The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)

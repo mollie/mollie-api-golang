@@ -3,28 +3,13 @@
 package components
 
 type EntityCapture struct {
-	ID *string `json:"id,omitempty"`
 	// The description of the capture.
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *AmountNullable `json:"amount,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
-	// The capture's status.
-	Status *CaptureStatus `json:"status,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata     *Metadata `json:"metadata,omitempty"`
-	PaymentID    *string   `json:"paymentId,omitempty"`
-	ShipmentID   *string   `json:"shipmentId,omitempty"`
-	SettlementID *string   `json:"settlementId,omitempty"`
-}
-
-func (e *EntityCapture) GetID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.ID
+	Metadata *Metadata `json:"metadata,omitempty"`
 }
 
 func (e *EntityCapture) GetDescription() *string {
@@ -41,44 +26,9 @@ func (e *EntityCapture) GetAmount() *AmountNullable {
 	return e.Amount
 }
 
-func (e *EntityCapture) GetSettlementAmount() *AmountNullable {
-	if e == nil {
-		return nil
-	}
-	return e.SettlementAmount
-}
-
-func (e *EntityCapture) GetStatus() *CaptureStatus {
-	if e == nil {
-		return nil
-	}
-	return e.Status
-}
-
 func (e *EntityCapture) GetMetadata() *Metadata {
 	if e == nil {
 		return nil
 	}
 	return e.Metadata
-}
-
-func (e *EntityCapture) GetPaymentID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentID
-}
-
-func (e *EntityCapture) GetShipmentID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.ShipmentID
-}
-
-func (e *EntityCapture) GetSettlementID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.SettlementID
 }

@@ -2,6 +2,11 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type RefundRequestExternalReference struct {
 	// Specifies the reference type
 	Type *RefundExternalReferenceType `json:"type,omitempty"`
@@ -23,14 +28,37 @@ func (r *RefundRequestExternalReference) GetID() *string {
 	return r.ID
 }
 
-// RefundRequestSource - Where the funds will be pulled back from.
-type RefundRequestSource struct {
-	// The type of source. Currently only the source type `organization` is supported.
-	Type           *RefundRoutingReversalsSourceType `json:"type,omitempty"`
-	OrganizationID *string                           `json:"organizationId,omitempty"`
+// Type - The type of source. Currently only the source type `organization` is supported.
+type Type string
+
+const (
+	TypeOrganization Type = "organization"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "organization":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
 }
 
-func (r *RefundRequestSource) GetType() *RefundRoutingReversalsSourceType {
+// RefundRequestSource - Where the funds will be pulled back from.
+type RefundRequestSource struct {
+	Type           *Type   `json:"type,omitempty"`
+	OrganizationID *string `json:"organizationId,omitempty"`
+}
+
+func (r *RefundRequestSource) GetType() *Type {
 	if r == nil {
 		return nil
 	}
@@ -66,19 +94,13 @@ func (r *RefundRequestRoutingReversal) GetSource() *RefundRequestSource {
 }
 
 type RefundRequest struct {
-	ID string `json:"id"`
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	SettlementAmount *AmountNullable `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata          *Metadata                       `json:"metadata"`
-	PaymentID         *string                         `json:"paymentId,omitempty"`
-	SettlementID      *string                         `json:"settlementId,omitempty"`
-	Status            RefundStatus                    `json:"status"`
 	ExternalReference *RefundRequestExternalReference `json:"externalReference,omitempty"`
 	// *This feature is only available to marketplace operators.*
 	//
@@ -109,13 +131,6 @@ type RefundRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (r *RefundRequest) GetID() string {
-	if r == nil {
-		return ""
-	}
-	return r.ID
-}
-
 func (r *RefundRequest) GetDescription() string {
 	if r == nil {
 		return ""
@@ -130,39 +145,11 @@ func (r *RefundRequest) GetAmount() Amount {
 	return r.Amount
 }
 
-func (r *RefundRequest) GetSettlementAmount() *AmountNullable {
-	if r == nil {
-		return nil
-	}
-	return r.SettlementAmount
-}
-
 func (r *RefundRequest) GetMetadata() *Metadata {
 	if r == nil {
 		return nil
 	}
 	return r.Metadata
-}
-
-func (r *RefundRequest) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *RefundRequest) GetSettlementID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.SettlementID
-}
-
-func (r *RefundRequest) GetStatus() RefundStatus {
-	if r == nil {
-		return RefundStatus("")
-	}
-	return r.Status
 }
 
 func (r *RefundRequest) GetExternalReference() *RefundRequestExternalReference {

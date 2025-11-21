@@ -35,7 +35,6 @@ func (a *ApplicationFee) GetDescription() string {
 }
 
 type CreatePaymentLinkRequestBody struct {
-	ID *string `json:"id,omitempty"`
 	// A short description of the payment link. The description is visible in the Dashboard and will be shown on the
 	// customer's bank or card statement when possible.
 	Description string `json:"description"`
@@ -101,13 +100,6 @@ type CreatePaymentLinkRequestBody struct {
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
-}
-
-func (c *CreatePaymentLinkRequestBody) GetID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ID
 }
 
 func (c *CreatePaymentLinkRequestBody) GetDescription() string {
