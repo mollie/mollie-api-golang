@@ -37,10 +37,10 @@ func newSalesInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // With the Sales Invoice API you can generate sales invoices to send to your customers.
-func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, entitySalesInvoice *components.EntitySalesInvoice, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, salesInvoiceRequest *components.SalesInvoiceRequest, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
 	request := operations.CreateSalesInvoiceRequest{
-		IdempotencyKey:     idempotencyKey,
-		EntitySalesInvoice: entitySalesInvoice,
+		IdempotencyKey:      idempotencyKey,
+		SalesInvoiceRequest: salesInvoiceRequest,
 	}
 
 	o := operations.Options{}
@@ -75,7 +75,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, enti
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySalesInvoice", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SalesInvoiceRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -224,12 +224,12 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, enti
 				return nil, err
 			}
 
-			var out components.EntitySalesInvoiceResponse
+			var out components.SalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntitySalesInvoiceResponse = &out
+			res.SalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -743,12 +743,12 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idem
 				return nil, err
 			}
 
-			var out components.EntitySalesInvoiceResponse
+			var out components.SalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntitySalesInvoiceResponse = &out
+			res.SalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1001,12 +1001,12 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *s
 				return nil, err
 			}
 
-			var out components.EntitySalesInvoiceResponse
+			var out components.SalesInvoiceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntitySalesInvoiceResponse = &out
+			res.SalesInvoiceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

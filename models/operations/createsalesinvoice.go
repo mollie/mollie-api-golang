@@ -8,8 +8,8 @@ import (
 
 type CreateSalesInvoiceRequest struct {
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey     *string                        `header:"style=simple,explode=false,name=idempotency-key"`
-	EntitySalesInvoice *components.EntitySalesInvoice `request:"mediaType=application/json"`
+	IdempotencyKey      *string                         `header:"style=simple,explode=false,name=idempotency-key"`
+	SalesInvoiceRequest *components.SalesInvoiceRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateSalesInvoiceRequest) GetIdempotencyKey() *string {
@@ -19,18 +19,18 @@ func (c *CreateSalesInvoiceRequest) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreateSalesInvoiceRequest) GetEntitySalesInvoice() *components.EntitySalesInvoice {
+func (c *CreateSalesInvoiceRequest) GetSalesInvoiceRequest() *components.SalesInvoiceRequest {
 	if c == nil {
 		return nil
 	}
-	return c.EntitySalesInvoice
+	return c.SalesInvoiceRequest
 }
 
 type CreateSalesInvoiceResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created invoice object. For a complete reference of the invoice object, refer to the
 	// [Get sales invoice endpoint](get-sales-invoice) documentation.
-	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
+	SalesInvoiceResponse *components.SalesInvoiceResponse
 }
 
 func (c *CreateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -40,9 +40,9 @@ func (c *CreateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+func (c *CreateSalesInvoiceResponse) GetSalesInvoiceResponse() *components.SalesInvoiceResponse {
 	if c == nil {
 		return nil
 	}
-	return c.EntitySalesInvoiceResponse
+	return c.SalesInvoiceResponse
 }

@@ -38,7 +38,7 @@ func (u *UpdateSalesInvoiceRequest) GetUpdateValuesSalesInvoice() *components.Up
 type UpdateSalesInvoiceResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The sales invoice object.
-	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
+	SalesInvoiceResponse *components.SalesInvoiceResponse
 }
 
 func (u *UpdateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -48,9 +48,9 @@ func (u *UpdateSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+func (u *UpdateSalesInvoiceResponse) GetSalesInvoiceResponse() *components.SalesInvoiceResponse {
 	if u == nil {
 		return nil
 	}
-	return u.EntitySalesInvoiceResponse
+	return u.SalesInvoiceResponse
 }

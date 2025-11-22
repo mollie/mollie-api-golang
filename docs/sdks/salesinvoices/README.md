@@ -42,10 +42,10 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntitySalesInvoice{
+    res, err := s.SalesInvoices.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.SalesInvoiceRequest{
         Testmode: client.Pointer(false),
         ProfileID: client.Pointer("pfl_QkEhN94Ba"),
-        Status: components.SalesInvoiceStatusDraft.ToPointer(),
+        Status: components.SalesInvoiceStatusDraft,
         VatScheme: components.SalesInvoiceVatSchemeStandard.ToPointer(),
         VatMode: components.SalesInvoiceVatModeExclusive.ToPointer(),
         Memo: client.Pointer("This is a memo!"),
@@ -60,7 +60,7 @@ func main() {
         },
         CustomerID: client.Pointer("cst_8wmqcHMN4U"),
         MandateID: client.Pointer("mdt_pWUnw6pkBN"),
-        RecipientIdentifier: client.Pointer("customer-xyz-0123"),
+        RecipientIdentifier: "customer-xyz-0123",
         Recipient: &components.SalesInvoiceRecipient{
             Type: components.SalesInvoiceRecipientTypeConsumer,
             Title: client.Pointer("Mrs."),
@@ -88,7 +88,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySalesInvoiceResponse != nil {
+    if res.SalesInvoiceResponse != nil {
         // handle response
     }
 }
@@ -96,12 +96,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entitySalesInvoice`                                                             | [*components.EntitySalesInvoice](../../models/components/entitysalesinvoice.md)  | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
+| `idempotencyKey`                                                                  | **string*                                                                         | :heavy_minus_sign:                                                                | A unique key to ensure idempotent requests. This key should be a UUID v4 string.  | 123e4567-e89b-12d3-a456-426                                                       |
+| `salesInvoiceRequest`                                                             | [*components.SalesInvoiceRequest](../../models/components/salesinvoicerequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
 
 ### Response
 
@@ -216,7 +216,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySalesInvoiceResponse != nil {
+    if res.SalesInvoiceResponse != nil {
         // handle response
     }
 }
@@ -331,7 +331,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySalesInvoiceResponse != nil {
+    if res.SalesInvoiceResponse != nil {
         // handle response
     }
 }

@@ -2,9 +2,9 @@
 
 package components
 
-// EntitySalesInvoiceResponseMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+// SalesInvoiceResponseMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-type EntitySalesInvoiceResponseMetadata struct {
+type SalesInvoiceResponseMetadata struct {
 }
 
 // AmountDue - The amount that is left to be paid.
@@ -117,8 +117,8 @@ func (d *DiscountedSubtotalAmount) GetValue() string {
 	return d.Value
 }
 
-// EntitySalesInvoiceResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type EntitySalesInvoiceResponseLinks struct {
+// SalesInvoiceResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+type SalesInvoiceResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Self *URLObj `json:"self,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -133,54 +133,56 @@ type EntitySalesInvoiceResponseLinks struct {
 	Previous *URLObj `json:"previous,omitempty"`
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetSelf() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetSelf() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.Self
+	return s.Self
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetInvoicePayment() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetInvoicePayment() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.InvoicePayment
+	return s.InvoicePayment
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetPdfLink() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetPdfLink() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.PdfLink
+	return s.PdfLink
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetDocumentation() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetDocumentation() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.Documentation
+	return s.Documentation
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetNext() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetNext() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.Next
+	return s.Next
 }
 
-func (e *EntitySalesInvoiceResponseLinks) GetPrevious() *URLObj {
-	if e == nil {
+func (s *SalesInvoiceResponseLinks) GetPrevious() *URLObj {
+	if s == nil {
 		return nil
 	}
-	return e.Previous
+	return s.Previous
 }
 
-type EntitySalesInvoiceResponse struct {
+type SalesInvoiceResponse struct {
 	// Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
 	// endpoint.
-	Resource *string `json:"resource,omitempty"`
+	Resource string `json:"resource"`
 	// The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id"`
+	// Whether this entity was created in live mode or in test mode.
+	Mode Mode `json:"mode"`
 	// When issued, an invoice number will be set for the sales invoice.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
 	// The status for the invoice to end up in.
@@ -206,7 +208,7 @@ type EntitySalesInvoiceResponse struct {
 	Memo *string `json:"memo,omitempty"`
 	// Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *EntitySalesInvoiceResponseMetadata `json:"metadata,omitempty"`
+	Metadata *SalesInvoiceResponseMetadata `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
 	PaymentTerm    *SalesInvoicePaymentTermResponse    `json:"paymentTerm,omitempty"`
 	PaymentDetails *SalesInvoicePaymentDetailsResponse `json:"paymentDetails,omitempty"`
@@ -250,194 +252,201 @@ type EntitySalesInvoiceResponse struct {
 	// format.
 	DueAt *string `json:"dueAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links *EntitySalesInvoiceResponseLinks `json:"_links,omitempty"`
+	Links *SalesInvoiceResponseLinks `json:"_links,omitempty"`
 }
 
-func (e *EntitySalesInvoiceResponse) GetResource() *string {
-	if e == nil {
-		return nil
+func (s *SalesInvoiceResponse) GetResource() string {
+	if s == nil {
+		return ""
 	}
-	return e.Resource
+	return s.Resource
 }
 
-func (e *EntitySalesInvoiceResponse) GetID() *string {
-	if e == nil {
-		return nil
+func (s *SalesInvoiceResponse) GetID() string {
+	if s == nil {
+		return ""
 	}
-	return e.ID
+	return s.ID
 }
 
-func (e *EntitySalesInvoiceResponse) GetInvoiceNumber() *string {
-	if e == nil {
-		return nil
+func (s *SalesInvoiceResponse) GetMode() Mode {
+	if s == nil {
+		return Mode("")
 	}
-	return e.InvoiceNumber
+	return s.Mode
 }
 
-func (e *EntitySalesInvoiceResponse) GetStatus() *SalesInvoiceStatusResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetInvoiceNumber() *string {
+	if s == nil {
 		return nil
 	}
-	return e.Status
+	return s.InvoiceNumber
 }
 
-func (e *EntitySalesInvoiceResponse) GetVatScheme() *SalesInvoiceVatSchemeResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetStatus() *SalesInvoiceStatusResponse {
+	if s == nil {
 		return nil
 	}
-	return e.VatScheme
+	return s.Status
 }
 
-func (e *EntitySalesInvoiceResponse) GetVatMode() *SalesInvoiceVatModeResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetVatScheme() *SalesInvoiceVatSchemeResponse {
+	if s == nil {
 		return nil
 	}
-	return e.VatMode
+	return s.VatScheme
 }
 
-func (e *EntitySalesInvoiceResponse) GetMemo() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetVatMode() *SalesInvoiceVatModeResponse {
+	if s == nil {
 		return nil
 	}
-	return e.Memo
+	return s.VatMode
 }
 
-func (e *EntitySalesInvoiceResponse) GetMetadata() *EntitySalesInvoiceResponseMetadata {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetMemo() *string {
+	if s == nil {
 		return nil
 	}
-	return e.Metadata
+	return s.Memo
 }
 
-func (e *EntitySalesInvoiceResponse) GetPaymentTerm() *SalesInvoicePaymentTermResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetMetadata() *SalesInvoiceResponseMetadata {
+	if s == nil {
 		return nil
 	}
-	return e.PaymentTerm
+	return s.Metadata
 }
 
-func (e *EntitySalesInvoiceResponse) GetPaymentDetails() *SalesInvoicePaymentDetailsResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetPaymentTerm() *SalesInvoicePaymentTermResponse {
+	if s == nil {
 		return nil
 	}
-	return e.PaymentDetails
+	return s.PaymentTerm
 }
 
-func (e *EntitySalesInvoiceResponse) GetEmailDetails() *SalesInvoiceEmailDetails {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetPaymentDetails() *SalesInvoicePaymentDetailsResponse {
+	if s == nil {
 		return nil
 	}
-	return e.EmailDetails
+	return s.PaymentDetails
 }
 
-func (e *EntitySalesInvoiceResponse) GetCustomerID() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetEmailDetails() *SalesInvoiceEmailDetails {
+	if s == nil {
 		return nil
 	}
-	return e.CustomerID
+	return s.EmailDetails
 }
 
-func (e *EntitySalesInvoiceResponse) GetMandateID() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetCustomerID() *string {
+	if s == nil {
 		return nil
 	}
-	return e.MandateID
+	return s.CustomerID
 }
 
-func (e *EntitySalesInvoiceResponse) GetRecipientIdentifier() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetMandateID() *string {
+	if s == nil {
 		return nil
 	}
-	return e.RecipientIdentifier
+	return s.MandateID
 }
 
-func (e *EntitySalesInvoiceResponse) GetRecipient() *SalesInvoiceRecipientResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetRecipientIdentifier() *string {
+	if s == nil {
 		return nil
 	}
-	return e.Recipient
+	return s.RecipientIdentifier
 }
 
-func (e *EntitySalesInvoiceResponse) GetLines() []SalesInvoiceLineItemResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetRecipient() *SalesInvoiceRecipientResponse {
+	if s == nil {
 		return nil
 	}
-	return e.Lines
+	return s.Recipient
 }
 
-func (e *EntitySalesInvoiceResponse) GetDiscount() *SalesInvoiceDiscountResponse {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetLines() []SalesInvoiceLineItemResponse {
+	if s == nil {
 		return nil
 	}
-	return e.Discount
+	return s.Lines
 }
 
-func (e *EntitySalesInvoiceResponse) GetAmountDue() *AmountDue {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetDiscount() *SalesInvoiceDiscountResponse {
+	if s == nil {
 		return nil
 	}
-	return e.AmountDue
+	return s.Discount
 }
 
-func (e *EntitySalesInvoiceResponse) GetSubtotalAmount() *SubtotalAmount {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetAmountDue() *AmountDue {
+	if s == nil {
 		return nil
 	}
-	return e.SubtotalAmount
+	return s.AmountDue
 }
 
-func (e *EntitySalesInvoiceResponse) GetTotalAmount() *TotalAmount {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetSubtotalAmount() *SubtotalAmount {
+	if s == nil {
 		return nil
 	}
-	return e.TotalAmount
+	return s.SubtotalAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetTotalVatAmount() *TotalVatAmount {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetTotalAmount() *TotalAmount {
+	if s == nil {
 		return nil
 	}
-	return e.TotalVatAmount
+	return s.TotalAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetDiscountedSubtotalAmount() *DiscountedSubtotalAmount {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetTotalVatAmount() *TotalVatAmount {
+	if s == nil {
 		return nil
 	}
-	return e.DiscountedSubtotalAmount
+	return s.TotalVatAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetCreatedAt() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetDiscountedSubtotalAmount() *DiscountedSubtotalAmount {
+	if s == nil {
 		return nil
 	}
-	return e.CreatedAt
+	return s.DiscountedSubtotalAmount
 }
 
-func (e *EntitySalesInvoiceResponse) GetIssuedAt() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetCreatedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return e.IssuedAt
+	return s.CreatedAt
 }
 
-func (e *EntitySalesInvoiceResponse) GetPaidAt() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetIssuedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return e.PaidAt
+	return s.IssuedAt
 }
 
-func (e *EntitySalesInvoiceResponse) GetDueAt() *string {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetPaidAt() *string {
+	if s == nil {
 		return nil
 	}
-	return e.DueAt
+	return s.PaidAt
 }
 
-func (e *EntitySalesInvoiceResponse) GetLinks() *EntitySalesInvoiceResponseLinks {
-	if e == nil {
+func (s *SalesInvoiceResponse) GetDueAt() *string {
+	if s == nil {
 		return nil
 	}
-	return e.Links
+	return s.DueAt
+}
+
+func (s *SalesInvoiceResponse) GetLinks() *SalesInvoiceResponseLinks {
+	if s == nil {
+		return nil
+	}
+	return s.Links
 }

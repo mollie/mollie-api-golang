@@ -2,12 +2,12 @@
 
 package components
 
-// EntitySalesInvoiceMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+// SalesInvoiceRequestMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-type EntitySalesInvoiceMetadata struct {
+type SalesInvoiceRequestMetadata struct {
 }
 
-type EntitySalesInvoice struct {
+type SalesInvoiceRequest struct {
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -33,7 +33,7 @@ type EntitySalesInvoice struct {
 	//   - `paymentDetails` is required if invoice should be set directly to `paid`
 	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
 	//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-	Status *SalesInvoiceStatus `json:"status,omitempty"`
+	Status SalesInvoiceStatus `json:"status"`
 	// The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 	VatScheme *SalesInvoiceVatScheme `json:"vatScheme,omitempty"`
 	// The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -43,7 +43,7 @@ type EntitySalesInvoice struct {
 	Memo *string `json:"memo,omitempty"`
 	// Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *EntitySalesInvoiceMetadata `json:"metadata,omitempty"`
+	Metadata *SalesInvoiceRequestMetadata `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
 	PaymentTerm    *SalesInvoicePaymentTerm    `json:"paymentTerm,omitempty"`
 	PaymentDetails *SalesInvoicePaymentDetails `json:"paymentDetails,omitempty"`
@@ -57,124 +57,124 @@ type EntitySalesInvoice struct {
 	// An identifier tied to the recipient data. This should be a unique value based on data your system contains,
 	// so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
 	// is not required to send a first invoice to a recipient.
-	RecipientIdentifier *string                `json:"recipientIdentifier,omitempty"`
-	Recipient           *SalesInvoiceRecipient `json:"recipient,omitempty"`
+	RecipientIdentifier string                 `json:"recipientIdentifier"`
+	Recipient           *SalesInvoiceRecipient `json:"recipient"`
 	// Provide the line items for the invoice. Each line contains details such as a description of the item
 	// ordered and its price.
 	//
 	// All lines must have the same currency as the invoice.
-	Lines    []SalesInvoiceLineItem `json:"lines,omitempty"`
+	Lines    []SalesInvoiceLineItem `json:"lines"`
 	Discount *SalesInvoiceDiscount  `json:"discount,omitempty"`
 }
 
-func (e *EntitySalesInvoice) GetTestmode() *bool {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetTestmode() *bool {
+	if s == nil {
 		return nil
 	}
-	return e.Testmode
+	return s.Testmode
 }
 
-func (e *EntitySalesInvoice) GetProfileID() *string {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetProfileID() *string {
+	if s == nil {
 		return nil
 	}
-	return e.ProfileID
+	return s.ProfileID
 }
 
-func (e *EntitySalesInvoice) GetStatus() *SalesInvoiceStatus {
-	if e == nil {
-		return nil
+func (s *SalesInvoiceRequest) GetStatus() SalesInvoiceStatus {
+	if s == nil {
+		return SalesInvoiceStatus("")
 	}
-	return e.Status
+	return s.Status
 }
 
-func (e *EntitySalesInvoice) GetVatScheme() *SalesInvoiceVatScheme {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetVatScheme() *SalesInvoiceVatScheme {
+	if s == nil {
 		return nil
 	}
-	return e.VatScheme
+	return s.VatScheme
 }
 
-func (e *EntitySalesInvoice) GetVatMode() *SalesInvoiceVatMode {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetVatMode() *SalesInvoiceVatMode {
+	if s == nil {
 		return nil
 	}
-	return e.VatMode
+	return s.VatMode
 }
 
-func (e *EntitySalesInvoice) GetMemo() *string {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetMemo() *string {
+	if s == nil {
 		return nil
 	}
-	return e.Memo
+	return s.Memo
 }
 
-func (e *EntitySalesInvoice) GetMetadata() *EntitySalesInvoiceMetadata {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetMetadata() *SalesInvoiceRequestMetadata {
+	if s == nil {
 		return nil
 	}
-	return e.Metadata
+	return s.Metadata
 }
 
-func (e *EntitySalesInvoice) GetPaymentTerm() *SalesInvoicePaymentTerm {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetPaymentTerm() *SalesInvoicePaymentTerm {
+	if s == nil {
 		return nil
 	}
-	return e.PaymentTerm
+	return s.PaymentTerm
 }
 
-func (e *EntitySalesInvoice) GetPaymentDetails() *SalesInvoicePaymentDetails {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetPaymentDetails() *SalesInvoicePaymentDetails {
+	if s == nil {
 		return nil
 	}
-	return e.PaymentDetails
+	return s.PaymentDetails
 }
 
-func (e *EntitySalesInvoice) GetEmailDetails() *SalesInvoiceEmailDetails {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetEmailDetails() *SalesInvoiceEmailDetails {
+	if s == nil {
 		return nil
 	}
-	return e.EmailDetails
+	return s.EmailDetails
 }
 
-func (e *EntitySalesInvoice) GetCustomerID() *string {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetCustomerID() *string {
+	if s == nil {
 		return nil
 	}
-	return e.CustomerID
+	return s.CustomerID
 }
 
-func (e *EntitySalesInvoice) GetMandateID() *string {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetMandateID() *string {
+	if s == nil {
 		return nil
 	}
-	return e.MandateID
+	return s.MandateID
 }
 
-func (e *EntitySalesInvoice) GetRecipientIdentifier() *string {
-	if e == nil {
-		return nil
+func (s *SalesInvoiceRequest) GetRecipientIdentifier() string {
+	if s == nil {
+		return ""
 	}
-	return e.RecipientIdentifier
+	return s.RecipientIdentifier
 }
 
-func (e *EntitySalesInvoice) GetRecipient() *SalesInvoiceRecipient {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetRecipient() *SalesInvoiceRecipient {
+	if s == nil {
 		return nil
 	}
-	return e.Recipient
+	return s.Recipient
 }
 
-func (e *EntitySalesInvoice) GetLines() []SalesInvoiceLineItem {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetLines() []SalesInvoiceLineItem {
+	if s == nil {
 		return nil
 	}
-	return e.Lines
+	return s.Lines
 }
 
-func (e *EntitySalesInvoice) GetDiscount() *SalesInvoiceDiscount {
-	if e == nil {
+func (s *SalesInvoiceRequest) GetDiscount() *SalesInvoiceDiscount {
+	if s == nil {
 		return nil
 	}
-	return e.Discount
+	return s.Discount
 }

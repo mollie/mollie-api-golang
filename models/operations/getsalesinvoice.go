@@ -59,7 +59,7 @@ func (g *GetSalesInvoiceRequest) GetIdempotencyKey() *string {
 type GetSalesInvoiceResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The Sales Invoice object.
-	EntitySalesInvoiceResponse *components.EntitySalesInvoiceResponse
+	SalesInvoiceResponse *components.SalesInvoiceResponse
 }
 
 func (g *GetSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -69,9 +69,9 @@ func (g *GetSalesInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetSalesInvoiceResponse) GetEntitySalesInvoiceResponse() *components.EntitySalesInvoiceResponse {
+func (g *GetSalesInvoiceResponse) GetSalesInvoiceResponse() *components.SalesInvoiceResponse {
 	if g == nil {
 		return nil
 	}
-	return g.EntitySalesInvoiceResponse
+	return g.SalesInvoiceResponse
 }
