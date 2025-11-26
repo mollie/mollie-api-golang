@@ -12,3 +12,14 @@ const (
 func (e BalanceReportGrouping) ToPointer() *BalanceReportGrouping {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceReportGrouping) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "status-balances", "transaction-categories":
+			return true
+		}
+	}
+	return false
+}

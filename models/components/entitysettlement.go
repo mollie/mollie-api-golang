@@ -16,6 +16,17 @@ func (e EntitySettlementStatus) ToPointer() *EntitySettlementStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntitySettlementStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "open", "pending", "paidout", "failed":
+			return true
+		}
+	}
+	return false
+}
+
 // EntitySettlementAmount - The total amount of the settlement.
 type EntitySettlementAmount struct {
 	// A three-character ISO 4217 currency code.

@@ -18,6 +18,17 @@ func (e SubscriptionResponseStatus) ToPointer() *SubscriptionResponseStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SubscriptionResponseStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "pending", "active", "canceled", "suspended", "completed":
+			return true
+		}
+	}
+	return false
+}
+
 // SubscriptionResponseApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //

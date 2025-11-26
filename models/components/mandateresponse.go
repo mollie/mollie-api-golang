@@ -92,6 +92,17 @@ func (e MandateResponseStatus) ToPointer() *MandateResponseStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *MandateResponseStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "valid", "pending", "invalid":
+			return true
+		}
+	}
+	return false
+}
+
 // MandateResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type MandateResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

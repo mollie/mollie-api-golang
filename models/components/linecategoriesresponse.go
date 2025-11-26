@@ -16,3 +16,14 @@ const (
 func (e LineCategoriesResponse) ToPointer() *LineCategoriesResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *LineCategoriesResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "eco", "gift", "meal", "sport_culture", "additional", "consume":
+			return true
+		}
+	}
+	return false
+}

@@ -447,6 +447,17 @@ func (e PaymentResponseStatus) ToPointer() *PaymentResponseStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentResponseStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "open", "pending", "authorized", "paid", "canceled", "expired", "failed":
+			return true
+		}
+	}
+	return false
+}
+
 // Receipt - The Point of sale receipt object.
 type Receipt struct {
 	// A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.

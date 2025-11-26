@@ -13,3 +13,14 @@ const (
 func (e ProfileReviewStatusResponse) ToPointer() *ProfileReviewStatusResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *ProfileReviewStatusResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "pending", "rejected":
+			return true
+		}
+	}
+	return false
+}

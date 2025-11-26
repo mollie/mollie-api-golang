@@ -21,3 +21,14 @@ const (
 func (e PaymentLineTypeResponse) ToPointer() *PaymentLineTypeResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentLineTypeResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "physical", "digital", "shipping_fee", "discount", "store_credit", "gift_card", "surcharge", "tip":
+			return true
+		}
+	}
+	return false
+}

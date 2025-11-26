@@ -14,3 +14,14 @@ const (
 func (e CapabilityStatus) ToPointer() *CapabilityStatus {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *CapabilityStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "unrequested", "enabled", "disabled", "pending":
+			return true
+		}
+	}
+	return false
+}

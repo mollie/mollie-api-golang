@@ -18,3 +18,14 @@ const (
 func (e SalesInvoicePaymentTermResponse) ToPointer() *SalesInvoicePaymentTermResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SalesInvoicePaymentTermResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "7 days", "14 days", "30 days", "45 days", "60 days", "90 days", "120 days":
+			return true
+		}
+	}
+	return false
+}

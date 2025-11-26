@@ -15,6 +15,17 @@ func (e EntityInvoiceStatus) ToPointer() *EntityInvoiceStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityInvoiceStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "open", "paid", "overdue":
+			return true
+		}
+	}
+	return false
+}
+
 // NetAmount - Total amount of the invoice, excluding VAT.
 type NetAmount struct {
 	// A three-character ISO 4217 currency code.

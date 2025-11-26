@@ -55,3 +55,14 @@ const (
 func (e PaymentMethod) ToPointer() *PaymentMethod {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentMethod) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "alma", "bacs", "applepay", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "bitcoin", "blik", "creditcard", "directdebit", "eps", "giftcard", "giropay", "googlepay", "ideal", "in3", "inghomepay", "kbc", "klarnapaylater", "klarnapaynow", "klarnasliceit", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "payconiq", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "podiumcadeaukaart", "pointofsale", "sofort", "swish", "trustly", "twint", "vipps", "voucher":
+			return true
+		}
+	}
+	return false
+}

@@ -17,3 +17,14 @@ const (
 func (e TerminalModel) ToPointer() *TerminalModel {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *TerminalModel) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "A35", "A77", "A920", "A920Pro", "IM30", "Tap":
+			return true
+		}
+	}
+	return false
+}

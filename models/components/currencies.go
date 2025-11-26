@@ -22,3 +22,14 @@ const (
 func (e Currencies) ToPointer() *Currencies {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *Currencies) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD":
+			return true
+		}
+	}
+	return false
+}

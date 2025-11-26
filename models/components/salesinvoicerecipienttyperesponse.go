@@ -14,3 +14,14 @@ const (
 func (e SalesInvoiceRecipientTypeResponse) ToPointer() *SalesInvoiceRecipientTypeResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SalesInvoiceRecipientTypeResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "consumer", "business":
+			return true
+		}
+	}
+	return false
+}

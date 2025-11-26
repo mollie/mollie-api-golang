@@ -19,3 +19,14 @@ const (
 func (e BalanceTransferCategoryResponse) ToPointer() *BalanceTransferCategoryResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceTransferCategoryResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "invoice_collection", "purchase", "chargeback", "refund", "service_penalty", "discount_compensation", "manual_correction", "other_fee":
+			return true
+		}
+	}
+	return false
+}

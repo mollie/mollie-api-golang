@@ -26,3 +26,14 @@ const (
 func (e PaymentDetailsFailureReasonResponse) ToPointer() *PaymentDetailsFailureReasonResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDetailsFailureReasonResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "authentication_abandoned", "authentication_failed", "authentication_required", "authentication_unavailable_acs", "card_declined", "card_expired", "inactive_card", "insufficient_funds", "invalid_cvv", "invalid_card_holder_name", "invalid_card_number", "invalid_card_type", "possible_fraud", "refused_by_issuer", "unknown_reason":
+			return true
+		}
+	}
+	return false
+}

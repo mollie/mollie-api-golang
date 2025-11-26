@@ -14,3 +14,14 @@ const (
 func (e BalanceCardIssuer) ToPointer() *BalanceCardIssuer {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceCardIssuer) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "amex", "maestro", "carte-bancaire", "other":
+			return true
+		}
+	}
+	return false
+}

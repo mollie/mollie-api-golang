@@ -21,3 +21,14 @@ const (
 func (e PaymentDetailsFeeRegionResponse) ToPointer() *PaymentDetailsFeeRegionResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDetailsFeeRegionResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "american-express", "amex-intra-eea", "carte-bancaire", "intra-eu", "intra-eu-corporate", "domestic", "maestro", "other", "inter", "intra_eea":
+			return true
+		}
+	}
+	return false
+}

@@ -14,3 +14,14 @@ const (
 func (e BalanceCardRegion) ToPointer() *BalanceCardRegion {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceCardRegion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "intra-eea", "intra-eu", "domestic", "other":
+			return true
+		}
+	}
+	return false
+}

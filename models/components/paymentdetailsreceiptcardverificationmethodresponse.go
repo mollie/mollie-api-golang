@@ -20,3 +20,14 @@ const (
 func (e PaymentDetailsReceiptCardVerificationMethodResponse) ToPointer() *PaymentDetailsReceiptCardVerificationMethodResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDetailsReceiptCardVerificationMethodResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "no-cvm-required", "online-pin", "offline-pin", "consumer-device", "signature", "signature-and-online-pin", "online-pin-and-signature", "none", "failed":
+			return true
+		}
+	}
+	return false
+}

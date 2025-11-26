@@ -12,3 +12,14 @@ const (
 func (e CapabilityStatusReason) ToPointer() *CapabilityStatusReason {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *CapabilityStatusReason) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "requirement-past-due", "onboarding-information-needed":
+			return true
+		}
+	}
+	return false
+}

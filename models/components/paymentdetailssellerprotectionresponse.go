@@ -20,3 +20,14 @@ const (
 func (e PaymentDetailsSellerProtectionResponse) ToPointer() *PaymentDetailsSellerProtectionResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDetailsSellerProtectionResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "Eligible", "Ineligible", "Partially Eligible - INR Only", "Partially Eligible - Unauth Only", "Partially Eligible", "None", "Active", "Fraud Control - Unauth Premium Eligible":
+			return true
+		}
+	}
+	return false
+}

@@ -20,3 +20,14 @@ const (
 func (e BalanceTransferStatusReasonResponse) ToPointer() *BalanceTransferStatusReasonResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceTransferStatusReasonResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "request_created", "success", "source_not_allowed", "destination_not_allowed", "insufficient_funds", "invalid_source_balance", "invalid_destination_balance", "transfer_request_expired", "transfer_limit_reached":
+			return true
+		}
+	}
+	return false
+}

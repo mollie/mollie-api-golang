@@ -54,6 +54,17 @@ func (e EntityMethodID) ToPointer() *EntityMethodID {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityMethodID) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "payconiq", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit":
+			return true
+		}
+	}
+	return false
+}
+
 // EntityMethodMinimumAmount - The minimum payment amount required to use this payment method.
 type EntityMethodMinimumAmount struct {
 	// A three-character ISO 4217 currency code.

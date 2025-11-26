@@ -16,3 +16,14 @@ const (
 func (e MethodStatus) ToPointer() *MethodStatus {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *MethodStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "activated", "pending-boarding", "pending-review", "pending-external", "rejected":
+			return true
+		}
+	}
+	return false
+}

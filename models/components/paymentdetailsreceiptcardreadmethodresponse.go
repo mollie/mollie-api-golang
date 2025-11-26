@@ -16,3 +16,14 @@ const (
 func (e PaymentDetailsReceiptCardReadMethodResponse) ToPointer() *PaymentDetailsReceiptCardReadMethodResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDetailsReceiptCardReadMethodResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "chip", "magnetic-stripe", "near-field-communication", "contactless", "moto":
+			return true
+		}
+	}
+	return false
+}

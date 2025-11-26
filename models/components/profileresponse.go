@@ -23,6 +23,17 @@ func (e ProfileResponseStatus) ToPointer() *ProfileResponseStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *ProfileResponseStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "unverified", "verified", "blocked":
+			return true
+		}
+	}
+	return false
+}
+
 // Review - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 // automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 // `null` in test mode.

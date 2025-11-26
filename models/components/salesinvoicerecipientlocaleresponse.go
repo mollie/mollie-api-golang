@@ -20,3 +20,14 @@ const (
 func (e SalesInvoiceRecipientLocaleResponse) ToPointer() *SalesInvoiceRecipientLocaleResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SalesInvoiceRecipientLocaleResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "fr_FR", "fr_BE":
+			return true
+		}
+	}
+	return false
+}

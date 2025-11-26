@@ -17,3 +17,14 @@ const (
 func (e OrganizationVatRegulation) ToPointer() *OrganizationVatRegulation {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *OrganizationVatRegulation) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "dutch", "british", "shifted":
+			return true
+		}
+	}
+	return false
+}

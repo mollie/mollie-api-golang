@@ -37,3 +37,14 @@ const (
 func (e BalanceFeeType) ToPointer() *BalanceFeeType {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalanceFeeType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "payment-fee", "direct-debit-failure-fee", "unauthorized-direct-debit-fee", "bank-charged-direct-debit-failure-fee", "partner-commission", "application-fee", "capture-fee", "refund-fee", "chargeback-fee", "payment-notification-fee", "transfer-notification-fee", "payout-fee", "fee-discount", "fee-reimbursement", "platform-volume-fee", "platform-connected-organizations-fee", "balance-charge-fee", "3ds-authentication-attempt-fee", "terminal-monthly-fee", "acceptance-risk-fee", "top-up-fee", "payment-gateway-fee", "mastercard-specialty-merchant-program-processing-fee", "mastercard-specialty-merchant-program-registration-fee", "visa-integrity-risk-program-processing-fee", "visa-integrity-risk-program-registration-fee", "minimum-invoice-amount-fee":
+			return true
+		}
+	}
+	return false
+}

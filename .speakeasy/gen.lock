@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: fa1f0bfe5102df558a145f4fc3dcb13f
+  docChecksum: abf5679d9e5ca6fc4d6dcb98d239a410
   docVersion: 1.0.0
-  speakeasyVersion: 1.660.0
-  generationVersion: 2.760.2
-  releaseVersion: 0.8.7
-  configChecksum: edd55f150177134ec5fa6f39b94311fb
+  speakeasyVersion: 1.661.2
+  generationVersion: 2.763.3
+  releaseVersion: 0.8.8
+  configChecksum: 5097333b6b971f249d6eaba81cb58db4
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.2
+    core: 3.13.3
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -31,7 +31,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    unions: 2.87.1
+    unions: 2.87.2
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -4302,4 +4302,3 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes Detected:\n* `Client.Sales-Invoices.Create()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `Client.Sales-Invoices.List()`:  `response.Embedded.SalesInvoices.[]` **Changed** **Breaking** :warning:\n* `Client.Sales-Invoices.Get()`:  `response` **Changed** **Breaking** :warning:\n* `Client.Sales-Invoices.Update()`: \n  *  `request.Update-Values-Sales-Invoice.PaymentDetails` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n"

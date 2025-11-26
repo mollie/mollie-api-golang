@@ -23,3 +23,14 @@ const (
 func (e MandateDetailsCardLabelResponse) ToPointer() *MandateDetailsCardLabelResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *MandateDetailsCardLabelResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "American Express", "Carta Si", "Carte Bleue", "Dankort", "Diners Club", "Discover", "JCB", "Laser", "Maestro", "Mastercard", "Unionpay", "Visa":
+			return true
+		}
+	}
+	return false
+}

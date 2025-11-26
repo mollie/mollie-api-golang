@@ -35,6 +35,17 @@ func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityOrganizationLocale) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "fr_FR", "fr_BE", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
+			return true
+		}
+	}
+	return false
+}
+
 // EntityOrganizationLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityOrganizationLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.

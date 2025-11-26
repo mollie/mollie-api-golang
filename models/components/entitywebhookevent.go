@@ -25,6 +25,17 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "payment-link.paid", "balance-transaction.created", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "*":
+			return true
+		}
+	}
+	return false
+}
+
 type EntityType string
 
 const (

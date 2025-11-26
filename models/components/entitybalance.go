@@ -24,6 +24,17 @@ func (e Currency) ToPointer() *Currency {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *Currency) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD":
+			return true
+		}
+	}
+	return false
+}
+
 // EntityBalanceStatus - The status of the balance.
 type EntityBalanceStatus string
 
@@ -34,6 +45,17 @@ const (
 
 func (e EntityBalanceStatus) ToPointer() *EntityBalanceStatus {
 	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityBalanceStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "active", "inactive":
+			return true
+		}
+	}
+	return false
 }
 
 // TransferFrequency - The frequency with which the available amount on the balance will be settled to the configured transfer
@@ -55,6 +77,17 @@ const (
 
 func (e TransferFrequency) ToPointer() *TransferFrequency {
 	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *TransferFrequency) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "daily", "every-monday", "every-tuesday", "every-wednesday", "every-thursday", "every-friday", "monthly", "never":
+			return true
+		}
+	}
+	return false
 }
 
 // TransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds

@@ -26,3 +26,14 @@ const (
 func (e SalesInvoiceStatusResponse) ToPointer() *SalesInvoiceStatusResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SalesInvoiceStatusResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "draft", "issued", "paid":
+			return true
+		}
+	}
+	return false
+}

@@ -12,3 +12,14 @@ const (
 func (e PaymentLinkSequenceTypeResponse) ToPointer() *PaymentLinkSequenceTypeResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentLinkSequenceTypeResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "oneoff", "first":
+			return true
+		}
+	}
+	return false
+}

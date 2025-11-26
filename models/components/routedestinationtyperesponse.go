@@ -12,3 +12,14 @@ const (
 func (e RouteDestinationTypeResponse) ToPointer() *RouteDestinationTypeResponse {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *RouteDestinationTypeResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "organization":
+			return true
+		}
+	}
+	return false
+}

@@ -15,3 +15,14 @@ const (
 func (e WebhookStatus) ToPointer() *WebhookStatus {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *WebhookStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "enabled", "blocked", "disabled", "deleted":
+			return true
+		}
+	}
+	return false
+}

@@ -51,6 +51,17 @@ func (e EntityRefundResponseStatus) ToPointer() *EntityRefundResponseStatus {
 	return &e
 }
 
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EntityRefundResponseStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "queued", "pending", "processing", "refunded", "failed", "canceled":
+			return true
+		}
+	}
+	return false
+}
+
 type EntityRefundResponseExternalReference struct {
 	// Specifies the reference type
 	Type *RefundExternalReferenceTypeResponse `json:"type,omitempty"`

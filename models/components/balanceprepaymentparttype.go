@@ -15,3 +15,14 @@ const (
 func (e BalancePrepaymentPartType) ToPointer() *BalancePrepaymentPartType {
 	return &e
 }
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BalancePrepaymentPartType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "fee", "fee-reimbursement", "fee-discount", "fee-vat", "fee-rounding-compensation":
+			return true
+		}
+	}
+	return false
+}
