@@ -44,6 +44,9 @@ type EntityBalanceTransferResponse struct {
 	StatusReason EntityBalanceTransferResponseStatusReason `json:"statusReason"`
 	// The type of the transfer. Different fees may apply to different types of transfers.
 	Category *BalanceTransferCategoryResponse `json:"category,omitempty"`
+	// A JSON object that you can attach to a balance transfer.
+	// This can be useful for storing additional information about the transfer in a structured format. Maximum size is approximately 1KB.
+	Metadata map[string]any `json:"metadata,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// The date and time when the transfer was completed, in ISO 8601 format. This parameter is omitted if the transfer is
@@ -114,6 +117,13 @@ func (e *EntityBalanceTransferResponse) GetCategory() *BalanceTransferCategoryRe
 		return nil
 	}
 	return e.Category
+}
+
+func (e *EntityBalanceTransferResponse) GetMetadata() map[string]any {
+	if e == nil {
+		return nil
+	}
+	return e.Metadata
 }
 
 func (e *EntityBalanceTransferResponse) GetCreatedAt() string {

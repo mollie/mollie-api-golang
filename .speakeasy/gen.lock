@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: abf5679d9e5ca6fc4d6dcb98d239a410
+  docChecksum: adc1359a5f53bfc67f09961b0725e6f9
   docVersion: 1.0.0
-  speakeasyVersion: 1.661.2
-  generationVersion: 2.763.3
-  releaseVersion: 0.8.8
-  configChecksum: 5097333b6b971f249d6eaba81cb58db4
+  speakeasyVersion: 1.668.0
+  generationVersion: 2.770.0
+  releaseVersion: 0.9.0
+  configChecksum: d1835381e30adb34dd5a69d09b4d0452
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.3
+    core: 3.13.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -30,7 +30,7 @@ features:
     openEnums: 0.1.0
     responseFormat: 0.1.2
     retries: 2.84.2
-    sdkHooks: 0.2.0
+    sdkHooks: 0.3.0
     unions: 2.87.2
 generatedFiles:
   - .devcontainer/README.md
@@ -84,7 +84,6 @@ generatedFiles:
   - /models/components/entityevent.go
   - /models/components/entityinvoice.go
   - /models/components/entitymethod.go
-  - /models/components/entitymethodall.go
   - /models/components/entityonboardingstatus.go
   - /models/components/entityorganization.go
   - /models/components/entitypaymentroute.go
@@ -100,7 +99,25 @@ generatedFiles:
   - /models/components/httpmetadata.go
   - /models/components/linecategories.go
   - /models/components/linecategoriesresponse.go
+  - /models/components/listcaptureresponse.go
+  - /models/components/listcustomerresponse.go
+  - /models/components/listentitybalance.go
+  - /models/components/listentitychargeback.go
+  - /models/components/listentityinvoice.go
+  - /models/components/listentitymethod.go
+  - /models/components/listentitymethodall.go
+  - /models/components/listentitypermission.go
+  - /models/components/listentityrefundresponse.go
+  - /models/components/listentitysettlement.go
+  - /models/components/listentityterminal.go
+  - /models/components/listentitywebhook.go
   - /models/components/listlinks.go
+  - /models/components/listmandateresponse.go
+  - /models/components/listpaymentresponse.go
+  - /models/components/listprofileresponse.go
+  - /models/components/listroutegetresponse.go
+  - /models/components/listsalesinvoiceresponse.go
+  - /models/components/listsubscriptionresponse.go
   - /models/components/locale.go
   - /models/components/localeresponse.go
   - /models/components/mandatedetailscardlabelresponse.go
@@ -150,7 +167,6 @@ generatedFiles:
   - /models/components/routecreateresponse.go
   - /models/components/routedestinationtype.go
   - /models/components/routedestinationtyperesponse.go
-  - /models/components/routegetresponse.go
   - /models/components/salesinvoicediscount.go
   - /models/components/salesinvoicediscountresponse.go
   - /models/components/salesinvoicediscounttype.go
@@ -306,13 +322,7 @@ generatedFiles:
   - docs/models/apierrors/errorresponse.md
   - docs/models/components/address.md
   - docs/models/components/amount.md
-  - docs/models/components/amountcaptured.md
-  - docs/models/components/amountchargedback.md
-  - docs/models/components/amountdue.md
   - docs/models/components/amountnullable.md
-  - docs/models/components/amountrefunded.md
-  - docs/models/components/amountremaining.md
-  - docs/models/components/availableamount.md
   - docs/models/components/availablebalance.md
   - docs/models/components/balancecardaudience.md
   - docs/models/components/balancecardissuer.md
@@ -357,53 +367,52 @@ generatedFiles:
   - docs/models/components/componentssubtotals.md
   - docs/models/components/context.md
   - docs/models/components/corrections.md
-  - docs/models/components/cost.md
   - docs/models/components/createwebhook.md
   - docs/models/components/createwebhooklinks.md
   - docs/models/components/currencies.md
-  - docs/models/components/currency.md
   - docs/models/components/customerresponse.md
   - docs/models/components/customerresponselinks.md
   - docs/models/components/deletevaluessalesinvoice.md
-  - docs/models/components/discountedsubtotalamount.md
   - docs/models/components/documentation.md
   - docs/models/components/embedded.md
   - docs/models/components/entity.md
   - docs/models/components/entitybalance.md
+  - docs/models/components/entitybalanceavailableamount.md
+  - docs/models/components/entitybalancecurrency.md
   - docs/models/components/entitybalancelinks.md
+  - docs/models/components/entitybalancependingamount.md
   - docs/models/components/entitybalancereport.md
   - docs/models/components/entitybalancereportlinks.md
   - docs/models/components/entitybalancestatus.md
   - docs/models/components/entitybalancetransaction.md
   - docs/models/components/entitybalancetransactionapplicationfee.md
   - docs/models/components/entitybalancetransfer.md
+  - docs/models/components/entitybalancetransferdestination.md
+  - docs/models/components/entitybalancetransferfrequency.md
   - docs/models/components/entitybalancetransferparty.md
   - docs/models/components/entitybalancetransferpartyresponse.md
   - docs/models/components/entitybalancetransferresponse.md
   - docs/models/components/entitybalancetransferresponsestatusreason.md
+  - docs/models/components/entitybalancetransferthreshold.md
   - docs/models/components/entitycapability.md
   - docs/models/components/entitycapabilityrequirement.md
   - docs/models/components/entitycapabilityrequirementlinks.md
   - docs/models/components/entitycapture.md
   - docs/models/components/entitychargeback.md
   - docs/models/components/entitychargebacklinks.md
+  - docs/models/components/entitychargebackreason.md
   - docs/models/components/entitychargebacksettlementamount.md
   - docs/models/components/entitycustomer.md
   - docs/models/components/entityevent.md
   - docs/models/components/entityeventlinks.md
   - docs/models/components/entityinvoice.md
+  - docs/models/components/entityinvoicegrossamount.md
   - docs/models/components/entityinvoiceline.md
   - docs/models/components/entityinvoicelinks.md
+  - docs/models/components/entityinvoicenetamount.md
   - docs/models/components/entityinvoicestatus.md
+  - docs/models/components/entityinvoicevatamount.md
   - docs/models/components/entitymethod.md
-  - docs/models/components/entitymethodall.md
-  - docs/models/components/entitymethodallid.md
-  - docs/models/components/entitymethodallimage.md
-  - docs/models/components/entitymethodallissuer.md
-  - docs/models/components/entitymethodallissuerimage.md
-  - docs/models/components/entitymethodalllinks.md
-  - docs/models/components/entitymethodallmaximumamount.md
-  - docs/models/components/entitymethodallminimumamount.md
   - docs/models/components/entitymethodid.md
   - docs/models/components/entitymethodimage.md
   - docs/models/components/entitymethodissuer.md
@@ -436,7 +445,11 @@ generatedFiles:
   - docs/models/components/entityroutedestination.md
   - docs/models/components/entitysettlement.md
   - docs/models/components/entitysettlementamount.md
+  - docs/models/components/entitysettlementcost.md
   - docs/models/components/entitysettlementlinks.md
+  - docs/models/components/entitysettlementperiods.md
+  - docs/models/components/entitysettlementrate.md
+  - docs/models/components/entitysettlementrevenue.md
   - docs/models/components/entitysettlementstatus.md
   - docs/models/components/entityterminal.md
   - docs/models/components/entityterminallinks.md
@@ -450,12 +463,112 @@ generatedFiles:
   - docs/models/components/failedpayment.md
   - docs/models/components/failedpaymentfee.md
   - docs/models/components/feeprepayments.md
-  - docs/models/components/grossamount.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/invoicecompensation.md
   - docs/models/components/linecategories.md
   - docs/models/components/linecategoriesresponse.md
+  - docs/models/components/listcaptureresponse.md
+  - docs/models/components/listcaptureresponselinks.md
+  - docs/models/components/listcaptureresponsesettlementamount.md
+  - docs/models/components/listcaptureresponsestatus.md
+  - docs/models/components/listcustomerresponse.md
+  - docs/models/components/listcustomerresponselinks.md
+  - docs/models/components/listentitybalance.md
+  - docs/models/components/listentitybalanceavailableamount.md
+  - docs/models/components/listentitybalancecurrency.md
+  - docs/models/components/listentitybalancelinks.md
+  - docs/models/components/listentitybalancependingamount.md
+  - docs/models/components/listentitybalancestatus.md
+  - docs/models/components/listentitybalancetransferdestination.md
+  - docs/models/components/listentitybalancetransferfrequency.md
+  - docs/models/components/listentitybalancetransferthreshold.md
+  - docs/models/components/listentitychargeback.md
+  - docs/models/components/listentitychargebacklinks.md
+  - docs/models/components/listentitychargebackreason.md
+  - docs/models/components/listentitychargebacksettlementamount.md
+  - docs/models/components/listentityinvoice.md
+  - docs/models/components/listentityinvoicegrossamount.md
+  - docs/models/components/listentityinvoiceline.md
+  - docs/models/components/listentityinvoicelinks.md
+  - docs/models/components/listentityinvoicenetamount.md
+  - docs/models/components/listentityinvoicestatus.md
+  - docs/models/components/listentityinvoicevatamount.md
+  - docs/models/components/listentitymethod.md
+  - docs/models/components/listentitymethodall.md
+  - docs/models/components/listentitymethodallid.md
+  - docs/models/components/listentitymethodallimage.md
+  - docs/models/components/listentitymethodallissuer.md
+  - docs/models/components/listentitymethodallissuerimage.md
+  - docs/models/components/listentitymethodalllinks.md
+  - docs/models/components/listentitymethodallmaximumamount.md
+  - docs/models/components/listentitymethodallminimumamount.md
+  - docs/models/components/listentitymethodid.md
+  - docs/models/components/listentitymethodimage.md
+  - docs/models/components/listentitymethodissuer.md
+  - docs/models/components/listentitymethodissuerimage.md
+  - docs/models/components/listentitymethodlinks.md
+  - docs/models/components/listentitymethodmaximumamount.md
+  - docs/models/components/listentitymethodminimumamount.md
+  - docs/models/components/listentitypermission.md
+  - docs/models/components/listentitypermissionlinks.md
+  - docs/models/components/listentityrefundresponse.md
+  - docs/models/components/listentityrefundresponseexternalreference.md
+  - docs/models/components/listentityrefundresponselinks.md
+  - docs/models/components/listentityrefundresponseroutingreversal.md
+  - docs/models/components/listentityrefundresponsesettlementamount.md
+  - docs/models/components/listentityrefundresponsesource.md
+  - docs/models/components/listentityrefundresponsestatus.md
+  - docs/models/components/listentitysettlement.md
+  - docs/models/components/listentitysettlementamount.md
+  - docs/models/components/listentitysettlementcost.md
+  - docs/models/components/listentitysettlementlinks.md
+  - docs/models/components/listentitysettlementperiods.md
+  - docs/models/components/listentitysettlementrate.md
+  - docs/models/components/listentitysettlementrevenue.md
+  - docs/models/components/listentitysettlementstatus.md
+  - docs/models/components/listentityterminal.md
+  - docs/models/components/listentityterminallinks.md
+  - docs/models/components/listentityterminalstatus.md
+  - docs/models/components/listentitywebhook.md
+  - docs/models/components/listentitywebhooklinks.md
   - docs/models/components/listlinks.md
+  - docs/models/components/listmandateresponse.md
+  - docs/models/components/listmandateresponsedetails.md
+  - docs/models/components/listmandateresponselinks.md
+  - docs/models/components/listmandateresponsestatus.md
+  - docs/models/components/listpaymentresponse.md
+  - docs/models/components/listpaymentresponseamountcaptured.md
+  - docs/models/components/listpaymentresponseamountchargedback.md
+  - docs/models/components/listpaymentresponseamountrefunded.md
+  - docs/models/components/listpaymentresponseamountremaining.md
+  - docs/models/components/listpaymentresponseapplicationfee.md
+  - docs/models/components/listpaymentresponsebillingaddress.md
+  - docs/models/components/listpaymentresponsedetails.md
+  - docs/models/components/listpaymentresponseline.md
+  - docs/models/components/listpaymentresponselinks.md
+  - docs/models/components/listpaymentresponseqrcode.md
+  - docs/models/components/listpaymentresponsereceipt.md
+  - docs/models/components/listpaymentresponsesettlementamount.md
+  - docs/models/components/listpaymentresponsestatus.md
+  - docs/models/components/listprofileresponse.md
+  - docs/models/components/listprofileresponselinks.md
+  - docs/models/components/listprofileresponsereview.md
+  - docs/models/components/listprofileresponsestatus.md
+  - docs/models/components/listroutegetresponse.md
+  - docs/models/components/listroutegetresponsedestination.md
+  - docs/models/components/listroutegetresponselinks.md
+  - docs/models/components/listsalesinvoiceresponse.md
+  - docs/models/components/listsalesinvoiceresponseamountdue.md
+  - docs/models/components/listsalesinvoiceresponsediscountedsubtotalamount.md
+  - docs/models/components/listsalesinvoiceresponselinks.md
+  - docs/models/components/listsalesinvoiceresponsemetadata.md
+  - docs/models/components/listsalesinvoiceresponsesubtotalamount.md
+  - docs/models/components/listsalesinvoiceresponsetotalamount.md
+  - docs/models/components/listsalesinvoiceresponsetotalvatamount.md
+  - docs/models/components/listsubscriptionresponse.md
+  - docs/models/components/listsubscriptionresponseapplicationfee.md
+  - docs/models/components/listsubscriptionresponselinks.md
+  - docs/models/components/listsubscriptionresponsestatus.md
   - docs/models/components/locale.md
   - docs/models/components/localeresponse.md
   - docs/models/components/managedfee.md
@@ -474,7 +587,6 @@ generatedFiles:
   - docs/models/components/methodresponse.md
   - docs/models/components/methodstatus.md
   - docs/models/components/mode.md
-  - docs/models/components/netamount.md
   - docs/models/components/onboardingvatregulation.md
   - docs/models/components/open.md
   - docs/models/components/organizationvatregulation.md
@@ -511,17 +623,21 @@ generatedFiles:
   - docs/models/components/paymentrequestbillingaddress.md
   - docs/models/components/paymentrequestline.md
   - docs/models/components/paymentresponse.md
+  - docs/models/components/paymentresponseamountcaptured.md
+  - docs/models/components/paymentresponseamountchargedback.md
+  - docs/models/components/paymentresponseamountrefunded.md
+  - docs/models/components/paymentresponseamountremaining.md
   - docs/models/components/paymentresponseapplicationfee.md
   - docs/models/components/paymentresponsebillingaddress.md
   - docs/models/components/paymentresponsedetails.md
   - docs/models/components/paymentresponseline.md
   - docs/models/components/paymentresponselinks.md
+  - docs/models/components/paymentresponseqrcode.md
+  - docs/models/components/paymentresponsereceipt.md
   - docs/models/components/paymentresponsesettlementamount.md
   - docs/models/components/paymentresponsestatus.md
   - docs/models/components/payments.md
-  - docs/models/components/pendingamount.md
   - docs/models/components/pendingbalance.md
-  - docs/models/components/periods.md
   - docs/models/components/platformpaymentchargeback.md
   - docs/models/components/platformpaymentrefund.md
   - docs/models/components/postpaymentsplitpayment.md
@@ -529,12 +645,9 @@ generatedFiles:
   - docs/models/components/profilerequest.md
   - docs/models/components/profileresponse.md
   - docs/models/components/profileresponselinks.md
+  - docs/models/components/profileresponsereview.md
   - docs/models/components/profileresponsestatus.md
   - docs/models/components/profilereviewstatusresponse.md
-  - docs/models/components/qrcode.md
-  - docs/models/components/rate.md
-  - docs/models/components/reason.md
-  - docs/models/components/receipt.md
   - docs/models/components/recurringlineitem.md
   - docs/models/components/refund.md
   - docs/models/components/refundcompensation.md
@@ -551,18 +664,13 @@ generatedFiles:
   - docs/models/components/returnedrefund.md
   - docs/models/components/returnedrefundcompensation.md
   - docs/models/components/returnedtransfer.md
-  - docs/models/components/revenue.md
   - docs/models/components/reversedchargebackcompensation.md
   - docs/models/components/reversedplatformpaymentchargeback.md
-  - docs/models/components/review.md
   - docs/models/components/routecreateresponse.md
   - docs/models/components/routecreateresponsedestination.md
   - docs/models/components/routecreateresponselinks.md
   - docs/models/components/routedestinationtype.md
   - docs/models/components/routedestinationtyperesponse.md
-  - docs/models/components/routegetresponse.md
-  - docs/models/components/routegetresponsedestination.md
-  - docs/models/components/routegetresponselinks.md
   - docs/models/components/salesinvoicediscount.md
   - docs/models/components/salesinvoicediscountresponse.md
   - docs/models/components/salesinvoicediscounttype.md
@@ -585,8 +693,13 @@ generatedFiles:
   - docs/models/components/salesinvoicerequest.md
   - docs/models/components/salesinvoicerequestmetadata.md
   - docs/models/components/salesinvoiceresponse.md
+  - docs/models/components/salesinvoiceresponseamountdue.md
+  - docs/models/components/salesinvoiceresponsediscountedsubtotalamount.md
   - docs/models/components/salesinvoiceresponselinks.md
   - docs/models/components/salesinvoiceresponsemetadata.md
+  - docs/models/components/salesinvoiceresponsesubtotalamount.md
+  - docs/models/components/salesinvoiceresponsetotalamount.md
+  - docs/models/components/salesinvoiceresponsetotalvatamount.md
   - docs/models/components/salesinvoicestatus.md
   - docs/models/components/salesinvoicestatusresponse.md
   - docs/models/components/salesinvoicevatmode.md
@@ -608,24 +721,17 @@ generatedFiles:
   - docs/models/components/subscriptionresponseapplicationfee.md
   - docs/models/components/subscriptionresponselinks.md
   - docs/models/components/subscriptionresponsestatus.md
-  - docs/models/components/subtotalamount.md
   - docs/models/components/subtotals.md
   - docs/models/components/terminalbrand.md
   - docs/models/components/terminalmodel.md
   - docs/models/components/topups.md
-  - docs/models/components/totalamount.md
   - docs/models/components/totals.md
-  - docs/models/components/totalvatamount.md
-  - docs/models/components/transferdestination.md
-  - docs/models/components/transferfrequency.md
   - docs/models/components/transfers.md
-  - docs/models/components/transferthreshold.md
   - docs/models/components/type.md
   - docs/models/components/unauthorizeddirectdebit.md
   - docs/models/components/updatevaluessalesinvoice.md
   - docs/models/components/urlnullable.md
   - docs/models/components/urlobj.md
-  - docs/models/components/vatamount.md
   - docs/models/components/webhookeventtypes.md
   - docs/models/components/webhookstatus.md
   - docs/models/operations/applicationfee.md
@@ -771,7 +877,6 @@ generatedFiles:
   - docs/models/operations/getwebhookglobals.md
   - docs/models/operations/getwebhookrequest.md
   - docs/models/operations/getwebhookresponse.md
-  - docs/models/operations/invoice.md
   - docs/models/operations/listallchargebacksembedded.md
   - docs/models/operations/listallchargebacksglobals.md
   - docs/models/operations/listallchargebacksrequest.md
@@ -1079,7 +1184,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"balances": [{"resource": "balance", "id": "bal_gVMhHKqSSRYJyPsuoPNFH", "mode": "live", "createdAt": "2024-03-20T09:13:37.0Z", "currency": "EUR", "description": "Balance description", "status": "active", "transferFrequency": "daily", "transferThreshold": {"currency": "EUR", "value": "10.00"}, "transferReference": "RF12-3456-7890-1234", "transferDestination": {"type": "bank-account", "bankAccount": "123456", "beneficiaryName": "John Doe"}, "availableAmount": {"currency": "EUR", "value": "10.00"}, "pendingAmount": {"currency": "EUR", "value": "10.00"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"balances": [{"resource": "balance", "id": "bal_gVMhHKqSSRYJyPsuoPNFH", "mode": "live", "createdAt": "2024-03-20T09:13:37.0Z", "currency": "EUR", "description": "Balance description", "status": "active", "transferFrequency": "daily", "transferThreshold": {"currency": "EUR", "value": "10.00"}, "transferReference": "RF12-3456-7890-1234", "transferDestination": {"type": "bank-account", "bankAccount": "123456", "beneficiaryName": "John Doe"}, "availableAmount": {"currency": "EUR", "value": "10.00"}, "pendingAmount": {"currency": "EUR", "value": "10.00"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1263,7 +1368,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"settlements": [{"resource": "settlement", "id": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reference": "07049691.2406.01", "settledAt": "2025-03-31T12:54:39Z", "status": "paidout", "amount": {"currency": "EUR", "value": "10.00"}, "balanceId": "bal_gVMhHKqSSRYJyPsuoPNFH", "invoiceId": "inv_aHbjjdrUdm", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "invoice": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"settlements": [{"resource": "settlement", "id": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reference": "07049691.2406.01", "settledAt": "2025-03-31T12:54:39Z", "status": "paidout", "amount": {"currency": "EUR", "value": "10.00"}, "balanceId": "bal_gVMhHKqSSRYJyPsuoPNFH", "invoiceId": "inv_aHbjjdrUdm", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "invoice": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1365,7 +1470,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"payments": [{"resource": "payment", "id": "tr_5B8cwPMGnU", "mode": "live", "description": "Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "amountRefunded": {"currency": "EUR", "value": "10.00"}, "amountRemaining": {"currency": "EUR", "value": "10.00"}, "amountCaptured": {"currency": "EUR", "value": "10.00"}, "amountChargedBack": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"type": "physical", "description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "categories": ["meal", "eco"], "imageUrl": "https://...", "productUrl": "https://...", "recurring": {"description": "Gym subscription", "interval": "12 months", "amount": {"currency": "EUR", "value": "10.00"}, "times": 1, "startDate": "2024-12-12"}}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "en_US", "countryCode": "BE", "method": "ideal", "restrictPaymentMethodsToCountry": "NL", "captureMode": "manual", "captureDelay": "8 hours", "captureBefore": "2024-03-20T09:28:37.0Z", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "10"}, "routing": [{"resource": "route", "id": "rt_5B8cwPMGnU", "mode": "live", "amount": {"currency": "EUR", "value": "10.00"}, "destination": {"type": "organization", "organizationId": "org_1234567"}, "createdAt": "2024-12-12T10:00:00Z", "releaseDate": "2024-12-12", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}}}], "sequenceType": "oneoff", "subscriptionId": "sub_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "customerId": "cst_5B8cwPMGnU", "profileId": "pfl_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "orderId": "ord_5B8cwPMGnU", "status": "open", "statusReason": {"code": "insufficient_funds", "message": "The account associated with the card has insufficient funds. The shopper should use another payment method or\ncontact their bank."}, "isCancelable": true, "details": null, "createdAt": "2024-03-20T09:13:37.0Z", "authorizedAt": "2024-03-20T09:28:37.0Z", "paidAt": "2024-03-20T09:28:37.0Z", "canceledAt": "2024-03-20T09:28:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "expiredAt": "2024-03-20T09:28:37.0Z", "failedAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "checkout": {"href": "https://...", "type": "application/hal+json"}, "mobileAppCheckout": {"href": "https://...", "type": "application/hal+json"}, "changePaymentState": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "subscription": {"href": "https://...", "type": "application/hal+json"}, "order": {"href": "https://...", "type": "application/hal+json"}, "terminal": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}, "status": {"href": "https://...", "type": "application/hal+json"}, "payOnline": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"payments": [{"resource": "payment", "id": "tr_5B8cwPMGnU", "mode": "live", "description": "Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "amountRefunded": {"currency": "EUR", "value": "10.00"}, "amountRemaining": {"currency": "EUR", "value": "10.00"}, "amountCaptured": {"currency": "EUR", "value": "10.00"}, "amountChargedBack": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"type": "physical", "description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "categories": ["meal", "eco"], "imageUrl": "https://...", "productUrl": "https://...", "recurring": {"description": "Gym subscription", "interval": "12 months", "amount": {"currency": "EUR", "value": "10.00"}, "times": 1, "startDate": "2024-12-12"}}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "en_US", "countryCode": "BE", "method": "ideal", "restrictPaymentMethodsToCountry": "NL", "captureMode": "manual", "captureDelay": "8 hours", "captureBefore": "2024-03-20T09:28:37.0Z", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "10"}, "routing": [{"resource": "route", "id": "rt_5B8cwPMGnU", "mode": "live", "amount": {"currency": "EUR", "value": "10.00"}, "destination": {"type": "organization", "organizationId": "org_1234567"}, "createdAt": "2024-12-12T10:00:00Z", "releaseDate": "2024-12-12", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}}}], "sequenceType": "oneoff", "subscriptionId": "sub_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "customerId": "cst_5B8cwPMGnU", "profileId": "pfl_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "orderId": "ord_5B8cwPMGnU", "status": "open", "statusReason": {"code": "insufficient_funds", "message": "The account associated with the card has insufficient funds. The shopper should use another payment method or\ncontact their bank."}, "isCancelable": true, "details": null, "createdAt": "2024-03-20T09:13:37.0Z", "authorizedAt": "2024-03-20T09:28:37.0Z", "paidAt": "2024-03-20T09:28:37.0Z", "canceledAt": "2024-03-20T09:28:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "expiredAt": "2024-03-20T09:28:37.0Z", "failedAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "checkout": {"href": "https://...", "type": "application/hal+json"}, "mobileAppCheckout": {"href": "https://...", "type": "application/hal+json"}, "changePaymentState": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "subscription": {"href": "https://...", "type": "application/hal+json"}, "order": {"href": "https://...", "type": "application/hal+json"}, "terminal": {"href": "https://...", "type": "application/hal+json"}, "status": {"href": "https://...", "type": "application/hal+json"}, "payOnline": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-settlement-captures:
@@ -1382,7 +1487,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "35.95"}, "status": "pending", "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-08-02T09:29:56+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures?from=cpt_vytxeTZskVKR7C7WgdSP3d&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "35.95"}, "status": "pending", "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-08-02T09:29:56+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures?from=cpt_vytxeTZskVKR7C7WgdSP3d&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-captures-200-2:
       parameters:
         path:
@@ -1396,7 +1501,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "test", "amount": {"currency": "EUR", "value": "467.92"}, "settlementAmount": {"currency": "EUR", "value": "467.92"}, "status": "pending", "paymentId": "tr_V9kqkGtyUH", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "createdAt": "2021-06-03T11:50:58+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_V9kqkGtyUH", "type": "application/hal+json"}, "shipment": {"href": "https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "test", "amount": {"currency": "EUR", "value": "467.92"}, "settlementAmount": {"currency": "EUR", "value": "467.92"}, "status": "pending", "paymentId": "tr_V9kqkGtyUH", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "createdAt": "2021-06-03T11:50:58+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_V9kqkGtyUH", "type": "application/hal+json"}, "shipment": {"href": "https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-settlement-captures:
       parameters:
         path:
@@ -1410,7 +1515,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "shipment": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"captures": [{"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "shipment": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1429,7 +1534,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"refunds": [{"resource": "refund", "id": "re_4qqhO89gsT", "mode": "live", "description": "Order", "amount": {"currency": "EUR", "value": "5.95"}, "metadata": {"bookkeeping_id": 12345}, "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "status": "pending", "createdAt": "2023-03-14T17:09:02+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/refunds?from=re_APBiGPH2vV&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"refunds": [{"resource": "refund", "id": "re_4qqhO89gsT", "mode": "live", "description": "Order", "amount": {"currency": "EUR", "value": "5.95"}, "metadata": {"bookkeeping_id": 12345}, "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "status": "pending", "createdAt": "2023-03-14T17:09:02+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/refunds?from=re_APBiGPH2vV&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-settlement-refunds:
       parameters:
         path:
@@ -1443,7 +1548,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"refunds": [{"resource": "refund", "id": "re_5B8cwPMGnU", "mode": "live", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": "<value>", "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "createdAt": "2024-03-20T09:13:37.0Z", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "routingReversals": null, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"refunds": [{"resource": "refund", "id": "re_5B8cwPMGnU", "mode": "live", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": "<value>", "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "createdAt": "2024-03-20T09:13:37.0Z", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "routingReversals": null, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1462,7 +1567,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "USD", "value": "43.38"}, "settlementAmount": {"currency": "EUR", "value": "-35.07"}, "reason": {"code": "AC01", "description": "Account identifier incorrect (i.e. invalid IBAN)"}, "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-03-14T17:09:02+00:00", "reversedAt": null, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/chargebacks?from=chb_xFzwUN4ci8HAmSGUACS4J&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "USD", "value": "43.38"}, "settlementAmount": {"currency": "EUR", "value": "-35.07"}, "reason": {"code": "AC01", "description": "Account identifier incorrect (i.e. invalid IBAN)"}, "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-03-14T17:09:02+00:00", "reversedAt": null, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/chargebacks?from=chb_xFzwUN4ci8HAmSGUACS4J&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-chargeback-200-2:
       parameters:
         path:
@@ -1476,7 +1581,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "-10.00"}, "paymentId": "tr_8bVBhk2qs4", "createdAt": "2022-01-03T13:20:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_8bVBhk2qs4", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "-10.00"}, "paymentId": "tr_8bVBhk2qs4", "createdAt": "2022-01-03T13:20:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_8bVBhk2qs4", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-chargeback-200-3:
       parameters:
         path:
@@ -1490,7 +1595,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "-10.00"}, "paymentId": "tr_8bVBhk2qs4", "createdAt": "2022-01-03T13:20:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_8bVBhk2qs4", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "-10.00"}, "paymentId": "tr_8bVBhk2qs4", "createdAt": "2022-01-03T13:20:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_8bVBhk2qs4", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-settlement-chargebacks:
       parameters:
         path:
@@ -1504,7 +1609,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "reason": {"code": "AC01", "description": "Account identifier incorrect (i.e. invalid IBAN)"}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reversedAt": "2024-03-21T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"chargebacks": [{"resource": "chargeback", "id": "chb_xFzwUN4ci8HAmSGUACS4J", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "reason": {"code": "AC01", "description": "Account identifier incorrect (i.e. invalid IBAN)"}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reversedAt": "2024-03-21T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1523,7 +1628,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"invoices": [{}, {}, {}, {}, {}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/invoices?from=inv_TUhzbAFMrt&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"invoices": [{"resource": "invoice", "id": "inv_xBEbP9rvAq", "reference": "2023.10000", "vatNumber": "NL001234567B01", "status": "open", "netAmount": {"currency": "EUR", "value": "45.00"}, "vatAmount": {"currency": "EUR", "value": "9.45"}, "grossAmount": {"currency": "EUR", "value": "54.45"}, "lines": [{"period": "2023-09", "description": "iDEAL payment fees", "count": 100, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "45.00"}}], "issuedAt": "2023-09-01", "dueAt": "2023-09-14", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/invoices?from=inv_TUhzbAFMrt&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-invoices-200-2:
       parameters:
         query:
@@ -1537,7 +1642,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 11, "_embedded": {"invoices": [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 11, "_embedded": {"invoices": [{"resource": "invoice", "id": "inv_UQgMnkkTFz", "reference": "MOLR2021.0001399669", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "2.93"}, "vatAmount": {"currency": "EUR", "value": "0.62"}, "grossAmount": {"currency": "EUR", "value": "3.55"}, "lines": [{"period": "2021-12", "description": "iDeal payment fixed fees", "count": 6, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.68"}}, {"period": "2021-12", "description": "Credit Card - European cards payment fixed fees", "count": 3, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.75"}}, {"period": "2021-12", "description": "Credit Card - European cards payment variable fees", "count": 3, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00054"}}, {"period": "2021-12", "description": "Credit Card payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-12", "description": "Credit Card payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00028"}}, {"period": "2021-12", "description": "Bank transfer payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}], "issuedAt": "2021-12-31", "paidAt": "2022-01-03", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/UQgMnkkTFz/d9bc0b0c7e18e886b3b36c74749c03bb", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_USQe9D7fc8", "reference": "MOLR2021.0001203556", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "4.00"}, "vatAmount": {"currency": "EUR", "value": "0.84"}, "grossAmount": {"currency": "EUR", "value": "4.84"}, "lines": [{"period": "2021-11", "description": "iDeal refund fees", "count": 15, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "3.75"}}, {"period": "2021-11", "description": "Paypal refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-11", "description": "Direct debit payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-11", "description": "Direct debit payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}], "issuedAt": "2021-11-30", "paidAt": "2021-12-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/USQe9D7fc8/8bd27fecea40e0932d6af28d5b13edb3", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_9S73PDnES2", "reference": "MOLR2021.0001157498", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "4.91"}, "vatAmount": {"currency": "EUR", "value": "1.03"}, "grossAmount": {"currency": "EUR", "value": "5.94"}, "lines": [{"period": "2021-10", "description": "iDeal payment fixed fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "4.48"}}, {"period": "2021-10", "description": "Paypal payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-10", "description": "Paypal payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-10", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-10", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.18936"}}], "issuedAt": "2021-10-31", "paidAt": "2021-11-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/9S73PDnES2/8cef4dad7a00abcdae923b9c392d720a", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_MdyNgEbeNP", "reference": "MOLR2021.0001050354", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "0.75"}, "vatAmount": {"currency": "EUR", "value": "0.16"}, "grossAmount": {"currency": "EUR", "value": "0.91"}, "lines": [{"period": "2021-09", "description": "Bank transfer payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-09", "description": "Direct debit refund fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.50"}}], "issuedAt": "2021-09-30", "paidAt": "2021-10-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/MdyNgEbeNP/cd546e0402607ca8d08f5975702c3293", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_xkgx8Kd9d5", "reference": "MOLR2021.0000913190", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "0.53"}, "vatAmount": {"currency": "EUR", "value": "0.11"}, "grossAmount": {"currency": "EUR", "value": "0.64"}, "lines": [{"period": "2021-08", "description": "Sofort payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-08", "description": "Sofort payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00225"}}, {"period": "2021-08", "description": "Direct debit payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-08", "description": "Direct debit payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-08", "description": "iDeal payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.28"}}], "issuedAt": "2021-08-31", "paidAt": "2021-09-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/xkgx8Kd9d5/4d29b8d112bd0675530e4ff571e0a6fe", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_7ee8zakWxE", "reference": "MOLR2021.0000791294", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "1.31"}, "vatAmount": {"currency": "EUR", "value": "0.27"}, "grossAmount": {"currency": "EUR", "value": "1.58"}, "lines": [{"period": "2021-07", "description": "Paypal payment fixed fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-07", "description": "Paypal payment variable fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-07", "description": "iDeal payment fixed fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.56"}}, {"period": "2021-07", "description": "Paypal refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-07", "description": "Direct debit payment fixed fees", "count": 3, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-07", "description": "Direct debit payment variable fees", "count": 3, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00"}}, {"period": "2021-07", "description": "iDeal refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-07", "description": "Direct debit refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}], "issuedAt": "2021-07-31", "paidAt": "2021-08-02", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/7ee8zakWxE/c8e9066ffa33bcbd0b3eb424d1742eaa", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_wqN9zppN9h", "reference": "MOLR2021.0000478657", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "1.31"}, "vatAmount": {"currency": "EUR", "value": "0.27"}, "grossAmount": {"currency": "EUR", "value": "1.58"}, "lines": [{"period": "2021-05", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-05", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00018"}}, {"period": "2021-05", "description": "iDeal payment fixed fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.56"}}, {"period": "2021-05", "description": "Credit Card - European cards refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-05", "description": "Klarna Pay Later refund fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}], "issuedAt": "2021-05-31", "paidAt": "2021-06-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/wqN9zppN9h/ca395e6464508ac017f8864d62532649", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_sAP3gb4SFE", "reference": "MOLR2021.0000436905", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "0.25"}, "vatAmount": {"currency": "EUR", "value": "0.05"}, "grossAmount": {"currency": "EUR", "value": "0.30"}, "lines": [{"period": "2021-04", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2021-04", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.00018"}}], "issuedAt": "2021-04-30", "paidAt": "2021-05-03", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/sAP3gb4SFE/d89e0340c5bf09476cc3ca3fb7fc9cab", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_F6az3ffKj9", "reference": "MOLR2021.0000283014", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "0.25"}, "vatAmount": {"currency": "EUR", "value": "0.05"}, "grossAmount": {"currency": "EUR", "value": "0.30"}, "lines": [{"period": "2021-03", "description": "Direct debit payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}], "issuedAt": "2021-03-31", "paidAt": "2021-04-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/F6az3ffKj9/adc34cc9423e17ce0585755680c41482", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_fdqCugCrMd", "reference": "MOLR2021.0000216980", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "0.56"}, "vatAmount": {"currency": "EUR", "value": "0.11"}, "grossAmount": {"currency": "EUR", "value": "0.67"}, "lines": [{"period": "2021-02", "description": "iDeal payment fixed fees", "count": 2, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.56"}}], "issuedAt": "2021-02-28", "paidAt": "2021-03-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/fdqCugCrMd/155803920f438d07f6002b8588ad9e0a", "type": "application/pdf"}}}, {"resource": "invoice", "id": "inv_s3vn7CBrx7", "reference": "MOLR2020.0000382031", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "15.25"}, "vatAmount": {"currency": "EUR", "value": "3.20"}, "grossAmount": {"currency": "EUR", "value": "18.45"}, "lines": [{"period": "2020-11", "description": "iDeal payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.12"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.0378"}}, {"period": "2020-11", "description": "Direct debit payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Direct debit chargeback fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "7.50"}}, {"period": "2020-11", "description": "iDeal payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.29"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "4.00"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.01"}}, {"period": "2020-11", "description": "Klarna Pay Later capture fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Klarna Pay Later capture variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.05"}}], "issuedAt": "2020-11-30", "paidAt": "2020-12-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/s3vn7CBrx7/8c0ed722130abdd3080fc780c63f9f67", "type": "application/pdf"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-invoices-200-3:
       parameters:
         query:
@@ -1551,7 +1656,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"invoices": [{}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"invoices": [{"resource": "invoice", "id": "inv_s3vn7CBrx7", "reference": "MOLR2020.0000382031", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "15.25"}, "vatAmount": {"currency": "EUR", "value": "3.20"}, "grossAmount": {"currency": "EUR", "value": "18.45"}, "lines": [{"period": "2020-11", "description": "iDeal payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.12"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.0378"}}, {"period": "2020-11", "description": "Direct debit payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Direct debit chargeback fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "7.50"}}, {"period": "2020-11", "description": "iDeal payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.29"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "4.00"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.01"}}, {"period": "2020-11", "description": "Klarna Pay Later capture fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Klarna Pay Later capture variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.05"}}], "issuedAt": "2020-11-30", "paidAt": "2020-12-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/s3vn7CBrx7/bf39b75717e4fa9552c29d2a249d6054", "type": "application/pdf"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-invoices-200-4:
       parameters:
         query:
@@ -1565,7 +1670,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"invoices": [{}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"invoices": [{"resource": "invoice", "id": "inv_s3vn7CBrx7", "reference": "MOLR2020.0000382031", "vatNumber": "", "status": "paid", "netAmount": {"currency": "EUR", "value": "15.25"}, "vatAmount": {"currency": "EUR", "value": "3.20"}, "grossAmount": {"currency": "EUR", "value": "18.45"}, "lines": [{"period": "2020-11", "description": "iDeal payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.12"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.25"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.0378"}}, {"period": "2020-11", "description": "Direct debit payment fixed fees", "count": 4, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Direct debit chargeback fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "7.50"}}, {"period": "2020-11", "description": "iDeal payment fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.29"}}, {"period": "2020-11", "description": "Credit Card - European cards payment fixed fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "4.00"}}, {"period": "2020-11", "description": "Credit Card - European cards payment variable fees", "count": 16, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.01"}}, {"period": "2020-11", "description": "Klarna Pay Later capture fixed fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "1.00"}}, {"period": "2020-11", "description": "Klarna Pay Later capture variable fees", "count": 1, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "0.05"}}], "issuedAt": "2020-11-30", "paidAt": "2020-12-01", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://www.mollie.com/merchant/download/invoice/s3vn7CBrx7/3581b4b4d684ad6f8f2c9466aae4b791", "type": "application/pdf"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-invoices:
       parameters:
         query:
@@ -1579,7 +1684,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"invoices": [{}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"invoices": [{"resource": "invoice", "id": "inv_aHbjjdrUdm", "reference": "2024.10000", "vatNumber": "NL123456789B01", "status": "open", "netAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "grossAmount": {"currency": "EUR", "value": "10.00"}, "lines": [{"period": "2024-01", "description": "Product #1", "count": 3, "vatPercentage": 21, "amount": {"currency": "EUR", "value": "10.00"}}], "issuedAt": "2024-01-15", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "pdf": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -1626,7 +1731,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"permissions": [{"resource": "permission", "id": "payments.read", "description": "View your payments", "granted": true, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"permissions": [{"resource": "permission", "id": "payments.read", "description": "View your payments", "granted": true, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-permission:
@@ -1756,7 +1861,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"profiles": [{"resource": "profile", "id": "pfl_QkEhN94Ba", "mode": "live", "name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified", "review": {"status": "pending"}, "createdAt": "2022-01-19T12:30:22+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/settings/profiles/pfl_2q3RyuMGry", "type": "text/html"}, "chargebacks": {"href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "methods": {"href": "https://api.mollie.com/v2/methods?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/payments?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/refunds?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "checkoutPreviewUrl": {"href": "https://www.mollie.com/checkout/preview/pfl_2q3RyuMGry", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"profiles": [{"resource": "profile", "id": "pfl_QkEhN94Ba", "mode": "live", "name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified", "review": {"status": "pending"}, "createdAt": "2022-01-19T12:30:22+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/settings/profiles/pfl_2q3RyuMGry", "type": "text/html"}, "chargebacks": {"href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "methods": {"href": "https://api.mollie.com/v2/methods?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/payments?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/refunds?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "checkoutPreviewUrl": {"href": "https://www.mollie.com/checkout/preview/pfl_2q3RyuMGry", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-profile:
@@ -1896,7 +2001,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -2034,7 +2139,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
+          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
     speakeasy-default-list-webhooks:
       parameters:
         query:
@@ -2047,7 +2152,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["balance-transaction.created", "sales-invoice.issued"], "status": "enabled", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["balance-transaction.created", "sales-invoice.issued"], "status": "enabled", "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-webhook:
@@ -2590,7 +2695,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"methods": [{"resource": "method", "id": "ideal", "description": "iDeal", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "maximumAmount": {"currency": "EUR", "value": "10.00"}, "image": {"size1x": "https://...", "size2x": "https://...", "svg": "https://..."}, "status": "activated", "issuers": [{"resource": "issuer", "id": "ideal_ABNANL2A", "name": "ING Bank", "image": {"size1x": "https://...", "size2x": "https://...", "svg": "https://..."}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"methods": [{"resource": "method", "id": "ideal", "description": "iDeal", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "maximumAmount": {"currency": "EUR", "value": "10.00"}, "image": {"size1x": "https://...", "size2x": "https://...", "svg": "https://..."}, "status": "activated", "issuers": [{"resource": "issuer", "id": "ideal_ABNANL2A", "name": "ING Bank", "image": {"size1x": "https://...", "size2x": "https://...", "svg": "https://..."}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-all-methods:
@@ -3360,7 +3465,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35+00:00", "updatedAt": "2022-02-12T11:58:35+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35+00:00", "updatedAt": "2022-02-12T11:58:35+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-terminals-200-2:
       parameters:
         query:
@@ -3372,7 +3477,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 3, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_5YQ8WDcA4UWB5bo7AfDZH", "mode": "live", "description": "Counter in store Amsterdam", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1851664277", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2023-06-01T08:22:07+00:00", "updatedAt": "2023-06-01T08:36:25+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}, {"resource": "terminal", "id": "term_fmA5H4CAMsAMZz8bPgzMH", "mode": "live", "description": "Terminal #12346", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009788", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-27T13:30:36+00:00", "updatedAt": "2022-09-27T13:37:27+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}, {"resource": "terminal", "id": "term_2rfs4P5CfsEPaene6RgMH", "mode": "live", "description": "Mollie1", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009794", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-20T12:10:33+00:00", "updatedAt": "2022-11-14T10:49:06+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 3, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_5YQ8WDcA4UWB5bo7AfDZH", "mode": "live", "description": "Counter in store Amsterdam", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1851664277", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2023-06-01T08:22:07+00:00", "updatedAt": "2023-06-01T08:36:25+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}, {"resource": "terminal", "id": "term_fmA5H4CAMsAMZz8bPgzMH", "mode": "live", "description": "Terminal #12346", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009788", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-27T13:30:36+00:00", "updatedAt": "2022-09-27T13:37:27+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}, {"resource": "terminal", "id": "term_2rfs4P5CfsEPaene6RgMH", "mode": "live", "description": "Mollie1", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009794", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-20T12:10:33+00:00", "updatedAt": "2022-11-14T10:49:06+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-terminals:
       parameters:
         query:
@@ -3384,7 +3489,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Main Terminal", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "updatedAt": "2025-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Main Terminal", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "updatedAt": "2025-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-terminal:
@@ -3448,7 +3553,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 3, "_embedded": {"routes": [{"resource": "route", "id": "crt_kSq9CDTa6FzW7c6gpYq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "1.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_123"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "2.00"}, "description": "Payment for Order #12346", "destination": {"type": "organization", "organizationId": "org_456"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_tntKsr6tffuVdqnEvhq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "3.00"}, "description": "Payment for Order #12347", "destination": {"type": "organization", "organizationId": "org_789"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 3, "_embedded": {"routes": [{"resource": "route", "id": "crt_kSq9CDTa6FzW7c6gpYq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "1.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_123"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "2.00"}, "description": "Payment for Order #12346", "destination": {"type": "organization", "organizationId": "org_456"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_tntKsr6tffuVdqnEvhq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "3.00"}, "description": "Payment for Order #12347", "destination": {"type": "organization", "organizationId": "org_789"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-05-22T15:11:19+02:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-payment-list-routes:
       parameters:
         path:
@@ -3459,7 +3564,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"routes": [{"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_1234567"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-03-20T09:13:37.0Z"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"routes": [{"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_1234567"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-03-20T09:13:37.0Z"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-customer:
@@ -3495,7 +3600,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"customers": [{"resource": "customer", "id": "cst_8wmqcHMN4U", "mode": "live", "name": "John Doe", "email": "customer@example.org", "locale": "nl_NL", "metadata": null, "createdAt": "2023-04-06T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/customers/cst_tKt44u85MM", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/customers?from=cst_stTC2WHAuS&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"customers": [{"resource": "customer", "id": "cst_8wmqcHMN4U", "mode": "live", "name": "John Doe", "email": "customer@example.org", "locale": "nl_NL", "metadata": null, "createdAt": "2023-04-06T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/customers/cst_tKt44u85MM", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/customers?from=cst_stTC2WHAuS&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-customers:
       parameters:
         query:
@@ -3507,7 +3612,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"customers": [{"resource": "customer", "id": "cst_5B8cwPMGnU", "mode": "live", "name": "John Doe", "email": "example@email.com", "locale": "en_US", "metadata": "<value>", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "mandates": {"href": "https://...", "type": "application/hal+json"}, "subscriptions": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"customers": [{"resource": "customer", "id": "cst_5B8cwPMGnU", "mode": "live", "name": "John Doe", "email": "example@email.com", "locale": "en_US", "metadata": "<value>", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "mandates": {"href": "https://...", "type": "application/hal+json"}, "subscriptions": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -3850,7 +3955,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"mandates": [{"resource": "mandate", "id": "mdt_h3gAaD5zP", "mode": "live", "method": "directdebit", "details": {}, "signatureDate": "2023-05-07", "mandateReference": "EXAMPLE-CORP-MD13804", "status": "valid", "customerId": "cst_4qqhO89gsT", "createdAt": "2023-05-07T10:49:08+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_4qqhO89gsT", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/mandates?from=mdt_pWUnw6pkBN&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"mandates": [{"resource": "mandate", "id": "mdt_h3gAaD5zP", "mode": "live", "method": "directdebit", "details": {}, "signatureDate": "2023-05-07", "mandateReference": "EXAMPLE-CORP-MD13804", "status": "valid", "customerId": "cst_4qqhO89gsT", "createdAt": "2023-05-07T10:49:08+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_4qqhO89gsT", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/mandates?from=mdt_pWUnw6pkBN&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-mandates:
       parameters:
         path:
@@ -3864,7 +3969,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"mandates": [{"resource": "mandate", "id": "mdt_5B8cwPMGnU", "mode": "live", "method": "directdebit", "details": {"consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "cardHolder": "John Doe", "cardNumber": "3240", "cardExpiryDate": "2025-01-01", "cardLabel": "Visa", "cardFingerprint": "d3290e932k02f"}, "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "status": "valid", "customerId": "cst_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"mandates": [{"resource": "mandate", "id": "mdt_5B8cwPMGnU", "mode": "live", "method": "directdebit", "details": {"consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "cardHolder": "John Doe", "cardNumber": "3240", "cardExpiryDate": "2025-01-01", "cardLabel": "Visa", "cardFingerprint": "d3290e932k02f"}, "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "status": "valid", "customerId": "cst_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -3950,7 +4055,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-subscriptions:
       parameters:
         path:
@@ -3964,7 +4069,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": null, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": null}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -4183,7 +4288,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"sales_invoices": [{"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "mode": "live", "invoiceNumber": "INV-0000001", "status": "draft", "vatScheme": "standard", "vatMode": "exclusive", "memo": "This is a memo!", "paymentTerm": "30 days", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": null, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38+00:00", "paidAt": "2024-10-04T10:47:38+00:00", "dueAt": "2024-11-01T10:47:38+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"sales_invoices": [{"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "mode": "live", "invoiceNumber": "INV-0000001", "status": "draft", "vatScheme": "standard", "vatMode": "exclusive", "memo": "This is a memo!", "paymentTerm": "30 days", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": null, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38+00:00", "paidAt": "2024-10-04T10:47:38+00:00", "dueAt": "2024-11-01T10:47:38+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-sales-invoice:
@@ -4238,16 +4343,16 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "category": "invoice_collection", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "category": "invoice_collection", "metadata": {"order_id": 12345, "customer_id": 9876}, "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_nBprRarXeqXi98AXSqCBJ", "amount": {"currency": "EUR", "value": "12.34"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "category": "invoice_collection", "createdAt": "2025-05-01T10:00:00+00:00", "mode": "live"}
+          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_nBprRarXeqXi98AXSqCBJ", "amount": {"currency": "EUR", "value": "12.34"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "category": "invoice_collection", "metadata": {"order_id": 12345, "customer_id": 9876}, "createdAt": "2025-05-01T10:00:00+00:00", "mode": "live"}
     create-balance-transfer-422-1:
       parameters:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "category": "invoice_collection", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "category": "invoice_collection", "metadata": {"order_id": 12345, "customer_id": 9876}, "testmode": false}
       responses:
         "422":
           application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The amount contains an invalid value", "field": "amount.value", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/create-balance-transfer", "type": "text/html"}}}
@@ -4262,7 +4367,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"connect_balance_transfers": [{"resource": "connect-balance-transfer", "id": "cbtr_bSAG5zQUrqbJGSv3ZSU9J", "amount": {"currency": "EUR", "value": "200.00"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_42", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "createdAt": "2025-05-01T07:00:00+00:00", "mode": "live"}, {"resource": "connect-balance-transfer", "id": "cbtr_aGa49xYozWV8nhUzTSU9J", "amount": {"currency": "EUR", "value": "100.00"}, "source": {"type": "organization", "id": "org_42", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "createdAt": "2025-05-01T06:00:00+00:00", "mode": "live"}]}, "_links": {"self": {"href": "https://api.mollie.com/v2/connect/balance-transfers?limit=50", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://docs.mollie.com/reference/list-balance-transfers", "type": "text/html"}}}
+          application/hal+json: {"count": 2, "_embedded": {"connect_balance_transfers": [{"resource": "connect-balance-transfer", "id": "cbtr_bSAG5zQUrqbJGSv3ZSU9J", "amount": {"currency": "EUR", "value": "200.00"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_42", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "createdAt": "2025-05-01T07:00:00+00:00", "mode": "live"}, {"resource": "connect-balance-transfer", "id": "cbtr_aGa49xYozWV8nhUzTSU9J", "amount": {"currency": "EUR", "value": "100.00"}, "source": {"type": "organization", "id": "org_42", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "created", "statusReason": {"code": "request_created", "message": "Balance transfer request created."}, "metadata": {"order_id": 12345, "customer_id": 9876}, "createdAt": "2025-05-01T06:00:00+00:00", "mode": "live"}]}, "_links": {"self": {"href": "https://api.mollie.com/v2/connect/balance-transfers?limit=50", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://docs.mollie.com/reference/list-balance-transfers", "type": "text/html"}}}
     speakeasy-default-list-connect-balance-transfers:
       parameters:
         query:
@@ -4287,7 +4392,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_nBprRarXeqXi98AXSqCBJ", "amount": {"currency": "EUR", "value": "100.00"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "succeeded", "statusReason": {"code": "success", "message": "Balance transfer completed successfully."}, "createdAt": "2025-05-01T10:00:00+00:00", "executedAt": "2025-05-01T10:05:00+00:00", "mode": "live"}
+          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_nBprRarXeqXi98AXSqCBJ", "amount": {"currency": "EUR", "value": "100.00"}, "source": {"type": "organization", "id": "org_1", "description": "description for source"}, "destination": {"type": "organization", "id": "org_2", "description": "description for destination"}, "description": "description for initiating party", "status": "succeeded", "statusReason": {"code": "success", "message": "Balance transfer completed successfully."}, "metadata": {"order_id": 12345, "customer_id": 9876}, "createdAt": "2025-05-01T10:00:00+00:00", "executedAt": "2025-05-01T10:05:00+00:00", "mode": "live"}
     speakeasy-default-get-connect-balance-transfer:
       parameters:
         path:
@@ -4298,7 +4403,8 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_j8NvRAM2WNZtsykpLEX8J", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "status": "created", "statusReason": {"code": "insufficient_funds", "message": "Insufficient funds in the source balance."}, "category": "invoice_collection", "createdAt": "2024-03-20T09:13:37+00:00", "executedAt": "2024-03-20T09:28:37+00:00", "mode": "live"}
+          application/hal+json: {"resource": "connect-balance-transfer", "id": "cbtr_j8NvRAM2WNZtsykpLEX8J", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "destination": {"type": "organization", "id": "org_1234567", "description": "Invoice fee"}, "description": "Invoice fee", "status": "created", "statusReason": {"code": "insufficient_funds", "message": "Insufficient funds in the source balance."}, "category": "invoice_collection", "metadata": {"order_id": 12345, "customer_id": 9876}, "createdAt": "2024-03-20T09:13:37+00:00", "executedAt": "2024-03-20T09:28:37+00:00", "mode": "live"}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes:\n* `Client.Webhooks.List()`:  `response.Embedded.Webhooks.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Clients.List()`:  `response.Embedded.Clients.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Settlements.List-Payments()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Settlements.List-Captures()`:  `response.Embedded.Captures.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Settlements.List-Refunds()`:  `response.Embedded.Refunds.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Settlements.List-Chargebacks()`:  `response.Embedded.Chargebacks.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Sales-Invoices.List()`:  `response.Embedded.SalesInvoices.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Permissions.List()`:  `response.Embedded.Permissions.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Profiles.List()`:  `response.Embedded.Profiles.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Customers.List()`:  `response.Embedded.Customers.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Settlements.List()`:  `response.Embedded.Settlements.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Subscriptions.List()`:  `response.Embedded.Subscriptions.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Balances.List()`:  `response.Embedded.Balances.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Mandates.List()`:  `response.Embedded.Mandates.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Methods.List()`:  `response.Embedded.Methods.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Terminals.List()`:  `response.Embedded.Terminals.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Delayed-Routing.List()`:  `response.Embedded.Routes.[].Links.Documentation` **Removed** **Breaking** :warning:\n* `Client.Invoices.List()`:  `response.Embedded.Invoices.[]` **Changed**\n* `Client.Balance-Transfers.Get()`:  `response.Metadata` **Added**\n* `Client.Balance-Transfers.Create()`: \n  *  `request.Entity-Balance-Transfer.Metadata` **Added**\n  *  `response.Metadata` **Added**\n* `Client.Balance-Transfers.List()`:  `response.Embedded.ConnectBalanceTransfers.[].Metadata` **Added**\n"

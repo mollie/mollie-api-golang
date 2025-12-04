@@ -77,12 +77,12 @@ func (l *ListSettlementsRequest) GetIdempotencyKey() *string {
 type ListSettlementsEmbedded struct {
 	// An array of settlement objects. For a complete reference
 	// of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
-	Settlements []components.EntitySettlement `json:"settlements"`
+	Settlements []components.ListEntitySettlement `json:"settlements"`
 }
 
-func (l *ListSettlementsEmbedded) GetSettlements() []components.EntitySettlement {
+func (l *ListSettlementsEmbedded) GetSettlements() []components.ListEntitySettlement {
 	if l == nil {
-		return []components.EntitySettlement{}
+		return []components.ListEntitySettlement{}
 	}
 	return l.Settlements
 }

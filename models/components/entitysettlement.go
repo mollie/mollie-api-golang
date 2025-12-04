@@ -49,28 +49,28 @@ func (e *EntitySettlementAmount) GetValue() string {
 	return e.Value
 }
 
-// Rate - The service rates, further divided into `fixed` and `percentage` costs.
-type Rate struct {
+// EntitySettlementRate - The service rates, further divided into `fixed` and `percentage` costs.
+type EntitySettlementRate struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Fixed      *Amount `json:"fixed,omitempty"`
 	Percentage *string `json:"percentage,omitempty"`
 }
 
-func (r *Rate) GetFixed() *Amount {
-	if r == nil {
+func (e *EntitySettlementRate) GetFixed() *Amount {
+	if e == nil {
 		return nil
 	}
-	return r.Fixed
+	return e.Fixed
 }
 
-func (r *Rate) GetPercentage() *string {
-	if r == nil {
+func (e *EntitySettlementRate) GetPercentage() *string {
+	if e == nil {
 		return nil
 	}
-	return r.Percentage
+	return e.Percentage
 }
 
-type Cost struct {
+type EntitySettlementCost struct {
 	// A description of the cost subtotal
 	Description string `json:"description"`
 	// The payment method, if applicable
@@ -78,7 +78,7 @@ type Cost struct {
 	// The number of fees
 	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
-	Rate Rate `json:"rate"`
+	Rate EntitySettlementRate `json:"rate"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountNet Amount `json:"amountNet"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -87,56 +87,56 @@ type Cost struct {
 	AmountGross Amount `json:"amountGross"`
 }
 
-func (c *Cost) GetDescription() string {
-	if c == nil {
+func (e *EntitySettlementCost) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return c.Description
+	return e.Description
 }
 
-func (c *Cost) GetMethod() *PaymentMethod {
-	if c == nil {
+func (e *EntitySettlementCost) GetMethod() *PaymentMethod {
+	if e == nil {
 		return nil
 	}
-	return c.Method
+	return e.Method
 }
 
-func (c *Cost) GetCount() int64 {
-	if c == nil {
+func (e *EntitySettlementCost) GetCount() int64 {
+	if e == nil {
 		return 0
 	}
-	return c.Count
+	return e.Count
 }
 
-func (c *Cost) GetRate() Rate {
-	if c == nil {
-		return Rate{}
+func (e *EntitySettlementCost) GetRate() EntitySettlementRate {
+	if e == nil {
+		return EntitySettlementRate{}
 	}
-	return c.Rate
+	return e.Rate
 }
 
-func (c *Cost) GetAmountNet() Amount {
-	if c == nil {
+func (e *EntitySettlementCost) GetAmountNet() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return c.AmountNet
+	return e.AmountNet
 }
 
-func (c *Cost) GetAmountVat() *AmountNullable {
-	if c == nil {
+func (e *EntitySettlementCost) GetAmountVat() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return c.AmountVat
+	return e.AmountVat
 }
 
-func (c *Cost) GetAmountGross() Amount {
-	if c == nil {
+func (e *EntitySettlementCost) GetAmountGross() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return c.AmountGross
+	return e.AmountGross
 }
 
-type Revenue struct {
+type EntitySettlementRevenue struct {
 	// A description of the revenue subtotal
 	Description string `json:"description"`
 	// The payment method, if applicable
@@ -151,84 +151,84 @@ type Revenue struct {
 	AmountGross Amount `json:"amountGross"`
 }
 
-func (r *Revenue) GetDescription() string {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetDescription() string {
+	if e == nil {
 		return ""
 	}
-	return r.Description
+	return e.Description
 }
 
-func (r *Revenue) GetMethod() *PaymentMethod {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetMethod() *PaymentMethod {
+	if e == nil {
 		return nil
 	}
-	return r.Method
+	return e.Method
 }
 
-func (r *Revenue) GetCount() int64 {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetCount() int64 {
+	if e == nil {
 		return 0
 	}
-	return r.Count
+	return e.Count
 }
 
-func (r *Revenue) GetAmountNet() Amount {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetAmountNet() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return r.AmountNet
+	return e.AmountNet
 }
 
-func (r *Revenue) GetAmountVat() *AmountNullable {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetAmountVat() *AmountNullable {
+	if e == nil {
 		return nil
 	}
-	return r.AmountVat
+	return e.AmountVat
 }
 
-func (r *Revenue) GetAmountGross() Amount {
-	if r == nil {
+func (e *EntitySettlementRevenue) GetAmountGross() Amount {
+	if e == nil {
 		return Amount{}
 	}
-	return r.AmountGross
+	return e.AmountGross
 }
 
-type Periods struct {
+type EntitySettlementPeriods struct {
 	// An array of cost objects, describing the fees withheld for each payment method during this period.
-	Costs []Cost `json:"costs,omitempty"`
+	Costs []EntitySettlementCost `json:"costs,omitempty"`
 	// An array of revenue objects containing the total revenue for each payment method during this period.
-	Revenue   []Revenue `json:"revenue,omitempty"`
-	InvoiceID *string   `json:"invoiceId,omitempty"`
+	Revenue   []EntitySettlementRevenue `json:"revenue,omitempty"`
+	InvoiceID *string                   `json:"invoiceId,omitempty"`
 	// The invoice reference, if the invoice has been created already.
 	InvoiceReference *string `json:"invoiceReference,omitempty"`
 }
 
-func (p *Periods) GetCosts() []Cost {
-	if p == nil {
+func (e *EntitySettlementPeriods) GetCosts() []EntitySettlementCost {
+	if e == nil {
 		return nil
 	}
-	return p.Costs
+	return e.Costs
 }
 
-func (p *Periods) GetRevenue() []Revenue {
-	if p == nil {
+func (e *EntitySettlementPeriods) GetRevenue() []EntitySettlementRevenue {
+	if e == nil {
 		return nil
 	}
-	return p.Revenue
+	return e.Revenue
 }
 
-func (p *Periods) GetInvoiceID() *string {
-	if p == nil {
+func (e *EntitySettlementPeriods) GetInvoiceID() *string {
+	if e == nil {
 		return nil
 	}
-	return p.InvoiceID
+	return e.InvoiceID
 }
 
-func (p *Periods) GetInvoiceReference() *string {
-	if p == nil {
+func (e *EntitySettlementPeriods) GetInvoiceReference() *string {
+	if e == nil {
 		return nil
 	}
-	return p.InvoiceReference
+	return e.InvoiceReference
 }
 
 // EntitySettlementLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -330,7 +330,7 @@ type EntitySettlement struct {
 	// look as follows: `{"2024": {"04": {...}, "05": {...}}}`. The year and month in this documentation are referred as `<year>` and `<month>`.
 	//
 	// The example response should give a good idea of what this looks like in practise.
-	Periods map[string]map[string]Periods `json:"periods,omitempty"`
+	Periods map[string]map[string]EntitySettlementPeriods `json:"periods,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntitySettlementLinks `json:"_links"`
 }
@@ -398,7 +398,7 @@ func (e *EntitySettlement) GetInvoiceID() *string {
 	return e.InvoiceID
 }
 
-func (e *EntitySettlement) GetPeriods() map[string]map[string]Periods {
+func (e *EntitySettlement) GetPeriods() map[string]map[string]EntitySettlementPeriods {
 	if e == nil {
 		return nil
 	}

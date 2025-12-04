@@ -78,12 +78,12 @@ func (l *ListBalancesRequest) GetIdempotencyKey() *string {
 type ListBalancesEmbedded struct {
 	// An array of balance objects. For a complete reference of
 	// the balance object, refer to the [Get balance endpoint](get-balance) documentation.
-	Balances []components.EntityBalance `json:"balances"`
+	Balances []components.ListEntityBalance `json:"balances"`
 }
 
-func (l *ListBalancesEmbedded) GetBalances() []components.EntityBalance {
+func (l *ListBalancesEmbedded) GetBalances() []components.ListEntityBalance {
 	if l == nil {
-		return []components.EntityBalance{}
+		return []components.ListEntityBalance{}
 	}
 	return l.Balances
 }

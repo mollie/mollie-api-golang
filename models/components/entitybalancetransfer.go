@@ -13,6 +13,9 @@ type EntityBalanceTransfer struct {
 	Description string `json:"description"`
 	// The type of the transfer. Different fees may apply to different types of transfers.
 	Category *BalanceTransferCategory `json:"category,omitempty"`
+	// A JSON object that you can attach to a balance transfer.
+	// This can be useful for storing additional information about the transfer in a structured format. Maximum size is approximately 1KB.
+	Metadata map[string]any `json:"metadata,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -54,6 +57,13 @@ func (e *EntityBalanceTransfer) GetCategory() *BalanceTransferCategory {
 		return nil
 	}
 	return e.Category
+}
+
+func (e *EntityBalanceTransfer) GetMetadata() map[string]any {
+	if e == nil {
+		return nil
+	}
+	return e.Metadata
 }
 
 func (e *EntityBalanceTransfer) GetTestmode() *bool {

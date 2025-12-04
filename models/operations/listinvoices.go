@@ -75,18 +75,15 @@ func (l *ListInvoicesRequest) GetIdempotencyKey() *string {
 	return l.IdempotencyKey
 }
 
-type Invoice struct {
-}
-
 type ListInvoicesEmbedded struct {
 	// An array of invoice objects. For a complete reference of
 	// the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
-	Invoices []Invoice `json:"invoices"`
+	Invoices []components.ListEntityInvoice `json:"invoices"`
 }
 
-func (l *ListInvoicesEmbedded) GetInvoices() []Invoice {
+func (l *ListInvoicesEmbedded) GetInvoices() []components.ListEntityInvoice {
 	if l == nil {
-		return []Invoice{}
+		return []components.ListEntityInvoice{}
 	}
 	return l.Invoices
 }

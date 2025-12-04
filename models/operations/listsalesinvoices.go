@@ -69,10 +69,10 @@ func (l *ListSalesInvoicesRequest) GetIdempotencyKey() *string {
 type ListSalesInvoicesEmbedded struct {
 	// An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
 	// the [Get sales invoice endpoint](get-sales-invoice) documentation.
-	SalesInvoices []components.SalesInvoiceResponse `json:"sales_invoices,omitempty"`
+	SalesInvoices []components.ListSalesInvoiceResponse `json:"sales_invoices,omitempty"`
 }
 
-func (l *ListSalesInvoicesEmbedded) GetSalesInvoices() []components.SalesInvoiceResponse {
+func (l *ListSalesInvoicesEmbedded) GetSalesInvoices() []components.ListSalesInvoiceResponse {
 	if l == nil {
 		return nil
 	}

@@ -39,12 +39,12 @@ func (l *ListProfilesRequest) GetIdempotencyKey() *string {
 
 type ListProfilesEmbedded struct {
 	// An array of profile objects.
-	Profiles []components.ProfileResponse `json:"profiles"`
+	Profiles []components.ListProfileResponse `json:"profiles"`
 }
 
-func (l *ListProfilesEmbedded) GetProfiles() []components.ProfileResponse {
+func (l *ListProfilesEmbedded) GetProfiles() []components.ListProfileResponse {
 	if l == nil {
-		return []components.ProfileResponse{}
+		return []components.ListProfileResponse{}
 	}
 	return l.Profiles
 }

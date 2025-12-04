@@ -58,12 +58,12 @@ func (p *PaymentListRoutesRequest) GetIdempotencyKey() *string {
 
 type PaymentListRoutesEmbedded struct {
 	// An array of route objects.
-	Routes []components.RouteGetResponse `json:"routes"`
+	Routes []components.ListRouteGetResponse `json:"routes"`
 }
 
-func (p *PaymentListRoutesEmbedded) GetRoutes() []components.RouteGetResponse {
+func (p *PaymentListRoutesEmbedded) GetRoutes() []components.ListRouteGetResponse {
 	if p == nil {
-		return []components.RouteGetResponse{}
+		return []components.ListRouteGetResponse{}
 	}
 	return p.Routes
 }

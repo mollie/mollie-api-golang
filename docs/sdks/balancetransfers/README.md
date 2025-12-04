@@ -56,6 +56,10 @@ func main() {
         },
         Description: "Invoice fee",
         Category: components.BalanceTransferCategoryInvoiceCollection.ToPointer(),
+        Metadata: map[string]any{
+            "order_id": 12345,
+            "customer_id": 9876,
+        },
         Testmode: client.Pointer(false),
     })
     if err != nil {
