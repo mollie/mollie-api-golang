@@ -8,7 +8,8 @@ import (
 	"github.com/mollie/mollie-api-golang/internal/utils"
 )
 
-// EntityWebhookEventWebhookEventTypes - The event's type
+// EntityWebhookEventWebhookEventTypes - The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+// that require explicit selection.
 type EntityWebhookEventWebhookEventTypes string
 
 const (

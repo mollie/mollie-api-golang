@@ -36,7 +36,6 @@ payment methods from a specific country to your customer `['bancontact', 'belfiu
 | `MethodResponseMultibanco`     | multibanco                     |
 | `MethodResponseMybank`         | mybank                         |
 | `MethodResponsePaybybank`      | paybybank                      |
-| `MethodResponsePayconiq`       | payconiq                       |
 | `MethodResponsePaypal`         | paypal                         |
 | `MethodResponsePaysafecard`    | paysafecard                    |
 | `MethodResponsePointofsale`    | pointofsale                    |
@@ -51,3 +50,4 @@ payment methods from a specific country to your customer `['bancontact', 'belfiu
 | `MethodResponseKlarnapaylater` | klarnapaylater                 |
 | `MethodResponseKlarnapaynow`   | klarnapaynow                   |
 | `MethodResponseKlarnasliceit`  | klarnasliceit                  |
+| `MethodResponsePayconiq`       | payconiq                       |

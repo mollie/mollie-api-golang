@@ -35,7 +35,6 @@ const (
 	MethodResponseMultibanco   MethodResponse = "multibanco"
 	MethodResponseMybank       MethodResponse = "mybank"
 	MethodResponsePaybybank    MethodResponse = "paybybank"
-	MethodResponsePayconiq     MethodResponse = "payconiq"
 	MethodResponsePaypal       MethodResponse = "paypal"
 	MethodResponsePaysafecard  MethodResponse = "paysafecard"
 	MethodResponsePointofsale  MethodResponse = "pointofsale"
@@ -53,6 +52,8 @@ const (
 	MethodResponseKlarnapaynow MethodResponse = "klarnapaynow"
 	// MethodResponseKlarnasliceit Deprecated, use 'klarna' instead
 	MethodResponseKlarnasliceit MethodResponse = "klarnasliceit"
+	// MethodResponsePayconiq No longer available
+	MethodResponsePayconiq MethodResponse = "payconiq"
 )
 
 func (e MethodResponse) ToPointer() *MethodResponse {
@@ -63,7 +64,7 @@ func (e MethodResponse) ToPointer() *MethodResponse {
 func (e *MethodResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "payconiq", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
 			return true
 		}
 	}

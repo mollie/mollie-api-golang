@@ -30,7 +30,6 @@ const (
 	EntityMethodIDMultibanco   EntityMethodID = "multibanco"
 	EntityMethodIDMybank       EntityMethodID = "mybank"
 	EntityMethodIDPaybybank    EntityMethodID = "paybybank"
-	EntityMethodIDPayconiq     EntityMethodID = "payconiq"
 	EntityMethodIDPaypal       EntityMethodID = "paypal"
 	EntityMethodIDPaysafecard  EntityMethodID = "paysafecard"
 	EntityMethodIDPointofsale  EntityMethodID = "pointofsale"
@@ -48,6 +47,8 @@ const (
 	EntityMethodIDKlarnapaynow EntityMethodID = "klarnapaynow"
 	// EntityMethodIDKlarnasliceit Deprecated, use 'klarna' instead
 	EntityMethodIDKlarnasliceit EntityMethodID = "klarnasliceit"
+	// EntityMethodIDPayconiq No longer available
+	EntityMethodIDPayconiq EntityMethodID = "payconiq"
 )
 
 func (e EntityMethodID) ToPointer() *EntityMethodID {
@@ -58,7 +59,7 @@ func (e EntityMethodID) ToPointer() *EntityMethodID {
 func (e *EntityMethodID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "payconiq", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
 			return true
 		}
 	}

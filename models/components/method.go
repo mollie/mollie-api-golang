@@ -40,7 +40,6 @@ const (
 	MethodMultibanco   Method = "multibanco"
 	MethodMybank       Method = "mybank"
 	MethodPaybybank    Method = "paybybank"
-	MethodPayconiq     Method = "payconiq"
 	MethodPaypal       Method = "paypal"
 	MethodPaysafecard  Method = "paysafecard"
 	MethodPointofsale  Method = "pointofsale"
@@ -108,8 +107,6 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 	case "mybank":
 		fallthrough
 	case "paybybank":
-		fallthrough
-	case "payconiq":
 		fallthrough
 	case "paypal":
 		fallthrough

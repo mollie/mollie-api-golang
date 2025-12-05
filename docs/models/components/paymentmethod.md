@@ -37,7 +37,6 @@ The payment method, if applicable
 | `PaymentMethodMultibanco`        | multibanco                       |
 | `PaymentMethodMybank`            | mybank                           |
 | `PaymentMethodPaybybank`         | paybybank                        |
-| `PaymentMethodPayconiq`          | payconiq                         |
 | `PaymentMethodPaypal`            | paypal                           |
 | `PaymentMethodPaysafecard`       | paysafecard                      |
 | `PaymentMethodPrzelewy24`        | przelewy24                       |

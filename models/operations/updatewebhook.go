@@ -3,16 +3,81 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
+
+type UpdateWebhookEventTypesType string
+
+const (
+	UpdateWebhookEventTypesTypeArrayOfWebhookEventTypes UpdateWebhookEventTypesType = "arrayOfWebhookEventTypes"
+	UpdateWebhookEventTypesTypeWebhookEventTypes        UpdateWebhookEventTypesType = "webhook-event-types"
+)
+
+type UpdateWebhookEventTypes struct {
+	ArrayOfWebhookEventTypes []components.WebhookEventTypes `queryParam:"inline,name=eventTypes"`
+	WebhookEventTypes        *components.WebhookEventTypes  `queryParam:"inline,name=eventTypes"`
+
+	Type UpdateWebhookEventTypesType
+}
+
+func CreateUpdateWebhookEventTypesArrayOfWebhookEventTypes(arrayOfWebhookEventTypes []components.WebhookEventTypes) UpdateWebhookEventTypes {
+	typ := UpdateWebhookEventTypesTypeArrayOfWebhookEventTypes
+
+	return UpdateWebhookEventTypes{
+		ArrayOfWebhookEventTypes: arrayOfWebhookEventTypes,
+		Type:                     typ,
+	}
+}
+
+func CreateUpdateWebhookEventTypesWebhookEventTypes(webhookEventTypes components.WebhookEventTypes) UpdateWebhookEventTypes {
+	typ := UpdateWebhookEventTypesTypeWebhookEventTypes
+
+	return UpdateWebhookEventTypes{
+		WebhookEventTypes: &webhookEventTypes,
+		Type:              typ,
+	}
+}
+
+func (u *UpdateWebhookEventTypes) UnmarshalJSON(data []byte) error {
+
+	var arrayOfWebhookEventTypes []components.WebhookEventTypes = []components.WebhookEventTypes{}
+	if err := utils.UnmarshalJSON(data, &arrayOfWebhookEventTypes, "", true, nil); err == nil {
+		u.ArrayOfWebhookEventTypes = arrayOfWebhookEventTypes
+		u.Type = UpdateWebhookEventTypesTypeArrayOfWebhookEventTypes
+		return nil
+	}
+
+	var webhookEventTypes components.WebhookEventTypes = components.WebhookEventTypes("")
+	if err := utils.UnmarshalJSON(data, &webhookEventTypes, "", true, nil); err == nil {
+		u.WebhookEventTypes = &webhookEventTypes
+		u.Type = UpdateWebhookEventTypesTypeWebhookEventTypes
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateWebhookEventTypes", string(data))
+}
+
+func (u UpdateWebhookEventTypes) MarshalJSON() ([]byte, error) {
+	if u.ArrayOfWebhookEventTypes != nil {
+		return utils.MarshalJSON(u.ArrayOfWebhookEventTypes, "", true)
+	}
+
+	if u.WebhookEventTypes != nil {
+		return utils.MarshalJSON(u.WebhookEventTypes, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type UpdateWebhookEventTypes: all fields are null")
+}
 
 type UpdateWebhookRequestBody struct {
 	// A name that identifies the webhook.
 	Name *string `json:"name,omitempty"`
 	// The URL Mollie will send the events to. This URL must be publicly accessible.
-	URL *string `json:"url,omitempty"`
-	// The event's type
-	WebhookEventTypes *components.WebhookEventTypes `json:"eventTypes,omitempty"`
+	URL        *string                  `json:"url,omitempty"`
+	EventTypes *UpdateWebhookEventTypes `json:"eventTypes,omitempty"`
 	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
 	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 	//
@@ -34,11 +99,11 @@ func (u *UpdateWebhookRequestBody) GetURL() *string {
 	return u.URL
 }
 
-func (u *UpdateWebhookRequestBody) GetWebhookEventTypes() *components.WebhookEventTypes {
+func (u *UpdateWebhookRequestBody) GetEventTypes() *UpdateWebhookEventTypes {
 	if u == nil {
 		return nil
 	}
-	return u.WebhookEventTypes
+	return u.EventTypes
 }
 
 func (u *UpdateWebhookRequestBody) GetTestmode() *bool {

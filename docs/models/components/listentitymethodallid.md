@@ -31,7 +31,6 @@ method selection screen will be skipped.
 | `ListEntityMethodAllIDMultibanco`     | multibanco                            |
 | `ListEntityMethodAllIDMybank`         | mybank                                |
 | `ListEntityMethodAllIDPaybybank`      | paybybank                             |
-| `ListEntityMethodAllIDPayconiq`       | payconiq                              |
 | `ListEntityMethodAllIDPaypal`         | paypal                                |
 | `ListEntityMethodAllIDPaysafecard`    | paysafecard                           |
 | `ListEntityMethodAllIDPointofsale`    | pointofsale                           |
@@ -46,3 +45,4 @@ method selection screen will be skipped.
 | `ListEntityMethodAllIDKlarnapaylater` | klarnapaylater                        |
 | `ListEntityMethodAllIDKlarnapaynow`   | klarnapaynow                          |
 | `ListEntityMethodAllIDKlarnasliceit`  | klarnasliceit                         |
+| `ListEntityMethodAllIDPayconiq`       | payconiq                              |

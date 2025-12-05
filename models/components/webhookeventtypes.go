@@ -7,7 +7,8 @@ import (
 	"fmt"
 )
 
-// WebhookEventTypes - The event's type
+// WebhookEventTypes - The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+// that require explicit selection.
 type WebhookEventTypes string
 
 const (

@@ -43,7 +43,9 @@ func main() {
     res, err := s.Webhooks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreateWebhookRequestBody{
         Name: "Webhook #1",
         URL: "https://mollie.com/",
-        WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid,
+        EventTypes: operations.CreateCreateWebhookEventTypesWebhookEventTypes(
+            components.WebhookEventTypesPaymentLinkPaid,
+        ),
         Testmode: client.Pointer(false),
     })
     if err != nil {
@@ -170,7 +172,9 @@ func main() {
     res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
         Name: client.Pointer("Webhook #1"),
         URL: client.Pointer("https://mollie.com/"),
-        WebhookEventTypes: components.WebhookEventTypesPaymentLinkPaid.ToPointer(),
+        EventTypes: client.Pointer(operations.CreateUpdateWebhookEventTypesWebhookEventTypes(
+            components.WebhookEventTypesPaymentLinkPaid,
+        )),
         Testmode: client.Pointer(false),
     })
     if err != nil {

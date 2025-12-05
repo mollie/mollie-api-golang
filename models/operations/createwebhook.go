@@ -3,16 +3,81 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/models/components"
 )
+
+type CreateWebhookEventTypesType string
+
+const (
+	CreateWebhookEventTypesTypeArrayOfWebhookEventTypes CreateWebhookEventTypesType = "arrayOfWebhookEventTypes"
+	CreateWebhookEventTypesTypeWebhookEventTypes        CreateWebhookEventTypesType = "webhook-event-types"
+)
+
+type CreateWebhookEventTypes struct {
+	ArrayOfWebhookEventTypes []components.WebhookEventTypes `queryParam:"inline,name=eventTypes"`
+	WebhookEventTypes        *components.WebhookEventTypes  `queryParam:"inline,name=eventTypes"`
+
+	Type CreateWebhookEventTypesType
+}
+
+func CreateCreateWebhookEventTypesArrayOfWebhookEventTypes(arrayOfWebhookEventTypes []components.WebhookEventTypes) CreateWebhookEventTypes {
+	typ := CreateWebhookEventTypesTypeArrayOfWebhookEventTypes
+
+	return CreateWebhookEventTypes{
+		ArrayOfWebhookEventTypes: arrayOfWebhookEventTypes,
+		Type:                     typ,
+	}
+}
+
+func CreateCreateWebhookEventTypesWebhookEventTypes(webhookEventTypes components.WebhookEventTypes) CreateWebhookEventTypes {
+	typ := CreateWebhookEventTypesTypeWebhookEventTypes
+
+	return CreateWebhookEventTypes{
+		WebhookEventTypes: &webhookEventTypes,
+		Type:              typ,
+	}
+}
+
+func (u *CreateWebhookEventTypes) UnmarshalJSON(data []byte) error {
+
+	var arrayOfWebhookEventTypes []components.WebhookEventTypes = []components.WebhookEventTypes{}
+	if err := utils.UnmarshalJSON(data, &arrayOfWebhookEventTypes, "", true, nil); err == nil {
+		u.ArrayOfWebhookEventTypes = arrayOfWebhookEventTypes
+		u.Type = CreateWebhookEventTypesTypeArrayOfWebhookEventTypes
+		return nil
+	}
+
+	var webhookEventTypes components.WebhookEventTypes = components.WebhookEventTypes("")
+	if err := utils.UnmarshalJSON(data, &webhookEventTypes, "", true, nil); err == nil {
+		u.WebhookEventTypes = &webhookEventTypes
+		u.Type = CreateWebhookEventTypesTypeWebhookEventTypes
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreateWebhookEventTypes", string(data))
+}
+
+func (u CreateWebhookEventTypes) MarshalJSON() ([]byte, error) {
+	if u.ArrayOfWebhookEventTypes != nil {
+		return utils.MarshalJSON(u.ArrayOfWebhookEventTypes, "", true)
+	}
+
+	if u.WebhookEventTypes != nil {
+		return utils.MarshalJSON(u.WebhookEventTypes, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type CreateWebhookEventTypes: all fields are null")
+}
 
 type CreateWebhookRequestBody struct {
 	// A name that identifies the webhook.
 	Name string `json:"name"`
 	// The URL Mollie will send the events to. This URL must be publicly accessible.
-	URL string `json:"url"`
-	// The event's type
-	WebhookEventTypes components.WebhookEventTypes `json:"eventTypes"`
+	URL        string                  `json:"url"`
+	EventTypes CreateWebhookEventTypes `json:"eventTypes"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -35,11 +100,11 @@ func (c *CreateWebhookRequestBody) GetURL() string {
 	return c.URL
 }
 
-func (c *CreateWebhookRequestBody) GetWebhookEventTypes() components.WebhookEventTypes {
+func (c *CreateWebhookRequestBody) GetEventTypes() CreateWebhookEventTypes {
 	if c == nil {
-		return components.WebhookEventTypes("")
+		return CreateWebhookEventTypes{}
 	}
-	return c.WebhookEventTypes
+	return c.EventTypes
 }
 
 func (c *CreateWebhookRequestBody) GetTestmode() *bool {

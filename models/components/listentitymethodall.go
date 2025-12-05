@@ -30,7 +30,6 @@ const (
 	ListEntityMethodAllIDMultibanco   ListEntityMethodAllID = "multibanco"
 	ListEntityMethodAllIDMybank       ListEntityMethodAllID = "mybank"
 	ListEntityMethodAllIDPaybybank    ListEntityMethodAllID = "paybybank"
-	ListEntityMethodAllIDPayconiq     ListEntityMethodAllID = "payconiq"
 	ListEntityMethodAllIDPaypal       ListEntityMethodAllID = "paypal"
 	ListEntityMethodAllIDPaysafecard  ListEntityMethodAllID = "paysafecard"
 	ListEntityMethodAllIDPointofsale  ListEntityMethodAllID = "pointofsale"
@@ -48,6 +47,8 @@ const (
 	ListEntityMethodAllIDKlarnapaynow ListEntityMethodAllID = "klarnapaynow"
 	// ListEntityMethodAllIDKlarnasliceit Deprecated, use 'klarna' instead
 	ListEntityMethodAllIDKlarnasliceit ListEntityMethodAllID = "klarnasliceit"
+	// ListEntityMethodAllIDPayconiq No longer available
+	ListEntityMethodAllIDPayconiq ListEntityMethodAllID = "payconiq"
 )
 
 func (e ListEntityMethodAllID) ToPointer() *ListEntityMethodAllID {
@@ -58,7 +59,7 @@ func (e ListEntityMethodAllID) ToPointer() *ListEntityMethodAllID {
 func (e *ListEntityMethodAllID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "payconiq", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
 			return true
 		}
 	}
