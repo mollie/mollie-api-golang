@@ -78,8 +78,7 @@ type UpdateWebhookRequestBody struct {
 	// The URL Mollie will send the events to. This URL must be publicly accessible.
 	URL        *string                  `json:"url,omitempty"`
 	EventTypes *UpdateWebhookEventTypes `json:"eventTypes,omitempty"`
-	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+	// You can enable test mode by setting `testmode` to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `json:"testmode,omitempty"`

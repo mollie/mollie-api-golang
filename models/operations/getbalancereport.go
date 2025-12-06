@@ -40,9 +40,7 @@ type GetBalanceReportRequest struct {
 	// With the `transaction-categories` format, transactions are grouped by
 	// transaction type, then by status, and then again by other sub-groupings where available.
 	Grouping *components.BalanceReportGrouping `queryParam:"style=form,explode=true,name=grouping"`
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
+	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`

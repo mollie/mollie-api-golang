@@ -7,8 +7,7 @@ import (
 )
 
 type DeleteWebhookRequestBody struct {
-	// Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-	// such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+	// You can enable test mode by setting `testmode` to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `json:"testmode,omitempty"`

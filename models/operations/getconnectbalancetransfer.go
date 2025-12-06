@@ -25,9 +25,7 @@ func (g *GetConnectBalanceTransferGlobals) GetTestmode() *bool {
 type GetConnectBalanceTransferRequest struct {
 	// Provide the ID of the item you want to perform this operation on.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
+	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
