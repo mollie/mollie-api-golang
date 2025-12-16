@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 153d82e86ba8e45ae7cf02038e7e096c
+  docChecksum: 476471c5239de2e0b4b88bc7eea59836
   docVersion: 1.0.0
-  speakeasyVersion: 1.669.1
-  generationVersion: 2.772.0
-  releaseVersion: 0.9.2
-  configChecksum: 88547325d8a6c6a33ef3a4a6375140be
+  speakeasyVersion: 1.676.1
+  generationVersion: 2.781.2
+  releaseVersion: 0.9.3
+  configChecksum: 93837af05535a9345aedb97dd2c54f04
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 76fb9683-54ce-4c2f-962d-19d0064f910c
-  pristine_commit_hash: cfbc8fb5184f9f2eec6aff8ea28995c9b49286ec
-  pristine_tree_hash: 5f111ceea9a5af086e446a5d8b323ad07cd92d07
+  generation_id: d5a01287-ed1d-46c2-94e8-c1067a7ffbbc
+  pristine_commit_hash: 057ae3479fcf82da664741cb1e2601835b783cdd
+  pristine_tree_hash: 7114684d044b1099d73d17aaee97a4dff1b230fd
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.5
+    core: 3.13.6
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: bc38b9a23393d6ec04cc6d646f15fdadcb29501b
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:ea62355bd66c620ff7742e92fa6fef55c1331ec4
-    pristine_git_object: 6bf5d4782b05314511e0e7cb4b480382c98a53fb
+    last_write_checksum: sha1:ed2a40467e5f5051a6b6337d4e9108a3eddb8b44
+    pristine_git_object: 635c0424d0021e920f09dad4a413e844f461614d
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f22eb8740c70bf7d0df3be9a98af764d1dd17b0a
@@ -3255,8 +3255,8 @@ trackedFiles:
     pristine_git_object: 3d83ed2f48ff36968042694693ec08d892ef94fe
   go.mod:
     id: c47645c391ad
-    last_write_checksum: sha1:a704771637656fe3b784b94deccac9f97cc1877f
-    pristine_git_object: 1e83a18a33c795212678ec4f781e1d180150be61
+    last_write_checksum: sha1:0b424a681aee16faa5ab6d24f1622fec3ce719f4
+    pristine_git_object: 7f1c488200aa244edd03411a506daba5f5d7a5ab
   internal/config/sdkconfiguration.go:
     id: 33b8bfac5265
     last_write_checksum: sha1:f2af54bd1b44cdf4fcedbbf6ade33929aff8856a
@@ -3287,8 +3287,8 @@ trackedFiles:
     pristine_git_object: 4390aa8a1e35cb84a701000b60a117b1a870a3f6
   internal/utils/json.go:
     id: ad03e3c502d8
-    last_write_checksum: sha1:ffb853f6a1162d8c40660250d2ab56373e811d5f
-    pristine_git_object: bc836573b3452192af812b6442feb688a88d48d5
+    last_write_checksum: sha1:7a71476e32b7596b615106996cab5ef9d96d4925
+    pristine_git_object: 2eff43e89fa91a01bfefbc3cae2d2ef5c456ace2
   internal/utils/pathparams.go:
     id: 1f3e0c30fd90
     last_write_checksum: sha1:9e3cc53bc1fc24488cb1d33ddf6ddff4f0e3d9b0
@@ -3309,6 +3309,14 @@ trackedFiles:
     id: eeb54c55241b
     last_write_checksum: sha1:451524017dfed1da96bdd9bc1749546f8d2aa110
     pristine_git_object: 99e1f672792b3230f0fee185681847bac3aca6c2
+  internal/utils/union.go:
+    id: db86c85746b6
+    last_write_checksum: sha1:8a21c3f28c28e8ebab0f9c4b5439edba70cdb580
+    pristine_git_object: 1002f39cdaf8e89c3557624df6637034698fa690
+  internal/utils/union_test.go:
+    id: 4b56247171bd
+    last_write_checksum: sha1:83ac73c1901de4c6db90f65cf5879163f3d47a00
+    pristine_git_object: f66814c73ace94d8e71d785fd6161fb405745754
   internal/utils/utils.go:
     id: 1133b2a27019
     last_write_checksum: sha1:66b0ef3c302e2edad3496775a6e5b452caceefd6
@@ -3515,8 +3523,8 @@ trackedFiles:
     pristine_git_object: 543c79e319f1047b5f57e83b0bbf70550b64231d
   models/components/entitymethod.go:
     id: 1327eb3477aa
-    last_write_checksum: sha1:86453175d7caf29fcec3eb492a6f73cb7364c431
-    pristine_git_object: bff1220910c44532c2b7a074e75375239d9bd407
+    last_write_checksum: sha1:e5b1a4a2a91b377f9b954e8144f2253a74c574bc
+    pristine_git_object: 5b1a1ed652a0bd963507576704335a9c25d6b8c3
   models/components/entityonboardingstatus.go:
     id: 0d3ce78f0428
     last_write_checksum: sha1:b5d8f6283063897f2f284ce8b0d37a6b788678c7
@@ -3559,8 +3567,8 @@ trackedFiles:
     pristine_git_object: 8a640dea8fe023df2b12607874d7beab8a9692fe
   models/components/entitywebhookevent.go:
     id: 5d6e7a76e689
-    last_write_checksum: sha1:a415db4ebc1d86cf4728a9e8661d4759ed40ff33
-    pristine_git_object: fc36c35374ade8e4a3bd93e5081b7bd9a42e643d
+    last_write_checksum: sha1:dcbf8fa07d56432937b32c57a747e75abb54c59e
+    pristine_git_object: f4658ae5f37932f64b696f093a24182af322e301
   models/components/errorresponse.go:
     id: 789ac133631c
     last_write_checksum: sha1:e51921a3b03c55f0419d41b1f749ad30ea80c640
@@ -3599,12 +3607,12 @@ trackedFiles:
     pristine_git_object: 6028f6d1e289acf80740bc9ab47d98ab4feb3827
   models/components/listentitymethod.go:
     id: 864701b4cd34
-    last_write_checksum: sha1:3e7a3fb2d9e24f600d3b1e1363c60562154b29a1
-    pristine_git_object: 74f47d83a72947f1f752226f726c0d6ad783727e
+    last_write_checksum: sha1:504c239b52ec035ca23d1c4f13dc90c2e0b2c304
+    pristine_git_object: e52d28e93dcc6484acbc16d2087bf0c8f78d579e
   models/components/listentitymethodall.go:
     id: 5d02078191b8
-    last_write_checksum: sha1:d00b196eafbc0b9599cc3bddecd0a323f25a80ef
-    pristine_git_object: d17da6b442cc639b2bb946984d8a13444033a98e
+    last_write_checksum: sha1:f3ea92755f9093bd1fb3d50d3d1e687df2cb458a
+    pristine_git_object: 2e17159a1acb8e6e0dd94d9466d73112832b2b1e
   models/components/listentitypermission.go:
     id: eb7e5d428c9c
     last_write_checksum: sha1:fad0b2298dc9eadf51bd9cc98251ed1a6133ad66
@@ -3683,8 +3691,8 @@ trackedFiles:
     pristine_git_object: eb0de64759f2807e2b884292f1b11523c072a084
   models/components/metadata.go:
     id: 4cf51d051463
-    last_write_checksum: sha1:cbb510e9e971b52a0a8ccdbe862722e1a631865a
-    pristine_git_object: 2ec3b9592548061aabda5388a76a0aa2809a09c7
+    last_write_checksum: sha1:d1e898bba43df25f84fd2a36eb1caf4d3e9b6d00
+    pristine_git_object: 2ca1533b9a55c4416353b1e0206f8c231d418c93
   models/components/method.go:
     id: 8c7abdd7dd0c
     last_write_checksum: sha1:f36b327a82c60e2574f6320fa87d7ff527adca89
@@ -3803,8 +3811,8 @@ trackedFiles:
     pristine_git_object: 98d174ca347ed2f83df904f2760f6f8ea458c85d
   models/components/paymentrequest.go:
     id: d36fbb833385
-    last_write_checksum: sha1:82bdfe07ffe916739d49e3eeccf8fe3d044c1fb5
-    pristine_git_object: 1b07aea20889e670212b42170d2de05a16f1d614
+    last_write_checksum: sha1:eadafaa0ba31406fd3551d546f2ee1ed1ec22934
+    pristine_git_object: e2086441730d5f85b284deda805c291d354a2b24
   models/components/paymentresponse.go:
     id: 94b4782571dc
     last_write_checksum: sha1:39841530e8b485bbd0d325834452e518299f4749
@@ -4091,8 +4099,8 @@ trackedFiles:
     pristine_git_object: 99879c3f605e25d0d789f7f8f682163b62bb19f2
   models/operations/createwebhook.go:
     id: 903a882deaa7
-    last_write_checksum: sha1:2e235e7f8bf907e60a1f50dacae66c507acb4c9c
-    pristine_git_object: 5128e1082405051363d4f327ead6a4a9a06c4cee
+    last_write_checksum: sha1:7b3ae430492f9bc8c05ee568ae3f2a767a92de51
+    pristine_git_object: 338ba01ba1262b9f64a9716aaaa62bb6c88f30c5
   models/operations/deletecustomer.go:
     id: f5f0e4617f74
     last_write_checksum: sha1:fcb45c77d23fecc74c93cefa0a6f84dad88c7f37
@@ -4415,8 +4423,8 @@ trackedFiles:
     pristine_git_object: c6fb9050c9797e62d699e8f630a3b417a8ef120b
   models/operations/updatewebhook.go:
     id: d300f442feb7
-    last_write_checksum: sha1:3175fadfcb76baa6fd5323d789b97f0a28f47c39
-    pristine_git_object: f029fc4d9e3de50621f1ab2d3e15de0bd80f2b57
+    last_write_checksum: sha1:a33d2d139194fa33ea9d39017b809779b2a17f2d
+    pristine_git_object: 9ccc9165d5024d9c456df802275056922ae8e3bb
   onboarding.go:
     id: d1e4a134fcc2
     last_write_checksum: sha1:5ee5222a45664965f747bc600ba60be96b4ec14d
@@ -7761,7 +7769,11 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Webhooks.Create()`: \n  *  `request.RequestBody.Testmode` **Changed** **Breaking** :warning:\n* `Client.Webhooks.Update()`: \n  *  `request.RequestBody.Testmode` **Changed** **Breaking** :warning:\n* `Client.Webhooks.Delete()`: \n  *  `request.RequestBody.Testmode` **Changed** **Breaking** :warning:\n* `Client.Webhooks.Test()`: \n  *  `request.RequestBody.Testmode` **Changed** **Breaking** :warning:\n* `Client.Balance-Transfers.Create()`: \n  *  `request.Entity-Balance-Transfer.Testmode` **Changed** **Breaking** :warning:\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Methods.List()`:  `response.Embedded.Methods.[].Status` **Changed** **Breaking** :warning:
+  * `Client.Methods.All()`:  `response.Embedded.Methods.[].Status` **Changed** **Breaking** :warning:
+  * `Client.Methods.Get()`:  `response.Status` **Changed** **Breaking** :warning:
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

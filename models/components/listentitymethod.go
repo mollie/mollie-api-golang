@@ -252,7 +252,7 @@ type ListEntityMethod struct {
 	// URLs of images representing the payment method.
 	Image ListEntityMethodImage `json:"image"`
 	// The payment method's activation status for this profile.
-	Status MethodStatus `json:"status"`
+	Status *MethodStatus `json:"status"`
 	// **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
 	// for iDEAL, KBC/CBC, gift cards, and vouchers.
 	Issuers []ListEntityMethodIssuer `json:"issuers,omitempty"`
@@ -302,9 +302,9 @@ func (l *ListEntityMethod) GetImage() ListEntityMethodImage {
 	return l.Image
 }
 
-func (l *ListEntityMethod) GetStatus() MethodStatus {
+func (l *ListEntityMethod) GetStatus() *MethodStatus {
 	if l == nil {
-		return MethodStatus("")
+		return nil
 	}
 	return l.Status
 }

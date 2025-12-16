@@ -261,7 +261,7 @@ type EntityMethod struct {
 	// URLs of images representing the payment method.
 	Image EntityMethodImage `json:"image"`
 	// The payment method's activation status for this profile.
-	Status MethodStatus `json:"status"`
+	Status *MethodStatus `json:"status"`
 	// **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
 	// for iDEAL, KBC/CBC, gift cards, and vouchers.
 	Issuers []EntityMethodIssuer `json:"issuers,omitempty"`
@@ -311,9 +311,9 @@ func (e *EntityMethod) GetImage() EntityMethodImage {
 	return e.Image
 }
 
-func (e *EntityMethod) GetStatus() MethodStatus {
+func (e *EntityMethod) GetStatus() *MethodStatus {
 	if e == nil {
-		return MethodStatus("")
+		return nil
 	}
 	return e.Status
 }
