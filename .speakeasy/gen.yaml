@@ -30,13 +30,14 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.9.3
+  version: 0.9.4
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
   envVarPrefix: CLIENT
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   imports:
     option: openapi
     paths:

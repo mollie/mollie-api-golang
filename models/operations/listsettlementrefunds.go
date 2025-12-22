@@ -87,12 +87,12 @@ func (l *ListSettlementRefundsRequest) GetIdempotencyKey() *string {
 
 type ListSettlementRefundsEmbedded struct {
 	// An array of refund objects.
-	Refunds []components.ListEntityRefundResponse `json:"refunds"`
+	Refunds []components.EntityRefundResponse `json:"refunds"`
 }
 
-func (l *ListSettlementRefundsEmbedded) GetRefunds() []components.ListEntityRefundResponse {
+func (l *ListSettlementRefundsEmbedded) GetRefunds() []components.EntityRefundResponse {
 	if l == nil {
-		return []components.ListEntityRefundResponse{}
+		return []components.EntityRefundResponse{}
 	}
 	return l.Refunds
 }

@@ -1,0 +1,11 @@
+# Rate
+
+The service rates, further divided into `fixed` and `percentage` costs.
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Fixed`                                                                                           | [*components.Amount](../../models/components/amount.md)                                           | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |                                                                                                   |
+| `Percentage`                                                                                      | **string*                                                                                         | :heavy_minus_sign:                                                                                | N/A                                                                                               | 2.5                                                                                               |

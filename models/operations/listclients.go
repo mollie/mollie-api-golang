@@ -68,6 +68,8 @@ type ListClientsLinks struct {
 	Organization *components.URLObj `json:"organization,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Onboarding *components.URLObj `json:"onboarding,omitempty"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation *components.URLObj `json:"documentation,omitempty"`
 }
 
 func (l *ListClientsLinks) GetSelf() components.URLObj {
@@ -89,6 +91,13 @@ func (l *ListClientsLinks) GetOnboarding() *components.URLObj {
 		return nil
 	}
 	return l.Onboarding
+}
+
+func (l *ListClientsLinks) GetDocumentation() *components.URLObj {
+	if l == nil {
+		return nil
+	}
+	return l.Documentation
 }
 
 type ClientEmbedded struct {

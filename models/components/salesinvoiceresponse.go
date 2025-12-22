@@ -7,114 +7,114 @@ package components
 type SalesInvoiceResponseMetadata struct {
 }
 
-// SalesInvoiceResponseAmountDue - The amount that is left to be paid.
-type SalesInvoiceResponseAmountDue struct {
+// AmountDue - The amount that is left to be paid.
+type AmountDue struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (s *SalesInvoiceResponseAmountDue) GetCurrency() string {
-	if s == nil {
+func (a *AmountDue) GetCurrency() string {
+	if a == nil {
 		return ""
 	}
-	return s.Currency
+	return a.Currency
 }
 
-func (s *SalesInvoiceResponseAmountDue) GetValue() string {
-	if s == nil {
+func (a *AmountDue) GetValue() string {
+	if a == nil {
 		return ""
 	}
-	return s.Value
+	return a.Value
 }
 
-// SalesInvoiceResponseSubtotalAmount - The total amount without VAT before discounts.
-type SalesInvoiceResponseSubtotalAmount struct {
+// SubtotalAmount - The total amount without VAT before discounts.
+type SubtotalAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (s *SalesInvoiceResponseSubtotalAmount) GetCurrency() string {
+func (s *SubtotalAmount) GetCurrency() string {
 	if s == nil {
 		return ""
 	}
 	return s.Currency
 }
 
-func (s *SalesInvoiceResponseSubtotalAmount) GetValue() string {
+func (s *SubtotalAmount) GetValue() string {
 	if s == nil {
 		return ""
 	}
 	return s.Value
 }
 
-// SalesInvoiceResponseTotalAmount - The total amount with VAT.
-type SalesInvoiceResponseTotalAmount struct {
+// TotalAmount - The total amount with VAT.
+type TotalAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (s *SalesInvoiceResponseTotalAmount) GetCurrency() string {
-	if s == nil {
+func (t *TotalAmount) GetCurrency() string {
+	if t == nil {
 		return ""
 	}
-	return s.Currency
+	return t.Currency
 }
 
-func (s *SalesInvoiceResponseTotalAmount) GetValue() string {
-	if s == nil {
+func (t *TotalAmount) GetValue() string {
+	if t == nil {
 		return ""
 	}
-	return s.Value
+	return t.Value
 }
 
-// SalesInvoiceResponseTotalVatAmount - The total VAT amount.
-type SalesInvoiceResponseTotalVatAmount struct {
+// TotalVatAmount - The total VAT amount.
+type TotalVatAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (s *SalesInvoiceResponseTotalVatAmount) GetCurrency() string {
-	if s == nil {
+func (t *TotalVatAmount) GetCurrency() string {
+	if t == nil {
 		return ""
 	}
-	return s.Currency
+	return t.Currency
 }
 
-func (s *SalesInvoiceResponseTotalVatAmount) GetValue() string {
-	if s == nil {
+func (t *TotalVatAmount) GetValue() string {
+	if t == nil {
 		return ""
 	}
-	return s.Value
+	return t.Value
 }
 
-// SalesInvoiceResponseDiscountedSubtotalAmount - The total amount without VAT after discounts.
-type SalesInvoiceResponseDiscountedSubtotalAmount struct {
+// DiscountedSubtotalAmount - The total amount without VAT after discounts.
+type DiscountedSubtotalAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (s *SalesInvoiceResponseDiscountedSubtotalAmount) GetCurrency() string {
-	if s == nil {
+func (d *DiscountedSubtotalAmount) GetCurrency() string {
+	if d == nil {
 		return ""
 	}
-	return s.Currency
+	return d.Currency
 }
 
-func (s *SalesInvoiceResponseDiscountedSubtotalAmount) GetValue() string {
-	if s == nil {
+func (d *DiscountedSubtotalAmount) GetValue() string {
+	if d == nil {
 		return ""
 	}
-	return s.Value
+	return d.Value
 }
 
 // SalesInvoiceResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -231,15 +231,15 @@ type SalesInvoiceResponse struct {
 	Lines    []SalesInvoiceLineItemResponse `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscountResponse  `json:"discount,omitempty"`
 	// The amount that is left to be paid.
-	AmountDue *SalesInvoiceResponseAmountDue `json:"amountDue,omitempty"`
+	AmountDue *AmountDue `json:"amountDue,omitempty"`
 	// The total amount without VAT before discounts.
-	SubtotalAmount *SalesInvoiceResponseSubtotalAmount `json:"subtotalAmount,omitempty"`
+	SubtotalAmount *SubtotalAmount `json:"subtotalAmount,omitempty"`
 	// The total amount with VAT.
-	TotalAmount *SalesInvoiceResponseTotalAmount `json:"totalAmount,omitempty"`
+	TotalAmount *TotalAmount `json:"totalAmount,omitempty"`
 	// The total VAT amount.
-	TotalVatAmount *SalesInvoiceResponseTotalVatAmount `json:"totalVatAmount,omitempty"`
+	TotalVatAmount *TotalVatAmount `json:"totalVatAmount,omitempty"`
 	// The total amount without VAT after discounts.
-	DiscountedSubtotalAmount *SalesInvoiceResponseDiscountedSubtotalAmount `json:"discountedSubtotalAmount,omitempty"`
+	DiscountedSubtotalAmount *DiscountedSubtotalAmount `json:"discountedSubtotalAmount,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -381,35 +381,35 @@ func (s *SalesInvoiceResponse) GetDiscount() *SalesInvoiceDiscountResponse {
 	return s.Discount
 }
 
-func (s *SalesInvoiceResponse) GetAmountDue() *SalesInvoiceResponseAmountDue {
+func (s *SalesInvoiceResponse) GetAmountDue() *AmountDue {
 	if s == nil {
 		return nil
 	}
 	return s.AmountDue
 }
 
-func (s *SalesInvoiceResponse) GetSubtotalAmount() *SalesInvoiceResponseSubtotalAmount {
+func (s *SalesInvoiceResponse) GetSubtotalAmount() *SubtotalAmount {
 	if s == nil {
 		return nil
 	}
 	return s.SubtotalAmount
 }
 
-func (s *SalesInvoiceResponse) GetTotalAmount() *SalesInvoiceResponseTotalAmount {
+func (s *SalesInvoiceResponse) GetTotalAmount() *TotalAmount {
 	if s == nil {
 		return nil
 	}
 	return s.TotalAmount
 }
 
-func (s *SalesInvoiceResponse) GetTotalVatAmount() *SalesInvoiceResponseTotalVatAmount {
+func (s *SalesInvoiceResponse) GetTotalVatAmount() *TotalVatAmount {
 	if s == nil {
 		return nil
 	}
 	return s.TotalVatAmount
 }
 
-func (s *SalesInvoiceResponse) GetDiscountedSubtotalAmount() *SalesInvoiceResponseDiscountedSubtotalAmount {
+func (s *SalesInvoiceResponse) GetDiscountedSubtotalAmount() *DiscountedSubtotalAmount {
 	if s == nil {
 		return nil
 	}

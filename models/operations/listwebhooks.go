@@ -85,12 +85,12 @@ func (l *ListWebhooksRequest) GetIdempotencyKey() *string {
 
 type ListWebhooksEmbedded struct {
 	// A list of webhooks.
-	Webhooks []components.ListEntityWebhook `json:"webhooks"`
+	Webhooks []components.EntityWebhook `json:"webhooks"`
 }
 
-func (l *ListWebhooksEmbedded) GetWebhooks() []components.ListEntityWebhook {
+func (l *ListWebhooksEmbedded) GetWebhooks() []components.EntityWebhook {
 	if l == nil {
-		return []components.ListEntityWebhook{}
+		return []components.EntityWebhook{}
 	}
 	return l.Webhooks
 }

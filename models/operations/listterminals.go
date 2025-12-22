@@ -78,10 +78,10 @@ func (l *ListTerminalsRequest) GetIdempotencyKey() *string {
 
 type ListTerminalsEmbedded struct {
 	// An array of terminal objects.
-	Terminals []components.ListEntityTerminal `json:"terminals,omitempty"`
+	Terminals []components.EntityTerminal `json:"terminals,omitempty"`
 }
 
-func (l *ListTerminalsEmbedded) GetTerminals() []components.ListEntityTerminal {
+func (l *ListTerminalsEmbedded) GetTerminals() []components.EntityTerminal {
 	if l == nil {
 		return nil
 	}

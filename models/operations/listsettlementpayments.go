@@ -113,10 +113,10 @@ func (l *ListSettlementPaymentsRequest) GetIdempotencyKey() *string {
 
 type ListSettlementPaymentsEmbedded struct {
 	// An array of payment objects.
-	Payments []components.ListPaymentResponse `json:"payments,omitempty"`
+	Payments []components.PaymentResponse `json:"payments,omitempty"`
 }
 
-func (l *ListSettlementPaymentsEmbedded) GetPayments() []components.ListPaymentResponse {
+func (l *ListSettlementPaymentsEmbedded) GetPayments() []components.PaymentResponse {
 	if l == nil {
 		return nil
 	}

@@ -119,12 +119,12 @@ type ListAllMethodsEmbedded struct {
 	// An array of payment method objects. For a complete
 	// reference of the payment method object, refer to the [Get payment method endpoint](get-method)
 	// documentation.
-	Methods []components.ListEntityMethodAll `json:"methods"`
+	Methods []components.EntityMethodAll `json:"methods"`
 }
 
-func (l *ListAllMethodsEmbedded) GetMethods() []components.ListEntityMethodAll {
+func (l *ListAllMethodsEmbedded) GetMethods() []components.EntityMethodAll {
 	if l == nil {
-		return []components.ListEntityMethodAll{}
+		return []components.EntityMethodAll{}
 	}
 	return l.Methods
 }

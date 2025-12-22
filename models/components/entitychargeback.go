@@ -31,26 +31,26 @@ func (e *EntityChargebackSettlementAmount) GetValue() string {
 	return e.Value
 }
 
-// EntityChargebackReason - Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
-type EntityChargebackReason struct {
+// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+type Reason struct {
 	// Technical code provided by the bank.
 	Code string `json:"code"`
 	// A more detailed human-friendly description.
 	Description string `json:"description"`
 }
 
-func (e *EntityChargebackReason) GetCode() string {
-	if e == nil {
+func (r *Reason) GetCode() string {
+	if r == nil {
 		return ""
 	}
-	return e.Code
+	return r.Code
 }
 
-func (e *EntityChargebackReason) GetDescription() string {
-	if e == nil {
+func (r *Reason) GetDescription() string {
+	if r == nil {
 		return ""
 	}
-	return e.Description
+	return r.Description
 }
 
 // EntityChargebackLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -111,7 +111,7 @@ type EntityChargeback struct {
 	// instead.
 	SettlementAmount *EntityChargebackSettlementAmount `json:"settlementAmount,omitempty"`
 	// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
-	Reason *EntityChargebackReason `json:"reason,omitempty"`
+	Reason *Reason `json:"reason,omitempty"`
 	// The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
 	// The full payment object can be retrieved via the payment URL in the `_links` object.
 	PaymentID string `json:"paymentId"`
@@ -155,7 +155,7 @@ func (e *EntityChargeback) GetSettlementAmount() *EntityChargebackSettlementAmou
 	return e.SettlementAmount
 }
 
-func (e *EntityChargeback) GetReason() *EntityChargebackReason {
+func (e *EntityChargeback) GetReason() *Reason {
 	if e == nil {
 		return nil
 	}

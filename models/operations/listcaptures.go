@@ -87,12 +87,12 @@ func (l *ListCapturesRequest) GetIdempotencyKey() *string {
 
 type ListCapturesEmbedded struct {
 	// An array of capture objects.
-	Captures []components.CaptureResponse `json:"captures"`
+	Captures []components.ListCaptureResponse `json:"captures"`
 }
 
-func (l *ListCapturesEmbedded) GetCaptures() []components.CaptureResponse {
+func (l *ListCapturesEmbedded) GetCaptures() []components.ListCaptureResponse {
 	if l == nil {
-		return []components.CaptureResponse{}
+		return []components.ListCaptureResponse{}
 	}
 	return l.Captures
 }

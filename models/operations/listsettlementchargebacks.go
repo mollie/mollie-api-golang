@@ -87,12 +87,12 @@ func (l *ListSettlementChargebacksRequest) GetIdempotencyKey() *string {
 
 type ListSettlementChargebacksEmbedded struct {
 	// A list of chargeback objects.
-	Chargebacks []components.ListEntityChargeback `json:"chargebacks"`
+	Chargebacks []components.EntityChargeback `json:"chargebacks"`
 }
 
-func (l *ListSettlementChargebacksEmbedded) GetChargebacks() []components.ListEntityChargeback {
+func (l *ListSettlementChargebacksEmbedded) GetChargebacks() []components.EntityChargeback {
 	if l == nil {
-		return []components.ListEntityChargeback{}
+		return []components.EntityChargeback{}
 	}
 	return l.Chargebacks
 }
