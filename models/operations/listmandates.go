@@ -87,12 +87,12 @@ func (l *ListMandatesRequest) GetIdempotencyKey() *string {
 
 type ListMandatesEmbedded struct {
 	// An array of mandate objects.
-	Mandates []components.MandateResponse `json:"mandates"`
+	Mandates []components.ListMandateResponse `json:"mandates"`
 }
 
-func (l *ListMandatesEmbedded) GetMandates() []components.MandateResponse {
+func (l *ListMandatesEmbedded) GetMandates() []components.ListMandateResponse {
 	if l == nil {
-		return []components.MandateResponse{}
+		return []components.ListMandateResponse{}
 	}
 	return l.Mandates
 }

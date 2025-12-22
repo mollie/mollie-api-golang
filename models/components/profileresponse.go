@@ -34,30 +34,30 @@ func (e *ProfileResponseStatus) IsExact() bool {
 	return false
 }
 
-// Review - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+// ProfileResponseReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 // automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 // `null` in test mode.
-type Review struct {
+type ProfileResponseReview struct {
 	// The status of the requested changes.
 	Status *ProfileReviewStatusResponse `json:"status,omitempty"`
 }
 
-func (r Review) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (p ProfileResponseReview) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (r *Review) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (p *ProfileResponseReview) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *Review) GetStatus() *ProfileReviewStatusResponse {
-	if r == nil {
+func (p *ProfileResponseReview) GetStatus() *ProfileReviewStatusResponse {
+	if p == nil {
 		return nil
 	}
-	return r.Status
+	return p.Status
 }
 
 // ProfileResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -176,7 +176,7 @@ type ProfileResponse struct {
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 	// `null` in test mode.
-	Review *Review `json:"review,omitempty"`
+	Review *ProfileResponseReview `json:"review,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -271,7 +271,7 @@ func (p *ProfileResponse) GetStatus() ProfileResponseStatus {
 	return p.Status
 }
 
-func (p *ProfileResponse) GetReview() *Review {
+func (p *ProfileResponse) GetReview() *ProfileResponseReview {
 	if p == nil {
 		return nil
 	}

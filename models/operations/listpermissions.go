@@ -20,12 +20,12 @@ func (l *ListPermissionsRequest) GetIdempotencyKey() *string {
 
 type ListPermissionsEmbedded struct {
 	// An array of permission objects.
-	Permissions []components.EntityPermission `json:"permissions"`
+	Permissions []components.ListEntityPermission `json:"permissions"`
 }
 
-func (l *ListPermissionsEmbedded) GetPermissions() []components.EntityPermission {
+func (l *ListPermissionsEmbedded) GetPermissions() []components.ListEntityPermission {
 	if l == nil {
-		return []components.EntityPermission{}
+		return []components.ListEntityPermission{}
 	}
 	return l.Permissions
 }

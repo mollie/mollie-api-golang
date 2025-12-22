@@ -87,10 +87,10 @@ func (g *GetPaymentLinkPaymentsRequest) GetIdempotencyKey() *string {
 
 type GetPaymentLinkPaymentsEmbedded struct {
 	// An array of payment objects.
-	Payments []components.PaymentResponse `json:"payments,omitempty"`
+	Payments []components.ListPaymentResponse `json:"payments,omitempty"`
 }
 
-func (g *GetPaymentLinkPaymentsEmbedded) GetPayments() []components.PaymentResponse {
+func (g *GetPaymentLinkPaymentsEmbedded) GetPayments() []components.ListPaymentResponse {
 	if g == nil {
 		return nil
 	}

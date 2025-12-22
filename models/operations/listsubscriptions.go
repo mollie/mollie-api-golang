@@ -87,10 +87,10 @@ func (l *ListSubscriptionsRequest) GetIdempotencyKey() *string {
 
 type ListSubscriptionsEmbedded struct {
 	// An array of subscription objects.
-	Subscriptions []components.SubscriptionResponse `json:"subscriptions,omitempty"`
+	Subscriptions []components.ListSubscriptionResponse `json:"subscriptions,omitempty"`
 }
 
-func (l *ListSubscriptionsEmbedded) GetSubscriptions() []components.SubscriptionResponse {
+func (l *ListSubscriptionsEmbedded) GetSubscriptions() []components.ListSubscriptionResponse {
 	if l == nil {
 		return nil
 	}

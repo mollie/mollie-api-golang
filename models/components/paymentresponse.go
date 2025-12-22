@@ -7,95 +7,95 @@ import (
 	"github.com/mollie/mollie-api-golang/types"
 )
 
-// AmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
+// PaymentResponseAmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
 // payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
 // costs for a return shipment to the customer.
-type AmountRefunded struct {
+type PaymentResponseAmountRefunded struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (a *AmountRefunded) GetCurrency() string {
-	if a == nil {
+func (p *PaymentResponseAmountRefunded) GetCurrency() string {
+	if p == nil {
 		return ""
 	}
-	return a.Currency
+	return p.Currency
 }
 
-func (a *AmountRefunded) GetValue() string {
-	if a == nil {
+func (p *PaymentResponseAmountRefunded) GetValue() string {
+	if p == nil {
 		return ""
 	}
-	return a.Value
+	return p.Value
 }
 
-// AmountRemaining - The remaining amount that can be refunded. Only available when refunds are available for this payment.
-type AmountRemaining struct {
+// PaymentResponseAmountRemaining - The remaining amount that can be refunded. Only available when refunds are available for this payment.
+type PaymentResponseAmountRemaining struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (a *AmountRemaining) GetCurrency() string {
-	if a == nil {
+func (p *PaymentResponseAmountRemaining) GetCurrency() string {
+	if p == nil {
 		return ""
 	}
-	return a.Currency
+	return p.Currency
 }
 
-func (a *AmountRemaining) GetValue() string {
-	if a == nil {
+func (p *PaymentResponseAmountRemaining) GetValue() string {
+	if p == nil {
 		return ""
 	}
-	return a.Value
+	return p.Value
 }
 
-// AmountCaptured - The total amount that is already captured for this payment. Only available when this payment supports captures.
-type AmountCaptured struct {
+// PaymentResponseAmountCaptured - The total amount that is already captured for this payment. Only available when this payment supports captures.
+type PaymentResponseAmountCaptured struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (a *AmountCaptured) GetCurrency() string {
-	if a == nil {
+func (p *PaymentResponseAmountCaptured) GetCurrency() string {
+	if p == nil {
 		return ""
 	}
-	return a.Currency
+	return p.Currency
 }
 
-func (a *AmountCaptured) GetValue() string {
-	if a == nil {
+func (p *PaymentResponseAmountCaptured) GetValue() string {
+	if p == nil {
 		return ""
 	}
-	return a.Value
+	return p.Value
 }
 
-// AmountChargedBack - The total amount that was charged back for this payment. Only available when the total charged back amount is not
+// PaymentResponseAmountChargedBack - The total amount that was charged back for this payment. Only available when the total charged back amount is not
 // zero.
-type AmountChargedBack struct {
+type PaymentResponseAmountChargedBack struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (a *AmountChargedBack) GetCurrency() string {
-	if a == nil {
+func (p *PaymentResponseAmountChargedBack) GetCurrency() string {
+	if p == nil {
 		return ""
 	}
-	return a.Currency
+	return p.Currency
 }
 
-func (a *AmountChargedBack) GetValue() string {
-	if a == nil {
+func (p *PaymentResponseAmountChargedBack) GetValue() string {
+	if p == nil {
 		return ""
 	}
-	return a.Value
+	return p.Value
 }
 
 // PaymentResponseSettlementAmount - This optional field will contain the approximate amount that will be settled to your account, converted to the
@@ -458,8 +458,8 @@ func (e *PaymentResponseStatus) IsExact() bool {
 	return false
 }
 
-// Receipt - The Point of sale receipt object.
-type Receipt struct {
+// PaymentResponseReceipt - The Point of sale receipt object.
+type PaymentResponseReceipt struct {
 	// A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
 	AuthorizationCode *string `json:"authorizationCode,omitempty"`
 	// The unique number that identifies a specific payment application on a chip card.
@@ -470,40 +470,40 @@ type Receipt struct {
 	CardVerificationMethod *PaymentDetailsReceiptCardVerificationMethodResponse `json:"cardVerificationMethod,omitempty"`
 }
 
-func (r *Receipt) GetAuthorizationCode() *string {
-	if r == nil {
+func (p *PaymentResponseReceipt) GetAuthorizationCode() *string {
+	if p == nil {
 		return nil
 	}
-	return r.AuthorizationCode
+	return p.AuthorizationCode
 }
 
-func (r *Receipt) GetApplicationIdentifier() *string {
-	if r == nil {
+func (p *PaymentResponseReceipt) GetApplicationIdentifier() *string {
+	if p == nil {
 		return nil
 	}
-	return r.ApplicationIdentifier
+	return p.ApplicationIdentifier
 }
 
-func (r *Receipt) GetCardReadMethod() *PaymentDetailsReceiptCardReadMethodResponse {
-	if r == nil {
+func (p *PaymentResponseReceipt) GetCardReadMethod() *PaymentDetailsReceiptCardReadMethodResponse {
+	if p == nil {
 		return nil
 	}
-	return r.CardReadMethod
+	return p.CardReadMethod
 }
 
-func (r *Receipt) GetCardVerificationMethod() *PaymentDetailsReceiptCardVerificationMethodResponse {
-	if r == nil {
+func (p *PaymentResponseReceipt) GetCardVerificationMethod() *PaymentDetailsReceiptCardVerificationMethodResponse {
+	if p == nil {
 		return nil
 	}
-	return r.CardVerificationMethod
+	return p.CardVerificationMethod
 }
 
-// QrCode - Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+// PaymentResponseQrCode - Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
 // the QR code details will be available in this object.
 //
 // The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
 // Bancontact QR payments can be completed by the customer using the Bancontact app.
-type QrCode struct {
+type PaymentResponseQrCode struct {
 	// The height of the QR code image in pixels.
 	Height *int64 `json:"height,omitempty"`
 	// The width of the QR code image in pixels.
@@ -513,25 +513,25 @@ type QrCode struct {
 	Src *string `json:"src,omitempty"`
 }
 
-func (q *QrCode) GetHeight() *int64 {
-	if q == nil {
+func (p *PaymentResponseQrCode) GetHeight() *int64 {
+	if p == nil {
 		return nil
 	}
-	return q.Height
+	return p.Height
 }
 
-func (q *QrCode) GetWidth() *int64 {
-	if q == nil {
+func (p *PaymentResponseQrCode) GetWidth() *int64 {
+	if p == nil {
 		return nil
 	}
-	return q.Width
+	return p.Width
 }
 
-func (q *QrCode) GetSrc() *string {
-	if q == nil {
+func (p *PaymentResponseQrCode) GetSrc() *string {
+	if p == nil {
 		return nil
 	}
-	return q.Src
+	return p.Src
 }
 
 // PaymentResponseDetails - An object containing payment details collected during the payment process. For example, details may include the
@@ -619,7 +619,7 @@ type PaymentResponseDetails struct {
 	// The first 6 digits & last 4 digits of the customer's masked card number.
 	MaskedNumber *string `json:"maskedNumber,omitempty"`
 	// The Point of sale receipt object.
-	Receipt *Receipt `json:"receipt,omitempty"`
+	Receipt *PaymentResponseReceipt `json:"receipt,omitempty"`
 	// The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
 	// reference to Mollie.
 	CreditorIdentifier *string `json:"creditorIdentifier,omitempty"`
@@ -646,7 +646,7 @@ type PaymentResponseDetails struct {
 	//
 	// The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
 	// Bancontact QR payments can be completed by the customer using the Bancontact app.
-	QrCode *QrCode `json:"qrCode,omitempty"`
+	QrCode *PaymentResponseQrCode `json:"qrCode,omitempty"`
 	// For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
 	VoucherNumber *string `json:"voucherNumber,omitempty"`
 	// An array of detail objects for each gift card that was used on this payment, if any.
@@ -902,7 +902,7 @@ func (p *PaymentResponseDetails) GetMaskedNumber() *string {
 	return p.MaskedNumber
 }
 
-func (p *PaymentResponseDetails) GetReceipt() *Receipt {
+func (p *PaymentResponseDetails) GetReceipt() *PaymentResponseReceipt {
 	if p == nil {
 		return nil
 	}
@@ -972,7 +972,7 @@ func (p *PaymentResponseDetails) GetFileReference() *string {
 	return p.FileReference
 }
 
-func (p *PaymentResponseDetails) GetQrCode() *QrCode {
+func (p *PaymentResponseDetails) GetQrCode() *PaymentResponseQrCode {
 	if p == nil {
 		return nil
 	}
@@ -1222,14 +1222,14 @@ type PaymentResponse struct {
 	// The total amount that is already refunded. Only available when refunds are available for this payment. For some
 	// payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
 	// costs for a return shipment to the customer.
-	AmountRefunded *AmountRefunded `json:"amountRefunded,omitempty"`
+	AmountRefunded *PaymentResponseAmountRefunded `json:"amountRefunded,omitempty"`
 	// The remaining amount that can be refunded. Only available when refunds are available for this payment.
-	AmountRemaining *AmountRemaining `json:"amountRemaining,omitempty"`
+	AmountRemaining *PaymentResponseAmountRemaining `json:"amountRemaining,omitempty"`
 	// The total amount that is already captured for this payment. Only available when this payment supports captures.
-	AmountCaptured *AmountCaptured `json:"amountCaptured,omitempty"`
+	AmountCaptured *PaymentResponseAmountCaptured `json:"amountCaptured,omitempty"`
 	// The total amount that was charged back for this payment. Only available when the total charged back amount is not
 	// zero.
-	AmountChargedBack *AmountChargedBack `json:"amountChargedBack,omitempty"`
+	AmountChargedBack *PaymentResponseAmountChargedBack `json:"amountChargedBack,omitempty"`
 	// This optional field will contain the approximate amount that will be settled to your account, converted to the
 	// currency your account is settled in.
 	//
@@ -1445,28 +1445,28 @@ func (p *PaymentResponse) GetAmount() Amount {
 	return p.Amount
 }
 
-func (p *PaymentResponse) GetAmountRefunded() *AmountRefunded {
+func (p *PaymentResponse) GetAmountRefunded() *PaymentResponseAmountRefunded {
 	if p == nil {
 		return nil
 	}
 	return p.AmountRefunded
 }
 
-func (p *PaymentResponse) GetAmountRemaining() *AmountRemaining {
+func (p *PaymentResponse) GetAmountRemaining() *PaymentResponseAmountRemaining {
 	if p == nil {
 		return nil
 	}
 	return p.AmountRemaining
 }
 
-func (p *PaymentResponse) GetAmountCaptured() *AmountCaptured {
+func (p *PaymentResponse) GetAmountCaptured() *PaymentResponseAmountCaptured {
 	if p == nil {
 		return nil
 	}
 	return p.AmountCaptured
 }
 
-func (p *PaymentResponse) GetAmountChargedBack() *AmountChargedBack {
+func (p *PaymentResponse) GetAmountChargedBack() *PaymentResponseAmountChargedBack {
 	if p == nil {
 		return nil
 	}

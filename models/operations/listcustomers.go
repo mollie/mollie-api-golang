@@ -78,12 +78,12 @@ func (l *ListCustomersRequest) GetIdempotencyKey() *string {
 
 type ListCustomersEmbedded struct {
 	// An array of customer objects.
-	Customers []components.CustomerResponse `json:"customers"`
+	Customers []components.ListCustomerResponse `json:"customers"`
 }
 
-func (l *ListCustomersEmbedded) GetCustomers() []components.CustomerResponse {
+func (l *ListCustomersEmbedded) GetCustomers() []components.ListCustomerResponse {
 	if l == nil {
-		return []components.CustomerResponse{}
+		return []components.ListCustomerResponse{}
 	}
 	return l.Customers
 }

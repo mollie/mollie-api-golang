@@ -26,72 +26,72 @@ func (e *EntityInvoiceStatus) IsExact() bool {
 	return false
 }
 
-// NetAmount - Total amount of the invoice, excluding VAT.
-type NetAmount struct {
+// EntityInvoiceNetAmount - Total amount of the invoice, excluding VAT.
+type EntityInvoiceNetAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (n *NetAmount) GetCurrency() string {
-	if n == nil {
+func (e *EntityInvoiceNetAmount) GetCurrency() string {
+	if e == nil {
 		return ""
 	}
-	return n.Currency
+	return e.Currency
 }
 
-func (n *NetAmount) GetValue() string {
-	if n == nil {
+func (e *EntityInvoiceNetAmount) GetValue() string {
+	if e == nil {
 		return ""
 	}
-	return n.Value
+	return e.Value
 }
 
-// VatAmount - VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
+// EntityInvoiceVatAmount - VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
 // be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
 // the EU, no VAT will be charged.
-type VatAmount struct {
+type EntityInvoiceVatAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (v *VatAmount) GetCurrency() string {
-	if v == nil {
+func (e *EntityInvoiceVatAmount) GetCurrency() string {
+	if e == nil {
 		return ""
 	}
-	return v.Currency
+	return e.Currency
 }
 
-func (v *VatAmount) GetValue() string {
-	if v == nil {
+func (e *EntityInvoiceVatAmount) GetValue() string {
+	if e == nil {
 		return ""
 	}
-	return v.Value
+	return e.Value
 }
 
-// GrossAmount - Total amount of the invoice, including VAT.
-type GrossAmount struct {
+// EntityInvoiceGrossAmount - Total amount of the invoice, including VAT.
+type EntityInvoiceGrossAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
 }
 
-func (g *GrossAmount) GetCurrency() string {
-	if g == nil {
+func (e *EntityInvoiceGrossAmount) GetCurrency() string {
+	if e == nil {
 		return ""
 	}
-	return g.Currency
+	return e.Currency
 }
 
-func (g *GrossAmount) GetValue() string {
-	if g == nil {
+func (e *EntityInvoiceGrossAmount) GetValue() string {
+	if e == nil {
 		return ""
 	}
-	return g.Value
+	return e.Value
 }
 
 type EntityInvoiceLine struct {
@@ -184,13 +184,13 @@ type EntityInvoice struct {
 	VatNumber *string             `json:"vatNumber"`
 	Status    EntityInvoiceStatus `json:"status"`
 	// Total amount of the invoice, excluding VAT.
-	NetAmount NetAmount `json:"netAmount"`
+	NetAmount EntityInvoiceNetAmount `json:"netAmount"`
 	// VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
 	// be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
 	// the EU, no VAT will be charged.
-	VatAmount VatAmount `json:"vatAmount"`
+	VatAmount EntityInvoiceVatAmount `json:"vatAmount"`
 	// Total amount of the invoice, including VAT.
-	GrossAmount GrossAmount `json:"grossAmount"`
+	GrossAmount EntityInvoiceGrossAmount `json:"grossAmount"`
 	// The collection of products which make up the invoice.
 	Lines []EntityInvoiceLine `json:"lines"`
 	// The invoice date in `YYYY-MM-DD` format.
@@ -238,23 +238,23 @@ func (e *EntityInvoice) GetStatus() EntityInvoiceStatus {
 	return e.Status
 }
 
-func (e *EntityInvoice) GetNetAmount() NetAmount {
+func (e *EntityInvoice) GetNetAmount() EntityInvoiceNetAmount {
 	if e == nil {
-		return NetAmount{}
+		return EntityInvoiceNetAmount{}
 	}
 	return e.NetAmount
 }
 
-func (e *EntityInvoice) GetVatAmount() VatAmount {
+func (e *EntityInvoice) GetVatAmount() EntityInvoiceVatAmount {
 	if e == nil {
-		return VatAmount{}
+		return EntityInvoiceVatAmount{}
 	}
 	return e.VatAmount
 }
 
-func (e *EntityInvoice) GetGrossAmount() GrossAmount {
+func (e *EntityInvoice) GetGrossAmount() EntityInvoiceGrossAmount {
 	if e == nil {
-		return GrossAmount{}
+		return EntityInvoiceGrossAmount{}
 	}
 	return e.GrossAmount
 }

@@ -170,12 +170,12 @@ type ListMethodsEmbedded struct {
 	// reference of the payment method object, refer
 	// to the [Get payment method endpoint](get-method)
 	// documentation.
-	Methods []components.EntityMethod `json:"methods"`
+	Methods []components.ListEntityMethod `json:"methods"`
 }
 
-func (l *ListMethodsEmbedded) GetMethods() []components.EntityMethod {
+func (l *ListMethodsEmbedded) GetMethods() []components.ListEntityMethod {
 	if l == nil {
-		return []components.EntityMethod{}
+		return []components.ListEntityMethod{}
 	}
 	return l.Methods
 }
