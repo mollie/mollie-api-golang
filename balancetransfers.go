@@ -119,9 +119,9 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -366,9 +366,9 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -619,9 +619,9 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}

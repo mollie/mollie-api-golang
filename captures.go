@@ -123,9 +123,9 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -374,9 +374,9 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -624,9 +624,9 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}

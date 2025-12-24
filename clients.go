@@ -117,9 +117,9 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -368,9 +368,9 @@ func (s *Clients) Get(ctx context.Context, id string, embed *string, idempotency
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}

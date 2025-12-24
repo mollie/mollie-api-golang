@@ -119,9 +119,9 @@ func (s *Profiles) Create(ctx context.Context, profileRequest components.Profile
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -370,9 +370,9 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -623,9 +623,9 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempoten
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -880,9 +880,9 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -1128,9 +1128,9 @@ func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -1357,9 +1357,9 @@ func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts 
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}

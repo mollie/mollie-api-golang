@@ -117,9 +117,9 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}
@@ -370,9 +370,9 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 			retryConfig = &retry.Config{
 				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
 					InitialInterval: 500,
-					MaxInterval:     60000,
-					Exponent:        1.5,
-					MaxElapsedTime:  3600000,
+					MaxInterval:     5000,
+					Exponent:        2,
+					MaxElapsedTime:  7500,
 				},
 				RetryConnectionErrors: true,
 			}

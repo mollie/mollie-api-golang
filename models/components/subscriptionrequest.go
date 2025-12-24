@@ -69,6 +69,7 @@ type SubscriptionRequest struct {
 	// well. Be sure to verify the payment's subscription ID and its status.
 	WebhookURL *string `json:"webhookUrl,omitempty"`
 	MandateID  *string `json:"mandateId,omitempty"`
+	ProfileID  *string `json:"profileId,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
@@ -145,6 +146,13 @@ func (s *SubscriptionRequest) GetMandateID() *string {
 		return nil
 	}
 	return s.MandateID
+}
+
+func (s *SubscriptionRequest) GetProfileID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ProfileID
 }
 
 func (s *SubscriptionRequest) GetTestmode() *bool {

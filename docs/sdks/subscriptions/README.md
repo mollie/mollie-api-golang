@@ -76,6 +76,7 @@ func main() {
         },
         WebhookURL: client.Pointer("https://example.com/webhook"),
         MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Testmode: client.Pointer(false),
     })
     if err != nil {

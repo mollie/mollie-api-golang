@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 11ab6e843645d2c29244cae0c73aa107
+  docChecksum: 266915dbd7c4f4ca104ac0cf85626c74
   docVersion: 1.0.0
-  speakeasyVersion: 1.680.3
-  generationVersion: 2.788.5
-  releaseVersion: 0.9.5
-  configChecksum: b73bb018da8ee343570be56b375c6dae
+  speakeasyVersion: 1.680.5
+  generationVersion: 2.788.7
+  releaseVersion: 0.9.6
+  configChecksum: 408ee203a20790fc5ecdb8155229ec06
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: cafa286a-f9f4-430d-a6f6-899bd9426ce1
-  pristine_commit_hash: 2b9e829126d6f1b1b9ffa78f5d9ff80a68ad3704
-  pristine_tree_hash: a665d75fc5f807b8ab90753a80686a1a2290cc4b
+  generation_id: cec146c1-d993-49c1-84ac-389d6d139867
+  pristine_commit_hash: 319a374a40e07e8c425090aa83f5df8edb3a78a7
+  pristine_tree_hash: 15dbc6a5969a97ca9e99db90ef2ed7278fcfe63d
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.6
+    core: 3.13.7
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -59,44 +59,44 @@ trackedFiles:
     pristine_git_object: 7c5a4d2104529bd099728b5ce9a1b5508f4e72e3
   balances.go:
     id: 3e5eeed258ec
-    last_write_checksum: sha1:d90157a9be51c4d166e6797bd3924e00871a1cee
-    pristine_git_object: 792b428c5b195637317e72b4851cfeaa38b1c6a9
+    last_write_checksum: sha1:fda408181c49e4bfd77b299d0c6466f0a03c5672
+    pristine_git_object: 65bdcf5847057f9cd81b2cf783377cac5383f8dd
   balancetransfers.go:
     id: 533eef111866
-    last_write_checksum: sha1:3a58ce62956132ad7e421c025db76f6f377b2745
-    pristine_git_object: 1aab486cc70d46e8b64b9a8ab32144e9596c0d2d
+    last_write_checksum: sha1:5ca0a7359fdb516f8de23b632f99edebd9890ffd
+    pristine_git_object: 0b9e8c66aa3b2edc8a97f3f6350980d8d410353d
   capabilities.go:
     id: c885833ada0d
-    last_write_checksum: sha1:1e1664696ba8444d5f0f50ef5eeba08a3feeaaf6
-    pristine_git_object: 2a4a86dbe32c48324ae34c06eee92fa91f6cfae4
+    last_write_checksum: sha1:8b9eed662921795f37ba319ba4e52d4502291b35
+    pristine_git_object: 42a57bca55c8822b5664855b5208661028ed098d
   captures.go:
     id: 0f5123ff80de
-    last_write_checksum: sha1:51df1826f421249727b2a6e3fc2d35deeb9d7df6
-    pristine_git_object: 673ec3012a4aecf6ce012f88d83d2debcae79628
+    last_write_checksum: sha1:60c836a1047b541cb70701abc7f4664516fc7a86
+    pristine_git_object: 476888da4ce28f458e0fa58004ed4f3128f9cbee
   chargebacks.go:
     id: 02c7e4df797b
-    last_write_checksum: sha1:c253145992c0fcc5a242961e0b024e1009bedfc7
-    pristine_git_object: bc38b9a23393d6ec04cc6d646f15fdadcb29501b
+    last_write_checksum: sha1:4f665d5de9e55113aa90150e249236c1d0310693
+    pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:a26c0ac36fd9f26642e10fed3f8ac2e035dc3093
-    pristine_git_object: 74b20c356550936d9f3b2146c48896eb3d7023df
+    last_write_checksum: sha1:dccf645be3122e34ae3fd5247a245fdd4c8af22b
+    pristine_git_object: 592071ca856ccc6165fe822ae66f0c5078f6f165
   clientlinks.go:
     id: 380a1fe44314
-    last_write_checksum: sha1:f22eb8740c70bf7d0df3be9a98af764d1dd17b0a
-    pristine_git_object: c378f54399a951cbdcbcc7df2d56f943cff555af
+    last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
+    pristine_git_object: f27dd90e0aa7590bcdcbd5ed29b495d4cb68f9d5
   clients.go:
     id: aedf6851f8e6
-    last_write_checksum: sha1:7386618e68f523441e9f9b3138c8b9e35910ef70
-    pristine_git_object: 9db67a2f546da763ff467d415a7b9d7c1d646969
+    last_write_checksum: sha1:ce8b604ab2048310df030fcaec851c15fb60770f
+    pristine_git_object: f356bc6afc5fbd32d21b8f56af11f36cd8f7e197
   customers.go:
     id: a1d3d926ce55
-    last_write_checksum: sha1:34d9e3d1e794668beb12bb68702a278e15f82cc9
-    pristine_git_object: b3a6e942d0edb1bc8a9f16ed8a1e1ffc21366131
+    last_write_checksum: sha1:e2c8253c9147b024d81f11bd0803ba7356c87d22
+    pristine_git_object: d920cd5d7df491480040ca72c57a173dc79ee404
   delayedrouting.go:
     id: 2361eb8ffd66
-    last_write_checksum: sha1:cbb2ed260e103d29cbc2d3782f9c169d1da66e15
-    pristine_git_object: f331a5503779e073683a15fc39b298c59c6b9f2b
+    last_write_checksum: sha1:33ee56e2d787af85b5353f2c8ea4f8f88f611628
+    pristine_git_object: 2248df56b5902dbe4ca8ef5e1ecd52e7547c7337
   docs/models/apierrors/errorresponse.md:
     id: 385118d32265
     last_write_checksum: sha1:e57fc6aa2e32634dd0d9ca5e183757cbbddc7a02
@@ -1683,8 +1683,8 @@ trackedFiles:
     pristine_git_object: 2e456ee14d347e4ccd6a77bafbebd9c5fa37cda5
   docs/models/components/subscriptionrequest.md:
     id: b28c7cffbb1b
-    last_write_checksum: sha1:117370ac3756f3c08eaa75ef6b5ed9296e6f406c
-    pristine_git_object: d9715a7c005ca3317cae1c27cc199393112ff0b2
+    last_write_checksum: sha1:a10b399be9c1f3117f24e32a56e88e78d1b1d4ce
+    pristine_git_object: f3f4bcf1775148a94ef943a2bad0f6d21c6adfbb
   docs/models/components/subscriptionrequestapplicationfee.md:
     id: 92a5c9e69cae
     last_write_checksum: sha1:a905e3e89d7b910809f73939cd91d3194ec9e97e
@@ -3231,8 +3231,8 @@ trackedFiles:
     pristine_git_object: 99a9d247d4429781567813041292633f16223c77
   docs/sdks/subscriptions/README.md:
     id: 298b9ab3c3e0
-    last_write_checksum: sha1:34198d47f833aa70a7d6dc72caaa6a9101dae8c4
-    pristine_git_object: c85e37e7deb227396c5fd295dcc910dd6d838649
+    last_write_checksum: sha1:aed92568eba003cf5816654554a6bbde2872da1d
+    pristine_git_object: 0969255cf18a92243c5ef60b478bfe01d325d12a
   docs/sdks/terminals/README.md:
     id: 4b9f7986e224
     last_write_checksum: sha1:aa94b322e87bb1a2a495ec5f94090cdec1fdcf8b
@@ -3323,16 +3323,16 @@ trackedFiles:
     pristine_git_object: ee4300f7b7469c4e66572ada7b95f7ff7f2e506a
   invoices.go:
     id: 362900f5e35b
-    last_write_checksum: sha1:ccb8ca64678c5e664e09746f9d105b009c429595
-    pristine_git_object: 9643e0487386cfb533d61760c7ddad90ffe587ff
+    last_write_checksum: sha1:fef431fb42f49bcc4a1c626c093c11e1d68fc844
+    pristine_git_object: cf0398cf8eb675c2f3de3b9dc3696befa2fb5fd3
   mandates.go:
     id: 67097529fab8
-    last_write_checksum: sha1:62e690bf9fde355d363ba86d5f2a8574cbac806e
-    pristine_git_object: 094fb93e04a2a590c18b02827610fc795ec6a9d8
+    last_write_checksum: sha1:14db96de556e5157df17ef8ee73219867560b219
+    pristine_git_object: 55a691981016421a4ce3838be8da4966b41b9204
   methods.go:
     id: ea83307ea987
-    last_write_checksum: sha1:267d52254a7ef3107b33abc16ae0375b05c3841a
-    pristine_git_object: f97cb3189b187cec3008ece2c0b635085475fdb8
+    last_write_checksum: sha1:4561eba426838e2e6bbbdb3ddc9767019f9b4943
+    pristine_git_object: e37c957128aff878ebdcf695f4844682fd3e488b
   models/apierrors/apierror.go:
     id: 4cecf27a5a54
     last_write_checksum: sha1:e699d3325ea82ea2b0d29656396210f0513c3391
@@ -3999,8 +3999,8 @@ trackedFiles:
     pristine_git_object: f331a962be7933bfc0603b42acc98f25c7d787ee
   models/components/subscriptionrequest.go:
     id: 68b16acb7341
-    last_write_checksum: sha1:3bbf3e334c4c87b04135a288965285ec8c77863f
-    pristine_git_object: 2eadbbd5435e28a58133edf8fc23a38ba8786c64
+    last_write_checksum: sha1:0a5dbf01aed36ebc2f9a7fe008fb5543eac0e066
+    pristine_git_object: 70825fe0d9b906d665353b94b308f400ad456b74
   models/components/subscriptionresponse.go:
     id: acfac6216c54
     last_write_checksum: sha1:fb8653554ca6cdf776b60ebb90d928f0aef43407
@@ -4427,8 +4427,8 @@ trackedFiles:
     pristine_git_object: 9ccc9165d5024d9c456df802275056922ae8e3bb
   onboarding.go:
     id: d1e4a134fcc2
-    last_write_checksum: sha1:5ee5222a45664965f747bc600ba60be96b4ec14d
-    pristine_git_object: 54dd0bdb27b7539116b2ab9b83fc1dda32b7b80b
+    last_write_checksum: sha1:41a694d5560a870645f26bc14cdaf216d2332e90
+    pristine_git_object: cb687b361b3d734dbbcd7b781eb83ac918e8b8e9
   optionalnullable/optionalnullable.go:
     id: ce60f259ead3
     last_write_checksum: sha1:d6aff1a420c31e025ea21d46cf056e305ae76fe8
@@ -4439,48 +4439,48 @@ trackedFiles:
     pristine_git_object: e6e5a01c6e721e879e24a38a1f97e3e27d4686d4
   organizations.go:
     id: c466ebb9a97c
-    last_write_checksum: sha1:6c39febf79913ab8067d7ef24aa2054050e39f50
-    pristine_git_object: c3752aed04ead0106b060a160e016def92db9c1f
+    last_write_checksum: sha1:45f34350e2358bd8f7d2f994ed0317f2fc7ed248
+    pristine_git_object: 4f04aa9d3cff4a883610ffa64dafb3661f8a392c
   paymentlinks.go:
     id: 952b28e656a1
-    last_write_checksum: sha1:4fb3a220fd5a1d15a36477fa26466e229e74be61
-    pristine_git_object: 24ae30aa1a9c05db64c1aeb826f4d7a32c063f29
+    last_write_checksum: sha1:22ed79e8daaaff5357bfab1dc8c272af453d5a0c
+    pristine_git_object: 3faa00f165e9dbb6c056457b112c4ca17c10a5b3
   payments.go:
     id: d38f00179e5a
-    last_write_checksum: sha1:71f492a8d04ee2273a640552bfe2332b9be7b83a
-    pristine_git_object: 09bb86a9acec90951b4624ec6d72e162dd07c63b
+    last_write_checksum: sha1:fd62a39527bae4f93169f6d418422e6f9e76ac60
+    pristine_git_object: 1700550f5b21aed6c3df8934e6d48bc7d11bcdd5
   permissions.go:
     id: 24d6fe5c456e
-    last_write_checksum: sha1:52622d92373850a58ca45636558038b2571fc573
-    pristine_git_object: 9915c11c5c6b2ebc298c1fbc4f2f0058d9371d5e
+    last_write_checksum: sha1:9c8680206cd532732ab9631467133f4e5e741314
+    pristine_git_object: 7c87833c626320879763cb3c599d7e05c5f07b1f
   profiles.go:
     id: 6038c65b8d50
-    last_write_checksum: sha1:87694882e34d2224d03ce0be74e84ba6c2a8604e
-    pristine_git_object: 01c611f62d322c2b20e7b0ec7bbfbca3c3f8e267
+    last_write_checksum: sha1:f75cd836a1735818976158a8fd2d40c7138d7ed3
+    pristine_git_object: 41ec6316ade7ed7d6f9d6d291471d77d76eae084
   refunds.go:
     id: ebaec85bd3a4
-    last_write_checksum: sha1:c48249c25cac819a04991bcae0f536f8523241a1
-    pristine_git_object: e598f430543e9c8525ec5e0c1a633befaf9777d0
+    last_write_checksum: sha1:8aa219d81478045f4009eaf238b4fd48553769e7
+    pristine_git_object: 6603e25f20a8de238eea3ed3a45480b8e72a6c7a
   retry/config.go:
     id: 82d673cb0389
     last_write_checksum: sha1:f565273be789ffe0e3c160de1ac72a63cfe67fbe
     pristine_git_object: aa809fccb3445b1e2530a979dad620512f50e70f
   salesinvoices.go:
     id: 089376558bce
-    last_write_checksum: sha1:74860216071844e5c3f62ca1ab15383ef0108660
-    pristine_git_object: 31e602ca6e263de685c98f9440db1a20e6373484
+    last_write_checksum: sha1:87f3c42b8e880f47d934ba41a18c06a3e42f7e43
+    pristine_git_object: 25aa696d6485b2158bb7e46930d433f59ac5ae48
   settlements.go:
     id: b2d865202d0d
-    last_write_checksum: sha1:8de399303bf8f4047934744cddc767f59913e11e
-    pristine_git_object: de206e451648b2851aadc5b66f4156773b4de79f
+    last_write_checksum: sha1:76606f33adb6e37f4f534066b3238137d28bb2ce
+    pristine_git_object: 4c7a78b115b71ab1a771e21e1023d4360885cc32
   subscriptions.go:
     id: 7ffd9f652eea
-    last_write_checksum: sha1:cb6b5caab3c6ec1b5a05e77847d800430cbd3863
-    pristine_git_object: 8c41e4e92ed985447b70a54e3944079ecaa1ae06
+    last_write_checksum: sha1:ac1d312318d7ab4f93571505bda7cdcabbd3a70d
+    pristine_git_object: 3d3c247e287056be19aaef5fdd2e1be4f97d5141
   terminals.go:
     id: 4462dab7faee
-    last_write_checksum: sha1:3d2a0284d9a87b69f94f330859e7b48de846d5cf
-    pristine_git_object: 6e41777e57b3cf1a8bf7a1a734157f1b485dee48
+    last_write_checksum: sha1:39d8af38c065e845011d1b66fce75ed76dc7c9eb
+    pristine_git_object: 58a12ab7878b040cec7325eb6a9570e3b6a6a56b
   types/bigint.go:
     id: 6f911e1a03c3
     last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
@@ -4499,16 +4499,16 @@ trackedFiles:
     pristine_git_object: 35c439d2661e08fcb6a854096fd7b9a8561b3938
   wallets.go:
     id: 548ba02ed90f
-    last_write_checksum: sha1:0a6a8d96b726622904d69621a364f3fb41acc855
-    pristine_git_object: 591c281a30a49efe95f2a65c442d55ba8c932989
+    last_write_checksum: sha1:601acd902ae3d62c61bdc87bb0f78df94fc75089
+    pristine_git_object: 332d3eed807ea677f16ace957ec2bc474b7861b3
   webhookevents.go:
     id: 178e3c8436ac
-    last_write_checksum: sha1:1f5d5783dc9f3f03c48db5ebb649c25684f00f22
-    pristine_git_object: 4828790c489aee84e13da23d33853e64a4a07942
+    last_write_checksum: sha1:52309c3e925568c1e8ed8d86eea3dda34334f855
+    pristine_git_object: 9561d405a914574b1fc949db5ae3be228548022c
   webhooks.go:
     id: 72c7156317c9
-    last_write_checksum: sha1:4adcc06a6ca117e225cdcda03863c3fb9fedd2d8
-    pristine_git_object: 83935b598dc22d7fd948fa407a61fe9fc33694fc
+    last_write_checksum: sha1:24fcd8dfc314d9a855b57746a24a6ec912896788
+    pristine_git_object: 896c5bf216f94296cb89d2bf2a017621e9f09470
 examples:
   list-balances:
     list-balances-200-1:
@@ -7386,7 +7386,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "profileId": "pfl_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -7397,7 +7397,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "profileId": "pfl_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"0": "<value 1>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37+00:00", "canceledAt": "2025-01-01T13:10:19+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -7769,35 +7769,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes:
-  * `Client.Balances.List()`:  `response.Embedded.Balances.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Settlements.List()`:  `response.Embedded.Settlements.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Settlements.List-Payments()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Settlements.List-Refunds()`:  `response.Embedded.Refunds.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Settlements.List-Chargebacks()`:  `response.Embedded.Chargebacks.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Invoices.List()`:  `response.Embedded.Invoices.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Permissions.List()`:  `response.Embedded.Permissions.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Profiles.List()`:  `response.Embedded.Profiles.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Clients.List()`:  `response.Embedded.Clients.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Webhooks.List()`:  `response.Embedded.Webhooks.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Payments.List()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Methods.List()`:  `response.Embedded.Methods.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Methods.All()`:  `response.Embedded.Methods.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Refunds.List()`:  `response.Embedded.Refunds.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Refunds.All()`:  `response.Embedded.Refunds.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Chargebacks.List()`:  `response.Embedded.Chargebacks.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Chargebacks.All()`:  `response.Embedded.Chargebacks.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Payment-Links.List-Payments()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Terminals.List()`:  `response.Embedded.Terminals.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Delayed-Routing.List()`:  `response.Embedded.Routes.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Customers.List()`:  `response.Embedded.Customers.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Customers.List-Payments()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Mandates.List()`:  `response.Embedded.Mandates.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Subscriptions.List()`:  `response.Embedded.Subscriptions.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Subscriptions.All()`:  `response.Embedded.Subscriptions.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Subscriptions.List-Payments()`:  `response.Embedded.Payments.[].Links.Documentation` **Removed** **Breaking** :warning:
-  * `Client.Sales-Invoices.List()`:  `response.Embedded.SalesInvoices.[].Links.Documentation` **Removed** **Breaking** :warning:
+releaseNotes: "## Go SDK Changes:\n* `Client.Subscriptions.Create()`: \n  *  `request.Subscription-Request.ProfileId` **Added**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
