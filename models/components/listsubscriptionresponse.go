@@ -156,7 +156,7 @@ type ListSubscriptionResponse struct {
 	//
 	// This webhook will receive **all** events for the subscription's payments. This may include payment failures as
 	// well. Be sure to verify the payment's subscription ID and its status.
-	WebhookURL string `json:"webhookUrl"`
+	WebhookURL *string `json:"webhookUrl"`
 	// The customer this subscription belongs to.
 	CustomerID string  `json:"customerId"`
 	MandateID  *string `json:"mandateId,omitempty"`
@@ -267,9 +267,9 @@ func (l *ListSubscriptionResponse) GetMetadata() *Metadata {
 	return l.Metadata
 }
 
-func (l *ListSubscriptionResponse) GetWebhookURL() string {
+func (l *ListSubscriptionResponse) GetWebhookURL() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.WebhookURL
 }

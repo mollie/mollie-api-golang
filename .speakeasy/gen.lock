@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 266915dbd7c4f4ca104ac0cf85626c74
+  docChecksum: d8adc5b190687e805fcf0458df28af7f
   docVersion: 1.0.0
-  speakeasyVersion: 1.680.5
+  speakeasyVersion: 1.680.10
   generationVersion: 2.788.7
-  releaseVersion: 0.9.6
-  configChecksum: 408ee203a20790fc5ecdb8155229ec06
+  releaseVersion: 0.9.7
+  configChecksum: 37d2bfa8a71767dc952bc298e29da5ff
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: cec146c1-d993-49c1-84ac-389d6d139867
-  pristine_commit_hash: 319a374a40e07e8c425090aa83f5df8edb3a78a7
-  pristine_tree_hash: 15dbc6a5969a97ca9e99db90ef2ed7278fcfe63d
+  generation_id: 67436fb8-0a67-4cf8-850a-512c93caa955
+  pristine_commit_hash: 96a777c7db27db8f03c19670b3a04f6975b74b8e
+  pristine_tree_hash: 935c73e39a3bf4894cbec32a584ca93892c0c52b
 features:
   go:
     additionalDependencies: 0.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:dccf645be3122e34ae3fd5247a245fdd4c8af22b
-    pristine_git_object: 592071ca856ccc6165fe822ae66f0c5078f6f165
+    last_write_checksum: sha1:3b64fba0b8749bbc22af1bf5e224d3d2b9ceaa41
+    pristine_git_object: f612eebe5fb7f32514ff645de3c504205907001f
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -3659,8 +3659,8 @@ trackedFiles:
     pristine_git_object: 1f5c1de1e722802c3ef53f5eb463c98a9d305c39
   models/components/listsubscriptionresponse.go:
     id: 1e516867248f
-    last_write_checksum: sha1:b02e2621310102bddac441002b48e69b80d3da3d
-    pristine_git_object: b7e92dd40c61889112131eafea19bcc26988c304
+    last_write_checksum: sha1:c7463acbd6871a4558e8a42935a194b38e773906
+    pristine_git_object: d21e4e3df77faad853d0abbe86a7a74bdc114712
   models/components/locale.go:
     id: 93b814fef79b
     last_write_checksum: sha1:beac4b8b9ab322438d8054f4a1428fbf96ef53cb
@@ -4003,8 +4003,8 @@ trackedFiles:
     pristine_git_object: 70825fe0d9b906d665353b94b308f400ad456b74
   models/components/subscriptionresponse.go:
     id: acfac6216c54
-    last_write_checksum: sha1:fb8653554ca6cdf776b60ebb90d928f0aef43407
-    pristine_git_object: 84c1ae52dfc793abb2b91d707366179af870c45b
+    last_write_checksum: sha1:befc0c4cef1233073a8cd5f0269af72ddb97875f
+    pristine_git_object: b8ddc2414eb69a9088d69e0b709069f5f0bc27b0
   models/components/subtotals.go:
     id: d8be3b8cbd51
     last_write_checksum: sha1:3c6a0053a069eec1b5a4fd9456a2312663ffa73f
@@ -7769,7 +7769,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Subscriptions.Create()`: \n  *  `request.Subscription-Request.ProfileId` **Added**\n"
+releaseNotes: "## Go SDK Changes:\n* `Client.Subscriptions.Create()`: \n  *  `request.Subscription-Request.WebhookUrl` **Changed**\n  *  `response.WebhookUrl` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.List()`:  `response.Embedded.Subscriptions.[].WebhookUrl` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.Get()`:  `response.WebhookUrl` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.Update()`:  `response.WebhookUrl` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.Cancel()`:  `response.WebhookUrl` **Changed** **Breaking** :warning:\n* `Client.Subscriptions.All()`:  `response.Embedded.Subscriptions.[].WebhookUrl` **Changed** **Breaking** :warning:\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
