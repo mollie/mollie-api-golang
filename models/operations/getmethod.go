@@ -125,7 +125,7 @@ func (g *GetMethodRequest) GetIdempotencyKey() *string {
 type GetMethodResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The payment method object.
-	EntityMethod *components.EntityMethod
+	EntityMethodGet *components.EntityMethodGet
 }
 
 func (g *GetMethodResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -135,9 +135,9 @@ func (g *GetMethodResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetMethodResponse) GetEntityMethod() *components.EntityMethod {
+func (g *GetMethodResponse) GetEntityMethodGet() *components.EntityMethodGet {
 	if g == nil {
 		return nil
 	}
-	return g.EntityMethod
+	return g.EntityMethodGet
 }

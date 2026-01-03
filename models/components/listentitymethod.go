@@ -32,7 +32,6 @@ const (
 	ListEntityMethodIDPaybybank    ListEntityMethodID = "paybybank"
 	ListEntityMethodIDPaypal       ListEntityMethodID = "paypal"
 	ListEntityMethodIDPaysafecard  ListEntityMethodID = "paysafecard"
-	ListEntityMethodIDPointofsale  ListEntityMethodID = "pointofsale"
 	ListEntityMethodIDPrzelewy24   ListEntityMethodID = "przelewy24"
 	ListEntityMethodIDRiverty      ListEntityMethodID = "riverty"
 	ListEntityMethodIDSatispay     ListEntityMethodID = "satispay"
@@ -41,14 +40,6 @@ const (
 	ListEntityMethodIDTwint        ListEntityMethodID = "twint"
 	ListEntityMethodIDVipps        ListEntityMethodID = "vipps"
 	ListEntityMethodIDVoucher      ListEntityMethodID = "voucher"
-	// ListEntityMethodIDKlarnapaylater Deprecated, use 'klarna' instead
-	ListEntityMethodIDKlarnapaylater ListEntityMethodID = "klarnapaylater"
-	// ListEntityMethodIDKlarnapaynow Deprecated, use 'klarna' instead
-	ListEntityMethodIDKlarnapaynow ListEntityMethodID = "klarnapaynow"
-	// ListEntityMethodIDKlarnasliceit Deprecated, use 'klarna' instead
-	ListEntityMethodIDKlarnasliceit ListEntityMethodID = "klarnasliceit"
-	// ListEntityMethodIDPayconiq No longer available
-	ListEntityMethodIDPayconiq ListEntityMethodID = "payconiq"
 )
 
 func (e ListEntityMethodID) ToPointer() *ListEntityMethodID {
@@ -59,7 +50,7 @@ func (e ListEntityMethodID) ToPointer() *ListEntityMethodID {
 func (e *ListEntityMethodID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher":
 			return true
 		}
 	}

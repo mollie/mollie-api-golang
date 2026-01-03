@@ -48,6 +48,9 @@ func newMethods(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // By default, only payment methods for the Euro currency are returned. If you
 // wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
 // `amount` parameters.
+//
+// ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
+// a non-online payment method, you can use the [Get payment method endpoint](get-method).
 func (s *Methods) List(ctx context.Context, request operations.ListMethodsRequest, opts ...operations.Option) (*operations.ListMethodsResponse, error) {
 	globals := operations.ListMethodsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -299,6 +302,9 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 // method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
 //
 // The list can optionally be filtered using a number of parameters described below.
+//
+// ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
+// a non-online payment method, you can use the [Get payment method endpoint](get-method).
 func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequest, opts ...operations.Option) (*operations.ListAllMethodsResponse, error) {
 	globals := operations.ListAllMethodsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -742,12 +748,12 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 				return nil, err
 			}
 
-			var out components.EntityMethod
+			var out components.EntityMethodGet
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityMethod = &out
+			res.EntityMethodGet = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
