@@ -3,6 +3,9 @@
 package components
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/types"
 )
@@ -278,6 +281,191 @@ func (p *PaymentRequestBillingAddress) GetCountry() *string {
 	return p.Country
 }
 
+type PaymentRequestMethodEnum string
+
+const (
+	PaymentRequestMethodEnumAlma         PaymentRequestMethodEnum = "alma"
+	PaymentRequestMethodEnumApplepay     PaymentRequestMethodEnum = "applepay"
+	PaymentRequestMethodEnumBacs         PaymentRequestMethodEnum = "bacs"
+	PaymentRequestMethodEnumBancomatpay  PaymentRequestMethodEnum = "bancomatpay"
+	PaymentRequestMethodEnumBancontact   PaymentRequestMethodEnum = "bancontact"
+	PaymentRequestMethodEnumBanktransfer PaymentRequestMethodEnum = "banktransfer"
+	PaymentRequestMethodEnumBelfius      PaymentRequestMethodEnum = "belfius"
+	PaymentRequestMethodEnumBillie       PaymentRequestMethodEnum = "billie"
+	PaymentRequestMethodEnumBizum        PaymentRequestMethodEnum = "bizum"
+	PaymentRequestMethodEnumBlik         PaymentRequestMethodEnum = "blik"
+	PaymentRequestMethodEnumCreditcard   PaymentRequestMethodEnum = "creditcard"
+	PaymentRequestMethodEnumDirectdebit  PaymentRequestMethodEnum = "directdebit"
+	PaymentRequestMethodEnumEps          PaymentRequestMethodEnum = "eps"
+	PaymentRequestMethodEnumGiftcard     PaymentRequestMethodEnum = "giftcard"
+	PaymentRequestMethodEnumIdeal        PaymentRequestMethodEnum = "ideal"
+	PaymentRequestMethodEnumIn3          PaymentRequestMethodEnum = "in3"
+	PaymentRequestMethodEnumKbc          PaymentRequestMethodEnum = "kbc"
+	PaymentRequestMethodEnumKlarna       PaymentRequestMethodEnum = "klarna"
+	PaymentRequestMethodEnumMbway        PaymentRequestMethodEnum = "mbway"
+	PaymentRequestMethodEnumMobilepay    PaymentRequestMethodEnum = "mobilepay"
+	PaymentRequestMethodEnumMultibanco   PaymentRequestMethodEnum = "multibanco"
+	PaymentRequestMethodEnumMybank       PaymentRequestMethodEnum = "mybank"
+	PaymentRequestMethodEnumPaybybank    PaymentRequestMethodEnum = "paybybank"
+	PaymentRequestMethodEnumPaypal       PaymentRequestMethodEnum = "paypal"
+	PaymentRequestMethodEnumPaysafecard  PaymentRequestMethodEnum = "paysafecard"
+	PaymentRequestMethodEnumPointofsale  PaymentRequestMethodEnum = "pointofsale"
+	PaymentRequestMethodEnumPrzelewy24   PaymentRequestMethodEnum = "przelewy24"
+	PaymentRequestMethodEnumRiverty      PaymentRequestMethodEnum = "riverty"
+	PaymentRequestMethodEnumSatispay     PaymentRequestMethodEnum = "satispay"
+	PaymentRequestMethodEnumSwish        PaymentRequestMethodEnum = "swish"
+	PaymentRequestMethodEnumTrustly      PaymentRequestMethodEnum = "trustly"
+	PaymentRequestMethodEnumTwint        PaymentRequestMethodEnum = "twint"
+	PaymentRequestMethodEnumVipps        PaymentRequestMethodEnum = "vipps"
+	PaymentRequestMethodEnumVoucher      PaymentRequestMethodEnum = "voucher"
+)
+
+func (e PaymentRequestMethodEnum) ToPointer() *PaymentRequestMethodEnum {
+	return &e
+}
+func (e *PaymentRequestMethodEnum) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "alma":
+		fallthrough
+	case "applepay":
+		fallthrough
+	case "bacs":
+		fallthrough
+	case "bancomatpay":
+		fallthrough
+	case "bancontact":
+		fallthrough
+	case "banktransfer":
+		fallthrough
+	case "belfius":
+		fallthrough
+	case "billie":
+		fallthrough
+	case "bizum":
+		fallthrough
+	case "blik":
+		fallthrough
+	case "creditcard":
+		fallthrough
+	case "directdebit":
+		fallthrough
+	case "eps":
+		fallthrough
+	case "giftcard":
+		fallthrough
+	case "ideal":
+		fallthrough
+	case "in3":
+		fallthrough
+	case "kbc":
+		fallthrough
+	case "klarna":
+		fallthrough
+	case "mbway":
+		fallthrough
+	case "mobilepay":
+		fallthrough
+	case "multibanco":
+		fallthrough
+	case "mybank":
+		fallthrough
+	case "paybybank":
+		fallthrough
+	case "paypal":
+		fallthrough
+	case "paysafecard":
+		fallthrough
+	case "pointofsale":
+		fallthrough
+	case "przelewy24":
+		fallthrough
+	case "riverty":
+		fallthrough
+	case "satispay":
+		fallthrough
+	case "swish":
+		fallthrough
+	case "trustly":
+		fallthrough
+	case "twint":
+		fallthrough
+	case "vipps":
+		fallthrough
+	case "voucher":
+		*e = PaymentRequestMethodEnum(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentRequestMethodEnum: %v", v)
+	}
+}
+
+type MethodType string
+
+const (
+	MethodTypePaymentRequestMethodEnum MethodType = "payment-request_method_enum"
+	MethodTypeArrayOfAny               MethodType = "arrayOfAny"
+)
+
+type Method struct {
+	PaymentRequestMethodEnum *PaymentRequestMethodEnum `queryParam:"inline" union:"member"`
+	ArrayOfAny               []any                     `queryParam:"inline" union:"member"`
+
+	Type MethodType
+}
+
+func CreateMethodPaymentRequestMethodEnum(paymentRequestMethodEnum PaymentRequestMethodEnum) Method {
+	typ := MethodTypePaymentRequestMethodEnum
+
+	return Method{
+		PaymentRequestMethodEnum: &paymentRequestMethodEnum,
+		Type:                     typ,
+	}
+}
+
+func CreateMethodArrayOfAny(arrayOfAny []any) Method {
+	typ := MethodTypeArrayOfAny
+
+	return Method{
+		ArrayOfAny: arrayOfAny,
+		Type:       typ,
+	}
+}
+
+func (u *Method) UnmarshalJSON(data []byte) error {
+
+	var paymentRequestMethodEnum PaymentRequestMethodEnum = PaymentRequestMethodEnum("")
+	if err := utils.UnmarshalJSON(data, &paymentRequestMethodEnum, "", true, nil); err == nil {
+		u.PaymentRequestMethodEnum = &paymentRequestMethodEnum
+		u.Type = MethodTypePaymentRequestMethodEnum
+		return nil
+	}
+
+	var arrayOfAny []any = []any{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAny, "", true, nil); err == nil {
+		u.ArrayOfAny = arrayOfAny
+		u.Type = MethodTypeArrayOfAny
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Method", string(data))
+}
+
+func (u Method) MarshalJSON() ([]byte, error) {
+	if u.PaymentRequestMethodEnum != nil {
+		return utils.MarshalJSON(u.PaymentRequestMethodEnum, "", true)
+	}
+
+	if u.ArrayOfAny != nil {
+		return utils.MarshalJSON(u.ArrayOfAny, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Method: all fields are null")
+}
+
 // PaymentRequestApplicationFee - With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
 // merchants.
 //
@@ -396,13 +584,6 @@ type PaymentRequest struct {
 	ShippingAddress *PaymentAddress               `json:"shippingAddress,omitempty"`
 	// Allows you to preset the language to be used.
 	Locale *Locale `json:"locale,omitempty"`
-	// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-	// method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-	// parameter enables you to fully integrate the payment method selection into your website.
-	//
-	// You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-	// but will only show the methods specified in the array. For example, you can use this functionality to only show
-	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 	Method *Method `json:"method,omitempty"`
 	// **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
 	//

@@ -17,8 +17,8 @@ const (
 )
 
 type UpdateWebhookEventTypes struct {
-	ArrayOfWebhookEventTypes []components.WebhookEventTypes `queryParam:"inline,name=eventTypes" union:"member"`
-	WebhookEventTypes        *components.WebhookEventTypes  `queryParam:"inline,name=eventTypes" union:"member"`
+	ArrayOfWebhookEventTypes []components.WebhookEventTypes `queryParam:"inline" union:"member"`
+	WebhookEventTypes        *components.WebhookEventTypes  `queryParam:"inline" union:"member"`
 
 	Type UpdateWebhookEventTypesType
 }

@@ -445,7 +445,6 @@ func main() {
             Country: client.Pointer("NL"),
         },
         Locale: components.LocaleEnUs.ToPointer(),
-        Method: components.MethodIdeal.ToPointer(),
         Issuer: client.Pointer("ideal_INGBNL2A"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
         CaptureMode: components.CaptureModeManual.ToPointer(),

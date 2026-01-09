@@ -45,8 +45,8 @@ const (
 )
 
 type Entity struct {
-	PaymentLinkResponse *PaymentLinkResponse `queryParam:"inline,name=entity" union:"member"`
-	ProfileResponse     *ProfileResponse     `queryParam:"inline,name=entity" union:"member"`
+	PaymentLinkResponse *PaymentLinkResponse `queryParam:"inline" union:"member"`
+	ProfileResponse     *ProfileResponse     `queryParam:"inline" union:"member"`
 
 	Type EntityType
 }
