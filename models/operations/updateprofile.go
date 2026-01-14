@@ -77,18 +77,18 @@ func (u *UpdateProfileRequestBody) GetBusinessCategory() *string {
 }
 
 type UpdateProfileRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related profile.
+	ProfileID string `pathParam:"style=simple,explode=false,name=profileId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
 	RequestBody    UpdateProfileRequestBody `request:"mediaType=application/json"`
 }
 
-func (u *UpdateProfileRequest) GetID() string {
+func (u *UpdateProfileRequest) GetProfileID() string {
 	if u == nil {
 		return ""
 	}
-	return u.ID
+	return u.ProfileID
 }
 
 func (u *UpdateProfileRequest) GetIdempotencyKey() *string {

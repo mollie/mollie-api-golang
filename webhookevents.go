@@ -32,9 +32,9 @@ func newWebhookEvents(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 
 // Get a Webhook Event
 // Retrieve a single webhook event object by its event ID.
-func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
+func (s *WebhookEvents) Get(ctx context.Context, webhookEventID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
 	request := operations.GetWebhookEventRequest{
-		ID:             id,
+		WebhookEventID: webhookEventID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -61,7 +61,7 @@ func (s *WebhookEvents) Get(ctx context.Context, id string, testmode *bool, idem
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/events/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/events/{webhookEventId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

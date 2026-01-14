@@ -538,9 +538,9 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 
 // Get profile
 // Retrieve a single profile by its ID.
-func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetProfileResponse, error) {
+func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	request := operations.GetProfileRequest{
-		ID:             id,
+		ProfileID:      profileID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -567,7 +567,7 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -796,9 +796,9 @@ func (s *Profiles) Get(ctx context.Context, id string, testmode *bool, idempoten
 //
 // Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
 // Alternatively, you can use this endpoint to automate profile management.
-func (s *Profiles) Update(ctx context.Context, id string, requestBody operations.UpdateProfileRequestBody, idempotencyKey *string, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
+func (s *Profiles) Update(ctx context.Context, profileID string, requestBody operations.UpdateProfileRequestBody, idempotencyKey *string, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	request := operations.UpdateProfileRequest{
-		ID:             id,
+		ProfileID:      profileID,
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
@@ -821,7 +821,7 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1052,9 +1052,9 @@ func (s *Profiles) Update(ctx context.Context, id string, requestBody operations
 
 // Delete profile
 // Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
-func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
+func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
 	request := operations.DeleteProfileRequest{
-		ID:             id,
+		ProfileID:      profileID,
 		IdempotencyKey: idempotencyKey,
 	}
 
@@ -1076,7 +1076,7 @@ func (s *Profiles) Delete(ctx context.Context, id string, idempotencyKey *string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

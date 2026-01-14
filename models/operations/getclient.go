@@ -7,8 +7,8 @@ import (
 )
 
 type GetClientRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related organization.
+	OrganizationID string `pathParam:"style=simple,explode=false,name=organizationId"`
 	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
 	// parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
@@ -16,11 +16,11 @@ type GetClientRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetClientRequest) GetID() string {
+func (g *GetClientRequest) GetOrganizationID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.OrganizationID
 }
 
 func (g *GetClientRequest) GetEmbed() *string {

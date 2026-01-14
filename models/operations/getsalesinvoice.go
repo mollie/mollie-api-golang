@@ -23,8 +23,8 @@ func (g *GetSalesInvoiceGlobals) GetTestmode() *bool {
 }
 
 type GetSalesInvoiceRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related sales invoice.
+	SalesInvoiceID string `pathParam:"style=simple,explode=false,name=salesInvoiceId"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -35,11 +35,11 @@ type GetSalesInvoiceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetSalesInvoiceRequest) GetID() string {
+func (g *GetSalesInvoiceRequest) GetSalesInvoiceID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.SalesInvoiceID
 }
 
 func (g *GetSalesInvoiceRequest) GetTestmode() *bool {

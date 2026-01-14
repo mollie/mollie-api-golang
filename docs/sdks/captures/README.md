@@ -177,7 +177,7 @@ func main() {
 
     res, err := s.Captures.Get(ctx, operations.GetCaptureRequest{
         PaymentID: "tr_5B8cwPMGnU",
-        CaptureID: "cpt_gVMhHKqSSRYJyPsuoPNFH",
+        CaptureID: "cpt_vytxeTZskVKR7C7WgdSP3d",
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })

@@ -148,7 +148,7 @@ Retrieve a single profile by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-profile" method="get" path="/profiles/{id}" -->
+<!-- UsageSnippet language="go" operationID="get-profile" method="get" path="/profiles/{profileId}" -->
 ```go
 package main
 
@@ -170,7 +170,7 @@ func main() {
         }),
     )
 
-    res, err := s.Profiles.Get(ctx, "pfl_QkEhN94Ba", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.Get(ctx, "pfl_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -185,7 +185,7 @@ func main() {
 | Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                   | :heavy_check_mark:                                                                                                                                                      | The context to use for the request.                                                                                                                                     |                                                                                                                                                                         |
-| `id`                                                                                                                                                                    | *string*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the item you want to perform this operation on.                                                                                                       |                                                                                                                                                                         |
+| `profileID`                                                                                                                                                             | *string*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related profile.                                                                                                                                  | pfl_5B8cwPMGnU                                                                                                                                                          |
 | `testmode`                                                                                                                                                              | **bool*                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
 | `idempotencyKey`                                                                                                                                                        | **string*                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
 | `opts`                                                                                                                                                                  | [][operations.Option](../../models/operations/option.md)                                                                                                                | :heavy_minus_sign:                                                                                                                                                      | The options for this request.                                                                                                                                           |                                                                                                                                                                         |
@@ -210,7 +210,7 @@ Alternatively, you can use this endpoint to automate profile management.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{id}" -->
+<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{profileId}" -->
 ```go
 package main
 
@@ -232,7 +232,7 @@ func main() {
         }),
     )
 
-    res, err := s.Profiles.Update(ctx, "pfl_QkEhN94Ba", operations.UpdateProfileRequestBody{
+    res, err := s.Profiles.Update(ctx, "pfl_5B8cwPMGnU", operations.UpdateProfileRequestBody{
         Name: client.Pointer("My new website name"),
         Website: client.Pointer("https://example.com"),
         Email: client.Pointer("test@mollie.com"),
@@ -258,7 +258,7 @@ func main() {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |                                                                                            |
-| `id`                                                                                       | *string*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `profileID`                                                                                | *string*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related profile.                                                     | pfl_5B8cwPMGnU                                                                             |
 | `requestBody`                                                                              | [operations.UpdateProfileRequestBody](../../models/operations/updateprofilerequestbody.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |                                                                                            |
 | `idempotencyKey`                                                                           | **string*                                                                                  | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
 | `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |                                                                                            |
@@ -280,7 +280,7 @@ Delete a profile. A deleted profile and its related credentials can no longer be
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-profile" method="delete" path="/profiles/{id}" -->
+<!-- UsageSnippet language="go" operationID="delete-profile" method="delete" path="/profiles/{profileId}" -->
 ```go
 package main
 
@@ -301,7 +301,7 @@ func main() {
         }),
     )
 
-    res, err := s.Profiles.Delete(ctx, "pfl_QkEhN94Ba", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Profiles.Delete(ctx, "pfl_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -316,7 +316,7 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `profileID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 

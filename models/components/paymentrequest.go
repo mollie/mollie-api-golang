@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/utils"
@@ -281,173 +280,51 @@ func (p *PaymentRequestBillingAddress) GetCountry() *string {
 	return p.Country
 }
 
-type PaymentRequestMethodEnum string
-
-const (
-	PaymentRequestMethodEnumAlma         PaymentRequestMethodEnum = "alma"
-	PaymentRequestMethodEnumApplepay     PaymentRequestMethodEnum = "applepay"
-	PaymentRequestMethodEnumBacs         PaymentRequestMethodEnum = "bacs"
-	PaymentRequestMethodEnumBancomatpay  PaymentRequestMethodEnum = "bancomatpay"
-	PaymentRequestMethodEnumBancontact   PaymentRequestMethodEnum = "bancontact"
-	PaymentRequestMethodEnumBanktransfer PaymentRequestMethodEnum = "banktransfer"
-	PaymentRequestMethodEnumBelfius      PaymentRequestMethodEnum = "belfius"
-	PaymentRequestMethodEnumBillie       PaymentRequestMethodEnum = "billie"
-	PaymentRequestMethodEnumBizum        PaymentRequestMethodEnum = "bizum"
-	PaymentRequestMethodEnumBlik         PaymentRequestMethodEnum = "blik"
-	PaymentRequestMethodEnumCreditcard   PaymentRequestMethodEnum = "creditcard"
-	PaymentRequestMethodEnumDirectdebit  PaymentRequestMethodEnum = "directdebit"
-	PaymentRequestMethodEnumEps          PaymentRequestMethodEnum = "eps"
-	PaymentRequestMethodEnumGiftcard     PaymentRequestMethodEnum = "giftcard"
-	PaymentRequestMethodEnumIdeal        PaymentRequestMethodEnum = "ideal"
-	PaymentRequestMethodEnumIn3          PaymentRequestMethodEnum = "in3"
-	PaymentRequestMethodEnumKbc          PaymentRequestMethodEnum = "kbc"
-	PaymentRequestMethodEnumKlarna       PaymentRequestMethodEnum = "klarna"
-	PaymentRequestMethodEnumMbway        PaymentRequestMethodEnum = "mbway"
-	PaymentRequestMethodEnumMobilepay    PaymentRequestMethodEnum = "mobilepay"
-	PaymentRequestMethodEnumMultibanco   PaymentRequestMethodEnum = "multibanco"
-	PaymentRequestMethodEnumMybank       PaymentRequestMethodEnum = "mybank"
-	PaymentRequestMethodEnumPaybybank    PaymentRequestMethodEnum = "paybybank"
-	PaymentRequestMethodEnumPaypal       PaymentRequestMethodEnum = "paypal"
-	PaymentRequestMethodEnumPaysafecard  PaymentRequestMethodEnum = "paysafecard"
-	PaymentRequestMethodEnumPointofsale  PaymentRequestMethodEnum = "pointofsale"
-	PaymentRequestMethodEnumPrzelewy24   PaymentRequestMethodEnum = "przelewy24"
-	PaymentRequestMethodEnumRiverty      PaymentRequestMethodEnum = "riverty"
-	PaymentRequestMethodEnumSatispay     PaymentRequestMethodEnum = "satispay"
-	PaymentRequestMethodEnumSwish        PaymentRequestMethodEnum = "swish"
-	PaymentRequestMethodEnumTrustly      PaymentRequestMethodEnum = "trustly"
-	PaymentRequestMethodEnumTwint        PaymentRequestMethodEnum = "twint"
-	PaymentRequestMethodEnumVipps        PaymentRequestMethodEnum = "vipps"
-	PaymentRequestMethodEnumVoucher      PaymentRequestMethodEnum = "voucher"
-)
-
-func (e PaymentRequestMethodEnum) ToPointer() *PaymentRequestMethodEnum {
-	return &e
-}
-func (e *PaymentRequestMethodEnum) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "alma":
-		fallthrough
-	case "applepay":
-		fallthrough
-	case "bacs":
-		fallthrough
-	case "bancomatpay":
-		fallthrough
-	case "bancontact":
-		fallthrough
-	case "banktransfer":
-		fallthrough
-	case "belfius":
-		fallthrough
-	case "billie":
-		fallthrough
-	case "bizum":
-		fallthrough
-	case "blik":
-		fallthrough
-	case "creditcard":
-		fallthrough
-	case "directdebit":
-		fallthrough
-	case "eps":
-		fallthrough
-	case "giftcard":
-		fallthrough
-	case "ideal":
-		fallthrough
-	case "in3":
-		fallthrough
-	case "kbc":
-		fallthrough
-	case "klarna":
-		fallthrough
-	case "mbway":
-		fallthrough
-	case "mobilepay":
-		fallthrough
-	case "multibanco":
-		fallthrough
-	case "mybank":
-		fallthrough
-	case "paybybank":
-		fallthrough
-	case "paypal":
-		fallthrough
-	case "paysafecard":
-		fallthrough
-	case "pointofsale":
-		fallthrough
-	case "przelewy24":
-		fallthrough
-	case "riverty":
-		fallthrough
-	case "satispay":
-		fallthrough
-	case "swish":
-		fallthrough
-	case "trustly":
-		fallthrough
-	case "twint":
-		fallthrough
-	case "vipps":
-		fallthrough
-	case "voucher":
-		*e = PaymentRequestMethodEnum(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentRequestMethodEnum: %v", v)
-	}
-}
-
 type MethodType string
 
 const (
-	MethodTypePaymentRequestMethodEnum MethodType = "payment-request_method_enum"
-	MethodTypeArrayOfAny               MethodType = "arrayOfAny"
+	MethodTypeMethodEnum        MethodType = "method_enum"
+	MethodTypeArrayOfMethodEnum MethodType = "arrayOfMethodEnum"
 )
 
 type Method struct {
-	PaymentRequestMethodEnum *PaymentRequestMethodEnum `queryParam:"inline" union:"member"`
-	ArrayOfAny               []any                     `queryParam:"inline" union:"member"`
+	MethodEnum        *MethodEnum   `queryParam:"inline" union:"member"`
+	ArrayOfMethodEnum []*MethodEnum `queryParam:"inline" union:"member"`
 
 	Type MethodType
 }
 
-func CreateMethodPaymentRequestMethodEnum(paymentRequestMethodEnum PaymentRequestMethodEnum) Method {
-	typ := MethodTypePaymentRequestMethodEnum
+func CreateMethodMethodEnum(methodEnum MethodEnum) Method {
+	typ := MethodTypeMethodEnum
 
 	return Method{
-		PaymentRequestMethodEnum: &paymentRequestMethodEnum,
-		Type:                     typ,
+		MethodEnum: &methodEnum,
+		Type:       typ,
 	}
 }
 
-func CreateMethodArrayOfAny(arrayOfAny []any) Method {
-	typ := MethodTypeArrayOfAny
+func CreateMethodArrayOfMethodEnum(arrayOfMethodEnum []*MethodEnum) Method {
+	typ := MethodTypeArrayOfMethodEnum
 
 	return Method{
-		ArrayOfAny: arrayOfAny,
-		Type:       typ,
+		ArrayOfMethodEnum: arrayOfMethodEnum,
+		Type:              typ,
 	}
 }
 
 func (u *Method) UnmarshalJSON(data []byte) error {
 
-	var paymentRequestMethodEnum PaymentRequestMethodEnum = PaymentRequestMethodEnum("")
-	if err := utils.UnmarshalJSON(data, &paymentRequestMethodEnum, "", true, nil); err == nil {
-		u.PaymentRequestMethodEnum = &paymentRequestMethodEnum
-		u.Type = MethodTypePaymentRequestMethodEnum
+	var methodEnum MethodEnum = MethodEnum("")
+	if err := utils.UnmarshalJSON(data, &methodEnum, "", true, nil); err == nil {
+		u.MethodEnum = &methodEnum
+		u.Type = MethodTypeMethodEnum
 		return nil
 	}
 
-	var arrayOfAny []any = []any{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAny, "", true, nil); err == nil {
-		u.ArrayOfAny = arrayOfAny
-		u.Type = MethodTypeArrayOfAny
+	var arrayOfMethodEnum []*MethodEnum = []*MethodEnum{}
+	if err := utils.UnmarshalJSON(data, &arrayOfMethodEnum, "", true, nil); err == nil {
+		u.ArrayOfMethodEnum = arrayOfMethodEnum
+		u.Type = MethodTypeArrayOfMethodEnum
 		return nil
 	}
 
@@ -455,12 +332,12 @@ func (u *Method) UnmarshalJSON(data []byte) error {
 }
 
 func (u Method) MarshalJSON() ([]byte, error) {
-	if u.PaymentRequestMethodEnum != nil {
-		return utils.MarshalJSON(u.PaymentRequestMethodEnum, "", true)
+	if u.MethodEnum != nil {
+		return utils.MarshalJSON(u.MethodEnum, "", true)
 	}
 
-	if u.ArrayOfAny != nil {
-		return utils.MarshalJSON(u.ArrayOfAny, "", true)
+	if u.ArrayOfMethodEnum != nil {
+		return utils.MarshalJSON(u.ArrayOfMethodEnum, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Method: all fields are null")

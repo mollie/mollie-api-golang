@@ -284,9 +284,9 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 //
 // If you want to retrieve the details of an invoice by its invoice number,
 // call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-func (s *Invoices) Get(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
+func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	request := operations.GetInvoiceRequest{
-		ID:             id,
+		InvoiceID:      invoiceID,
 		IdempotencyKey: idempotencyKey,
 	}
 
@@ -308,7 +308,7 @@ func (s *Invoices) Get(ctx context.Context, id string, idempotencyKey *string, o
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/invoices/{invoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

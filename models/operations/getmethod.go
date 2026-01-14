@@ -36,8 +36,8 @@ func (g *GetMethodGlobals) GetTestmode() *bool {
 }
 
 type GetMethodRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related payment method.
+	MethodID *components.MethodID `pathParam:"style=simple,explode=false,name=methodId"`
 	// Response language
 	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If provided, the `minimumAmount` and `maximumAmount` will be converted
@@ -66,11 +66,11 @@ type GetMethodRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetMethodRequest) GetID() string {
+func (g *GetMethodRequest) GetMethodID() *components.MethodID {
 	if g == nil {
-		return ""
+		return nil
 	}
-	return g.ID
+	return g.MethodID
 }
 
 func (g *GetMethodRequest) GetLocale() *components.Locale {

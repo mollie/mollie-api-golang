@@ -23,8 +23,8 @@ func (g *GetProfileGlobals) GetTestmode() *bool {
 }
 
 type GetProfileRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related profile.
+	ProfileID string `pathParam:"style=simple,explode=false,name=profileId"`
 	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -33,11 +33,11 @@ type GetProfileRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetProfileRequest) GetID() string {
+func (g *GetProfileRequest) GetProfileID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.ProfileID
 }
 
 func (g *GetProfileRequest) GetTestmode() *bool {

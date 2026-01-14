@@ -554,9 +554,9 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // Retrieve a single sales invoice by its ID.
-func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
 	request := operations.GetSalesInvoiceRequest{
-		ID:             id,
+		SalesInvoiceID: salesInvoiceID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -583,7 +583,7 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idem
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -813,9 +813,9 @@ func (s *SalesInvoices) Get(ctx context.Context, id string, testmode *bool, idem
 // Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
 // statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
 // respectively).
-func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idempotencyKey *string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	request := operations.UpdateSalesInvoiceRequest{
-		ID:                       id,
+		SalesInvoiceID:           salesInvoiceID,
 		IdempotencyKey:           idempotencyKey,
 		UpdateValuesSalesInvoice: updateValuesSalesInvoice,
 	}
@@ -838,7 +838,7 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *s
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1072,9 +1072,9 @@ func (s *SalesInvoices) Update(ctx context.Context, id string, idempotencyKey *s
 //
 // Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
 // [Update sales invoice](update-sales-invoice) endpoint instead.
-func (s *SalesInvoices) Delete(ctx context.Context, id string, idempotencyKey *string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idempotencyKey *string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
 	request := operations.DeleteSalesInvoiceRequest{
-		ID:                       id,
+		SalesInvoiceID:           salesInvoiceID,
 		IdempotencyKey:           idempotencyKey,
 		DeleteValuesSalesInvoice: deleteValuesSalesInvoice,
 	}
@@ -1097,7 +1097,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, id string, idempotencyKey *s
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

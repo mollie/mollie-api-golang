@@ -38,9 +38,9 @@ func newOrganizations(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // for OAuth apps. See also [Get current organization](get-current-organization).
 //
 // If you have a *partner account*', you can retrieve organization details of connected organizations.
-func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
+func (s *Organizations) Get(ctx context.Context, organizationID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
 	request := operations.GetOrganizationRequest{
-		ID:             id,
+		OrganizationID: organizationID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -67,7 +67,7 @@ func (s *Organizations) Get(ctx context.Context, id string, testmode *bool, idem
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/organizations/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/organizations/{organizationId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

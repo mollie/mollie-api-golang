@@ -23,8 +23,8 @@ func (g *GetBalanceGlobals) GetTestmode() *bool {
 }
 
 type GetBalanceRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related balance.
+	BalanceID string `pathParam:"style=simple,explode=false,name=balanceId"`
 	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -33,11 +33,11 @@ type GetBalanceRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetBalanceRequest) GetID() string {
+func (g *GetBalanceRequest) GetBalanceID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.BalanceID
 }
 
 func (g *GetBalanceRequest) GetTestmode() *bool {

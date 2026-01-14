@@ -531,9 +531,9 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 
 // Update a webhook
 // Updates the webhook. You may edit the name, url and the list of subscribed event types.
-func (s *Webhooks) Update(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
+func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
 	request := operations.UpdateWebhookRequest{
-		ID:             id,
+		WebhookID:      webhookID,
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
@@ -556,7 +556,7 @@ func (s *Webhooks) Update(ctx context.Context, id string, idempotencyKey *string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -785,9 +785,9 @@ func (s *Webhooks) Update(ctx context.Context, id string, idempotencyKey *string
 
 // Get a webhook
 // Retrieve a single webhook object by its ID.
-func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
+func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	request := operations.GetWebhookRequest{
-		ID:             id,
+		WebhookID:      webhookID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -814,7 +814,7 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1040,9 +1040,9 @@ func (s *Webhooks) Get(ctx context.Context, id string, testmode *bool, idempoten
 
 // Delete a webhook
 // Delete a single webhook object by its webhook ID.
-func (s *Webhooks) Delete(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
+func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
 	request := operations.DeleteWebhookRequest{
-		ID:             id,
+		WebhookID:      webhookID,
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
@@ -1065,7 +1065,7 @@ func (s *Webhooks) Delete(ctx context.Context, id string, idempotencyKey *string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1274,9 +1274,9 @@ func (s *Webhooks) Delete(ctx context.Context, id string, idempotencyKey *string
 
 // Test a webhook
 // Sends a test event to the webhook to verify the endpoint is working as expected.
-func (s *Webhooks) Test(ctx context.Context, id string, idempotencyKey *string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
+func (s *Webhooks) Test(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
 	request := operations.TestWebhookRequest{
-		ID:             id,
+		WebhookID:      webhookID,
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
 	}
@@ -1299,7 +1299,7 @@ func (s *Webhooks) Test(ctx context.Context, id string, idempotencyKey *string, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{id}/ping", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}/ping", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

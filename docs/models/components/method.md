@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### PaymentRequestMethodEnum
+### MethodEnum
 
 ```go
-method := components.CreateMethodPaymentRequestMethodEnum(components.PaymentRequestMethodEnum{/* values here */})
+method := components.CreateMethodMethodEnum(components.MethodEnum{/* values here */})
 ```
 
 ### 
 
 ```go
-method := components.CreateMethodArrayOfAny([]any{/* values here */})
+method := components.CreateMethodArrayOfMethodEnum([]*components.MethodEnum{/* values here */})
 ```
 

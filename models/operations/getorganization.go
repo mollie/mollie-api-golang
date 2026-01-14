@@ -23,8 +23,8 @@ func (g *GetOrganizationGlobals) GetTestmode() *bool {
 }
 
 type GetOrganizationRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related organization.
+	OrganizationID string `pathParam:"style=simple,explode=false,name=organizationId"`
 	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -33,11 +33,11 @@ type GetOrganizationRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetOrganizationRequest) GetID() string {
+func (g *GetOrganizationRequest) GetOrganizationID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.OrganizationID
 }
 
 func (g *GetOrganizationRequest) GetTestmode() *bool {

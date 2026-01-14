@@ -146,7 +146,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" -->
 ```go
 package main
 
@@ -168,7 +168,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Update(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
+    res, err := s.Webhooks.Update(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
         Name: client.Pointer("Webhook #1"),
         URL: client.Pointer("https://mollie.com/"),
         EventTypes: client.Pointer(operations.CreateUpdateWebhookEventTypesWebhookEventTypes(
@@ -190,7 +190,7 @@ func main() {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |                                                                                             |
+| `webhookID`                                                                                 | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related webhook.                                                      | hook_1234567890                                                                             |
 | `idempotencyKey`                                                                            | **string*                                                                                   | :heavy_minus_sign:                                                                          | A unique key to ensure idempotent requests. This key should be a UUID v4 string.            | 123e4567-e89b-12d3-a456-426                                                                 |
 | `requestBody`                                                                               | [*operations.UpdateWebhookRequestBody](../../models/operations/updatewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
 | `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
@@ -212,7 +212,7 @@ Retrieve a single webhook object by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" -->
 ```go
 package main
 
@@ -234,7 +234,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Get(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Webhooks.Get(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -249,7 +249,7 @@ func main() {
 | Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                   | :heavy_check_mark:                                                                                                                                                      | The context to use for the request.                                                                                                                                     |                                                                                                                                                                         |
-| `id`                                                                                                                                                                    | *string*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the item you want to perform this operation on.                                                                                                       |                                                                                                                                                                         |
+| `webhookID`                                                                                                                                                             | *string*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related webhook.                                                                                                                                  | hook_1234567890                                                                                                                                                         |
 | `testmode`                                                                                                                                                              | **bool*                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
 | `idempotencyKey`                                                                                                                                                        | **string*                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
 | `opts`                                                                                                                                                                  | [][operations.Option](../../models/operations/option.md)                                                                                                                | :heavy_minus_sign:                                                                                                                                                      | The options for this request.                                                                                                                                           |                                                                                                                                                                         |
@@ -271,7 +271,7 @@ Delete a single webhook object by its webhook ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-webhook" method="delete" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="go" operationID="delete-webhook" method="delete" path="/webhooks/{webhookId}" -->
 ```go
 package main
 
@@ -293,7 +293,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Delete(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.DeleteWebhookRequestBody{
+    res, err := s.Webhooks.Delete(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.DeleteWebhookRequestBody{
         Testmode: client.Pointer(false),
     })
     if err != nil {
@@ -310,7 +310,7 @@ func main() {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the item you want to perform this operation on.                           |                                                                                             |
+| `webhookID`                                                                                 | *string*                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related webhook.                                                      | hook_1234567890                                                                             |
 | `idempotencyKey`                                                                            | **string*                                                                                   | :heavy_minus_sign:                                                                          | A unique key to ensure idempotent requests. This key should be a UUID v4 string.            | 123e4567-e89b-12d3-a456-426                                                                 |
 | `requestBody`                                                                               | [*operations.DeleteWebhookRequestBody](../../models/operations/deletewebhookrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
 | `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
@@ -332,7 +332,7 @@ Sends a test event to the webhook to verify the endpoint is working as expected.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="test-webhook" method="post" path="/webhooks/{id}/ping" -->
+<!-- UsageSnippet language="go" operationID="test-webhook" method="post" path="/webhooks/{webhookId}/ping" -->
 ```go
 package main
 
@@ -354,7 +354,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Test(ctx, "hook_B2EyhTH5N4KWUnoYPcgiH", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.TestWebhookRequestBody{
+    res, err := s.Webhooks.Test(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.TestWebhookRequestBody{
         Testmode: client.Pointer(false),
     })
     if err != nil {
@@ -371,7 +371,7 @@ func main() {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |                                                                                         |
-| `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Provide the ID of the item you want to perform this operation on.                       |                                                                                         |
+| `webhookID`                                                                             | *string*                                                                                | :heavy_check_mark:                                                                      | Provide the ID of the related webhook.                                                  | hook_1234567890                                                                         |
 | `idempotencyKey`                                                                        | **string*                                                                               | :heavy_minus_sign:                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.        | 123e4567-e89b-12d3-a456-426                                                             |
 | `requestBody`                                                                           | [*operations.TestWebhookRequestBody](../../models/operations/testwebhookrequestbody.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |                                                                                         |
 | `opts`                                                                                  | [][operations.Option](../../models/operations/option.md)                                | :heavy_minus_sign:                                                                      | The options for this request.                                                           |                                                                                         |

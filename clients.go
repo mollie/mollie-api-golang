@@ -287,9 +287,9 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 
 // Get client
 // Retrieve a single client by its ID.
-func (s *Clients) Get(ctx context.Context, id string, embed *string, idempotencyKey *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
+func (s *Clients) Get(ctx context.Context, organizationID string, embed *string, idempotencyKey *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
 	request := operations.GetClientRequest{
-		ID:             id,
+		OrganizationID: organizationID,
 		Embed:          embed,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -312,7 +312,7 @@ func (s *Clients) Get(ctx context.Context, id string, embed *string, idempotency
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/clients/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/clients/{organizationId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

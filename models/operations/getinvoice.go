@@ -7,17 +7,17 @@ import (
 )
 
 type GetInvoiceRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related invoice.
+	InvoiceID string `pathParam:"style=simple,explode=false,name=invoiceId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetInvoiceRequest) GetID() string {
+func (g *GetInvoiceRequest) GetInvoiceID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.InvoiceID
 }
 
 func (g *GetInvoiceRequest) GetIdempotencyKey() *string {

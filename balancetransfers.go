@@ -534,11 +534,11 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 
 // Get a Connect balance transfer
 // Retrieve a single Connect balance transfer object by its ID.
-func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetConnectBalanceTransferResponse, error) {
+func (s *BalanceTransfers) Get(ctx context.Context, balanceTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetConnectBalanceTransferResponse, error) {
 	request := operations.GetConnectBalanceTransferRequest{
-		ID:             id,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
+		BalanceTransferID: balanceTransferID,
+		Testmode:          testmode,
+		IdempotencyKey:    idempotencyKey,
 	}
 
 	globals := operations.GetConnectBalanceTransferGlobals{
@@ -563,7 +563,7 @@ func (s *BalanceTransfers) Get(ctx context.Context, id string, testmode *bool, i
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/connect/balance-transfers/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/connect/balance-transfers/{balanceTransferId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -291,9 +291,9 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
-func (s *Settlements) Get(ctx context.Context, id string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
+func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
 	request := operations.GetSettlementRequest{
-		ID:             id,
+		SettlementID:   settlementID,
 		IdempotencyKey: idempotencyKey,
 	}
 
@@ -315,7 +315,7 @@ func (s *Settlements) Get(ctx context.Context, id string, idempotencyKey *string
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{id}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

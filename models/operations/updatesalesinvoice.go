@@ -7,18 +7,18 @@ import (
 )
 
 type UpdateSalesInvoiceRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related sales invoice.
+	SalesInvoiceID string `pathParam:"style=simple,explode=false,name=salesInvoiceId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey           *string                              `header:"style=simple,explode=false,name=idempotency-key"`
 	UpdateValuesSalesInvoice *components.UpdateValuesSalesInvoice `request:"mediaType=application/json"`
 }
 
-func (u *UpdateSalesInvoiceRequest) GetID() string {
+func (u *UpdateSalesInvoiceRequest) GetSalesInvoiceID() string {
 	if u == nil {
 		return ""
 	}
-	return u.ID
+	return u.SalesInvoiceID
 }
 
 func (u *UpdateSalesInvoiceRequest) GetIdempotencyKey() *string {

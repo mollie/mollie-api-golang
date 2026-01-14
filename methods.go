@@ -588,7 +588,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/methods/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/methods/{methodId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -298,9 +298,9 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 // With instant payment methods like iDEAL, payments are moved to the available
 // balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
 // funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
-func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
+func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
 	request := operations.GetBalanceRequest{
-		ID:             id,
+		BalanceID:      balanceID,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -327,7 +327,7 @@ func (s *Balances) Get(ctx context.Context, id string, testmode *bool, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -97,7 +97,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-settlement" method="get" path="/settlements/{id}" -->
+<!-- UsageSnippet language="go" operationID="get-settlement" method="get" path="/settlements/{settlementId}" -->
 ```go
 package main
 
@@ -118,7 +118,7 @@ func main() {
         }),
     )
 
-    res, err := s.Settlements.Get(ctx, "stl_jDk30akdN", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Settlements.Get(ctx, "stl_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -133,7 +133,7 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `settlementID`                                                                   | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related settlement.                                        | stl_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
@@ -307,7 +307,7 @@ func main() {
     )
 
     res, err := s.Settlements.ListPayments(ctx, operations.ListSettlementPaymentsRequest{
-        SettlementID: "stl_jDk30akdN",
+        SettlementID: "stl_5B8cwPMGnU",
         From: client.Pointer("tr_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
@@ -373,7 +373,7 @@ func main() {
     )
 
     res, err := s.Settlements.ListCaptures(ctx, operations.ListSettlementCapturesRequest{
-        SettlementID: "stl_jDk30akdN",
+        SettlementID: "stl_5B8cwPMGnU",
         From: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
@@ -439,7 +439,7 @@ func main() {
     )
 
     res, err := s.Settlements.ListRefunds(ctx, operations.ListSettlementRefundsRequest{
-        SettlementID: "stl_jDk30akdN",
+        SettlementID: "stl_5B8cwPMGnU",
         From: client.Pointer("re_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
@@ -505,7 +505,7 @@ func main() {
     )
 
     res, err := s.Settlements.ListChargebacks(ctx, operations.ListSettlementChargebacksRequest{
-        SettlementID: "stl_jDk30akdN",
+        SettlementID: "stl_5B8cwPMGnU",
         From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),

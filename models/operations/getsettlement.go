@@ -7,17 +7,17 @@ import (
 )
 
 type GetSettlementRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related settlement.
+	SettlementID string `pathParam:"style=simple,explode=false,name=settlementId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetSettlementRequest) GetID() string {
+func (g *GetSettlementRequest) GetSettlementID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.SettlementID
 }
 
 func (g *GetSettlementRequest) GetIdempotencyKey() *string {

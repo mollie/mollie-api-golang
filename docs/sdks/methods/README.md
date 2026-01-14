@@ -188,7 +188,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/methods/{id}" -->
+<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/methods/{methodId}" -->
 ```go
 package main
 
@@ -213,7 +213,7 @@ func main() {
     )
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
-        ID: "ideal",
+        MethodID: components.MethodIDIdeal.ToPointer(),
         Locale: components.LocaleEnUs.ToPointer(),
         Currency: client.Pointer("EUR"),
         Include: client.Pointer("issuers"),

@@ -23,8 +23,8 @@ func (g *GetWebhookGlobals) GetTestmode() *bool {
 }
 
 type GetWebhookRequest struct {
-	// Provide the ID of the item you want to perform this operation on.
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Provide the ID of the related webhook.
+	WebhookID string `pathParam:"style=simple,explode=false,name=webhookId"`
 	// You can enable test mode by setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -33,11 +33,11 @@ type GetWebhookRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetWebhookRequest) GetID() string {
+func (g *GetWebhookRequest) GetWebhookID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.WebhookID
 }
 
 func (g *GetWebhookRequest) GetTestmode() *bool {
