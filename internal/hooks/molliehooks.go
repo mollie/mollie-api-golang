@@ -74,7 +74,7 @@ func (h *MollieHooks) validatePathParameters(req *http.Request, hookCtx BeforeRe
 			continue
 		}
 		if segment == "" || strings.TrimSpace(segment) == "" {
-			return fmt.Errorf("Invalid request: empty path parameter detected in [%s] '%s'", req.Method, req.URL.Path)
+			return fmt.Errorf("invalid request: empty path parameter detected in [%s] '%s'", req.Method, req.URL.Path)
 		}
 	}
 	return nil
