@@ -66,7 +66,26 @@ func (h *MollieHooks) customizeUserAgent(req *http.Request, hookCtx BeforeReques
     req.Header.Set(userAgentKey, mollieUserAgent)
 }
 
+func (h *MollieHooks) validatePathParameters(req *http.Request, hookCtx BeforeRequestContext) error {
+	pathSegments := strings.Split(req.URL.Path, "/")
+	
+	for i, segment := range pathSegments {
+		if i == 0 && segment == "" {
+			continue
+		}
+		if segment == "" || strings.TrimSpace(segment) == "" {
+			return fmt.Errorf("Invalid request: empty path parameter detected in [%s] '%s'", req.Method, req.URL.Path)
+		}
+	}
+	return nil
+}
+
 func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Request) (*http.Request, error) {
+	// Prevent Empty Path Parameters
+	if err := h.validatePathParameters(req, hookCtx); err != nil {
+		return nil, err
+	}
+	
 	const (
 		idempotencyKey = "idempotency-key"
 	)
