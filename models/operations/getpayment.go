@@ -27,8 +27,8 @@ type GetPaymentRequest struct {
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 	// This endpoint allows you to include additional information via the `include` query string parameter.
 	Include *string `queryParam:"style=form,explode=true,name=include"`
-	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
-	// parameter.
+	// This endpoint allows embedding related API items by appending the
+	// following values via the `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by

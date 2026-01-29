@@ -36,14 +36,16 @@ func (l *ListAllMethodsGlobals) GetTestmode() *bool {
 }
 
 type ListAllMethodsRequest struct {
-	// Response language
+	// Passing a locale will sort the payment methods in the preferred order
+	// for the country, and translate the payment method names in the corresponding language.
 	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If supplied, only payment methods that support the amount and currency
 	// are returned.
 	//
 	// Example: `/v2/methods/all?amount[value]=100.00&amount[currency]=USD`
 	Amount *components.Amount `queryParam:"style=deepObject,explode=true,name=amount"`
-	// This endpoint allows you to include additional information via the `include` query string parameter.
+	// This endpoint allows you to include additional information via the
+	// `include` query string parameter.
 	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Set this parameter to `first` to only return the methods that
 	// can be used for the first payment of a recurring sequence.

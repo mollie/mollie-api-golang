@@ -1,21 +1,21 @@
-speakeasyVersion: 1.685.0
+speakeasyVersion: 1.700.2
 sources:
     Mollie API:
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:bb12fd05a45c54787e852c5b585dd76483f452a6daf3ba7b6ed43495f0fee20c
-        sourceBlobDigest: sha256:5adc2bb7dd9f7d0a336c0842482b0b8dbe4ecbb973010796b15a1aee07fb15c2
+        sourceRevisionDigest: sha256:f78f876aeff7a38c2dc4923dd2caae8039e4cd12813ea2c3c15891f5024f6c73
+        sourceBlobDigest: sha256:3789709f58b411aafbb978d9683be63c8fab2474738104c74b94c168ef22cb9f
         tags:
             - latest
-            - speakeasy-sdk-regen-1768402290
+            - speakeasy-sdk-regen-1769681776
             - 1.0.0
 targets:
     mollie-api-golang:
         source: Mollie API
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:bb12fd05a45c54787e852c5b585dd76483f452a6daf3ba7b6ed43495f0fee20c
-        sourceBlobDigest: sha256:5adc2bb7dd9f7d0a336c0842482b0b8dbe4ecbb973010796b15a1aee07fb15c2
+        sourceRevisionDigest: sha256:f78f876aeff7a38c2dc4923dd2caae8039e4cd12813ea2c3c15891f5024f6c73
+        sourceBlobDigest: sha256:3789709f58b411aafbb978d9683be63c8fab2474738104c74b94c168ef22cb9f
         codeSamplesNamespace: mollie-api-go-code-samples
-        codeSamplesRevisionDigest: sha256:20d49af26eb71c0b612b2ea29ec2e96590af46511061451d6fedb623ad4bcc9d
+        codeSamplesRevisionDigest: sha256:b60ea0b4f53af9dcf50d4aafe35daf9a2f2a2241c094abe14c959b442dcfbb9b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

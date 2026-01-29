@@ -265,7 +265,7 @@ func (p *PaymentResponseLine) GetRecurring() *RecurringLineItem {
 // Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
 // `country`.
 //
-// Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
 type PaymentResponseBillingAddress struct {
 	// The title of the person, for example *Mr.* or *Mrs.*.
 	Title *string `json:"title,omitempty"`
@@ -1275,7 +1275,7 @@ type PaymentResponse struct {
 	// Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
 	// `country`.
 	//
-	// Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+	// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
 	BillingAddress  *PaymentResponseBillingAddress `json:"billingAddress,omitempty"`
 	ShippingAddress *PaymentAddress                `json:"shippingAddress,omitempty"`
 	// Allows you to preset the language to be used.

@@ -41,8 +41,8 @@ type ListAllChargebacksRequest struct {
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
-	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
-	// parameter.
+	// This endpoint allows you to embed additional information via the
+	// `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.

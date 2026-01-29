@@ -11,6 +11,13 @@ type GetClientRequest struct {
 	OrganizationID string `pathParam:"style=simple,explode=false,name=organizationId"`
 	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
 	// parameter.
+	//
+	// * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
+	//   partners with the `organizations.read` scope.
+	// * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
+	//   partners with the `onboarding.read` scope.
+	// * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
+	//   Available for *oauth* partners with the `onboarding.read` scope.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`

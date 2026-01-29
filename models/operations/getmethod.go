@@ -38,7 +38,8 @@ func (g *GetMethodGlobals) GetTestmode() *bool {
 type GetMethodRequest struct {
 	// Provide the ID of the related payment method.
 	MethodID *components.MethodID `pathParam:"style=simple,explode=false,name=methodId"`
-	// Response language
+	// Passing a locale will sort the payment methods in the preferred order
+	// for the country, and translate the payment method names in the corresponding language.
 	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If provided, the `minimumAmount` and `maximumAmount` will be converted
 	// to the given currency. An error is returned if the currency is not supported by the payment method.
@@ -49,7 +50,8 @@ type GetMethodRequest struct {
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
 	// organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
 	ProfileID *string `queryParam:"style=form,explode=true,name=profileId"`
-	// This endpoint allows you to include additional information via the `include` query string parameter.
+	// This endpoint allows you to include additional information via the
+	// `include` query string parameter.
 	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Set this parameter to `first` to only return the methods that
 	// can be used for the first payment of a recurring sequence.

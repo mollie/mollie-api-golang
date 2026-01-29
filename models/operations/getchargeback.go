@@ -27,8 +27,7 @@ type GetChargebackRequest struct {
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 	// Provide the ID of the related chargeback.
 	ChargebackID string `pathParam:"style=simple,explode=false,name=chargebackId"`
-	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
-	// parameter.
+	// This endpoint allows you to embed additional information via the `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by

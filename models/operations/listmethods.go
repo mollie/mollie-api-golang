@@ -41,7 +41,8 @@ type ListMethodsRequest struct {
 	//
 	// Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
 	SequenceType *components.SequenceType `queryParam:"style=form,explode=true,name=sequenceType"`
-	// Response language
+	// Passing a locale will sort the payment methods in the preferred order
+	// for the country, and translate the payment method names in the corresponding language.
 	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
 	// If supplied, only payment methods that support the amount and currency
 	// are returned.
@@ -76,7 +77,8 @@ type ListMethodsRequest struct {
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
 	// organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
 	ProfileID *string `queryParam:"style=form,explode=true,name=profileId"`
-	// This endpoint allows you to include additional information via the `include` query string parameter.
+	// This endpoint allows you to include additional information via the
+	// `include` query string parameter.
 	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by

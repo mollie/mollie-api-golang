@@ -30,8 +30,7 @@ type ListChargebacksRequest struct {
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
-	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
-	// parameter.
+	// This endpoint allows you to embed additional information via the `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
