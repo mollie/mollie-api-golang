@@ -12,8 +12,6 @@ type ListInvoicesRequest struct {
 	Reference *string `queryParam:"style=form,explode=true,name=reference"`
 	// Filter for invoices of a specific year, for example `2024`.
 	Year *string `queryParam:"style=form,explode=true,name=year"`
-	// Filter for invoices of a specific month, for example `01`.
-	Month *string `queryParam:"style=form,explode=true,name=month"`
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
 	// result set.
 	From *string `queryParam:"style=form,explode=true,name=from"`
@@ -38,13 +36,6 @@ func (l *ListInvoicesRequest) GetYear() *string {
 		return nil
 	}
 	return l.Year
-}
-
-func (l *ListInvoicesRequest) GetMonth() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Month
 }
 
 func (l *ListInvoicesRequest) GetFrom() *string {

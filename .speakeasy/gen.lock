@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 2dd6bbe6c8e37f09e44e3a6a74949722
+  docChecksum: 9f75aa3893b04629c033db9812989f12
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.9.11
-  configChecksum: 834e01a3dd0d71f95d07a7996c4ffab6
+  releaseVersion: 0.9.12
+  configChecksum: 732bc00a2cfd633e778ba1b0fbd27987
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 40189150-f31a-4de5-9d3f-c78b7c6596f0
-  pristine_commit_hash: 08cd5923d7bfcf9cf8041069b8d51fe275d469d0
-  pristine_tree_hash: b9bdb3f0993732cfefd7c65eef101424e4ecc432
+  generation_id: 6290d848-a51a-4a22-b448-70238c647dc8
+  pristine_commit_hash: 2160e097e63e32d1d9443a7abbe97236ff8ec71e
+  pristine_tree_hash: 5935b4a07f467977a85a13dbd4c1215fec263bd5
 features:
   go:
     additionalDependencies: 0.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0fb72dc52ff480b3a0862f98eba6f01fecf8b138
-    pristine_git_object: 98250109447f1c36816d7c70c0bc3288bee590de
+    last_write_checksum: sha1:1342dbb5aa66e70bb5e132dd5ba2924fb068127e
+    pristine_git_object: 3a1fea52e031c4da48e59556eeee515478904560
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -271,8 +271,8 @@ trackedFiles:
     pristine_git_object: 6a52d3d94d3f5f3fc841c8b737500a6a1a16c2d3
   docs/models/components/code.md:
     id: ee3d6f2d513e
-    last_write_checksum: sha1:7c26cac9e7924950d06a276b074051bd76159b1e
-    pristine_git_object: c3f7774fc8e05a8a9bf79abc4e651b0468cb2532
+    last_write_checksum: sha1:280e8f6770da37c7ec6409dd603c61d528fc2303
+    pristine_git_object: ac010b9da204f94b8e534ef67b4bf697cbe783de
   docs/models/components/company.md:
     id: b90a46f1e0de
     last_write_checksum: sha1:0aec3a7cc76e4da0d2024aa802025496aa85e14b
@@ -2615,8 +2615,8 @@ trackedFiles:
     pristine_git_object: e58afa8e4fd8f25780b23b6546968a542b77b349
   docs/models/operations/listinvoicesrequest.md:
     id: 935df5699f7a
-    last_write_checksum: sha1:536f8aa85b024a5853cc49f8887ff16868b4c808
-    pristine_git_object: ee2e62dba416cf0af40f469925a59d13f7c6de20
+    last_write_checksum: sha1:a6af8377749db1712b9ff60b4b6723b499ea0e64
+    pristine_git_object: dc4ce6c8712d1d6b279ecce7e44a872b6a21c9be
   docs/models/operations/listinvoicesresponse.md:
     id: 62f0f2480e03
     last_write_checksum: sha1:452c35c4cf0fa8eee6c45cb5722c3d0c6261cc6b
@@ -3191,8 +3191,8 @@ trackedFiles:
     pristine_git_object: 3a7264bde89e2868ba8f972a0791302d510a4e82
   docs/sdks/invoices/README.md:
     id: a3f76a06eded
-    last_write_checksum: sha1:ec76b2756caa1f8ec52f1e633ffad9214a31f273
-    pristine_git_object: ce61b8f66c35d3a9ba042ba2bda80daee93b2ae0
+    last_write_checksum: sha1:da0f9b40ac24cfbdc7a6df8d06846864250336cc
+    pristine_git_object: 606c7145481dc303474aa9354e19327449b4df61
   docs/sdks/mandates/README.md:
     id: 5166fb580165
     last_write_checksum: sha1:40da7d1721ad82366d8bf000c0ee583318fcee5e
@@ -3995,8 +3995,8 @@ trackedFiles:
     pristine_git_object: 14470db24edb00dc88537e3e9bfa749e8e4ef9e1
   models/components/statusreason.go:
     id: c53c7c702d40
-    last_write_checksum: sha1:b765e9d5af388df91cad5783463c36ecc1936ee3
-    pristine_git_object: 9ff9e999b427d00a05db15e53d4c32a702d6ee16
+    last_write_checksum: sha1:e48f9fc3b0a22d114bf87cbf3d1ac55ba78ca3d5
+    pristine_git_object: 05b487b0ed141ea71412f6b95f794635597c3d82
   models/components/subgroup.go:
     id: dd72f7d081df
     last_write_checksum: sha1:4a9f7ce6ff49b559f260b55ef7b4ae872dd92427
@@ -4307,8 +4307,8 @@ trackedFiles:
     pristine_git_object: a1917acc5be3621956e01fd3043d82bd5af168b2
   models/operations/listinvoices.go:
     id: f35bdf7c90ce
-    last_write_checksum: sha1:026bd176f262e825c6c2c9b7b10fe610488fb5df
-    pristine_git_object: e6287807bd6a9461a2419d05310f15c958211503
+    last_write_checksum: sha1:58b74edf71ee854ac50e2c2db88821269ce00c38
+    pristine_git_object: 370109fc0945e20f63dd1a38f178a4356e025293
   models/operations/listmandates.go:
     id: f865fd4d9001
     last_write_checksum: sha1:90403d4a40c38897fedfa9fb9dd2ba0dc42f7057
@@ -7817,6 +7817,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes:\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Invoices.List()`: \n  *  `request.Request.Month` **Removed** **Breaking** ⚠️\n* `Client.Payments.Create()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.List()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Get()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Update()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Cancel()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Customers.CreatePayment()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

@@ -41,7 +41,6 @@ func main() {
     res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
         Reference: client.Pointer("2024.10000"),
         Year: client.Pointer("2024"),
-        Month: client.Pointer("01"),
         From: client.Pointer("inv_xBEbP9rvAq"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
