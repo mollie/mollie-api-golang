@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 9f75aa3893b04629c033db9812989f12
+  docChecksum: 6c3e2fac7288f1a292fc3e02b30fe61a
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.9.12
-  configChecksum: 732bc00a2cfd633e778ba1b0fbd27987
+  releaseVersion: 0.9.13
+  configChecksum: 9c85a33efd00f8a4b7586499e64670a1
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 6290d848-a51a-4a22-b448-70238c647dc8
-  pristine_commit_hash: 2160e097e63e32d1d9443a7abbe97236ff8ec71e
-  pristine_tree_hash: 5935b4a07f467977a85a13dbd4c1215fec263bd5
+  generation_id: 6e143886-f6e6-409e-a4b7-dea0c473f60b
+  pristine_commit_hash: 41e6e9763c41bbe34720d7f7ca2a56b7218a6146
+  pristine_tree_hash: 6962bf8985e1ca2332ed5d4473abf58410880af5
 features:
   go:
     additionalDependencies: 0.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:1342dbb5aa66e70bb5e132dd5ba2924fb068127e
-    pristine_git_object: 3a1fea52e031c4da48e59556eeee515478904560
+    last_write_checksum: sha1:0b3b360d79df1c08f77bed62484ce86ca472fb27
+    pristine_git_object: b6f9c3ec1f6a55481ef86d6ce1dcc9fa135f1c6b
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -271,8 +271,8 @@ trackedFiles:
     pristine_git_object: 6a52d3d94d3f5f3fc841c8b737500a6a1a16c2d3
   docs/models/components/code.md:
     id: ee3d6f2d513e
-    last_write_checksum: sha1:280e8f6770da37c7ec6409dd603c61d528fc2303
-    pristine_git_object: ac010b9da204f94b8e534ef67b4bf697cbe783de
+    last_write_checksum: sha1:5026267b6b2ef56578868bd7e40fdfd97e6ad53a
+    pristine_git_object: 963cc0eedc0b621f47c13000937b0cf28f278cbc
   docs/models/components/company.md:
     id: b90a46f1e0de
     last_write_checksum: sha1:0aec3a7cc76e4da0d2024aa802025496aa85e14b
@@ -3995,8 +3995,8 @@ trackedFiles:
     pristine_git_object: 14470db24edb00dc88537e3e9bfa749e8e4ef9e1
   models/components/statusreason.go:
     id: c53c7c702d40
-    last_write_checksum: sha1:e48f9fc3b0a22d114bf87cbf3d1ac55ba78ca3d5
-    pristine_git_object: 05b487b0ed141ea71412f6b95f794635597c3d82
+    last_write_checksum: sha1:97529c520dce0cb9949be5768131a47408524983
+    pristine_git_object: f9dd1925846b1302abc65f963adfdd264961759c
   models/components/subgroup.go:
     id: dd72f7d081df
     last_write_checksum: sha1:4a9f7ce6ff49b559f260b55ef7b4ae872dd92427
@@ -7817,7 +7817,18 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Invoices.List()`: \n  *  `request.Request.Month` **Removed** **Breaking** ⚠️\n* `Client.Payments.Create()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.List()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Get()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Update()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Payments.Cancel()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Customers.CreatePayment()`:  `response.StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(cardError)` **Added** **Breaking** ⚠️\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Payments.Create()`:  `response.StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Payments.List()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Payments.Get()`:  `response.StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Payments.Update()`:  `response.StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Payments.Cancel()`:  `response.StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Customers.CreatePayment()`:  `response.StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].StatusReason.Code.Enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

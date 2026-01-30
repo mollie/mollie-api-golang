@@ -128,6 +128,7 @@ const (
 	CodeLoginFailedInvalidPassword                  Code = "login_failed_invalid_password"
 	CodeInvalidEanCode                              Code = "invalid_ean_code"
 	CodeCardError                                   Code = "card_error"
+	CodeTerminalConfigurationIssue                  Code = "terminal_configuration_issue"
 )
 
 func (e Code) ToPointer() *Code {
@@ -372,6 +373,8 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	case "invalid_ean_code":
 		fallthrough
 	case "card_error":
+		fallthrough
+	case "terminal_configuration_issue":
 		*e = Code(v)
 		return nil
 	default:
