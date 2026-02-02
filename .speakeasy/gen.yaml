@@ -31,7 +31,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.9.13
+  version: 0.9.14
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true

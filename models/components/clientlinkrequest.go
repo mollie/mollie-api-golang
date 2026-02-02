@@ -2,6 +2,13 @@
 
 package components
 
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // Owner - Personal data of your customer.
 type Owner struct {
 	// The email address of your customer.
@@ -84,6 +91,1560 @@ func (c *ClientLinkRequestAddress) GetCountry() string {
 	return c.Country
 }
 
+// Other business entity.
+type Other string
+
+const (
+	OtherOther Other = "other"
+)
+
+func (e Other) ToPointer() *Other {
+	return &e
+}
+func (e *Other) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "other":
+		*e = Other(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Other: %v", v)
+	}
+}
+
+// Gb - **Great Britain legal entities types.**
+//
+//   - `gb-llp` - Limited Liability Partnership (LLP)
+//   - `gb-lp` - Limited Partnership (LP)
+//   - `gb-ltd` - Private Limited Company (Ltd.)
+//   - `gb-plc` - Public Limited Company (PLC)
+//   - `gb-charitable-company` - Charitable Company
+//   - `gb-general-partnership` - General Partnership (GP)
+//   - `gb-sole-trader` - Sole trader
+//   - `gb-trust` - Trust
+type Gb string
+
+const (
+	GbGbLlp                Gb = "gb-llp"
+	GbGbLp                 Gb = "gb-lp"
+	GbGbLtd                Gb = "gb-ltd"
+	GbGbPlc                Gb = "gb-plc"
+	GbGbCharitableCompany  Gb = "gb-charitable-company"
+	GbGbGeneralPartnership Gb = "gb-general-partnership"
+	GbGbSoleTrader         Gb = "gb-sole-trader"
+	GbGbTrust              Gb = "gb-trust"
+)
+
+func (e Gb) ToPointer() *Gb {
+	return &e
+}
+func (e *Gb) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "gb-llp":
+		fallthrough
+	case "gb-lp":
+		fallthrough
+	case "gb-ltd":
+		fallthrough
+	case "gb-plc":
+		fallthrough
+	case "gb-charitable-company":
+		fallthrough
+	case "gb-general-partnership":
+		fallthrough
+	case "gb-sole-trader":
+		fallthrough
+	case "gb-trust":
+		*e = Gb(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Gb: %v", v)
+	}
+}
+
+// It - **Italy legal entities types.**
+//
+//   - `it-associazione-non-riconosciuta` - Associazione non riconosciuta
+//   - `it-associazione-riconosciuta` - Associazione riconosciuta
+//   - `it-ditta-individuale` - Ditta Individuale
+//   - `it-fondazione` - Fondazione
+//   - `it-fondo-fiduciario` - Fondo Fiduciario
+//   - `it-sapa` - Società in accomandita per azioni (S.a.p.a.)
+//   - `it-sas` - Società in accomandita semplice (S.a.s.)
+//   - `it-snc` - Società in nome collettivo (S.n.c)
+//   - `it-societa-cooperativa` - Società cooperativa
+//   - `it-spa` - Società per azioni (S.p.A.)
+//   - `it-srl` - Società a responsabilità limitata (S.r.l.)
+//   - `it-ss` - Società semplice (S.s.)
+type It string
+
+const (
+	ItItAssociazioneNonRiconosciuta It = "it-associazione-non-riconosciuta"
+	ItItAssociazioneRiconosciuta    It = "it-associazione-riconosciuta"
+	ItItDittaIndividuale            It = "it-ditta-individuale"
+	ItItFondazione                  It = "it-fondazione"
+	ItItFondoFiduciario             It = "it-fondo-fiduciario"
+	ItItSapa                        It = "it-sapa"
+	ItItSas                         It = "it-sas"
+	ItItSnc                         It = "it-snc"
+	ItItSocietaCooperativa          It = "it-societa-cooperativa"
+	ItItSpa                         It = "it-spa"
+	ItItSrl                         It = "it-srl"
+	ItItSs                          It = "it-ss"
+)
+
+func (e It) ToPointer() *It {
+	return &e
+}
+func (e *It) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "it-associazione-non-riconosciuta":
+		fallthrough
+	case "it-associazione-riconosciuta":
+		fallthrough
+	case "it-ditta-individuale":
+		fallthrough
+	case "it-fondazione":
+		fallthrough
+	case "it-fondo-fiduciario":
+		fallthrough
+	case "it-sapa":
+		fallthrough
+	case "it-sas":
+		fallthrough
+	case "it-snc":
+		fallthrough
+	case "it-societa-cooperativa":
+		fallthrough
+	case "it-spa":
+		fallthrough
+	case "it-srl":
+		fallthrough
+	case "it-ss":
+		*e = It(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for It: %v", v)
+	}
+}
+
+// No - **Norway legal entities types.**
+//
+//   - `no-ans-da` - Ansvarlig selskap (ANS/DA)
+//   - `no-as` - Aksjeselskap (AS)
+//   - `no-asa` - Allmennaksjeselskap (ASA)
+//   - `no-da` - Selskap med delt ansvar (DA)
+//   - `no-enk` - Enkeltpersonsforetak (ENK)
+//   - `no-ks` - Kommandittselskap (KS)
+//   - `no-nuf` - Norskregistrert utenlandsk foretak (NUF)
+//   - `no-samvirkeforetak` - Samvirkeforetak
+//   - `no-statesforetak` - Statesforetak
+//   - `no-stiftelse` - Stiftelse
+type No string
+
+const (
+	NoNoAnsDa           No = "no-ans-da"
+	NoNoAs              No = "no-as"
+	NoNoAsa             No = "no-asa"
+	NoNoDa              No = "no-da"
+	NoNoEnk             No = "no-enk"
+	NoNoKs              No = "no-ks"
+	NoNoNuf             No = "no-nuf"
+	NoNoSamvirkeforetak No = "no-samvirkeforetak"
+	NoNoStatesforetak   No = "no-statesforetak"
+	NoNoStiftelse       No = "no-stiftelse"
+)
+
+func (e No) ToPointer() *No {
+	return &e
+}
+func (e *No) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "no-ans-da":
+		fallthrough
+	case "no-as":
+		fallthrough
+	case "no-asa":
+		fallthrough
+	case "no-da":
+		fallthrough
+	case "no-enk":
+		fallthrough
+	case "no-ks":
+		fallthrough
+	case "no-nuf":
+		fallthrough
+	case "no-samvirkeforetak":
+		fallthrough
+	case "no-statesforetak":
+		fallthrough
+	case "no-stiftelse":
+		*e = No(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for No: %v", v)
+	}
+}
+
+// Se - **Sweden legal entities types.**
+//
+//   - `se-ab` - Aktiebolag (AB)
+//   - `se-ab-publ` - AB (publ)
+//   - `se-ekonomisk-forening` - Ekonomisk förening
+//   - `se-enkla-bolag` - Enkla bolag
+//   - `se-enskild-firma` - Enskild firma
+//   - `se-fillial-utlandskt-bolag` - Fillial till utländskt bolag
+//   - `se-hb` - Handelsbolag (HB)
+//   - `se-ideel-forening` - Ideel förening
+//   - `se-kb` - Kommanditbolag (KB)
+//   - `se-samriskforetag` - Samriskföretag
+//   - `se-stiftelse` - Stiftelse
+//   - `se-trust` - Trust
+type Se string
+
+const (
+	SeSeAb                    Se = "se-ab"
+	SeSeAbPubl                Se = "se-ab-publ"
+	SeSeEkonomiskForening     Se = "se-ekonomisk-forening"
+	SeSeEnklaBolag            Se = "se-enkla-bolag"
+	SeSeEnskildFirma          Se = "se-enskild-firma"
+	SeSeFillialUtlandsktBolag Se = "se-fillial-utlandskt-bolag"
+	SeSeHb                    Se = "se-hb"
+	SeSeIdeelForening         Se = "se-ideel-forening"
+	SeSeKb                    Se = "se-kb"
+	SeSeSamriskforetag        Se = "se-samriskforetag"
+	SeSeStiftelse             Se = "se-stiftelse"
+	SeSeTrust                 Se = "se-trust"
+)
+
+func (e Se) ToPointer() *Se {
+	return &e
+}
+func (e *Se) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "se-ab":
+		fallthrough
+	case "se-ab-publ":
+		fallthrough
+	case "se-ekonomisk-forening":
+		fallthrough
+	case "se-enkla-bolag":
+		fallthrough
+	case "se-enskild-firma":
+		fallthrough
+	case "se-fillial-utlandskt-bolag":
+		fallthrough
+	case "se-hb":
+		fallthrough
+	case "se-ideel-forening":
+		fallthrough
+	case "se-kb":
+		fallthrough
+	case "se-samriskforetag":
+		fallthrough
+	case "se-stiftelse":
+		fallthrough
+	case "se-trust":
+		*e = Se(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Se: %v", v)
+	}
+}
+
+// Dk - **Denmark legal entities types.**
+//
+//   - `dk-aktieselskab` - Aktieselskab
+//   - `dk-anpartsselskab` - Anpartsselskab
+//   - `dk-enkeltmandsvirksomhed` - Enkeltmandsvirksomhed
+//   - `dk-interessentskab` - Interessentskab
+//   - `dk-ivaerksaetterselskab` - Iværksætterselskab
+//   - `dk-kommanditselskab` - Kommanditselskab
+//   - `dk-stiftelse` - Stiftelse
+//   - `dk-trust` - Trust
+type Dk string
+
+const (
+	DkDkAktieselskab          Dk = "dk-aktieselskab"
+	DkDkAnpartsselskab        Dk = "dk-anpartsselskab"
+	DkDkEnkeltmandsvirksomhed Dk = "dk-enkeltmandsvirksomhed"
+	DkDkInteressentskab       Dk = "dk-interessentskab"
+	DkDkIvaerksaetterselskab  Dk = "dk-ivaerksaetterselskab"
+	DkDkKommanditselskab      Dk = "dk-kommanditselskab"
+	DkDkStiftelse             Dk = "dk-stiftelse"
+	DkDkTrust                 Dk = "dk-trust"
+)
+
+func (e Dk) ToPointer() *Dk {
+	return &e
+}
+func (e *Dk) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "dk-aktieselskab":
+		fallthrough
+	case "dk-anpartsselskab":
+		fallthrough
+	case "dk-enkeltmandsvirksomhed":
+		fallthrough
+	case "dk-interessentskab":
+		fallthrough
+	case "dk-ivaerksaetterselskab":
+		fallthrough
+	case "dk-kommanditselskab":
+		fallthrough
+	case "dk-stiftelse":
+		fallthrough
+	case "dk-trust":
+		*e = Dk(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Dk: %v", v)
+	}
+}
+
+// Fi - **Finland legal entities types.**
+//
+//   - `fi-avoin-yhtio` - Avoin yhtiö
+//   - `fi-julkinen-osakeyhtio` - Julkinen Osakeyhtiö
+//   - `fi-kommandiittiyhtio` - Kommandiittiyhtiö
+//   - `fi-osakeythio` - Osakeythiö
+//   - `fi-osuuskunta` - Osuuskunta
+//   - `fi-rekisteroity-yhdistys` - Rekisteroity Yhdistys
+//   - `fi-saatio` - Säätiö
+//   - `fi-toiminimi` - Toiminimi
+type Fi string
+
+const (
+	FiFiAvoinYhtio           Fi = "fi-avoin-yhtio"
+	FiFiJulkinenOsakeyhtio   Fi = "fi-julkinen-osakeyhtio"
+	FiFiKommandiittiyhtio    Fi = "fi-kommandiittiyhtio"
+	FiFiOsakeythio           Fi = "fi-osakeythio"
+	FiFiOsuuskunta           Fi = "fi-osuuskunta"
+	FiFiRekisteroityYhdistys Fi = "fi-rekisteroity-yhdistys"
+	FiFiSaatio               Fi = "fi-saatio"
+	FiFiToiminimi            Fi = "fi-toiminimi"
+)
+
+func (e Fi) ToPointer() *Fi {
+	return &e
+}
+func (e *Fi) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fi-avoin-yhtio":
+		fallthrough
+	case "fi-julkinen-osakeyhtio":
+		fallthrough
+	case "fi-kommandiittiyhtio":
+		fallthrough
+	case "fi-osakeythio":
+		fallthrough
+	case "fi-osuuskunta":
+		fallthrough
+	case "fi-rekisteroity-yhdistys":
+		fallthrough
+	case "fi-saatio":
+		fallthrough
+	case "fi-toiminimi":
+		*e = Fi(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Fi: %v", v)
+	}
+}
+
+// Ch - **Switzerland legal entities types.**
+//
+//   - `ch-ag` - Aktiengesellschaft (AG)
+//   - `ch-eg` - Einfache Gesellschaft (eG)
+//   - `ch-einzelunternehmen` - Einzelunternehmen
+//   - `ch-genossenschaft` - Genossenschaft
+//   - `ch-gmbh` - Gesellschaft mit beschränkter Haftung (GmbH)
+//   - `ch-kg` - Kommanditgesellschaft (KG)
+//   - `ch-kig` - Kollektivgesellschaft (KIG)
+//   - `ch-kmag` - Kommanditaktiengesellschaft (KmAG)
+//   - `ch-stiftung` - Stiftung
+//   - `ch-trust` - Trust
+//   - `ch-verein` - Verein
+type Ch string
+
+const (
+	ChChAg                Ch = "ch-ag"
+	ChChEg                Ch = "ch-eg"
+	ChChEinzelunternehmen Ch = "ch-einzelunternehmen"
+	ChChGenossenschaft    Ch = "ch-genossenschaft"
+	ChChGmbh              Ch = "ch-gmbh"
+	ChChKg                Ch = "ch-kg"
+	ChChKig               Ch = "ch-kig"
+	ChChKmag              Ch = "ch-kmag"
+	ChChStiftung          Ch = "ch-stiftung"
+	ChChTrust             Ch = "ch-trust"
+	ChChVerein            Ch = "ch-verein"
+)
+
+func (e Ch) ToPointer() *Ch {
+	return &e
+}
+func (e *Ch) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "ch-ag":
+		fallthrough
+	case "ch-eg":
+		fallthrough
+	case "ch-einzelunternehmen":
+		fallthrough
+	case "ch-genossenschaft":
+		fallthrough
+	case "ch-gmbh":
+		fallthrough
+	case "ch-kg":
+		fallthrough
+	case "ch-kig":
+		fallthrough
+	case "ch-kmag":
+		fallthrough
+	case "ch-stiftung":
+		fallthrough
+	case "ch-trust":
+		fallthrough
+	case "ch-verein":
+		*e = Ch(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Ch: %v", v)
+	}
+}
+
+// Pt - **Portugal legal entities types.**
+//
+//   - `pt-cooperativa` - Cooperativa
+//   - `pt-eirl` - Estabelecimento Individual de Responsabilidade Limitada (EIRL)
+//   - `pt-empresario-nome-individual` - Empresário em Nome individual
+//   - `pt-fondo-fiduciario` - Fondo Fiduciario
+//   - `pt-fundacao` - Fundação
+//   - `pt-sociedade-anonima` - Sociedade Anónima
+//   - `pt-sociedade-comandita` - Sociedade em Comandita
+//   - `pt-sociedade-nome-colectivo` - Sociedade em Nome Colectivo
+//   - `pt-sociedade-quotas` - Sociedade por Quotas
+//   - `pt-sociedade-unipessoal-quotas` - Sociedade Unipessoal por Quotas
+type Pt string
+
+const (
+	PtPtCooperativa               Pt = "pt-cooperativa"
+	PtPtEirl                      Pt = "pt-eirl"
+	PtPtEmpresarioNomeIndividual  Pt = "pt-empresario-nome-individual"
+	PtPtFondoFiduciario           Pt = "pt-fondo-fiduciario"
+	PtPtFundacao                  Pt = "pt-fundacao"
+	PtPtSociedadeAnonima          Pt = "pt-sociedade-anonima"
+	PtPtSociedadeComandita        Pt = "pt-sociedade-comandita"
+	PtPtSociedadeNomeColectivo    Pt = "pt-sociedade-nome-colectivo"
+	PtPtSociedadeQuotas           Pt = "pt-sociedade-quotas"
+	PtPtSociedadeUnipessoalQuotas Pt = "pt-sociedade-unipessoal-quotas"
+)
+
+func (e Pt) ToPointer() *Pt {
+	return &e
+}
+func (e *Pt) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pt-cooperativa":
+		fallthrough
+	case "pt-eirl":
+		fallthrough
+	case "pt-empresario-nome-individual":
+		fallthrough
+	case "pt-fondo-fiduciario":
+		fallthrough
+	case "pt-fundacao":
+		fallthrough
+	case "pt-sociedade-anonima":
+		fallthrough
+	case "pt-sociedade-comandita":
+		fallthrough
+	case "pt-sociedade-nome-colectivo":
+		fallthrough
+	case "pt-sociedade-quotas":
+		fallthrough
+	case "pt-sociedade-unipessoal-quotas":
+		*e = Pt(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Pt: %v", v)
+	}
+}
+
+// Es - **Spain legal entities types.**
+//
+//   - `es-autonomo` - Autonomo
+//   - `es-asociacion` - Asociación
+//   - `es-cb` - Comunidad de Bienes (C.B.)
+//   - `es-comerciante-individual` - Comerciante individual
+//   - `es-fiducia` - Fiducia
+//   - `es-fundacion` - Fundacion
+//   - `es-sa` - Sociedad Anónima (S.A.)
+//   - `es-sr-src` - Sociedad Regular Colectiva (S.R/S.R.C)
+//   - `es-se` - Sociedad Anónima Europea (SE)
+//   - `es-sociedad-civil` - Sociedad Civil
+//   - `es-sociedad-cooperativa` - Sociedad Cooperativa
+//   - `es-sociedad-comanditaria` - Sociedad en Comanditaria
+//   - `es-srl-sl` - Sociedad de Responsabilidad Limitada (SRL/SL)
+//   - `es-srlu` - Sociedad de Responsabilidad Limitada Unipersonal (SRLU)
+type Es string
+
+const (
+	EsEsAutonomo              Es = "es-autonomo"
+	EsEsAsociacion            Es = "es-asociacion"
+	EsEsCb                    Es = "es-cb"
+	EsEsComercianteIndividual Es = "es-comerciante-individual"
+	EsEsFiducia               Es = "es-fiducia"
+	EsEsFundacion             Es = "es-fundacion"
+	EsEsSa                    Es = "es-sa"
+	EsEsSrSrc                 Es = "es-sr-src"
+	EsEsSe                    Es = "es-se"
+	EsEsSociedadCivil         Es = "es-sociedad-civil"
+	EsEsSociedadCooperativa   Es = "es-sociedad-cooperativa"
+	EsEsSociedadComanditaria  Es = "es-sociedad-comanditaria"
+	EsEsSrlSl                 Es = "es-srl-sl"
+	EsEsSrlu                  Es = "es-srlu"
+)
+
+func (e Es) ToPointer() *Es {
+	return &e
+}
+func (e *Es) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "es-autonomo":
+		fallthrough
+	case "es-asociacion":
+		fallthrough
+	case "es-cb":
+		fallthrough
+	case "es-comerciante-individual":
+		fallthrough
+	case "es-fiducia":
+		fallthrough
+	case "es-fundacion":
+		fallthrough
+	case "es-sa":
+		fallthrough
+	case "es-sr-src":
+		fallthrough
+	case "es-se":
+		fallthrough
+	case "es-sociedad-civil":
+		fallthrough
+	case "es-sociedad-cooperativa":
+		fallthrough
+	case "es-sociedad-comanditaria":
+		fallthrough
+	case "es-srl-sl":
+		fallthrough
+	case "es-srlu":
+		*e = Es(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Es: %v", v)
+	}
+}
+
+// Lu - **Luxembourg legal entities types.**
+//
+//   - `lu-ei` - Entreprise individuelle (EI)
+//   - `lu-lpf` - Luxembourg Private Foundation (LPF)
+//   - `lu-sa` - Société anonyme (S.A.)
+//   - `lu-sarl` - Société à responsabilité limitée (SARL)
+//   - `lu-sarl-s` - Société à responsabilité limitée simplifée (SARL-S)
+//   - `lu-sas` - Société par actions simplifiée (SAS)
+//   - `lu-sc` - Société civile (SC)
+//   - `lu-sca` - Société en commandite par actions (SCA)
+//   - `lu-sci` - Société civile immobilières (SCI)
+//   - `lu-scsp` - Société en commandite special (SCSp)
+//   - `lu-secs` - Société en commandite simple (SECS)
+//   - `lu-senc` - Société en nom collectif (SENC)
+//   - `lu-trust` - Trust
+type Lu string
+
+const (
+	LuLuEi    Lu = "lu-ei"
+	LuLuLpf   Lu = "lu-lpf"
+	LuLuSa    Lu = "lu-sa"
+	LuLuSarl  Lu = "lu-sarl"
+	LuLuSarlS Lu = "lu-sarl-s"
+	LuLuSas   Lu = "lu-sas"
+	LuLuSc    Lu = "lu-sc"
+	LuLuSca   Lu = "lu-sca"
+	LuLuSci   Lu = "lu-sci"
+	LuLuScsp  Lu = "lu-scsp"
+	LuLuSecs  Lu = "lu-secs"
+	LuLuSenc  Lu = "lu-senc"
+	LuLuTrust Lu = "lu-trust"
+)
+
+func (e Lu) ToPointer() *Lu {
+	return &e
+}
+func (e *Lu) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "lu-ei":
+		fallthrough
+	case "lu-lpf":
+		fallthrough
+	case "lu-sa":
+		fallthrough
+	case "lu-sarl":
+		fallthrough
+	case "lu-sarl-s":
+		fallthrough
+	case "lu-sas":
+		fallthrough
+	case "lu-sc":
+		fallthrough
+	case "lu-sca":
+		fallthrough
+	case "lu-sci":
+		fallthrough
+	case "lu-scsp":
+		fallthrough
+	case "lu-secs":
+		fallthrough
+	case "lu-senc":
+		fallthrough
+	case "lu-trust":
+		*e = Lu(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Lu: %v", v)
+	}
+}
+
+// Fr - **France legal entities types.**
+//
+//   - `fr-adl` - Administration de l'état
+//   - `fr-association` - Association
+//   - `fr-ct` - Collectivité territoriale
+//   - `fr-entreprise-individuelle` - Entreprise individuelle
+//   - `fr-auto-entrepreneur` - Auto-entrepreneur
+//   - `fr-epa` - Etablissement public administratif
+//   - `fr-fiducie` - Fiducie
+//   - `fr-fondation` - Fondation
+//   - `fr-gie` - Groupement d'intérêt économique (GIE)
+//   - `fr-eurl` - SARL unipersonnelle (ou EURL)
+//   - `fr-sarl` - Société à responsabilité limitée (SARL)
+//   - `fr-sa` - Société anonyme (SA)
+//   - `fr-sc` - Société en commandite
+//   - `fr-sca` - Société coopérative agricole (SCA)
+//   - `fr-sccp` - Société coopérative commerciale particulière
+//   - `fr-sdm` - Société d'assurance mutuelle
+//   - `fr-civile` - Société civile
+//   - `fr-snc` - Société en nom collectif (SNC)
+//   - `fr-se` - Société européenne
+//   - `fr-sas` - Société par actions simplifiée (SAS)
+//   - `fr-sasu` - Société par actions simplifiée unipersonnelle (SASU)
+type Fr string
+
+const (
+	FrFrAdl                    Fr = "fr-adl"
+	FrFrAssociation            Fr = "fr-association"
+	FrFrCt                     Fr = "fr-ct"
+	FrFrEntrepriseIndividuelle Fr = "fr-entreprise-individuelle"
+	FrFrAutoEntrepreneur       Fr = "fr-auto-entrepreneur"
+	FrFrEpa                    Fr = "fr-epa"
+	FrFrFiducie                Fr = "fr-fiducie"
+	FrFrFondation              Fr = "fr-fondation"
+	FrFrGie                    Fr = "fr-gie"
+	FrFrEurl                   Fr = "fr-eurl"
+	FrFrSarl                   Fr = "fr-sarl"
+	FrFrSa                     Fr = "fr-sa"
+	FrFrSc                     Fr = "fr-sc"
+	FrFrSca                    Fr = "fr-sca"
+	FrFrSccp                   Fr = "fr-sccp"
+	FrFrSdm                    Fr = "fr-sdm"
+	FrFrCivile                 Fr = "fr-civile"
+	FrFrSnc                    Fr = "fr-snc"
+	FrFrSe                     Fr = "fr-se"
+	FrFrSas                    Fr = "fr-sas"
+	FrFrSasu                   Fr = "fr-sasu"
+)
+
+func (e Fr) ToPointer() *Fr {
+	return &e
+}
+func (e *Fr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "fr-adl":
+		fallthrough
+	case "fr-association":
+		fallthrough
+	case "fr-ct":
+		fallthrough
+	case "fr-entreprise-individuelle":
+		fallthrough
+	case "fr-auto-entrepreneur":
+		fallthrough
+	case "fr-epa":
+		fallthrough
+	case "fr-fiducie":
+		fallthrough
+	case "fr-fondation":
+		fallthrough
+	case "fr-gie":
+		fallthrough
+	case "fr-eurl":
+		fallthrough
+	case "fr-sarl":
+		fallthrough
+	case "fr-sa":
+		fallthrough
+	case "fr-sc":
+		fallthrough
+	case "fr-sca":
+		fallthrough
+	case "fr-sccp":
+		fallthrough
+	case "fr-sdm":
+		fallthrough
+	case "fr-civile":
+		fallthrough
+	case "fr-snc":
+		fallthrough
+	case "fr-se":
+		fallthrough
+	case "fr-sas":
+		fallthrough
+	case "fr-sasu":
+		*e = Fr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Fr: %v", v)
+	}
+}
+
+// At - **Austria legal entities types.**
+//
+//   - `at-aktiengesellschaft` - Aktiengesellschaft (AG)
+//   - `at-einzelunternehmen` - Einzelunternehmen
+//   - `at-freie-berufe` - Freie Berufe
+//   - `at-gesbr` - Gesellschaft bürgerlichen Rechts (GesbR)
+//   - `at-gmbh` - Gesellschaft mit beschränkter Haftung (GmbH)
+//   - `at-interessen-verienigung` - Europäische Wirtschaftliche Interessenvereinigung
+//   - `at-keg` - Kommandit - Erwerbsgesellschaft (KEG)
+//   - `at-kommanditgesellschaft` - Kommanditgesellschaft (KG)
+//   - `at-korperschaft-offentlichen-rechts` - Körperschaft öffentlichen Rechts
+//   - `at-oeg` - Offene Erwerbsgesellschaft (OEG)
+//   - `at-offene-gesellschaft` - Offene Gesellschaft (OG)
+//   - `at-offentliches-unternehmen` - Öffentliches Unternehmen
+//   - `at-se` - Europäische Gesellschaft (SE)
+//   - `at-stiftung` - Stiftung
+//   - `at-trust` - Trust
+//   - `at-verein` - Verein
+type At string
+
+const (
+	AtAtAktiengesellschaft             At = "at-aktiengesellschaft"
+	AtAtEinzelunternehmen              At = "at-einzelunternehmen"
+	AtAtFreieBerufe                    At = "at-freie-berufe"
+	AtAtGesbr                          At = "at-gesbr"
+	AtAtGmbh                           At = "at-gmbh"
+	AtAtInteressenVerienigung          At = "at-interessen-verienigung"
+	AtAtKeg                            At = "at-keg"
+	AtAtKommanditgesellschaft          At = "at-kommanditgesellschaft"
+	AtAtKorperschaftOffentlichenRechts At = "at-korperschaft-offentlichen-rechts"
+	AtAtOeg                            At = "at-oeg"
+	AtAtOffeneGesellschaft             At = "at-offene-gesellschaft"
+	AtAtOffentlichesUnternehmen        At = "at-offentliches-unternehmen"
+	AtAtSe                             At = "at-se"
+	AtAtStiftung                       At = "at-stiftung"
+	AtAtTrust                          At = "at-trust"
+	AtAtVerein                         At = "at-verein"
+)
+
+func (e At) ToPointer() *At {
+	return &e
+}
+func (e *At) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "at-aktiengesellschaft":
+		fallthrough
+	case "at-einzelunternehmen":
+		fallthrough
+	case "at-freie-berufe":
+		fallthrough
+	case "at-gesbr":
+		fallthrough
+	case "at-gmbh":
+		fallthrough
+	case "at-interessen-verienigung":
+		fallthrough
+	case "at-keg":
+		fallthrough
+	case "at-kommanditgesellschaft":
+		fallthrough
+	case "at-korperschaft-offentlichen-rechts":
+		fallthrough
+	case "at-oeg":
+		fallthrough
+	case "at-offene-gesellschaft":
+		fallthrough
+	case "at-offentliches-unternehmen":
+		fallthrough
+	case "at-se":
+		fallthrough
+	case "at-stiftung":
+		fallthrough
+	case "at-trust":
+		fallthrough
+	case "at-verein":
+		*e = At(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for At: %v", v)
+	}
+}
+
+// De - **Germany legal entities types.**
+//
+//   - `de-aktiengesellschaft` - Aktiengesellschaft (AG)
+//   - `de-eingetragene-genossenschaft` - Eingetragene Genossenschaft (e.G.)
+//   - `de-einzelunternehmen` - Einzelunternehmen
+//   - `de-freiberufler` - Freiberufler
+//   - `de-gesellschaft-burgerlichen-rechts` - Gesellschaft bürgerlichen Rechts (GbR)
+//   - `de-gmbh` - Gesellschaft mit beschränkter Haftung (GmbH)
+//   - `de-interessen-verienigung` - Europäische Wirtschaftliche Interessenvereinigung
+//   - `de-kg` - Kommanditgesellschaft (KG)
+//   - `de-kirchliche-stiftung` - Kirchliche Stiftung
+//   - `de-korperschaft-offentlichen-rechts` - Körperschaft öffentlichen Rechts
+//   - `de-nev` - Nicht eingetragener Verein (n.e.V.)
+//   - `de-offentliches-unternehmen` - Öffentliches Unternehmen
+//   - `de-ohg` - Offene Handelsgesellschaft (OHG)
+//   - `de-partnergesellschaft` - Partnergesellschaft
+//   - `de-se` - Europäische Gesellschaft (SE)
+//   - `de-stiftung-des-privaten-rechts` - Stiftung des privaten Rechts
+//   - `de-treuhandstiftung` - Treuhandstiftung
+//   - `de-unternehmergesellschaft` - Unternehmergesellschaft (UG)
+//   - `de-verein` - Verein (e.V.)
+type De string
+
+const (
+	DeDeAktiengesellschaft             De = "de-aktiengesellschaft"
+	DeDeEingetrageneGenossenschaft     De = "de-eingetragene-genossenschaft"
+	DeDeEinzelunternehmen              De = "de-einzelunternehmen"
+	DeDeFreiberufler                   De = "de-freiberufler"
+	DeDeGesellschaftBurgerlichenRechts De = "de-gesellschaft-burgerlichen-rechts"
+	DeDeGmbh                           De = "de-gmbh"
+	DeDeInteressenVerienigung          De = "de-interessen-verienigung"
+	DeDeKg                             De = "de-kg"
+	DeDeKirchlicheStiftung             De = "de-kirchliche-stiftung"
+	DeDeKorperschaftOffentlichenRechts De = "de-korperschaft-offentlichen-rechts"
+	DeDeNev                            De = "de-nev"
+	DeDeOffentlichesUnternehmen        De = "de-offentliches-unternehmen"
+	DeDeOhg                            De = "de-ohg"
+	DeDePartnergesellschaft            De = "de-partnergesellschaft"
+	DeDeSe                             De = "de-se"
+	DeDeStiftungDesPrivatenRechts      De = "de-stiftung-des-privaten-rechts"
+	DeDeTreuhandstiftung               De = "de-treuhandstiftung"
+	DeDeUnternehmergesellschaft        De = "de-unternehmergesellschaft"
+	DeDeVerein                         De = "de-verein"
+)
+
+func (e De) ToPointer() *De {
+	return &e
+}
+func (e *De) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "de-aktiengesellschaft":
+		fallthrough
+	case "de-eingetragene-genossenschaft":
+		fallthrough
+	case "de-einzelunternehmen":
+		fallthrough
+	case "de-freiberufler":
+		fallthrough
+	case "de-gesellschaft-burgerlichen-rechts":
+		fallthrough
+	case "de-gmbh":
+		fallthrough
+	case "de-interessen-verienigung":
+		fallthrough
+	case "de-kg":
+		fallthrough
+	case "de-kirchliche-stiftung":
+		fallthrough
+	case "de-korperschaft-offentlichen-rechts":
+		fallthrough
+	case "de-nev":
+		fallthrough
+	case "de-offentliches-unternehmen":
+		fallthrough
+	case "de-ohg":
+		fallthrough
+	case "de-partnergesellschaft":
+		fallthrough
+	case "de-se":
+		fallthrough
+	case "de-stiftung-des-privaten-rechts":
+		fallthrough
+	case "de-treuhandstiftung":
+		fallthrough
+	case "de-unternehmergesellschaft":
+		fallthrough
+	case "de-verein":
+		*e = De(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for De: %v", v)
+	}
+}
+
+// Be - **Belgium legal entities types.**
+//
+//   - `be-autonoom-gemeentebedrijf` - Autonoom gemeentebedrijf
+//   - `be-belgische-staat` - Belgische Staat
+//   - `be-bv` - Besloten Vennootschap
+//   - `be-bvba` - Besloten Vennootschap met Beperkte Aansprakelijkheid (BVBA)
+//   - `be-comm-v` - Gewone Commanditaire Vennootschap (GCV / Comm. V)
+//   - `be-comm-va` - Commanditaire Vennootschap op Aandelen (CVA / Comm. VA)
+//   - `be-cv` - Coöperatieve Vennootschap
+//   - `be-cvoa` - Coöperatieve Vennootschap met Onbeperkte Aansprakelijkheid (CVOA)
+//   - `be-cvoha` - Coöperatieve Vennootschap met Onbeperkte en Hoofdelijke Aansprakelijkheid (CVOHA)
+//   - `be-cvba` - Coöperatieve Vennootschap met Beperkte Aansprakelijkheid (CVBA)
+//   - `be-economisch-samenwerkingsverband` - Europees Economisch Samenwerkingsverband (EESV)
+//   - `be-eenmanszaak` - Eenmanszaak
+//   - `be-eenmans-bvba` - Eénpersoons-BVBA (EBVBA)
+//   - `be-europese-cooperatieve-vennootschap` - Europese Coöperatieve Vennootschap (SCE)
+//   - `be-europese-vennootschap` - Europese Naamloze Vennootschap (SE)
+//   - `be-ivzw` - Internationale Vereniging Zonder Winstoogmerk (IVZW)
+//   - `be-kerkgenootschap` - Kerkgenootschap
+//   - `be-landbouwvennootschap` - Landbouwvennootschap (LV)
+//   - `be-maatschap` - Maatschap
+//   - `be-nv` - Naamloze Vennootschap (NV)
+//   - `be-politiek-publiek-rechtspersoon` - Politieke Publiekrechtelijke Rechtspersonen
+//   - `be-s-bvba` - Starters-BVBA (S-BVBA)
+//   - `be-stichting` - Stichting
+//   - `be-stille-handelsvennootschap` - Stille Handelsvennootschap
+//   - `be-tijdelijke-handelsvennootschap` - Tijdelijke Handelsvennootschap
+//   - `be-trust` - Trust
+//   - `be-vereniging-zonder-winstoogmerk` - Vereniging Zonder Winstoogmerk (VZW)
+//   - `be-vof` - Vennootschap Onder Firma (VOF)
+type Be string
+
+const (
+	BeBeAutonoomGemeentebedrijf          Be = "be-autonoom-gemeentebedrijf"
+	BeBeBelgischeStaat                   Be = "be-belgische-staat"
+	BeBeBv                               Be = "be-bv"
+	BeBeBvba                             Be = "be-bvba"
+	BeBeCommV                            Be = "be-comm-v"
+	BeBeCommVa                           Be = "be-comm-va"
+	BeBeCv                               Be = "be-cv"
+	BeBeCvoa                             Be = "be-cvoa"
+	BeBeCvoha                            Be = "be-cvoha"
+	BeBeCvba                             Be = "be-cvba"
+	BeBeEconomischSamenwerkingsverband   Be = "be-economisch-samenwerkingsverband"
+	BeBeEenmanszaak                      Be = "be-eenmanszaak"
+	BeBeEenmansBvba                      Be = "be-eenmans-bvba"
+	BeBeEuropeseCooperatieveVennootschap Be = "be-europese-cooperatieve-vennootschap"
+	BeBeEuropeseVennootschap             Be = "be-europese-vennootschap"
+	BeBeIvzw                             Be = "be-ivzw"
+	BeBeKerkgenootschap                  Be = "be-kerkgenootschap"
+	BeBeLandbouwvennootschap             Be = "be-landbouwvennootschap"
+	BeBeMaatschap                        Be = "be-maatschap"
+	BeBeNv                               Be = "be-nv"
+	BeBePolitiekPubliekRechtspersoon     Be = "be-politiek-publiek-rechtspersoon"
+	BeBeSBvba                            Be = "be-s-bvba"
+	BeBeStichting                        Be = "be-stichting"
+	BeBeStilleHandelsvennootschap        Be = "be-stille-handelsvennootschap"
+	BeBeTijdelijkeHandelsvennootschap    Be = "be-tijdelijke-handelsvennootschap"
+	BeBeTrust                            Be = "be-trust"
+	BeBeVerenigingZonderWinstoogmerk     Be = "be-vereniging-zonder-winstoogmerk"
+	BeBeVof                              Be = "be-vof"
+)
+
+func (e Be) ToPointer() *Be {
+	return &e
+}
+func (e *Be) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "be-autonoom-gemeentebedrijf":
+		fallthrough
+	case "be-belgische-staat":
+		fallthrough
+	case "be-bv":
+		fallthrough
+	case "be-bvba":
+		fallthrough
+	case "be-comm-v":
+		fallthrough
+	case "be-comm-va":
+		fallthrough
+	case "be-cv":
+		fallthrough
+	case "be-cvoa":
+		fallthrough
+	case "be-cvoha":
+		fallthrough
+	case "be-cvba":
+		fallthrough
+	case "be-economisch-samenwerkingsverband":
+		fallthrough
+	case "be-eenmanszaak":
+		fallthrough
+	case "be-eenmans-bvba":
+		fallthrough
+	case "be-europese-cooperatieve-vennootschap":
+		fallthrough
+	case "be-europese-vennootschap":
+		fallthrough
+	case "be-ivzw":
+		fallthrough
+	case "be-kerkgenootschap":
+		fallthrough
+	case "be-landbouwvennootschap":
+		fallthrough
+	case "be-maatschap":
+		fallthrough
+	case "be-nv":
+		fallthrough
+	case "be-politiek-publiek-rechtspersoon":
+		fallthrough
+	case "be-s-bvba":
+		fallthrough
+	case "be-stichting":
+		fallthrough
+	case "be-stille-handelsvennootschap":
+		fallthrough
+	case "be-tijdelijke-handelsvennootschap":
+		fallthrough
+	case "be-trust":
+		fallthrough
+	case "be-vereniging-zonder-winstoogmerk":
+		fallthrough
+	case "be-vof":
+		*e = Be(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Be: %v", v)
+	}
+}
+
+// Nl - **Netherlands legal entities types.**
+//
+//   - `nl-bv` - Besloten Vennootschap (BV)
+//   - `nl-cooperatie` - Coöperatie
+//   - `nl-cv` - Commanditaire Vennootschap (CV)
+//   - `nl-eenmanszaak` - Eenmanszaak
+//   - `nl-eesv` - Europees Economisch Samenwerkingsverband (EESV)
+//   - `nl-kerkgenootschap` - Kerkgenootschap
+//   - `nl-kroondomein` - Kroondomein
+//   - `nl-maatschap` - Maatschap
+//   - `nl-nv` - Naamloze Vennootschap (NV)
+//   - `nl-overheid` - Overheidsinstantie
+//   - `nl-sce` - Europese Coöperatieve Vennootschap (SCE)
+//   - `nl-se` - Europese Naamloze Vennootschap (SE)
+//   - `nl-stichting` - Stichting
+//   - `nl-trust` - Trust
+//   - `nl-vereniging` - Vereniging
+//   - `nl-vof` - Vennootschap Onder Firma (VOF)
+//   - `nl-waarborgmaatschappij` - Onderlinge Waarborgmaatschappij
+type Nl string
+
+const (
+	NlNlBv                   Nl = "nl-bv"
+	NlNlCooperatie           Nl = "nl-cooperatie"
+	NlNlCv                   Nl = "nl-cv"
+	NlNlEenmanszaak          Nl = "nl-eenmanszaak"
+	NlNlEesv                 Nl = "nl-eesv"
+	NlNlKerkgenootschap      Nl = "nl-kerkgenootschap"
+	NlNlKroondomein          Nl = "nl-kroondomein"
+	NlNlMaatschap            Nl = "nl-maatschap"
+	NlNlNv                   Nl = "nl-nv"
+	NlNlOverheid             Nl = "nl-overheid"
+	NlNlSce                  Nl = "nl-sce"
+	NlNlSe                   Nl = "nl-se"
+	NlNlStichting            Nl = "nl-stichting"
+	NlNlTrust                Nl = "nl-trust"
+	NlNlVereniging           Nl = "nl-vereniging"
+	NlNlVof                  Nl = "nl-vof"
+	NlNlWaarborgmaatschappij Nl = "nl-waarborgmaatschappij"
+)
+
+func (e Nl) ToPointer() *Nl {
+	return &e
+}
+func (e *Nl) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "nl-bv":
+		fallthrough
+	case "nl-cooperatie":
+		fallthrough
+	case "nl-cv":
+		fallthrough
+	case "nl-eenmanszaak":
+		fallthrough
+	case "nl-eesv":
+		fallthrough
+	case "nl-kerkgenootschap":
+		fallthrough
+	case "nl-kroondomein":
+		fallthrough
+	case "nl-maatschap":
+		fallthrough
+	case "nl-nv":
+		fallthrough
+	case "nl-overheid":
+		fallthrough
+	case "nl-sce":
+		fallthrough
+	case "nl-se":
+		fallthrough
+	case "nl-stichting":
+		fallthrough
+	case "nl-trust":
+		fallthrough
+	case "nl-vereniging":
+		fallthrough
+	case "nl-vof":
+		fallthrough
+	case "nl-waarborgmaatschappij":
+		*e = Nl(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Nl: %v", v)
+	}
+}
+
+type LegalEntityType string
+
+const (
+	LegalEntityTypeNl    LegalEntityType = "NL"
+	LegalEntityTypeBe    LegalEntityType = "BE"
+	LegalEntityTypeDe    LegalEntityType = "DE"
+	LegalEntityTypeAt    LegalEntityType = "AT"
+	LegalEntityTypeFr    LegalEntityType = "FR"
+	LegalEntityTypeLu    LegalEntityType = "LU"
+	LegalEntityTypeEs    LegalEntityType = "ES"
+	LegalEntityTypePt    LegalEntityType = "PT"
+	LegalEntityTypeCh    LegalEntityType = "CH"
+	LegalEntityTypeFi    LegalEntityType = "FI"
+	LegalEntityTypeDk    LegalEntityType = "DK"
+	LegalEntityTypeSe    LegalEntityType = "SE"
+	LegalEntityTypeNo    LegalEntityType = "NO"
+	LegalEntityTypeIt    LegalEntityType = "IT"
+	LegalEntityTypeGb    LegalEntityType = "GB"
+	LegalEntityTypeOther LegalEntityType = "OTHER"
+)
+
+// LegalEntity - The legal entity type of the organization, based on its country of origin.
+type LegalEntity struct {
+	Nl    *Nl    `queryParam:"inline" union:"member"`
+	Be    *Be    `queryParam:"inline" union:"member"`
+	De    *De    `queryParam:"inline" union:"member"`
+	At    *At    `queryParam:"inline" union:"member"`
+	Fr    *Fr    `queryParam:"inline" union:"member"`
+	Lu    *Lu    `queryParam:"inline" union:"member"`
+	Es    *Es    `queryParam:"inline" union:"member"`
+	Pt    *Pt    `queryParam:"inline" union:"member"`
+	Ch    *Ch    `queryParam:"inline" union:"member"`
+	Fi    *Fi    `queryParam:"inline" union:"member"`
+	Dk    *Dk    `queryParam:"inline" union:"member"`
+	Se    *Se    `queryParam:"inline" union:"member"`
+	No    *No    `queryParam:"inline" union:"member"`
+	It    *It    `queryParam:"inline" union:"member"`
+	Gb    *Gb    `queryParam:"inline" union:"member"`
+	Other *Other `queryParam:"inline" union:"member"`
+
+	Type LegalEntityType
+}
+
+func CreateLegalEntityNl(nl Nl) LegalEntity {
+	typ := LegalEntityTypeNl
+
+	return LegalEntity{
+		Nl:   &nl,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityBe(be Be) LegalEntity {
+	typ := LegalEntityTypeBe
+
+	return LegalEntity{
+		Be:   &be,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityDe(de De) LegalEntity {
+	typ := LegalEntityTypeDe
+
+	return LegalEntity{
+		De:   &de,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityAt(at At) LegalEntity {
+	typ := LegalEntityTypeAt
+
+	return LegalEntity{
+		At:   &at,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityFr(fr Fr) LegalEntity {
+	typ := LegalEntityTypeFr
+
+	return LegalEntity{
+		Fr:   &fr,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityLu(lu Lu) LegalEntity {
+	typ := LegalEntityTypeLu
+
+	return LegalEntity{
+		Lu:   &lu,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityEs(es Es) LegalEntity {
+	typ := LegalEntityTypeEs
+
+	return LegalEntity{
+		Es:   &es,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityPt(pt Pt) LegalEntity {
+	typ := LegalEntityTypePt
+
+	return LegalEntity{
+		Pt:   &pt,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityCh(ch Ch) LegalEntity {
+	typ := LegalEntityTypeCh
+
+	return LegalEntity{
+		Ch:   &ch,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityFi(fi Fi) LegalEntity {
+	typ := LegalEntityTypeFi
+
+	return LegalEntity{
+		Fi:   &fi,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityDk(dk Dk) LegalEntity {
+	typ := LegalEntityTypeDk
+
+	return LegalEntity{
+		Dk:   &dk,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntitySe(se Se) LegalEntity {
+	typ := LegalEntityTypeSe
+
+	return LegalEntity{
+		Se:   &se,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityNo(no No) LegalEntity {
+	typ := LegalEntityTypeNo
+
+	return LegalEntity{
+		No:   &no,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityIt(it It) LegalEntity {
+	typ := LegalEntityTypeIt
+
+	return LegalEntity{
+		It:   &it,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityGb(gb Gb) LegalEntity {
+	typ := LegalEntityTypeGb
+
+	return LegalEntity{
+		Gb:   &gb,
+		Type: typ,
+	}
+}
+
+func CreateLegalEntityOther(other Other) LegalEntity {
+	typ := LegalEntityTypeOther
+
+	return LegalEntity{
+		Other: &other,
+		Type:  typ,
+	}
+}
+
+func (u *LegalEntity) UnmarshalJSON(data []byte) error {
+
+	var nl Nl = Nl("")
+	if err := utils.UnmarshalJSON(data, &nl, "", true, nil); err == nil {
+		u.Nl = &nl
+		u.Type = LegalEntityTypeNl
+		return nil
+	}
+
+	var be Be = Be("")
+	if err := utils.UnmarshalJSON(data, &be, "", true, nil); err == nil {
+		u.Be = &be
+		u.Type = LegalEntityTypeBe
+		return nil
+	}
+
+	var de De = De("")
+	if err := utils.UnmarshalJSON(data, &de, "", true, nil); err == nil {
+		u.De = &de
+		u.Type = LegalEntityTypeDe
+		return nil
+	}
+
+	var at At = At("")
+	if err := utils.UnmarshalJSON(data, &at, "", true, nil); err == nil {
+		u.At = &at
+		u.Type = LegalEntityTypeAt
+		return nil
+	}
+
+	var fr Fr = Fr("")
+	if err := utils.UnmarshalJSON(data, &fr, "", true, nil); err == nil {
+		u.Fr = &fr
+		u.Type = LegalEntityTypeFr
+		return nil
+	}
+
+	var lu Lu = Lu("")
+	if err := utils.UnmarshalJSON(data, &lu, "", true, nil); err == nil {
+		u.Lu = &lu
+		u.Type = LegalEntityTypeLu
+		return nil
+	}
+
+	var es Es = Es("")
+	if err := utils.UnmarshalJSON(data, &es, "", true, nil); err == nil {
+		u.Es = &es
+		u.Type = LegalEntityTypeEs
+		return nil
+	}
+
+	var pt Pt = Pt("")
+	if err := utils.UnmarshalJSON(data, &pt, "", true, nil); err == nil {
+		u.Pt = &pt
+		u.Type = LegalEntityTypePt
+		return nil
+	}
+
+	var ch Ch = Ch("")
+	if err := utils.UnmarshalJSON(data, &ch, "", true, nil); err == nil {
+		u.Ch = &ch
+		u.Type = LegalEntityTypeCh
+		return nil
+	}
+
+	var fi Fi = Fi("")
+	if err := utils.UnmarshalJSON(data, &fi, "", true, nil); err == nil {
+		u.Fi = &fi
+		u.Type = LegalEntityTypeFi
+		return nil
+	}
+
+	var dk Dk = Dk("")
+	if err := utils.UnmarshalJSON(data, &dk, "", true, nil); err == nil {
+		u.Dk = &dk
+		u.Type = LegalEntityTypeDk
+		return nil
+	}
+
+	var se Se = Se("")
+	if err := utils.UnmarshalJSON(data, &se, "", true, nil); err == nil {
+		u.Se = &se
+		u.Type = LegalEntityTypeSe
+		return nil
+	}
+
+	var no No = No("")
+	if err := utils.UnmarshalJSON(data, &no, "", true, nil); err == nil {
+		u.No = &no
+		u.Type = LegalEntityTypeNo
+		return nil
+	}
+
+	var it It = It("")
+	if err := utils.UnmarshalJSON(data, &it, "", true, nil); err == nil {
+		u.It = &it
+		u.Type = LegalEntityTypeIt
+		return nil
+	}
+
+	var gb Gb = Gb("")
+	if err := utils.UnmarshalJSON(data, &gb, "", true, nil); err == nil {
+		u.Gb = &gb
+		u.Type = LegalEntityTypeGb
+		return nil
+	}
+
+	var other Other = Other("")
+	if err := utils.UnmarshalJSON(data, &other, "", true, nil); err == nil {
+		u.Other = &other
+		u.Type = LegalEntityTypeOther
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for LegalEntity", string(data))
+}
+
+func (u LegalEntity) MarshalJSON() ([]byte, error) {
+	if u.Nl != nil {
+		return utils.MarshalJSON(u.Nl, "", true)
+	}
+
+	if u.Be != nil {
+		return utils.MarshalJSON(u.Be, "", true)
+	}
+
+	if u.De != nil {
+		return utils.MarshalJSON(u.De, "", true)
+	}
+
+	if u.At != nil {
+		return utils.MarshalJSON(u.At, "", true)
+	}
+
+	if u.Fr != nil {
+		return utils.MarshalJSON(u.Fr, "", true)
+	}
+
+	if u.Lu != nil {
+		return utils.MarshalJSON(u.Lu, "", true)
+	}
+
+	if u.Es != nil {
+		return utils.MarshalJSON(u.Es, "", true)
+	}
+
+	if u.Pt != nil {
+		return utils.MarshalJSON(u.Pt, "", true)
+	}
+
+	if u.Ch != nil {
+		return utils.MarshalJSON(u.Ch, "", true)
+	}
+
+	if u.Fi != nil {
+		return utils.MarshalJSON(u.Fi, "", true)
+	}
+
+	if u.Dk != nil {
+		return utils.MarshalJSON(u.Dk, "", true)
+	}
+
+	if u.Se != nil {
+		return utils.MarshalJSON(u.Se, "", true)
+	}
+
+	if u.No != nil {
+		return utils.MarshalJSON(u.No, "", true)
+	}
+
+	if u.It != nil {
+		return utils.MarshalJSON(u.It, "", true)
+	}
+
+	if u.Gb != nil {
+		return utils.MarshalJSON(u.Gb, "", true)
+	}
+
+	if u.Other != nil {
+		return utils.MarshalJSON(u.Other, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type LegalEntity: all fields are null")
+}
+
 type ClientLinkRequest struct {
 	// Personal data of your customer.
 	Owner Owner `json:"owner"`
@@ -96,6 +1657,8 @@ type ClientLinkRequest struct {
 	// The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
 	// international registry *VIES*.
 	VatNumber *string `json:"vatNumber,omitempty"`
+	// The legal entity type of the organization, based on its country of origin.
+	LegalEntity *LegalEntity `json:"legalEntity,omitempty"`
 }
 
 func (c *ClientLinkRequest) GetOwner() Owner {
@@ -131,4 +1694,11 @@ func (c *ClientLinkRequest) GetVatNumber() *string {
 		return nil
 	}
 	return c.VatNumber
+}
+
+func (c *ClientLinkRequest) GetLegalEntity() *LegalEntity {
+	if c == nil {
+		return nil
+	}
+	return c.LegalEntity
 }
