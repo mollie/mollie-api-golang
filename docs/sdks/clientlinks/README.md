@@ -100,9 +100,9 @@ func main() {
             Country: "NL",
         },
         RegistrationNumber: client.Pointer("12345678"),
-        LegalEntity: client.Pointer(components.CreateLegalEntityNl(
-            components.NlNlBv,
-        )),
+        LegalEntity: client.Pointer("nl-bv"),
+        RegistrationOffice: client.Pointer("aachen"),
+        IncorporationDate: client.Pointer("2024-12-24"),
     })
     if err != nil {
         log.Fatal(err)

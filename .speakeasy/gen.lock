@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 1bb1837f225747691408f6e7e251deeb
+  docChecksum: ce1106feda5055744a87c25a0cf15f00
   docVersion: 1.0.0
-  speakeasyVersion: 1.700.2
-  generationVersion: 2.801.2
-  releaseVersion: 0.9.14
-  configChecksum: 04d20c7dfb4f150e705393238004db0e
+  speakeasyVersion: 1.701.0
+  generationVersion: 2.803.3
+  releaseVersion: 0.9.15
+  configChecksum: 9867af5fa8ee01f6d83d9207a98ed8fe
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: e75b4a2f-d5bc-42b2-a260-98c9f5c2164f
-  pristine_commit_hash: b36ca81bbe4574be78aa246fcc63ca37084f46de
-  pristine_tree_hash: c3cedc416e5cfb215578c5cbbc3c473b5fe351ed
+  generation_id: c5c926a2-fc7e-4bcb-a0a8-de7bcf96cee4
+  pristine_commit_hash: 0747bfecf9078f202ca77e8f7afb9be73f8c8a96
+  pristine_tree_hash: 1797d198616d90a6ec090d46a748e16c3c446e51
 features:
   go:
     additionalDependencies: 0.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:69fc897d64bee35ff11cb9ad2d653a86a20bd8cb
-    pristine_git_object: 98ba48384ae933f76ed6fe5a5c46052b079b577a
+    last_write_checksum: sha1:d903e87da35b9252258dcb7d8a000be6539268a4
+    pristine_git_object: d0107f425e82ee40716d92eae50386207e0f875b
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -113,10 +113,6 @@ trackedFiles:
     id: 2ac29b4ff1ed
     last_write_checksum: sha1:082649e0509859a8a777084ea6eb15963f8ed13d
     pristine_git_object: d91546f0388ca3f9817d7467d6ad9b8b15ddca3e
-  docs/models/components/at.md:
-    id: 7b17a092f4ea
-    last_write_checksum: sha1:d7bb2ebccbc1ce4179073d3f52032cf548e35e30
-    pristine_git_object: a339dcec58d266c5da7c9142bd2561e893692e72
   docs/models/components/availablebalance.md:
     id: 1685f3f93219
     last_write_checksum: sha1:f44c96fb8eae89128b49eadf511612ed8f0bc42d
@@ -177,10 +173,6 @@ trackedFiles:
     id: 504696e26795
     last_write_checksum: sha1:8b968c113d0bb4c9d6f7c0e68cbf28e7a7bc2491
     pristine_git_object: 8bc498c15b3f46f2b5f4add5ba0951fd0ca4e57e
-  docs/models/components/be.md:
-    id: 17660770bfec
-    last_write_checksum: sha1:8e5f36f2648fd6b1c6eff4270c492d46e280dacd
-    pristine_git_object: 9f858cb255624276c921199ded45907be6a27595
   docs/models/components/billingaddress.md:
     id: 2ae09e90bc32
     last_write_checksum: sha1:6cc01c20105dc1a7c33e78509692ce325779ab8e
@@ -241,10 +233,6 @@ trackedFiles:
     id: a2a09f5ddb81
     last_write_checksum: sha1:cc44c0cc0f50690cea13e422628215f65b253c08
     pristine_git_object: e4ebc82604de8f79c74407dfaca817b5899d51c8
-  docs/models/components/ch.md:
-    id: 05e2cd648646
-    last_write_checksum: sha1:fda2c84f94a157c87cc844259781eeeec5801cf9
-    pristine_git_object: dba22cf80fb785b194758f8ea97de60516e6cb47
   docs/models/components/chargeback.md:
     id: 413db8640ae9
     last_write_checksum: sha1:b579bd76e9a3d0adb564b4a7ef9d55ca6200bca0
@@ -263,8 +251,8 @@ trackedFiles:
     pristine_git_object: 32ce9d372f6563de66137470ad67eb65db6c7936
   docs/models/components/clientlinkrequest.md:
     id: 3231ff35ba13
-    last_write_checksum: sha1:b90fa6c5cd8252dd1d0a022df6e0cbe1cf755497
-    pristine_git_object: fb2528ea12b161873b19d851320b6a5a4b6444b8
+    last_write_checksum: sha1:b6c5a9d3f55514dad9730520a47868d7192478a9
+    pristine_git_object: eed615f26dd175a1ba7ff2eaacf9a438f8ec544d
   docs/models/components/clientlinkrequestaddress.md:
     id: e10e23614a11
     last_write_checksum: sha1:8cbce787b44e56bfc9aefe4530abf8cfdcc0a85c
@@ -321,18 +309,10 @@ trackedFiles:
     id: 7ed5f0a6e0af
     last_write_checksum: sha1:daba7a77a9872c34674edc09635c0718b3df5249
     pristine_git_object: ba7aba7c19da770d2e9d7612cf43c3b54cb38e5a
-  docs/models/components/de.md:
-    id: 16eb8e1ae267
-    last_write_checksum: sha1:6cd7fa1eef5945a7a32bfec8857e246277b28a62
-    pristine_git_object: bab0af92d4b0a1cb5ac21a1cd4a3e56181c008c7
   docs/models/components/deletevaluessalesinvoice.md:
     id: a4640ab01b29
     last_write_checksum: sha1:1cf4cd0f69bdc718e9ffe85047d13d2a5a5701cb
     pristine_git_object: 086501d03ca91bfae50bd0c9a341b25e0ccbf148
-  docs/models/components/dk.md:
-    id: b66b2e63b799
-    last_write_checksum: sha1:6892981f3f886e45c777db239b3307e4139dd25e
-    pristine_git_object: c3c1acfcd02739d7bc4751abba6dbef3b9ae42f0
   docs/models/components/documentation.md:
     id: d4aba5c2cc91
     last_write_checksum: sha1:2fb816c8433e478fb165ef5956c7632c555a9c28
@@ -681,10 +661,6 @@ trackedFiles:
     id: 99c902ac47d1
     last_write_checksum: sha1:966096d236603f2b584086b9f5e4c9fa19739988
     pristine_git_object: 20eeb7a1c3d012e030762e9a436e7e9f4a506877
-  docs/models/components/es.md:
-    id: 2151b385796f
-    last_write_checksum: sha1:7d475b181749f7fef94e1b8b853018451c7c27db
-    pristine_git_object: d127799985ad74b23848d6e996fc453bc286a3ec
   docs/models/components/failedpayment.md:
     id: 9c17cd202062
     last_write_checksum: sha1:8ea11f674700eee1e593367f5ae6c716f1e6fda7
@@ -697,18 +673,6 @@ trackedFiles:
     id: be4c6d5cbc99
     last_write_checksum: sha1:13c18d5605d4a07953b7df753d1623e33ca279b8
     pristine_git_object: 5e94e4cd134630895435761d8a5f95eb967d25bb
-  docs/models/components/fi.md:
-    id: cdd71bdbc84c
-    last_write_checksum: sha1:325479ac1430a129f45e7c4eb300f7e07ef38395
-    pristine_git_object: 37065564c5b7cc92ff8815bb3dd2a34471bab142
-  docs/models/components/fr.md:
-    id: b1c2226f6a5d
-    last_write_checksum: sha1:895f54a5a8e5534b508218f0afe02c0b170cbbf5
-    pristine_git_object: 056573726771f744fa99ea088c967514596233af
-  docs/models/components/gb.md:
-    id: 51efe7ded7e0
-    last_write_checksum: sha1:ccc5e6d53038e0e10e632cecbe62e7b2d6f77385
-    pristine_git_object: f19ddbd50a42868a21449696cf756b2d7e445a6b
   docs/models/components/httpmetadata.md:
     id: 728948c70168
     last_write_checksum: sha1:7c40945dac218ce5e5e11e7c907d27a3ea14c417
@@ -717,14 +681,6 @@ trackedFiles:
     id: e0bc0c097042
     last_write_checksum: sha1:f9e85ae9b1ccf2eb1c038786804291adec3d8e30
     pristine_git_object: f4d2ecf1511cac4f28a9ab19056b6a7c52b15444
-  docs/models/components/it.md:
-    id: 255cc0b26f47
-    last_write_checksum: sha1:7bf561ee33655051f22b91bf8f8c9320364b632f
-    pristine_git_object: 09a8ab8ca87438d079bda9efa10d380a459178e9
-  docs/models/components/legalentity.md:
-    id: 14705cbbf5f0
-    last_write_checksum: sha1:1f433f3bc8fb56dba58e8fe2a5eeb234d757da00
-    pristine_git_object: 24bea9311b9cb4409b32612ab201880d6d167439
   docs/models/components/linecategories.md:
     id: a5c9e44b6852
     last_write_checksum: sha1:f0b01dae8b65ac6cddb59e585ae1987d0bb22a9e
@@ -1063,8 +1019,8 @@ trackedFiles:
     pristine_git_object: b0110ae05637e307ca2408dd90e0dfed90187b1f
   docs/models/components/listpaymentresponsestatus.md:
     id: a3be5bdc9517
-    last_write_checksum: sha1:38f78275b35adc25de4942ab52587dcfe65e3867
-    pristine_git_object: cecb926120ee8630a388525a20cd729d3c6816fa
+    last_write_checksum: sha1:1e2ad9b7d4b7a81f88f03688930f5d599eff5bf0
+    pristine_git_object: 2d99896583f065138e0b84fcf2955197fe84cf6b
   docs/models/components/listprofileresponse.md:
     id: 11781583cba3
     last_write_checksum: sha1:60b15c8bf63d538f83ace367bae3a158aa9f2bd0
@@ -1149,10 +1105,6 @@ trackedFiles:
     id: 7ef871d2fbe2
     last_write_checksum: sha1:3874408375df8d7618bd476f0e74785f3fb85b92
     pristine_git_object: 9b85b204841b5f23de69e561cc2cc4e5f9a51556
-  docs/models/components/lu.md:
-    id: 76d35549a638
-    last_write_checksum: sha1:4e7b2dd471921d1c61c685dda7dd49893d52b488
-    pristine_git_object: abf5e2c6b79fa8fc5b55297f445afd1e9338e4a4
   docs/models/components/managedfee.md:
     id: d6bf3ad0f360
     last_write_checksum: sha1:384e046f1e33d0ce5be3c2141ce466d6aa61f3ed
@@ -1225,14 +1177,6 @@ trackedFiles:
     id: ecad6afdf106
     last_write_checksum: sha1:cd7b34a41777c85306b4a90b096fc5b1d6bbb957
     pristine_git_object: 7938737824631d8897fd3a9a1af3f6a3ddcd17ba
-  docs/models/components/nl.md:
-    id: 09f1021f236a
-    last_write_checksum: sha1:5b6fbba1c808fd226419eee57d1184d56471aaa6
-    pristine_git_object: a1c5e1c40f206866d974a9f7c53feae624e8e80f
-  docs/models/components/no.md:
-    id: 1fd9e15912c9
-    last_write_checksum: sha1:a4af60f2824cc9477328b5bcf93bf066b4b512fd
-    pristine_git_object: df67e8837adf9ff5caa0026159583535050b5e27
   docs/models/components/onboardingvatregulation.md:
     id: ea887b99935a
     last_write_checksum: sha1:76f46fc4d1df907f828e9008afb50b26e805a88a
@@ -1245,10 +1189,6 @@ trackedFiles:
     id: 98e0a18bfc7f
     last_write_checksum: sha1:cc627f8d798a28bad8c2a810f8150cf166c64979
     pristine_git_object: 51190892236d677ccd446d6f692171b0d428c698
-  docs/models/components/other.md:
-    id: e300848372b2
-    last_write_checksum: sha1:27e4bdea9cc85e0f8e8c7acc691d77eb5481f9ea
-    pristine_git_object: d2575a133983d6f63b73e5f026ae899609a7d05c
   docs/models/components/outgoingtransfer.md:
     id: bdd030da9756
     last_write_checksum: sha1:1bc7e7d73bc02e31e7aad26fce19f8b01e50c46f
@@ -1431,8 +1371,8 @@ trackedFiles:
     pristine_git_object: 57fbce3c02402ba04f19a5fa5b94f1dfffe97c69
   docs/models/components/paymentresponsestatus.md:
     id: 65782ea767de
-    last_write_checksum: sha1:b962e0e3c762a0da566a3c79e4113403bcc23f16
-    pristine_git_object: 8b7049fd713cb26b0e315ec4027df5c0be01b9f4
+    last_write_checksum: sha1:225bfaaa952aa85c3b71970ffdf511da9a5952f9
+    pristine_git_object: e2b565ef62a562f071d7e035cae9814f8347df6e
   docs/models/components/payments.md:
     id: 0f85d60a19d0
     last_write_checksum: sha1:087caebf3d2ffbcc64461bf447077e6cdf1b83fa
@@ -1481,10 +1421,6 @@ trackedFiles:
     id: 052da6040500
     last_write_checksum: sha1:d914046ac515d64643ed90b4a8a8a2f0654bf249
     pristine_git_object: aebf502abbb073d7dceabaa39d8519fb8de9a326
-  docs/models/components/pt.md:
-    id: 093d46a95e6c
-    last_write_checksum: sha1:a9f46da718583d0a407fd4a82c12f3bf06e910e1
-    pristine_git_object: fd32c5c017a5fa1df7bd81bc8e3f31c7a060afcd
   docs/models/components/recurringlineitem.md:
     id: a948af17a85b
     last_write_checksum: sha1:47d13a6eb6287592d8de8bbadd6240e044b0c115
@@ -1717,10 +1653,6 @@ trackedFiles:
     id: b39de7254fcc
     last_write_checksum: sha1:234009b899150c5fb66ab726a1d6f145d44ebb03
     pristine_git_object: d733331f046aa0711ec44cbf8c51ef9d4108d9e3
-  docs/models/components/se.md:
-    id: f563f42fbbdf
-    last_write_checksum: sha1:8d08d278ecda8cfc64c822258ebb2dfae8846019
-    pristine_git_object: 8a9c94ddab7f9e4d72bab8b7cd4a98a25a27d4fc
   docs/models/components/security.md:
     id: 54906b49ea28
     last_write_checksum: sha1:34a055cfc0e1f2bc130f024b08f2f24d98da2090
@@ -3243,8 +3175,8 @@ trackedFiles:
     pristine_git_object: 9b4d52bea181d05dfaff86bfb6770de5cd4c7700
   docs/sdks/clientlinks/README.md:
     id: 74ba097043d3
-    last_write_checksum: sha1:9f4dbf49287793d02168255db85bb52677ff38d5
-    pristine_git_object: 2fdd150c4c8146e2b6494d9f18d34c1f5143f763
+    last_write_checksum: sha1:63a8de5f3e8b697fcf6c2487bc9b7e7c93b37e72
+    pristine_git_object: 29e7dedf4eda2b8ef36a2e7d03fde7c0676f4631
   docs/sdks/clients/README.md:
     id: ba883fd0c1cf
     last_write_checksum: sha1:1e4c8f2bca62eb5eb40454b5a0e962e1a53d92c8
@@ -3515,8 +3447,8 @@ trackedFiles:
     pristine_git_object: d0d83a350bc81b831d6e5f5833e63e669d851736
   models/components/clientlinkrequest.go:
     id: ca4b832089d2
-    last_write_checksum: sha1:12f927482f7a9f3457dfe92f9a7e36239341313d
-    pristine_git_object: 516d01e7773603cbd00b959a545b85c03188e86b
+    last_write_checksum: sha1:7a99e8ad2c2e75c17fc6acfb09eca020da693723
+    pristine_git_object: 9572f0d3f899ec0259dd4e5123107a5e5540ee52
   models/components/clientlinkresponse.go:
     id: 3d3578ba5594
     last_write_checksum: sha1:fc28c832b08543cdc5f84f9434d936f893cec7f1
@@ -3719,8 +3651,8 @@ trackedFiles:
     pristine_git_object: cc3ab3501a260c348b7a148f8b3b69810345b925
   models/components/listpaymentresponse.go:
     id: 46da5cfb8fa1
-    last_write_checksum: sha1:a9a82c256fc6ec227b2e03d5415efba8c6c8ee1a
-    pristine_git_object: 3ff9a878576947681ff2700a5c2cad18e653fd35
+    last_write_checksum: sha1:66159aeeefcfe021409c1f1478b3b4d31794fab7
+    pristine_git_object: c0e45afe74db8b6b7f333f047a78ad6abddceab3
   models/components/listprofileresponse.go:
     id: 34f56d75e719
     last_write_checksum: sha1:d308be18b0715ff4dfaba99d6454ad4d420a6577
@@ -3895,8 +3827,8 @@ trackedFiles:
     pristine_git_object: 6a0f8a2e3cdd6759e2574fe0274d7108165b5a74
   models/components/paymentresponse.go:
     id: 94b4782571dc
-    last_write_checksum: sha1:ad837e665c1957fbae281b2a1efdbbe727c89192
-    pristine_git_object: 2d1b5ce9aab1da5eba2ac02431ff5cf6980bcf4c
+    last_write_checksum: sha1:29163ee39c8da275e0b5492238e86cb7284cb91f
+    pristine_git_object: e14d11f80d496e670360ea9d1e84e41938f4e5a4
   models/components/profilerequest.go:
     id: d3ce670eb9e6
     last_write_checksum: sha1:364f5c7cb3dbed5ba661a5c74f55cd0f4d13fc93
@@ -5532,7 +5464,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv"}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv", "registrationOffice": "aachen", "incorporationDate": "2024-12-24"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "cl_vZCnNQsV2UtfXxYifWKWH", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "clientLink": {"href": "https://my.mollie.com/dashboard/client-link/cl_vZCnNQsV2UtfXxYifWKWH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -5541,7 +5473,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv"}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv", "registrationOffice": "aachen", "incorporationDate": "2024-12-24"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "csr_ayCz46QLwCbxpTaSYQQZH", "_links": {"clientLink": {"href": "https://my.mollie.com/dashboard/client-link/csr_ayCz46QLwCbxpTaSYQQZH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -5550,7 +5482,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv"}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv", "registrationOffice": "aachen", "incorporationDate": "2024-12-24"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "csr_ayCz46QLwCbxpTaSYQQZH", "_links": {"clientLink": {"href": "https://my.mollie.com/dashboard/client-link/csr_ayCz46QLwCbxpTaSYQQZH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -5559,7 +5491,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv"}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "legalEntity": "nl-bv", "registrationOffice": "aachen", "incorporationDate": "2024-12-24"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "cl_vZCnNQsV2UtfXxYifWKWH", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "clientLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -7885,7 +7817,9 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.ClientLinks.Create()`: \n  *  `request.ClientLinkRequest.LegalEntity` **Added**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.ClientLinks.Create()`:  `request.ClientLinkRequest` **Changed** **Breaking** ⚠️
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
