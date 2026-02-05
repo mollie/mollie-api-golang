@@ -32,7 +32,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.9.15
+  version: 0.9.16
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
@@ -58,6 +58,7 @@ go:
   nullableOptionalWrapper: false
   outputModelSuffix: output
   respectRequiredFields: false
+  respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope-http
   sdkPackageName: Client
   unionStrategy: left-to-right

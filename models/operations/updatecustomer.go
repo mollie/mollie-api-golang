@@ -6,12 +6,65 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type UpdateCustomerRequestBody struct {
+	// The full name of the customer.
+	Name *string `json:"name,omitempty"`
+	// The email address of the customer.
+	Email *string `json:"email,omitempty"`
+	// Allows you to preset the language to be used.
+	Locale *components.LocaleResponse `json:"locale,omitempty"`
+	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+	Metadata *components.Metadata `json:"metadata,omitempty"`
+	// Whether the entity was created in test mode or live mode. This field does not update the mode of the entity.
+	//
+	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+	// `testmode` to `true`.
+	Testmode *bool `json:"testmode,omitempty"`
+}
+
+func (u *UpdateCustomerRequestBody) GetName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Name
+}
+
+func (u *UpdateCustomerRequestBody) GetEmail() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Email
+}
+
+func (u *UpdateCustomerRequestBody) GetLocale() *components.LocaleResponse {
+	if u == nil {
+		return nil
+	}
+	return u.Locale
+}
+
+func (u *UpdateCustomerRequestBody) GetMetadata() *components.Metadata {
+	if u == nil {
+		return nil
+	}
+	return u.Metadata
+}
+
+func (u *UpdateCustomerRequestBody) GetTestmode() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.Testmode
+}
+
 type UpdateCustomerRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string                    `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityCustomer *components.EntityCustomer `request:"mediaType=application/json"`
+	RequestBody    *UpdateCustomerRequestBody `request:"mediaType=application/json"`
 }
 
 func (u *UpdateCustomerRequest) GetCustomerID() string {
@@ -28,11 +81,11 @@ func (u *UpdateCustomerRequest) GetIdempotencyKey() *string {
 	return u.IdempotencyKey
 }
 
-func (u *UpdateCustomerRequest) GetEntityCustomer() *components.EntityCustomer {
+func (u *UpdateCustomerRequest) GetRequestBody() *UpdateCustomerRequestBody {
 	if u == nil {
 		return nil
 	}
-	return u.EntityCustomer
+	return u.RequestBody
 }
 
 type UpdateCustomerResponse struct {

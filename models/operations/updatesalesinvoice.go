@@ -6,12 +6,122 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
+type UpdateSalesInvoiceRequestBody struct {
+	// Whether the entity was created in test mode or live mode. This field does not update the mode of the entity.
+	//
+	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+	// `testmode` to `true`.
+	Testmode *bool `json:"testmode,omitempty"`
+	// The status for the invoice to end up in.
+	//
+	// A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+	// the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+	// mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+	//
+	// A status value that cannot be set but can be returned is `canceled`, for invoices which were
+	// issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+	//
+	// Dependent parameters:
+	//   - `paymentDetails` is required if invoice should be set directly to `paid`
+	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+	//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+	Status *components.SalesInvoiceStatus `json:"status,omitempty"`
+	// A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
+	Memo *string `json:"memo,omitempty"`
+	// The payment term to be set on the invoice.
+	PaymentTerm    *components.SalesInvoicePaymentTerm    `json:"paymentTerm,omitempty"`
+	PaymentDetails *components.SalesInvoicePaymentDetails `json:"paymentDetails,omitempty"`
+	EmailDetails   *components.SalesInvoiceEmailDetails   `json:"emailDetails,omitempty"`
+	// An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+	// so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+	// is not required to send a first invoice to a recipient.
+	RecipientIdentifier *string                           `json:"recipientIdentifier,omitempty"`
+	Recipient           *components.SalesInvoiceRecipient `json:"recipient,omitempty"`
+	// Provide the line items for the invoice. Each line contains details such as a description of the item
+	// ordered and its price.
+	//
+	// All lines must have the same currency as the invoice.
+	Lines    []components.SalesInvoiceLineItem `json:"lines,omitempty"`
+	Discount *components.SalesInvoiceDiscount  `json:"discount,omitempty"`
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetTestmode() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.Testmode
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetStatus() *components.SalesInvoiceStatus {
+	if u == nil {
+		return nil
+	}
+	return u.Status
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetMemo() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Memo
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetPaymentTerm() *components.SalesInvoicePaymentTerm {
+	if u == nil {
+		return nil
+	}
+	return u.PaymentTerm
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetPaymentDetails() *components.SalesInvoicePaymentDetails {
+	if u == nil {
+		return nil
+	}
+	return u.PaymentDetails
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetEmailDetails() *components.SalesInvoiceEmailDetails {
+	if u == nil {
+		return nil
+	}
+	return u.EmailDetails
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetRecipientIdentifier() *string {
+	if u == nil {
+		return nil
+	}
+	return u.RecipientIdentifier
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetRecipient() *components.SalesInvoiceRecipient {
+	if u == nil {
+		return nil
+	}
+	return u.Recipient
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetLines() []components.SalesInvoiceLineItem {
+	if u == nil {
+		return nil
+	}
+	return u.Lines
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetDiscount() *components.SalesInvoiceDiscount {
+	if u == nil {
+		return nil
+	}
+	return u.Discount
+}
+
 type UpdateSalesInvoiceRequest struct {
 	// Provide the ID of the related sales invoice.
 	SalesInvoiceID string `pathParam:"style=simple,explode=false,name=salesInvoiceId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey           *string                              `header:"style=simple,explode=false,name=idempotency-key"`
-	UpdateValuesSalesInvoice *components.UpdateValuesSalesInvoice `request:"mediaType=application/json"`
+	IdempotencyKey *string                        `header:"style=simple,explode=false,name=idempotency-key"`
+	RequestBody    *UpdateSalesInvoiceRequestBody `request:"mediaType=application/json"`
 }
 
 func (u *UpdateSalesInvoiceRequest) GetSalesInvoiceID() string {
@@ -28,11 +138,11 @@ func (u *UpdateSalesInvoiceRequest) GetIdempotencyKey() *string {
 	return u.IdempotencyKey
 }
 
-func (u *UpdateSalesInvoiceRequest) GetUpdateValuesSalesInvoice() *components.UpdateValuesSalesInvoice {
+func (u *UpdateSalesInvoiceRequest) GetRequestBody() *UpdateSalesInvoiceRequestBody {
 	if u == nil {
 		return nil
 	}
-	return u.UpdateValuesSalesInvoice
+	return u.RequestBody
 }
 
 type UpdateSalesInvoiceResponse struct {

@@ -64,7 +64,7 @@ type UpdatePaymentRequestBody struct {
 	//
 	// The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
 	RestrictPaymentMethodsToCountry *string `json:"restrictPaymentMethodsToCountry,omitempty"`
-	// Whether to create the entity in test mode or live mode.
+	// Whether the entity was created in test mode or live mode. This field does not update the mode of the entity.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
 	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting

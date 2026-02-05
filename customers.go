@@ -794,11 +794,11 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 // Update an existing customer.
 //
 // For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKey *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
+func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.UpdateCustomerRequestBody, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	request := operations.UpdateCustomerRequest{
 		CustomerID:     customerID,
 		IdempotencyKey: idempotencyKey,
-		EntityCustomer: entityCustomer,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -833,7 +833,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityCustomer", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}

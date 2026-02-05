@@ -813,11 +813,11 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 // Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
 // statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
 // respectively).
-func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idempotencyKey *string, updateValuesSalesInvoice *components.UpdateValuesSalesInvoice, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idempotencyKey *string, requestBody *operations.UpdateSalesInvoiceRequestBody, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	request := operations.UpdateSalesInvoiceRequest{
-		SalesInvoiceID:           salesInvoiceID,
-		IdempotencyKey:           idempotencyKey,
-		UpdateValuesSalesInvoice: updateValuesSalesInvoice,
+		SalesInvoiceID: salesInvoiceID,
+		IdempotencyKey: idempotencyKey,
+		RequestBody:    requestBody,
 	}
 
 	o := operations.Options{}
@@ -852,7 +852,7 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "UpdateValuesSalesInvoice", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
