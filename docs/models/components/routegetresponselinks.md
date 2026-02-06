@@ -1,4 +1,4 @@
-# ListRouteGetResponseLinks
+# RouteGetResponseLinks
 
 An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 
@@ -8,4 +8,5 @@ An object with several relevant URLs. Every URL object will contain an `href` an
 | Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `Self`                                                                                     | [components.URLObj](../../models/components/urlobj.md)                                     | :heavy_check_mark:                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field. |
+| `Documentation`                                                                            | [components.URLObj](../../models/components/urlobj.md)                                     | :heavy_check_mark:                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field. |
 | `Payment`                                                                                  | [components.URLObj](../../models/components/urlobj.md)                                     | :heavy_check_mark:                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field. |

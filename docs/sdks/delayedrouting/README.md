@@ -6,6 +6,7 @@
 
 * [Create](#create) - Create a delayed route
 * [List](#list) - List payment routes
+* [Get](#get) - Get a delayed route
 
 ## Create
 
@@ -35,17 +36,16 @@ func main() {
         }),
     )
 
-    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityRoute{
-        Amount: &components.Amount{
+    res, err := s.DelayedRouting.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RouteCreateRequest{
+        Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Description: client.Pointer("Payment for Order #12345"),
-        Destination: &components.EntityRouteDestination{
-            Type: components.RouteDestinationTypeResponseOrganization,
+        Destination: components.RouteCreateRequestDestination{
+            Type: components.RouteDestinationTypeOrganization,
             OrganizationID: "org_1234567",
         },
-        Testmode: client.Pointer(false),
+        Description: client.Pointer("Payment for Order #12345"),
     })
     if err != nil {
         log.Fatal(err)
@@ -63,7 +63,7 @@ func main() {
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `paymentID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityRoute`                                                                    | [*components.EntityRoute](../../models/components/entityroute.md)                | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `routeCreateRequest`                                                             | [*components.RouteCreateRequest](../../models/components/routecreaterequest.md)  | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response
@@ -128,6 +128,64 @@ func main() {
 ### Response
 
 **[*operations.PaymentListRoutesResponse](../../models/operations/paymentlistroutesresponse.md), error**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
+
+## Get
+
+Retrieve a single route created for a specific payment.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="payment-get-route" method="get" path="/payments/{paymentId}/routes/{routeId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.DelayedRouting.Get(ctx, "tr_5B8cwPMGnU", "crt_dyARQ3JzCgtPDhU2Pbq3J", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.RouteGetResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `paymentID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
+| `routeID`                                                                        | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the route.                                                     | crt_dyARQ3JzCgtPDhU2Pbq3J                                                        |
+| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+
+### Response
+
+**[*operations.PaymentGetRouteResponse](../../models/operations/paymentgetrouteresponse.md), error**
 
 ### Errors
 

@@ -27,6 +27,8 @@ func (l *ListRouteGetResponseDestination) GetOrganizationID() string {
 type ListRouteGetResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Self URLObj `json:"self"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Payment URLObj `json:"payment"`
 }
 
 func (l *ListRouteGetResponseLinks) GetSelf() URLObj {
@@ -34,6 +36,13 @@ func (l *ListRouteGetResponseLinks) GetSelf() URLObj {
 		return URLObj{}
 	}
 	return l.Self
+}
+
+func (l *ListRouteGetResponseLinks) GetPayment() URLObj {
+	if l == nil {
+		return URLObj{}
+	}
+	return l.Payment
 }
 
 type ListRouteGetResponse struct {
@@ -51,10 +60,10 @@ type ListRouteGetResponse struct {
 	Description string `json:"description"`
 	// The destination of the route.
 	Destination ListRouteGetResponseDestination `json:"destination"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links ListRouteGetResponseLinks `json:"_links"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
+	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+	Links ListRouteGetResponseLinks `json:"_links"`
 }
 
 func (l *ListRouteGetResponse) GetResource() string {
@@ -99,16 +108,16 @@ func (l *ListRouteGetResponse) GetDestination() ListRouteGetResponseDestination 
 	return l.Destination
 }
 
-func (l *ListRouteGetResponse) GetLinks() ListRouteGetResponseLinks {
-	if l == nil {
-		return ListRouteGetResponseLinks{}
-	}
-	return l.Links
-}
-
 func (l *ListRouteGetResponse) GetCreatedAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.CreatedAt
+}
+
+func (l *ListRouteGetResponse) GetLinks() ListRouteGetResponseLinks {
+	if l == nil {
+		return ListRouteGetResponseLinks{}
+	}
+	return l.Links
 }

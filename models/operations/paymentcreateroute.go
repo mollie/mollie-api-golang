@@ -10,8 +10,8 @@ type PaymentCreateRouteRequest struct {
 	// Provide the ID of the related payment.
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey *string                 `header:"style=simple,explode=false,name=idempotency-key"`
-	EntityRoute    *components.EntityRoute `request:"mediaType=application/json"`
+	IdempotencyKey     *string                        `header:"style=simple,explode=false,name=idempotency-key"`
+	RouteCreateRequest *components.RouteCreateRequest `request:"mediaType=application/json"`
 }
 
 func (p *PaymentCreateRouteRequest) GetPaymentID() string {
@@ -28,11 +28,11 @@ func (p *PaymentCreateRouteRequest) GetIdempotencyKey() *string {
 	return p.IdempotencyKey
 }
 
-func (p *PaymentCreateRouteRequest) GetEntityRoute() *components.EntityRoute {
+func (p *PaymentCreateRouteRequest) GetRouteCreateRequest() *components.RouteCreateRequest {
 	if p == nil {
 		return nil
 	}
-	return p.EntityRoute
+	return p.RouteCreateRequest
 }
 
 type PaymentCreateRouteResponse struct {

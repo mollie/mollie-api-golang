@@ -1,4 +1,4 @@
-# EntityRouteDestination
+# RouteGetResponseDestination
 
 The destination of the route.
 
