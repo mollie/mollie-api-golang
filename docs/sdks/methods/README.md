@@ -30,9 +30,103 @@ wish to retrieve payment methods which exclusively support other currencies (e.g
 ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 a non-online payment method, you can use the [Get payment method endpoint](get-method).
 
-### Example Usage
+### Example Usage: list-method-200-3
 
-<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" -->
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-method-200-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.List(ctx, operations.ListMethodsRequest{
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        BillingCountry: client.Pointer("DE"),
+        IncludeWallets: components.MethodIncludeWalletsParameterApplepay.ToPointer(),
+        OrderLineCategories: components.LineCategoriesEco.ToPointer(),
+        Include: client.Pointer("issuers"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-methods-200-1
+
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-methods-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.List(ctx, operations.ListMethodsRequest{
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        Locale: components.LocaleEnUs.ToPointer(),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        BillingCountry: client.Pointer("DE"),
+        IncludeWallets: components.MethodIncludeWalletsParameterApplepay.ToPointer(),
+        OrderLineCategories: components.LineCategoriesEco.ToPointer(),
+        Include: client.Pointer("issuers"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-methods-200-2
+
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-methods-200-2" -->
 ```go
 package main
 
@@ -107,9 +201,141 @@ The list can optionally be filtered using a number of parameters described below
 ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 a non-online payment method, you can use the [Get payment method endpoint](get-method).
 
-### Example Usage
+### Example Usage: list-all-methods-200-1
 
-<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" -->
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.All(ctx, operations.ListAllMethodsRequest{
+        Locale: components.LocaleEnUs.ToPointer(),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Include: client.Pointer("issuers"),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-all-methods-200-2
+
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.All(ctx, operations.ListAllMethodsRequest{
+        Locale: components.LocaleEnUs.ToPointer(),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Include: client.Pointer("issuers"),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-all-methods-200-3
+
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.All(ctx, operations.ListAllMethodsRequest{
+        Locale: components.LocaleEnUs.ToPointer(),
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Include: client.Pointer("issuers"),
+        SequenceType: components.SequenceTypeOneoff.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-all-methods-200-4
+
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-4" -->
 ```go
 package main
 
@@ -188,7 +414,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/methods/{methodId}" -->
+<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/methods/{methodId}" example="get-method-200-1" -->
 ```go
 package main
 

@@ -36,7 +36,7 @@ Your customer will be charged €10 on the last day of each month, starting in A
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-subscription" method="post" path="/customers/{customerId}/subscriptions" -->
+<!-- UsageSnippet language="go" operationID="create-subscription" method="post" path="/customers/{customerId}/subscriptions" example="get-subscription-200-1" -->
 ```go
 package main
 
@@ -117,7 +117,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-subscriptions" method="get" path="/customers/{customerId}/subscriptions" -->
+<!-- UsageSnippet language="go" operationID="list-subscriptions" method="get" path="/customers/{customerId}/subscriptions" example="list-subscriptions-200-1" -->
 ```go
 package main
 
@@ -181,7 +181,7 @@ Retrieve a single subscription by its ID and the ID of its parent customer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-subscription" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="go" operationID="get-subscription" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="get-subscription-200-1" -->
 ```go
 package main
 
@@ -243,9 +243,54 @@ Canceled subscriptions cannot be updated.
 
 For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
 
-### Example Usage
+### Example Usage: update-subscription-200-1
 
-<!-- UsageSnippet language="go" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="go" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateSubscriptionRequestBody{
+        Amount: &components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Description: client.Pointer("Subscription of streaming channel"),
+        Interval: client.Pointer("1 months"),
+        StartDate: client.Pointer("2025-01-01"),
+        Times: client.Pointer[int64](6),
+        WebhookURL: client.Pointer("https://example.com/webhook"),
+        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SubscriptionResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: update-subscription-200-2
+
+<!-- UsageSnippet language="go" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-2" -->
 ```go
 package main
 
@@ -317,7 +362,7 @@ Cancel an existing subscription. Canceling a subscription has no effect on the m
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="cancel-subscription" method="delete" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="go" operationID="cancel-subscription" method="delete" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="cancel-subscription-200-1" -->
 ```go
 package main
 
@@ -381,7 +426,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-all-subscriptions" method="get" path="/subscriptions" -->
+<!-- UsageSnippet language="go" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-subscriptions-200-1" -->
 ```go
 package main
 
@@ -444,9 +489,93 @@ Retrieve all payments of a specific subscription.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="go" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" -->
+<!-- UsageSnippet language="go" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Subscriptions.ListPayments(ctx, operations.ListSubscriptionPaymentsRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-payments-200-2
+
+<!-- UsageSnippet language="go" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Subscriptions.ListPayments(ctx, operations.ListSubscriptionPaymentsRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-payments-200-3
+
+<!-- UsageSnippet language="go" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-3" -->
 ```go
 package main
 

@@ -19,7 +19,7 @@ If you have a *partner account*', you can retrieve organization details of conne
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-organization" method="get" path="/organizations/{organizationId}" -->
+<!-- UsageSnippet language="go" operationID="get-organization" method="get" path="/organizations/{organizationId}" example="get-organization-200-1" -->
 ```go
 package main
 
@@ -82,7 +82,7 @@ documentation.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-current-organization" method="get" path="/organizations/me" -->
+<!-- UsageSnippet language="go" operationID="get-current-organization" method="get" path="/organizations/me" example="get-current-organization-200-1" -->
 ```go
 package main
 
@@ -138,7 +138,7 @@ accounts*.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-partner-status" method="get" path="/organizations/me/partner" -->
+<!-- UsageSnippet language="go" operationID="get-partner-status" method="get" path="/organizations/me/partner" example="get-partner-status-200-1" -->
 ```go
 package main
 

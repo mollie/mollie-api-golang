@@ -16,9 +16,48 @@ Retrieve a list of the organization's balances, including the primary balance.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-balances-200-1
 
-<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/balances" -->
+<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/balances" example="list-balances-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
+        Currency: client.Pointer("EUR"),
+        From: client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+        Limit: client.Pointer[int64](50),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-balances-200-2
+
+<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/balances" example="list-balances-200-2" -->
 ```go
 package main
 
@@ -93,9 +132,42 @@ With instant payment methods like iDEAL, payments are moved to the available
 balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
 funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
 
-### Example Usage
+### Example Usage: get-balance-200-1
 
-<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/balances/{balanceId}" -->
+<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityBalance != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-balance-200-2
+
+<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-2" -->
 ```go
 package main
 
@@ -158,7 +230,7 @@ endpoint.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-primary-balance" method="get" path="/balances/primary" -->
+<!-- UsageSnippet language="go" operationID="get-primary-balance" method="get" path="/balances/primary" example="get-primary-balance-200-1" -->
 ```go
 package main
 
@@ -217,9 +289,89 @@ during the reported period, ahead of your Mollie invoice.
 The alias `primary` can be used instead of the balance ID to refer to the
 organization's primary balance.
 
-### Example Usage
+### Example Usage: get-balance-report-200-1
 
-<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" -->
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Balances.GetReport(ctx, operations.GetBalanceReportRequest{
+        BalanceID: "bal_gVMhHKqSSRYJyPsuoPNFH",
+        From: "2024-01-01",
+        Until: "2024-02-01",
+        Grouping: components.BalanceReportGroupingStatusBalances.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityBalanceReport != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-balance-report-200-2
+
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Balances.GetReport(ctx, operations.GetBalanceReportRequest{
+        BalanceID: "bal_gVMhHKqSSRYJyPsuoPNFH",
+        From: "2024-01-01",
+        Until: "2024-02-01",
+        Grouping: components.BalanceReportGroupingStatusBalances.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityBalanceReport != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-balance-report-200-3
+
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-3" -->
 ```go
 package main
 
@@ -290,9 +442,48 @@ organization's primary balance.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-balance-transactions-200-1
 
-<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" -->
+<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Balances.ListTransactions(ctx, operations.ListBalanceTransactionsRequest{
+        BalanceID: "bal_gVMhHKqSSRYJyPsuoPNFH",
+        From: client.Pointer("baltr_QM24QwzUWR4ev4Xfgyt29A"),
+        Limit: client.Pointer[int64](50),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-balance-transactions-200-2
+
+<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-2" -->
 ```go
 package main
 

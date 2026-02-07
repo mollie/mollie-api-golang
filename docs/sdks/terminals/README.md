@@ -13,9 +13,48 @@ Retrieve a list of all physical point-of-sale devices.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-terminals-200-1
 
-<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/terminals" -->
+<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Terminals.List(ctx, operations.ListTerminalsRequest{
+        From: client.Pointer("term_vytxeTZskVKR7C7WgdSP3d"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-terminals-200-2
+
+<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-2" -->
 ```go
 package main
 
@@ -78,7 +117,7 @@ Retrieve a single terminal by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-terminal" method="get" path="/terminals/{terminalId}" -->
+<!-- UsageSnippet language="go" operationID="get-terminal" method="get" path="/terminals/{terminalId}" example="get-terminal-200-1" -->
 ```go
 package main
 

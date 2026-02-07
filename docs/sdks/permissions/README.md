@@ -13,9 +13,41 @@ Retrieve a list of all permissions available to the current access token.
 
 The results are **not** paginated.
 
-### Example Usage
+### Example Usage: list-permissions-200-1
 
-<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/permissions" -->
+<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Permissions.List(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-permissions-200-2
+
+<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-2" -->
 ```go
 package main
 
@@ -69,9 +101,42 @@ func main() {
 
 Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
 
-### Example Usage
+### Example Usage: get-permission-200-1
 
-<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/permissions/{permissionId}" -->
+<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Permissions.Get(ctx, "payments.read", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityPermission != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-permission-200-2
+
+<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-2" -->
 ```go
 package main
 

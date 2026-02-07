@@ -18,9 +18,52 @@ Create a profile to process payments on.
 Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
 can use this endpoint to automate profile creation.
 
-### Example Usage
+### Example Usage: create-profile-201-1
 
-<!-- UsageSnippet language="go" operationID="create-profile" method="post" path="/profiles" -->
+<!-- UsageSnippet language="go" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Create(ctx, components.ProfileRequest{
+        Name: "My website name",
+        Website: "https://example.com",
+        Email: "test@mollie.com",
+        Phone: "+31208202070",
+        Description: client.Pointer("My website description"),
+        CountriesOfActivity: []string{
+            "NL",
+            "GB",
+        },
+        BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ProfileResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-profile-201-2
+
+<!-- UsageSnippet language="go" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-2" -->
 ```go
 package main
 
@@ -90,7 +133,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-profiles" method="get" path="/profiles" -->
+<!-- UsageSnippet language="go" operationID="list-profiles" method="get" path="/profiles" example="list-profiles-200-1" -->
 ```go
 package main
 
@@ -148,7 +191,7 @@ Retrieve a single profile by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-profile" method="get" path="/profiles/{profileId}" -->
+<!-- UsageSnippet language="go" operationID="get-profile" method="get" path="/profiles/{profileId}" example="get-profile-200-1" -->
 ```go
 package main
 
@@ -208,9 +251,53 @@ Update an existing profile.
 Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
 Alternatively, you can use this endpoint to automate profile management.
 
-### Example Usage
+### Example Usage: update-profile-200-1
 
-<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{profileId}" -->
+<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Profiles.Update(ctx, "pfl_5B8cwPMGnU", operations.UpdateProfileRequestBody{
+        Name: client.Pointer("My new website name"),
+        Website: client.Pointer("https://example.com"),
+        Email: client.Pointer("test@mollie.com"),
+        Phone: client.Pointer("+31208202071"),
+        Description: client.Pointer("My website description"),
+        CountriesOfActivity: []string{
+            "NL",
+            "GB",
+        },
+        BusinessCategory: client.Pointer("OTHER_MERCHANDISE"),
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ProfileResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: update-profile-200-2
+
+<!-- UsageSnippet language="go" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-2" -->
 ```go
 package main
 
@@ -341,7 +428,7 @@ documentation.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-current-profile" method="get" path="/profiles/me" -->
+<!-- UsageSnippet language="go" operationID="get-current-profile" method="get" path="/profiles/me" example="get-current-profile-200-1" -->
 ```go
 package main
 

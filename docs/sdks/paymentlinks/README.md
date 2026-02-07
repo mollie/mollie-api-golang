@@ -17,9 +17,366 @@ With the Payment links API you can generate payment links that by default, unlik
 The payment link can be shared with your customers and will redirect them to them the payment page where they can
 complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
 
-### Example Usage
+### Example Usage: create-payment-link-201-1
 
-<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" -->
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.PaymentLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
+        Description: "Chess Board",
+        Amount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        MinimumAmount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        RedirectURL: client.Pointer("https://webshop.example.org/payment-links/redirect/"),
+        WebhookURL: client.Pointer("https://webshop.example.org/payment-links/webhook/"),
+        Lines: []components.PaymentLineItem{
+            components.PaymentLineItem{
+                Type: components.PaymentLineTypePhysical.ToPointer(),
+                Description: "LEGO 4440 Forest Police Station",
+                Quantity: 1,
+                QuantityUnit: client.Pointer("pcs"),
+                UnitPrice: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                DiscountAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                TotalAmount: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                VatRate: client.Pointer("21.00"),
+                VatAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                Sku: client.Pointer("9780241661628"),
+                Categories: []components.LineCategories{
+                    components.LineCategoriesMeal,
+                    components.LineCategoriesEco,
+                },
+                ImageURL: client.Pointer("https://..."),
+                ProductURL: client.Pointer("https://..."),
+            },
+        },
+        BillingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ShippingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
+        Reusable: client.Pointer(false),
+        ExpiresAt: client.Pointer("2025-12-24T11:00:16+00:00"),
+        AllowedMethods: nil,
+        ApplicationFee: &operations.ApplicationFee{
+            Amount: components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Description: "Platform fee",
+        },
+        SequenceType: components.PaymentLinkSequenceTypeOneoff.ToPointer(),
+        CustomerID: client.Pointer("cst_XimFHuaEzd"),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.PaymentLinkResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-payment-link-201-2
+
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.PaymentLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
+        Description: "Chess Board",
+        Amount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        MinimumAmount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        RedirectURL: client.Pointer("https://webshop.example.org/payment-links/redirect/"),
+        WebhookURL: client.Pointer("https://webshop.example.org/payment-links/webhook/"),
+        Lines: []components.PaymentLineItem{
+            components.PaymentLineItem{
+                Type: components.PaymentLineTypePhysical.ToPointer(),
+                Description: "LEGO 4440 Forest Police Station",
+                Quantity: 1,
+                QuantityUnit: client.Pointer("pcs"),
+                UnitPrice: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                DiscountAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                TotalAmount: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                VatRate: client.Pointer("21.00"),
+                VatAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                Sku: client.Pointer("9780241661628"),
+                Categories: []components.LineCategories{
+                    components.LineCategoriesMeal,
+                    components.LineCategoriesEco,
+                },
+                ImageURL: client.Pointer("https://..."),
+                ProductURL: client.Pointer("https://..."),
+            },
+        },
+        BillingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ShippingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
+        Reusable: client.Pointer(false),
+        ExpiresAt: client.Pointer("2025-12-24T11:00:16+00:00"),
+        AllowedMethods: nil,
+        ApplicationFee: &operations.ApplicationFee{
+            Amount: components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Description: "Platform fee",
+        },
+        SequenceType: components.PaymentLinkSequenceTypeOneoff.ToPointer(),
+        CustomerID: client.Pointer("cst_XimFHuaEzd"),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.PaymentLinkResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-payment-link-201-3
+
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.PaymentLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CreatePaymentLinkRequestBody{
+        Description: "Chess Board",
+        Amount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        MinimumAmount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        RedirectURL: client.Pointer("https://webshop.example.org/payment-links/redirect/"),
+        WebhookURL: client.Pointer("https://webshop.example.org/payment-links/webhook/"),
+        Lines: []components.PaymentLineItem{
+            components.PaymentLineItem{
+                Type: components.PaymentLineTypePhysical.ToPointer(),
+                Description: "LEGO 4440 Forest Police Station",
+                Quantity: 1,
+                QuantityUnit: client.Pointer("pcs"),
+                UnitPrice: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                DiscountAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                TotalAmount: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                VatRate: client.Pointer("21.00"),
+                VatAmount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                Sku: client.Pointer("9780241661628"),
+                Categories: []components.LineCategories{
+                    components.LineCategoriesMeal,
+                    components.LineCategoriesEco,
+                },
+                ImageURL: client.Pointer("https://..."),
+                ProductURL: client.Pointer("https://..."),
+            },
+        },
+        BillingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ShippingAddress: &components.PaymentAddress{
+            Title: client.Pointer("Mr."),
+            GivenName: client.Pointer("Piet"),
+            FamilyName: client.Pointer("Mondriaan"),
+            OrganizationName: client.Pointer("Mollie B.V."),
+            StreetAndNumber: client.Pointer("Keizersgracht 126"),
+            StreetAdditional: client.Pointer("Apt. 1"),
+            PostalCode: client.Pointer("1234AB"),
+            Email: client.Pointer("piet@example.org"),
+            Phone: client.Pointer("31208202070"),
+            City: client.Pointer("Amsterdam"),
+            Region: client.Pointer("Noord-Holland"),
+            Country: client.Pointer("NL"),
+        },
+        ProfileID: client.Pointer("pfl_QkEhN94Ba"),
+        Reusable: client.Pointer(false),
+        ExpiresAt: client.Pointer("2025-12-24T11:00:16+00:00"),
+        AllowedMethods: nil,
+        ApplicationFee: &operations.ApplicationFee{
+            Amount: components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Description: "Platform fee",
+        },
+        SequenceType: components.PaymentLinkSequenceTypeOneoff.ToPointer(),
+        CustomerID: client.Pointer("cst_XimFHuaEzd"),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.PaymentLinkResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-payment-link-201-4
+
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-4" -->
 ```go
 package main
 
@@ -163,9 +520,42 @@ Retrieve a list of all payment links.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-payment-links-200-1
 
-<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/payment-links" -->
+<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-payment-links-200-2
+
+<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-2" -->
 ```go
 package main
 
@@ -225,7 +615,7 @@ Retrieve a single payment link by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" -->
+<!-- UsageSnippet language="go" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" example="get-payment-link-200-1" -->
 ```go
 package main
 
@@ -284,7 +674,7 @@ Certain details of an existing payment link can be updated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" -->
+<!-- UsageSnippet language="go" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" example="update-payment-link-200-1" -->
 ```go
 package main
 
@@ -452,7 +842,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" -->
+<!-- UsageSnippet language="go" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" example="get-payment-link-payments-200-1" -->
 ```go
 package main
 

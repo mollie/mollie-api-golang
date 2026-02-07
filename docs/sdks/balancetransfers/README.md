@@ -15,9 +15,63 @@ You can also create a balance transfer between two connected organizations.
 To create a balance transfer, you must be authenticated as the source organization, and the destination organization must be a connected organization
 that has authorized the `balance-transfers.write` scope for your organization.
 
-### Example Usage
+### Example Usage: create-balance-transfer-200-1
 
-<!-- UsageSnippet language="go" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" -->
+<!-- UsageSnippet language="go" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.BalanceTransfers.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityBalanceTransfer{
+        Amount: components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Source: components.EntityBalanceTransferParty{
+            Type: components.BalanceTransferPartyTypeOrganization,
+            ID: "org_1234567",
+            Description: "Invoice fee",
+        },
+        Destination: components.EntityBalanceTransferParty{
+            Type: components.BalanceTransferPartyTypeOrganization,
+            ID: "org_1234567",
+            Description: "Invoice fee",
+        },
+        Description: "Invoice fee",
+        Category: components.BalanceTransferCategoryInvoiceCollection.ToPointer(),
+        Metadata: map[string]any{
+            "order_id": 12345,
+            "customer_id": 9876,
+        },
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityBalanceTransferResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-balance-transfer-422-1
+
+<!-- UsageSnippet language="go" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-422-1" -->
 ```go
 package main
 
@@ -96,7 +150,7 @@ Returns a paginated list of balance transfers associated with your organization.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" -->
+<!-- UsageSnippet language="go" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" example="list-balance-transfer-200-1" -->
 ```go
 package main
 
@@ -158,7 +212,7 @@ Retrieve a single Connect balance transfer object by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" -->
+<!-- UsageSnippet language="go" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" example="get-balance-transfer-200-1" -->
 ```go
 package main
 

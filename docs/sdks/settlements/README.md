@@ -21,7 +21,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-settlements" method="get" path="/settlements" -->
+<!-- UsageSnippet language="go" operationID="list-settlements" method="get" path="/settlements" example="list-settlements-200-1" -->
 ```go
 package main
 
@@ -97,7 +97,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-settlement" method="get" path="/settlements/{settlementId}" -->
+<!-- UsageSnippet language="go" operationID="get-settlement" method="get" path="/settlements/{settlementId}" example="get-settlement-200-1" -->
 ```go
 package main
 
@@ -161,7 +161,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-open-settlement" method="get" path="/settlements/open" -->
+<!-- UsageSnippet language="go" operationID="get-open-settlement" method="get" path="/settlements/open" example="get-settlement-200-1" -->
 ```go
 package main
 
@@ -222,7 +222,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-next-settlement" method="get" path="/settlements/next" -->
+<!-- UsageSnippet language="go" operationID="get-next-settlement" method="get" path="/settlements/next" example="get-settlement-200-1" -->
 ```go
 package main
 
@@ -280,9 +280,91 @@ The response is in the same format as the response of the [List payments endpoin
 For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
 [List captures endpoint](list-captures) endpoint instead.
 
-### Example Usage
+### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="go" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" -->
+<!-- UsageSnippet language="go" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Settlements.ListPayments(ctx, operations.ListSettlementPaymentsRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-payments-200-2
+
+<!-- UsageSnippet language="go" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Settlements.ListPayments(ctx, operations.ListSettlementPaymentsRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-payments-200-3
+
+<!-- UsageSnippet language="go" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-3" -->
 ```go
 package main
 
@@ -347,9 +429,49 @@ Retrieve all captures included in the given settlement.
 
 The response is in the same format as the response of the [List captures endpoint](list-captures).
 
-### Example Usage
+### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="go" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" -->
+<!-- UsageSnippet language="go" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-captures-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Settlements.ListCaptures(ctx, operations.ListSettlementCapturesRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-captures-200-2
+
+<!-- UsageSnippet language="go" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-captures-200-2" -->
 ```go
 package main
 
@@ -415,7 +537,7 @@ The response is in the same format as the response of the [List refunds endpoint
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" -->
+<!-- UsageSnippet language="go" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-refunds-200-1" -->
 ```go
 package main
 
@@ -479,9 +601,89 @@ Retrieve all chargebacks 'deducted' from the given settlement.
 
 The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
 
-### Example Usage
+### Example Usage: list-chargeback-200-1
 
-<!-- UsageSnippet language="go" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" -->
+<!-- UsageSnippet language="go" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Settlements.ListChargebacks(ctx, operations.ListSettlementChargebacksRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-chargeback-200-2
+
+<!-- UsageSnippet language="go" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Settlements.ListChargebacks(ctx, operations.ListSettlementChargebacksRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("chb_xFzwUN4ci8HAmSGUACS4J"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-chargeback-200-3
+
+<!-- UsageSnippet language="go" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-3" -->
 ```go
 package main
 

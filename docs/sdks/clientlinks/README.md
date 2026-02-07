@@ -62,9 +62,109 @@ to the URL.
 >
 > A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
 
-### Example Usage
+### Example Usage: create-client-link-201-1
 
-<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" -->
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.ClientLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.ClientLinkRequest{
+        Owner: components.Owner{
+            Email: "john@example.org",
+            GivenName: "John",
+            FamilyName: "Doe",
+            Locale: components.LocaleResponseEnUs.ToPointer(),
+        },
+        Name: "Acme Corporation",
+        Address: components.ClientLinkRequestAddress{
+            StreetAndNumber: client.Pointer("Main Street 123"),
+            PostalCode: client.Pointer("1234AB"),
+            City: client.Pointer("Amsterdam"),
+            Country: "NL",
+        },
+        RegistrationNumber: client.Pointer("12345678"),
+        LegalEntity: client.Pointer("nl-bv"),
+        RegistrationOffice: client.Pointer("aachen"),
+        IncorporationDate: client.Pointer("2024-12-24"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ClientLinkResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-client-link-201-2
+
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.ClientLinks.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.ClientLinkRequest{
+        Owner: components.Owner{
+            Email: "john@example.org",
+            GivenName: "John",
+            FamilyName: "Doe",
+            Locale: components.LocaleResponseEnUs.ToPointer(),
+        },
+        Name: "Acme Corporation",
+        Address: components.ClientLinkRequestAddress{
+            StreetAndNumber: client.Pointer("Main Street 123"),
+            PostalCode: client.Pointer("1234AB"),
+            City: client.Pointer("Amsterdam"),
+            Country: "NL",
+        },
+        RegistrationNumber: client.Pointer("12345678"),
+        LegalEntity: client.Pointer("nl-bv"),
+        RegistrationOffice: client.Pointer("aachen"),
+        IncorporationDate: client.Pointer("2024-12-24"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ClientLinkResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-client-link-201-3
+
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-3" -->
 ```go
 package main
 

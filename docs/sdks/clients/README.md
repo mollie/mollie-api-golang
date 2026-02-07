@@ -15,7 +15,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-clients" method="get" path="/clients" -->
+<!-- UsageSnippet language="go" operationID="list-clients" method="get" path="/clients" example="list-clients-200-1" -->
 ```go
 package main
 
@@ -72,9 +72,105 @@ func main() {
 
 Retrieve a single client by its ID.
 
-### Example Usage
+### Example Usage: get-client-200-1
 
-<!-- UsageSnippet language="go" operationID="get-client" method="get" path="/clients/{organizationId}" -->
+<!-- UsageSnippet language="go" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Clients.Get(ctx, "org_1234567", client.Pointer("organization"), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-client-200-2
+
+<!-- UsageSnippet language="go" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Clients.Get(ctx, "org_1234567", client.Pointer("organization"), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-client-200-3
+
+<!-- UsageSnippet language="go" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Clients.Get(ctx, "org_1234567", client.Pointer("organization"), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-client-200-4
+
+<!-- UsageSnippet language="go" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-4" -->
 ```go
 package main
 

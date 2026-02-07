@@ -17,7 +17,7 @@ A webhook must have a name, an url and a list of event types. You can also creat
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-webhook" method="post" path="/webhooks" -->
+<!-- UsageSnippet language="go" operationID="create-webhook" method="post" path="/webhooks" example="create-webhook-200" -->
 ```go
 package main
 
@@ -82,7 +82,7 @@ Returns a paginated list of your webhooks. If no webhook endpoints are available
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-webhooks" method="get" path="/webhooks" -->
+<!-- UsageSnippet language="go" operationID="list-webhooks" method="get" path="/webhooks" example="list-webhook-200" -->
 ```go
 package main
 
@@ -146,7 +146,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" example="create-webhook-200" -->
 ```go
 package main
 
@@ -210,9 +210,42 @@ func main() {
 
 Retrieve a single webhook object by its ID.
 
-### Example Usage
+### Example Usage: get-webhook-200
 
-<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Webhooks.Get(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityWebhook != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-webhook-200-1
+
+<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```go
 package main
 

@@ -14,9 +14,129 @@ invoice reference.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-invoices-200-1
 
-<!-- UsageSnippet language="go" operationID="list-invoices" method="get" path="/invoices" -->
+<!-- UsageSnippet language="go" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
+        Reference: client.Pointer("2024.10000"),
+        Year: client.Pointer("2024"),
+        From: client.Pointer("inv_xBEbP9rvAq"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-invoices-200-2
+
+<!-- UsageSnippet language="go" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
+        Reference: client.Pointer("2024.10000"),
+        Year: client.Pointer("2024"),
+        From: client.Pointer("inv_xBEbP9rvAq"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-invoices-200-3
+
+<!-- UsageSnippet language="go" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Invoices.List(ctx, operations.ListInvoicesRequest{
+        Reference: client.Pointer("2024.10000"),
+        Year: client.Pointer("2024"),
+        From: client.Pointer("inv_xBEbP9rvAq"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-invoices-200-4
+
+<!-- UsageSnippet language="go" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-4" -->
 ```go
 package main
 
@@ -83,7 +203,7 @@ call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" -->
+<!-- UsageSnippet language="go" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" example="get-invoice-200-1" -->
 ```go
 package main
 

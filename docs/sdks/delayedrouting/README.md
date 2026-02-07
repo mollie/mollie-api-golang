@@ -15,7 +15,7 @@ The routed amount is credited to the account of your customer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="payment-create-route" method="post" path="/payments/{paymentId}/routes" -->
+<!-- UsageSnippet language="go" operationID="payment-create-route" method="post" path="/payments/{paymentId}/routes" example="create-route-201-1" -->
 ```go
 package main
 
@@ -83,7 +83,7 @@ Retrieve a list of all routes created for a specific payment.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="payment-list-routes" method="get" path="/payments/{paymentId}/routes" -->
+<!-- UsageSnippet language="go" operationID="payment-list-routes" method="get" path="/payments/{paymentId}/routes" example="list-routes-200-1" -->
 ```go
 package main
 
@@ -142,7 +142,7 @@ Retrieve a single route created for a specific payment.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="payment-get-route" method="get" path="/payments/{paymentId}/routes/{routeId}" -->
+<!-- UsageSnippet language="go" operationID="payment-get-route" method="get" path="/payments/{paymentId}/routes/{routeId}" example="get-route-200-1" -->
 ```go
 package main
 

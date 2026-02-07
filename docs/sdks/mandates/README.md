@@ -17,9 +17,53 @@ account recurrently.
 It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 mandates for cards, your customers need to perform a 'first payment' with their card.
 
-### Example Usage
+### Example Usage: create-mandate-201-1
 
-<!-- UsageSnippet language="go" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" -->
+<!-- UsageSnippet language="go" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" example="create-mandate-201-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.MandateRequest{
+        ID: client.Pointer("mdt_5B8cwPMGnU"),
+        Method: components.MandateMethodDirectdebit,
+        ConsumerName: "John Doe",
+        ConsumerAccount: client.Pointer("NL55INGB0000000000"),
+        ConsumerBic: client.Pointer("BANKBIC"),
+        ConsumerEmail: client.Pointer("example@email.com"),
+        SignatureDate: client.Pointer("2025-01-01"),
+        MandateReference: client.Pointer("ID-1023892"),
+        PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
+        PayPalVaultID: client.Pointer("8kk8451t"),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.MandateResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-mandate-201-2
+
+<!-- UsageSnippet language="go" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" example="create-mandate-201-2" -->
 ```go
 package main
 
@@ -91,7 +135,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-mandates" method="get" path="/customers/{customerId}/mandates" -->
+<!-- UsageSnippet language="go" operationID="list-mandates" method="get" path="/customers/{customerId}/mandates" example="list-mandates-200-1" -->
 ```go
 package main
 
@@ -156,7 +200,7 @@ account details, card details, or PayPal account details.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-mandate" method="get" path="/customers/{customerId}/mandates/{mandateId}" -->
+<!-- UsageSnippet language="go" operationID="get-mandate" method="get" path="/customers/{customerId}/mandates/{mandateId}" example="get-mandate-200-1" -->
 ```go
 package main
 

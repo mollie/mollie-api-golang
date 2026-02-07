@@ -19,9 +19,47 @@ By default, Mollie captures payments automatically. If however you
 configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
 having collected the customer's authorization.
 
-### Example Usage
+### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" -->
+<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
+        Description: client.Pointer("Capture for cart #12345"),
+        Amount: &components.AmountNullable{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CaptureResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-capture-200-2
+
+<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-2" -->
 ```go
 package main
 
@@ -85,9 +123,49 @@ Retrieve a list of all captures created for a specific payment.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" -->
+<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Captures.List(ctx, operations.ListCapturesRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        From: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
+        Limit: client.Pointer[int64](50),
+        Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: list-captures-200-2
+
+<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-2" -->
 ```go
 package main
 
@@ -150,9 +228,48 @@ func main() {
 Retrieve a single payment capture by its ID and the ID of its parent
 payment.
 
-### Example Usage
+### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" -->
+<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithTestmode(false),
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Captures.Get(ctx, operations.GetCaptureRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        CaptureID: "cpt_vytxeTZskVKR7C7WgdSP3d",
+        Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CaptureResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-capture-200-2
+
+<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
 ```go
 package main
 

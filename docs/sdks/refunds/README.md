@@ -15,9 +15,70 @@
 Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 transfer or by refunding the amount to your customer's credit card.
 
-### Example Usage
+### Example Usage: create-refund-201-1
 
-<!-- UsageSnippet language="go" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" -->
+<!-- UsageSnippet language="go" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
+        Description: "Refunding a Chess Board",
+        Amount: components.Amount{
+            Currency: "EUR",
+            Value: "10.00",
+        },
+        Metadata: client.Pointer(components.CreateMetadataMapOfAny(
+            map[string]any{
+
+            },
+        )),
+        ExternalReference: &components.RefundRequestExternalReference{
+            Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
+            ID: client.Pointer("123456789012345"),
+        },
+        ReverseRouting: client.Pointer(false),
+        RoutingReversals: []components.RefundRequestRoutingReversal{
+            components.RefundRequestRoutingReversal{
+                Amount: &components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                Source: &components.RefundRequestSource{
+                    Type: components.TypeOrganization.ToPointer(),
+                    OrganizationID: client.Pointer("org_1234567"),
+                },
+            },
+        },
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityRefundResponse != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: create-refund-201-2
+
+<!-- UsageSnippet language="go" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-2" -->
 ```go
 package main
 
@@ -106,7 +167,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" -->
+<!-- UsageSnippet language="go" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" example="list-refunds-200-1" -->
 ```go
 package main
 
@@ -170,7 +231,7 @@ Retrieve a single payment refund by its ID and the ID of its parent payment.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" -->
+<!-- UsageSnippet language="go" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" example="get-refund-200-1" -->
 ```go
 package main
 
@@ -299,7 +360,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-all-refunds" method="get" path="/refunds" -->
+<!-- UsageSnippet language="go" operationID="list-all-refunds" method="get" path="/refunds" example="list-refunds-200-1" -->
 ```go
 package main
 
