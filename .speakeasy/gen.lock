@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 9aff82578b9acde76766df00847b5336
+  docChecksum: 92f34d273917127bcde2ac571f79ac1a
   docVersion: 1.0.0
-  speakeasyVersion: 1.708.2
-  generationVersion: 2.811.4
-  releaseVersion: 0.9.18
-  configChecksum: cf35f85735e56a1c08db561352311b50
+  speakeasyVersion: 1.709.3
+  generationVersion: 2.814.0
+  releaseVersion: 0.9.19
+  configChecksum: fc7b8994e56a92611741ed48d11a39e8
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: d20f6c4d-7561-4d63-9ef3-5eb50532c20d
-  pristine_commit_hash: 75fd84e1215de45bb2fecc43874b9c7a0cc0378d
-  pristine_tree_hash: e2ab6a57209467c60f28f92a31172194bb4aadad
+  generation_id: 57fe1b2a-13a0-463f-8c24-2d4aae1163a7
+  pristine_commit_hash: 30e684a99396cbff1ed0490a5d12ff0af64c337d
+  pristine_tree_hash: b254302f0b5ea245bb322fafa6dd40d2ecca5ac6
 features:
   go:
     additionalDependencies: 0.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:976090904c7c90a87954a150a3644c55ba060c03
-    pristine_git_object: 0bfec58238103b58010336dbc4a4c8568dd88da6
+    last_write_checksum: sha1:621387ec7de5f023ea5b51f78d664a9e5cbe5c1f
+    pristine_git_object: 3bd4b1bf9004f3601e63c0cd0f84262aad2520b4
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -1015,8 +1015,8 @@ trackedFiles:
     pristine_git_object: 2d99896583f065138e0b84fcf2955197fe84cf6b
   docs/models/components/listprofileresponse.md:
     id: 11781583cba3
-    last_write_checksum: sha1:49775f679186cd577e8e77ec56181e0b0b9ca75c
-    pristine_git_object: a5689b6088e61815135f46bfb52dded0270bb69a
+    last_write_checksum: sha1:2558fef700e20177966b0208a32cdef36e4dc581
+    pristine_git_object: b372908ebab16518ce45e257ee06fb16e7972672
   docs/models/components/listprofileresponselinks.md:
     id: cfc8d03452e3
     last_write_checksum: sha1:345ac7bf59e9db09a5e2dbc7ddb269478e3cba34
@@ -1395,8 +1395,8 @@ trackedFiles:
     pristine_git_object: 5dd3cef2846a04ff117c6d9316a79d64bf42d5d9
   docs/models/components/profileresponse.md:
     id: 7f243f9a45a6
-    last_write_checksum: sha1:bedb6ab1154c39093653d0848ebb82fdb5354d26
-    pristine_git_object: fa4214454e689d49701e1280725b2b8178c90b77
+    last_write_checksum: sha1:a719f41143ea5ab27f148132951ed6b94d72a019
+    pristine_git_object: 1b3b8e95c57eaece9e0d62cedd4c5c5eea1d31e9
   docs/models/components/profileresponselinks.md:
     id: 0218ac8c7b4e
     last_write_checksum: sha1:26c76b0af376b5b0433877c3a455c2d9a8818335
@@ -3675,8 +3675,8 @@ trackedFiles:
     pristine_git_object: c0e45afe74db8b6b7f333f047a78ad6abddceab3
   models/components/listprofileresponse.go:
     id: 34f56d75e719
-    last_write_checksum: sha1:e73b98bfea10d23e0225aaa3550e564cb15d2242
-    pristine_git_object: a5d8ecd42762205939872bddc23d63265c3db156
+    last_write_checksum: sha1:c4f908ea5e532765d60945bd6c2c38f75bc0dfe7
+    pristine_git_object: efe0ced1b685a8c83a5fea6d3eb2236b6534eb2f
   models/components/listroutegetresponse.go:
     id: 7d41a573497b
     last_write_checksum: sha1:6bc07295487abbd1f349c5ff2a839a17ec77667e
@@ -3855,8 +3855,8 @@ trackedFiles:
     pristine_git_object: 043478d37d434594a576fccd0060f79963eff460
   models/components/profileresponse.go:
     id: 0ce2805ab1fa
-    last_write_checksum: sha1:f4feee6bb9ee862801ada8a61fbe4f99a8f70ec1
-    pristine_git_object: 61fcf8a7b4940fb0498e1e58f479df6660c4f00c
+    last_write_checksum: sha1:7e36ad85ea3e40aa941df2e2f18264666c4d42e3
+    pristine_git_object: 3ca9495aea9db60e4f9a0934fbfb899eb9262afd
   models/components/profilereviewstatusresponse.go:
     id: ec5186ad84ab
     last_write_checksum: sha1:751b56ef24542ca2992cf2f69357f3af0446c43c
@@ -7870,12 +7870,12 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Profiles.Create()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.List()`:  `response.Embedded.Profiles[].BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.Get()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.Update()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.GetCurrent()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(profile-response).BusinessCategory` **Changed** (Breaking ⚠️)
+  * `Client.Profiles.Create()`:  `response.BusinessCategory` **Changed**
+  * `Client.Profiles.List()`:  `response.Embedded.Profiles[].BusinessCategory` **Changed**
+  * `Client.Profiles.Get()`:  `response.BusinessCategory` **Changed**
+  * `Client.Profiles.Update()`:  `response.BusinessCategory` **Changed**
+  * `Client.Profiles.GetCurrent()`:  `response.BusinessCategory` **Changed**
+  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(profile-response).BusinessCategory` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

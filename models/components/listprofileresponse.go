@@ -134,7 +134,7 @@ type ListProfileResponse struct {
 	// A list of countries where you expect that the majority of the profile's customers reside,
 	// in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 	CountriesOfActivity []string                  `json:"countriesOfActivity,omitempty"`
-	BusinessCategory    *string                   `json:"businessCategory,omitempty"`
+	BusinessCategory    *string                   `json:"businessCategory"`
 	Status              ListProfileResponseStatus `json:"status"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
