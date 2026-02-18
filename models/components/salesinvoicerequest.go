@@ -10,13 +10,13 @@ type SalesInvoiceRequestMetadata struct {
 type SalesInvoiceRequest struct {
 	// Whether to create the entity in test mode or live mode.
 	//
-	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-	// omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter must
+	// not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
 	// `testmode` to `true`.
 	Testmode *bool `json:"testmode,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
 	//
-	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+	// Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent in the creation
 	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
 	// required.
 	ProfileID *string `json:"profileId,omitempty"`

@@ -53,7 +53,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CaptureResponse != nil {
-        // handle response
+        switch res.CaptureResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CaptureResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CaptureResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CaptureResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -91,7 +99,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CaptureResponse != nil {
-        // handle response
+        switch res.CaptureResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CaptureResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CaptureResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CaptureResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -263,7 +279,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CaptureResponse != nil {
-        // handle response
+        switch res.CaptureResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CaptureResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CaptureResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CaptureResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -302,7 +326,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CaptureResponse != nil {
-        // handle response
+        switch res.CaptureResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CaptureResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CaptureResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CaptureResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```

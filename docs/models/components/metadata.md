@@ -24,3 +24,17 @@ metadata := components.CreateMetadataMapOfAny(map[string]any{/* values here */})
 metadata := components.CreateMetadataArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch metadata.Type {
+	case components.MetadataTypeStr:
+		// metadata.Str is populated
+	case components.MetadataTypeMapOfAny:
+		// metadata.MapOfAny is populated
+	case components.MetadataTypeArrayOfStr:
+		// metadata.ArrayOfStr is populated
+}
+```

@@ -168,9 +168,11 @@ type ProfileResponse struct {
 	Description *string `json:"description,omitempty"`
 	// A list of countries where you expect that the majority of the profile's customers reside,
 	// in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	CountriesOfActivity []string              `json:"countriesOfActivity,omitempty"`
-	BusinessCategory    *string               `json:"businessCategory"`
-	Status              ProfileResponseStatus `json:"status"`
+	CountriesOfActivity []string `json:"countriesOfActivity,omitempty"`
+	// The industry associated with the profile's trade name or brand. Please refer to the
+	// [business category list](common-data-types#business-category) for all possible options.
+	BusinessCategory string                `json:"businessCategory"`
+	Status           ProfileResponseStatus `json:"status"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
 	// `null` in test mode.
@@ -186,7 +188,7 @@ func (p ProfileResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *ProfileResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "name", "website", "email", "phone", "status", "createdAt", "_links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "name", "website", "email", "phone", "businessCategory", "status", "createdAt", "_links"}); err != nil {
 		return err
 	}
 	return nil
@@ -255,9 +257,9 @@ func (p *ProfileResponse) GetCountriesOfActivity() []string {
 	return p.CountriesOfActivity
 }
 
-func (p *ProfileResponse) GetBusinessCategory() *string {
+func (p *ProfileResponse) GetBusinessCategory() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.BusinessCategory
 }

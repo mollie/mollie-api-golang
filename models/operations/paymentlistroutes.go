@@ -8,7 +8,7 @@ import (
 
 type PaymentListRoutesGlobals struct {
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -26,7 +26,7 @@ type PaymentListRoutesRequest struct {
 	// Provide the ID of the related payment.
 	PaymentID string `pathParam:"style=simple,explode=false,name=paymentId"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

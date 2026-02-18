@@ -8,7 +8,7 @@ import (
 
 type ListSettlementChargebacksGlobals struct {
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -33,7 +33,7 @@ type ListSettlementChargebacksRequest struct {
 	// This endpoint allows you to embed additional information via the `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
 	//
 	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

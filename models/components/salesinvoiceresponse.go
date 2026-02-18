@@ -185,6 +185,12 @@ type SalesInvoiceResponse struct {
 	Mode Mode `json:"mode"`
 	// When issued, an invoice number will be set for the sales invoice.
 	InvoiceNumber *string `json:"invoiceNumber,omitempty"`
+	// The identifier referring to the [profile](get-profile) this entity belongs to.
+	//
+	// Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent in the creation
+	// request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+	// required.
+	ProfileID *string `json:"profileId,omitempty"`
 	// The status for the invoice to end up in.
 	//
 	// A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
@@ -281,6 +287,13 @@ func (s *SalesInvoiceResponse) GetInvoiceNumber() *string {
 		return nil
 	}
 	return s.InvoiceNumber
+}
+
+func (s *SalesInvoiceResponse) GetProfileID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ProfileID
 }
 
 func (s *SalesInvoiceResponse) GetStatus() *SalesInvoiceStatusResponse {

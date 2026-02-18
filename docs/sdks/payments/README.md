@@ -191,7 +191,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -360,7 +368,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -529,7 +545,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -698,7 +722,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -867,7 +899,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1036,7 +1076,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1205,7 +1253,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1374,7 +1430,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1543,7 +1607,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1712,7 +1784,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1881,7 +1961,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2050,7 +2138,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2262,7 +2358,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2301,7 +2405,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2340,7 +2452,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2438,7 +2558,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2510,7 +2638,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2582,7 +2718,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2648,7 +2792,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```

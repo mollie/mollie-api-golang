@@ -52,7 +52,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CustomerResponse != nil {
-        // handle response
+        switch res.CustomerResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CustomerResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CustomerResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -175,21 +183,29 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-        // handle response
+        switch res.Object.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.Object.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.Object.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.Object.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                                                                                                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `customerID`                                                                                                                                                                                                                                                                                                                                                                           | *string*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | **bool*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                        |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | **string*                                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
-| `opts`                                                                                                                                                                                                                                                                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The options for this request.                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                        |
+| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                                                                                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                          |
+| `customerID`                                                                                                                                                                                                                                                                                                                                                                             | *string*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
+| `include`                                                                                                                                                                                                                                                                                                                                                                                | **string*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                          |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | **bool*                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | **string*                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| `opts`                                                                                                                                                                                                                                                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | The options for this request.                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### Response
 
@@ -242,7 +258,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CustomerResponse != nil {
-        // handle response
+        switch res.CustomerResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CustomerResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CustomerResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -280,7 +304,15 @@ func main() {
         log.Fatal(err)
     }
     if res.CustomerResponse != nil {
-        // handle response
+        switch res.CustomerResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.CustomerResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.CustomerResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -546,7 +578,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -715,7 +755,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -884,7 +932,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1053,7 +1109,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1222,7 +1286,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1391,7 +1463,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1560,7 +1640,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1729,7 +1817,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -1898,7 +1994,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2067,7 +2171,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2236,7 +2348,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
@@ -2405,7 +2525,15 @@ func main() {
         log.Fatal(err)
     }
     if res.PaymentResponse != nil {
-        // handle response
+        switch res.PaymentResponse.Metadata.Type {
+            case components.MetadataTypeStr:
+                // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeMapOfAny:
+                // res.PaymentResponse.Metadata.MapOfAny is populated
+            case components.MetadataTypeArrayOfStr:
+                // res.PaymentResponse.Metadata.ArrayOfStr is populated
+        }
+
     }
 }
 ```
