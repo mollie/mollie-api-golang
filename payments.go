@@ -1525,6 +1525,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 
 	switch {
 	case httpRes.StatusCode == 202:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:

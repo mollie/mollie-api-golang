@@ -1253,6 +1253,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idemp
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:

@@ -1238,6 +1238,7 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:

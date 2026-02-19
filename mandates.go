@@ -977,6 +977,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):

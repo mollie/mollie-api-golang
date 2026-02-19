@@ -2,6 +2,47 @@
 
 package components
 
+// DeductionDetails - A detailed breakdown of the deductions withheld from the movement. Each field represents a specific type of
+// deduction applied to the transaction. Only the applicable fields will be present.
+type DeductionDetails struct {
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Fees *AmountNullable `json:"fees,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Commissions *AmountNullable `json:"commissions,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Repayments *AmountNullable `json:"repayments,omitempty"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Reservations *AmountNullable `json:"reservations,omitempty"`
+}
+
+func (d *DeductionDetails) GetFees() *AmountNullable {
+	if d == nil {
+		return nil
+	}
+	return d.Fees
+}
+
+func (d *DeductionDetails) GetCommissions() *AmountNullable {
+	if d == nil {
+		return nil
+	}
+	return d.Commissions
+}
+
+func (d *DeductionDetails) GetRepayments() *AmountNullable {
+	if d == nil {
+		return nil
+	}
+	return d.Repayments
+}
+
+func (d *DeductionDetails) GetReservations() *AmountNullable {
+	if d == nil {
+		return nil
+	}
+	return d.Reservations
+}
+
 type Payment struct {
 	PaymentID          *string `json:"paymentId,omitempty"`
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
@@ -1149,6 +1190,9 @@ type EntityBalanceTransaction struct {
 	InitialAmount Amount `json:"initialAmount"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Deductions *AmountNullable `json:"deductions,omitempty"`
+	// A detailed breakdown of the deductions withheld from the movement. Each field represents a specific type of
+	// deduction applied to the transaction. Only the applicable fields will be present.
+	DeductionDetails *DeductionDetails `json:"deductionDetails,omitempty"`
 	// Depending on the type of the balance transaction, we will try to give more context about the specific event that
 	// triggered it. For example, the context object for a payment transaction will look like
 	// `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
@@ -1240,6 +1284,13 @@ func (e *EntityBalanceTransaction) GetDeductions() *AmountNullable {
 		return nil
 	}
 	return e.Deductions
+}
+
+func (e *EntityBalanceTransaction) GetDeductionDetails() *DeductionDetails {
+	if e == nil {
+		return nil
+	}
+	return e.DeductionDetails
 }
 
 func (e *EntityBalanceTransaction) GetContext() *Context {

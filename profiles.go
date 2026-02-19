@@ -1225,6 +1225,7 @@ func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey 
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 410:

@@ -1227,6 +1227,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):

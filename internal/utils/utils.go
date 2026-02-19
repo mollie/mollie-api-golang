@@ -358,6 +358,12 @@ func contains(arr []string, str string) bool {
 	return false
 }
 
+func DrainBody(res *http.Response) {
+	io.Copy(io.Discard, res.Body)
+	res.Body.Close()
+	res.Body = io.NopCloser(bytes.NewReader(nil))
+}
+
 func ConsumeRawBody(res *http.Response) ([]byte, error) {
 	rawBody, err := io.ReadAll(res.Body)
 	if err != nil {

@@ -975,6 +975,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):

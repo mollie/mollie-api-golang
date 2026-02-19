@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 142d9b16bb9b1614ad82c89f5d56a6c9
+  docChecksum: 7a85853c68b05d7db860b9b1e4cf0688
   docVersion: 1.0.0
-  speakeasyVersion: 1.722.2
-  generationVersion: 2.832.2
-  releaseVersion: 0.9.20
-  configChecksum: 90512880adc684c186ae492f7a63b148
+  speakeasyVersion: 1.722.6
+  generationVersion: 2.832.6
+  releaseVersion: 0.9.21
+  configChecksum: 13d449294a3ea9323d883f73ede33ee0
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: a390de65-da56-4576-a028-5f4ad5470a54
-  pristine_commit_hash: b732218b6fb6225ebd766eacabb8c3f88f1e5c97
-  pristine_tree_hash: 974302ed273b321ab399c80ee2e0e161b96ab130
+  generation_id: 34d71c82-adb1-41b1-ba0a-d1d56c02a92a
+  pristine_commit_hash: 68a4f83aba39d1e7960452ea19e6e6b9a0b9e228
+  pristine_tree_hash: fb7ed6e18e145f8f1f05c0b9bed9ba19e82904fc
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.12
+    core: 3.13.13
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: 8afac803cfaf1db55ae10da4985ca6dbf09354c4
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:502d467cb2268a0dd5d3d1cfdcb49030688f67aa
-    pristine_git_object: d269b63e8a4dd004fdaca416fbe16af9a80ed598
+    last_write_checksum: sha1:2c50153fbd2cdaad7cc6b5703df48bfe1c7452a8
+    pristine_git_object: 2ba1176c6a19994c7a0fc4c70ca9c298b12ffdbe
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:68d6dabcbf5b5ce9fc08d8285925055205be8c69
@@ -91,8 +91,8 @@ trackedFiles:
     pristine_git_object: 5aeca9d4d156ad1d641dff6160fb9a1ec78b1404
   customers.go:
     id: a1d3d926ce55
-    last_write_checksum: sha1:a890d3dfcbd1939477ff6883a332abcb3d722fcd
-    pristine_git_object: a4d9a67c30f3bc4517ff12b828f2854e7c1087e7
+    last_write_checksum: sha1:5f721937e6e4d05d6c3d6074cc78dd1e0fa88a63
+    pristine_git_object: 26303d52bc99ce4c98649b641714534c88dd42b1
   delayedrouting.go:
     id: 2361eb8ffd66
     last_write_checksum: sha1:ac737ef2966cb563e6a38dc2184eb3c511a0445a
@@ -309,6 +309,10 @@ trackedFiles:
     id: 7ed5f0a6e0af
     last_write_checksum: sha1:daba7a77a9872c34674edc09635c0718b3df5249
     pristine_git_object: ba7aba7c19da770d2e9d7612cf43c3b54cb38e5a
+  docs/models/components/deductiondetails.md:
+    id: d90be66102aa
+    last_write_checksum: sha1:c02043256aa45cbc4ae9372577db0cc7ce3a6b50
+    pristine_git_object: a76a772045a0ecdc93cd25dd3aa4271f041055ad
   docs/models/components/deletevaluessalesinvoice.md:
     id: a4640ab01b29
     last_write_checksum: sha1:415c99f298299057bdf107e98352d9b134d6ad03
@@ -359,8 +363,8 @@ trackedFiles:
     pristine_git_object: 2a87bf12a18ef86ae7b42e7f3a51a4caea58f412
   docs/models/components/entitybalancetransaction.md:
     id: 74bce976ffab
-    last_write_checksum: sha1:5ed0980071909a4b4bbe6f8aaca8e6fbb9491a3e
-    pristine_git_object: 24f36d41ef5ac93a811530b71671d498c0fe7c77
+    last_write_checksum: sha1:25e1c02ee1ed3d33768eb19e77d6bd6a29a7023e
+    pristine_git_object: f98a764df7461490ff6e241a76c071be239c5e25
   docs/models/components/entitybalancetransactionapplicationfee.md:
     id: 2e4bb3346c67
     last_write_checksum: sha1:63bf3f4ab167ba90b3d04a5ac731ce2d780984ca
@@ -3351,16 +3355,16 @@ trackedFiles:
     pristine_git_object: f66814c73ace94d8e71d785fd6161fb405745754
   internal/utils/utils.go:
     id: 1133b2a27019
-    last_write_checksum: sha1:66b0ef3c302e2edad3496775a6e5b452caceefd6
-    pristine_git_object: ee4300f7b7469c4e66572ada7b95f7ff7f2e506a
+    last_write_checksum: sha1:b57d825e94d5b73375d7db76444df1aab9f0fce0
+    pristine_git_object: 8624ad5f489b0d996d7cf38cd7366fc9299ec918
   invoices.go:
     id: 362900f5e35b
     last_write_checksum: sha1:c9007a76d244ece7a0f45de9f5eaafbe28a8ded8
     pristine_git_object: 4884d4406bbbbd059d9296fb8e9b09f49b9dc277
   mandates.go:
     id: 67097529fab8
-    last_write_checksum: sha1:14db96de556e5157df17ef8ee73219867560b219
-    pristine_git_object: 55a691981016421a4ce3838be8da4966b41b9204
+    last_write_checksum: sha1:5501be6a959550f335487516359c298fb7c57acd
+    pristine_git_object: 1016ee3022ffd0bad012fcffdb84df0896670aa8
   methods.go:
     id: ea83307ea987
     last_write_checksum: sha1:e9063bfd489be7ff8277be11e17d9f4fd267d745
@@ -3507,8 +3511,8 @@ trackedFiles:
     pristine_git_object: 8c37807bbbdd22ba64072f348ca588b24df84a69
   models/components/entitybalancetransaction.go:
     id: ff64162a185c
-    last_write_checksum: sha1:a1413526fc1e35448eca7f4bbd63bc696204f1ad
-    pristine_git_object: 41fdad115a7d9dd2f2849bac6beec6ec9562f6d8
+    last_write_checksum: sha1:77826e7f033438d95e25393963f14d420bb30f0c
+    pristine_git_object: eeb881d883709de3f399493aa5aa016f17fbcecc
   models/components/entitybalancetransfer.go:
     id: c2e6a1310db4
     last_write_checksum: sha1:5141b77874b65848ce55c76888b8f058679646cb
@@ -4467,8 +4471,8 @@ trackedFiles:
     pristine_git_object: 895d85c7f2adb220fe427027568779cd3872d06f
   onboarding.go:
     id: d1e4a134fcc2
-    last_write_checksum: sha1:41a694d5560a870645f26bc14cdaf216d2332e90
-    pristine_git_object: cb687b361b3d734dbbcd7b781eb83ac918e8b8e9
+    last_write_checksum: sha1:807009d777884f75400d70dfb35395e5560f349a
+    pristine_git_object: 056b0594ab8997b37e53d4b5ebca5f2a350b7014
   optionalnullable/optionalnullable.go:
     id: ce60f259ead3
     last_write_checksum: sha1:d6aff1a420c31e025ea21d46cf056e305ae76fe8
@@ -4483,32 +4487,32 @@ trackedFiles:
     pristine_git_object: 24bb1c15211dbff3c9640000fec59f0b2886899a
   paymentlinks.go:
     id: 952b28e656a1
-    last_write_checksum: sha1:22ed79e8daaaff5357bfab1dc8c272af453d5a0c
-    pristine_git_object: 3faa00f165e9dbb6c056457b112c4ca17c10a5b3
+    last_write_checksum: sha1:a1f9930f62e9ec5be74ab82174af909217d75b02
+    pristine_git_object: 7177eb36ea4289764b62481d754cfe41b4885863
   payments.go:
     id: d38f00179e5a
-    last_write_checksum: sha1:fd62a39527bae4f93169f6d418422e6f9e76ac60
-    pristine_git_object: 1700550f5b21aed6c3df8934e6d48bc7d11bcdd5
+    last_write_checksum: sha1:6441131966767bd81ddb9467ce31ecc3bbdb1dd9
+    pristine_git_object: 2742c39a63475488a91078aba8e5040b12eff0b1
   permissions.go:
     id: 24d6fe5c456e
     last_write_checksum: sha1:9c8680206cd532732ab9631467133f4e5e741314
     pristine_git_object: 7c87833c626320879763cb3c599d7e05c5f07b1f
   profiles.go:
     id: 6038c65b8d50
-    last_write_checksum: sha1:a2e276d08455ed5942c058e82c71cb6dacd16a84
-    pristine_git_object: 43a9171a293fbd918119213de8bc5760feac5940
+    last_write_checksum: sha1:0956f6f527b79d81e212807b03ac258725ba6d71
+    pristine_git_object: 7c16ba67a1a8b38935e222a5cb8a61bf73bc61f6
   refunds.go:
     id: ebaec85bd3a4
-    last_write_checksum: sha1:8aa219d81478045f4009eaf238b4fd48553769e7
-    pristine_git_object: 6603e25f20a8de238eea3ed3a45480b8e72a6c7a
+    last_write_checksum: sha1:d749386ab1c846fe256255346109fa7d783f5e85
+    pristine_git_object: 68a6e7caf500ee2a8b0c866b9bb208715ecf350d
   retry/config.go:
     id: 82d673cb0389
     last_write_checksum: sha1:f565273be789ffe0e3c160de1ac72a63cfe67fbe
     pristine_git_object: aa809fccb3445b1e2530a979dad620512f50e70f
   salesinvoices.go:
     id: 089376558bce
-    last_write_checksum: sha1:3e5979cb67ee333637ea9a34bd164c18548f05d7
-    pristine_git_object: a5cfe109afc185ce53bb22ee0ffee130db2ae6d9
+    last_write_checksum: sha1:d104e5bb7c5794ec9adcf9872ead4a0c06184eb7
+    pristine_git_object: 4ec0e1c70a51a4d15afb6b5caf1d56bb39d562e7
   settlements.go:
     id: b2d865202d0d
     last_write_checksum: sha1:6d3c35b30ec5611f9a785cb3ac111fc19ee9c19b
@@ -4547,8 +4551,8 @@ trackedFiles:
     pristine_git_object: 10ce374ae62d1f22f2a0e54ad6cac1ea5b3f114d
   webhooks.go:
     id: 72c7156317c9
-    last_write_checksum: sha1:5442c7bfee3e38205ca25cf9a5106cd40851c20d
-    pristine_git_object: 9719c68f0c679d3bece3c76d7322b2d38d56a19f
+    last_write_checksum: sha1:d0dc2320ff332b918f214756b88d6037c74c5fff
+    pristine_git_object: dc3c3f10867447af77ac1f365c55701e6cbfb75d
 examples:
   list-balances:
     list-balances-200-1:
@@ -4712,7 +4716,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"balance_transactions": [{"resource": "balance-transaction", "id": "baltr_QM24QwzUWR4ev4Xfgyt29A", "type": "refund", "resultAmount": {"currency": "EUR", "value": "-10.25"}, "initialAmount": {"currency": "EUR", "value": "-10.00"}, "deductions": {"currency": "EUR", "value": "-0.25"}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_WhmDwNYR87FPDbiwBhUXCh", "type": "payment", "resultAmount": {"currency": "EUR", "value": "9.71"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "deductions": {"currency": "EUR", "value": "-0.29"}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH/transactions?from=baltr_rXeW2yPqqDUyfAqq8fS5Bg&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 2, "_embedded": {"balance_transactions": [{"resource": "balance-transaction", "id": "baltr_QM24QwzUWR4ev4Xfgyt29A", "type": "refund", "resultAmount": {"currency": "EUR", "value": "-10.25"}, "initialAmount": {"currency": "EUR", "value": "-10.00"}, "deductions": {"currency": "EUR", "value": "-0.25"}, "deductionDetails": {"fees": {"currency": "EUR", "value": "-0.25"}}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_WhmDwNYR87FPDbiwBhUXCh", "type": "payment", "resultAmount": {"currency": "EUR", "value": "9.71"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "deductions": {"currency": "EUR", "value": "-0.29"}, "deductionDetails": {"fees": {"currency": "EUR", "value": "-0.02"}, "commissions": {"currency": "EUR", "value": "-0.09"}, "repayments": {"currency": "EUR", "value": "-0.09"}, "reservations": {"currency": "EUR", "value": "-0.09"}}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/balances/bal_gVMhHKqSSRYJyPsuoPNFH/transactions?from=baltr_rXeW2yPqqDUyfAqq8fS5Bg&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-balance-transactions-200-2:
       parameters:
         path:
@@ -4725,7 +4729,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 50, "_embedded": {"balance_transactions": [{"resource": "balance-transaction", "id": "baltr_Eh5yKgk4PWxsCSJy7bdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_BR56v6ZPrVcfy8jbzadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:22:20+00:00"}, {"resource": "balance-transaction", "id": "baltr_XM3Ye884WheSEsGqyadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:22:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_pYs7WdRU9TV9cyxsnadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:20:20+00:00"}, {"resource": "balance-transaction", "id": "baltr_vecp57y9tTsnohz2hadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:19:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_s5EKzwZ394TxEcpSaadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:18:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_WgQcFW4DS9zNDeWCWadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:17:28+00:00"}, {"resource": "balance-transaction", "id": "baltr_ZAbACJF2Nh2PCJysHadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:15:22+00:00"}, {"resource": "balance-transaction", "id": "baltr_CM6okJdX7SUFDzXVBadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:14:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_Luwmv2RPjWAPVbQsrZdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:11:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_fNnyBtyVpMaujFHoTZdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:07:18+00:00"}, {"resource": "balance-transaction", "id": "baltr_ZYkNBk6NpH8yyanezZbRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-15T16:40:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_KouV3xWwyPSimHtPuZbRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-15T16:39:22+00:00"}, {"resource": "balance-transaction", "id": "baltr_R7J2QLNXBHozou2sygaRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.62"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "deductions": {"currency": "EUR", "value": "-0.38"}, "context": {}, "createdAt": "2022-12-15T08:32:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_wYLbjfBDPPbhktwP9iYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T14:11:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_bqd6QKaPMpgWKLRAYdYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-14T13:26:18+00:00"}, {"resource": "balance-transaction", "id": "baltr_EW4yXvwwERRkNTxGUHYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T10:10:29+00:00"}, {"resource": "balance-transaction", "id": "baltr_MU5s5vSHYDRSWnYbJBYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T09:10:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_UAzMEogYhsKnBiNQF5YRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T08:11:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_tRCT9FVTN4gmoYsetiXRH", "type": "outgoing-transfer", "resultAmount": {"currency": "EUR", "value": "-1077.62"}, "initialAmount": {"currency": "EUR", "value": "-1077.62"}, "context": {}, "createdAt": "2022-12-14T05:02:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_mCT66L9cfEWbqgNFwFWRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-13T15:23:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_qb8AuKkzZQ4ipFpbkDWRH", "type": "refund", "resultAmount": {"currency": "EUR", "value": "-0.30"}, "initialAmount": {"currency": "EUR", "value": "-0.05"}, "deductions": {"currency": "EUR", "value": "-0.25"}, "context": {}, "createdAt": "2022-12-13T15:01:56+00:00"}, {"resource": "balance-transaction", "id": "baltr_HBLVK3kVRhmZWSZWQ2WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-13T13:11:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_C3EMuY25RMvkCHvX72WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "8.00"}, "initialAmount": {"currency": "EUR", "value": "8.00"}, "context": {}, "createdAt": "2022-12-13T13:08:31+00:00"}, {"resource": "balance-transaction", "id": "baltr_GwdyZkuUtckkfqgP72WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "7.00"}, "initialAmount": {"currency": "EUR", "value": "7.00"}, "context": {}, "createdAt": "2022-12-13T13:08:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_r7F48qyzcpeqzRN872WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "11.00"}, "initialAmount": {"currency": "EUR", "value": "11.00"}, "context": {}, "createdAt": "2022-12-13T13:08:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_RGxkRZAqqMUx9uLp62WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "50.00"}, "initialAmount": {"currency": "EUR", "value": "50.00"}, "context": {}, "createdAt": "2022-12-13T13:08:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_TwHzY2rqhpmWNKdazzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "60.00"}, "initialAmount": {"currency": "EUR", "value": "60.00"}, "context": {}, "createdAt": "2022-12-13T13:07:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_vEYxvT9jswxgdXfJzzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:07:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_NdJB8uc7xB2SZW3zyzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:07:09+00:00"}, {"resource": "balance-transaction", "id": "baltr_pEM6remSK3UGHDRAuzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_6GusRMZHuWapoEFvtzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_iieu2Lzf52V3KGadtzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_e2gtch39TSo6iABHozVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_pmNMcz8GdvwPmvmunzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_qFmvrsKMRojS967cnzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_DcLYydj7aMazfaWQnzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_3BoK75R8c2Wuomf9hzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_9LErqzZoJ9ZDvx3sgzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:13+00:00"}, {"resource": "balance-transaction", "id": "baltr_AdVYVkaGLzVsnNofgzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_HQvvmTk2FCbQJHHcbzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_AHWBoHhsAV8HnQKGbzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_iej3r8HjzyLLxv95bzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_vLqVSaXJ5d8SjNTgazVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_iEgyvSjkCWVbQpREVzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "150.00"}, "initialAmount": {"currency": "EUR", "value": "150.00"}, "context": {}, "createdAt": "2022-12-13T13:02:13+00:00"}, {"resource": "balance-transaction", "id": "baltr_Cq6pB2qDkPXvXv4wUzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:02:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_W4XvgZTmFhvoNdPxPzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "100.00"}, "initialAmount": {"currency": "EUR", "value": "100.00"}, "context": {}, "createdAt": "2022-12-13T13:01:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_SnQyfLUyy6HmHth8GyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:50:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_QYAWSE7rV4UraAgSAyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:49:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_oAnC33yT7GXhP7X8AyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:49:12+00:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/balances/bal_CKjKwQdjCwCSArXFAJNFH/transactions?from=baltr_WuSLmsLzeDVRRYAq9yVRH&limit=50", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 50, "_embedded": {"balance_transactions": [{"resource": "balance-transaction", "id": "baltr_Eh5yKgk4PWxsCSJy7bdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:23:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_BR56v6ZPrVcfy8jbzadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:22:20+00:00"}, {"resource": "balance-transaction", "id": "baltr_XM3Ye884WheSEsGqyadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:22:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_pYs7WdRU9TV9cyxsnadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:20:20+00:00"}, {"resource": "balance-transaction", "id": "baltr_vecp57y9tTsnohz2hadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:19:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_s5EKzwZ394TxEcpSaadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:18:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_WgQcFW4DS9zNDeWCWadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:17:28+00:00"}, {"resource": "balance-transaction", "id": "baltr_ZAbACJF2Nh2PCJysHadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:15:22+00:00"}, {"resource": "balance-transaction", "id": "baltr_CM6okJdX7SUFDzXVBadRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:14:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_Luwmv2RPjWAPVbQsrZdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:11:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_fNnyBtyVpMaujFHoTZdRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "300.00"}, "initialAmount": {"currency": "EUR", "value": "300.00"}, "context": {}, "createdAt": "2022-12-16T11:07:18+00:00"}, {"resource": "balance-transaction", "id": "baltr_ZYkNBk6NpH8yyanezZbRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-15T16:40:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_KouV3xWwyPSimHtPuZbRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-15T16:39:22+00:00"}, {"resource": "balance-transaction", "id": "baltr_R7J2QLNXBHozou2sygaRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.62"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "deductions": {"currency": "EUR", "value": "-0.38"}, "deductionDetails": {"fees": {"currency": "EUR", "value": "-0.01"}, "commissions": {"currency": "EUR", "value": "-0.20"}, "repayments": {"currency": "EUR", "value": "-0.07"}, "reservations": {"currency": "EUR", "value": "-0.10"}}, "context": {}, "createdAt": "2022-12-15T08:32:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_wYLbjfBDPPbhktwP9iYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T14:11:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_bqd6QKaPMpgWKLRAYdYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "1.00"}, "initialAmount": {"currency": "EUR", "value": "1.00"}, "context": {}, "createdAt": "2022-12-14T13:26:18+00:00"}, {"resource": "balance-transaction", "id": "baltr_EW4yXvwwERRkNTxGUHYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T10:10:29+00:00"}, {"resource": "balance-transaction", "id": "baltr_MU5s5vSHYDRSWnYbJBYRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T09:10:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_UAzMEogYhsKnBiNQF5YRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-14T08:11:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_tRCT9FVTN4gmoYsetiXRH", "type": "outgoing-transfer", "resultAmount": {"currency": "EUR", "value": "-1077.62"}, "initialAmount": {"currency": "EUR", "value": "-1077.62"}, "context": {}, "createdAt": "2022-12-14T05:02:25+00:00"}, {"resource": "balance-transaction", "id": "baltr_mCT66L9cfEWbqgNFwFWRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-13T15:23:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_qb8AuKkzZQ4ipFpbkDWRH", "type": "refund", "resultAmount": {"currency": "EUR", "value": "-0.30"}, "initialAmount": {"currency": "EUR", "value": "-0.05"}, "deductions": {"currency": "EUR", "value": "-0.25"}, "deductionDetails": {"fees": {"currency": "EUR", "value": "-0.25"}}, "context": {}, "createdAt": "2022-12-13T15:01:56+00:00"}, {"resource": "balance-transaction", "id": "baltr_HBLVK3kVRhmZWSZWQ2WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "0.05"}, "initialAmount": {"currency": "EUR", "value": "0.05"}, "context": {}, "createdAt": "2022-12-13T13:11:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_C3EMuY25RMvkCHvX72WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "8.00"}, "initialAmount": {"currency": "EUR", "value": "8.00"}, "context": {}, "createdAt": "2022-12-13T13:08:31+00:00"}, {"resource": "balance-transaction", "id": "baltr_GwdyZkuUtckkfqgP72WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "7.00"}, "initialAmount": {"currency": "EUR", "value": "7.00"}, "context": {}, "createdAt": "2022-12-13T13:08:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_r7F48qyzcpeqzRN872WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "11.00"}, "initialAmount": {"currency": "EUR", "value": "11.00"}, "context": {}, "createdAt": "2022-12-13T13:08:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_RGxkRZAqqMUx9uLp62WRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "50.00"}, "initialAmount": {"currency": "EUR", "value": "50.00"}, "context": {}, "createdAt": "2022-12-13T13:08:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_TwHzY2rqhpmWNKdazzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "60.00"}, "initialAmount": {"currency": "EUR", "value": "60.00"}, "context": {}, "createdAt": "2022-12-13T13:07:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_vEYxvT9jswxgdXfJzzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:07:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_NdJB8uc7xB2SZW3zyzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:07:09+00:00"}, {"resource": "balance-transaction", "id": "baltr_pEM6remSK3UGHDRAuzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_6GusRMZHuWapoEFvtzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:17+00:00"}, {"resource": "balance-transaction", "id": "baltr_iieu2Lzf52V3KGadtzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:06:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_e2gtch39TSo6iABHozVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_pmNMcz8GdvwPmvmunzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_qFmvrsKMRojS967cnzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:12+00:00"}, {"resource": "balance-transaction", "id": "baltr_DcLYydj7aMazfaWQnzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:05:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_3BoK75R8c2Wuomf9hzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_9LErqzZoJ9ZDvx3sgzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:13+00:00"}, {"resource": "balance-transaction", "id": "baltr_AdVYVkaGLzVsnNofgzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:04:11+00:00"}, {"resource": "balance-transaction", "id": "baltr_HQvvmTk2FCbQJHHcbzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_AHWBoHhsAV8HnQKGbzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:16+00:00"}, {"resource": "balance-transaction", "id": "baltr_iej3r8HjzyLLxv95bzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_vLqVSaXJ5d8SjNTgazVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:03:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_iEgyvSjkCWVbQpREVzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "150.00"}, "initialAmount": {"currency": "EUR", "value": "150.00"}, "context": {}, "createdAt": "2022-12-13T13:02:13+00:00"}, {"resource": "balance-transaction", "id": "baltr_Cq6pB2qDkPXvXv4wUzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T13:02:10+00:00"}, {"resource": "balance-transaction", "id": "baltr_W4XvgZTmFhvoNdPxPzVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "100.00"}, "initialAmount": {"currency": "EUR", "value": "100.00"}, "context": {}, "createdAt": "2022-12-13T13:01:19+00:00"}, {"resource": "balance-transaction", "id": "baltr_SnQyfLUyy6HmHth8GyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:50:14+00:00"}, {"resource": "balance-transaction", "id": "baltr_QYAWSE7rV4UraAgSAyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:49:15+00:00"}, {"resource": "balance-transaction", "id": "baltr_oAnC33yT7GXhP7X8AyVRH", "type": "payment", "resultAmount": {"currency": "EUR", "value": "10.00"}, "initialAmount": {"currency": "EUR", "value": "10.00"}, "context": {}, "createdAt": "2022-12-13T12:49:12+00:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/balances/bal_CKjKwQdjCwCSArXFAJNFH/transactions?from=baltr_WuSLmsLzeDVRRYAq9yVRH&limit=50", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     speakeasy-default-list-balance-transactions:
       parameters:
         path:
@@ -7870,16 +7874,7 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Profiles.Create()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.List()`:  `response.Embedded.Profiles[].BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.Get()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.Update()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.Profiles.GetCurrent()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(profile-response).BusinessCategory` **Changed** (Breaking ⚠️)
-  * `Client.SalesInvoices.Create()`:  `response.ProfileId` **Added**
-  * `Client.SalesInvoices.List()`:  `response.Embedded.SalesInvoices[].ProfileId` **Added**
-  * `Client.SalesInvoices.Get()`:  `response.ProfileId` **Added**
-  * `Client.SalesInvoices.Update()`:  `response.ProfileId` **Added**
+  * `Client.Balances.ListTransactions()`:  `response.Embedded.BalanceTransactions[].DeductionDetails` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
