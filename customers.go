@@ -13,6 +13,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
+	"github.com/spyzhov/ajson"
 	"net/http"
 	"net/url"
 )
@@ -298,6 +299,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionURLOverride,
 	}
 
 	for _, opt := range opts {
@@ -315,6 +317,10 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 	opURL, err := url.JoinPath(baseURL, "/customers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	if o.URLOverride != nil {
+		opURL = *o.URLOverride
 	}
 
 	hookCtx := hooks.HookContext{
@@ -461,6 +467,48 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 			Request:  req,
 			Response: httpRes,
 		},
+	}
+	res.Next = func() (*operations.ListCustomersResponse, error) {
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+
+		nextURLNode, err := ajson.Eval(b, "$._links.next.href")
+		if err != nil {
+			return nil, fmt.Errorf("error evaluating next URL: %w", err)
+		}
+		if !nextURLNode.IsString() {
+			return nil, nil
+		}
+		nextURL, err := nextURLNode.GetString()
+		if err != nil {
+			return nil, fmt.Errorf("error getting next URL string: %w", err)
+		}
+		if nextURL == "" {
+			return nil, nil
+		}
+		if nextURL[0] == '/' {
+			nextURL = baseURL + nextURL
+		}
+		opts = append(opts, operations.WithURLOverride(nextURL))
+
+		return s.List(
+			ctx,
+			operations.ListCustomersRequest{
+				From:           request.From,
+				Limit:          request.Limit,
+				Sort:           request.Sort,
+				Testmode:       request.Testmode,
+				IdempotencyKey: request.IdempotencyKey,
+			},
+			opts...,
+		)
 	}
 
 	switch {
@@ -1576,6 +1624,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionURLOverride,
 	}
 
 	for _, opt := range opts {
@@ -1593,6 +1642,10 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	if o.URLOverride != nil {
+		opURL = *o.URLOverride
 	}
 
 	hookCtx := hooks.HookContext{
@@ -1739,6 +1792,50 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 			Request:  req,
 			Response: httpRes,
 		},
+	}
+	res.Next = func() (*operations.ListCustomerPaymentsResponse, error) {
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+
+		nextURLNode, err := ajson.Eval(b, "$._links.next.href")
+		if err != nil {
+			return nil, fmt.Errorf("error evaluating next URL: %w", err)
+		}
+		if !nextURLNode.IsString() {
+			return nil, nil
+		}
+		nextURL, err := nextURLNode.GetString()
+		if err != nil {
+			return nil, fmt.Errorf("error getting next URL string: %w", err)
+		}
+		if nextURL == "" {
+			return nil, nil
+		}
+		if nextURL[0] == '/' {
+			nextURL = baseURL + nextURL
+		}
+		opts = append(opts, operations.WithURLOverride(nextURL))
+
+		return s.ListPayments(
+			ctx,
+			operations.ListCustomerPaymentsRequest{
+				CustomerID:     request.CustomerID,
+				From:           request.From,
+				Limit:          request.Limit,
+				Sort:           request.Sort,
+				ProfileID:      request.ProfileID,
+				Testmode:       request.Testmode,
+				IdempotencyKey: request.IdempotencyKey,
+			},
+			opts...,
+		)
 	}
 
 	switch {

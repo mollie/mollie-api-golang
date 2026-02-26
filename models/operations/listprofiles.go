@@ -87,6 +87,8 @@ type ListProfilesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of profile objects.
 	Object *ListProfilesResponseBody
+
+	Next func() (*ListProfilesResponse, error)
 }
 
 func (l *ListProfilesResponse) GetHTTPMeta() components.HTTPMetadata {

@@ -126,6 +126,8 @@ type ListTerminalsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of terminal objects.
 	Object *ListTerminalsResponseBody
+
+	Next func() (*ListTerminalsResponse, error)
 }
 
 func (l *ListTerminalsResponse) GetHTTPMeta() components.HTTPMetadata {

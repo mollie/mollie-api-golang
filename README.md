@@ -27,6 +27,7 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [Add Profile ID and Testmode to Client](#add-profile-id-and-testmode-to-client)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Global Parameters](#global-parameters)
+  * [Pagination](#pagination)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -84,7 +85,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -136,7 +149,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -479,12 +504,83 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
 ```
 <!-- End Global Parameters [global-parameters] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```go
+package main
+
+import (
+	"context"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+	"os"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := client.New(
+		client.WithTestmode(false),
+		client.WithSecurity(components.Security{
+			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+		}),
+	)
+
+	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+	}
+}
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -536,7 +632,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -587,7 +695,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -698,7 +818,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.Object != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 

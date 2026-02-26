@@ -127,6 +127,8 @@ type ListSettlementsResponse struct {
 	// A list of settlement objects. For a complete reference of the settlement
 	// object, refer to the [Get settlement endpoint](get-settlement) documentation.
 	Object *ListSettlementsResponseBody
+
+	Next func() (*ListSettlementsResponse, error)
 }
 
 func (l *ListSettlementsResponse) GetHTTPMeta() components.HTTPMetadata {

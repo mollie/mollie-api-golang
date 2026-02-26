@@ -152,6 +152,8 @@ type ListPaymentsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of payment objects.
 	Object *ListPaymentsResponseBody
+
+	Next func() (*ListPaymentsResponse, error)
 }
 
 func (l *ListPaymentsResponse) GetHTTPMeta() components.HTTPMetadata {

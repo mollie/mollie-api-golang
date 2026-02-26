@@ -126,6 +126,8 @@ type ListBalancesResponse struct {
 	// A list of balance objects. For a complete reference of the balance
 	// object, refer to the [Get balance endpoint](get-balance) documentation.
 	Object *ListBalancesResponseBody
+
+	Next func() (*ListBalancesResponse, error)
 }
 
 func (l *ListBalancesResponse) GetHTTPMeta() components.HTTPMetadata {

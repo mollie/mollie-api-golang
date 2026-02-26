@@ -119,6 +119,8 @@ type ListInvoicesResponse struct {
 	// A list of invoice objects. For a complete reference of the invoice
 	// object, refer to the [Get invoice endpoint](get-invoice) documentation.
 	Object *ListInvoicesResponseBody
+
+	Next func() (*ListInvoicesResponse, error)
 }
 
 func (l *ListInvoicesResponse) GetHTTPMeta() components.HTTPMetadata {

@@ -135,6 +135,8 @@ type ListCapturesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of capture objects.
 	Object *ListCapturesResponseBody
+
+	Next func() (*ListCapturesResponse, error)
 }
 
 func (l *ListCapturesResponse) GetHTTPMeta() components.HTTPMetadata {

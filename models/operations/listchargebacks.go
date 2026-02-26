@@ -134,6 +134,8 @@ type ListChargebacksResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of chargeback objects.
 	Object *ListChargebacksResponseBody
+
+	Next func() (*ListChargebacksResponse, error)
 }
 
 func (l *ListChargebacksResponse) GetHTTPMeta() components.HTTPMetadata {

@@ -126,6 +126,8 @@ type ListConnectBalanceTransfersResponse struct {
 	// A list of Connect balance transfers. For a complete reference of the Connect balance transfer
 	// object, refer to the [Get balance transfer endpoint](get-balance-transfer) documentation.
 	Object *ListConnectBalanceTransfersResponseBody
+
+	Next func() (*ListConnectBalanceTransfersResponse, error)
 }
 
 func (l *ListConnectBalanceTransfersResponse) GetHTTPMeta() components.HTTPMetadata {

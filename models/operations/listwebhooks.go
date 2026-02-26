@@ -135,6 +135,8 @@ type ListWebhooksResponse struct {
 	// A list of webhooks. For a complete reference of the webhook
 	// object, refer to the [Get hook endpoint](get-webhook) documentation.
 	Object *ListWebhooksResponseBody
+
+	Next func() (*ListWebhooksResponse, error)
 }
 
 func (l *ListWebhooksResponse) GetHTTPMeta() components.HTTPMetadata {

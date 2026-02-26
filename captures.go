@@ -13,6 +13,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
+	"github.com/spyzhov/ajson"
 	"net/http"
 )
 
@@ -304,6 +305,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionURLOverride,
 	}
 
 	for _, opt := range opts {
@@ -321,6 +323,10 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	if o.URLOverride != nil {
+		opURL = *o.URLOverride
 	}
 
 	hookCtx := hooks.HookContext{
@@ -467,6 +473,49 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 			Request:  req,
 			Response: httpRes,
 		},
+	}
+	res.Next = func() (*operations.ListCapturesResponse, error) {
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+
+		nextURLNode, err := ajson.Eval(b, "$._links.next.href")
+		if err != nil {
+			return nil, fmt.Errorf("error evaluating next URL: %w", err)
+		}
+		if !nextURLNode.IsString() {
+			return nil, nil
+		}
+		nextURL, err := nextURLNode.GetString()
+		if err != nil {
+			return nil, fmt.Errorf("error getting next URL string: %w", err)
+		}
+		if nextURL == "" {
+			return nil, nil
+		}
+		if nextURL[0] == '/' {
+			nextURL = baseURL + nextURL
+		}
+		opts = append(opts, operations.WithURLOverride(nextURL))
+
+		return s.List(
+			ctx,
+			operations.ListCapturesRequest{
+				PaymentID:      request.PaymentID,
+				From:           request.From,
+				Limit:          request.Limit,
+				Embed:          request.Embed,
+				Testmode:       request.Testmode,
+				IdempotencyKey: request.IdempotencyKey,
+			},
+			opts...,
+		)
 	}
 
 	switch {

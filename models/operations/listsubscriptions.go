@@ -135,6 +135,8 @@ type ListSubscriptionsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of subscription objects.
 	Object *ListSubscriptionsResponseBody
+
+	Next func() (*ListSubscriptionsResponse, error)
 }
 
 func (l *ListSubscriptionsResponse) GetHTTPMeta() components.HTTPMetadata {

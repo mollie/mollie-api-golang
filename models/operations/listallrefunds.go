@@ -162,6 +162,8 @@ type ListAllRefundsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of refund objects
 	Object *ListAllRefundsResponseBody
+
+	Next func() (*ListAllRefundsResponse, error)
 }
 
 func (l *ListAllRefundsResponse) GetHTTPMeta() components.HTTPMetadata {

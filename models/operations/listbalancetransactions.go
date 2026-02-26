@@ -123,6 +123,8 @@ type ListBalanceTransactionsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of balance transaction objects.
 	Object *ListBalanceTransactionsResponseBody
+
+	Next func() (*ListBalanceTransactionsResponse, error)
 }
 
 func (l *ListBalanceTransactionsResponse) GetHTTPMeta() components.HTTPMetadata {

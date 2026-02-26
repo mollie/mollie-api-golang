@@ -137,6 +137,8 @@ type ListSettlementRefundsResponse struct {
 	// A list of refund objects. For a complete reference of the refund object, refer to the
 	// [Get refund endpoint](get-refund) documentation.
 	Object *ListSettlementRefundsResponseBody
+
+	Next func() (*ListSettlementRefundsResponse, error)
 }
 
 func (l *ListSettlementRefundsResponse) GetHTTPMeta() components.HTTPMetadata {

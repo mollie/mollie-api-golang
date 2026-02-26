@@ -235,6 +235,8 @@ type ListClientsResponse struct {
 	// A list of client objects. For a complete reference of the client object, refer to the
 	// [Get client endpoint](get-client) documentation.
 	Object *ListClientsResponseBody
+
+	Next func() (*ListClientsResponse, error)
 }
 
 func (l *ListClientsResponse) GetHTTPMeta() components.HTTPMetadata {

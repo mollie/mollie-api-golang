@@ -135,6 +135,8 @@ type ListMandatesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of mandate objects.
 	Object *ListMandatesResponseBody
+
+	Next func() (*ListMandatesResponse, error)
 }
 
 func (l *ListMandatesResponse) GetHTTPMeta() components.HTTPMetadata {

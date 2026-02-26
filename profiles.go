@@ -13,6 +13,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
+	"github.com/spyzhov/ajson"
 	"net/http"
 	"net/url"
 )
@@ -300,6 +301,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionURLOverride,
 	}
 
 	for _, opt := range opts {
@@ -317,6 +319,10 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 	opURL, err := url.JoinPath(baseURL, "/profiles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	if o.URLOverride != nil {
+		opURL = *o.URLOverride
 	}
 
 	hookCtx := hooks.HookContext{
@@ -463,6 +469,44 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 			Request:  req,
 			Response: httpRes,
 		},
+	}
+	res.Next = func() (*operations.ListProfilesResponse, error) {
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+
+		nextURLNode, err := ajson.Eval(b, "$._links.next.href")
+		if err != nil {
+			return nil, fmt.Errorf("error evaluating next URL: %w", err)
+		}
+		if !nextURLNode.IsString() {
+			return nil, nil
+		}
+		nextURL, err := nextURLNode.GetString()
+		if err != nil {
+			return nil, fmt.Errorf("error getting next URL string: %w", err)
+		}
+		if nextURL == "" {
+			return nil, nil
+		}
+		if nextURL[0] == '/' {
+			nextURL = baseURL + nextURL
+		}
+		opts = append(opts, operations.WithURLOverride(nextURL))
+
+		return s.List(
+			ctx,
+			from,
+			limit,
+			idempotencyKey,
+			opts...,
+		)
 	}
 
 	switch {
