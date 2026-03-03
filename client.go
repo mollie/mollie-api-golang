@@ -2,7 +2,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.845.1
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.846.1
 
 import (
 	"context"
@@ -83,7 +83,7 @@ type Client struct {
 
 type SDKOption func(*Client)
 
-// WithServerURL allows the overriding of the default server URL
+// WithServerURL allows providing an alternative server URL
 func WithServerURL(serverURL string) SDKOption {
 	return func(sdk *Client) {
 		sdk.sdkConfiguration.ServerURL = serverURL
@@ -172,9 +172,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.10.0",
+		SDKVersion: "0.10.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.10.0 2.845.1 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.10.1 2.846.1 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},

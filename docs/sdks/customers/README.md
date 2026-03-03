@@ -55,6 +55,8 @@ func main() {
         switch res.CustomerResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.CustomerResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.CustomerResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -198,6 +200,8 @@ func main() {
         switch res.Object.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.Object.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.Object.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.Object.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -273,6 +277,8 @@ func main() {
         switch res.CustomerResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.CustomerResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.CustomerResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -319,6 +325,8 @@ func main() {
         switch res.CustomerResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.CustomerResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.CustomerResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.CustomerResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -593,6 +601,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -770,6 +780,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -947,6 +959,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -1124,6 +1138,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -1301,6 +1317,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -1478,6 +1496,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -1655,6 +1675,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -1832,6 +1854,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -2009,6 +2033,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -2186,6 +2212,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -2363,6 +2391,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -2540,6 +2570,8 @@ func main() {
         switch res.PaymentResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.PaymentResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.PaymentResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.PaymentResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:

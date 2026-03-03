@@ -12,6 +12,7 @@ type MetadataType string
 
 const (
 	MetadataTypeStr        MetadataType = "str"
+	MetadataTypeNumber     MetadataType = "number"
 	MetadataTypeMapOfAny   MetadataType = "mapOfAny"
 	MetadataTypeArrayOfStr MetadataType = "arrayOfStr"
 )
@@ -20,6 +21,7 @@ const (
 // you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 type Metadata struct {
 	Str        *string        `queryParam:"inline" union:"member"`
+	Number     *float64       `queryParam:"inline" union:"member"`
 	MapOfAny   map[string]any `queryParam:"inline" union:"member"`
 	ArrayOfStr []string       `queryParam:"inline" union:"member"`
 
@@ -32,6 +34,15 @@ func CreateMetadataStr(str string) Metadata {
 	return Metadata{
 		Str:  &str,
 		Type: typ,
+	}
+}
+
+func CreateMetadataNumber(number float64) Metadata {
+	typ := MetadataTypeNumber
+
+	return Metadata{
+		Number: &number,
+		Type:   typ,
 	}
 }
 
@@ -62,6 +73,13 @@ func (u *Metadata) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = MetadataTypeNumber
+		return nil
+	}
+
 	var mapOfAny map[string]any = map[string]any{}
 	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
 		u.MapOfAny = mapOfAny
@@ -82,6 +100,10 @@ func (u *Metadata) UnmarshalJSON(data []byte) error {
 func (u Metadata) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
 	}
 
 	if u.MapOfAny != nil {

@@ -75,6 +75,8 @@ func main() {
         switch res.EntityRefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.EntityRefundResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.EntityRefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.EntityRefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -144,6 +146,8 @@ func main() {
         switch res.EntityRefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.EntityRefundResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.EntityRefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.EntityRefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -295,6 +299,8 @@ func main() {
         switch res.EntityRefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.EntityRefundResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.EntityRefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.EntityRefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:

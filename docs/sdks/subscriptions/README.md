@@ -86,6 +86,8 @@ func main() {
         switch res.SubscriptionResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.SubscriptionResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.SubscriptionResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.SubscriptionResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -231,6 +233,8 @@ func main() {
         switch res.SubscriptionResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.SubscriptionResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.SubscriptionResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.SubscriptionResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -315,6 +319,8 @@ func main() {
         switch res.SubscriptionResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.SubscriptionResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.SubscriptionResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.SubscriptionResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -368,6 +374,8 @@ func main() {
         switch res.SubscriptionResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.SubscriptionResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.SubscriptionResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.SubscriptionResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
@@ -438,6 +446,8 @@ func main() {
         switch res.SubscriptionResponse.Metadata.Type {
             case components.MetadataTypeStr:
                 // res.SubscriptionResponse.Metadata.Str is populated
+            case components.MetadataTypeNumber:
+                // res.SubscriptionResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
                 // res.SubscriptionResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:

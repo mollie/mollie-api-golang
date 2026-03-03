@@ -15,6 +15,12 @@ metadata := components.CreateMetadataStr(string{/* values here */})
 ### 
 
 ```go
+metadata := components.CreateMetadataNumber(float64{/* values here */})
+```
+
+### 
+
+```go
 metadata := components.CreateMetadataMapOfAny(map[string]any{/* values here */})
 ```
 
@@ -32,6 +38,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch metadata.Type {
 	case components.MetadataTypeStr:
 		// metadata.Str is populated
+	case components.MetadataTypeNumber:
+		// metadata.Number is populated
 	case components.MetadataTypeMapOfAny:
 		// metadata.MapOfAny is populated
 	case components.MetadataTypeArrayOfStr:

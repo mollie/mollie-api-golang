@@ -1051,7 +1051,7 @@ type PaymentResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	MobileAppCheckout *URLObj `json:"mobileAppCheckout,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	ChangePaymentState *URLObj `json:"changePaymentState,omitempty"`
+	ChangePaymentState *URLNullable `json:"changePaymentState,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Dashboard URLObj `json:"dashboard"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -1101,7 +1101,7 @@ func (p *PaymentResponseLinks) GetMobileAppCheckout() *URLObj {
 	return p.MobileAppCheckout
 }
 
-func (p *PaymentResponseLinks) GetChangePaymentState() *URLObj {
+func (p *PaymentResponseLinks) GetChangePaymentState() *URLNullable {
 	if p == nil {
 		return nil
 	}
