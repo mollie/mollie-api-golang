@@ -44,6 +44,11 @@ type UpdateSalesInvoiceRequestBody struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []components.SalesInvoiceLineItem `json:"lines,omitempty"`
 	Discount *components.SalesInvoiceDiscount  `json:"discount,omitempty"`
+	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+	// after the invoice has been issued.
+	//
+	// When `emailDetails` is provided, an additional email is sent to the recipient.
+	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 }
 
 func (u *UpdateSalesInvoiceRequestBody) GetTestmode() *bool {
@@ -114,6 +119,13 @@ func (u *UpdateSalesInvoiceRequestBody) GetDiscount() *components.SalesInvoiceDi
 		return nil
 	}
 	return u.Discount
+}
+
+func (u *UpdateSalesInvoiceRequestBody) GetIsEInvoice() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.IsEInvoice
 }
 
 type UpdateSalesInvoiceRequest struct {

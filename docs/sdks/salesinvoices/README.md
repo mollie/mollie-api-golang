@@ -83,6 +83,7 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
+        IsEInvoice: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -339,6 +340,7 @@ func main() {
             Type: components.SalesInvoiceDiscountTypeAmount,
             Value: "10.00",
         },
+        IsEInvoice: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

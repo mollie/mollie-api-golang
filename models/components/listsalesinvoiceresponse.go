@@ -227,6 +227,13 @@ type ListSalesInvoiceResponse struct {
 	// All lines must have the same currency as the invoice.
 	Lines    []SalesInvoiceLineItemResponse `json:"lines,omitempty"`
 	Discount *SalesInvoiceDiscountResponse  `json:"discount,omitempty"`
+	// This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+	// after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to the
+	// recipient.
+	//
+	// E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only when
+	// the recipient is also located in one of these countries.
+	IsEInvoice *bool `json:"isEInvoice,omitempty"`
 	// The amount that is left to be paid.
 	AmountDue *ListSalesInvoiceResponseAmountDue `json:"amountDue,omitempty"`
 	// The total amount without VAT before discounts.
@@ -383,6 +390,13 @@ func (l *ListSalesInvoiceResponse) GetDiscount() *SalesInvoiceDiscountResponse {
 		return nil
 	}
 	return l.Discount
+}
+
+func (l *ListSalesInvoiceResponse) GetIsEInvoice() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.IsEInvoice
 }
 
 func (l *ListSalesInvoiceResponse) GetAmountDue() *ListSalesInvoiceResponseAmountDue {
