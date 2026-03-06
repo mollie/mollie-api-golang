@@ -2,6 +2,16 @@
 
 Allows you to preset the language to be used.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.LocaleEnUs
+```
+
 
 ## Values
 

@@ -60,7 +60,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySession != nil {
+    if res.EntitySession2 != nil {
         // handle response
     }
 }

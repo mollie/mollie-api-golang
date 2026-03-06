@@ -1,5 +1,18 @@
 # BalanceFeeType
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.BalanceFeeTypePaymentFee
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.BalanceFeeType("custom_value")
+```
+
 
 ## Values
 

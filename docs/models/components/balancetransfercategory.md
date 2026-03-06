@@ -2,6 +2,16 @@
 
 The type of the transfer. Different fees may apply to different types of transfers.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.BalanceTransferCategoryInvoiceCollection
+```
+
 
 ## Values
 

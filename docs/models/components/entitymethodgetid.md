@@ -3,6 +3,19 @@
 The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
 method selection screen will be skipped.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.EntityMethodGetIDAlma
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.EntityMethodGetID("custom_value")
+```
+
 
 ## Values
 

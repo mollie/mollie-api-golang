@@ -2,6 +2,19 @@
 
 The preferred locale of the merchant, as set in their Mollie dashboard.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.EntityOrganizationLocaleEnUs
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.EntityOrganizationLocale("custom_value")
+```
+
 
 ## Values
 

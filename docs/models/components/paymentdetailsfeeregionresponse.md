@@ -2,6 +2,19 @@
 
 The applicable card fee region.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.PaymentDetailsFeeRegionResponseAmericanExpress
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.PaymentDetailsFeeRegionResponse("custom_value")
+```
+
 
 ## Values
 

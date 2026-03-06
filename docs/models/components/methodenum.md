@@ -8,6 +8,16 @@ You can also specify the methods in an array. By doing so we will still show the
 but will only show the methods specified in the array. For example, you can use this functionality to only show
 payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.MethodEnumAlma
+```
+
 
 ## Values
 

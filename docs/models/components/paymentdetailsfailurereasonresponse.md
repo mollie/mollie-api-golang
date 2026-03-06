@@ -2,6 +2,19 @@
 
 A failure code to help understand why the payment failed.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.PaymentDetailsFailureReasonResponseAuthenticationAbandoned
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.PaymentDetailsFailureReasonResponse("custom_value")
+```
+
 
 ## Values
 

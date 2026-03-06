@@ -2,6 +2,19 @@
 
 The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.TerminalModelA35
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.TerminalModel("custom_value")
+```
+
 
 ## Values
 

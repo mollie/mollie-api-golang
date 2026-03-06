@@ -2,6 +2,16 @@
 
 A machine-readable code that indicates the reason for the payment's status.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.CodeApprovedOrCompletedSuccessfully
+```
+
 
 ## Values
 

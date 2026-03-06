@@ -439,7 +439,7 @@ func main() {
     )
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
-        MethodID: components.MethodIDIdeal.ToPointer(),
+        MethodID: components.MethodEnumIdeal.ToPointer(),
         Locale: components.LocaleEnUs.ToPointer(),
         Currency: client.Pointer("EUR"),
         Include: client.Pointer("issuers"),

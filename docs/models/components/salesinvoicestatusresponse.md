@@ -14,6 +14,19 @@ Dependent parameters:
   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.SalesInvoiceStatusResponseDraft
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.SalesInvoiceStatusResponse("custom_value")
+```
+
 
 ## Values
 

@@ -71,7 +71,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -403,6 +403,11 @@ s := client.New(
 * [Update](docs/sdks/salesinvoices/README.md#update) - Update sales invoice
 * [Delete](docs/sdks/salesinvoices/README.md#delete) - Delete sales invoice
 
+### [Sessions](docs/sdks/sessions/README.md)
+
+* [Create](docs/sdks/sessions/README.md#create) - Create session [BETA]
+* [Get](docs/sdks/sessions/README.md#get) - Get session
+
 ### [Settlements](docs/sdks/settlements/README.md)
 
 * [List](docs/sdks/settlements/README.md#list) - List settlements
@@ -490,7 +495,7 @@ func main() {
 		client.WithProfileID("<id>"),
 		client.WithCustomUserAgent("<value>"),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -549,7 +554,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -608,7 +613,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -681,7 +686,7 @@ func main() {
 			}),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -750,7 +755,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
@@ -804,7 +809,7 @@ func main() {
 		client.WithServerURL("https://api.mollie.com/v2"),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 

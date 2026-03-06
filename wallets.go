@@ -243,7 +243,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 				return nil, err
 			}
 
-			res.EntitySession = out
+			res.EntitySession2 = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

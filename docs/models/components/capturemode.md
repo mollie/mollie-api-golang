@@ -5,6 +5,16 @@ and capture at a later time.
 
 This field needs to be set to `manual` for method `riverty`.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.CaptureModeAutomatic
+```
+
 
 ## Values
 

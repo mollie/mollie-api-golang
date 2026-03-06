@@ -2,6 +2,19 @@
 
 Allows you to preset the language to be used.
 
+## Example Usage
+
+```go
+import (
+	"github.com/mollie/mollie-api-golang/models/components"
+)
+
+value := components.LocaleResponseEnUs
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.LocaleResponse("custom_value")
+```
+
 
 ## Values
 

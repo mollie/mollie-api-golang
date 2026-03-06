@@ -43,23 +43,23 @@ func (d *DeductionDetails) GetReservations() *AmountNullable {
 	return d.Reservations
 }
 
-type Payment struct {
+type EntityBalanceTransactionPayment struct {
 	PaymentID          *string `json:"paymentId,omitempty"`
 	PaymentDescription *string `json:"paymentDescription,omitempty"`
 }
 
-func (p *Payment) GetPaymentID() *string {
-	if p == nil {
+func (e *EntityBalanceTransactionPayment) GetPaymentID() *string {
+	if e == nil {
 		return nil
 	}
-	return p.PaymentID
+	return e.PaymentID
 }
 
-func (p *Payment) GetPaymentDescription() *string {
-	if p == nil {
+func (e *EntityBalanceTransactionPayment) GetPaymentDescription() *string {
+	if e == nil {
 		return nil
 	}
-	return p.PaymentDescription
+	return e.PaymentDescription
 }
 
 type Capture struct {
@@ -927,7 +927,7 @@ func (p *PostPaymentSplitPayment) GetPaymentID() *string {
 // * Type `cash-collateral-issuance`: none
 // * Type `cash-collateral-release`: none
 type Context struct {
-	Payment                           *Payment                                `json:"payment,omitempty"`
+	Payment                           *EntityBalanceTransactionPayment        `json:"payment,omitempty"`
 	Capture                           *Capture                                `json:"capture,omitempty"`
 	CaptureCommision                  *CaptureCommision                       `json:"capture-commision,omitempty"`
 	CaptureRollingReserveRelease      *CaptureRollingReserveRelease           `json:"capture-rolling-reserve-release,omitempty"`
@@ -960,7 +960,7 @@ type Context struct {
 	PostPaymentSplitPayment           *PostPaymentSplitPayment                `json:"post-payment-split-payment,omitempty"`
 }
 
-func (c *Context) GetPayment() *Payment {
+func (c *Context) GetPayment() *EntityBalanceTransactionPayment {
 	if c == nil {
 		return nil
 	}

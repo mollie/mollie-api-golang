@@ -2,7 +2,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.846.4
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.850.7
 
 import (
 	"context"
@@ -64,6 +64,7 @@ type Client struct {
 	WebhookEvents    *WebhookEvents
 	BalanceTransfers *BalanceTransfers
 	Payments         *Payments
+	Sessions         *Sessions
 	Methods          *Methods
 	Refunds          *Refunds
 	Chargebacks      *Chargebacks
@@ -172,9 +173,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.10.2",
+		SDKVersion: "0.10.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.10.2 2.846.4 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.10.3 2.850.7 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -214,6 +215,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.WebhookEvents = newWebhookEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.BalanceTransfers = newBalanceTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Sessions = newSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Methods = newMethods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Chargebacks = newChargebacks(sdk, sdk.sdkConfiguration, sdk.hooks)

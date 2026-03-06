@@ -81,7 +81,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
         }),
     )
 
@@ -132,7 +132,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
         }),
     )
 
@@ -183,7 +183,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
         }),
     )
 
