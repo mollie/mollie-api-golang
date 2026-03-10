@@ -9,6 +9,6 @@ Otherwise, Billie will ask the customer to complete the missing fields during ch
 
 | Field                                   | Type                                    | Required                                | Description                             | Example                                 |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `RegistrationNumber`                    | **string*                               | :heavy_minus_sign:                      | The organization's registration number. | 12345678                                |
-| `VatNumber`                             | **string*                               | :heavy_minus_sign:                      | The organization's VAT number.          | NL123456789B01                          |
-| `EntityType`                            | **string*                               | :heavy_minus_sign:                      | The organization's entity type.         | ...                                     |
+| `RegistrationNumber`                    | `*string`                               | :heavy_minus_sign:                      | The organization's registration number. | 12345678                                |
+| `VatNumber`                             | `*string`                               | :heavy_minus_sign:                      | The organization's VAT number.          | NL123456789B01                          |
+| `EntityType`                            | `*string`                               | :heavy_minus_sign:                      | The organization's entity type.         | ...                                     |

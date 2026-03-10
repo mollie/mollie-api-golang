@@ -7,4 +7,4 @@ The commission object.
 
 | Field                 | Type                  | Required              | Description           | Example               |
 | --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
-| `Count`               | **int64*              | :heavy_minus_sign:    | The commission count. | 10                    |
+| `Count`               | `*int64`              | :heavy_minus_sign:    | The commission count. | 10                    |

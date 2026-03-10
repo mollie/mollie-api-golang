@@ -7,4 +7,4 @@ Where the funds will be pulled back from.
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `OrganizationID`   | **string*          | :heavy_minus_sign: | N/A                | org_1234567        |
+| `OrganizationID`   | `*string`          | :heavy_minus_sign: | N/A                | org_1234567        |

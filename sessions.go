@@ -31,7 +31,7 @@ func newSessions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 	}
 }
 
-// Create session [BETA]
+// Create session
 // > 🚧 Beta feature
 // >
 // > This feature is currently in private beta, and the final specification may still change.

@@ -17,6 +17,9 @@ Retrieve a list of capabilities for an organization.
 This API provides detailed insights into the specific requirements and status of each client's onboarding journey.
 
 Capabilities are at the organization level, indicating if the organization can perform a given capability.
+Capabilities may have requirements, which provide more information on what is needed to use this capability. 
+Requirements may have a due date, which indicates the date by which the requirement should be fulfilled. 
+If a requirement is past due, the capability is disabled until the requirement is fulfilled.
 
 For payments, regardless them being at the profile level, the capability is listed at the organization level.
 This means that if at least one of the clients's profiles can receive payments,
@@ -60,7 +63,7 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response

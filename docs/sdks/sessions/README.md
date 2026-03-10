@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [Create](#create) - Create session [BETA]
+* [Create](#create) - Create session
 * [Get](#get) - Get session
 
 ## Create
@@ -44,6 +44,7 @@ func main() {
             Value: "10.00",
         },
         Description: "Order #12345",
+        Lines: []components.SessionLineItem{},
         RedirectURL: "https://example.org/redirect",
         BillingAddress: &components.PaymentAddress{
             Title: client.Pointer("Mr."),
@@ -78,7 +79,6 @@ func main() {
         Payment: &components.SessionRequestPayment{
             WebhookURL: client.Pointer("https://example.org/webhook"),
         },
-        Lines: []components.SessionLineItem{},
         ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
         Testmode: client.Pointer(false),
     })
@@ -96,7 +96,7 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `sessionRequest`                                                                 | [*components.SessionRequest](../../models/components/sessionrequest.md)          | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
@@ -157,8 +157,8 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `sessionID`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related session.                                           | sess_82jFYDTrLcCQV68NLDvMJ                                                       |
-| `idempotencyKey`                                                                 | **string*                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `sessionID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related session.                                           | sess_82jFYDTrLcCQV68NLDvMJ                                                       |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
 ### Response

@@ -70,6 +70,11 @@ type SessionResponse struct {
 	//
 	// Any payment created for the session will use the same description.
 	Description string `json:"description"`
+	// List of items the customer will pay for in this session. The sum of all line items must equal the
+	// session's amount.
+	//
+	// All lines must have the same currency as the session.
+	Lines []SessionLineItemResponse `json:"lines"`
 	// The URL your customer will be redirected to after the payment process.
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
@@ -85,11 +90,6 @@ type SessionResponse struct {
 	// Any payment created for the session will use the same metadata.
 	Metadata map[string]any          `json:"metadata,omitempty"`
 	Payment  *SessionResponsePayment `json:"payment,omitempty"`
-	// List of items the customer will pay for in this session. The sum of all line items must equal the
-	// session's amount.
-	//
-	// All lines must have the same currency as the session.
-	Lines []SessionLineItemResponse `json:"lines"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
 	//
 	// Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
@@ -151,6 +151,13 @@ func (s *SessionResponse) GetDescription() string {
 	return s.Description
 }
 
+func (s *SessionResponse) GetLines() []SessionLineItemResponse {
+	if s == nil {
+		return []SessionLineItemResponse{}
+	}
+	return s.Lines
+}
+
 func (s *SessionResponse) GetRedirectURL() string {
 	if s == nil {
 		return ""
@@ -198,13 +205,6 @@ func (s *SessionResponse) GetPayment() *SessionResponsePayment {
 		return nil
 	}
 	return s.Payment
-}
-
-func (s *SessionResponse) GetLines() []SessionLineItemResponse {
-	if s == nil {
-		return []SessionLineItemResponse{}
-	}
-	return s.Lines
 }
 
 func (s *SessionResponse) GetProfileID() string {

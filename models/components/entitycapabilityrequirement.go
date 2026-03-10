@@ -17,7 +17,8 @@ func (e *EntityCapabilityRequirementLinks) GetDashboard() *URLObj {
 type EntityCapabilityRequirement struct {
 	// The name of this requirement, referring to the task to be fulfilled by the organization
 	// to enable or re-enable the capability. The name is unique among other requirements
-	// of the same capability.
+	// of the same capability. Requirements related to the onboarding process start with 'onboarding-', while
+	// requirements related to information requests start with 'information-request-'.
 	ID string `json:"id"`
 	// The status of the requirement depends on its due date.
 	// If no due date is given, the status will be `requested`.

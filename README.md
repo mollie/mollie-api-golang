@@ -405,7 +405,7 @@ s := client.New(
 
 ### [Sessions](docs/sdks/sessions/README.md)
 
-* [Create](docs/sdks/sessions/README.md#create) - Create session [BETA]
+* [Create](docs/sdks/sessions/README.md#create) - Create session
 * [Get](docs/sdks/sessions/README.md#get) - Get session
 
 ### [Settlements](docs/sdks/settlements/README.md)

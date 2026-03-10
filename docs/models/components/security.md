@@ -5,5 +5,5 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `APIKey`           | **string*          | :heavy_minus_sign: | N/A                |
-| `OAuth`            | **string*          | :heavy_minus_sign: | N/A                |
+| `APIKey`           | `*string`          | :heavy_minus_sign: | N/A                |
+| `OAuth`            | `*string`          | :heavy_minus_sign: | N/A                |
