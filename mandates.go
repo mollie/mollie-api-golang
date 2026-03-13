@@ -501,14 +501,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 
 		return s.List(
 			ctx,
-			operations.ListMandatesRequest{
-				CustomerID:     request.CustomerID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

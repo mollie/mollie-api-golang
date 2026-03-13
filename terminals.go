@@ -246,13 +246,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 
 		return s.List(
 			ctx,
-			operations.ListTerminalsRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

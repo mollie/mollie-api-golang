@@ -33,11 +33,13 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.10.4
+  version: 0.10.5
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
+  enableCustomCodeRegions: false
+  enableSkipDeserialization: false
   envVarPrefix: CLIENT
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false

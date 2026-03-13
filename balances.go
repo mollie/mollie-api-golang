@@ -246,13 +246,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 
 		return s.List(
 			ctx,
-			operations.ListBalancesRequest{
-				Currency:       request.Currency,
-				From:           request.From,
-				Limit:          request.Limit,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1295,13 +1289,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 
 		return s.ListTransactions(
 			ctx,
-			operations.ListBalanceTransactionsRequest{
-				BalanceID:      request.BalanceID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

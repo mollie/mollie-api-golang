@@ -539,14 +539,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 
 		return s.List(
 			ctx,
-			operations.ListPaymentsRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

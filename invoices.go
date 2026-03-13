@@ -243,14 +243,7 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 
 		return s.List(
 			ctx,
-			operations.ListInvoicesRequest{
-				Reference:      request.Reference,
-				Year:           request.Year,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

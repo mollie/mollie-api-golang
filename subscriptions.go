@@ -516,14 +516,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 
 		return s.List(
 			ctx,
-			operations.ListSubscriptionsRequest{
-				CustomerID:     request.CustomerID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1580,13 +1573,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 
 		return s.All(
 			ctx,
-			operations.ListAllSubscriptionsRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1879,16 +1866,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 
 		return s.ListPayments(
 			ctx,
-			operations.ListSubscriptionPaymentsRequest{
-				CustomerID:     request.CustomerID,
-				SubscriptionID: request.SubscriptionID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

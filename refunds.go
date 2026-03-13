@@ -503,14 +503,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 
 		return s.List(
 			ctx,
-			operations.ListRefundsRequest{
-				PaymentID:      request.PaymentID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1289,15 +1282,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 
 		return s.All(
 			ctx,
-			operations.ListAllRefundsRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Embed:          request.Embed,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

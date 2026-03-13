@@ -500,13 +500,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 
 		return s.List(
 			ctx,
-			operations.ListCustomersRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1825,15 +1819,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 
 		return s.ListPayments(
 			ctx,
-			operations.ListCustomerPaymentsRequest{
-				CustomerID:     request.CustomerID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

@@ -498,13 +498,7 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 
 		return s.List(
 			ctx,
-			operations.ListConnectBalanceTransfersRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

@@ -242,15 +242,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 
 		return s.List(
 			ctx,
-			operations.ListSettlementsRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				BalanceID:      request.BalanceID,
-				Year:           request.Year,
-				Month:          request.Month,
-				Currencies:     request.Currencies,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1250,15 +1242,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 
 		return s.ListPayments(
 			ctx,
-			operations.ListSettlementPaymentsRequest{
-				SettlementID:   request.SettlementID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1548,14 +1532,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 
 		return s.ListCaptures(
 			ctx,
-			operations.ListSettlementCapturesRequest{
-				SettlementID:   request.SettlementID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -1847,14 +1824,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 
 		return s.ListRefunds(
 			ctx,
-			operations.ListSettlementRefundsRequest{
-				SettlementID:   request.SettlementID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -2146,14 +2116,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 
 		return s.ListChargebacks(
 			ctx,
-			operations.ListSettlementChargebacksRequest{
-				SettlementID:   request.SettlementID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

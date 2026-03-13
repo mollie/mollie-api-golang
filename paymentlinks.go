@@ -1549,14 +1549,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 
 		return s.ListPayments(
 			ctx,
-			operations.GetPaymentLinkPaymentsRequest{
-				PaymentLinkID:  request.PaymentLinkID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

@@ -506,14 +506,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 
 		return s.List(
 			ctx,
-			operations.ListCapturesRequest{
-				PaymentID:      request.PaymentID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

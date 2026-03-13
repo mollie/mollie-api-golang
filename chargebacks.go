@@ -246,14 +246,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 
 		return s.List(
 			ctx,
-			operations.ListChargebacksRequest{
-				PaymentID:      request.PaymentID,
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
@@ -793,15 +786,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 
 		return s.All(
 			ctx,
-			operations.ListAllChargebacksRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Embed:          request.Embed,
-				Sort:           request.Sort,
-				ProfileID:      request.ProfileID,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}

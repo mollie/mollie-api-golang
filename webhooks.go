@@ -495,14 +495,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 
 		return s.List(
 			ctx,
-			operations.ListWebhooksRequest{
-				From:           request.From,
-				Limit:          request.Limit,
-				Sort:           request.Sort,
-				EventTypes:     request.EventTypes,
-				Testmode:       request.Testmode,
-				IdempotencyKey: request.IdempotencyKey,
-			},
+			request,
 			opts...,
 		)
 	}
