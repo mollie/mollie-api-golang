@@ -7,13 +7,24 @@ package components
 type PaymentDetailsSellerProtectionResponse string
 
 const (
-	PaymentDetailsSellerProtectionResponseEligible                          PaymentDetailsSellerProtectionResponse = "Eligible"
-	PaymentDetailsSellerProtectionResponseIneligible                        PaymentDetailsSellerProtectionResponse = "Ineligible"
-	PaymentDetailsSellerProtectionResponsePartiallyEligibleInrOnly          PaymentDetailsSellerProtectionResponse = "Partially Eligible - INR Only"
-	PaymentDetailsSellerProtectionResponsePartiallyEligibleUnauthOnly       PaymentDetailsSellerProtectionResponse = "Partially Eligible - Unauth Only"
-	PaymentDetailsSellerProtectionResponsePartiallyEligible                 PaymentDetailsSellerProtectionResponse = "Partially Eligible"
-	PaymentDetailsSellerProtectionResponseNone                              PaymentDetailsSellerProtectionResponse = "None"
-	PaymentDetailsSellerProtectionResponseActive                            PaymentDetailsSellerProtectionResponse = "Active"
+	PaymentDetailsSellerProtectionResponseEligibleUpper          PaymentDetailsSellerProtectionResponse = "ELIGIBLE"
+	PaymentDetailsSellerProtectionResponsePartiallyEligibleUpper PaymentDetailsSellerProtectionResponse = "PARTIALLY_ELIGIBLE"
+	PaymentDetailsSellerProtectionResponseNotEligible            PaymentDetailsSellerProtectionResponse = "NOT_ELIGIBLE"
+	// PaymentDetailsSellerProtectionResponseEligibleMixed Deprecated value
+	PaymentDetailsSellerProtectionResponseEligibleMixed PaymentDetailsSellerProtectionResponse = "Eligible"
+	// PaymentDetailsSellerProtectionResponseIneligible Deprecated value
+	PaymentDetailsSellerProtectionResponseIneligible PaymentDetailsSellerProtectionResponse = "Ineligible"
+	// PaymentDetailsSellerProtectionResponsePartiallyEligibleInrOnly Deprecated value
+	PaymentDetailsSellerProtectionResponsePartiallyEligibleInrOnly PaymentDetailsSellerProtectionResponse = "Partially Eligible - INR Only"
+	// PaymentDetailsSellerProtectionResponsePartiallyEligibleUnauthOnly Deprecated value
+	PaymentDetailsSellerProtectionResponsePartiallyEligibleUnauthOnly PaymentDetailsSellerProtectionResponse = "Partially Eligible - Unauth Only"
+	// PaymentDetailsSellerProtectionResponsePartiallyEligibleMixed Deprecated value
+	PaymentDetailsSellerProtectionResponsePartiallyEligibleMixed PaymentDetailsSellerProtectionResponse = "Partially Eligible"
+	// PaymentDetailsSellerProtectionResponseNone Deprecated value
+	PaymentDetailsSellerProtectionResponseNone PaymentDetailsSellerProtectionResponse = "None"
+	// PaymentDetailsSellerProtectionResponseActive Deprecated value
+	PaymentDetailsSellerProtectionResponseActive PaymentDetailsSellerProtectionResponse = "Active"
+	// PaymentDetailsSellerProtectionResponseFraudControlUnauthPremiumEligible Deprecated value
 	PaymentDetailsSellerProtectionResponseFraudControlUnauthPremiumEligible PaymentDetailsSellerProtectionResponse = "Fraud Control - Unauth Premium Eligible"
 )
 
@@ -25,7 +36,7 @@ func (e PaymentDetailsSellerProtectionResponse) ToPointer() *PaymentDetailsSelle
 func (e *PaymentDetailsSellerProtectionResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "Eligible", "Ineligible", "Partially Eligible - INR Only", "Partially Eligible - Unauth Only", "Partially Eligible", "None", "Active", "Fraud Control - Unauth Premium Eligible":
+		case "ELIGIBLE", "PARTIALLY_ELIGIBLE", "NOT_ELIGIBLE", "Eligible", "Ineligible", "Partially Eligible - INR Only", "Partially Eligible - Unauth Only", "Partially Eligible", "None", "Active", "Fraud Control - Unauth Premium Eligible":
 			return true
 		}
 	}

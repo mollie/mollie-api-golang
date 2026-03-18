@@ -10,7 +10,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.PaymentDetailsSellerProtectionResponseEligible
+value := components.PaymentDetailsSellerProtectionResponseEligibleUpper
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.PaymentDetailsSellerProtectionResponse("custom_value")
@@ -21,11 +21,14 @@ custom := components.PaymentDetailsSellerProtectionResponse("custom_value")
 
 | Name                                                                      | Value                                                                     |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `PaymentDetailsSellerProtectionResponseEligible`                          | Eligible                                                                  |
+| `PaymentDetailsSellerProtectionResponseEligibleUpper`                     | ELIGIBLE                                                                  |
+| `PaymentDetailsSellerProtectionResponsePartiallyEligibleUpper`            | PARTIALLY_ELIGIBLE                                                        |
+| `PaymentDetailsSellerProtectionResponseNotEligible`                       | NOT_ELIGIBLE                                                              |
+| `PaymentDetailsSellerProtectionResponseEligibleMixed`                     | Eligible                                                                  |
 | `PaymentDetailsSellerProtectionResponseIneligible`                        | Ineligible                                                                |
 | `PaymentDetailsSellerProtectionResponsePartiallyEligibleInrOnly`          | Partially Eligible - INR Only                                             |
 | `PaymentDetailsSellerProtectionResponsePartiallyEligibleUnauthOnly`       | Partially Eligible - Unauth Only                                          |
-| `PaymentDetailsSellerProtectionResponsePartiallyEligible`                 | Partially Eligible                                                        |
+| `PaymentDetailsSellerProtectionResponsePartiallyEligibleMixed`            | Partially Eligible                                                        |
 | `PaymentDetailsSellerProtectionResponseNone`                              | None                                                                      |
 | `PaymentDetailsSellerProtectionResponseActive`                            | Active                                                                    |
 | `PaymentDetailsSellerProtectionResponseFraudControlUnauthPremiumEligible` | Fraud Control - Unauth Premium Eligible                                   |

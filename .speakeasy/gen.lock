@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: d25b26115aed112972839e34ede72759
+  docChecksum: b33d3656b90c1de1eef08cb660aa8c83
   docVersion: 1.0.0
-  speakeasyVersion: 1.753.0
-  generationVersion: 2.862.0
-  releaseVersion: 0.10.5
-  configChecksum: a05b76deefbd1db78eaf4aa2bff48361
+  speakeasyVersion: 1.757.0
+  generationVersion: 2.866.0
+  releaseVersion: 0.10.6
+  configChecksum: a644332fbfe7ce921daa18c064b93ddd
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: e5b8c269-b1c8-466f-989f-b6477711cb35
-  pristine_commit_hash: 927c6f57fbe062c121c1505e45d01eb1bec8b926
-  pristine_tree_hash: 4232d78e7e7f6fe85d61b37e280362e8002828b2
+  generation_id: 8fff038e-8ebc-4c1f-9e98-2978d33394bc
+  pristine_commit_hash: 67c738a97346b828c030fc2e205a4f349530a906
+  pristine_tree_hash: 87b97f29018c59e206f8f0e4f9998ac025fb5a9f
 features:
   go:
     additionalDependencies: 0.1.0
@@ -80,8 +80,8 @@ trackedFiles:
     pristine_git_object: 6f860887bf45245a2e2f14a067c06c08b0a154c7
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:6e087b9bbfef295f7deb19d7df78b54ea7b15d80
-    pristine_git_object: e5ce2c1ca7d2bebf1644c33f3d6f58b5853c3e60
+    last_write_checksum: sha1:0910dcbf0a8aa42ee7c15096bde7888bea5b8f8a
+    pristine_git_object: 5e57c72fc74add40a19608771345815521bcf7d3
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f3d4a9352fd9d9e5579ac0fd5c8827f3a6bd293a
@@ -996,8 +996,8 @@ trackedFiles:
     pristine_git_object: 9dc07833f991278b932845ef9a417fc3b4f3bebe
   docs/models/components/listpaymentresponsedetails.md:
     id: e265bd2e675c
-    last_write_checksum: sha1:a23976c6af30d45987cf85dab665e35d2b433c8c
-    pristine_git_object: add22658945c223e54763687d09a4493b75d5946
+    last_write_checksum: sha1:70acb616f0478fcc698db9ed1a6906a43fa16332
+    pristine_git_object: 7b95cb742c7ea837010e4cbaaa1e989f7d0f596e
   docs/models/components/listpaymentresponseline.md:
     id: 42392b3118dc
     last_write_checksum: sha1:d9a90f16a1c62b41ee131ec12e32b2b444c075c1
@@ -1236,8 +1236,8 @@ trackedFiles:
     pristine_git_object: 5c5222ca8d242252498a79ffcca81b7d73f8495a
   docs/models/components/paymentdetailssellerprotectionresponse.md:
     id: cc4194d316a6
-    last_write_checksum: sha1:49f29696fdccd2e6c763b63793b042d949309e98
-    pristine_git_object: c5d6e3c3b3fcfbb3f0d3dfd238ed1a1ded30bf02
+    last_write_checksum: sha1:3124431399e67b8b9652aa4c246364fcd5d69d98
+    pristine_git_object: c4e0adc9f744a703f7c7139bd7a20baf78a9a4c9
   docs/models/components/paymentdetailswalletresponse.md:
     id: f1e69fbf0baa
     last_write_checksum: sha1:a1da571006d3d4a1f3c788659db0b1c236b7e303
@@ -1340,8 +1340,8 @@ trackedFiles:
     pristine_git_object: 22c8cf7a66062f5cc37104dd94a94bfdd42b056a
   docs/models/components/paymentresponsedetails.md:
     id: eb7935bafe68
-    last_write_checksum: sha1:3ae35a5f36f6092f2aa056cab5e5e41565b2dc0b
-    pristine_git_object: 6ce44185d5dbe517d00a9b17fa75300ac694142a
+    last_write_checksum: sha1:58cc11017a14603cfb0ad023024ee7e56cfd254c
+    pristine_git_object: 4a916c967675b45621de57e061a0a14c902a2c8c
   docs/models/components/paymentresponseline.md:
     id: 49b0c74eea5b
     last_write_checksum: sha1:f963478a7a8ed921a64ba16aa6e6c2ad56631981
@@ -3852,8 +3852,8 @@ trackedFiles:
     pristine_git_object: 1ebd66159d2a54674a4f6632e84d61a8d565e864
   models/components/paymentdetailssellerprotectionresponse.go:
     id: 26a490f4017f
-    last_write_checksum: sha1:24a026d7232cb8e06cc1d429845985fb6160b075
-    pristine_git_object: 294155ed11edfec1e6b68c933acf712d676d0619
+    last_write_checksum: sha1:94bf191446520369d597b1c8f618241807a099d4
+    pristine_git_object: 789dd9f46c59f64db146ce8365b31af7bb82fb74
   models/components/paymentdetailswalletresponse.go:
     id: 3e18f8d8d2bd
     last_write_checksum: sha1:d6bcf07263f0727b4c3b05676ec6b5c1b4a19ff6
@@ -7992,6 +7992,18 @@ examples:
         "200":
           application/hal+json: {"resource": "session", "id": "sess_CQBQJqxubaq4w6oresxMJ", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc19DUUJRSnF4dWJhcTR3Nm9yZXN4TUoiLAogICJzZWNyZXQiOiAiaGFja2Vycy1iZS1uaWNlIiwKICAidGVzdG1vZGUiOiBmYWxzZSwKICAicHJvZmlsZVRva2VuIjogInBmbF9Ra0VoTjk0QmEiLAogICJhdmFpbGFibGVQYXltZW50TWV0aG9kcyI6IFsKICAgICJpZGVhbCIsCiAgICAiY3JlZGl0Y2FyZCIsCiAgICAicGF5cGFsIiwKICAgICJwYXlieWJhbmsiLAogICAgImJhbmNvbnRhY3QiLAogICAgImFwcGxlcGF5IiwKICAgICJnb29nbGVwYXkiCiAgXSwKICAiYXZhaWxhYmxlQXV0aGVudGljYXRpb25NZXRob2RzIjogewogICAgImJhbmNvbnRhY3QiOiBbCiAgICAgICJtb2JpbGUiLAogICAgICAiY2FyZCIKICAgIF0KICB9LAogICJvcmdhbml6YXRpb25Db3VudHJ5Q29kZSI6ICJOTCIsCiAgIm1lcmNoYW50UHJvZmlsZU5hbWUiOiAiTW9sbGllIFN3YWcgU2hvcCIKfQ==", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "sequenceType": "oneoff", "metadata": {"order_id": "12345"}, "payment": {"webhookUrl": "https://webshop.example.org/payments/webhook/"}, "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
 examplesVersion: 1.0.2
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Details.SellerProtection` **Changed**
+  * `Client.Payments.Create()`:  `response.Details.SellerProtection` **Changed**
+  * `Client.Payments.List()`:  `response.Embedded.Payments[].Details.SellerProtection` **Changed**
+  * `Client.Payments.Get()`:  `response.Details.SellerProtection` **Changed**
+  * `Client.Payments.Update()`:  `response.Details.SellerProtection` **Changed**
+  * `Client.Payments.Cancel()`:  `response.Details.SellerProtection` **Changed**
+  * `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Details.SellerProtection` **Changed**
+  * `Client.Customers.CreatePayment()`:  `response.Details.SellerProtection` **Changed**
+  * `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Details.SellerProtection` **Changed**
+  * `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Details.SellerProtection` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
