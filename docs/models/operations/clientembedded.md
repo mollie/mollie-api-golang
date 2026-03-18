@@ -1,0 +1,10 @@
+# ClientEmbedded
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Organization`                                                                          | [*components.EntityOrganization](../../models/components/entityorganization.md)         | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Onboarding`                                                                            | [*components.EntityOnboardingStatus](../../models/components/entityonboardingstatus.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Capabilities`                                                                          | [*components.EntityCapability](../../models/components/entitycapability.md)             | :heavy_minus_sign:                                                                      | N/A                                                                                     |

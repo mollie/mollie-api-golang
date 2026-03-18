@@ -1,0 +1,14 @@
+# DeductionDetails
+
+A detailed breakdown of the deductions withheld from the movement. Each field represents a specific type of
+deduction applied to the transaction. Only the applicable fields will be present.
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Fees`                                                                                            | [*components.AmountNullable](../../models/components/amountnullable.md)                           | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
+| `Commissions`                                                                                     | [*components.AmountNullable](../../models/components/amountnullable.md)                           | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
+| `Repayments`                                                                                      | [*components.AmountNullable](../../models/components/amountnullable.md)                           | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
+| `Reservations`                                                                                    | [*components.AmountNullable](../../models/components/amountnullable.md)                           | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
