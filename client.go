@@ -230,33 +230,9 @@ func New(opts ...SDKOption) *Client {
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SalesInvoices = newSalesInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
 
-	if !canHaveGlobalFields(sdk.sdkConfiguration) && hasGlobalFields(sdk.sdkConfiguration) {
+	if !utils.CanHaveGlobalFields(sdk.sdkConfiguration.Security) && utils.HasGlobalFields(sdk.sdkConfiguration.Globals) {
 		panic("Global fields like testmode and profileID can only be set when using an Access or oAuth Key.")
 	}
 
 	return sdk
-}
-
-func canHaveGlobalFields(cfg config.SDKConfiguration) bool {
-	if cfg.Security == nil {
-		return false
-	}
-	val, err := cfg.Security(context.Background())
-	if err != nil {
-		return false
-	}
-	security, ok := val.(components.Security)
-	if !ok {
-		return false
-	}
-	token := security.APIKey
-	if token == nil {
-		token = security.OAuth
-	}
-	return token != nil && len(*token) >= 7 && (*token)[:7] == "access_"
-}
-
-func hasGlobalFields(cfg config.SDKConfiguration) bool {
-	return cfg.Globals.ProfileID != nil ||
-		cfg.Globals.Testmode != nil
 }

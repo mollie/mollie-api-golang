@@ -1,8 +1,8 @@
 package hooks
 
 import (
+	_ "embed"
 	"bytes"
-	"context"
 	"crypto/rand"
 	"encoding/json"
 	"fmt"
@@ -14,8 +14,18 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/internal/utils"
 )
+
+//go:embed global_usage.json
+var globalUsageJSON []byte
+
+var globalUsage map[string][]string
+
+func init() {
+	globalUsage = make(map[string][]string)
+	_ = json.Unmarshal(globalUsageJSON, &globalUsage)
+}
 
 var (
 	_ beforeRequestHook = (*MollieHooks)(nil)
@@ -103,9 +113,9 @@ func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Requ
 	// Customize the User-Agent header
 	h.customizeUserAgent(req, hookCtx)
 
-	// Handle OAuth, testmode and profileId population
-	if h.isOAuthRequest(req, hookCtx) {
-		modifiedReq, err := h.populateProfileIdAndTestmode(req, hookCtx)
+	// Inject global fields (profileId, testmode) for OAuth requests per operation
+	if utils.CanHaveGlobalFields(hookCtx.SecuritySource) {
+		modifiedReq, err := h.injectGlobalFields(req, hookCtx)
 		if err != nil {
 			return req, err
 		}
@@ -115,60 +125,46 @@ func (h *MollieHooks) BeforeRequest(hookCtx BeforeRequestContext, req *http.Requ
 	return req, nil
 }
 
-// isOAuthRequest checks if the request is using OAuth authentication
-func (h *MollieHooks) isOAuthRequest(req *http.Request, hookCtx BeforeRequestContext) bool {
-	if hookCtx.SecuritySource == nil {
-		return false
+// injectGlobalFields injects profileId and/or testmode into the request for operations
+// listed in global_usage.json, when using an OAuth access token.
+func (h *MollieHooks) injectGlobalFields(req *http.Request, hookCtx BeforeRequestContext) (*http.Request, error) {
+	operationID := hookCtx.OperationID
+
+	// Build globals as a flat map (JSON field name → value)
+	globalsMap := map[string]interface{}{}
+	if hookCtx.SDKConfiguration.Globals.ProfileID != nil {
+		globalsMap["profileId"] = *hookCtx.SDKConfiguration.Globals.ProfileID
+	}
+	if hookCtx.SDKConfiguration.Globals.Testmode != nil {
+		globalsMap["testmode"] = *hookCtx.SDKConfiguration.Globals.Testmode
 	}
 
-	security, err := hookCtx.SecuritySource(context.Background())
-	if err != nil || security == nil {
-		return false
-	}
-	
-	// Try both pointer and value types
-	var securityStruct *components.Security
-	
-	if ptr, ok := security.(*components.Security); ok {
-		securityStruct = ptr
-	} else if val, ok := security.(components.Security); ok {
-		securityStruct = &val
-	} else {
-		return false
+	// Filter: only inject fields whose operation list contains this operationID
+	fieldsToInject := map[string]interface{}{}
+	for field, ops := range globalUsage {
+		if _, hasValue := globalsMap[field]; !hasValue {
+			continue
+		}
+		for _, op := range ops {
+			if op == operationID {
+				fieldsToInject[field] = globalsMap[field]
+				break
+			}
+		}
 	}
 
-	if securityStruct == nil {
-		return false
+	if len(fieldsToInject) == 0 {
+		return req, nil
 	}
 
-	oauth := securityStruct.GetOAuth()
-	if oauth == nil {
-		return false
+	if req.Method == "GET" {
+		return h.addToQueryParams(req, fieldsToInject)
 	}
-
-	authHeader := req.Header.Get("Authorization")
-	expectedAuth := fmt.Sprintf("Bearer %s", *oauth)
-	
-	return authHeader == expectedAuth
+	return h.addToJSONBody(req, fieldsToInject)
 }
 
-// populateProfileIdAndTestmode adds profileId and testmode to requests when using OAuth
-func (h *MollieHooks) populateProfileIdAndTestmode(req *http.Request, hookCtx BeforeRequestContext) (*http.Request, error) {
-	clientProfileId := hookCtx.SDKConfiguration.Globals.GetProfileID()
-	clientTestmode := hookCtx.SDKConfiguration.Globals.GetTestmode()
-
-	method := req.Method
-
-	if method == "GET" {
-		return h.addToQueryParams(req, clientProfileId, clientTestmode)
-	}
-
-	// For POST, PATCH, DELETE - update JSON body
-	return h.addToJSONBody(req, clientProfileId, clientTestmode)
-}
-
-// addToQueryParams adds profileId and testmode to URL query parameters for GET requests
-func (h *MollieHooks) addToQueryParams(req *http.Request, clientProfileId *string, clientTestmode *bool) (*http.Request, error) {
+// addToQueryParams adds fields to URL query parameters for GET requests
+func (h *MollieHooks) addToQueryParams(req *http.Request, fields map[string]interface{}) (*http.Request, error) {
 	u, err := url.Parse(req.URL.String())
 	if err != nil {
 		return req, err
@@ -176,35 +172,31 @@ func (h *MollieHooks) addToQueryParams(req *http.Request, clientProfileId *strin
 
 	queryParams := u.Query()
 
-	// Add profileId if not already present
-	if clientProfileId != nil && !queryParams.Has("profileId") {
-		queryParams.Set("profileId", *clientProfileId)
-	}
-
-	// Add testmode if not already present  
-	if clientTestmode != nil && !queryParams.Has("testmode") {
-		queryParams.Set("testmode", strconv.FormatBool(*clientTestmode))
+	for field, value := range fields {
+		if !queryParams.Has(field) {
+			switch v := value.(type) {
+			case bool:
+				queryParams.Set(field, strconv.FormatBool(v))
+			default:
+				queryParams.Set(field, fmt.Sprintf("%v", v))
+			}
+		}
 	}
 
 	u.RawQuery = queryParams.Encode()
 
-	// Create new request with updated URL
 	newReq, err := http.NewRequest(req.Method, u.String(), req.Body)
 	if err != nil {
 		return req, err
 	}
-
-	// Copy headers
 	newReq.Header = req.Header.Clone()
-	
 	return newReq, nil
 }
 
-// addToJSONBody adds profileId and testmode to JSON request body for POST/PATCH/DELETE requests
-func (h *MollieHooks) addToJSONBody(req *http.Request, clientProfileId *string, clientTestmode *bool) (*http.Request, error) {
+// addToJSONBody adds fields to JSON request body for POST/PATCH/DELETE requests
+func (h *MollieHooks) addToJSONBody(req *http.Request, fields map[string]interface{}) (*http.Request, error) {
 	var body map[string]interface{}
 
-	// Read existing body
 	if req.Body != nil {
 		bodyBytes, err := io.ReadAll(req.Body)
 		if err != nil {
@@ -213,7 +205,7 @@ func (h *MollieHooks) addToJSONBody(req *http.Request, clientProfileId *string, 
 
 		if len(bodyBytes) > 0 {
 			if err := json.Unmarshal(bodyBytes, &body); err != nil {
-				// If it's not JSON, return the request unchanged
+				// Not JSON — return unchanged
 				req.Body = io.NopCloser(bytes.NewReader(bodyBytes))
 				return req, nil
 			}
@@ -224,35 +216,23 @@ func (h *MollieHooks) addToJSONBody(req *http.Request, clientProfileId *string, 
 		body = make(map[string]interface{})
 	}
 
-	// Add profileId if not already present
-	if clientProfileId != nil {
-		if _, exists := body["profileId"]; !exists {
-			body["profileId"] = *clientProfileId
+	for field, value := range fields {
+		if _, exists := body[field]; !exists {
+			body[field] = value
 		}
 	}
 
-	// Add testmode if not already present
-	if clientTestmode != nil {
-		if _, exists := body["testmode"]; !exists {
-			body["testmode"] = *clientTestmode
-		}
-	}
-
-	// Marshal back to JSON
 	newBodyBytes, err := json.Marshal(body)
 	if err != nil {
 		return req, err
 	}
 
-	// Create new request with updated body
 	newReq, err := http.NewRequest(req.Method, req.URL.String(), bytes.NewReader(newBodyBytes))
 	if err != nil {
 		return req, err
 	}
 
-	// Copy and update headers
 	newReq.Header = req.Header.Clone()
 	newReq.Header.Set("Content-Length", strconv.Itoa(len(newBodyBytes)))
-
 	return newReq, nil
 }
