@@ -3,16 +3,16 @@ id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
   docChecksum: b33d3656b90c1de1eef08cb660aa8c83
   docVersion: 1.0.0
-  speakeasyVersion: 1.757.1
-  generationVersion: 2.866.2
-  releaseVersion: 0.11.0
-  configChecksum: 7b35043097f1ca69533c87ff211949c7
+  speakeasyVersion: 1.759.1
+  generationVersion: 2.869.10
+  releaseVersion: 0.12.0
+  configChecksum: 289e310e44193a2540ed3e401cd08202
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 01cfe4e3-483f-46dd-a660-c92cb1ea4d33
-  pristine_commit_hash: 87f46e5b30ef16e6c4e466c4212012dd11896bd0
-  pristine_tree_hash: c5378680d8852afec71c6ecedfc4dde69b30f8e6
+  generation_id: a047ec12-dd0f-4153-b067-1178293fee8d
+  pristine_commit_hash: be485da4c9e159788c88f04a9d6d660b4003d557
+  pristine_tree_hash: 26eeaa8d806e8b15f898530e00a69164ce372d64
 features:
   go:
     additionalDependencies: 0.1.0
@@ -80,8 +80,8 @@ trackedFiles:
     pristine_git_object: fa43fb4c8cb9c4dbb73cb863a7b2217da905dde5
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:7de96c4d5d9d1faa3bebd19c49a24c30d968f158
-    pristine_git_object: 96614e0703099b5620cc9ce4bf6168b5e560d1f1
+    last_write_checksum: sha1:f06898f4a9cd35dfe24f3ed3c021610c404ade35
+    pristine_git_object: a32d44d1fd1fdf9d9935cf98fa3a5e4735f9cd6e
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f3476b0f0f0f4e5ce67d3c2e27b9ae8a4512823b
