@@ -111,10 +111,11 @@ func main() {
 
 This SDK supports the following security schemes globally:
 
-| Name     | Type   | Scheme       | Environment Variable |
-| -------- | ------ | ------------ | -------------------- |
-| `APIKey` | http   | HTTP Bearer  | `CLIENT_API_KEY`     |
-| `OAuth`  | oauth2 | OAuth2 token | `CLIENT_O_AUTH`      |
+| Name                      | Type   | Scheme       | Environment Variable               |
+| ------------------------- | ------ | ------------ | ---------------------------------- |
+| `APIKey`                  | http   | HTTP Bearer  | `CLIENT_API_KEY`                   |
+| `OrganizationAccessToken` | http   | HTTP Bearer  | `CLIENT_ORGANIZATION_ACCESS_TOKEN` |
+| `OAuth`                   | oauth2 | OAuth2 token | `CLIENT_O_AUTH`                    |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go

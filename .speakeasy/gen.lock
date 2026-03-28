@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: b33d3656b90c1de1eef08cb660aa8c83
+  docChecksum: ee7397d91b06503e233893f361c62aa1
   docVersion: 1.0.0
-  speakeasyVersion: 1.759.1
-  generationVersion: 2.869.10
-  releaseVersion: 0.12.0
-  configChecksum: 289e310e44193a2540ed3e401cd08202
+  speakeasyVersion: 1.759.3
+  generationVersion: 2.869.25
+  releaseVersion: 0.12.1
+  configChecksum: 3e7e6c5e9efb5354bfcad209bc6a5d19
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: a047ec12-dd0f-4153-b067-1178293fee8d
-  pristine_commit_hash: be485da4c9e159788c88f04a9d6d660b4003d557
-  pristine_tree_hash: 26eeaa8d806e8b15f898530e00a69164ce372d64
+  generation_id: 3f3b6ee6-b742-4e40-be4f-acccb0d2a304
+  pristine_commit_hash: 8fa1cdb13d4911883fb719879898312f3a24bce7
+  pristine_tree_hash: 2d2721a41514884e9e897c14749c0f0666cf95a6
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.36
+    core: 3.13.40
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -80,8 +80,8 @@ trackedFiles:
     pristine_git_object: fa43fb4c8cb9c4dbb73cb863a7b2217da905dde5
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:f06898f4a9cd35dfe24f3ed3c021610c404ade35
-    pristine_git_object: a32d44d1fd1fdf9d9935cf98fa3a5e4735f9cd6e
+    last_write_checksum: sha1:66e8992b8344556520f9e8d6e3244c315ee6eebb
+    pristine_git_object: 8f6f367bb3f24e83e900b3f4e4229bc29cdcc65a
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f3476b0f0f0f4e5ce67d3c2e27b9ae8a4512823b
@@ -1668,8 +1668,8 @@ trackedFiles:
     pristine_git_object: dcfcfc5c597618c229bd047e9288947eb4ed0ef7
   docs/models/components/security.md:
     id: 54906b49ea28
-    last_write_checksum: sha1:b57975b7148af1ea163190721e82df0a77aed2ff
-    pristine_git_object: bb8a4229da7491b38034b20967c963aa9a3eab6a
+    last_write_checksum: sha1:a7ed5c723f58e14763f25837db177e9ef179b760
+    pristine_git_object: 6cd194e2b98563bef0db25ee446bcd2e715ec2df
   docs/models/components/sequencetype.md:
     id: 0f2c3f8b2cbd
     last_write_checksum: sha1:25c350160df9b067f1a6e079ffa3697330581aff
@@ -4064,8 +4064,8 @@ trackedFiles:
     pristine_git_object: 07c58f0336348a7efd4dc312c037078e7fb79579
   models/components/security.go:
     id: 3a5eba5fe9e0
-    last_write_checksum: sha1:a98736cea4e22a342b973c6113218ab1edd39efd
-    pristine_git_object: 46756c8d51d9584a1f2029330cd7bf33e741a31d
+    last_write_checksum: sha1:53fc76cd6a980b953fc60fff4f668973c05b8d54
+    pristine_git_object: 6b429b52ccfcf49a05370a8df928bc6455deb388
   models/components/sequencetype.go:
     id: 5131bfe42f2f
     last_write_checksum: sha1:5730743c2c4bf4e55640b883ba6d09e5edc090ea
