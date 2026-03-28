@@ -4,8 +4,9 @@
 package components
 
 type Security struct {
-	APIKey *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=client_api_key"`
-	OAuth  *string `security:"scheme,type=oauth2,name=Authorization,env=client_o_auth"`
+	APIKey                  *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=client_api_key"`
+	OrganizationAccessToken *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=client_organization_access_token"`
+	OAuth                   *string `security:"scheme,type=oauth2,name=Authorization,env=client_o_auth"`
 }
 
 func (s *Security) GetAPIKey() *string {
@@ -13,6 +14,13 @@ func (s *Security) GetAPIKey() *string {
 		return nil
 	}
 	return s.APIKey
+}
+
+func (s *Security) GetOrganizationAccessToken() *string {
+	if s == nil {
+		return nil
+	}
+	return s.OrganizationAccessToken
 }
 
 func (s *Security) GetOAuth() *string {
