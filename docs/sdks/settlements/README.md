@@ -39,7 +39,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -126,7 +126,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -190,7 +190,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -251,7 +251,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -314,7 +314,7 @@ func main() {
         client.WithProfileID("pfl_5B8cwPMGnU"),
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -367,7 +367,7 @@ func main() {
         client.WithProfileID("pfl_5B8cwPMGnU"),
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -420,7 +420,7 @@ func main() {
         client.WithProfileID("pfl_5B8cwPMGnU"),
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -498,7 +498,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -550,7 +550,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -628,7 +628,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -706,7 +706,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -758,7 +758,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -810,7 +810,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
