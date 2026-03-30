@@ -37,7 +37,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -80,7 +80,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -122,7 +122,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.ErrorResponse | 403, 422                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
@@ -150,7 +150,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -221,7 +221,7 @@ func main() {
     s := client.New(
         client.WithTestmode(false),
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -283,7 +283,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -327,7 +327,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 
@@ -370,7 +370,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404, 410, 422           | application/hal+json    |
+| apierrors.ErrorResponse | 403, 404, 410, 422      | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
@@ -396,7 +396,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
     )
 

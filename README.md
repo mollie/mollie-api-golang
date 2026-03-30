@@ -71,7 +71,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -496,7 +496,7 @@ func main() {
 		client.WithProfileID("<id>"),
 		client.WithCustomUserAgent("<value>"),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -555,7 +555,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -614,7 +614,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -687,7 +687,7 @@ func main() {
 			}),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -756,7 +756,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -810,7 +810,7 @@ func main() {
 		client.WithServerURL("https://api.mollie.com/v2"),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
 		}),
 	)
 
