@@ -312,7 +312,6 @@ func main() {
 
     s := client.New(
         client.WithProfileID("pfl_5B8cwPMGnU"),
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
@@ -365,7 +364,6 @@ func main() {
 
     s := client.New(
         client.WithProfileID("pfl_5B8cwPMGnU"),
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
@@ -418,7 +416,6 @@ func main() {
 
     s := client.New(
         client.WithProfileID("pfl_5B8cwPMGnU"),
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
@@ -496,7 +493,6 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
@@ -548,7 +544,6 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
@@ -626,7 +621,6 @@ func main() {
     ctx := context.Background()
 
     s := client.New(
-        client.WithTestmode(false),
         client.WithSecurity(components.Security{
             OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
         }),
