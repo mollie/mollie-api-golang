@@ -435,6 +435,15 @@ s := client.New(
 * [List](docs/sdks/terminals/README.md#list) - List terminals
 * [Get](docs/sdks/terminals/README.md#get) - Get terminal
 
+### [Transfers](docs/sdks/transfers/README.md)
+
+* [Create](docs/sdks/transfers/README.md#create) - Create transfer
+* [Get](docs/sdks/transfers/README.md#get) - Get transfer
+
+### [VerifyPayees](docs/sdks/verifypayees/README.md)
+
+* [Create](docs/sdks/verifypayees/README.md#create) - Verify Payee
+
 ### [Wallets](docs/sdks/wallets/README.md)
 
 * [RequestApplePaySession](docs/sdks/wallets/README.md#requestapplepaysession) - Request Apple Pay payment session

@@ -38,6 +38,8 @@ func newInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // invoice reference.
 //
 // The results are paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequest, opts ...operations.Option) (*operations.ListInvoicesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -101,7 +103,7 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -327,6 +329,8 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 //
 // If you want to retrieve the details of an invoice by its invoice number,
 // call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	request := operations.GetInvoiceRequest{
 		InvoiceID:      invoiceID,
@@ -386,7 +390,7 @@ func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *st
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

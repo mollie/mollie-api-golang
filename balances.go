@@ -37,6 +37,8 @@ func newBalances(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // Retrieve a list of the organization's balances, including the primary balance.
 //
 // The results are paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequest, opts ...operations.Option) (*operations.ListBalancesResponse, error) {
 	globals := operations.ListBalancesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -104,7 +106,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -341,6 +343,8 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 // With instant payment methods like iDEAL, payments are moved to the available
 // balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
 // funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
 	request := operations.GetBalanceRequest{
 		BalanceID:      balanceID,
@@ -409,7 +413,7 @@ func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, id
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -598,6 +602,8 @@ func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, id
 //
 // This endpoint is a convenient alias of the [Get balance](get-balance)
 // endpoint.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPrimaryBalanceResponse, error) {
 	request := operations.GetPrimaryBalanceRequest{
 		IdempotencyKey: idempotencyKey,
@@ -656,7 +662,7 @@ func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -822,6 +828,8 @@ func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts 
 //
 // The alias `primary` can be used instead of the balance ID to refer to the
 // organization's primary balance.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceReportRequest, opts ...operations.Option) (*operations.GetBalanceReportResponse, error) {
 	globals := operations.GetBalanceReportGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -884,7 +892,7 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1080,6 +1088,8 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 // organization's primary balance.
 //
 // The results are paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Balances) ListTransactions(ctx context.Context, request operations.ListBalanceTransactionsRequest, opts ...operations.Option) (*operations.ListBalanceTransactionsResponse, error) {
 	globals := operations.ListBalanceTransactionsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -1147,7 +1157,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

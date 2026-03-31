@@ -1,0 +1,9 @@
+# VerifyPayeeResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                        | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `VerificationOfPayeeResponse`                                                                     | [*components.VerificationOfPayeeResponse](../../models/components/verificationofpayeeresponse.md) | :heavy_minus_sign:                                                                                | The verification result object.                                                                   |

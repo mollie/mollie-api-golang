@@ -38,6 +38,8 @@ func newBalanceTransfers(rootSDK *Client, sdkConfig config.SDKConfiguration, hoo
 // You can also create a balance transfer between two connected organizations.
 // To create a balance transfer, you must be authenticated as the source organization, and the destination organization must be a connected organization
 // that has authorized the `balance-transfers.write` scope for your organization.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, entityBalanceTransfer *components.EntityBalanceTransfer, opts ...operations.Option) (*operations.CreateConnectBalanceTransferResponse, error) {
 	request := operations.CreateConnectBalanceTransferRequest{
 		IdempotencyKey:        idempotencyKey,
@@ -104,7 +106,7 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -289,6 +291,8 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 
 // List all Connect balance transfers
 // Returns a paginated list of balance transfers associated with your organization. These may be a balance transfer that was received or sent from your balance, or a balance transfer that you initiated on behalf of your clients. If no balance transfers are available, the resulting array will be empty. This request should never throw an error.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConnectBalanceTransfersRequest, opts ...operations.Option) (*operations.ListConnectBalanceTransfersResponse, error) {
 	globals := operations.ListConnectBalanceTransfersGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -356,7 +360,7 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -577,6 +581,8 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 
 // Get a Connect balance transfer
 // Retrieve a single Connect balance transfer object by its ID.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *BalanceTransfers) Get(ctx context.Context, balanceTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetConnectBalanceTransferResponse, error) {
 	request := operations.GetConnectBalanceTransferRequest{
 		BalanceTransferID: balanceTransferID,
@@ -645,7 +651,7 @@ func (s *BalanceTransfers) Get(ctx context.Context, balanceTransferID string, te
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

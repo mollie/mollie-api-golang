@@ -39,6 +39,8 @@ func newOrganizations(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // for OAuth apps. See also [Get current organization](get-current-organization).
 //
 // If you have a *partner account*', you can retrieve organization details of connected organizations.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Organizations) Get(ctx context.Context, organizationID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
 	request := operations.GetOrganizationRequest{
 		OrganizationID: organizationID,
@@ -107,7 +109,7 @@ func (s *Organizations) Get(ctx context.Context, organizationID string, testmode
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -296,6 +298,8 @@ func (s *Organizations) Get(ctx context.Context, organizationID string, testmode
 //
 // For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
 // documentation.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentOrganizationResponse, error) {
 	request := operations.GetCurrentOrganizationRequest{
 		IdempotencyKey: idempotencyKey,
@@ -354,7 +358,7 @@ func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -515,6 +519,8 @@ func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, 
 // GetPartner - Get partner status
 // Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
 // accounts*.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPartnerStatusResponse, error) {
 	request := operations.GetPartnerStatusRequest{
 		IdempotencyKey: idempotencyKey,
@@ -573,7 +579,7 @@ func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

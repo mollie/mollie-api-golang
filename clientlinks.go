@@ -86,6 +86,8 @@ func newClientLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // > 🚧
 // >
 // > A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
+//
+// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
 func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, clientLinkRequest *components.ClientLinkRequest, opts ...operations.Option) (*operations.CreateClientLinkResponse, error) {
 	request := operations.CreateClientLinkRequest{
 		IdempotencyKey:    idempotencyKey,
@@ -152,7 +154,7 @@ func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, client
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
 		return nil, err
 	}
 

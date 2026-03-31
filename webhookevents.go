@@ -33,6 +33,8 @@ func newWebhookEvents(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 
 // Get a Webhook Event
 // Retrieve a single webhook event object by its event ID.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *WebhookEvents) Get(ctx context.Context, webhookEventID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
 	request := operations.GetWebhookEventRequest{
 		WebhookEventID: webhookEventID,
@@ -101,7 +103,7 @@ func (s *WebhookEvents) Get(ctx context.Context, webhookEventID string, testmode
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

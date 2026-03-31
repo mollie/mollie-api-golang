@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 1636e35bbcdbbd57c3f8dde70085dda2
+  docChecksum: 836a95cca9ed6e49e4a7c96e0e0c6620
   docVersion: 1.0.0
-  speakeasyVersion: 1.759.3
-  generationVersion: 2.869.25
-  releaseVersion: 0.12.2
-  configChecksum: 7afa4c5cad0f580e71f85bbf2f3b5c02
+  speakeasyVersion: 1.761.0
+  generationVersion: 2.879.1
+  releaseVersion: 0.12.3
+  configChecksum: 21bdc2960a7788201b23f7e4d41df285
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 2f6082a5-badc-4712-9f6b-bd9c0ea20c4c
-  pristine_commit_hash: d8dfb9f46230bb5b79ec53fe9e02608f9593cf12
-  pristine_tree_hash: f30f119352f8cc275decba70233a0b024adc7b70
+  generation_id: f49ef006-8c27-4e28-b6c6-19f876de925c
+  pristine_commit_hash: 5c4500d4acc9dbd80e5e3aaa7680028d1247ceb3
+  pristine_tree_hash: 76af1a8ad78c9622447e6612652f030c7bb4bb1d
 features:
   go:
     additionalDependencies: 0.1.0
@@ -22,7 +22,7 @@ features:
     devContainers: 2.90.0
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.15
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.83.1
     globals: 2.82.2
@@ -60,16 +60,16 @@ trackedFiles:
     pristine_git_object: ea6c8cdb802fb2d616208fb92a9cb4454ebd6085
   balances.go:
     id: 3e5eeed258ec
-    last_write_checksum: sha1:ec7b6855de5065d848b93881e4329a39e3e12e15
-    pristine_git_object: dbe63af9cde974eaa7c1842675748a244908bdf5
+    last_write_checksum: sha1:0005fb8b97a07e5cfe0a51d7a460262793f7c43b
+    pristine_git_object: 3d5281f33b00ab320cb459ce5fdfca7dcad44923
   balancetransfers.go:
     id: 533eef111866
-    last_write_checksum: sha1:d6778aaaf025e2837abf29a27e081554cd3f7440
-    pristine_git_object: f81680fd2d987833f90aa7a2612dd091518ba83e
+    last_write_checksum: sha1:6dc2ac35f561add5a3837941583d5e0da7272423
+    pristine_git_object: 299ae4fb37c0ed82429e1e784bc2b7037302ead4
   capabilities.go:
     id: c885833ada0d
-    last_write_checksum: sha1:1886a0beb73a45de03cc63f6256265ac467ef681
-    pristine_git_object: 1cda8a6d2eea322d883f3896a37331895c25c9aa
+    last_write_checksum: sha1:51e554ee0adbe8782e741eeabd8840aaa2fb1105
+    pristine_git_object: 2bd06b83c34b5fb020c43466b9f30a78cb673aca
   captures.go:
     id: 0f5123ff80de
     last_write_checksum: sha1:16ab1ead78b6a14bd1386844eb977c92d24c1dae
@@ -80,16 +80,16 @@ trackedFiles:
     pristine_git_object: fa43fb4c8cb9c4dbb73cb863a7b2217da905dde5
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:13b76913a538f934086a78803c838f98fedc359a
-    pristine_git_object: 3b17679bfe89dd594fabc6ead539fe0a842fd180
+    last_write_checksum: sha1:732aa77ad5d19e48763dd97a26191f7d28f0494b
+    pristine_git_object: b86f660e46dcc066bb59bf6c334ded50e0adfed2
   clientlinks.go:
     id: 380a1fe44314
-    last_write_checksum: sha1:f3476b0f0f0f4e5ce67d3c2e27b9ae8a4512823b
-    pristine_git_object: 40d23b75b97b34b5c93398d7059f7c59b47d3ef0
+    last_write_checksum: sha1:4c5ea115089d52b3130d229bbb5ba09931e84fa5
+    pristine_git_object: 0f628944b09b5516fd6b46fc1e0f6094b2a2f6f9
   clients.go:
     id: aedf6851f8e6
-    last_write_checksum: sha1:3f33cedca89c6e3318f0a6d1da26251d0d74888c
-    pristine_git_object: f104668341b06891f0e9207a00704f842412e44d
+    last_write_checksum: sha1:548561118d33ba7414b1a760f372b04695155dfc
+    pristine_git_object: f1dfd1d376e250c2b2f6240ea82d877bb7bd5dfa
   customers.go:
     id: a1d3d926ce55
     last_write_checksum: sha1:c5bbc3f30c4ff6e66404a2e1547172991f9032b2
@@ -102,6 +102,14 @@ trackedFiles:
     id: 385118d32265
     last_write_checksum: sha1:74fecc74d852ebfa1f6bc54f94c1afa28db2197f
     pristine_git_object: f1b0f338bd772051303b91d4ddaf9338c84e0ab1
+  docs/models/components/accountnumberformat.md:
+    id: f5bb4db5806f
+    last_write_checksum: sha1:aa6baa6f644898db91c43770bcec83b92d35ee3f
+    pristine_git_object: a035672b40e395b08a9fe2940f23f6c818e0ccaf
+  docs/models/components/accountnumberformatresponse.md:
+    id: 9f6cd0299893
+    last_write_checksum: sha1:42fa06fac3434a6f2a0a1faedc56315243da4568
+    pristine_git_object: d1703fddc49cb81ae0e895bc767ac02428402a3f
   docs/models/components/address.md:
     id: 897900884ecb
     last_write_checksum: sha1:7690a748433c4d6b34d71bf0e5b72212817a2751
@@ -298,6 +306,18 @@ trackedFiles:
     id: 09ac8b3ae616
     last_write_checksum: sha1:fb8451e8cdba0fe2b38e3d948e09d3f5419c766e
     pristine_git_object: bde5b73aaec25bce4e714bfa8e5bcec5a4f58323
+  docs/models/components/creditdebitindicator.md:
+    id: aae8586a4137
+    last_write_checksum: sha1:06ea0ecae8d0ad015b20e3379def70050fee63d8
+    pristine_git_object: 1acc8660f666698a27d20a3693b8fc13177909bf
+  docs/models/components/creditorbankaccount.md:
+    id: d08cddc183ac
+    last_write_checksum: sha1:aa07344acb8aa82dcfbd782a6682a7ebbcb5a8c2
+    pristine_git_object: be59cd61a96cd0ff112734cc58a4c4c30a3beddc
+  docs/models/components/creditorbankaccountresponse.md:
+    id: 673b8c973f31
+    last_write_checksum: sha1:4d849ccedb4b2d2aa022b81806e67095e9319b11
+    pristine_git_object: c86d0dfdbb8cc8a438090483b66a6e10c51b5cf3
   docs/models/components/currencies.md:
     id: fd295de1f8e0
     last_write_checksum: sha1:79663aeb3fb404d842cd4b12f20b7655b8c3c005
@@ -310,6 +330,10 @@ trackedFiles:
     id: 7ed5f0a6e0af
     last_write_checksum: sha1:daba7a77a9872c34674edc09635c0718b3df5249
     pristine_git_object: ba7aba7c19da770d2e9d7612cf43c3b54cb38e5a
+  docs/models/components/debtor.md:
+    id: 295b3fa12598
+    last_write_checksum: sha1:8b64be36fe04ae80b93e4f63b2ab1c26f7207693
+    pristine_git_object: ac8552046d2c413b2784fae599d5e90326f10419
   docs/models/components/deductiondetails.md:
     id: d90be66102aa
     last_write_checksum: sha1:c02043256aa45cbc4ae9372577db0cc7ce3a6b50
@@ -1726,10 +1750,22 @@ trackedFiles:
     id: 8e697b1f90a5
     last_write_checksum: sha1:bbb9c3c23611ab0948aa2e1e63f5e784f5a2ed61
     pristine_git_object: c0fd49ba4c82d2b86685f8b9ecc92de627e9f2ba
+  docs/models/components/statushistoryentryresponse.md:
+    id: 491297f7cc9e
+    last_write_checksum: sha1:f940ad1065f08e375f1c83c0acdbda55e8973d21
+    pristine_git_object: 9a833ba926f517e2d2816d12beae310b6633fc2e
   docs/models/components/statusreason.md:
     id: 9d4b79e1beea
     last_write_checksum: sha1:842177c10bbff85fbef30e55d3441afa4dc1fecc
     pristine_git_object: ad2857decf55c2bbab57e09480d0b3874e3e24fb
+  docs/models/components/statusreason2.md:
+    id: 8bb71fe36a9e
+    last_write_checksum: sha1:eb6ac95e2328eb87e57d7115a3f663e523da8073
+    pristine_git_object: a55d1431f280f7b6724569f24f53c0170c63b40c
+  docs/models/components/statusreasoncoderesponse.md:
+    id: 445588d04802
+    last_write_checksum: sha1:afa389d39553fe3b2fcfe517399243ae32a47857
+    pristine_git_object: ee06ecf97f2da70db4064cf7bb045bf207b87b28
   docs/models/components/subgroup.md:
     id: d3bf371f9486
     last_write_checksum: sha1:0254a8648e54a14904b5aad94546c22bf8d6b3e3
@@ -1786,10 +1822,50 @@ trackedFiles:
     id: c100ffd2dea6
     last_write_checksum: sha1:c0d9d6303cdfda7d2ce1ad980847832b067816be
     pristine_git_object: 5ee84c7462af0afe1176e7c907cc02d5d544d36c
+  docs/models/components/transferparty.md:
+    id: aaeeaf9186e1
+    last_write_checksum: sha1:15dff6aa142b7fb95a82206864ff88d5a50ddbb6
+    pristine_git_object: 46259096419c2652b7057f68107156b17108b88f
+  docs/models/components/transferpartyaccount.md:
+    id: 7ce68cf4a34d
+    last_write_checksum: sha1:bad78170c0bef0232e8957d3b510906f5d2c8b18
+    pristine_git_object: 184cb5d3f0beaed30aa7982e3d523da91826caa5
+  docs/models/components/transferrequest.md:
+    id: 4c6f577803fe
+    last_write_checksum: sha1:126875b245d956bfee451f98b749cd7e3458fc50
+    pristine_git_object: d741a158d98127109249a2b287b662439a64779d
+  docs/models/components/transferresponse.md:
+    id: dc4ea4b6eea7
+    last_write_checksum: sha1:f670e33ebe4ff6569421d7c739e3a0a3be26fd97
+    pristine_git_object: 11e13893ecbc380ad10b2171a0f007d16abab978
+  docs/models/components/transferresponseaccount.md:
+    id: 60dc9ca1f5b9
+    last_write_checksum: sha1:8e5777a50346614b9533cf22343d67d566f1fb65
+    pristine_git_object: ac36f338c58754f8942d70c5aa1ff37532993db6
   docs/models/components/transfers.md:
     id: 963b6b45af40
     last_write_checksum: sha1:c527e957df124ca067a87e642e80290f05e56a63
     pristine_git_object: a12a14e05a1a73291fbf104a53b836d782c32543
+  docs/models/components/transferscheme.md:
+    id: 2bb06b4d5aab
+    last_write_checksum: sha1:a429a09424e313082b173f228d4b045ff400c9df
+    pristine_git_object: 78a1eaaf463d398a053b5b4420d15e3eb5cd9793
+  docs/models/components/transferschemeresponse.md:
+    id: 918a49214fcd
+    last_write_checksum: sha1:c0ab05cd47ec61352ff09bece8c24e57eba9831f
+    pristine_git_object: c9ed3d0a0e5775190610ab53f95a393940a0d749
+  docs/models/components/transferschemetype.md:
+    id: c786a083dddc
+    last_write_checksum: sha1:d4c5dfeba1bbd80318bf5818aa1178a775a0d3cb
+    pristine_git_object: ae6c4cc1d398de3591d359e1725b2370f847d80d
+  docs/models/components/transferschemetyperesponse.md:
+    id: 06a02764fd65
+    last_write_checksum: sha1:e261ec688aab45bcf98fa927c26ddc3d5aff37f2
+    pristine_git_object: 15726c1f5bab521d79284dd34a92ca72861bb265
+  docs/models/components/transferstatus.md:
+    id: c6dbadd109e3
+    last_write_checksum: sha1:c62a4a1bcd28a7625a30b7e5d9cbf325d4924018
+    pristine_git_object: cdd4a759d7a3a9c8822ce411cd5287481e5bbd08
   docs/models/components/type.md:
     id: 9f07f2d18a9f
     last_write_checksum: sha1:2e825eab7070c4fa3b12bb746739b4f0f354a3c0
@@ -1806,6 +1882,22 @@ trackedFiles:
     id: 60e763ac4627
     last_write_checksum: sha1:c050dd1018bbecb7231c303549ab53defec10c40
     pristine_git_object: 3098458f3eb6dfeb8a92c94edd781890a982e7ba
+  docs/models/components/verificationofpayeerequest.md:
+    id: dd5fcc49179d
+    last_write_checksum: sha1:30fa9151fe39f40045733c029a9a2d078f72bfa7
+    pristine_git_object: 87dc1ee72d98e81d89b3667f603d1fa9b9b4f359
+  docs/models/components/verificationofpayeeresponse.md:
+    id: 54db7a5858ba
+    last_write_checksum: sha1:45c4572d3769d67a2e830897985f1edafe89e469
+    pristine_git_object: ce4f86ca4e239795e86f0d1029fe4fa303228093
+  docs/models/components/verificationofpayeeresponseverificationresult.md:
+    id: 117448d20185
+    last_write_checksum: sha1:799cdb07a87528accc198d25033eda518ad6a09d
+    pristine_git_object: ac17ca9193ad04846b0e7c60d5c27e5d0d6f8183
+  docs/models/components/verificationresultenum.md:
+    id: 77314ebe1892
+    last_write_checksum: sha1:78a9cc0a04b2031c9c0dc401a23cb36b5db962ba
+    pristine_git_object: fd53ec1112857f3c38a15fb9eeccbf7af4fd6dd2
   docs/models/components/webhookeventtypes.md:
     id: 023bc418a38f
     last_write_checksum: sha1:62186f6f1b2d3d258f2193dbd134e25c2d02451e
@@ -1970,6 +2062,14 @@ trackedFiles:
     id: fc2581b5394a
     last_write_checksum: sha1:114edb905a327a2c1c95d4580c1c897bdbdcb3fa
     pristine_git_object: 8aaed1223759231c6c5ab177493676af88d5e929
+  docs/models/operations/createtransferrequest.md:
+    id: 479572132ed9
+    last_write_checksum: sha1:204aa9f20312b5be0b980aa1b98ebe66683492df
+    pristine_git_object: 912cdb5378dbc0f6ff54ab625366c70d619e32f4
+  docs/models/operations/createtransferresponse.md:
+    id: 1fdce9316bfb
+    last_write_checksum: sha1:666065b6293c8ab4d2abc7057cccbeafa383b0b9
+    pristine_git_object: 4144524eaa64c17240a6a68b37f91a43e6feefdc
   docs/models/operations/createwebhookeventtypes.md:
     id: 1a37707a6fd3
     last_write_checksum: sha1:2d6d66515d3193730247375f00dc7b9cd539e0d9
@@ -2382,6 +2482,18 @@ trackedFiles:
     id: f57e789250a6
     last_write_checksum: sha1:181b068f70835a56a6c5183363e083f8a82d1a08
     pristine_git_object: a6e0b3f10bb3c3922f0a90cb75b1cb10b9311d9f
+  docs/models/operations/gettransferglobals.md:
+    id: 7eb65c6cf87f
+    last_write_checksum: sha1:daf322fd490ea46615dbbe90fbd36977ff979770
+    pristine_git_object: 675718c6f51081e33626ff91b439e0d1882ae570
+  docs/models/operations/gettransferrequest.md:
+    id: 395ef4f641f7
+    last_write_checksum: sha1:b81b6e6896c77b33828bf6061b6b3eade5547367
+    pristine_git_object: f9c829209345c2db4288219186d8113aab2b9404
+  docs/models/operations/gettransferresponse.md:
+    id: 3b2f9fee9c5e
+    last_write_checksum: sha1:d22f2b308d5ec42e87ef5983d7a0d3fc96d6ea63
+    pristine_git_object: fcca8e005cf6577805160a60e6a09b9d3c0070f7
   docs/models/operations/getwebhookeventglobals.md:
     id: 65e17c2cfeea
     last_write_checksum: sha1:d6629ef5c61a4668c1109c727fcd9ed4420d3763
@@ -3234,6 +3346,14 @@ trackedFiles:
     id: d770434614e2
     last_write_checksum: sha1:9270615f84f7189f16d6baac8065dde679ed03ee
     pristine_git_object: dddeb8876e5ea5ae5710a7d5766018eb1a22200e
+  docs/models/operations/verifypayeerequest.md:
+    id: 7478c849757f
+    last_write_checksum: sha1:390e1acf51f1fe4405ee12120e1a120602446658
+    pristine_git_object: 1ac8616d6759e310eae6546e477a795dec9cd7cb
+  docs/models/operations/verifypayeeresponse.md:
+    id: 383ce18b70ae
+    last_write_checksum: sha1:f0af4a5e2776884bcc7849e8202beff887be6d16
+    pristine_git_object: 3b8263d62446ad9bab7a9d5b3af222efa664f092
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:da94f92a5d2fc8d0bf39f3391af02f3209b82084
@@ -3330,6 +3450,14 @@ trackedFiles:
     id: 4b9f7986e224
     last_write_checksum: sha1:7b21e3297f66ec383e0868853135b7d8c64ce82d
     pristine_git_object: e7c4207b7c1b80443698c1fdfd987c8db34f7a86
+  docs/sdks/transfers/README.md:
+    id: f56918861798
+    last_write_checksum: sha1:ebaca212dc0929be511336ccd8680a1061f170a7
+    pristine_git_object: 641aacd59bd70160411625d8e2e4ed6755e2e063
+  docs/sdks/verifypayees/README.md:
+    id: cd1963c91dc9
+    last_write_checksum: sha1:0ec1b084a02d9bfc5deeeff01a1bd2d1a3d78fc0
+    pristine_git_object: 7439e4e0b07d7dd7e810fbd304785d8a9eebb087
   docs/sdks/wallets/README.md:
     id: d9388c541e1a
     last_write_checksum: sha1:c77b4f33af019f4a397aa74f0548f953b3ad867f
@@ -3380,8 +3508,8 @@ trackedFiles:
     pristine_git_object: 2b916313a891c8c2088af2a7cb7d652aad6f1eef
   internal/utils/json.go:
     id: ad03e3c502d8
-    last_write_checksum: sha1:9ce855d081f1714e394b4388548f55fee40b64e2
-    pristine_git_object: 75d5309ecf99d5be9ee124d6075d8059b7922799
+    last_write_checksum: sha1:11c8cfaa0e83675d23b63b2e725c4c1f29a7cec6
+    pristine_git_object: beee96b477e99fdace62b6ae3feacc74d2ec392e
   internal/utils/pathparams.go:
     id: 1f3e0c30fd90
     last_write_checksum: sha1:7327880c3ec940f226bb6d2464705aa15e5d56f1
@@ -3400,8 +3528,8 @@ trackedFiles:
     pristine_git_object: 26a67e2188dd65629963017b75cb94d8f746e56a
   internal/utils/security.go:
     id: eeb54c55241b
-    last_write_checksum: sha1:ec6a1340b63fdf6589ff4bb288ae1f4c074c8020
-    pristine_git_object: 32c770d6ef13b2f8c2d2566b87a70b6a11f0afa2
+    last_write_checksum: sha1:227cbc7c7f0b6791110a238e3b88b4230b9828fa
+    pristine_git_object: 91607abda661cc25ccf3d6cc6de64de1dc42c198
   internal/utils/union.go:
     id: db86c85746b6
     last_write_checksum: sha1:8a999c20463340552e0eb292e5ee9d58d0ba4f42
@@ -3416,8 +3544,8 @@ trackedFiles:
     pristine_git_object: 924cf4e4026112829b3876b965a4ed57da3ba218
   invoices.go:
     id: 362900f5e35b
-    last_write_checksum: sha1:3aca60cea99eb5be948ca52a5a2e521190e496eb
-    pristine_git_object: 5f85e624302d70f6ff459e7146f34d3fedaaecd6
+    last_write_checksum: sha1:5f5a06e636a6865f7abfec4f54fbdf1fe756cabe
+    pristine_git_object: 6c60c7a99efa56e59718ac7dac4e223d3269107c
   mandates.go:
     id: 67097529fab8
     last_write_checksum: sha1:ab1981309159d3dd1d898dd141b909fdaef7217d
@@ -3434,6 +3562,14 @@ trackedFiles:
     id: 182eb0b81d4c
     last_write_checksum: sha1:b1f9680c27e4b8228aa2730d39027cb2fa76b3c9
     pristine_git_object: 3dd202bd0afa335c1abf7852ea88351a5b4ec44d
+  models/components/accountnumberformat.go:
+    id: 1c2b1f192dba
+    last_write_checksum: sha1:151bd572f4c7176b8fc7ab5f92562b43d068f168
+    pristine_git_object: fcff4cd6aa857ac37bf8b05c0bb8e550fad99bd8
+  models/components/accountnumberformatresponse.go:
+    id: fe88c56ae158
+    last_write_checksum: sha1:516b2f54ff9c8ddff9946d77c862dcdc2a26e8f4
+    pristine_git_object: 2949881bfe60b3f71af0e204ff6e084d6bbeb6af
   models/components/address.go:
     id: 7f30396851a4
     last_write_checksum: sha1:a536e94198e79dba2da455475d8e7922d05f7eb0
@@ -3546,6 +3682,18 @@ trackedFiles:
     id: bc5011746cf8
     last_write_checksum: sha1:b723bcb60ed97dd05d5931b8d00403c376d24cea
     pristine_git_object: 75d3ffbc841ec24aea30401fda955a35b4a4e770
+  models/components/creditdebitindicator.go:
+    id: 5032345f732c
+    last_write_checksum: sha1:e31f44e2c7878e4bf87b60a36b0eddf501fa39ca
+    pristine_git_object: ee9ce957926a922b3f9a642cca229ac01fde46e7
+  models/components/creditorbankaccount.go:
+    id: 2847808a731d
+    last_write_checksum: sha1:0eb8eb5dbf263d34448b7c4f70637dee0f5d6e31
+    pristine_git_object: e1f30ea1fab4274039cf807156a886184e4038a7
+  models/components/creditorbankaccountresponse.go:
+    id: 210cd8f5aee5
+    last_write_checksum: sha1:9d8fb302631b4392aca6d2550242172cb2c58d0e
+    pristine_git_object: e1e4f2eb495b306866ea347ea06e7a43384fda85
   models/components/currencies.go:
     id: b41a9e267145
     last_write_checksum: sha1:802c9f2cbe42976c263b3f9055f7c3e6b9ab419f
@@ -4102,10 +4250,22 @@ trackedFiles:
     id: bcd097157810
     last_write_checksum: sha1:9c2fa41e24c7e08c558a91e2841fdfb0683d4d2e
     pristine_git_object: 6fd42a3c5dadf7fb3294ba6b09b560dc5e8d6a03
+  models/components/statushistoryentryresponse.go:
+    id: a05fb739dc69
+    last_write_checksum: sha1:dee96a7869580918b053caa25a0ca1a9a3035436
+    pristine_git_object: 929104f424abdcd8439cade84b636de15ea724e3
   models/components/statusreason.go:
     id: c53c7c702d40
     last_write_checksum: sha1:3c091fce6225b948ec9c0e5286a712f72d8b9b9d
     pristine_git_object: 9d962b93ff4f265c440ba08103c46df072bf4b8a
+  models/components/statusreason2.go:
+    id: cf71cff7f198
+    last_write_checksum: sha1:f0ce61ae480ed92a95081bae69dc12a981f24a41
+    pristine_git_object: 72f14996fe400917aecc89f74d58aae600722eca
+  models/components/statusreasoncoderesponse.go:
+    id: 0cb0e59379f8
+    last_write_checksum: sha1:77ec4751ed7763a1ff4bcecf31fcc864123d0524
+    pristine_git_object: 3a45ca0e5993e7aa5c0ff07c1600bd84ae77478a
   models/components/subgroup.go:
     id: dd72f7d081df
     last_write_checksum: sha1:ab5eb11cb917e72ca1ef36d4bd8f5d2dbf6de5e1
@@ -4138,6 +4298,38 @@ trackedFiles:
     id: 53c8b8006bfd
     last_write_checksum: sha1:86c8dd0ef837c5b25826e5a2911e909cc3392a30
     pristine_git_object: b7f587337c2c7d8733308ce9a36e03ce5aec2802
+  models/components/transferparty.go:
+    id: 8ca9bf5ef292
+    last_write_checksum: sha1:bce3faa350b67758749993f2dae7eebc8edf7644
+    pristine_git_object: 20704461cd89431377f2464db0914e0569cf7434
+  models/components/transferrequest.go:
+    id: 581488df6b03
+    last_write_checksum: sha1:f4114a9d9b25c784fb0ee9c8964f162dbac6e0d6
+    pristine_git_object: 37c09573a7b95531b5927170464580ce461b43e8
+  models/components/transferresponse.go:
+    id: "522152668029"
+    last_write_checksum: sha1:5df2728b855799465b6f19221fc11047320ab2dd
+    pristine_git_object: 510fa8226791cb21b6ec3ea502b2b753869fbb80
+  models/components/transferscheme.go:
+    id: f8750e435aca
+    last_write_checksum: sha1:268db6d178332b6b6bfcef0741f78adbf2ce38f7
+    pristine_git_object: 09a183594750e8f0f1e79ff1b141c3d5cfc9a31e
+  models/components/transferschemeresponse.go:
+    id: 19b43db5754b
+    last_write_checksum: sha1:3a33ff4c715c8b2fa1a6af902cc780fb5634bda2
+    pristine_git_object: 67ae420ea39fe96aef8f41cd7ddd3549e746c291
+  models/components/transferschemetype.go:
+    id: 6c4be1c3153c
+    last_write_checksum: sha1:effe2924d7b0bab7642f4f661b7120eea269fc3d
+    pristine_git_object: cfab6d5cbf16a81dc84a39dc9650f0931794d5f6
+  models/components/transferschemetyperesponse.go:
+    id: 91d03bf2703f
+    last_write_checksum: sha1:d824467da387e1575c6b0b6653d631cceb4afb5f
+    pristine_git_object: 6c6d39706ff2ab024c8e0ea1997ea4867d37fc1d
+  models/components/transferstatus.go:
+    id: bbad87367ebe
+    last_write_checksum: sha1:d6072f20c33b96ef3f50de312b49601f126f8614
+    pristine_git_object: e679f67ac6e7496561779dc10ba9b227e35618f4
   models/components/url_.go:
     id: bc0fb0595814
     last_write_checksum: sha1:79b90dbee147b3f6fde3d141330beca4f0b0290a
@@ -4146,6 +4338,18 @@ trackedFiles:
     id: 63b940c72e45
     last_write_checksum: sha1:bcb832c364484ec1dd514643096f4a7888462715
     pristine_git_object: 332ea46ff9115a7bc8770359ac63187330385cb7
+  models/components/verificationofpayeerequest.go:
+    id: d31bcea987dd
+    last_write_checksum: sha1:3ea71391f7ab81828e50d9adc5391fa1962b9686
+    pristine_git_object: 69c5792e4af3717778dc196ddd5110c02687d70d
+  models/components/verificationofpayeeresponse.go:
+    id: 5c26d16a1de1
+    last_write_checksum: sha1:11b7b599b07584bc9d13b0e2e1dff693d51f1b05
+    pristine_git_object: 3f15a9b3a89a2a40231cc8b04ac50d5e80c0a1d0
+  models/components/verificationresultenum.go:
+    id: 8a0314cc2f45
+    last_write_checksum: sha1:75f95fec9fd4029f618e0b1defdca383019c794a
+    pristine_git_object: 3df63249cdbe356e1a0cd171d478f63b02c00de5
   models/components/webhookeventtypes.go:
     id: 6e7927c5123d
     last_write_checksum: sha1:959bd62bfed2527a643e03de8177e3fed265dcf5
@@ -4218,6 +4422,10 @@ trackedFiles:
     id: 16b511206b4f
     last_write_checksum: sha1:cd7fac85e15cf896cfc46c1794a3b2a999c959df
     pristine_git_object: 8ccdc0cf3d5bd90b24a077579789734ffd801e7f
+  models/operations/createtransfer.go:
+    id: f210f5365145
+    last_write_checksum: sha1:37118c46313bf741ac79d9dc80f56af2480740da
+    pristine_git_object: 35932eb0d8d6c3614122de1ad979a97608654fec
   models/operations/createwebhook.go:
     id: 903a882deaa7
     last_write_checksum: sha1:a608902f9ba84b48b3bef1876e9099b102f5b424
@@ -4358,6 +4566,10 @@ trackedFiles:
     id: d08d0e52d532
     last_write_checksum: sha1:d35d1faf9a41884d294abbbeaab687b26dde5576
     pristine_git_object: 6f660680b5fb2cb007f75343ffb05c04ee8ebb18
+  models/operations/gettransfer.go:
+    id: bc29d7126365
+    last_write_checksum: sha1:1405496af74d98e48a6b422e652328d737805a73
+    pristine_git_object: eb41cf96b29a07fd8ed6417710a6cd049e3db74d
   models/operations/getwebhook.go:
     id: 59481f8939bf
     last_write_checksum: sha1:a6c95a15c0033318900b8f8a8b9127fa8b022073
@@ -4554,10 +4766,14 @@ trackedFiles:
     id: d300f442feb7
     last_write_checksum: sha1:5e2a64c0ab4ece5ddcb00586aff09208962f891d
     pristine_git_object: 99b1ab4565b15e027027644505b367b714d5236d
+  models/operations/verifypayee.go:
+    id: 3ed835bc0c42
+    last_write_checksum: sha1:977ecba97464f45feeb25bee75f948cdcdccadf9
+    pristine_git_object: fe1c335abf16365137b95c98ddfd8bbd1d073d91
   onboarding.go:
     id: d1e4a134fcc2
-    last_write_checksum: sha1:91f9158031ddd0dde1e2e44cffb325cf7cee493c
-    pristine_git_object: 16f737b7d1a6a0497fbf457dc0c688f3cefac1f1
+    last_write_checksum: sha1:0c05935835ba23d34b4606cafb87f9aac4b602c4
+    pristine_git_object: 32d8d286827c137cc893bb86033e34da8aa1e244
   optionalnullable/optionalnullable.go:
     id: ce60f259ead3
     last_write_checksum: sha1:6836d90c2570fd1528b1efa975d7eab444392d68
@@ -4568,8 +4784,8 @@ trackedFiles:
     pristine_git_object: e4de2227825e21222b503b5aef50943be6efd119
   organizations.go:
     id: c466ebb9a97c
-    last_write_checksum: sha1:b3055907db2f9ad2ef69fef69eebb97eef5da16f
-    pristine_git_object: 79b3852ea286a3fd94a0099d23ce9cf52e1869a3
+    last_write_checksum: sha1:8dd80644c45f71b69c015a60c31eab9cc5cf7914
+    pristine_git_object: 303782ac8cfa2288956edfa43bf291343c61ae93
   paymentlinks.go:
     id: 952b28e656a1
     last_write_checksum: sha1:f6c9560210dcc5f57235f7f6e503ef74a10ddcd1
@@ -4580,12 +4796,12 @@ trackedFiles:
     pristine_git_object: 1e5064bd28e16011762b7e6ff0e168e7dacb4f3d
   permissions.go:
     id: 24d6fe5c456e
-    last_write_checksum: sha1:eb6d9d759f6a783a9902e1ffd19fd537d45dddaf
-    pristine_git_object: edd98f5a28971842c223784a17f6b4f0e1ac6b4b
+    last_write_checksum: sha1:55b340aed4e18384a53c4ebec38e3f6072be3153
+    pristine_git_object: 4e2dd592bdbd4294bb7a492ce800c041f920d5aa
   profiles.go:
     id: 6038c65b8d50
-    last_write_checksum: sha1:063994545a207d648feffaeabf07de5f6b260355
-    pristine_git_object: 3549e4ce165631c681a60a0631ca990c29a41b80
+    last_write_checksum: sha1:636988eea30625fc46bd325db8ed545a553a9e48
+    pristine_git_object: a821e5a2e5fcacce7263e3e0021cbf5a578bd24f
   refunds.go:
     id: ebaec85bd3a4
     last_write_checksum: sha1:083667c0ee53c0cf49531f766ac3d87b418bf759
@@ -4604,8 +4820,8 @@ trackedFiles:
     pristine_git_object: 309042b1fffdc33bb9267f1177fad9abb97c0963
   settlements.go:
     id: b2d865202d0d
-    last_write_checksum: sha1:4a29b4c62ce392392187e8aa6d49c0b1940a94a5
-    pristine_git_object: 69597d6c9b5a6a0cad7267493b024d6d85e6f7ae
+    last_write_checksum: sha1:559013176b0842d312e6d642ac4cfe2067e2051b
+    pristine_git_object: 919be0d9bb3a63b8c5f3ad7f0cfdac5c883c50a9
   subscriptions.go:
     id: 7ffd9f652eea
     last_write_checksum: sha1:713b3e45daa64659834f2de4df05b1961dae391c
@@ -4614,6 +4830,10 @@ trackedFiles:
     id: 4462dab7faee
     last_write_checksum: sha1:738e5f601ca809e98f32978496f11dc36bd4951c
     pristine_git_object: 2581690734af51cd7d9cf1eaf3d04e9c62af2468
+  transfers.go:
+    id: a45ada44323b
+    last_write_checksum: sha1:9afdf2848dbb0d752f8c200bf32a0f831def2520
+    pristine_git_object: c73f60a870246c272f8687291fc3962f006e7919
   types/bigint.go:
     id: 6f911e1a03c3
     last_write_checksum: sha1:f63da326b7a902bb319d157b10604df53a8957ad
@@ -4630,18 +4850,22 @@ trackedFiles:
     id: 6d0d0a6cb6f3
     last_write_checksum: sha1:62765b20e7525bd0df1f8e0455fd8131cced6de2
     pristine_git_object: bac6c9269e07c08294c311d4b83287565437e1fa
+  verifypayees.go:
+    id: a2a1b2beb9ce
+    last_write_checksum: sha1:9a9860a24e5fd9e33f901a32a475ec158794fab2
+    pristine_git_object: 6028fa974c4a70bc7c5b0d7d8498879782447a15
   wallets.go:
     id: 548ba02ed90f
     last_write_checksum: sha1:d71ac1938c4a93e2d98e135105ceee6903151378
     pristine_git_object: 58bcf8dd12eafc91b49e6c6b748c4836b08c6550
   webhookevents.go:
     id: 178e3c8436ac
-    last_write_checksum: sha1:ce27eeccde6514c8aa93a161834171c0ac512cfb
-    pristine_git_object: 902fb884f8dc8f799f3915bb572c90f0670c37bd
+    last_write_checksum: sha1:2ca39b5855c9a5eee8a63d2c3223f6bc080868be
+    pristine_git_object: 36326f2150a097174bc1296828a9b7e84d4be1d8
   webhooks.go:
     id: 72c7156317c9
-    last_write_checksum: sha1:9b3b630045bdf7d5b35d1033d950eccede45aa8b
-    pristine_git_object: d997c947df9137b95443a3939f84bdce357b81ed
+    last_write_checksum: sha1:0790de47f4a3268255efad659f11a1e18a22f312
+    pristine_git_object: 51d079d3362a0560081dd119002c96f5d3af458e
 examples:
   list-balances:
     list-balances-200-1:
@@ -7995,11 +8219,121 @@ examples:
       responses:
         "200":
           application/hal+json: {"resource": "session", "id": "sess_CQBQJqxubaq4w6oresxMJ", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc19DUUJRSnF4dWJhcTR3Nm9yZXN4TUoiLAogICJzZWNyZXQiOiAiaGFja2Vycy1iZS1uaWNlIiwKICAidGVzdG1vZGUiOiBmYWxzZSwKICAicHJvZmlsZVRva2VuIjogInBmbF9Ra0VoTjk0QmEiLAogICJhdmFpbGFibGVQYXltZW50TWV0aG9kcyI6IFsKICAgICJpZGVhbCIsCiAgICAiY3JlZGl0Y2FyZCIsCiAgICAicGF5cGFsIiwKICAgICJwYXlieWJhbmsiLAogICAgImJhbmNvbnRhY3QiLAogICAgImFwcGxlcGF5IiwKICAgICJnb29nbGVwYXkiCiAgXSwKICAiYXZhaWxhYmxlQXV0aGVudGljYXRpb25NZXRob2RzIjogewogICAgImJhbmNvbnRhY3QiOiBbCiAgICAgICJtb2JpbGUiLAogICAgICAiY2FyZCIKICAgIF0KICB9LAogICJvcmdhbml6YXRpb25Db3VudHJ5Q29kZSI6ICJOTCIsCiAgIm1lcmNoYW50UHJvZmlsZU5hbWUiOiAiTW9sbGllIFN3YWcgU2hvcCIKfQ==", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "sequenceType": "oneoff", "metadata": {"order_id": "12345"}, "payment": {"webhookUrl": "https://webshop.example.org/payments/webhook/"}, "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
+  create-transfer:
+    speakeasy-default-create-transfer:
+      parameters:
+        header:
+          X-Client-Signature: "<value>"
+          X-Client-Signed-At: "2025-01-01T12:00:00Z"
+          Idempotency-Key: "aa84d3c0-1484-4f45-8a8d-4674a0147f3f"
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"debtorIban": "NL55MLLE0123456789", "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "transferScheme": {"type": "sepa-credit-inst"}, "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "business-account-transfer", "id": "batrf_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "businessAccountTransactionId": "batr_87GByBuj4UCcUTEbs6aGJ", "transferScheme": {"type": "sepa-credit-inst"}, "creditDebitIndicator": "debit", "status": "initiated", "statusHistory": [{"status": "initiated", "createdAt": "2024-03-20T09:13:37+00:00", "statusReason": {"code": "insufficient-funds", "message": "The creditor account does not exist."}}], "createdAt": "2024-03-20T09:13:37+00:00", "statusReason": {"code": "insufficient-funds", "message": "The creditor account does not exist."}}
+        "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "503":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+    create-transfer-201:
+      parameters:
+        header:
+          X-Client-Signature: "<value>"
+          X-Client-Signed-At: "2025-01-01T12:00:00Z"
+          Idempotency-Key: "aa84d3c0-1484-4f45-8a8d-4674a0147f3f"
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"debtorIban": "NL55MLLE0123456789", "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "transferScheme": {"type": "sepa-credit-inst"}, "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "business-account-transfer", "id": "batrf_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "businessAccountTransactionId": "batr_87GByBuj4UCcUTEbs6aGJ", "transferScheme": {"type": "sepa-credit-inst"}, "creditDebitIndicator": "debit", "status": "initiated", "statusHistory": [{"status": "requested", "createdAt": "2025-01-01T12:00:00+00:00"}, {"status": "initiated", "createdAt": "2025-01-01T12:00:01+00:00"}], "createdAt": "2025-01-01T12:00:00+00:00", "metadata": {"customer_reference": "cust_001"}}
+  get-transfer:
+    get-transfer-200:
+      parameters:
+        path:
+          businessAccountsTransferId: "batrf_87GByBuj4UCcUTEbs6aGJ"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-transfer", "id": "batrf_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "businessAccountTransactionId": "batr_87GByBuj4UCcUTEbs6aGJ", "transferScheme": {"type": "sepa-credit-inst"}, "creditDebitIndicator": "debit", "status": "initiated", "statusHistory": [{"status": "requested", "createdAt": "2025-01-01T12:00:00+00:00"}, {"status": "initiated", "createdAt": "2025-01-01T12:00:01+00:00"}], "createdAt": "2025-01-01T12:00:00+00:00", "metadata": {"customer_reference": "cust_001"}}
+    processed-transfer:
+      parameters:
+        path:
+          businessAccountsTransferId: "batrf_87GByBuj4UCcUTEbs6aGJ"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-transfer", "id": "batrf_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "businessAccountTransactionId": "batr_87GByBuj4UCcUTEbs6aGJ", "transferScheme": {"type": "sepa-credit-inst"}, "creditDebitIndicator": "debit", "status": "processed", "statusHistory": [{"status": "requested", "createdAt": "2025-01-01T12:00:00+00:00"}, {"status": "initiated", "createdAt": "2025-01-01T12:00:01+00:00"}, {"status": "pending-review", "createdAt": "2025-01-01T12:00:02+00:00"}, {"status": "processed", "createdAt": "2025-01-01T12:00:03+00:00"}], "createdAt": "2025-01-01T12:00:00+00:00", "metadata": {"customer_reference": "cust_001"}}
+    speakeasy-default-get-transfer:
+      parameters:
+        path:
+          businessAccountsTransferId: "batrf_87GByBuj4UCcUTEbs6aGJ"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-transfer", "id": "batrf_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "businessAccountTransactionId": "batr_87GByBuj4UCcUTEbs6aGJ", "transferScheme": {"type": "sepa-credit-inst"}, "creditDebitIndicator": "debit", "status": "initiated", "statusHistory": [{"status": "initiated", "createdAt": "2024-03-20T09:13:37+00:00", "statusReason": {"code": "insufficient-funds", "message": "The creditor account does not exist."}}], "createdAt": "2024-03-20T09:13:37+00:00", "statusReason": null}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  verify-payee:
+    verify-payee-200-match:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-payee-verification", "creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "verificationResult": {"outcome": "match"}, "createdAt": "2025-01-01T12:00:00+00:00"}
+    verify-payee-200-no-match:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-payee-verification", "creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "verificationResult": {"outcome": "no-match"}, "createdAt": "2025-01-01T12:00:00+00:00"}
+    verify-payee-200-close-match:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-payee-verification", "creditorBankAccount": {"accountHolderName": "Jan Jans", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "verificationResult": {"outcome": "close-match", "accountHolderName": "Jan Jansen"}, "createdAt": "2025-01-01T12:00:00+00:00"}
+    verify-payee-200-not-available:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-payee-verification", "creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "verificationResult": {"outcome": "not-available"}, "createdAt": "2025-01-01T12:00:00+00:00"}
+    speakeasy-default-verify-payee:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "business-account-payee-verification", "creditorBankAccount": {"accountHolderName": "Jan Jansen", "format": "iban", "accountNumber": "NL02ABNA0123456789"}, "verificationResult": {"outcome": "not-available", "accountHolderName": "Jan Jansen"}, "createdAt": "2024-03-20T09:13:37+00:00"}
+        "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "503":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Profiles.Create()`:  `error.status[403]` **Added**
-  * `Client.Profiles.Update()`:  `error.status[403]` **Added**
+  * `Client.Transfers.Create()`: **Added**
+  * `Client.Transfers.Get()`: **Added**
+  * `Client.VerifyPayees.Create()`: **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

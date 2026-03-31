@@ -36,6 +36,8 @@ func newPermissions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // Retrieve a list of all permissions available to the current access token.
 //
 // The results are **not** paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListPermissionsResponse, error) {
 	request := operations.ListPermissionsRequest{
 		IdempotencyKey: idempotencyKey,
@@ -94,7 +96,7 @@ func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -279,6 +281,8 @@ func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...
 
 // Get permission
 // Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPermissionResponse, error) {
 	request := operations.GetPermissionRequest{
 		PermissionID:   permissionID,
@@ -347,7 +351,7 @@ func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bo
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
