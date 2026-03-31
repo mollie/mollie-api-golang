@@ -7,39 +7,17 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type ListSettlementCapturesGlobals struct {
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
-}
-
-func (l *ListSettlementCapturesGlobals) GetTestmode() *bool {
-	if l == nil {
-		return nil
-	}
-	return l.Testmode
-}
-
 type ListSettlementCapturesRequest struct {
 	// Provide the ID of the related settlement.
 	SettlementID string `pathParam:"style=simple,explode=false,name=settlementId"`
-	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-	// result set.
+	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+	// the result set.
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// This endpoint allows you to embed additional resources via the
 	// `embed` query string parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
@@ -72,13 +50,6 @@ func (l *ListSettlementCapturesRequest) GetEmbed() *string {
 	return l.Embed
 }
 
-func (l *ListSettlementCapturesRequest) GetTestmode() *bool {
-	if l == nil {
-		return nil
-	}
-	return l.Testmode
-}
-
 func (l *ListSettlementCapturesRequest) GetIdempotencyKey() *string {
 	if l == nil {
 		return nil
@@ -88,12 +59,12 @@ func (l *ListSettlementCapturesRequest) GetIdempotencyKey() *string {
 
 type ListSettlementCapturesEmbedded struct {
 	// An array of capture objects.
-	Captures []components.ListCaptureResponse `json:"captures"`
+	Captures []components.ListSettlementCaptureResponse `json:"captures"`
 }
 
-func (l *ListSettlementCapturesEmbedded) GetCaptures() []components.ListCaptureResponse {
+func (l *ListSettlementCapturesEmbedded) GetCaptures() []components.ListSettlementCaptureResponse {
 	if l == nil {
-		return []components.ListCaptureResponse{}
+		return []components.ListSettlementCaptureResponse{}
 	}
 	return l.Captures
 }

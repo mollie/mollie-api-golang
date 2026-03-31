@@ -7,39 +7,17 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type ListSettlementRefundsGlobals struct {
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
-}
-
-func (l *ListSettlementRefundsGlobals) GetTestmode() *bool {
-	if l == nil {
-		return nil
-	}
-	return l.Testmode
-}
-
 type ListSettlementRefundsRequest struct {
 	// Provide the ID of the related settlement.
 	SettlementID string `pathParam:"style=simple,explode=false,name=settlementId"`
-	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-	// result set.
+	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+	// the result set.
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// This endpoint allows embedding related API items by appending the following values via the `embed` query string
 	// parameter.
 	Embed *string `queryParam:"style=form,explode=true,name=embed"`
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
@@ -72,13 +50,6 @@ func (l *ListSettlementRefundsRequest) GetEmbed() *string {
 	return l.Embed
 }
 
-func (l *ListSettlementRefundsRequest) GetTestmode() *bool {
-	if l == nil {
-		return nil
-	}
-	return l.Testmode
-}
-
 func (l *ListSettlementRefundsRequest) GetIdempotencyKey() *string {
 	if l == nil {
 		return nil
@@ -88,18 +59,17 @@ func (l *ListSettlementRefundsRequest) GetIdempotencyKey() *string {
 
 type ListSettlementRefundsEmbedded struct {
 	// An array of refund objects.
-	Refunds []components.ListEntityRefund `json:"refunds"`
+	Refunds []components.ListSettlementRefundResponse `json:"refunds"`
 }
 
-func (l *ListSettlementRefundsEmbedded) GetRefunds() []components.ListEntityRefund {
+func (l *ListSettlementRefundsEmbedded) GetRefunds() []components.ListSettlementRefundResponse {
 	if l == nil {
-		return []components.ListEntityRefund{}
+		return []components.ListSettlementRefundResponse{}
 	}
 	return l.Refunds
 }
 
-// ListSettlementRefundsResponseBody - A list of refund objects. For a complete reference of the refund object, refer to the
-// [Get refund endpoint](get-refund) documentation.
+// ListSettlementRefundsResponseBody - A list of refund objects.
 type ListSettlementRefundsResponseBody struct {
 	// The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
 	// as well.
@@ -135,8 +105,7 @@ func (l *ListSettlementRefundsResponseBody) GetLinks() components.ListLinks {
 
 type ListSettlementRefundsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A list of refund objects. For a complete reference of the refund object, refer to the
-	// [Get refund endpoint](get-refund) documentation.
+	// A list of refund objects.
 	Object *ListSettlementRefundsResponseBody
 
 	Next func() (*ListSettlementRefundsResponse, error)

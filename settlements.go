@@ -1045,7 +1045,6 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 func (s *Settlements) ListPayments(ctx context.Context, request operations.ListSettlementPaymentsRequest, opts ...operations.Option) (*operations.ListSettlementPaymentsResponse, error) {
 	globals := operations.ListSettlementPaymentsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
-		Testmode:  s.sdkConfiguration.Globals.Testmode,
 	}
 
 	o := operations.Options{}
@@ -1336,10 +1335,6 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 //
 // If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListSettlementCapturesRequest, opts ...operations.Option) (*operations.ListSettlementCapturesResponse, error) {
-	globals := operations.ListSettlementCapturesGlobals{
-		Testmode: s.sdkConfiguration.Globals.Testmode,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1359,7 +1354,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/captures", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/captures", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1396,9 +1391,9 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1630,10 +1625,6 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 //
 // If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSettlementRefundsRequest, opts ...operations.Option) (*operations.ListSettlementRefundsResponse, error) {
-	globals := operations.ListSettlementRefundsGlobals{
-		Testmode: s.sdkConfiguration.Globals.Testmode,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1653,7 +1644,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/refunds", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/refunds", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1690,9 +1681,9 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
+	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
