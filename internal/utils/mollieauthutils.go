@@ -40,7 +40,7 @@ func extractSecurityToken(val interface{}) *string {
 		}
 		v = v.Elem()
 	}
-	for _, fieldName := range []string{"APIKey", "OAuth"} {
+	for _, fieldName := range []string{"APIKey", "OrganizationAccessToken", "OAuth"} {
 		field := v.FieldByName(fieldName)
 		if field.IsValid() && field.Kind() == reflect.Ptr && !field.IsNil() {
 			s := field.Elem().String()
