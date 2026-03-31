@@ -38,6 +38,8 @@ func newProfiles(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
 // can use this endpoint to automate profile creation.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Profiles) Create(ctx context.Context, profileRequest components.ProfileRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
 	request := operations.CreateProfileRequest{
 		IdempotencyKey: idempotencyKey,
@@ -104,7 +106,7 @@ func (s *Profiles) Create(ctx context.Context, profileRequest components.Profile
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -293,6 +295,8 @@ func (s *Profiles) Create(ctx context.Context, profileRequest components.Profile
 // Retrieve a list of all of your profiles.
 //
 // The results are paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListProfilesResponse, error) {
 	request := operations.ListProfilesRequest{
 		From:           from,
@@ -362,7 +366,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -585,6 +589,8 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 
 // Get profile
 // Retrieve a single profile by its ID.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	request := operations.GetProfileRequest{
 		ProfileID:      profileID,
@@ -653,7 +659,7 @@ func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, id
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -843,6 +849,8 @@ func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, id
 //
 // Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
 // Alternatively, you can use this endpoint to automate profile management.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Profiles) Update(ctx context.Context, profileID string, requestBody operations.UpdateProfileRequestBody, idempotencyKey *string, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	request := operations.UpdateProfileRequest{
 		ProfileID:      profileID,
@@ -910,7 +918,7 @@ func (s *Profiles) Update(ctx context.Context, profileID string, requestBody ope
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1101,6 +1109,8 @@ func (s *Profiles) Update(ctx context.Context, profileID string, requestBody ope
 
 // Delete profile
 // Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
 	request := operations.DeleteProfileRequest{
 		ProfileID:      profileID,
@@ -1160,7 +1170,7 @@ func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1332,6 +1342,8 @@ func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey 
 //
 // For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
 // documentation.
+//
+// If set, this operation will use [Security.APIKey] from the global security.
 func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentProfileResponse, error) {
 	request := operations.GetCurrentProfileRequest{
 		IdempotencyKey: idempotencyKey,
@@ -1390,7 +1402,7 @@ func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey"); err != nil {
 		return nil, err
 	}
 

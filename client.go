@@ -3,7 +3,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.869.25
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.879.1
 
 import (
 	"context"
@@ -78,6 +78,8 @@ type Client struct {
 	Mandates         *Mandates
 	Subscriptions    *Subscriptions
 	SalesInvoices    *SalesInvoices
+	Transfers        *Transfers
+	VerifyPayees     *VerifyPayees
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -174,9 +176,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.12.2",
+		SDKVersion: "0.12.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.12.2 2.869.25 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.12.3 2.879.1 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -229,6 +231,8 @@ func New(opts ...SDKOption) *Client {
 	sdk.Mandates = newMandates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SalesInvoices = newSalesInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Transfers = newTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.VerifyPayees = newVerifyPayees(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }

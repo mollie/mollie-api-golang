@@ -37,6 +37,8 @@ func newSettlements(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // Retrieve a list of all your settlements.
 //
 // The results are paginated.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) List(ctx context.Context, request operations.ListSettlementsRequest, opts ...operations.Option) (*operations.ListSettlementsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -100,7 +102,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -334,6 +336,8 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
 	request := operations.GetSettlementRequest{
 		SettlementID:   settlementID,
@@ -393,7 +397,7 @@ func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyK
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -585,6 +589,8 @@ func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyK
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOpenSettlementResponse, error) {
 	request := operations.GetOpenSettlementRequest{
 		IdempotencyKey: idempotencyKey,
@@ -643,7 +649,7 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -809,6 +815,8 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 //
 // For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 // [balance transactions](list-balance-transactions) endpoint.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetNextSettlementResponse, error) {
 	request := operations.GetNextSettlementRequest{
 		IdempotencyKey: idempotencyKey,
@@ -867,7 +875,7 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1032,6 +1040,8 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 //
 // For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
 // [List captures endpoint](list-captures) endpoint instead.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListPayments(ctx context.Context, request operations.ListSettlementPaymentsRequest, opts ...operations.Option) (*operations.ListSettlementPaymentsResponse, error) {
 	globals := operations.ListSettlementPaymentsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -1100,7 +1110,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1323,6 +1333,8 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 // Retrieve all captures included in the given settlement.
 //
 // The response is in the same format as the response of the [List captures endpoint](list-captures).
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListSettlementCapturesRequest, opts ...operations.Option) (*operations.ListSettlementCapturesResponse, error) {
 	globals := operations.ListSettlementCapturesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -1390,7 +1402,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1615,6 +1627,8 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 // Retrieve all refunds 'deducted' from the given settlement.
 //
 // The response is in the same format as the response of the [List refunds endpoint](list-refunds).
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSettlementRefundsRequest, opts ...operations.Option) (*operations.ListSettlementRefundsResponse, error) {
 	globals := operations.ListSettlementRefundsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -1682,7 +1696,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1907,6 +1921,8 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 // Retrieve all chargebacks 'deducted' from the given settlement.
 //
 // The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Settlements) ListChargebacks(ctx context.Context, request operations.ListSettlementChargebacksRequest, opts ...operations.Option) (*operations.ListSettlementChargebacksResponse, error) {
 	globals := operations.ListSettlementChargebacksGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -1974,7 +1990,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

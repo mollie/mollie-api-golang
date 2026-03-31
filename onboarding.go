@@ -34,6 +34,8 @@ func newOnboarding(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *ho
 
 // Get onboarding status
 // Retrieve the onboarding status of the currently authenticated organization.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOnboardingStatusResponse, error) {
 	request := operations.GetOnboardingStatusRequest{
 		IdempotencyKey: idempotencyKey,
@@ -92,7 +94,7 @@ func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...op
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -257,6 +259,8 @@ func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...op
 // Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
 // onboarding status is `needs-data`.
 // Information that the merchant has entered in their dashboard will not be overwritten.
+//
+// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
 func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, requestBody *operations.SubmitOnboardingDataRequestBody, opts ...operations.Option) (*operations.SubmitOnboardingDataResponse, error) {
 	request := operations.SubmitOnboardingDataRequest{
 		IdempotencyKey: idempotencyKey,
@@ -323,7 +327,7 @@ func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, request
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
