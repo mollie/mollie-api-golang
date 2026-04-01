@@ -448,6 +448,58 @@ func main() {
     }
 }
 ```
+### Example Usage: list-settlement-payments-200-1
+
+<!-- UsageSnippet language="go" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-settlement-payments-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithProfileID("pfl_5B8cwPMGnU"),
+        client.WithSecurity(components.Security{
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Settlements.ListPayments(ctx, operations.ListSettlementPaymentsRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("tr_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
+        Sort: components.SortingDesc.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -576,6 +628,56 @@ func main() {
     }
 }
 ```
+### Example Usage: list-settlement-captures-200-1
+
+<!-- UsageSnippet language="go" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-settlement-captures-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Settlements.ListCaptures(ctx, operations.ListSettlementCapturesRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("cpt_vytxeTZskVKR7C7WgdSP3d"),
+        Limit: client.Pointer[int64](50),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -602,7 +704,7 @@ Retrieve all refunds 'deducted' from the given settlement.
 
 The response is in the same format as the response of the [List refunds endpoint](list-refunds).
 
-### Example Usage
+### Example Usage: list-refunds-200-1
 
 <!-- UsageSnippet language="go" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-refunds-200-1" -->
 ```go
@@ -631,6 +733,56 @@ func main() {
         From: client.Pointer("re_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+### Example Usage: list-settlement-refunds-200-1
+
+<!-- UsageSnippet language="go" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-settlement-refunds-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Settlements.ListRefunds(ctx, operations.ListSettlementRefundsRequest{
+        SettlementID: "stl_5B8cwPMGnU",
+        From: client.Pointer("re_5B8cwPMGnU"),
+        Limit: client.Pointer[int64](50),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {
