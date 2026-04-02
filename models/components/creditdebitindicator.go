@@ -3,7 +3,7 @@
 
 package components
 
-// CreditDebitIndicator - Indicates whether the transfer is a credit or debit transaction from the perspective of the account holder.
+// CreditDebitIndicator - Indicates whether the entry is a credit or debit from the perspective of the account holder.
 type CreditDebitIndicator string
 
 const (
