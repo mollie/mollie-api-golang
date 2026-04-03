@@ -3,34 +3,34 @@
 
 package components
 
-// Documentation - The URL to the generic Mollie API error handling guide.
-type Documentation struct {
+// ErrorResponseDocumentation - The URL to the generic Mollie API error handling guide.
+type ErrorResponseDocumentation struct {
 	Href string `json:"href"`
 	Type string `json:"type"`
 }
 
-func (d *Documentation) GetHref() string {
-	if d == nil {
+func (e *ErrorResponseDocumentation) GetHref() string {
+	if e == nil {
 		return ""
 	}
-	return d.Href
+	return e.Href
 }
 
-func (d *Documentation) GetType() string {
-	if d == nil {
+func (e *ErrorResponseDocumentation) GetType() string {
+	if e == nil {
 		return ""
 	}
-	return d.Type
+	return e.Type
 }
 
 type ErrorResponseLinks struct {
 	// The URL to the generic Mollie API error handling guide.
-	Documentation Documentation `json:"documentation"`
+	Documentation ErrorResponseDocumentation `json:"documentation"`
 }
 
-func (e *ErrorResponseLinks) GetDocumentation() Documentation {
+func (e *ErrorResponseLinks) GetDocumentation() ErrorResponseDocumentation {
 	if e == nil {
-		return Documentation{}
+		return ErrorResponseDocumentation{}
 	}
 	return e.Documentation
 }

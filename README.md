@@ -447,6 +447,13 @@ s := client.New(
 * [Create](docs/sdks/transfers/README.md#create) - Create transfer
 * [Get](docs/sdks/transfers/README.md#get) - Get transfer
 
+### [UnmatchedCreditTransfers](docs/sdks/unmatchedcredittransfers/README.md)
+
+* [List](docs/sdks/unmatchedcredittransfers/README.md#list) - List unmatched credit transfers
+* [Get](docs/sdks/unmatchedcredittransfers/README.md#get) - Get unmatched credit transfer
+* [Match](docs/sdks/unmatchedcredittransfers/README.md#match) - Match unmatched credit transfer
+* [Return](docs/sdks/unmatchedcredittransfers/README.md#return) - Return unmatched credit transfer
+
 ### [VerifyPayees](docs/sdks/verifypayees/README.md)
 
 * [Create](docs/sdks/verifypayees/README.md#create) - Verify Payee

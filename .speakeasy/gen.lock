@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 9c8d68bcac04640ae868cf7df6ae6735
+  docChecksum: aebcd0c903c738fa4c5ec6d2b5ed2423
   docVersion: 1.0.0
-  speakeasyVersion: 1.761.0
-  generationVersion: 2.879.1
-  releaseVersion: 0.12.6
-  configChecksum: db6fa6e3036f16eaa76caa13082b50e0
+  speakeasyVersion: 1.761.1
+  generationVersion: 2.879.6
+  releaseVersion: 0.12.7
+  configChecksum: cfd27ac71eefa63a733be35c57eee08c
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 58eba314-1cab-42be-92a7-26808867adc2
-  pristine_commit_hash: c9a044c2e9731d6bafd23141bf8e3df190ce9c46
-  pristine_tree_hash: 6d9b804d2c208950f3dbb51d61f0969467541d2b
+  generation_id: fc6d47af-2c4f-4dd0-8cbd-4e1b92f9b73d
+  pristine_commit_hash: 046b374a2528e746aff92b5df63c3aa2211ddd68
+  pristine_tree_hash: d7c07ff2fa6149f968c0355827977a20e9d8ce76
 features:
   go:
     additionalDependencies: 0.1.0
@@ -84,8 +84,8 @@ trackedFiles:
     pristine_git_object: fa43fb4c8cb9c4dbb73cb863a7b2217da905dde5
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0631df7e968856389169f612dc46168dc85c8686
-    pristine_git_object: 42197ded9d65b06343ebe533ee35c43223b2c440
+    last_write_checksum: sha1:966ef2d9c219f277501cb7c8eb066a9bab8f47d0
+    pristine_git_object: 8b35c16842a85c193f54bb7159453cd8cfd3783f
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:4c5ea115089d52b3130d229bbb5ba09931e84fa5
@@ -122,6 +122,10 @@ trackedFiles:
     id: f87a6ebbfd40
     last_write_checksum: sha1:110fde4a4c51d842f84857f17b45671708cd054a
     pristine_git_object: ddbd79966c5b18bf93d20aa7de0864330d29a86a
+  docs/models/components/action.md:
+    id: 4c3e678208a3
+    last_write_checksum: sha1:9863ce73965df3d807ad06107b87304139ecf244
+    pristine_git_object: f84f252f7a1f39a021e09a673c26cc03f5082b2e
   docs/models/components/address.md:
     id: 897900884ecb
     last_write_checksum: sha1:7690a748433c4d6b34d71bf0e5b72212817a2751
@@ -370,10 +374,6 @@ trackedFiles:
     id: a4640ab01b29
     last_write_checksum: sha1:64c299f5ce9c7e6d11c4a6cf6b2e7beaedd5f443
     pristine_git_object: 3a54974cf6267fc5e9a31fedeac4b2d9b94c3286
-  docs/models/components/documentation.md:
-    id: d4aba5c2cc91
-    last_write_checksum: sha1:2554e3259d50e3aa8a4562f5e8004761c753cec7
-    pristine_git_object: a55f7abd31f553af55f12221a2ede57d85f07e45
   docs/models/components/embedded.md:
     id: 87d4692e296f
     last_write_checksum: sha1:a4ac0e46273ba5f2256fe2804646d9cdab076dd4
@@ -690,6 +690,34 @@ trackedFiles:
     id: "775922840112"
     last_write_checksum: sha1:51e2bea4df7434ced022ded328a4b66a8c843180
     pristine_git_object: 5b125e2a54972b13b4672ac8ea05fe17911af0f4
+  docs/models/components/entityunmatchedcredittransfer.md:
+    id: b81d91276e1b
+    last_write_checksum: sha1:50a7995eaba3f44716b814c2389da49391d0c84a
+    pristine_git_object: 4a0e26c84e0b8ba4ce55c208961ff8655fa4d269
+  docs/models/components/entityunmatchedcredittransferdocumentation.md:
+    id: f33ab9c89364
+    last_write_checksum: sha1:f88c5f958170e2c9f6732e81bbf32eb998f4babc
+    pristine_git_object: ac4ab727e80e7b2e369c8d7643b53317668b0116
+  docs/models/components/entityunmatchedcredittransferlinks.md:
+    id: c4e2d0d787ea
+    last_write_checksum: sha1:a26776118e1dc44f6dd44e23ae79cc9287a3d9be
+    pristine_git_object: 7592a10542d64cb835e6b1566e5242e299187b46
+  docs/models/components/entityunmatchedcredittransferreferences.md:
+    id: 46e360c4183b
+    last_write_checksum: sha1:7d3db8ae0d9a0a89c1a997d1401c08cf2a8f7261
+    pristine_git_object: 63451331aa44eb112ae222287653bd227155d7e6
+  docs/models/components/entityunmatchedcredittransferremittanceinformation.md:
+    id: 722d9b176d06
+    last_write_checksum: sha1:ada129acd21c418a7fb86e41bf9c7404a4ff3055
+    pristine_git_object: 06054d4835fb3a49bb7d938dbf673724671dc2b5
+  docs/models/components/entityunmatchedcredittransferself.md:
+    id: dcc7c7f3d803
+    last_write_checksum: sha1:f13434f2282f713ddee0f919b42e3c0117bb6450
+    pristine_git_object: 09f50ff25d158f7e8c93a00b1c6e7305b04a609b
+  docs/models/components/entityunmatchedcredittransfersource.md:
+    id: ca3497eb623f
+    last_write_checksum: sha1:c3003878accaef43a1c3cf7ae86d3f963e80a2c3
+    pristine_git_object: b6bf91e7ef2f9d3581abe9a016c83d484e93334f
   docs/models/components/entitywebhook.md:
     id: 486c016dd90c
     last_write_checksum: sha1:c9fd54057ba29418040563882e7755676eef89c4
@@ -710,10 +738,14 @@ trackedFiles:
     id: e5a4ca2169c0
     last_write_checksum: sha1:9f0d9ae1375ad4d8d1cf29d6290eff3519cf35a2
     pristine_git_object: 48308d99642bbebee2005bd18d56b7313f67475a
+  docs/models/components/errorresponsedocumentation.md:
+    id: 005bbef7b3b3
+    last_write_checksum: sha1:7e5772c4c949023ea8c255b3b9dbf9e698536f71
+    pristine_git_object: e2d53b354614c99800f9cab7e947e4f72ca95077
   docs/models/components/errorresponselinks.md:
     id: 99c902ac47d1
-    last_write_checksum: sha1:966096d236603f2b584086b9f5e4c9fa19739988
-    pristine_git_object: 20eeb7a1c3d012e030762e9a436e7e9f4a506877
+    last_write_checksum: sha1:3ad0fdc97deda66589a44446081e2914199dde94
+    pristine_git_object: 818c6e4b155edc231b0ba2a0709f5918afb541b7
   docs/models/components/failedpayment.md:
     id: 9c17cd202062
     last_write_checksum: sha1:9fd2b22b611d16ea05d2d162aa25bfbb18c2727d
@@ -990,6 +1022,30 @@ trackedFiles:
     id: 244bf5e845a2
     last_write_checksum: sha1:f4db30a2f413db559c1936538fc19bf89a92d3ab
     pristine_git_object: 5a77b76dba28d1b813840bff39d114a2ac2c683c
+  docs/models/components/listentityunmatchedcredittransfer.md:
+    id: f4b548b952ae
+    last_write_checksum: sha1:903a989c68774a030a27e466f6bf744199890519
+    pristine_git_object: 034db41374eaf4ef1cac57fb91535539457de2b4
+  docs/models/components/listentityunmatchedcredittransferlinks.md:
+    id: 0de8f706623b
+    last_write_checksum: sha1:227fa555925b1b33b56e1fbb09c088cdf7e1b890
+    pristine_git_object: 43feaddb9aae95556f9d93be655265aca11d8f92
+  docs/models/components/listentityunmatchedcredittransferreferences.md:
+    id: 1d2146006f52
+    last_write_checksum: sha1:dcecc97ab9b11bf42b4e025d8822b6220a27776e
+    pristine_git_object: 9faa54da410906db06f36c2ec91cc7ee26c6e742
+  docs/models/components/listentityunmatchedcredittransferremittanceinformation.md:
+    id: ec71409b6666
+    last_write_checksum: sha1:27f0eb4fb549b2cde5b1cb31a06c12e48d5cfa88
+    pristine_git_object: 6961952d8cc8e57d3535e8050358e489aac76bbc
+  docs/models/components/listentityunmatchedcredittransferself.md:
+    id: 2b78b333c6a0
+    last_write_checksum: sha1:621cc8b19c0b02d9ffa0d6ebbaab3a104832ec4c
+    pristine_git_object: fc4ac1e12d2e1cdc286366eda983b28faf1a4fb6
+  docs/models/components/listentityunmatchedcredittransfersource.md:
+    id: 1913e3b2d105
+    last_write_checksum: sha1:60c7e6dc7e166c3ff19d99108354e9d54e72d621
+    pristine_git_object: 9e6294ee5b0176fb1bc9416014ee0dece2ebc336
   docs/models/components/listentitywebhook.md:
     id: 74449e06b6b0
     last_write_checksum: sha1:7f37c25463b1ea0099695959cd9c062f9c1fd8f6
@@ -2014,6 +2070,38 @@ trackedFiles:
     id: f0b8dd1c1a1c
     last_write_checksum: sha1:e30816b485267d278a81b305349ba3e152fc3e6d
     pristine_git_object: 4cc4859c1d185705f7ff98bbeef36e81b71a2cd4
+  docs/models/components/unmatchedcredittransferactionresponse.md:
+    id: aed758d923b9
+    last_write_checksum: sha1:bc9c3820c55136bb7f3480dcc8dee447d75d6fe8
+    pristine_git_object: 4bda8d0cc987fe47d11a3939df814fbb2184e942
+  docs/models/components/unmatchedcredittransferactionresponsedetails.md:
+    id: ca2c4f906317
+    last_write_checksum: sha1:4d07b017686dd3ce9245de77cf703f6fa1067434
+    pristine_git_object: d31cf27e93307e4a002167c2b0ca0088a7f6f283
+  docs/models/components/unmatchedcredittransferactionresponsedocumentation.md:
+    id: 3f3c076b58c6
+    last_write_checksum: sha1:24953cfd2b5a6c73ecdc75f49b4d97c92fe3aaa6
+    pristine_git_object: 5eec85cfe372c8a49fb06939dcaf5502682fff62
+  docs/models/components/unmatchedcredittransferactionresponselinks.md:
+    id: 73bed4c50cb1
+    last_write_checksum: sha1:e8d478aaabe2d59b2f9f982830c1692d10f0fab3
+    pristine_git_object: b61e52a222805b79c2538581045ad3e5f566a56f
+  docs/models/components/unmatchedcredittransferactionresponseself.md:
+    id: c86ae4a5608c
+    last_write_checksum: sha1:53957ead8fab6633c498ea0823b6068dfbc3475b
+    pristine_git_object: a319f764cb69388a49f27d5c96d9594c9e44dea2
+  docs/models/components/unmatchedcredittransferactionresponsestatus.md:
+    id: 11243e66c69d
+    last_write_checksum: sha1:d119e88beda87d945d1f8e5e05dbc571853557bb
+    pristine_git_object: c5e2b155a4afd9548686d9b96e92991b653f9762
+  docs/models/components/unmatchedcredittransfermatchrequest.md:
+    id: 384cc6f451e4
+    last_write_checksum: sha1:c85e0bcae7257a38dd872eabd0910186c9b4d13a
+    pristine_git_object: 22c385dde81d5bbfa1fb6d3f616644a064ae2d84
+  docs/models/components/unmatchedcredittransferstatus.md:
+    id: 695390dfb405
+    last_write_checksum: sha1:65c12ce1a634fed0cbbb5070fbadca6faba62def
+    pristine_git_object: fa185a953f5daf6f1c06c39646ba60f9584c3bf5
   docs/models/components/urlnullable.md:
     id: 81d14402ae19
     last_write_checksum: sha1:7d137d8fc07d181b5c9548d7fbe1acc9daeeae8e
@@ -2658,6 +2746,14 @@ trackedFiles:
     id: 3b2f9fee9c5e
     last_write_checksum: sha1:d22f2b308d5ec42e87ef5983d7a0d3fc96d6ea63
     pristine_git_object: fcca8e005cf6577805160a60e6a09b9d3c0070f7
+  docs/models/operations/getunmatchedcredittransferrequest.md:
+    id: c8f5cd33327d
+    last_write_checksum: sha1:a742d24da0b4b398ffdb0dea0d8f90d13e933c20
+    pristine_git_object: 044ed93f70aee97380f2679fe045dd0b8b883862
+  docs/models/operations/getunmatchedcredittransferresponse.md:
+    id: a1ee6d9c1491
+    last_write_checksum: sha1:fc9d919b6512644c9ca221de5ee5686103425851
+    pristine_git_object: 04a1c54dafe2c2dd36803e8c4f6690a26d02bae6
   docs/models/operations/getwebhookeventglobals.md:
     id: 65e17c2cfeea
     last_write_checksum: sha1:d6629ef5c61a4668c1109c727fcd9ed4420d3763
@@ -3314,6 +3410,22 @@ trackedFiles:
     id: d84648f97b18
     last_write_checksum: sha1:aca2039edb20bffafed4296db6a3fa94ab2c96ee
     pristine_git_object: cf62f08b32e2ee11601bea7570809f6eae1af334
+  docs/models/operations/listunmatchedcredittransfersembedded.md:
+    id: ae10f452faba
+    last_write_checksum: sha1:bfa9eec6465f4c1e280e11b566c8f1ec25f7bca4
+    pristine_git_object: f687547bb75af920748ba672425efe5883dbb620
+  docs/models/operations/listunmatchedcredittransfersrequest.md:
+    id: 1302e776ffeb
+    last_write_checksum: sha1:baa032578e96b855f048ec154055a63cf55724be
+    pristine_git_object: 466d30a9bbe058cd207b64fab1975af9ef2ae7f6
+  docs/models/operations/listunmatchedcredittransfersresponse.md:
+    id: 4fd82acc7c9e
+    last_write_checksum: sha1:fe2be33fb1a19f1231b96fc398eaf3b8bbebc3c1
+    pristine_git_object: de69be6e8c8b615d2b15586ecc616170fdadab2a
+  docs/models/operations/listunmatchedcredittransfersresponsebody.md:
+    id: f73f54e02162
+    last_write_checksum: sha1:f2e02de6eeb51bc572e4b0900819b00b840a5d24
+    pristine_git_object: 8b5d8935be6c9a1943e1177143637ab996e6c968
   docs/models/operations/listwebhooksembedded.md:
     id: b9954be1eb4f
     last_write_checksum: sha1:c1d1b1d3f0117214d988ced197ed959708089cdf
@@ -3334,6 +3446,14 @@ trackedFiles:
     id: d6a77b9b10c8
     last_write_checksum: sha1:b42325db2449bdd3f87672a78554f7f724ede501
     pristine_git_object: 06e2703390cb1dfeb1d85643439a35067fca8206
+  docs/models/operations/matchunmatchedcredittransferrequest.md:
+    id: 3d74c260b815
+    last_write_checksum: sha1:8cd836da330c631abaeb11ee58472a82e8249098
+    pristine_git_object: ca01e7a509a2db3815b529662960edb3d02279de
+  docs/models/operations/matchunmatchedcredittransferresponse.md:
+    id: cc1ce8a61054
+    last_write_checksum: sha1:8cbba3d4e97bfa2a294ca24a3d7fdf4a1e70ee41
+    pristine_git_object: 108730c0bce1d354027106f82f7110ddc7a9a1ee
   docs/models/operations/option.md:
     id: 2ac1bd52a5fb
     last_write_checksum: sha1:e55420f0442ba049b40a3abfb35363ecb4f8c782
@@ -3414,6 +3534,14 @@ trackedFiles:
     id: 17d91a4135a7
     last_write_checksum: sha1:563365a06a2e0e5350eced2630f40d3c7c6695df
     pristine_git_object: 9fc64f9b03b873d8279931850b86f5091c32f3c6
+  docs/models/operations/returnunmatchedcredittransferrequest.md:
+    id: f85d7cf246ce
+    last_write_checksum: sha1:ba122b677b16c1383ca643a0f5dab268281b56f9
+    pristine_git_object: 4b4dbf9e9ed44ad6dc0956371ffeece101e0b3f2
+  docs/models/operations/returnunmatchedcredittransferresponse.md:
+    id: cd4b4fc50878
+    last_write_checksum: sha1:e971387a2ce91bd4a96f7974eeafea50cbab0ee7
+    pristine_git_object: dc63e52f7b5f804e6ebacc406ac27fbe6dda35aa
   docs/models/operations/revokemandaterequest.md:
     id: c47ab176ad64
     last_write_checksum: sha1:550727d8d216c62cdf2e058e25552771eea354c7
@@ -3654,6 +3782,10 @@ trackedFiles:
     id: f56918861798
     last_write_checksum: sha1:ebaca212dc0929be511336ccd8680a1061f170a7
     pristine_git_object: 641aacd59bd70160411625d8e2e4ed6755e2e063
+  docs/sdks/unmatchedcredittransfers/README.md:
+    id: e15033c49a61
+    last_write_checksum: sha1:da04771dfcb1a44323e11dabf4c85f51ab60d48e
+    pristine_git_object: a48be4783b6dc3708da708c91383e6c63e1cc1ab
   docs/sdks/verifypayees/README.md:
     id: cd1963c91dc9
     last_write_checksum: sha1:0ec1b084a02d9bfc5deeeff01a1bd2d1a3d78fc0
@@ -4022,6 +4154,10 @@ trackedFiles:
     id: 020d65e9306f
     last_write_checksum: sha1:1a6cc8e878d1eaaca260efaf79cd2241d78f7320
     pristine_git_object: 479525423f7a2a33a13651aa7c5acd5f403f55aa
+  models/components/entityunmatchedcredittransfer.go:
+    id: 087af6a449dd
+    last_write_checksum: sha1:a674142197e8cafb72138b28d4f5359559b9d64e
+    pristine_git_object: d53f7247a779aac435729407364582645997f5db
   models/components/entitywebhook.go:
     id: 3871d565a114
     last_write_checksum: sha1:7316e175ad66067bd531bbef7dab923eacc2bc62
@@ -4032,8 +4168,8 @@ trackedFiles:
     pristine_git_object: 00e84213e67c7279908fbf84b182b65e8a719d68
   models/components/errorresponse.go:
     id: 789ac133631c
-    last_write_checksum: sha1:4d1696ad26bf7e930582408325e007784bfa4774
-    pristine_git_object: a72f37ba18bc36773c9c7d2974ae53cbd619312b
+    last_write_checksum: sha1:a04f58af488697abcf77bffbff0bc5dd781e6b6e
+    pristine_git_object: 6399a564fab3fb7151147a2af98e6bf4bf627ed2
   models/components/httpmetadata.go:
     id: 790bad4a7abb
     last_write_checksum: sha1:064731f37d0de7cfad82afddd8805486d1a0c31a
@@ -4090,6 +4226,10 @@ trackedFiles:
     id: a7aa60e27952
     last_write_checksum: sha1:f1413cc988c9c86f98dafd81751d5e962c1ac0c3
     pristine_git_object: b28916921cb367793a4cdf8ca41371b55c78a40a
+  models/components/listentityunmatchedcredittransfer.go:
+    id: ac134c3398ea
+    last_write_checksum: sha1:50c92914eb8fadba56e0014191698d4d09c78a92
+    pristine_git_object: 2e975f6ba5967dbd76c6766b95fd318a49d1ea4b
   models/components/listentitywebhook.go:
     id: b7eafdc68993
     last_write_checksum: sha1:80229fd4b5ad2b135315688d416ee1b4c8d174ae
@@ -4590,6 +4730,18 @@ trackedFiles:
     id: bbad87367ebe
     last_write_checksum: sha1:d6072f20c33b96ef3f50de312b49601f126f8614
     pristine_git_object: e679f67ac6e7496561779dc10ba9b227e35618f4
+  models/components/unmatchedcredittransferactionresponse.go:
+    id: 3ed422094fc2
+    last_write_checksum: sha1:5883c97c9d5a722b72e7f90888179156841e84a0
+    pristine_git_object: 9293fe295cff3c749b05ea4e64fab1320ffd5cc0
+  models/components/unmatchedcredittransfermatchrequest.go:
+    id: cdc11cef8d73
+    last_write_checksum: sha1:b29f7d260e937ece46148a0f7589cb8b6c3f82cc
+    pristine_git_object: 3d98c79d96e830782903d179c4ca1fcef928aa43
+  models/components/unmatchedcredittransferstatus.go:
+    id: 78cdda4df14c
+    last_write_checksum: sha1:01f5242b796ba0aa99591ae901a8a52c386b856b
+    pristine_git_object: 298a04bd8b944c23b84423130ac674ca5b3389f2
   models/components/url_.go:
     id: bc0fb0595814
     last_write_checksum: sha1:79b90dbee147b3f6fde3d141330beca4f0b0290a
@@ -4838,6 +4990,10 @@ trackedFiles:
     id: bc29d7126365
     last_write_checksum: sha1:1405496af74d98e48a6b422e652328d737805a73
     pristine_git_object: eb41cf96b29a07fd8ed6417710a6cd049e3db74d
+  models/operations/getunmatchedcredittransfer.go:
+    id: 522c2f515674
+    last_write_checksum: sha1:daf97b23a45b7c8d45c58932c0280616a067d370
+    pristine_git_object: 112271950740b2a888df587d254f82b5f15f9ddb
   models/operations/getwebhook.go:
     id: 59481f8939bf
     last_write_checksum: sha1:a6c95a15c0033318900b8f8a8b9127fa8b022073
@@ -4974,10 +5130,18 @@ trackedFiles:
     id: e69acb4b33e0
     last_write_checksum: sha1:a445cea02806e1bbb1db9075b1e0a31d5837c1cd
     pristine_git_object: 69e63ff71e8525cfbd42a319e066077ee6d6aa90
+  models/operations/listunmatchedcredittransfers.go:
+    id: 51fd4f1c5375
+    last_write_checksum: sha1:a1da8b999543f6b76180b55896c3d4abb5b48186
+    pristine_git_object: 131fc8bd3b9d0375203cd420a9ecbbbf498f0762
   models/operations/listwebhooks.go:
     id: 440f17404bb5
     last_write_checksum: sha1:038c424d0e7f8affa7f15f1a0feb18bdf29d73be
     pristine_git_object: 752409ca761db4a0836730f1bd27c2a827fac8cb
+  models/operations/matchunmatchedcredittransfer.go:
+    id: 444c31dc1f2c
+    last_write_checksum: sha1:9b9f792bcebb75f09d902d22e2f58de796f7d4d7
+    pristine_git_object: 061d5e7f84f7bc56a7b08a29891aaa6335ad162e
   models/operations/options.go:
     id: d20dd4db9865
     last_write_checksum: sha1:f1823b1c7de7bb374ece18b4522d7ff6987ccf2c
@@ -5002,6 +5166,10 @@ trackedFiles:
     id: 55ca9c4ece35
     last_write_checksum: sha1:7caf28d1714e1c887496005fee5f80f9cebcb5bd
     pristine_git_object: d8f478d83e922be46d7f410225af21eb5b2b8a42
+  models/operations/returnunmatchedcredittransfer.go:
+    id: 7bb273ca2076
+    last_write_checksum: sha1:7f28ae5b8911068bc6d74afc8169bfba4a98342b
+    pristine_git_object: d4cf4a5229d973875da9616b97db75ab822967cb
   models/operations/revokemandate.go:
     id: 8ef8cad92c56
     last_write_checksum: sha1:83f569b9fa299fb7e0fc10857fbd57aa197f7b57
@@ -5126,6 +5294,10 @@ trackedFiles:
     id: 6d0d0a6cb6f3
     last_write_checksum: sha1:62765b20e7525bd0df1f8e0455fd8131cced6de2
     pristine_git_object: bac6c9269e07c08294c311d4b83287565437e1fa
+  unmatchedcredittransfers.go:
+    id: 0b065e3a76b6
+    last_write_checksum: sha1:e4c96e52e87b8dc1d1672f462b30219694aa0c3c
+    pristine_git_object: 43f15a5d763ee092e3f1f97cb005278d70c1a59b
   verifypayees.go:
     id: a2a1b2beb9ce
     last_write_checksum: sha1:9a9860a24e5fd9e33f901a32a475ec158794fab2
@@ -8749,13 +8921,101 @@ examples:
           application/hal+json: {"resource": "business-account-transaction", "id": "batr_87GByBuj4UCcUTEbs6aGJ", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "debit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for services", "counterparty": {"identifier": "NL11ABNA01234567890", "name": "Beneficiary Name"}, "afterBalance": {"total": {"currency": "EUR", "value": "10.00"}}, "processedAt": "2025-02-26T08:00:00+00:00", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00"}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  list-unmatched-credit-transfers:
+    list-unmatched-credit-transfers-200-1:
+      parameters:
+        query:
+          limit: 50
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"count": 2, "_embedded": {"unmatched-credit-transfers": [{"resource": "unmatched-credit-transfer", "id": "uct_abcDEFghij123456789", "profileId": "pfl_sampleProfileId", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"format": "iban", "accountHolderName": "Jan Jansen", "iban": "NL91ABNA0417164300", "bic": "ABNANL2A"}, "remittanceInformation": {"unstructured": "", "references": {"creditorReference": "RF33678094651239", "endToEndId": "NOTPROVIDED"}}, "status": "received", "createdAt": "2024-03-20T09:13:37+00:00", "expiresAt": "2024-03-22T09:13:37+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789", "type": "application/hal+json"}}}, {"resource": "unmatched-credit-transfer", "id": "uct_987654321jiHGFEdcba", "profileId": "pfl_sampleProfileId", "amount": {"currency": "EUR", "value": "5.00"}, "source": {"format": "iban", "accountHolderName": "Piet Pietersen", "iban": "NL68INGB0101484658", "bic": "INGBNL2A"}, "remittanceInformation": {"unstructured": "", "references": {"creditorReference": null, "endToEndId": "NOTPROVIDED"}}, "status": "matched", "createdAt": "2024-03-19T14:30:00+00:00", "expiresAt": "2024-03-21T14:30:00+00:00", "paymentIds": ["tr_samplePaymentId1"], "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_987654321jiHGFEdcba", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers?limit=50", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://docs.mollie.com/reference/list-unmatched-credit-transfers", "type": "text/html"}}}
+    speakeasy-default-list-unmatched-credit-transfers:
+      parameters:
+        query:
+          limit: 50
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"count": 5, "_embedded": {"unmatched-credit-transfers": [{"resource": "unmatched-credit-transfer", "id": "uct_abcDEFghij123456789", "profileId": "pfl_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"format": "iban", "accountHolderName": "Jan Jansen", "iban": "NL91ABNA0417164300", "bic": "ABNANL2A"}, "remittanceInformation": {"unstructured": "", "references": {"creditorReference": "RF33678094651239", "endToEndId": "NOTPROVIDED"}}, "status": "received", "createdAt": "2024-03-20T09:13:37+00:00", "expiresAt": "2024-03-22T09:13:37+00:00", "paymentIds": ["tr_5B8cwPMGnU"], "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "400":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  get-unmatched-credit-transfer:
+    get-unmatched-credit-transfer-200-1:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "unmatched-credit-transfer", "id": "uct_abcDEFghij123456789", "profileId": "pfl_sampleProfileId", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"format": "iban", "accountHolderName": "Jan Jansen", "iban": "NL91ABNA0417164300", "bic": "ABNANL2A"}, "remittanceInformation": {"unstructured": "", "references": {"creditorReference": null, "endToEndId": "NOTPROVIDED"}}, "status": "expired", "createdAt": "2024-03-20T09:13:37+00:00", "expiresAt": "2024-03-22T09:13:37+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-unmatched-credit-transfer", "type": "text/html"}}}
+    speakeasy-default-get-unmatched-credit-transfer:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "unmatched-credit-transfer", "id": "uct_abcDEFghij123456789", "profileId": "pfl_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "source": {"format": "iban", "accountHolderName": "Jan Jansen", "iban": "NL91ABNA0417164300", "bic": "ABNANL2A"}, "remittanceInformation": {"unstructured": "", "references": {"creditorReference": "RF33678094651239", "endToEndId": "NOTPROVIDED"}}, "status": "received", "createdAt": "2024-03-20T09:13:37+00:00", "expiresAt": "2024-03-22T09:13:37+00:00", "paymentIds": ["tr_5B8cwPMGnU"], "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-unmatched-credit-transfer", "type": "text/html"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  match-unmatched-credit-transfer:
+    match-unmatched-credit-transfer-201-1:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"paymentIds": ["tr_5B8cwPMGnU"]}
+      responses:
+        "201":
+          application/hal+json: {"resource": "unmatched-credit-transfer-action", "id": "uct-act_xyz789", "unmatchedCreditTransferId": "uct_abcDEFghij123456789", "action": "match", "status": "pending", "createdAt": "2024-03-20T09:13:37+00:00", "details": {"paymentIds": ["tr_newPaYMentTOKENHere"]}, "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789/match", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/match-unmatched-credit-transfer", "type": "text/html"}}}
+    speakeasy-default-match-unmatched-credit-transfer:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"paymentIds": ["tr_5B8cwPMGnU"]}
+      responses:
+        "201":
+          application/hal+json: {"resource": "unmatched-credit-transfer-action", "id": "uct-act_xyz789", "unmatchedCreditTransferId": "uct_abcDEFghij123456789", "action": "match", "status": "pending", "createdAt": "2024-03-20T09:13:37+00:00", "details": {"paymentIds": ["tr_5B8cwPMGnU"]}, "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789/match", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/match-unmatched-credit-transfer", "type": "text/html"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  return-unmatched-credit-transfer:
+    return-unmatched-credit-transfer-201-1:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "201":
+          application/hal+json: {"resource": "unmatched-credit-transfer-action", "id": "uct-act_xyz789", "unmatchedCreditTransferId": "uct_abcDEFghij123456789", "action": "return", "status": "pending", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789/return", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/return-unmatched-credit-transfer", "type": "text/html"}}}
+    speakeasy-default-return-unmatched-credit-transfer:
+      parameters:
+        path:
+          unmatchedCreditTransferId: "uct_abcDEFghij123456789"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "201":
+          application/hal+json: {"resource": "unmatched-credit-transfer-action", "id": "uct-act_xyz789", "unmatchedCreditTransferId": "uct_abcDEFghij123456789", "action": "match", "status": "pending", "createdAt": "2024-03-20T09:13:37+00:00", "details": {"paymentIds": ["tr_5B8cwPMGnU"]}, "_links": {"self": {"href": "https://api.mollie.com/v2/unmatched-credit-transfers/uct_abcDEFghij123456789/match", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/match-unmatched-credit-transfer", "type": "text/html"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Accounts.ListAccounts()`: **Added**
-  * `Client.Accounts.GetAccount()`: **Added**
-  * `Client.Accounts.List()`: **Added**
-  * `Client.Accounts.Get()`: **Added**
+  * `Client.UnmatchedCreditTransfers.List()`: **Added**
+  * `Client.UnmatchedCreditTransfers.Get()`: **Added**
+  * `Client.UnmatchedCreditTransfers.Match()`: **Added**
+  * `Client.UnmatchedCreditTransfers.Return()`: **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
