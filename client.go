@@ -3,7 +3,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.879.1
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.879.6
 
 import (
 	"context"
@@ -50,37 +50,38 @@ func Float64(f float64) *float64 { return &f }
 func Pointer[T any](v T) *T { return &v }
 
 type Client struct {
-	SDKVersion       string
-	Balances         *Balances
-	Settlements      *Settlements
-	Invoices         *Invoices
-	Permissions      *Permissions
-	Organizations    *Organizations
-	Profiles         *Profiles
-	Onboarding       *Onboarding
-	Capabilities     *Capabilities
-	Clients          *Clients
-	ClientLinks      *ClientLinks
-	Webhooks         *Webhooks
-	WebhookEvents    *WebhookEvents
-	BalanceTransfers *BalanceTransfers
-	Payments         *Payments
-	Sessions         *Sessions
-	Methods          *Methods
-	Refunds          *Refunds
-	Chargebacks      *Chargebacks
-	Captures         *Captures
-	Wallets          *Wallets
-	PaymentLinks     *PaymentLinks
-	Terminals        *Terminals
-	DelayedRouting   *DelayedRouting
-	Customers        *Customers
-	Mandates         *Mandates
-	Subscriptions    *Subscriptions
-	SalesInvoices    *SalesInvoices
-	Accounts         *Accounts
-	Transfers        *Transfers
-	VerifyPayees     *VerifyPayees
+	SDKVersion               string
+	Balances                 *Balances
+	Settlements              *Settlements
+	Invoices                 *Invoices
+	Permissions              *Permissions
+	Organizations            *Organizations
+	Profiles                 *Profiles
+	Onboarding               *Onboarding
+	Capabilities             *Capabilities
+	Clients                  *Clients
+	ClientLinks              *ClientLinks
+	Webhooks                 *Webhooks
+	WebhookEvents            *WebhookEvents
+	BalanceTransfers         *BalanceTransfers
+	Payments                 *Payments
+	UnmatchedCreditTransfers *UnmatchedCreditTransfers
+	Sessions                 *Sessions
+	Methods                  *Methods
+	Refunds                  *Refunds
+	Chargebacks              *Chargebacks
+	Captures                 *Captures
+	Wallets                  *Wallets
+	PaymentLinks             *PaymentLinks
+	Terminals                *Terminals
+	DelayedRouting           *DelayedRouting
+	Customers                *Customers
+	Mandates                 *Mandates
+	Subscriptions            *Subscriptions
+	SalesInvoices            *SalesInvoices
+	Accounts                 *Accounts
+	Transfers                *Transfers
+	VerifyPayees             *VerifyPayees
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -177,9 +178,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.12.6",
+		SDKVersion: "0.12.7",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.12.6 2.879.1 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.12.7 2.879.6 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -219,6 +220,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.WebhookEvents = newWebhookEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.BalanceTransfers = newBalanceTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.UnmatchedCreditTransfers = newUnmatchedCreditTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Sessions = newSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Methods = newMethods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
