@@ -11,6 +11,8 @@ type UpdateCustomerRequestBody struct {
 	// The full name of the customer.
 	Name *string `json:"name,omitempty"`
 	// The email address of the customer.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email *string `json:"email,omitempty"`
 	// Allows you to preset the language to be used.
 	Locale *components.LocaleResponse `json:"locale,omitempty"`

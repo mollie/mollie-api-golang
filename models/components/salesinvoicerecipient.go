@@ -24,6 +24,8 @@ type SalesInvoiceRecipient struct {
 	// has to be provided.
 	VatNumber *string `json:"vatNumber,omitempty"`
 	// The email address of the recipient.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email string `json:"email"`
 	// The phone number of the recipient.
 	Phone *string `json:"phone,omitempty"`

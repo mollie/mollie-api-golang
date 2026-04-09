@@ -127,6 +127,8 @@ type ListProfileResponse struct {
 	// allowed.
 	Website string `json:"website"`
 	// The email address associated with the profile's trade name or brand.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email string `json:"email"`
 	// The phone number associated with the profile's trade name or brand.
 	Phone string `json:"phone"`

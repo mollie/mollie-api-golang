@@ -68,6 +68,8 @@ type Profile struct {
 	// signs are allowed.
 	URL *string `json:"url,omitempty"`
 	// The email address associated with the profile's trade name or brand.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email *string `json:"email,omitempty"`
 	// The phone number associated with the profile's trade name or brand.
 	Phone *string `json:"phone,omitempty"`
