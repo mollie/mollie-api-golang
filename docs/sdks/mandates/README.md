@@ -163,6 +163,9 @@ func main() {
         From: client.Pointer("mdt_5B8cwPMGnU"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
+        Scopes: []components.MandateScopes{
+            components.MandateScopesCustomerPresent,
+        },
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
     })
     if err != nil {

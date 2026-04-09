@@ -79,6 +79,30 @@ func (l *ListMandateResponseDetails) GetCardFingerprint() *string {
 	return l.CardFingerprint
 }
 
+// ListMandateResponseScope - An array defining the eligible use cases for the mandate. For creditcard mandates, this field will always be
+// present and can contain one or both of the following values:
+type ListMandateResponseScope string
+
+const (
+	ListMandateResponseScopeCustomerPresent    ListMandateResponseScope = "customer-present"
+	ListMandateResponseScopeCustomerNotPresent ListMandateResponseScope = "customer-not-present"
+)
+
+func (e ListMandateResponseScope) ToPointer() *ListMandateResponseScope {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *ListMandateResponseScope) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "customer-present", "customer-not-present":
+			return true
+		}
+	}
+	return false
+}
+
 // ListMandateResponseStatus - The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
 // when we did not received the IBAN yet from the first payment.
 type ListMandateResponseStatus string
@@ -142,8 +166,11 @@ type ListMandateResponse struct {
 	SignatureDate *string `json:"signatureDate"`
 	// A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
 	// decline Direct Debit payments if the mandate reference is not unique.
-	MandateReference *string                   `json:"mandateReference"`
-	Status           ListMandateResponseStatus `json:"status"`
+	MandateReference *string `json:"mandateReference"`
+	// An array defining the eligible use cases for the mandate. This field will always be
+	// present and can contain one or both of the following values:
+	Scopes []ListMandateResponseScope `json:"scopes,omitempty"`
+	Status ListMandateResponseStatus  `json:"status"`
 	// The identifier referring to the [customer](get-customer) this mandate was linked to.
 	CustomerID string `json:"customerId"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -199,6 +226,13 @@ func (l *ListMandateResponse) GetMandateReference() *string {
 		return nil
 	}
 	return l.MandateReference
+}
+
+func (l *ListMandateResponse) GetScopes() []ListMandateResponseScope {
+	if l == nil {
+		return nil
+	}
+	return l.Scopes
 }
 
 func (l *ListMandateResponse) GetStatus() ListMandateResponseStatus {

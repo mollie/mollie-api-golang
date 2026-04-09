@@ -34,6 +34,8 @@ type ListMandatesRequest struct {
 	// Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
 	// newest to oldest.
 	Sort *components.Sorting `queryParam:"style=form,explode=true,name=sort"`
+	// Returns only mandates that include the specified scopes.
+	Scopes []components.MandateScopes `queryParam:"style=form,explode=true,name=scopes"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -70,6 +72,13 @@ func (l *ListMandatesRequest) GetSort() *components.Sorting {
 		return nil
 	}
 	return l.Sort
+}
+
+func (l *ListMandatesRequest) GetScopes() []components.MandateScopes {
+	if l == nil {
+		return nil
+	}
+	return l.Scopes
 }
 
 func (l *ListMandatesRequest) GetTestmode() *bool {

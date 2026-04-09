@@ -541,10 +541,10 @@ type PaymentRequest struct {
 	// parameter.
 	Routing      []EntityPaymentRoute `json:"routing,omitempty"`
 	SequenceType *SequenceType        `json:"sequenceType,omitempty"`
-	// **Only relevant for recurring payments.**
+	// **Only relevant for recurring payments and stored cards.**
 	//
-	// When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
-	// the customer's accounts should be credited.
+	// When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+	// the customer's accounts should be debited.
 	MandateID  *string `json:"mandateId,omitempty"`
 	CustomerID *string `json:"customerId,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -555,6 +555,9 @@ type PaymentRequest struct {
 	ProfileID *string `json:"profileId,omitempty"`
 	// The date by which the payment should be completed in `YYYY-MM-DD` format
 	DueDate *string `json:"dueDate,omitempty"`
+	// Whether the card details should be stored for the customer after a successful payment. This will create a mandate for the customer,
+	// allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and the creditcard method to be specified.
+	StoreCredentials *bool `json:"storeCredentials,omitempty"`
 	// Whether to create the entity in test mode or live mode.
 	//
 	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter must
@@ -763,6 +766,13 @@ func (p *PaymentRequest) GetDueDate() *string {
 		return nil
 	}
 	return p.DueDate
+}
+
+func (p *PaymentRequest) GetStoreCredentials() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.StoreCredentials
 }
 
 func (p *PaymentRequest) GetTestmode() *bool {
