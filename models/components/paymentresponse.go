@@ -1360,10 +1360,10 @@ type PaymentResponse struct {
 	// If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
 	// be added to the response.
 	SubscriptionID *string `json:"subscriptionId,omitempty"`
-	// **Only relevant for recurring payments.**
+	// **Only relevant for recurring payments and stored cards.**
 	//
-	// When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
-	// the customer's accounts should be credited.
+	// When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+	// the customer's accounts should be debited.
 	MandateID  *string `json:"mandateId,omitempty"`
 	CustomerID *string `json:"customerId,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
