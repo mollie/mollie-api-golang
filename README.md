@@ -3,10 +3,10 @@
 Developer-friendly & type-safe Go SDK specifically catered to leverage *client* API.
 
 <div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=client&utm_campaign=go"><img src="https://www.speakeasy.com/assets/badges/built-by-speakeasy.svg" /></a>
-    <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
-    </a>
+	<a href="https://www.speakeasy.com/?utm_source=client&utm_campaign=go"><img src="https://www.speakeasy.com/assets/badges/built-by-speakeasy.svg" /></a>
+	<a href="https://opensource.org/licenses/MIT">
+		<img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+	</a>
 </div>
 
 <!-- Start Summary [summary] -->
@@ -29,6 +29,7 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [Global Parameters](#global-parameters)
   * [Pagination](#pagination)
   * [Retries](#retries)
+  * [Webhook Signature Validation](#webhook-signature-validation)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
@@ -186,13 +187,13 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
+	ctx := context.Background()
 
-    s := client.New(
-        client.WithSecurity(components.Security{
-            APIKey: client.Pointer(os.Getenv("MOLLIE_API_KEY")),
-        }),
-    )
+	s := client.New(
+		client.WithSecurity(components.Security{
+			APIKey: client.Pointer(os.Getenv("MOLLIE_API_KEY")),
+		}),
+	)
 
 	request := &components.PaymentRequest{
 		Description: client.Pointer("Description"),
@@ -205,7 +206,7 @@ func main() {
 
 	idempotencyKey := client.Pointer("<some-idempotency-key>")
 
-    payment1, _ := s.Payments.Create(
+	payment1, _ := s.Payments.Create(
 		ctx,
 		nil, idempotencyKey,
 		request,
@@ -742,6 +743,81 @@ func main() {
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Webhook Signature Validation [webhook-signature-validation] -->
+## Webhook Signature Validation
+
+The SDK includes a helper to validate Mollie webhook signatures using HMAC-SHA256.
+Use it with the raw request body exactly as received by your web framework and the value of the
+`X-Mollie-Signature` header.
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	webhooks "github.com/mollie/mollie-api-golang/utils/webhooks"
+)
+
+func main() {
+	validator := webhooks.NewSignatureValidator(os.Getenv("MOLLIE_WEBHOOK_SECRET"))
+
+	isVerified, err := validator.ValidatePayload(
+		`{"id":"evt_123"}`,
+		"sha256=<signature>",
+	)
+	if err != nil {
+		if _, ok := err.(*webhooks.InvalidSignatureError); ok {
+			log.Println("Webhook signature is invalid")
+			return
+		}
+
+		log.Fatal(err)
+	}
+
+	if !isVerified {
+		log.Println("No signature header was provided; treating it as a legacy webhook")
+		return
+	}
+
+	log.Println("Webhook signature is valid")
+}
+```
+
+You can also use the package helper when you do not want to instantiate the validator yourself:
+
+```go
+package main
+
+import (
+	"log"
+
+	webhooks "github.com/mollie/mollie-api-golang/utils/webhooks"
+)
+
+func main() {
+	isVerified, err := webhooks.Validate(
+		`{"id":"evt_123"}`,
+		[]string{"current_secret", "previous_secret"},
+		"sha256=<signature>",
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println("verified:", isVerified)
+}
+```
+
+Notes:
+
+- `ValidatePayload()` returns `true` when at least one signature matches.
+- It returns `false` when no signature is present, which lets you support legacy webhooks.
+- It returns an `InvalidSignatureError` when a signature is present but does not match.
+- Header values with the `sha256=` prefix are supported automatically.
+<!-- End Webhook Signature Validation [webhook-signature-validation] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
