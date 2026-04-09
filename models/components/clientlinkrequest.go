@@ -6,6 +6,8 @@ package components
 // Owner - Personal data of your customer.
 type Owner struct {
 	// The email address of your customer.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email string `json:"email"`
 	// The given name (first name) of your customer.
 	GivenName string `json:"givenName"`

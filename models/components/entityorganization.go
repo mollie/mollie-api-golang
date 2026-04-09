@@ -86,6 +86,8 @@ type EntityOrganization struct {
 	// The name of the organization.
 	Name string `json:"name"`
 	// The email address associated with the organization.
+	//
+	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email string `json:"email"`
 	// The preferred locale of the merchant, as set in their Mollie dashboard.
 	Locale  *EntityOrganizationLocale `json:"locale"`
