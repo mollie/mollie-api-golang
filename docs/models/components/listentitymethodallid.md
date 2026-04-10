@@ -35,6 +35,7 @@ custom := components.ListEntityMethodAllID("custom_value")
 | `ListEntityMethodAllIDDirectdebit`  | directdebit                         |
 | `ListEntityMethodAllIDEps`          | eps                                 |
 | `ListEntityMethodAllIDGiftcard`     | giftcard                            |
+| `ListEntityMethodAllIDGooglepay`    | googlepay                           |
 | `ListEntityMethodAllIDIdeal`        | ideal                               |
 | `ListEntityMethodAllIDIn3`          | in3                                 |
 | `ListEntityMethodAllIDKbc`          | kbc                                 |
