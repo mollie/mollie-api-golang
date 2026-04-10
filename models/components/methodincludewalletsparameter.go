@@ -11,7 +11,8 @@ import (
 type MethodIncludeWalletsParameter string
 
 const (
-	MethodIncludeWalletsParameterApplepay MethodIncludeWalletsParameter = "applepay"
+	MethodIncludeWalletsParameterApplepay  MethodIncludeWalletsParameter = "applepay"
+	MethodIncludeWalletsParameterGooglepay MethodIncludeWalletsParameter = "googlepay"
 )
 
 func (e MethodIncludeWalletsParameter) ToPointer() *MethodIncludeWalletsParameter {
@@ -24,6 +25,8 @@ func (e *MethodIncludeWalletsParameter) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "applepay":
+		fallthrough
+	case "googlepay":
 		*e = MethodIncludeWalletsParameter(v)
 		return nil
 	default:

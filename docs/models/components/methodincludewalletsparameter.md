@@ -13,6 +13,7 @@ value := components.MethodIncludeWalletsParameterApplepay
 
 ## Values
 
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `MethodIncludeWalletsParameterApplepay` | applepay                                |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `MethodIncludeWalletsParameterApplepay`  | applepay                                 |
+| `MethodIncludeWalletsParameterGooglepay` | googlepay                                |
