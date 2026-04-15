@@ -5,8 +5,8 @@ package components
 
 type SubGroup struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount    *Amount               `json:"amount,omitempty"`
-	Subtotals []ComponentsSubTotals `json:"subtotals,omitempty"`
+	Amount    *Amount      `json:"amount,omitempty"`
+	Subtotals []SubTotals2 `json:"subtotals,omitempty"`
 }
 
 func (s *SubGroup) GetAmount() *Amount {
@@ -16,7 +16,7 @@ func (s *SubGroup) GetAmount() *Amount {
 	return s.Amount
 }
 
-func (s *SubGroup) GetSubtotals() []ComponentsSubTotals {
+func (s *SubGroup) GetSubtotals() []SubTotals2 {
 	if s == nil {
 		return nil
 	}
