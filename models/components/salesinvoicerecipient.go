@@ -3,6 +3,59 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// SalesInvoiceRecipientLocale - The locale for the recipient, to be used for translations in PDF generation and payment pages.
+type SalesInvoiceRecipientLocale string
+
+const (
+	SalesInvoiceRecipientLocaleEnUs SalesInvoiceRecipientLocale = "en_US"
+	SalesInvoiceRecipientLocaleEnGb SalesInvoiceRecipientLocale = "en_GB"
+	SalesInvoiceRecipientLocaleNlNl SalesInvoiceRecipientLocale = "nl_NL"
+	SalesInvoiceRecipientLocaleNlBe SalesInvoiceRecipientLocale = "nl_BE"
+	SalesInvoiceRecipientLocaleDeDe SalesInvoiceRecipientLocale = "de_DE"
+	SalesInvoiceRecipientLocaleDeAt SalesInvoiceRecipientLocale = "de_AT"
+	SalesInvoiceRecipientLocaleDeCh SalesInvoiceRecipientLocale = "de_CH"
+	SalesInvoiceRecipientLocaleFrFr SalesInvoiceRecipientLocale = "fr_FR"
+	SalesInvoiceRecipientLocaleFrBe SalesInvoiceRecipientLocale = "fr_BE"
+)
+
+func (e SalesInvoiceRecipientLocale) ToPointer() *SalesInvoiceRecipientLocale {
+	return &e
+}
+func (e *SalesInvoiceRecipientLocale) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "en_US":
+		fallthrough
+	case "en_GB":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "de_DE":
+		fallthrough
+	case "de_AT":
+		fallthrough
+	case "de_CH":
+		fallthrough
+	case "fr_FR":
+		fallthrough
+	case "fr_BE":
+		*e = SalesInvoiceRecipientLocale(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SalesInvoiceRecipientLocale: %v", v)
+	}
+}
+
 type SalesInvoiceRecipient struct {
 	// The type of recipient, either `consumer` or `business`. This will determine what further fields are
 	// required on the `recipient` object.
@@ -40,9 +93,8 @@ type SalesInvoiceRecipient struct {
 	// The recipient's region.
 	Region *string `json:"region,omitempty"`
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-	Country string `json:"country"`
-	// The locale for the recipient, to be used for translations in PDF generation and payment pages.
-	Locale SalesInvoiceRecipientLocale `json:"locale"`
+	Country string                      `json:"country"`
+	Locale  SalesInvoiceRecipientLocale `json:"locale"`
 }
 
 func (s *SalesInvoiceRecipient) GetType() SalesInvoiceRecipientType {

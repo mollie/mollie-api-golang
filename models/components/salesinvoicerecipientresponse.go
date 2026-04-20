@@ -41,8 +41,6 @@ type SalesInvoiceRecipientResponse struct {
 	Region *string `json:"region,omitempty"`
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 	Country string `json:"country"`
-	// The locale for the recipient, to be used for translations in PDF generation and payment pages.
-	Locale SalesInvoiceRecipientLocaleResponse `json:"locale"`
 }
 
 func (s *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientTypeResponse {
@@ -148,11 +146,4 @@ func (s *SalesInvoiceRecipientResponse) GetCountry() string {
 		return ""
 	}
 	return s.Country
-}
-
-func (s *SalesInvoiceRecipientResponse) GetLocale() SalesInvoiceRecipientLocaleResponse {
-	if s == nil {
-		return SalesInvoiceRecipientLocaleResponse("")
-	}
-	return s.Locale
 }
