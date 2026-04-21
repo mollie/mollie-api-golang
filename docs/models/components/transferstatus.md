@@ -18,12 +18,12 @@ custom := components.TransferStatus("custom_value")
 
 ## Values
 
-| Name                            | Value                           |
-| ------------------------------- | ------------------------------- |
-| `TransferStatusRequested`       | requested                       |
-| `TransferStatusInitiated`       | initiated                       |
-| `TransferStatusPendingReview`   | pending-review                  |
-| `TransferStatusProcessed`       | processed                       |
-| `TransferStatusFailed`          | failed                          |
-| `TransferStatusBlocked`         | blocked                         |
-| `TransferStatusIncomingSettled` | incoming-settled                |
+| Name                          | Value                         |
+| ----------------------------- | ----------------------------- |
+| `TransferStatusRequested`     | requested                     |
+| `TransferStatusInitiated`     | initiated                     |
+| `TransferStatusPendingReview` | pending-review                |
+| `TransferStatusProcessed`     | processed                     |
+| `TransferStatusFailed`        | failed                        |
+| `TransferStatusBlocked`       | blocked                       |
+| `TransferStatusReturned`      | returned                      |

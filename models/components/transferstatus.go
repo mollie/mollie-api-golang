@@ -7,13 +7,13 @@ package components
 type TransferStatus string
 
 const (
-	TransferStatusRequested       TransferStatus = "requested"
-	TransferStatusInitiated       TransferStatus = "initiated"
-	TransferStatusPendingReview   TransferStatus = "pending-review"
-	TransferStatusProcessed       TransferStatus = "processed"
-	TransferStatusFailed          TransferStatus = "failed"
-	TransferStatusBlocked         TransferStatus = "blocked"
-	TransferStatusIncomingSettled TransferStatus = "incoming-settled"
+	TransferStatusRequested     TransferStatus = "requested"
+	TransferStatusInitiated     TransferStatus = "initiated"
+	TransferStatusPendingReview TransferStatus = "pending-review"
+	TransferStatusProcessed     TransferStatus = "processed"
+	TransferStatusFailed        TransferStatus = "failed"
+	TransferStatusBlocked       TransferStatus = "blocked"
+	TransferStatusReturned      TransferStatus = "returned"
 )
 
 func (e TransferStatus) ToPointer() *TransferStatus {
@@ -24,7 +24,7 @@ func (e TransferStatus) ToPointer() *TransferStatus {
 func (e *TransferStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "requested", "initiated", "pending-review", "processed", "failed", "blocked", "incoming-settled":
+		case "requested", "initiated", "pending-review", "processed", "failed", "blocked", "returned":
 			return true
 		}
 	}

@@ -3,11 +3,6 @@
 
 package components
 
-// SalesInvoiceRequestMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-type SalesInvoiceRequestMetadata struct {
-}
-
 type SalesInvoiceRequest struct {
 	// Whether to create the entity in test mode or live mode.
 	//
@@ -44,7 +39,7 @@ type SalesInvoiceRequest struct {
 	Memo *string `json:"memo,omitempty"`
 	// Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *SalesInvoiceRequestMetadata `json:"metadata,omitempty"`
+	Metadata map[string]any `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
 	PaymentTerm    *SalesInvoicePaymentTerm    `json:"paymentTerm,omitempty"`
 	PaymentDetails *SalesInvoicePaymentDetails `json:"paymentDetails,omitempty"`
@@ -117,7 +112,7 @@ func (s *SalesInvoiceRequest) GetMemo() *string {
 	return s.Memo
 }
 
-func (s *SalesInvoiceRequest) GetMetadata() *SalesInvoiceRequestMetadata {
+func (s *SalesInvoiceRequest) GetMetadata() map[string]any {
 	if s == nil {
 		return nil
 	}

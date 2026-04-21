@@ -3,11 +3,6 @@
 
 package components
 
-// ListSalesInvoiceResponseMetadata - Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-type ListSalesInvoiceResponseMetadata struct {
-}
-
 // ListSalesInvoiceResponseAmountDue - The amount that is left to be paid.
 type ListSalesInvoiceResponseAmountDue struct {
 	// A three-character ISO 4217 currency code.
@@ -206,7 +201,7 @@ type ListSalesInvoiceResponse struct {
 	Memo *string `json:"memo,omitempty"`
 	// Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *ListSalesInvoiceResponseMetadata `json:"metadata,omitempty"`
+	Metadata map[string]any `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
 	PaymentTerm    *SalesInvoicePaymentTermResponse    `json:"paymentTerm,omitempty"`
 	PaymentDetails *SalesInvoicePaymentDetailsResponse `json:"paymentDetails,omitempty"`
@@ -323,7 +318,7 @@ func (l *ListSalesInvoiceResponse) GetMemo() *string {
 	return l.Memo
 }
 
-func (l *ListSalesInvoiceResponse) GetMetadata() *ListSalesInvoiceResponseMetadata {
+func (l *ListSalesInvoiceResponse) GetMetadata() map[string]any {
 	if l == nil {
 		return nil
 	}
