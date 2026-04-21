@@ -70,7 +70,7 @@ func (s *Organizations) Get(ctx context.Context, organizationID string, testmode
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/organizations/{organizationId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/organizations/{organizationId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -323,7 +323,7 @@ func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/organizations/me")
+	opURL, err := url.JoinPath(baseURL, "/v2/organizations/me")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -544,7 +544,7 @@ func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/organizations/me/partner")
+	opURL, err := url.JoinPath(baseURL, "/v2/organizations/me/partner")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

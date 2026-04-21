@@ -64,7 +64,7 @@ func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, e
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/connect/balance-transfers")
+	opURL, err := url.JoinPath(baseURL, "/v2/connect/balance-transfers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -317,7 +317,7 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/connect/balance-transfers")
+	opURL, err := url.JoinPath(baseURL, "/v2/connect/balance-transfers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -612,7 +612,7 @@ func (s *BalanceTransfers) Get(ctx context.Context, balanceTransferID string, te
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/connect/balance-transfers/{balanceTransferId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/connect/balance-transfers/{balanceTransferId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

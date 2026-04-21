@@ -62,7 +62,7 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/customers")
+	opURL, err := url.JoinPath(baseURL, "/v2/customers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -315,7 +315,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/customers")
+	opURL, err := url.JoinPath(baseURL, "/v2/customers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -611,7 +611,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -862,7 +862,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1114,7 +1114,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1357,7 +1357,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/payments", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/payments", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1634,7 +1634,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/payments", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

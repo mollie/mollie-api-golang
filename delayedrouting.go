@@ -59,7 +59,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/routes", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/routes", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -315,7 +315,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/routes", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/routes", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -564,7 +564,7 @@ func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID stri
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/routes/{routeId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/routes/{routeId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

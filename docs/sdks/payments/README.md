@@ -28,7 +28,7 @@ guide on [method-specific parameters](extra-payment-parameters).
 
 ### Example Usage: create-payment-201-1
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-1" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-1" -->
 ```go
 package main
 
@@ -208,7 +208,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-10
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-10" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-10" -->
 ```go
 package main
 
@@ -388,7 +388,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-11
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-11" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-11" -->
 ```go
 package main
 
@@ -568,7 +568,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-12
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-12" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-12" -->
 ```go
 package main
 
@@ -748,7 +748,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-13
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-13" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-13" -->
 ```go
 package main
 
@@ -928,7 +928,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-2
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-2" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-2" -->
 ```go
 package main
 
@@ -1108,7 +1108,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-3
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-3" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-3" -->
 ```go
 package main
 
@@ -1288,7 +1288,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-4
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-4" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-4" -->
 ```go
 package main
 
@@ -1468,7 +1468,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-5
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-5" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-5" -->
 ```go
 package main
 
@@ -1648,7 +1648,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-6
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-6" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-6" -->
 ```go
 package main
 
@@ -1828,7 +1828,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-7
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-7" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-7" -->
 ```go
 package main
 
@@ -2008,7 +2008,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-8
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-8" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-8" -->
 ```go
 package main
 
@@ -2188,7 +2188,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-9
 
-<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/payments" example="create-payment-201-9" -->
+<!-- UsageSnippet language="go" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-9" -->
 ```go
 package main
 
@@ -2397,7 +2397,7 @@ The results are paginated.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/payments" example="list-payments-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-1" -->
 ```go
 package main
 
@@ -2449,7 +2449,7 @@ func main() {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/payments" example="list-payments-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-2" -->
 ```go
 package main
 
@@ -2501,7 +2501,7 @@ func main() {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/payments" example="list-payments-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-3" -->
 ```go
 package main
 
@@ -2577,7 +2577,7 @@ Retrieve a single payment object by its payment ID.
 
 ### Example Usage: get-payment-200-1
 
-<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-1" -->
 ```go
 package main
 
@@ -2626,7 +2626,7 @@ func main() {
 ```
 ### Example Usage: get-payment-200-2
 
-<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-2" -->
 ```go
 package main
 
@@ -2675,7 +2675,7 @@ func main() {
 ```
 ### Example Usage: get-payment-200-3
 
-<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-3" -->
+<!-- UsageSnippet language="go" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-3" -->
 ```go
 package main
 
@@ -2750,7 +2750,7 @@ Updating the payment details will not result in a webhook call.
 
 ### Example Usage: update-payment-200-1
 
-<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-1" -->
+<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-1" -->
 ```go
 package main
 
@@ -2832,7 +2832,7 @@ func main() {
 ```
 ### Example Usage: update-payment-200-2
 
-<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-2" -->
+<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-2" -->
 ```go
 package main
 
@@ -2914,7 +2914,7 @@ func main() {
 ```
 ### Example Usage: update-payment-200-3
 
-<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-3" -->
+<!-- UsageSnippet language="go" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-3" -->
 ```go
 package main
 
@@ -3027,7 +3027,7 @@ The `isCancelable` property on the [Payment object](get-payment) will indicate i
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="cancel-payment" method="delete" path="/payments/{paymentId}" example="cancel-payment-200-1" -->
+<!-- UsageSnippet language="go" operationID="cancel-payment" method="delete" path="/v2/payments/{paymentId}" example="cancel-payment-200-1" -->
 ```go
 package main
 
@@ -3105,7 +3105,7 @@ If there is a successful capture, the payment will transition to `paid`.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="release-authorization" method="post" path="/payments/{paymentId}/release-authorization" -->
+<!-- UsageSnippet language="go" operationID="release-authorization" method="post" path="/v2/payments/{paymentId}/release-authorization" -->
 ```go
 package main
 

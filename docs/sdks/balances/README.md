@@ -18,7 +18,7 @@ The results are paginated.
 
 ### Example Usage: list-balances-200-1
 
-<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/balances" example="list-balances-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/v2/balances" example="list-balances-200-1" -->
 ```go
 package main
 
@@ -69,7 +69,7 @@ func main() {
 ```
 ### Example Usage: list-balances-200-2
 
-<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/balances" example="list-balances-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-balances" method="get" path="/v2/balances" example="list-balances-200-2" -->
 ```go
 package main
 
@@ -158,7 +158,7 @@ funds are available on your balance. These funds will be shown under the *pendin
 
 ### Example Usage: get-balance-200-1
 
-<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/v2/balances/{balanceId}" example="get-balance-200-1" -->
 ```go
 package main
 
@@ -191,7 +191,7 @@ func main() {
 ```
 ### Example Usage: get-balance-200-2
 
-<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-balance" method="get" path="/v2/balances/{balanceId}" example="get-balance-200-2" -->
 ```go
 package main
 
@@ -254,7 +254,7 @@ endpoint.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-primary-balance" method="get" path="/balances/primary" example="get-primary-balance-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-primary-balance" method="get" path="/v2/balances/primary" example="get-primary-balance-200-1" -->
 ```go
 package main
 
@@ -315,7 +315,7 @@ organization's primary balance.
 
 ### Example Usage: get-balance-report-200-1
 
-<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/v2/balances/{balanceId}/report" example="get-balance-report-200-1" -->
 ```go
 package main
 
@@ -355,7 +355,7 @@ func main() {
 ```
 ### Example Usage: get-balance-report-200-2
 
-<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/v2/balances/{balanceId}/report" example="get-balance-report-200-2" -->
 ```go
 package main
 
@@ -395,7 +395,7 @@ func main() {
 ```
 ### Example Usage: get-balance-report-200-3
 
-<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-3" -->
+<!-- UsageSnippet language="go" operationID="get-balance-report" method="get" path="/v2/balances/{balanceId}/report" example="get-balance-report-200-3" -->
 ```go
 package main
 
@@ -468,7 +468,7 @@ The results are paginated.
 
 ### Example Usage: list-balance-transactions-200-1
 
-<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/v2/balances/{balanceId}/transactions" example="list-balance-transactions-200-1" -->
 ```go
 package main
 
@@ -519,7 +519,7 @@ func main() {
 ```
 ### Example Usage: list-balance-transactions-200-2
 
-<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-balance-transactions" method="get" path="/v2/balances/{balanceId}/transactions" example="list-balance-transactions-200-2" -->
 ```go
 package main
 

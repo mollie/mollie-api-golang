@@ -61,7 +61,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/refunds", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -318,7 +318,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/refunds", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -607,7 +607,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/refunds/{refundId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -865,7 +865,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/refunds/{refundId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/refunds/{refundId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1097,7 +1097,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/refunds")
+	opURL, err := url.JoinPath(baseURL, "/v2/refunds")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

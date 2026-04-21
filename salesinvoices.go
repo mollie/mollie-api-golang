@@ -63,7 +63,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/sales-invoices")
+	opURL, err := url.JoinPath(baseURL, "/v2/sales-invoices")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -329,7 +329,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/sales-invoices")
+	opURL, err := url.JoinPath(baseURL, "/v2/sales-invoices")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -629,7 +629,7 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/sales-invoices/{salesInvoiceId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -884,7 +884,7 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/sales-invoices/{salesInvoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1143,7 +1143,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idemp
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sales-invoices/{salesInvoiceId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/sales-invoices/{salesInvoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

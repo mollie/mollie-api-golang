@@ -15,7 +15,7 @@ The results are paginated.
 
 ### Example Usage: list-terminals-200-1
 
-<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/v2/terminals" example="list-terminals-200-1" -->
 ```go
 package main
 
@@ -66,7 +66,7 @@ func main() {
 ```
 ### Example Usage: list-terminals-200-2
 
-<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-terminals" method="get" path="/v2/terminals" example="list-terminals-200-2" -->
 ```go
 package main
 
@@ -141,7 +141,7 @@ Retrieve a single terminal by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-terminal" method="get" path="/terminals/{terminalId}" example="get-terminal-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-terminal" method="get" path="/v2/terminals/{terminalId}" example="get-terminal-200-1" -->
 ```go
 package main
 

@@ -60,7 +60,7 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/invoices")
+	opURL, err := url.JoinPath(baseURL, "/v2/invoices")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -355,7 +355,7 @@ func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *st
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/invoices/{invoiceId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/invoices/{invoiceId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

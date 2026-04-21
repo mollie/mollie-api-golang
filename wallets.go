@@ -76,7 +76,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/wallets/applepay/sessions")
+	opURL, err := url.JoinPath(baseURL, "/v2/wallets/applepay/sessions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -112,7 +112,7 @@ func (s *ClientLinks) Create(ctx context.Context, idempotencyKey *string, client
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/client-links")
+	opURL, err := url.JoinPath(baseURL, "/v2/client-links")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -63,7 +63,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/mandates", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/mandates", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -316,7 +316,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/mandates", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/mandates", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -613,7 +613,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/mandates/{mandateId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/mandates/{mandateId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -864,7 +864,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/mandates/{mandateId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/mandates/{mandateId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

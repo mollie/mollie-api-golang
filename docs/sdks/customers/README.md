@@ -21,7 +21,7 @@ Once registered, customers will also appear in your Mollie dashboard.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-customer" method="post" path="/customers" example="create-customer-201-1" -->
+<!-- UsageSnippet language="go" operationID="create-customer" method="post" path="/v2/customers" example="create-customer-201-1" -->
 ```go
 package main
 
@@ -95,7 +95,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-customers" method="get" path="/customers" example="list-customers" -->
+<!-- UsageSnippet language="go" operationID="list-customers" method="get" path="/v2/customers" example="list-customers" -->
 ```go
 package main
 
@@ -170,7 +170,7 @@ Retrieve a single customer by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-customer" method="get" path="/customers/{customerId}" example="get-customer-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-customer" method="get" path="/v2/customers/{customerId}" example="get-customer-200-1" -->
 ```go
 package main
 
@@ -242,7 +242,7 @@ For an in-depth explanation of each parameter, refer to the [Create customer](cr
 
 ### Example Usage: update-customer-200-1
 
-<!-- UsageSnippet language="go" operationID="update-customer" method="patch" path="/customers/{customerId}" example="update-customer-200-1" -->
+<!-- UsageSnippet language="go" operationID="update-customer" method="patch" path="/v2/customers/{customerId}" example="update-customer-200-1" -->
 ```go
 package main
 
@@ -290,7 +290,7 @@ func main() {
 ```
 ### Example Usage: update-customer-200-2
 
-<!-- UsageSnippet language="go" operationID="update-customer" method="patch" path="/customers/{customerId}" example="update-customer-200-2" -->
+<!-- UsageSnippet language="go" operationID="update-customer" method="patch" path="/v2/customers/{customerId}" example="update-customer-200-2" -->
 ```go
 package main
 
@@ -364,7 +364,7 @@ Delete a customer. All mandates and subscriptions created for this customer will
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-customer" method="delete" path="/customers/{customerId}" -->
+<!-- UsageSnippet language="go" operationID="delete-customer" method="delete" path="/v2/customers/{customerId}" -->
 ```go
 package main
 
@@ -435,7 +435,7 @@ parameter predefined.
 
 ### Example Usage: create-payment-201-1
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-1" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-1" -->
 ```go
 package main
 
@@ -615,7 +615,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-10
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-10" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-10" -->
 ```go
 package main
 
@@ -795,7 +795,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-11
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-11" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-11" -->
 ```go
 package main
 
@@ -975,7 +975,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-12
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-12" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-12" -->
 ```go
 package main
 
@@ -1155,7 +1155,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-13
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-13" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-13" -->
 ```go
 package main
 
@@ -1335,7 +1335,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-2
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-2" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-2" -->
 ```go
 package main
 
@@ -1515,7 +1515,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-3
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-3" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-3" -->
 ```go
 package main
 
@@ -1695,7 +1695,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-4
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-4" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-4" -->
 ```go
 package main
 
@@ -1875,7 +1875,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-5
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-5" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-5" -->
 ```go
 package main
 
@@ -2055,7 +2055,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-6
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-6" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-6" -->
 ```go
 package main
 
@@ -2235,7 +2235,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-7
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-7" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-7" -->
 ```go
 package main
 
@@ -2415,7 +2415,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-8
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-8" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-8" -->
 ```go
 package main
 
@@ -2595,7 +2595,7 @@ func main() {
 ```
 ### Example Usage: create-payment-201-9
 
-<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-9" -->
+<!-- UsageSnippet language="go" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-9" -->
 ```go
 package main
 
@@ -2802,7 +2802,7 @@ Retrieve all payments linked to the customer.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-1" -->
 ```go
 package main
 
@@ -2855,7 +2855,7 @@ func main() {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-2" -->
 ```go
 package main
 
@@ -2908,7 +2908,7 @@ func main() {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-3" -->
 ```go
 package main
 

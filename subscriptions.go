@@ -78,7 +78,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -331,7 +331,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -627,7 +627,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions/{subscriptionId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -881,7 +881,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions/{subscriptionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1134,7 +1134,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions/{subscriptionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1388,7 +1388,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/subscriptions")
+	opURL, err := url.JoinPath(baseURL, "/v2/subscriptions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1681,7 +1681,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/customers/{customerId}/subscriptions/{subscriptionId}/payments", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/customers/{customerId}/subscriptions/{subscriptionId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

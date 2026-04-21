@@ -16,7 +16,7 @@ The results are paginated.
 
 ### Example Usage: list-chargeback-200-1
 
-<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/v2/payments/{paymentId}/chargebacks" example="list-chargeback-200-1" -->
 ```go
 package main
 
@@ -68,7 +68,7 @@ func main() {
 ```
 ### Example Usage: list-chargeback-200-2
 
-<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/v2/payments/{paymentId}/chargebacks" example="list-chargeback-200-2" -->
 ```go
 package main
 
@@ -120,7 +120,7 @@ func main() {
 ```
 ### Example Usage: list-chargeback-200-3
 
-<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-chargebacks" method="get" path="/v2/payments/{paymentId}/chargebacks" example="list-chargeback-200-3" -->
 ```go
 package main
 
@@ -196,7 +196,7 @@ Retrieve a single payment chargeback by its ID and the ID of its parent payment.
 
 ### Example Usage: get-chargeback-200-1
 
-<!-- UsageSnippet language="go" operationID="get-chargeback" method="get" path="/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-chargeback" method="get" path="/v2/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-1" -->
 ```go
 package main
 
@@ -235,7 +235,7 @@ func main() {
 ```
 ### Example Usage: get-chargeback-200-2
 
-<!-- UsageSnippet language="go" operationID="get-chargeback" method="get" path="/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-chargeback" method="get" path="/v2/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-2" -->
 ```go
 package main
 
@@ -300,7 +300,7 @@ The results are paginated.
 
 ### Example Usage: list-all-chargebacks-200-1
 
-<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/v2/chargebacks" example="list-all-chargebacks-200-1" -->
 ```go
 package main
 
@@ -353,7 +353,7 @@ func main() {
 ```
 ### Example Usage: list-all-chargebacks-200-2
 
-<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/v2/chargebacks" example="list-all-chargebacks-200-2" -->
 ```go
 package main
 
@@ -406,7 +406,7 @@ func main() {
 ```
 ### Example Usage: list-all-chargebacks-200-3
 
-<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-all-chargebacks" method="get" path="/v2/chargebacks" example="list-all-chargebacks-200-3" -->
 ```go
 package main
 

@@ -37,7 +37,7 @@ it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-transfer" method="post" path="/business-accounts/transfers" example="create-transfer-201" -->
+<!-- UsageSnippet language="go" operationID="create-transfer" method="post" path="/v2/business-accounts/transfers" example="create-transfer-201" -->
 ```go
 package main
 
@@ -133,7 +133,7 @@ and details of a previously created transfer.
 
 ### Example Usage: get-transfer-200
 
-<!-- UsageSnippet language="go" operationID="get-transfer" method="get" path="/business-accounts/transfers/{businessAccountsTransferId}" example="get-transfer-200" -->
+<!-- UsageSnippet language="go" operationID="get-transfer" method="get" path="/v2/business-accounts/transfers/{businessAccountsTransferId}" example="get-transfer-200" -->
 ```go
 package main
 
@@ -176,7 +176,7 @@ func main() {
 ```
 ### Example Usage: processed-transfer
 
-<!-- UsageSnippet language="go" operationID="get-transfer" method="get" path="/business-accounts/transfers/{businessAccountsTransferId}" example="processed-transfer" -->
+<!-- UsageSnippet language="go" operationID="get-transfer" method="get" path="/v2/business-accounts/transfers/{businessAccountsTransferId}" example="processed-transfer" -->
 ```go
 package main
 

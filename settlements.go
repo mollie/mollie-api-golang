@@ -59,7 +59,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/settlements")
+	opURL, err := url.JoinPath(baseURL, "/v2/settlements")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -362,7 +362,7 @@ func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyK
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/settlements/{settlementId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -614,7 +614,7 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/settlements/open")
+	opURL, err := url.JoinPath(baseURL, "/v2/settlements/open")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -840,7 +840,7 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/settlements/next")
+	opURL, err := url.JoinPath(baseURL, "/v2/settlements/next")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1066,7 +1066,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/payments", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/settlements/{settlementId}/payments", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1354,7 +1354,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/captures", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/settlements/{settlementId}/captures", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1644,7 +1644,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/refunds", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/settlements/{settlementId}/refunds", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1938,7 +1938,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/settlements/{settlementId}/chargebacks", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/settlements/{settlementId}/chargebacks", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

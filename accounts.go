@@ -63,7 +63,7 @@ func (s *Accounts) ListAccounts(ctx context.Context, request operations.ListBusi
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/business-accounts/accounts")
+	opURL, err := url.JoinPath(baseURL, "/v2/business-accounts/accounts")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -359,7 +359,7 @@ func (s *Accounts) GetAccount(ctx context.Context, businessAccountID string, tes
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/business-accounts/accounts/{businessAccountId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/business-accounts/accounts/{businessAccountId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -611,7 +611,7 @@ func (s *Accounts) List(ctx context.Context, request operations.ListBusinessAcco
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/business-accounts/accounts/{businessAccountId}/transactions", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/business-accounts/accounts/{businessAccountId}/transactions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -908,7 +908,7 @@ func (s *Accounts) Get(ctx context.Context, businessAccountID string, transactio
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/business-accounts/accounts/{businessAccountId}/transactions/{transactionId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/business-accounts/accounts/{businessAccountId}/transactions/{transactionId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

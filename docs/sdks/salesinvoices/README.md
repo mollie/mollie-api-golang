@@ -20,7 +20,7 @@ With the Sales Invoice API you can generate sales invoices to send to your custo
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-sales-invoice" method="post" path="/sales-invoices" -->
+<!-- UsageSnippet language="go" operationID="create-sales-invoice" method="post" path="/v2/sales-invoices" -->
 ```go
 package main
 
@@ -126,7 +126,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-sales-invoices" method="get" path="/sales-invoices" -->
+<!-- UsageSnippet language="go" operationID="list-sales-invoices" method="get" path="/v2/sales-invoices" -->
 ```go
 package main
 
@@ -202,7 +202,7 @@ Retrieve a single sales invoice by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-sales-invoice" method="get" path="/sales-invoices/{salesInvoiceId}" -->
+<!-- UsageSnippet language="go" operationID="get-sales-invoice" method="get" path="/v2/sales-invoices/{salesInvoiceId}" -->
 ```go
 package main
 
@@ -267,7 +267,7 @@ respectively).
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-sales-invoice" method="patch" path="/sales-invoices/{salesInvoiceId}" -->
+<!-- UsageSnippet language="go" operationID="update-sales-invoice" method="patch" path="/v2/sales-invoices/{salesInvoiceId}" -->
 ```go
 package main
 
@@ -383,7 +383,7 @@ Sales invoices which are in status `draft` can be deleted. For all other statuse
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-sales-invoice" method="delete" path="/sales-invoices/{salesInvoiceId}" -->
+<!-- UsageSnippet language="go" operationID="delete-sales-invoice" method="delete" path="/v2/sales-invoices/{salesInvoiceId}" -->
 ```go
 package main
 

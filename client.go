@@ -20,7 +20,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"https://api.mollie.com/v2",
+	"https://api.mollie.com",
 }
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
@@ -51,6 +51,7 @@ func Pointer[T any](v T) *T { return &v }
 
 type Client struct {
 	SDKVersion               string
+	Oauth                    *Oauth
 	Balances                 *Balances
 	Settlements              *Settlements
 	Invoices                 *Invoices
@@ -178,9 +179,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "0.13.4",
+		SDKVersion: "0.14.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.13.4 2.881.4 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 0.14.0 2.881.4 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -206,6 +207,7 @@ func New(opts ...SDKOption) *Client {
 
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 
+	sdk.Oauth = newOauth(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Balances = newBalances(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Settlements = newSettlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)

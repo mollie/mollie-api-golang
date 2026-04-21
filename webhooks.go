@@ -61,7 +61,7 @@ func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBo
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/webhooks")
+	opURL, err := url.JoinPath(baseURL, "/v2/webhooks")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -314,7 +314,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/webhooks")
+	opURL, err := url.JoinPath(baseURL, "/v2/webhooks")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -605,7 +605,7 @@ func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/webhooks/{webhookId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -865,7 +865,7 @@ func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, id
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/webhooks/{webhookId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1118,7 +1118,7 @@ func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/webhooks/{webhookId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1355,7 +1355,7 @@ func (s *Webhooks) Test(ctx context.Context, webhookID string, idempotencyKey *s
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{webhookId}/ping", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/webhooks/{webhookId}/ping", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -64,7 +64,7 @@ func (s *Profiles) Create(ctx context.Context, profileRequest components.Profile
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/profiles")
+	opURL, err := url.JoinPath(baseURL, "/v2/profiles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -323,7 +323,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/profiles")
+	opURL, err := url.JoinPath(baseURL, "/v2/profiles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -620,7 +620,7 @@ func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, id
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/profiles/{profileId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -876,7 +876,7 @@ func (s *Profiles) Update(ctx context.Context, profileID string, requestBody ope
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/profiles/{profileId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1135,7 +1135,7 @@ func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/profiles/{profileId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/profiles/{profileId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1367,7 +1367,7 @@ func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/profiles/me")
+	opURL, err := url.JoinPath(baseURL, "/v2/profiles/me")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

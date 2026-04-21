@@ -79,7 +79,7 @@ func (s *Transfers) Create(ctx context.Context, request operations.CreateTransfe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/business-accounts/transfers")
+	opURL, err := url.JoinPath(baseURL, "/v2/business-accounts/transfers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -367,7 +367,7 @@ func (s *Transfers) Get(ctx context.Context, businessAccountsTransferID string, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/business-accounts/transfers/{businessAccountsTransferId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/business-accounts/transfers/{businessAccountsTransferId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

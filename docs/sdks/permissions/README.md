@@ -15,7 +15,7 @@ The results are **not** paginated.
 
 ### Example Usage: list-permissions-200-1
 
-<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/v2/permissions" example="list-permissions-200-1" -->
 ```go
 package main
 
@@ -47,7 +47,7 @@ func main() {
 ```
 ### Example Usage: list-permissions-200-2
 
-<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-permissions" method="get" path="/v2/permissions" example="list-permissions-200-2" -->
 ```go
 package main
 
@@ -103,7 +103,7 @@ Retrieve a single permission by its ID, and see if the permission is granted to 
 
 ### Example Usage: get-permission-200-1
 
-<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/v2/permissions/{permissionId}" example="get-permission-200-1" -->
 ```go
 package main
 
@@ -136,7 +136,7 @@ func main() {
 ```
 ### Example Usage: get-permission-200-2
 
-<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-permission" method="get" path="/v2/permissions/{permissionId}" example="get-permission-200-2" -->
 ```go
 package main
 

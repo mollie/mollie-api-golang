@@ -74,7 +74,7 @@ func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ..
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/capabilities")
+	opURL, err := url.JoinPath(baseURL, "/v2/capabilities")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
