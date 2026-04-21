@@ -30,6 +30,8 @@ type VerificationOfPayeeResponse struct {
 	// Indicates the response contains a payee verification object. Will always contain the string
 	// `business-account-payee-verification` for this endpoint.
 	Resource string `json:"resource"`
+	// Whether this entity was created in live mode or in test mode.
+	Mode Mode `json:"mode"`
 	// The bank account details of the creditor (recipient) for Verification of Payee.
 	CreditorBankAccount CreditorBankAccountResponse                   `json:"creditorBankAccount"`
 	VerificationResult  VerificationOfPayeeResponseVerificationResult `json:"verificationResult"`
@@ -42,6 +44,13 @@ func (v *VerificationOfPayeeResponse) GetResource() string {
 		return ""
 	}
 	return v.Resource
+}
+
+func (v *VerificationOfPayeeResponse) GetMode() Mode {
+	if v == nil {
+		return Mode("")
+	}
+	return v.Mode
 }
 
 func (v *VerificationOfPayeeResponse) GetCreditorBankAccount() CreditorBankAccountResponse {
