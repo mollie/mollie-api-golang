@@ -61,7 +61,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/terminals")
+	opURL, err := url.JoinPath(baseURL, "/v2/terminals")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -354,7 +354,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/terminals/{terminalId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/terminals/{terminalId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

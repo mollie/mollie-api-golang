@@ -76,7 +76,7 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/methods")
+	opURL, err := url.JoinPath(baseURL, "/v2/methods")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -330,7 +330,7 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/methods/all")
+	opURL, err := url.JoinPath(baseURL, "/v2/methods/all")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -589,7 +589,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/methods/{methodId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/methods/{methodId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

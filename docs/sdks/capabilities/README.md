@@ -27,7 +27,7 @@ the payments capability is enabled, communicating that the organization can inde
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-capabilities" method="get" path="/capabilities" example="successful-response-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-capabilities" method="get" path="/v2/capabilities" example="successful-response-200-1" -->
 ```go
 package main
 

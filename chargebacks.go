@@ -61,7 +61,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/chargebacks", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -350,7 +350,7 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/chargebacks/{chargebackId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/chargebacks/{chargebackId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -601,7 +601,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/chargebacks")
+	opURL, err := url.JoinPath(baseURL, "/v2/chargebacks")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

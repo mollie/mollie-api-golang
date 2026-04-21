@@ -63,7 +63,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/balances")
+	opURL, err := url.JoinPath(baseURL, "/v2/balances")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -374,7 +374,7 @@ func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, id
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/balances/{balanceId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -627,7 +627,7 @@ func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/balances/primary")
+	opURL, err := url.JoinPath(baseURL, "/v2/balances/primary")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -853,7 +853,7 @@ func (s *Balances) GetReport(ctx context.Context, request operations.GetBalanceR
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/report", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/balances/{balanceId}/report", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1114,7 +1114,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/balances/{balanceId}/transactions", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/balances/{balanceId}/transactions", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

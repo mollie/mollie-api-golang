@@ -17,7 +17,7 @@ A webhook must have a name, an url and a list of event types. You can also creat
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-webhook" method="post" path="/webhooks" example="create-webhook-200" -->
+<!-- UsageSnippet language="go" operationID="create-webhook" method="post" path="/v2/webhooks" example="create-webhook-200" -->
 ```go
 package main
 
@@ -82,7 +82,7 @@ Returns a paginated list of your webhooks. If no webhook endpoints are available
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-webhooks" method="get" path="/webhooks" example="list-webhook-200" -->
+<!-- UsageSnippet language="go" operationID="list-webhooks" method="get" path="/v2/webhooks" example="list-webhook-200" -->
 ```go
 package main
 
@@ -158,7 +158,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" example="create-webhook-200" -->
+<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="create-webhook-200" -->
 ```go
 package main
 
@@ -224,7 +224,7 @@ Retrieve a single webhook object by its ID.
 
 ### Example Usage: get-webhook-200
 
-<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200" -->
+<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/v2/webhooks/{webhookId}" example="get-webhook-200" -->
 ```go
 package main
 
@@ -257,7 +257,7 @@ func main() {
 ```
 ### Example Usage: get-webhook-200-1
 
-<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-webhook" method="get" path="/v2/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```go
 package main
 
@@ -316,7 +316,7 @@ Delete a single webhook object by its webhook ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-webhook" method="delete" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="go" operationID="delete-webhook" method="delete" path="/v2/webhooks/{webhookId}" -->
 ```go
 package main
 
@@ -377,7 +377,7 @@ Sends a test event to the webhook to verify the endpoint is working as expected.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="test-webhook" method="post" path="/webhooks/{webhookId}/ping" -->
+<!-- UsageSnippet language="go" operationID="test-webhook" method="post" path="/v2/webhooks/{webhookId}/ping" -->
 ```go
 package main
 

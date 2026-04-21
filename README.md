@@ -61,7 +61,6 @@ import (
 	"context"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/components"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 	"os"
 )
@@ -70,35 +69,17 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
-		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
-	})
+	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.Body != nil {
+		// handle response
 	}
 }
 
@@ -126,7 +107,6 @@ import (
 	"context"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/components"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 	"os"
 )
@@ -138,32 +118,14 @@ func main() {
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
-		client.WithTestmode(false),
 	)
 
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
-	})
+	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.Body != nil {
+		// handle response
 	}
 }
 
@@ -352,6 +314,11 @@ s := client.New(
 * [List](docs/sdks/methods/README.md#list) - List payment methods
 * [All](docs/sdks/methods/README.md#all) - List all payment methods
 * [Get](docs/sdks/methods/README.md#get) - Get payment method
+
+### [Oauth](docs/sdks/oauth/README.md)
+
+* [Generate](docs/sdks/oauth/README.md#generate) - Generate tokens
+* [Revoke](docs/sdks/oauth/README.md#revoke) - Revoke tokens
 
 ### [Onboarding](docs/sdks/onboarding/README.md)
 
@@ -625,7 +592,6 @@ import (
 	"context"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/components"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
 	"log"
 	"models/operations"
@@ -636,18 +602,12 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
-		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
-	}, operations.WithRetries(
+	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -661,20 +621,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.Body != nil {
+		// handle response
 	}
 }
 
@@ -688,7 +636,6 @@ import (
 	"context"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/components"
-	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
 	"log"
 	"os"
@@ -709,35 +656,17 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
 		}),
 	)
 
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
-	})
+	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Object != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.Body != nil {
+		// handle response
 	}
 }
 
@@ -906,7 +835,7 @@ func main() {
 	ctx := context.Background()
 
 	s := client.New(
-		client.WithServerURL("https://api.mollie.com/v2"),
+		client.WithServerURL("https://api.mollie.com"),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
 			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
@@ -936,6 +865,41 @@ func main() {
 				break
 			}
 		}
+	}
+}
+
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```go
+package main
+
+import (
+	"context"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+	"os"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := client.New(
+		client.WithSecurity(components.Security{
+			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
+		}),
+	)
+
+	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil, operations.WithServerURL("https://api.mollie.com/oauth2"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Body != nil {
+		// handle response
 	}
 }
 

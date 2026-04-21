@@ -59,7 +59,7 @@ func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...op
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/onboarding/me")
+	opURL, err := url.JoinPath(baseURL, "/v2/onboarding/me")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -285,7 +285,7 @@ func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, request
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/onboarding/me")
+	opURL, err := url.JoinPath(baseURL, "/v2/onboarding/me")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

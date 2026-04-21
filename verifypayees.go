@@ -81,7 +81,7 @@ func (s *VerifyPayees) Create(ctx context.Context, idempotencyKey *string, verif
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/business-accounts/payee-verifications")
+	opURL, err := url.JoinPath(baseURL, "/v2/business-accounts/payee-verifications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -32,7 +32,7 @@ a non-online payment method, you can use the [Get payment method endpoint](get-m
 
 ### Example Usage: list-method-200-3
 
-<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-method-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/v2/methods" example="list-method-200-3" -->
 ```go
 package main
 
@@ -79,7 +79,7 @@ func main() {
 ```
 ### Example Usage: list-methods-200-1
 
-<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-methods-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/v2/methods" example="list-methods-200-1" -->
 ```go
 package main
 
@@ -126,7 +126,7 @@ func main() {
 ```
 ### Example Usage: list-methods-200-2
 
-<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/methods" example="list-methods-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-methods" method="get" path="/v2/methods" example="list-methods-200-2" -->
 ```go
 package main
 
@@ -203,7 +203,7 @@ a non-online payment method, you can use the [Get payment method endpoint](get-m
 
 ### Example Usage: list-all-methods-200-1
 
-<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-1" -->
 ```go
 package main
 
@@ -247,7 +247,7 @@ func main() {
 ```
 ### Example Usage: list-all-methods-200-2
 
-<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-2" -->
 ```go
 package main
 
@@ -291,7 +291,7 @@ func main() {
 ```
 ### Example Usage: list-all-methods-200-3
 
-<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-3" -->
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-3" -->
 ```go
 package main
 
@@ -335,7 +335,7 @@ func main() {
 ```
 ### Example Usage: list-all-methods-200-4
 
-<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-4" -->
+<!-- UsageSnippet language="go" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-4" -->
 ```go
 package main
 
@@ -414,7 +414,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/methods/{methodId}" example="get-method-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-method" method="get" path="/v2/methods/{methodId}" example="get-method-200-1" -->
 ```go
 package main
 

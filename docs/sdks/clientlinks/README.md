@@ -64,7 +64,7 @@ to the URL.
 
 ### Example Usage: create-client-link-201-1
 
-<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-1" -->
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-1" -->
 ```go
 package main
 
@@ -115,7 +115,7 @@ func main() {
 ```
 ### Example Usage: create-client-link-201-2
 
-<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-2" -->
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-2" -->
 ```go
 package main
 
@@ -166,7 +166,7 @@ func main() {
 ```
 ### Example Usage: create-client-link-201-3
 
-<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-3" -->
+<!-- UsageSnippet language="go" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-3" -->
 ```go
 package main
 

@@ -21,7 +21,7 @@ having collected the customer's authorization.
 
 ### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-1" -->
+<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/v2/payments/{paymentId}/captures" example="get-capture-200-1" -->
 ```go
 package main
 
@@ -69,7 +69,7 @@ func main() {
 ```
 ### Example Usage: get-capture-200-2
 
-<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-2" -->
+<!-- UsageSnippet language="go" operationID="create-capture" method="post" path="/v2/payments/{paymentId}/captures" example="get-capture-200-2" -->
 ```go
 package main
 
@@ -145,7 +145,7 @@ The results are paginated.
 
 ### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/v2/payments/{paymentId}/captures" example="list-captures-200-1" -->
 ```go
 package main
 
@@ -197,7 +197,7 @@ func main() {
 ```
 ### Example Usage: list-captures-200-2
 
-<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-captures" method="get" path="/v2/payments/{paymentId}/captures" example="list-captures-200-2" -->
 ```go
 package main
 
@@ -274,7 +274,7 @@ payment.
 
 ### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/v2/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
 ```go
 package main
 
@@ -323,7 +323,7 @@ func main() {
 ```
 ### Example Usage: get-capture-200-2
 
-<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
+<!-- UsageSnippet language="go" operationID="get-capture" method="get" path="/v2/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
 ```go
 package main
 

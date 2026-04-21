@@ -67,7 +67,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/unmatched-credit-transfers")
+	opURL, err := url.JoinPath(baseURL, "/v2/unmatched-credit-transfers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -361,7 +361,7 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/unmatched-credit-transfers/{unmatchedCreditTransferId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -610,7 +610,7 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/unmatched-credit-transfers/{unmatchedCreditTransferId}/match", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}/match", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -867,7 +867,7 @@ func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTr
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/unmatched-credit-transfers/{unmatchedCreditTransferId}/return", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}/return", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

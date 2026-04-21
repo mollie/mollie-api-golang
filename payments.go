@@ -71,7 +71,7 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/payments")
+	opURL, err := url.JoinPath(baseURL, "/v2/payments")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -354,7 +354,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/payments")
+	opURL, err := url.JoinPath(baseURL, "/v2/payments")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -641,7 +641,7 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -892,7 +892,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1151,7 +1151,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1412,7 +1412,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/release-authorization", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/release-authorization", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -66,7 +66,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/clients")
+	opURL, err := url.JoinPath(baseURL, "/v2/clients")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -362,7 +362,7 @@ func (s *Clients) Get(ctx context.Context, organizationID string, embed *string,
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/clients/{organizationId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/clients/{organizationId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

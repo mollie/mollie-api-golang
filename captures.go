@@ -66,7 +66,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/captures", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -321,7 +321,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/captures", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -611,7 +611,7 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/payments/{paymentId}/captures/{captureId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/payments/{paymentId}/captures/{captureId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

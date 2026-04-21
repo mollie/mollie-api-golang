@@ -62,7 +62,7 @@ func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/sessions")
+	opURL, err := url.JoinPath(baseURL, "/v2/sessions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -317,7 +317,7 @@ func (s *Sessions) Get(ctx context.Context, sessionID string, idempotencyKey *st
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/sessions/{sessionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/sessions/{sessionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

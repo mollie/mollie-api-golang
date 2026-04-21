@@ -19,7 +19,7 @@ complete the payment. A [payment](get-payment) will only be created once the cus
 
 ### Example Usage: create-payment-link-201-1
 
-<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-1" -->
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/v2/payment-links" example="create-payment-link-201-1" -->
 ```go
 package main
 
@@ -138,7 +138,7 @@ func main() {
 ```
 ### Example Usage: create-payment-link-201-2
 
-<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-2" -->
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/v2/payment-links" example="create-payment-link-201-2" -->
 ```go
 package main
 
@@ -257,7 +257,7 @@ func main() {
 ```
 ### Example Usage: create-payment-link-201-3
 
-<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-3" -->
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/v2/payment-links" example="create-payment-link-201-3" -->
 ```go
 package main
 
@@ -376,7 +376,7 @@ func main() {
 ```
 ### Example Usage: create-payment-link-201-4
 
-<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-4" -->
+<!-- UsageSnippet language="go" operationID="create-payment-link" method="post" path="/v2/payment-links" example="create-payment-link-201-4" -->
 ```go
 package main
 
@@ -522,7 +522,7 @@ The results are paginated.
 
 ### Example Usage: list-payment-links-200-1
 
-<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-1" -->
+<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/v2/payment-links" example="list-payment-links-200-1" -->
 ```go
 package main
 
@@ -567,7 +567,7 @@ func main() {
 ```
 ### Example Usage: list-payment-links-200-2
 
-<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-2" -->
+<!-- UsageSnippet language="go" operationID="list-payment-links" method="get" path="/v2/payment-links" example="list-payment-links-200-2" -->
 ```go
 package main
 
@@ -639,7 +639,7 @@ Retrieve a single payment link by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" example="get-payment-link-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-payment-link" method="get" path="/v2/payment-links/{paymentLinkId}" example="get-payment-link-200-1" -->
 ```go
 package main
 
@@ -698,7 +698,7 @@ Certain details of an existing payment link can be updated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" example="update-payment-link-200-1" -->
+<!-- UsageSnippet language="go" operationID="update-payment-link" method="patch" path="/v2/payment-links/{paymentLinkId}" example="update-payment-link-200-1" -->
 ```go
 package main
 
@@ -803,7 +803,7 @@ To simply disable a payment link without fully deleting it, you can use the `arc
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-payment-link" method="delete" path="/payment-links/{paymentLinkId}" -->
+<!-- UsageSnippet language="go" operationID="delete-payment-link" method="delete" path="/v2/payment-links/{paymentLinkId}" -->
 ```go
 package main
 
@@ -866,7 +866,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" example="get-payment-link-payments-200-1" -->
+<!-- UsageSnippet language="go" operationID="get-payment-link-payments" method="get" path="/v2/payment-links/{paymentLinkId}/payments" example="get-payment-link-payments-200-1" -->
 ```go
 package main
 

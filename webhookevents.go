@@ -64,7 +64,7 @@ func (s *WebhookEvents) Get(ctx context.Context, webhookEventID string, testmode
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/events/{webhookEventId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/events/{webhookEventId}", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
