@@ -1201,7 +1201,7 @@ type ListPaymentResponse struct {
 	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
-	// The description of the payment. This will be shown to your customer on their card or bank statement when possible.
+	// The description of the payment will be shown to your customer on their card or bank statement when possible.
 	// We truncate the description automatically according to the limits of the used payment method. The description is
 	// also visible in any exports you generate.
 	//
