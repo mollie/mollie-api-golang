@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 5ca99cbc3ac1ba09d2ab0c3dbdadb530
+  docChecksum: ea0e5ed06e4c1ccdde296f092df8599b
   docVersion: 1.0.0
   speakeasyVersion: 1.761.9
   generationVersion: 2.881.4
-  releaseVersion: 0.14.2
-  configChecksum: f2ab2657f24c14a0b8b8fee17e02348c
+  releaseVersion: 0.14.3
+  configChecksum: 4ce08ab8bda0028e293848c44fdfe6b7
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 3d8c2f9a-e9ab-42b4-9e82-38dbc2cdba04
-  pristine_commit_hash: 6e7c1b4ab6bea80cbe09e7f256c6edcbbe2976a0
-  pristine_tree_hash: 8f9d22ce9d0ab4527c1954350a652b995b851206
+  generation_id: 96b3cda9-f689-42e2-ac04-a0f77420d709
+  pristine_commit_hash: ddcb9a32560af6e9500aca9fc4f6a1ee003d8232
+  pristine_tree_hash: 5159e2a07651a9a9afd807171b2495d7f11919f0
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: 810cb1d82f8cb9a7515c026bacc83d70433a8d3c
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:ff2f20b66d18f8404e69cca41e11d3680af2fe39
-    pristine_git_object: 33adc143f37e68a008f33443b23aa00b123c688d
+    last_write_checksum: sha1:28660d811829744be56c2455844b9273ac95d094
+    pristine_git_object: 7c530761de8ab44692d6ec022f1930904632cb67
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:36f19c8b0938cb1fb5cf98e33786537e33540ebd
@@ -3489,8 +3489,8 @@ trackedFiles:
     pristine_git_object: 71eed6d3e5f2108f22c380e55b4bf4bcda48c588
   docs/models/operations/option.md:
     id: 2ac1bd52a5fb
-    last_write_checksum: sha1:e55420f0442ba049b40a3abfb35363ecb4f8c782
-    pristine_git_object: 8601f10453c79ddfe2fa6b19b8ae79cb77ce5bc2
+    last_write_checksum: sha1:3a577623688d4ea93662ee5af8fb0c4dd1e9cf80
+    pristine_git_object: 0892a7d00e34c2564f0b161fd34202ce96623ddc
   docs/models/operations/organization.md:
     id: 40e2b078e571
     last_write_checksum: sha1:5c703b936c84f6a67eaabf1790b2b3e4db629a0c
@@ -5193,8 +5193,8 @@ trackedFiles:
     pristine_git_object: 1a5cf6b6b703b1efd27802c9383c6e30f0f9c50c
   models/operations/options.go:
     id: d20dd4db9865
-    last_write_checksum: sha1:f1823b1c7de7bb374ece18b4522d7ff6987ccf2c
-    pristine_git_object: 4db01c19b5451ec04db465d3d39a260a7c1723d9
+    last_write_checksum: sha1:c585be3bf79de6eb6b3ec02580133bef1c335c69
+    pristine_git_object: 1304bd2bd6fe594845103d457790414a093528b5
   models/operations/paymentcreateroute.go:
     id: 9952c989af1f
     last_write_checksum: sha1:d69e44861a3325a2065be6e143e7f6044610d41b
@@ -5265,8 +5265,8 @@ trackedFiles:
     pristine_git_object: fe1c335abf16365137b95c98ddfd8bbd1d073d91
   oauth.go:
     id: a9cad7eb3094
-    last_write_checksum: sha1:3407d323851eefbc125768bcd003e20ab9f08749
-    pristine_git_object: c4b491399316d0cf238bf38cf2b0e2ed4d0e52ed
+    last_write_checksum: sha1:da1075a088ac3623a73cf55a9b8be342c2508529
+    pristine_git_object: 57a0bb68e965eb219aea8b86e1c06fc7f2782e86
   onboarding.go:
     id: d1e4a134fcc2
     last_write_checksum: sha1:4a937aa95c41b7cb9df677fd1439dd8d2d28d944
@@ -9095,6 +9095,7 @@ examples:
         "200":
           text/html: "{\"access_token\":\"access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR\",\"refresh_token\":\"refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP\",\"expires_in\":3600,\"token_type\":\"bearer\",\"scope\":\"payments.read organizations.read\"}"
           application/hal+json: {"access_token": "access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR", "refresh_token": "refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP", "expires_in": 3600, "token_type": "bearer", "scope": "payments.read organizations.read"}
+          application/json: {"access_token": "access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR", "refresh_token": "refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP", "expires_in": 3600, "token_type": "bearer", "scope": "payments.read organizations.read"}
   oauth-revoke-tokens:
     speakeasy-default-oauth-revoke-tokens:
       parameters:
@@ -9103,7 +9104,9 @@ examples:
       requestBody:
         application/json: {"token_type_hint": "access_token", "token": "access_..."}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Oauth.Generate()`: \n  *  `request.RequestBody` **Changed** (Breaking ⚠️)\n  *  `response.status[200]` **Changed** (Breaking ⚠️)\n* `Client.Oauth.Revoke()`: \n  *  `request.RequestBody.TokenTypeHint` **Changed** (Breaking ⚠️)\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Oauth.Generate()`:  `response.status[200]` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
