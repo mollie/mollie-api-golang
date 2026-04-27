@@ -25,6 +25,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -37,11 +38,16 @@ func main() {
         }),
     )
 
-    res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil)
+    res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+        GrantType: components.OauthGrantTypeAuthorizationCode,
+        Code: client.Pointer("auth_..."),
+        RefreshToken: client.Pointer("refresh_..."),
+        RedirectURI: client.Pointer("https://example.com/redirect"),
+    })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Body != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -85,6 +91,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -97,7 +104,10 @@ func main() {
         }),
     )
 
-    res, err := s.Oauth.Revoke(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), nil)
+    res, err := s.Oauth.Revoke(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthRevokeTokensRequestBody{
+        TokenTypeHint: components.OauthTokenTypeHintAccessToken,
+        Token: "access_...",
+    })
     if err != nil {
         log.Fatal(err)
     }

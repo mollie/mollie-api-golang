@@ -4,6 +4,7 @@
 package client
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/mollie/mollie-api-golang/internal/config"
@@ -95,7 +96,7 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "text/html")
+	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
@@ -218,13 +219,18 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/html`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			res.Body = rawBody
+			var out operations.OauthGenerateTokensResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Object = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
