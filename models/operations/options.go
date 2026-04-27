@@ -22,9 +22,8 @@ const (
 type AcceptHeaderEnum string
 
 const (
-	AcceptHeaderEnumTextHtml               AcceptHeaderEnum = "text/html"
-	AcceptHeaderEnumWildcardRootWildcard   AcceptHeaderEnum = "*/*"
 	AcceptHeaderEnumApplicationHalPlusJson AcceptHeaderEnum = "application/hal+json"
+	AcceptHeaderEnumWildcardRootWildcard   AcceptHeaderEnum = "*/*"
 )
 
 func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {

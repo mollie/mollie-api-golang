@@ -12,17 +12,14 @@ var OauthRevokeTokensServerList = []string{
 }
 
 type OauthRevokeTokensRequestBody struct {
-	// The type of token you want to revoke.
-	//
-	// Possible values: `access_token` `refresh_token`
-	TokenTypeHint string `json:"token_type_hint"`
+	TokenTypeHint components.OauthTokenTypeHint `json:"token_type_hint"`
 	// The token you want to revoke.
 	Token string `json:"token"`
 }
 
-func (o *OauthRevokeTokensRequestBody) GetTokenTypeHint() string {
+func (o *OauthRevokeTokensRequestBody) GetTokenTypeHint() components.OauthTokenTypeHint {
 	if o == nil {
-		return ""
+		return components.OauthTokenTypeHint("")
 	}
 	return o.TokenTypeHint
 }

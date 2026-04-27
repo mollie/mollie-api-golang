@@ -12,12 +12,7 @@ var OauthGenerateTokensServerList = []string{
 }
 
 type OauthGenerateTokensRequestBody struct {
-	// If you wish to exchange your authorization code for an app access token, use grant type
-	// `authorization_code`. If you wish to renew your app access token with your refresh token, use grant type
-	// `refresh_token`.
-	//
-	// Possible values: `authorization_code` `refresh_token`
-	GrantType string `json:"grant_type"`
+	GrantType components.OauthGrantType `json:"grant_type"`
 	// The authorization code you received when creating the authorization. Only use this field when using
 	// grant type `authorization_code`.
 	Code *string `json:"code,omitempty"`
@@ -32,9 +27,9 @@ type OauthGenerateTokensRequestBody struct {
 	RedirectURI *string `json:"redirect_uri,omitempty"`
 }
 
-func (o *OauthGenerateTokensRequestBody) GetGrantType() string {
+func (o *OauthGenerateTokensRequestBody) GetGrantType() components.OauthGrantType {
 	if o == nil {
-		return ""
+		return components.OauthGrantType("")
 	}
 	return o.GrantType
 }
@@ -83,19 +78,19 @@ func (o *OauthGenerateTokensRequest) GetRequestBody() *OauthGenerateTokensReques
 // OauthGenerateTokensResponseBody - The newly generated access token and refresh token.
 type OauthGenerateTokensResponseBody struct {
 	// The app access token, with which you will be able to access the Mollie API on the merchant's behalf.
-	AccessToken *string
+	AccessToken *string `json:"access_token,omitempty"`
 	// The refresh token, with which you will be able to retrieve new app access tokens on this endpoint. The
 	// refresh token does not expire.
-	RefreshToken *string
+	RefreshToken *string `json:"refresh_token,omitempty"`
 	// The number of seconds left before the app access token expires. Be sure to renew your app access token
 	// before this reaches zero.
-	ExpiresIn *int64
+	ExpiresIn *int64 `json:"expires_in,omitempty"`
 	// As per OAuth standards, the provided app access token can only be used with `bearer` authentication.
 	//
 	// Possible values: `bearer`
-	TokenType *string
+	TokenType *string `json:"token_type,omitempty"`
 	// A space-separated list of [permissions](https://docs.mollie.com/docs/permissions).
-	Scope *string
+	Scope *string `json:"scope,omitempty"`
 }
 
 func (o *OauthGenerateTokensResponseBody) GetAccessToken() *string {
@@ -135,7 +130,8 @@ func (o *OauthGenerateTokensResponseBody) GetScope() *string {
 
 type OauthGenerateTokensResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	Body     []byte
+	// The newly generated access token and refresh token.
+	Object *OauthGenerateTokensResponseBody
 }
 
 func (o *OauthGenerateTokensResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -145,9 +141,9 @@ func (o *OauthGenerateTokensResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *OauthGenerateTokensResponse) GetBody() []byte {
+func (o *OauthGenerateTokensResponse) GetObject() *OauthGenerateTokensResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Body
+	return o.Object
 }
