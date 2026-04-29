@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type SalesInvoiceRecipientResponse struct {
 	// The type of recipient, either `consumer` or `business`. This will determine what further fields are
 	// required on the `recipient` object.
@@ -41,6 +45,17 @@ type SalesInvoiceRecipientResponse struct {
 	Region *string `json:"region,omitempty"`
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 	Country string `json:"country"`
+}
+
+func (s SalesInvoiceRecipientResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceRecipientResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"type", "email", "streetAndNumber", "postalCode", "city", "country"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceRecipientResponse) GetType() SalesInvoiceRecipientTypeResponse {

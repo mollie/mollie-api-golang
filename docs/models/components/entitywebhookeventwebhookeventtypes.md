@@ -19,12 +19,19 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 
 ## Values
 
-| Name                                                           | Value                                                          |
-| -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `EntityWebhookEventWebhookEventTypesPaymentLinkPaid`           | payment-link.paid                                              |
-| `EntityWebhookEventWebhookEventTypesBalanceTransactionCreated` | balance-transaction.created                                    |
-| `EntityWebhookEventWebhookEventTypesSalesInvoiceCreated`       | sales-invoice.created                                          |
-| `EntityWebhookEventWebhookEventTypesSalesInvoiceIssued`        | sales-invoice.issued                                           |
-| `EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled`      | sales-invoice.canceled                                         |
-| `EntityWebhookEventWebhookEventTypesSalesInvoicePaid`          | sales-invoice.paid                                             |
-| `EntityWebhookEventWebhookEventTypesWildcard`                  | *                                                              |
+| Name                                                                      | Value                                                                     |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `EntityWebhookEventWebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                                         |
+| `EntityWebhookEventWebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                                               |
+| `EntityWebhookEventWebhookEventTypesSalesInvoiceCreated`                  | sales-invoice.created                                                     |
+| `EntityWebhookEventWebhookEventTypesSalesInvoiceIssued`                   | sales-invoice.issued                                                      |
+| `EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled`                 | sales-invoice.canceled                                                    |
+| `EntityWebhookEventWebhookEventTypesSalesInvoicePaid`                     | sales-invoice.paid                                                        |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferRequested`     | business-account-transfer.requested                                       |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferInitiated`     | business-account-transfer.initiated                                       |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferPendingReview` | business-account-transfer.pending-review                                  |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferProcessed`     | business-account-transfer.processed                                       |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferFailed`        | business-account-transfer.failed                                          |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferBlocked`       | business-account-transfer.blocked                                         |
+| `EntityWebhookEventWebhookEventTypesBusinessAccountTransferReturned`      | business-account-transfer.returned                                        |
+| `EntityWebhookEventWebhookEventTypesWildcard`                             | *                                                                         |

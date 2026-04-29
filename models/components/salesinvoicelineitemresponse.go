@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type SalesInvoiceLineItemResponse struct {
 	// A description of the line item. For example *LEGO 4440 Forest Police Station*.
 	Description string `json:"description"`
@@ -13,6 +17,17 @@ type SalesInvoiceLineItemResponse struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	UnitPrice Amount                        `json:"unitPrice"`
 	Discount  *SalesInvoiceDiscountResponse `json:"discount,omitempty"`
+}
+
+func (s SalesInvoiceLineItemResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceLineItemResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"description", "quantity", "vatRate", "unitPrice"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceLineItemResponse) GetDescription() string {

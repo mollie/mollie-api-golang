@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // StatusHistoryEntryResponse - Represents an entry in the transfer's status history, recording a past status transition.
 type StatusHistoryEntryResponse struct {
 	// The status of the transfer.
@@ -14,6 +18,17 @@ type StatusHistoryEntryResponse struct {
 	//
 	// This field is `null` for transfers that have not reached one of these statuses.
 	StatusReason *StatusReason2 `json:"statusReason,omitempty"`
+}
+
+func (s StatusHistoryEntryResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusHistoryEntryResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"status", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *StatusHistoryEntryResponse) GetStatus() TransferStatus {

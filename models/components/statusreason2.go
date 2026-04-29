@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // StatusReason2 - A human-readable reason explaining the current status of the transfer. Only populated when the transfer has
 // reached a terminal status of `failed`, `rejected`, or `blocked`.
 //
@@ -12,6 +16,17 @@ type StatusReason2 struct {
 	Code *StatusReasonCodeResponse `json:"code,omitempty"`
 	// Provides further details about failure indicated. This field is only populated if the`code` field is set to `error`.
 	Message *string `json:"message,omitempty"`
+}
+
+func (s StatusReason2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusReason2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *StatusReason2) GetCode() *StatusReasonCodeResponse {

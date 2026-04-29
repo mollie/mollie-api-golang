@@ -3,11 +3,26 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type SalesInvoiceDiscountResponse struct {
 	// The type of discount.
 	Type SalesInvoiceDiscountTypeResponse `json:"type"`
 	// A string containing an exact monetary amount in the given currency, or the percentage.
 	Value string `json:"value"`
+}
+
+func (s SalesInvoiceDiscountResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceDiscountResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"type", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceDiscountResponse) GetType() SalesInvoiceDiscountTypeResponse {

@@ -3,10 +3,25 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // TransferResponseAccount - The bank account details of the party.
 type TransferResponseAccount struct {
 	// The IBAN (International Bank Account Number) of the account holder.
 	Iban string `json:"iban"`
+}
+
+func (t TransferResponseAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TransferResponseAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"iban"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *TransferResponseAccount) GetIban() string {
@@ -22,6 +37,17 @@ type Debtor struct {
 	FullName string `json:"fullName"`
 	// The bank account details of the party.
 	Account TransferResponseAccount `json:"account"`
+}
+
+func (d Debtor) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *Debtor) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"fullName", "account"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *Debtor) GetFullName() string {
@@ -82,6 +108,17 @@ type TransferResponse struct {
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *Metadata `json:"metadata,omitempty"`
+}
+
+func (t TransferResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TransferResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"resource", "id", "mode", "debtor", "creditor", "amount", "businessAccountTransactionId", "transferScheme", "creditDebitIndicator", "status", "statusHistory", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *TransferResponse) GetResource() string {

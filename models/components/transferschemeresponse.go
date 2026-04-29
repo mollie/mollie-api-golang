@@ -3,10 +3,25 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // TransferSchemeResponse - The scheme, as requested by the client.
 type TransferSchemeResponse struct {
 	// The transfer scheme to be used for the transfer. The transfer scheme determines the processing time and method of the transfer.
 	Type TransferSchemeTypeResponse `json:"type"`
+}
+
+func (t TransferSchemeResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TransferSchemeResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *TransferSchemeResponse) GetType() TransferSchemeTypeResponse {

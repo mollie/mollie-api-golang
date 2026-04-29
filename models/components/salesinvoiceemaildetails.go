@@ -3,11 +3,26 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type SalesInvoiceEmailDetails struct {
 	// The subject of the email to be sent.
 	Subject string `json:"subject"`
 	// The body of the email to be sent. To add newline characters, you can use `\n`.
 	Body string `json:"body"`
+}
+
+func (s SalesInvoiceEmailDetails) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceEmailDetails) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"subject", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceEmailDetails) GetSubject() string {
