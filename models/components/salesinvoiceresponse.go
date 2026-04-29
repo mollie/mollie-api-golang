@@ -3,12 +3,27 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // SalesInvoiceResponseAmountDue - The amount that is left to be paid.
 type SalesInvoiceResponseAmountDue struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (s SalesInvoiceResponseAmountDue) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseAmountDue) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceResponseAmountDue) GetCurrency() string {
@@ -33,6 +48,17 @@ type SalesInvoiceResponseSubtotalAmount struct {
 	Value string `json:"value"`
 }
 
+func (s SalesInvoiceResponseSubtotalAmount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseSubtotalAmount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *SalesInvoiceResponseSubtotalAmount) GetCurrency() string {
 	if s == nil {
 		return ""
@@ -53,6 +79,17 @@ type SalesInvoiceResponseTotalAmount struct {
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (s SalesInvoiceResponseTotalAmount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseTotalAmount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceResponseTotalAmount) GetCurrency() string {
@@ -77,6 +114,17 @@ type SalesInvoiceResponseTotalVatAmount struct {
 	Value string `json:"value"`
 }
 
+func (s SalesInvoiceResponseTotalVatAmount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseTotalVatAmount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *SalesInvoiceResponseTotalVatAmount) GetCurrency() string {
 	if s == nil {
 		return ""
@@ -97,6 +145,17 @@ type SalesInvoiceResponseDiscountedSubtotalAmount struct {
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (s SalesInvoiceResponseDiscountedSubtotalAmount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseDiscountedSubtotalAmount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceResponseDiscountedSubtotalAmount) GetCurrency() string {
@@ -127,6 +186,17 @@ type SalesInvoiceResponseLinks struct {
 	Next *URLObj `json:"next,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Previous *URLObj `json:"previous,omitempty"`
+}
+
+func (s SalesInvoiceResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceResponseLinks) GetSelf() *URLObj {
@@ -262,6 +332,17 @@ type SalesInvoiceResponse struct {
 	DueAt *string `json:"dueAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links *SalesInvoiceResponseLinks `json:"_links,omitempty"`
+}
+
+func (s SalesInvoiceResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoiceResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"resource", "id", "mode"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoiceResponse) GetResource() string {

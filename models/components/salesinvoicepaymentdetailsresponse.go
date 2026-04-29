@@ -3,12 +3,27 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type SalesInvoicePaymentDetailsResponse struct {
 	// The way through which the invoice is to be set to paid.
 	Source SalesInvoicePaymentDetailsSourceResponse `json:"source"`
 	// A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
 	// `payment`.
 	SourceReference *string `json:"sourceReference,omitempty"`
+}
+
+func (s SalesInvoicePaymentDetailsResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SalesInvoicePaymentDetailsResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"source"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SalesInvoicePaymentDetailsResponse) GetSource() SalesInvoicePaymentDetailsSourceResponse {

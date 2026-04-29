@@ -9,10 +9,16 @@
 entity := components.CreateEntityPaymentLinkResponse(components.PaymentLinkResponse{/* values here */})
 ```
 
-### ProfileResponse
+### SalesInvoiceResponse
 
 ```go
-entity := components.CreateEntityProfileResponse(components.ProfileResponse{/* values here */})
+entity := components.CreateEntitySalesInvoiceResponse(components.SalesInvoiceResponse{/* values here */})
+```
+
+### TransferResponse
+
+```go
+entity := components.CreateEntityTransferResponse(components.TransferResponse{/* values here */})
 ```
 
 ## Union Discrimination
@@ -23,7 +29,9 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch entity.Type {
 	case components.EntityTypePaymentLinkResponse:
 		// entity.PaymentLinkResponse is populated
-	case components.EntityTypeProfileResponse:
-		// entity.ProfileResponse is populated
+	case components.EntityTypeSalesInvoiceResponse:
+		// entity.SalesInvoiceResponse is populated
+	case components.EntityTypeTransferResponse:
+		// entity.TransferResponse is populated
 }
 ```

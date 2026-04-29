@@ -14,13 +14,20 @@ import (
 type EntityWebhookEventWebhookEventTypes string
 
 const (
-	EntityWebhookEventWebhookEventTypesPaymentLinkPaid           EntityWebhookEventWebhookEventTypes = "payment-link.paid"
-	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
-	EntityWebhookEventWebhookEventTypesSalesInvoiceCreated       EntityWebhookEventWebhookEventTypes = "sales-invoice.created"
-	EntityWebhookEventWebhookEventTypesSalesInvoiceIssued        EntityWebhookEventWebhookEventTypes = "sales-invoice.issued"
-	EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled      EntityWebhookEventWebhookEventTypes = "sales-invoice.canceled"
-	EntityWebhookEventWebhookEventTypesSalesInvoicePaid          EntityWebhookEventWebhookEventTypes = "sales-invoice.paid"
-	EntityWebhookEventWebhookEventTypesWildcard                  EntityWebhookEventWebhookEventTypes = "*"
+	EntityWebhookEventWebhookEventTypesPaymentLinkPaid                      EntityWebhookEventWebhookEventTypes = "payment-link.paid"
+	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated            EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceCreated                  EntityWebhookEventWebhookEventTypes = "sales-invoice.created"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceIssued                   EntityWebhookEventWebhookEventTypes = "sales-invoice.issued"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled                 EntityWebhookEventWebhookEventTypes = "sales-invoice.canceled"
+	EntityWebhookEventWebhookEventTypesSalesInvoicePaid                     EntityWebhookEventWebhookEventTypes = "sales-invoice.paid"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferRequested     EntityWebhookEventWebhookEventTypes = "business-account-transfer.requested"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferInitiated     EntityWebhookEventWebhookEventTypes = "business-account-transfer.initiated"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferPendingReview EntityWebhookEventWebhookEventTypes = "business-account-transfer.pending-review"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferProcessed     EntityWebhookEventWebhookEventTypes = "business-account-transfer.processed"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferFailed        EntityWebhookEventWebhookEventTypes = "business-account-transfer.failed"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferBlocked       EntityWebhookEventWebhookEventTypes = "business-account-transfer.blocked"
+	EntityWebhookEventWebhookEventTypesBusinessAccountTransferReturned      EntityWebhookEventWebhookEventTypes = "business-account-transfer.returned"
+	EntityWebhookEventWebhookEventTypesWildcard                             EntityWebhookEventWebhookEventTypes = "*"
 )
 
 func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebhookEventTypes {
@@ -31,7 +38,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment-link.paid", "balance-transaction.created", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "*":
+		case "payment-link.paid", "balance-transaction.created", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
 			return true
 		}
 	}
@@ -41,13 +48,15 @@ func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 type EntityType string
 
 const (
-	EntityTypePaymentLinkResponse EntityType = "payment-link-response"
-	EntityTypeProfileResponse     EntityType = "profile-response"
+	EntityTypePaymentLinkResponse  EntityType = "payment-link-response"
+	EntityTypeSalesInvoiceResponse EntityType = "sales-invoice-response"
+	EntityTypeTransferResponse     EntityType = "transfer-response"
 )
 
 type Entity struct {
-	PaymentLinkResponse *PaymentLinkResponse `queryParam:"inline" union:"member"`
-	ProfileResponse     *ProfileResponse     `queryParam:"inline" union:"member"`
+	PaymentLinkResponse  *PaymentLinkResponse  `queryParam:"inline" union:"member"`
+	SalesInvoiceResponse *SalesInvoiceResponse `queryParam:"inline" union:"member"`
+	TransferResponse     *TransferResponse     `queryParam:"inline" union:"member"`
 
 	Type EntityType
 }
@@ -61,12 +70,21 @@ func CreateEntityPaymentLinkResponse(paymentLinkResponse PaymentLinkResponse) En
 	}
 }
 
-func CreateEntityProfileResponse(profileResponse ProfileResponse) Entity {
-	typ := EntityTypeProfileResponse
+func CreateEntitySalesInvoiceResponse(salesInvoiceResponse SalesInvoiceResponse) Entity {
+	typ := EntityTypeSalesInvoiceResponse
 
 	return Entity{
-		ProfileResponse: &profileResponse,
-		Type:            typ,
+		SalesInvoiceResponse: &salesInvoiceResponse,
+		Type:                 typ,
+	}
+}
+
+func CreateEntityTransferResponse(transferResponse TransferResponse) Entity {
+	typ := EntityTypeTransferResponse
+
+	return Entity{
+		TransferResponse: &transferResponse,
+		Type:             typ,
 	}
 }
 
@@ -79,10 +97,17 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var profileResponse ProfileResponse = ProfileResponse{}
-	if err := utils.UnmarshalJSON(data, &profileResponse, "", true, nil); err == nil {
-		u.ProfileResponse = &profileResponse
-		u.Type = EntityTypeProfileResponse
+	var transferResponse TransferResponse = TransferResponse{}
+	if err := utils.UnmarshalJSON(data, &transferResponse, "", true, nil); err == nil {
+		u.TransferResponse = &transferResponse
+		u.Type = EntityTypeTransferResponse
+		return nil
+	}
+
+	var salesInvoiceResponse SalesInvoiceResponse = SalesInvoiceResponse{}
+	if err := utils.UnmarshalJSON(data, &salesInvoiceResponse, "", true, nil); err == nil {
+		u.SalesInvoiceResponse = &salesInvoiceResponse
+		u.Type = EntityTypeSalesInvoiceResponse
 		return nil
 	}
 
@@ -94,8 +119,12 @@ func (u Entity) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PaymentLinkResponse, "", true)
 	}
 
-	if u.ProfileResponse != nil {
-		return utils.MarshalJSON(u.ProfileResponse, "", true)
+	if u.SalesInvoiceResponse != nil {
+		return utils.MarshalJSON(u.SalesInvoiceResponse, "", true)
+	}
+
+	if u.TransferResponse != nil {
+		return utils.MarshalJSON(u.TransferResponse, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Entity: all fields are null")

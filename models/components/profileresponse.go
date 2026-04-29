@@ -3,10 +3,6 @@
 
 package components
 
-import (
-	"github.com/mollie/mollie-api-golang/internal/utils"
-)
-
 // ProfileResponseStatus - The profile status determines whether the profile is able to receive live payments.
 //
 // * `unverified`: The profile has not been verified yet and can only be used to create test payments.
@@ -43,17 +39,6 @@ type ProfileResponseReview struct {
 	Status *ProfileReviewStatusResponse `json:"status,omitempty"`
 }
 
-func (p ProfileResponseReview) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *ProfileResponseReview) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (p *ProfileResponseReview) GetStatus() *ProfileReviewStatusResponse {
 	if p == nil {
 		return nil
@@ -79,17 +64,6 @@ type ProfileResponseLinks struct {
 	CheckoutPreviewURL *URLObj `json:"checkoutPreviewUrl,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation *URLObj `json:"documentation,omitempty"`
-}
-
-func (p ProfileResponseLinks) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *ProfileResponseLinks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (p *ProfileResponseLinks) GetSelf() *URLObj {
@@ -184,17 +158,6 @@ type ProfileResponse struct {
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links ProfileResponseLinks `json:"_links"`
-}
-
-func (p ProfileResponse) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *ProfileResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "name", "website", "email", "phone", "businessCategory", "status", "createdAt", "_links"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (p *ProfileResponse) GetResource() string {

@@ -13,13 +13,20 @@ import (
 type WebhookEventTypes string
 
 const (
-	WebhookEventTypesPaymentLinkPaid           WebhookEventTypes = "payment-link.paid"
-	WebhookEventTypesBalanceTransactionCreated WebhookEventTypes = "balance-transaction.created"
-	WebhookEventTypesSalesInvoiceCreated       WebhookEventTypes = "sales-invoice.created"
-	WebhookEventTypesSalesInvoiceIssued        WebhookEventTypes = "sales-invoice.issued"
-	WebhookEventTypesSalesInvoiceCanceled      WebhookEventTypes = "sales-invoice.canceled"
-	WebhookEventTypesSalesInvoicePaid          WebhookEventTypes = "sales-invoice.paid"
-	WebhookEventTypesWildcard                  WebhookEventTypes = "*"
+	WebhookEventTypesPaymentLinkPaid                      WebhookEventTypes = "payment-link.paid"
+	WebhookEventTypesBalanceTransactionCreated            WebhookEventTypes = "balance-transaction.created"
+	WebhookEventTypesSalesInvoiceCreated                  WebhookEventTypes = "sales-invoice.created"
+	WebhookEventTypesSalesInvoiceIssued                   WebhookEventTypes = "sales-invoice.issued"
+	WebhookEventTypesSalesInvoiceCanceled                 WebhookEventTypes = "sales-invoice.canceled"
+	WebhookEventTypesSalesInvoicePaid                     WebhookEventTypes = "sales-invoice.paid"
+	WebhookEventTypesBusinessAccountTransferRequested     WebhookEventTypes = "business-account-transfer.requested"
+	WebhookEventTypesBusinessAccountTransferInitiated     WebhookEventTypes = "business-account-transfer.initiated"
+	WebhookEventTypesBusinessAccountTransferPendingReview WebhookEventTypes = "business-account-transfer.pending-review"
+	WebhookEventTypesBusinessAccountTransferProcessed     WebhookEventTypes = "business-account-transfer.processed"
+	WebhookEventTypesBusinessAccountTransferFailed        WebhookEventTypes = "business-account-transfer.failed"
+	WebhookEventTypesBusinessAccountTransferBlocked       WebhookEventTypes = "business-account-transfer.blocked"
+	WebhookEventTypesBusinessAccountTransferReturned      WebhookEventTypes = "business-account-transfer.returned"
+	WebhookEventTypesWildcard                             WebhookEventTypes = "*"
 )
 
 func (e WebhookEventTypes) ToPointer() *WebhookEventTypes {
@@ -42,6 +49,20 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "sales-invoice.canceled":
 		fallthrough
 	case "sales-invoice.paid":
+		fallthrough
+	case "business-account-transfer.requested":
+		fallthrough
+	case "business-account-transfer.initiated":
+		fallthrough
+	case "business-account-transfer.pending-review":
+		fallthrough
+	case "business-account-transfer.processed":
+		fallthrough
+	case "business-account-transfer.failed":
+		fallthrough
+	case "business-account-transfer.blocked":
+		fallthrough
+	case "business-account-transfer.returned":
 		fallthrough
 	case "*":
 		*e = WebhookEventTypes(v)
