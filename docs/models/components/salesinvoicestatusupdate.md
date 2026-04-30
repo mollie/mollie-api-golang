@@ -1,4 +1,4 @@
-# SalesInvoiceStatus
+# SalesInvoiceStatusUpdate
 
 The status for the invoice to end up in.
 
@@ -18,14 +18,15 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.SalesInvoiceStatusDraft
+value := components.SalesInvoiceStatusUpdateDraft
 ```
 
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `SalesInvoiceStatusDraft`  | draft                      |
-| `SalesInvoiceStatusIssued` | issued                     |
-| `SalesInvoiceStatusPaid`   | paid                       |
+| Name                                | Value                               |
+| ----------------------------------- | ----------------------------------- |
+| `SalesInvoiceStatusUpdateDraft`     | draft                               |
+| `SalesInvoiceStatusUpdateIssued`    | issued                              |
+| `SalesInvoiceStatusUpdatePaid`      | paid                                |
+| `SalesInvoiceStatusUpdateCancelled` | cancelled                           |

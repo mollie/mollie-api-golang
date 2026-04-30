@@ -291,7 +291,7 @@ func main() {
 
     res, err := s.SalesInvoices.Update(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateSalesInvoiceRequestBody{
         Testmode: client.Pointer(false),
-        Status: components.SalesInvoiceStatusDraft.ToPointer(),
+        Status: components.SalesInvoiceStatusUpdateDraft.ToPointer(),
         Memo: client.Pointer("An updated memo!"),
         PaymentTerm: components.SalesInvoicePaymentTermThirtydays.ToPointer(),
         PaymentDetails: &components.SalesInvoicePaymentDetails{
