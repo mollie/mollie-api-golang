@@ -184,9 +184,6 @@ type ListSalesInvoiceResponse struct {
 	// the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
 	// mark it as paid. It can then subsequently be sent as well, same as with `issued`.
 	//
-	// A status value that cannot be set but can be returned is `canceled`, for invoices which were
-	// issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-	//
 	// Dependent parameters:
 	//   - `paymentDetails` is required if invoice should be set directly to `paid`
 	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
@@ -203,9 +200,11 @@ type ListSalesInvoiceResponse struct {
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata map[string]any `json:"metadata,omitempty"`
 	// The payment term to be set on the invoice.
-	PaymentTerm    *SalesInvoicePaymentTermResponse    `json:"paymentTerm,omitempty"`
-	PaymentDetails *SalesInvoicePaymentDetailsResponse `json:"paymentDetails,omitempty"`
-	EmailDetails   *SalesInvoiceEmailDetails           `json:"emailDetails,omitempty"`
+	PaymentTerm *SalesInvoicePaymentTermResponse `json:"paymentTerm,omitempty"`
+	// Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+	// provided details. Required for `paid` status.
+	PaymentDetails []SalesInvoicePaymentDetailsResponse `json:"paymentDetails,omitempty"`
+	EmailDetails   *SalesInvoiceEmailDetails            `json:"emailDetails,omitempty"`
 	// The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
 	// provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
 	CustomerID *string `json:"customerId,omitempty"`
@@ -332,7 +331,7 @@ func (l *ListSalesInvoiceResponse) GetPaymentTerm() *SalesInvoicePaymentTermResp
 	return l.PaymentTerm
 }
 
-func (l *ListSalesInvoiceResponse) GetPaymentDetails() *SalesInvoicePaymentDetailsResponse {
+func (l *ListSalesInvoiceResponse) GetPaymentDetails() []SalesInvoicePaymentDetailsResponse {
 	if l == nil {
 		return nil
 	}

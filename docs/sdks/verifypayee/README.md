@@ -1,4 +1,4 @@
-# VerifyPayees
+# VerifyPayee
 
 ## Overview
 
@@ -54,7 +54,7 @@ func main() {
         }),
     )
 
-    res, err := s.VerifyPayees.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
+    res, err := s.VerifyPayee.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
         CreditorBankAccount: components.CreditorBankAccount{
             AccountHolderName: "Jan Jansen",
             Format: components.AccountNumberFormatIban,
@@ -93,7 +93,7 @@ func main() {
         }),
     )
 
-    res, err := s.VerifyPayees.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
+    res, err := s.VerifyPayee.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
         CreditorBankAccount: components.CreditorBankAccount{
             AccountHolderName: "Jan Jansen",
             Format: components.AccountNumberFormatIban,
@@ -132,7 +132,7 @@ func main() {
         }),
     )
 
-    res, err := s.VerifyPayees.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
+    res, err := s.VerifyPayee.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
         CreditorBankAccount: components.CreditorBankAccount{
             AccountHolderName: "Jan Jansen",
             Format: components.AccountNumberFormatIban,
@@ -171,7 +171,7 @@ func main() {
         }),
     )
 
-    res, err := s.VerifyPayees.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
+    res, err := s.VerifyPayee.Create(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.VerificationOfPayeeRequest{
         CreditorBankAccount: components.CreditorBankAccount{
             AccountHolderName: "Jan Jansen",
             Format: components.AccountNumberFormatIban,

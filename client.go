@@ -3,7 +3,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.881.4
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.881.16
 
 import (
 	"context"
@@ -82,7 +82,7 @@ type Client struct {
 	SalesInvoices            *SalesInvoices
 	Accounts                 *Accounts
 	Transfers                *Transfers
-	VerifyPayees             *VerifyPayees
+	VerifyPayee              *VerifyPayee
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -179,9 +179,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.0.0",
+		SDKVersion: "1.0.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 1.0.0 2.881.4 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 1.0.1 2.881.16 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -238,7 +238,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.SalesInvoices = newSalesInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Accounts = newAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Transfers = newTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.VerifyPayees = newVerifyPayees(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.VerifyPayee = newVerifyPayee(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	if !utils.CanHaveGlobalFields(sdk.sdkConfiguration.Security) && utils.HasGlobalFields(sdk.sdkConfiguration.Globals) {
 		panic("Global fields like testmode and profileID can only be set when using an Access or oAuth Key.")
