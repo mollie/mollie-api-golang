@@ -1,15 +1,7 @@
-# ~~ListPaymentResponseSettlementAmount~~
+# ListSettlementChargebackResponseSettlementAmount
 
-**Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-
-The amount that will be settled to your account, converted to the currency your account is settled in. Only
-available once the payment is finalized and the final settlement amount has been determined.
-
-Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
-Mollie, this field is omitted from the response.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+The amount deducted from your account balance for this chargeback, converted to the currency your account is
+settled in. Always a **negative** amount.
 
 
 ## Fields
