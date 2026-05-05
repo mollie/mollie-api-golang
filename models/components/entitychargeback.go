@@ -3,14 +3,14 @@
 
 package components
 
-// EntityChargebackSettlementAmount - This optional field will contain the approximate amount that will be deducted from your account balance, converted
-// to the currency your account is settled in.
+// EntityChargebackSettlementAmount - **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 //
-// The amount is a **negative** amount.
+// The amount deducted from your account balance for this chargeback, converted to the currency your account is
+// settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
+// amount has been determined.
 //
-// Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-// instead.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type EntityChargebackSettlementAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
@@ -102,14 +102,14 @@ type EntityChargeback struct {
 	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// This optional field will contain the approximate amount that will be deducted from your account balance, converted
-	// to the currency your account is settled in.
+	// **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+	// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 	//
-	// The amount is a **negative** amount.
+	// The amount deducted from your account balance for this chargeback, converted to the currency your account is
+	// settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
+	// amount has been determined.
 	//
-	// Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-	// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-	// instead.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	SettlementAmount *EntityChargebackSettlementAmount `json:"settlementAmount,omitempty"`
 	// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 	Reason *EntityChargebackReason `json:"reason,omitempty"`

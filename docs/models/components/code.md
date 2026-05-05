@@ -10,6 +10,9 @@ import (
 )
 
 value := components.CodeApprovedOrCompletedSuccessfully
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.Code("custom_value")
 ```
 
 

@@ -3,12 +3,7 @@
 
 package components
 
-// ListSettlementCaptureResponseSettlementAmount - This optional field will contain the approximate amount that will be settled to your account, converted to the
-// currency your account is settled in.
-//
-// Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
-// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-// instead.
+// ListSettlementCaptureResponseSettlementAmount - The amount settled to your account for this capture, converted to the currency your account is settled in.
 type ListSettlementCaptureResponseSettlementAmount struct {
 	// A three-character ISO 4217 currency code.
 	Currency string `json:"currency"`
@@ -81,12 +76,7 @@ type ListSettlementCaptureResponse struct {
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *AmountNullable `json:"amount"`
-	// This optional field will contain the approximate amount that will be settled to your account, converted to the
-	// currency your account is settled in.
-	//
-	// Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
-	// accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-	// instead.
+	// The amount settled to your account for this capture, converted to the currency your account is settled in.
 	SettlementAmount *ListSettlementCaptureResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// The capture's status. Settlement captures always have a status of `succeeded`.
 	Status SettlementCaptureStatus `json:"status"`
