@@ -1235,7 +1235,7 @@ type ListSettlementPaymentResponse struct {
 	// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
 	BillingAddress  *ListSettlementPaymentResponseBillingAddress `json:"billingAddress,omitempty"`
 	ShippingAddress *PaymentAddress                              `json:"shippingAddress,omitempty"`
-	// Allows you to preset the language to be used.
+	// Sets the language for customer-facing content and communications.
 	Locale *LocaleResponse `json:"locale,omitempty"`
 	// This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
 	// field is omitted if the country code was not detected.
