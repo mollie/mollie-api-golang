@@ -14,8 +14,10 @@ const (
 	EntityOrganizationLocaleDeDe EntityOrganizationLocale = "de_DE"
 	EntityOrganizationLocaleDeAt EntityOrganizationLocale = "de_AT"
 	EntityOrganizationLocaleDeCh EntityOrganizationLocale = "de_CH"
+	EntityOrganizationLocaleDeLu EntityOrganizationLocale = "de_LU"
 	EntityOrganizationLocaleFrFr EntityOrganizationLocale = "fr_FR"
 	EntityOrganizationLocaleFrBe EntityOrganizationLocale = "fr_BE"
+	EntityOrganizationLocaleFrLu EntityOrganizationLocale = "fr_LU"
 	EntityOrganizationLocaleEsEs EntityOrganizationLocale = "es_ES"
 	EntityOrganizationLocaleCaEs EntityOrganizationLocale = "ca_ES"
 	EntityOrganizationLocalePtPt EntityOrganizationLocale = "pt_PT"
@@ -40,7 +42,7 @@ func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
 func (e *EntityOrganizationLocale) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "fr_FR", "fr_BE", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
+		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "de_LU", "fr_FR", "fr_BE", "fr_LU", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
 			return true
 		}
 	}

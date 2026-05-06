@@ -65,7 +65,7 @@ type ListCustomerResponse struct {
 	//
 	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email *string `json:"email"`
-	// Allows you to preset the language to be used.
+	// Sets the language for customer-facing content and communications.
 	Locale *LocaleResponse `json:"locale"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.

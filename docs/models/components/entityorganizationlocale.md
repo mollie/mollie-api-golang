@@ -27,8 +27,10 @@ custom := components.EntityOrganizationLocale("custom_value")
 | `EntityOrganizationLocaleDeDe` | de_DE                          |
 | `EntityOrganizationLocaleDeAt` | de_AT                          |
 | `EntityOrganizationLocaleDeCh` | de_CH                          |
+| `EntityOrganizationLocaleDeLu` | de_LU                          |
 | `EntityOrganizationLocaleFrFr` | fr_FR                          |
 | `EntityOrganizationLocaleFrBe` | fr_BE                          |
+| `EntityOrganizationLocaleFrLu` | fr_LU                          |
 | `EntityOrganizationLocaleEsEs` | es_ES                          |
 | `EntityOrganizationLocaleCaEs` | ca_ES                          |
 | `EntityOrganizationLocalePtPt` | pt_PT                          |

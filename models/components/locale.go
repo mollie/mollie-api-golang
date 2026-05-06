@@ -8,7 +8,7 @@ import (
 	"fmt"
 )
 
-// Locale - Allows you to preset the language to be used.
+// Locale - Sets the language for customer-facing content and communications.
 type Locale string
 
 const (
@@ -19,8 +19,10 @@ const (
 	LocaleDeDe Locale = "de_DE"
 	LocaleDeAt Locale = "de_AT"
 	LocaleDeCh Locale = "de_CH"
+	LocaleDeLu Locale = "de_LU"
 	LocaleFrFr Locale = "fr_FR"
 	LocaleFrBe Locale = "fr_BE"
+	LocaleFrLu Locale = "fr_LU"
 	LocaleEsEs Locale = "es_ES"
 	LocaleCaEs Locale = "ca_ES"
 	LocalePtPt Locale = "pt_PT"
@@ -60,9 +62,13 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "de_CH":
 		fallthrough
+	case "de_LU":
+		fallthrough
 	case "fr_FR":
 		fallthrough
 	case "fr_BE":
+		fallthrough
+	case "fr_LU":
 		fallthrough
 	case "es_ES":
 		fallthrough

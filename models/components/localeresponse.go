@@ -3,7 +3,7 @@
 
 package components
 
-// LocaleResponse - Allows you to preset the language to be used.
+// LocaleResponse - Sets the language for customer-facing content and communications.
 type LocaleResponse string
 
 const (
@@ -14,8 +14,10 @@ const (
 	LocaleResponseDeDe LocaleResponse = "de_DE"
 	LocaleResponseDeAt LocaleResponse = "de_AT"
 	LocaleResponseDeCh LocaleResponse = "de_CH"
+	LocaleResponseDeLu LocaleResponse = "de_LU"
 	LocaleResponseFrFr LocaleResponse = "fr_FR"
 	LocaleResponseFrBe LocaleResponse = "fr_BE"
+	LocaleResponseFrLu LocaleResponse = "fr_LU"
 	LocaleResponseEsEs LocaleResponse = "es_ES"
 	LocaleResponseCaEs LocaleResponse = "ca_ES"
 	LocaleResponsePtPt LocaleResponse = "pt_PT"
@@ -40,7 +42,7 @@ func (e LocaleResponse) ToPointer() *LocaleResponse {
 func (e *LocaleResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "fr_FR", "fr_BE", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
+		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "de_LU", "fr_FR", "fr_BE", "fr_LU", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
 			return true
 		}
 	}

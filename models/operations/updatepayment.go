@@ -52,7 +52,7 @@ type UpdatePaymentRequestBody struct {
 	// but will only show the methods specified in the array. For example, you can use this functionality to only show
 	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 	Method *components.MethodEnum `json:"method,omitempty"`
-	// Allows you to preset the language to be used.
+	// Sets the language for customer-facing content and communications.
 	Locale *components.Locale `json:"locale,omitempty"`
 	// The date by which the payment should be completed in `YYYY-MM-DD` format
 	DueDate *string `json:"dueDate,omitempty"`

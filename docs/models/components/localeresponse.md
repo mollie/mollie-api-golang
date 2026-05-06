@@ -1,6 +1,6 @@
 # LocaleResponse
 
-Allows you to preset the language to be used.
+Sets the language for customer-facing content and communications.
 
 ## Example Usage
 
@@ -27,8 +27,10 @@ custom := components.LocaleResponse("custom_value")
 | `LocaleResponseDeDe` | de_DE                |
 | `LocaleResponseDeAt` | de_AT                |
 | `LocaleResponseDeCh` | de_CH                |
+| `LocaleResponseDeLu` | de_LU                |
 | `LocaleResponseFrFr` | fr_FR                |
 | `LocaleResponseFrBe` | fr_BE                |
+| `LocaleResponseFrLu` | fr_LU                |
 | `LocaleResponseEsEs` | es_ES                |
 | `LocaleResponseCaEs` | ca_ES                |
 | `LocaleResponsePtPt` | pt_PT                |

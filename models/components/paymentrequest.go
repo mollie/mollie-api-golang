@@ -462,7 +462,7 @@ type PaymentRequest struct {
 	// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
 	BillingAddress  *PaymentRequestBillingAddress `json:"billingAddress,omitempty"`
 	ShippingAddress *PaymentAddress               `json:"shippingAddress,omitempty"`
-	// Allows you to preset the language to be used.
+	// Sets the language for customer-facing content and communications.
 	Locale *Locale `json:"locale,omitempty"`
 	Method *Method `json:"method,omitempty"`
 	// **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**

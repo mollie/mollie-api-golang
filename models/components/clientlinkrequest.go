@@ -13,7 +13,7 @@ type Owner struct {
 	GivenName string `json:"givenName"`
 	// The family name (surname) of your customer.
 	FamilyName string `json:"familyName"`
-	// Allows you to preset the language to be used.
+	// Sets the language for customer-facing content and communications.
 	Locale *LocaleResponse `json:"locale,omitempty"`
 }
 

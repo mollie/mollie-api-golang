@@ -1,6 +1,6 @@
 # Locale
 
-Allows you to preset the language to be used.
+Sets the language for customer-facing content and communications.
 
 ## Example Usage
 
@@ -24,8 +24,10 @@ value := components.LocaleEnUs
 | `LocaleDeDe` | de_DE        |
 | `LocaleDeAt` | de_AT        |
 | `LocaleDeCh` | de_CH        |
+| `LocaleDeLu` | de_LU        |
 | `LocaleFrFr` | fr_FR        |
 | `LocaleFrBe` | fr_BE        |
+| `LocaleFrLu` | fr_LU        |
 | `LocaleEsEs` | es_ES        |
 | `LocaleCaEs` | ca_ES        |
 | `LocalePtPt` | pt_PT        |
