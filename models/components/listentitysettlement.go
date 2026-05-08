@@ -7,10 +7,11 @@ package components
 type ListEntitySettlementStatus string
 
 const (
-	ListEntitySettlementStatusOpen    ListEntitySettlementStatus = "open"
-	ListEntitySettlementStatusPending ListEntitySettlementStatus = "pending"
-	ListEntitySettlementStatusPaidout ListEntitySettlementStatus = "paidout"
-	ListEntitySettlementStatusFailed  ListEntitySettlementStatus = "failed"
+	ListEntitySettlementStatusOpen             ListEntitySettlementStatus = "open"
+	ListEntitySettlementStatusPending          ListEntitySettlementStatus = "pending"
+	ListEntitySettlementStatusProcessingAtBank ListEntitySettlementStatus = "processing-at-bank"
+	ListEntitySettlementStatusPaidout          ListEntitySettlementStatus = "paidout"
+	ListEntitySettlementStatusFailed           ListEntitySettlementStatus = "failed"
 )
 
 func (e ListEntitySettlementStatus) ToPointer() *ListEntitySettlementStatus {
@@ -21,7 +22,7 @@ func (e ListEntitySettlementStatus) ToPointer() *ListEntitySettlementStatus {
 func (e *ListEntitySettlementStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "open", "pending", "paidout", "failed":
+		case "open", "pending", "processing-at-bank", "paidout", "failed":
 			return true
 		}
 	}
