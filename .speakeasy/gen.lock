@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 08de12094e819ca24452ccda29449709
+  docChecksum: 483eb490ad84cf97c9954976c28ebd06
   docVersion: 1.0.0
   speakeasyVersion: 1.762.0
   generationVersion: 2.882.0
-  releaseVersion: 1.0.3
-  configChecksum: d4c917d27f563c3a9062b6c3d21afd87
+  releaseVersion: 1.0.4
+  configChecksum: fdf7531cc43379bc03a970c42d0ca662
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 5b99d834-fb5d-4c53-9502-667881be8d50
-  pristine_commit_hash: 51766b43ae3deb906d5d6e79093afabc775de33a
-  pristine_tree_hash: 6bcea782615af5b320b27ebc268db57376ec7041
+  generation_id: 0302a548-7a65-40c3-856d-68ab199615c8
+  pristine_commit_hash: 4b998aad167f0165f7455ba5acd93d00415c144c
+  pristine_tree_hash: 32ced3815bba27a4219e958d3f45382103b3b601
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: 810cb1d82f8cb9a7515c026bacc83d70433a8d3c
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0b6f823acc6d1f48ed3bdb9cf1957a78d3c37e13
-    pristine_git_object: dafeb0fa4572bb5f557e8493c11cbc2cabea72b9
+    last_write_checksum: sha1:622324d5df34c665e2e1f8e98f5cee169713e216
+    pristine_git_object: f6fc7c12f0558706e6c0fcf48a2921eff77c51d0
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:36f19c8b0938cb1fb5cf98e33786537e33540ebd
@@ -673,8 +673,8 @@ trackedFiles:
     pristine_git_object: 02c151a961ed9aeca7a7e9f869465585f6292bd0
   docs/models/components/entitysettlementstatus.md:
     id: e9e5f9d97a3a
-    last_write_checksum: sha1:626a840f4b8465ac9df4803d40b836d4f833abbb
-    pristine_git_object: 9b66dbd817f0fbef30bb3e178c0a76f8c3aab55c
+    last_write_checksum: sha1:44d1446fcf3242156a487cae521bcbaff40443d2
+    pristine_git_object: 4a31f1cc40caa742112cf331094f07541316ffbd
   docs/models/components/entityterminal.md:
     id: caa27bf27ac4
     last_write_checksum: sha1:23f13a045c54666de60b8858a2c3333531ec0d38
@@ -1005,8 +1005,8 @@ trackedFiles:
     pristine_git_object: edaff0f8bfda20117db762fb103a673c17841fb4
   docs/models/components/listentitysettlementstatus.md:
     id: db495de5e663
-    last_write_checksum: sha1:9e911a6bc4c94adb2efbb109d4adf9b96db19d41
-    pristine_git_object: 77eed9c3bd99eda6d5f3f4bd0ecb4b88dc7a7f0b
+    last_write_checksum: sha1:db3a1b18b3c0ece28f9427e1a083bac3772b8d74
+    pristine_git_object: d762f520bbadaceb0e2913c32de3d53ed0025e60
   docs/models/components/listentityterminal.md:
     id: 8a3faa0d3b7e
     last_write_checksum: sha1:de77f3143bddeec484f81d8dc6b65ee5b5543aeb
@@ -4201,8 +4201,8 @@ trackedFiles:
     pristine_git_object: ad30da35a63c5099e34ffcaa07bd8b59b9833925
   models/components/entitysettlement.go:
     id: 0060a020b645
-    last_write_checksum: sha1:dccc03cc2887b6d4a70a1ec94b7f051ea00d098e
-    pristine_git_object: d45ff1194c76f3477c7879452b8558e825fc0b6c
+    last_write_checksum: sha1:9be54cf835de1b66e263cee398fe6b11b7720e9d
+    pristine_git_object: e1a1e89bafb026601c4e640151ef7431dc38a8c1
   models/components/entityterminal.go:
     id: 020d65e9306f
     last_write_checksum: sha1:1a6cc8e878d1eaaca260efaf79cd2241d78f7320
@@ -4273,8 +4273,8 @@ trackedFiles:
     pristine_git_object: 9a2e13042c78f73666325230bee9a5d2d2ce2cac
   models/components/listentitysettlement.go:
     id: e1c3f145a80a
-    last_write_checksum: sha1:b84f123e349260b9ac980fe8c7239f6c155023ae
-    pristine_git_object: 1775c8e7882366679cf23ed1ba416fcbadd53401
+    last_write_checksum: sha1:dda57ec0c7baebe37238ef86eea565d3f50b02f6
+    pristine_git_object: 7681822251153f7b79398fdf2595b9ff079a4a83
   models/components/listentityterminal.go:
     id: a7aa60e27952
     last_write_checksum: sha1:f1413cc988c9c86f98dafd81751d5e962c1ac0c3
@@ -9132,7 +9132,12 @@ examples:
       requestBody:
         application/json: {"token_type_hint": "access_token", "token": "access_..."}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Organizations.Get()`:  `response.Locale` **Changed**\n* `Client.Organizations.GetCurrent()`:  `response.Locale` **Changed**\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.Locale` **Changed**\n* `Client.Clients.Get()`:  `response.Embedded.Organization.Locale` **Changed**\n* `Client.ClientLinks.Create()`: \n  *  `request.ClientLinkRequest.Owner.Locale` **Changed**\n* `Client.Payments.Create()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Payments.Get()`:  `response.Locale` **Changed**\n* `Client.Payments.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.Cancel()`:  `response.Locale` **Changed**\n* `Client.Methods.List()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.All()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.Get()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Customers.Create()`: \n  *  `request.EntityCustomer.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.List()`:  `response.Embedded.Customers[].Locale` **Changed**\n* `Client.Customers.Get()`:  `response.Locale` **Changed**\n* `Client.Customers.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.CreatePayment()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Settlements.List()`:  `response.Embedded.Settlements[].Status.Enum(processingAtBank)` **Added**
+  * `Client.Settlements.Get()`:  `response.Status.Enum(processingAtBank)` **Added**
+  * `Client.Settlements.GetOpen()`:  `response.Status.Enum(processingAtBank)` **Added**
+  * `Client.Settlements.GetNext()`:  `response.Status.Enum(processingAtBank)` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

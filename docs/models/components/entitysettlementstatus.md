@@ -18,9 +18,10 @@ custom := components.EntitySettlementStatus("custom_value")
 
 ## Values
 
-| Name                            | Value                           |
-| ------------------------------- | ------------------------------- |
-| `EntitySettlementStatusOpen`    | open                            |
-| `EntitySettlementStatusPending` | pending                         |
-| `EntitySettlementStatusPaidout` | paidout                         |
-| `EntitySettlementStatusFailed`  | failed                          |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `EntitySettlementStatusOpen`             | open                                     |
+| `EntitySettlementStatusPending`          | pending                                  |
+| `EntitySettlementStatusProcessingAtBank` | processing-at-bank                       |
+| `EntitySettlementStatusPaidout`          | paidout                                  |
+| `EntitySettlementStatusFailed`           | failed                                   |
