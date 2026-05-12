@@ -154,16 +154,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -334,16 +324,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -514,16 +494,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -694,16 +664,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -874,16 +834,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1054,16 +1004,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1234,16 +1174,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1414,16 +1344,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1594,16 +1514,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1774,16 +1684,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -1954,16 +1854,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -2134,16 +2024,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
@@ -2314,16 +2194,6 @@ func main() {
                     OrganizationID: "org_1234567",
                 },
                 ReleaseDate: client.Pointer("2024-12-12"),
-                Links: components.EntityPaymentRouteLinks{
-                    Self: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                    Payment: components.URLObj{
-                        Href: "https://...",
-                        Type: "application/hal+json",
-                    },
-                },
             },
         },
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
