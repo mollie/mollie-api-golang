@@ -99,11 +99,11 @@ func main() {
 
 This SDK supports the following security schemes globally:
 
-| Name                      | Type   | Scheme       | Environment Variable               |
-| ------------------------- | ------ | ------------ | ---------------------------------- |
-| `APIKey`                  | http   | HTTP Bearer  | `CLIENT_API_KEY`                   |
-| `OrganizationAccessToken` | http   | HTTP Bearer  | `CLIENT_ORGANIZATION_ACCESS_TOKEN` |
-| `OAuth`                   | oauth2 | OAuth2 token | `CLIENT_O_AUTH`                    |
+| Name                  | Type   | Scheme       | Environment Variable           |
+| --------------------- | ------ | ------------ | ------------------------------ |
+| `APIKey`              | http   | HTTP Bearer  | `CLIENT_API_KEY`               |
+| `AdvancedAccessToken` | http   | HTTP Bearer  | `CLIENT_ADVANCED_ACCESS_TOKEN` |
+| `OAuth`               | oauth2 | OAuth2 token | `CLIENT_O_AUTH`                |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go
@@ -499,7 +499,7 @@ func main() {
 		client.WithProfileID("<id>"),
 		client.WithCustomUserAgent("<value>"),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -558,7 +558,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -808,7 +808,7 @@ func main() {
 	s := client.New(
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
 		}),
 	)
 
@@ -862,7 +862,7 @@ func main() {
 		client.WithServerURL("https://api.mollie.com"),
 		client.WithTestmode(false),
 		client.WithSecurity(components.Security{
-			OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
 		}),
 	)
 

@@ -56,7 +56,7 @@ func newVerifyPayee(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // | `John Unavailable`                     | Verification is not available                  | `not-available`     | —              |
 // | Any other name                         | Default: name matches the bank records         | `match`             | —              |
 //
-// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
+// If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *VerifyPayee) Create(ctx context.Context, idempotencyKey *string, verificationOfPayeeRequest *components.VerificationOfPayeeRequest, opts ...operations.Option) (*operations.VerifyPayeeResponse, error) {
 	request := operations.VerifyPayeeRequest{
 		IdempotencyKey:             idempotencyKey,
@@ -123,7 +123,7 @@ func (s *VerifyPayee) Create(ctx context.Context, idempotencyKey *string, verifi
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 

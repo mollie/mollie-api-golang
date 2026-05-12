@@ -36,7 +36,7 @@ func newWebhooks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // Create a webhook
 // A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreateWebhookRequestBody, opts ...operations.Option) (*operations.CreateWebhookResponse, error) {
 	request := operations.CreateWebhookRequest{
 		IdempotencyKey: idempotencyKey,
@@ -103,7 +103,7 @@ func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBo
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -289,7 +289,7 @@ func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBo
 // List all webhooks
 // Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequest, opts ...operations.Option) (*operations.ListWebhooksResponse, error) {
 	globals := operations.ListWebhooksGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -357,7 +357,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -579,7 +579,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 // Update a webhook
 // Updates the webhook. You may edit the name, url and the list of subscribed event types.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
 	request := operations.UpdateWebhookRequest{
 		WebhookID:      webhookID,
@@ -647,7 +647,7 @@ func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -835,7 +835,7 @@ func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey 
 // Get a webhook
 // Retrieve a single webhook object by its ID.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	request := operations.GetWebhookRequest{
 		WebhookID:      webhookID,
@@ -904,7 +904,7 @@ func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, id
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1092,7 +1092,7 @@ func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, id
 // Delete a webhook
 // Delete a single webhook object by its webhook ID.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
 	request := operations.DeleteWebhookRequest{
 		WebhookID:      webhookID,
@@ -1160,7 +1160,7 @@ func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1329,7 +1329,7 @@ func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey 
 // Test a webhook
 // Sends a test event to the webhook to verify the endpoint is working as expected.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Webhooks) Test(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
 	request := operations.TestWebhookRequest{
 		WebhookID:      webhookID,
@@ -1397,7 +1397,7 @@ func (s *Webhooks) Test(ctx context.Context, webhookID string, idempotencyKey *s
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

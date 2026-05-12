@@ -50,7 +50,7 @@ func newCapabilities(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // This means that if at least one of the clients's profiles can receive payments,
 // the payments capability is enabled, communicating that the organization can indeed receive payments.
 //
-// If set, this operation will use either [Security.OrganizationAccessToken] or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
 func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListCapabilitiesResponse, error) {
 	request := operations.ListCapabilitiesRequest{
 		IdempotencyKey: idempotencyKey,
@@ -109,7 +109,7 @@ func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ..
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 

@@ -38,7 +38,7 @@ func newClients(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 //
 // The results are paginated.
 //
-// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
+// If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListClientsResponse, error) {
 	request := operations.ListClientsRequest{
 		Embed:          embed,
@@ -109,7 +109,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
@@ -336,7 +336,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 // Get client
 // Retrieve a single client by its ID.
 //
-// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
+// If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *Clients) Get(ctx context.Context, organizationID string, embed *string, idempotencyKey *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
 	request := operations.GetClientRequest{
 		OrganizationID: organizationID,
@@ -401,7 +401,7 @@ func (s *Clients) Get(ctx context.Context, organizationID string, embed *string,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
