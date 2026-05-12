@@ -24,28 +24,6 @@ func (e *EntityPaymentRouteDestination) GetOrganizationID() string {
 	return e.OrganizationID
 }
 
-// EntityPaymentRouteLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type EntityPaymentRouteLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self URLObj `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Payment URLObj `json:"payment"`
-}
-
-func (e *EntityPaymentRouteLinks) GetSelf() URLObj {
-	if e == nil {
-		return URLObj{}
-	}
-	return e.Self
-}
-
-func (e *EntityPaymentRouteLinks) GetPayment() URLObj {
-	if e == nil {
-		return URLObj{}
-	}
-	return e.Payment
-}
-
 type EntityPaymentRoute struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
@@ -56,8 +34,6 @@ type EntityPaymentRoute struct {
 	//
 	// If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
 	ReleaseDate *string `json:"releaseDate,omitempty"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links EntityPaymentRouteLinks `json:"_links"`
 }
 
 func (e *EntityPaymentRoute) GetAmount() Amount {
@@ -79,11 +55,4 @@ func (e *EntityPaymentRoute) GetReleaseDate() *string {
 		return nil
 	}
 	return e.ReleaseDate
-}
-
-func (e *EntityPaymentRoute) GetLinks() EntityPaymentRouteLinks {
-	if e == nil {
-		return EntityPaymentRouteLinks{}
-	}
-	return e.Links
 }
