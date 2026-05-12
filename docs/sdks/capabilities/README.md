@@ -44,7 +44,7 @@ func main() {
 
     s := client.New(
         client.WithSecurity(components.Security{
-            OrganizationAccessToken: client.Pointer(os.Getenv("CLIENT_ORGANIZATION_ACCESS_TOKEN")),
+            AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
         }),
     )
 

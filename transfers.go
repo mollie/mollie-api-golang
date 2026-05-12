@@ -59,7 +59,7 @@ func newTransfers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // | `14.00` | Transfer processed, then returned by receiving bank | `business-account-transfer.requested` → `business-account-transfer.initiated` → `business-account-transfer.processed` → `business-account-transfer.returned`       |
 // | Other   | Default: transfer is processed                      | `business-account-transfer.requested` → `business-account-transfer.initiated` → `business-account-transfer.processed`                                              |
 //
-// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
+// If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *Transfers) Create(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -121,7 +121,7 @@ func (s *Transfers) Create(ctx context.Context, request operations.CreateTransfe
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
@@ -337,7 +337,7 @@ func (s *Transfers) Create(ctx context.Context, request operations.CreateTransfe
 // Retrieve a single transfer object by its transfer ID. This allows you to check the current status
 // and details of a previously created transfer.
 //
-// If set, this operation will use [Security.OrganizationAccessToken] from the global security.
+// If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *Transfers) Get(ctx context.Context, businessAccountsTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetTransferResponse, error) {
 	request := operations.GetTransferRequest{
 		BusinessAccountsTransferID: businessAccountsTransferID,
@@ -406,7 +406,7 @@ func (s *Transfers) Get(ctx context.Context, businessAccountsTransferID string, 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OrganizationAccessToken"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
