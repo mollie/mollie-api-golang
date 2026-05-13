@@ -23,6 +23,11 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `EntityWebhookEventWebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                                         |
 | `EntityWebhookEventWebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                                               |
+| `EntityWebhookEventWebhookEventTypesPayoutInitiated`                      | payout.initiated                                                          |
+| `EntityWebhookEventWebhookEventTypesPayoutProcessingAtBank`               | payout.processing-at-bank                                                 |
+| `EntityWebhookEventWebhookEventTypesPayoutCompleted`                      | payout.completed                                                          |
+| `EntityWebhookEventWebhookEventTypesPayoutCanceled`                       | payout.canceled                                                           |
+| `EntityWebhookEventWebhookEventTypesPayoutFailed`                         | payout.failed                                                             |
 | `EntityWebhookEventWebhookEventTypesSalesInvoiceCreated`                  | sales-invoice.created                                                     |
 | `EntityWebhookEventWebhookEventTypesSalesInvoiceIssued`                   | sales-invoice.issued                                                      |
 | `EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled`                 | sales-invoice.canceled                                                    |

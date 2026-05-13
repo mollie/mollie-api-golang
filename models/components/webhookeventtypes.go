@@ -15,6 +15,11 @@ type WebhookEventTypes string
 const (
 	WebhookEventTypesPaymentLinkPaid                      WebhookEventTypes = "payment-link.paid"
 	WebhookEventTypesBalanceTransactionCreated            WebhookEventTypes = "balance-transaction.created"
+	WebhookEventTypesPayoutInitiated                      WebhookEventTypes = "payout.initiated"
+	WebhookEventTypesPayoutProcessingAtBank               WebhookEventTypes = "payout.processing-at-bank"
+	WebhookEventTypesPayoutCompleted                      WebhookEventTypes = "payout.completed"
+	WebhookEventTypesPayoutCanceled                       WebhookEventTypes = "payout.canceled"
+	WebhookEventTypesPayoutFailed                         WebhookEventTypes = "payout.failed"
 	WebhookEventTypesSalesInvoiceCreated                  WebhookEventTypes = "sales-invoice.created"
 	WebhookEventTypesSalesInvoiceIssued                   WebhookEventTypes = "sales-invoice.issued"
 	WebhookEventTypesSalesInvoiceCanceled                 WebhookEventTypes = "sales-invoice.canceled"
@@ -41,6 +46,16 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "payment-link.paid":
 		fallthrough
 	case "balance-transaction.created":
+		fallthrough
+	case "payout.initiated":
+		fallthrough
+	case "payout.processing-at-bank":
+		fallthrough
+	case "payout.completed":
+		fallthrough
+	case "payout.canceled":
+		fallthrough
+	case "payout.failed":
 		fallthrough
 	case "sales-invoice.created":
 		fallthrough

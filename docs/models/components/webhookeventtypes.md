@@ -20,6 +20,11 @@ value := components.WebhookEventTypesPaymentLinkPaid
 | ------------------------------------------------------- | ------------------------------------------------------- |
 | `WebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                       |
 | `WebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                             |
+| `WebhookEventTypesPayoutInitiated`                      | payout.initiated                                        |
+| `WebhookEventTypesPayoutProcessingAtBank`               | payout.processing-at-bank                               |
+| `WebhookEventTypesPayoutCompleted`                      | payout.completed                                        |
+| `WebhookEventTypesPayoutCanceled`                       | payout.canceled                                         |
+| `WebhookEventTypesPayoutFailed`                         | payout.failed                                           |
 | `WebhookEventTypesSalesInvoiceCreated`                  | sales-invoice.created                                   |
 | `WebhookEventTypesSalesInvoiceIssued`                   | sales-invoice.issued                                    |
 | `WebhookEventTypesSalesInvoiceCanceled`                 | sales-invoice.canceled                                  |

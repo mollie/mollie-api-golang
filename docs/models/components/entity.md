@@ -9,6 +9,12 @@
 entity := components.CreateEntityPaymentLinkResponse(components.PaymentLinkResponse{/* values here */})
 ```
 
+### EntityPayoutResponse
+
+```go
+entity := components.CreateEntityEntityPayoutResponse(components.EntityPayoutResponse{/* values here */})
+```
+
 ### SalesInvoiceResponse
 
 ```go
@@ -29,6 +35,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch entity.Type {
 	case components.EntityTypePaymentLinkResponse:
 		// entity.PaymentLinkResponse is populated
+	case components.EntityTypeEntityPayoutResponse:
+		// entity.EntityPayoutResponse is populated
 	case components.EntityTypeSalesInvoiceResponse:
 		// entity.SalesInvoiceResponse is populated
 	case components.EntityTypeTransferResponse:
