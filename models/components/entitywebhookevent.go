@@ -16,6 +16,11 @@ type EntityWebhookEventWebhookEventTypes string
 const (
 	EntityWebhookEventWebhookEventTypesPaymentLinkPaid                      EntityWebhookEventWebhookEventTypes = "payment-link.paid"
 	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated            EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
+	EntityWebhookEventWebhookEventTypesPayoutInitiated                      EntityWebhookEventWebhookEventTypes = "payout.initiated"
+	EntityWebhookEventWebhookEventTypesPayoutProcessingAtBank               EntityWebhookEventWebhookEventTypes = "payout.processing-at-bank"
+	EntityWebhookEventWebhookEventTypesPayoutCompleted                      EntityWebhookEventWebhookEventTypes = "payout.completed"
+	EntityWebhookEventWebhookEventTypesPayoutCanceled                       EntityWebhookEventWebhookEventTypes = "payout.canceled"
+	EntityWebhookEventWebhookEventTypesPayoutFailed                         EntityWebhookEventWebhookEventTypes = "payout.failed"
 	EntityWebhookEventWebhookEventTypesSalesInvoiceCreated                  EntityWebhookEventWebhookEventTypes = "sales-invoice.created"
 	EntityWebhookEventWebhookEventTypesSalesInvoiceIssued                   EntityWebhookEventWebhookEventTypes = "sales-invoice.issued"
 	EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled                 EntityWebhookEventWebhookEventTypes = "sales-invoice.canceled"
@@ -38,7 +43,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment-link.paid", "balance-transaction.created", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
+		case "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
 			return true
 		}
 	}
@@ -49,12 +54,14 @@ type EntityType string
 
 const (
 	EntityTypePaymentLinkResponse  EntityType = "payment-link-response"
+	EntityTypeEntityPayoutResponse EntityType = "entity-payout-response"
 	EntityTypeSalesInvoiceResponse EntityType = "sales-invoice-response"
 	EntityTypeTransferResponse     EntityType = "transfer-response"
 )
 
 type Entity struct {
 	PaymentLinkResponse  *PaymentLinkResponse  `queryParam:"inline" union:"member"`
+	EntityPayoutResponse *EntityPayoutResponse `queryParam:"inline" union:"member"`
 	SalesInvoiceResponse *SalesInvoiceResponse `queryParam:"inline" union:"member"`
 	TransferResponse     *TransferResponse     `queryParam:"inline" union:"member"`
 
@@ -67,6 +74,15 @@ func CreateEntityPaymentLinkResponse(paymentLinkResponse PaymentLinkResponse) En
 	return Entity{
 		PaymentLinkResponse: &paymentLinkResponse,
 		Type:                typ,
+	}
+}
+
+func CreateEntityEntityPayoutResponse(entityPayoutResponse EntityPayoutResponse) Entity {
+	typ := EntityTypeEntityPayoutResponse
+
+	return Entity{
+		EntityPayoutResponse: &entityPayoutResponse,
+		Type:                 typ,
 	}
 }
 
@@ -104,6 +120,13 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var entityPayoutResponse EntityPayoutResponse = EntityPayoutResponse{}
+	if err := utils.UnmarshalJSON(data, &entityPayoutResponse, "", true, nil); err == nil {
+		u.EntityPayoutResponse = &entityPayoutResponse
+		u.Type = EntityTypeEntityPayoutResponse
+		return nil
+	}
+
 	var salesInvoiceResponse SalesInvoiceResponse = SalesInvoiceResponse{}
 	if err := utils.UnmarshalJSON(data, &salesInvoiceResponse, "", true, nil); err == nil {
 		u.SalesInvoiceResponse = &salesInvoiceResponse
@@ -117,6 +140,10 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 func (u Entity) MarshalJSON() ([]byte, error) {
 	if u.PaymentLinkResponse != nil {
 		return utils.MarshalJSON(u.PaymentLinkResponse, "", true)
+	}
+
+	if u.EntityPayoutResponse != nil {
+		return utils.MarshalJSON(u.EntityPayoutResponse, "", true)
 	}
 
 	if u.SalesInvoiceResponse != nil {

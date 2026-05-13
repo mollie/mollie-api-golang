@@ -83,6 +83,7 @@ type Client struct {
 	Accounts                 *Accounts
 	Transfers                *Transfers
 	VerifyPayee              *VerifyPayee
+	Payouts                  *Payouts
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -179,9 +180,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.1.0",
+		SDKVersion: "1.1.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 1.1.0 2.882.0 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 1.1.1 2.882.0 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -239,6 +240,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.Accounts = newAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Transfers = newTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.VerifyPayee = newVerifyPayee(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Payouts = newPayouts(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }
