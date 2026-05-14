@@ -578,6 +578,11 @@ type PaymentRequest struct {
 	// payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
 	// enough.
 	CardToken *string `json:"cardToken,omitempty"`
+	// The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the customer authorizes
+	// the payment. The token contains the payment information needed to complete the payment.
+	//
+	// The object should be passed encoded in a JSON string.
+	GooglePayPaymentToken *string `json:"googlePayPaymentToken,omitempty"`
 	// The card token you received from the card component of Mollie Components. The token represents the customer's card
 	// information needed to complete the payment.
 	VoucherNumber *string `json:"voucherNumber,omitempty"`
@@ -801,6 +806,13 @@ func (p *PaymentRequest) GetCardToken() *string {
 		return nil
 	}
 	return p.CardToken
+}
+
+func (p *PaymentRequest) GetGooglePayPaymentToken() *string {
+	if p == nil {
+		return nil
+	}
+	return p.GooglePayPaymentToken
 }
 
 func (p *PaymentRequest) GetVoucherNumber() *string {
