@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 1ddbf4f529ac3f6423af3093cae1bd84
+  docChecksum: 536cfdf4a7ed1cc890da692cec8211a7
   docVersion: 1.0.0
-  speakeasyVersion: 1.763.0
-  generationVersion: 2.884.0
-  releaseVersion: 1.1.2
-  configChecksum: 987015d8cadba1c64ed1d6cf9d0767a2
+  speakeasyVersion: 1.763.1
+  generationVersion: 2.884.4
+  releaseVersion: 1.1.3
+  configChecksum: 5f24de48cf0181fb81eb87396e11cd48
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: da4338cf-1ec1-40c2-b38a-2ea840b8a6e6
-  pristine_commit_hash: d4f6ae9d4196555b5c1a4af11e802af12603c8a9
-  pristine_tree_hash: 91a0f6d6f62cdf9daa40e7e02ffddd62d4ef3e31
+  generation_id: 4fe97afe-645c-424a-b7d0-b6046c47b158
+  pristine_commit_hash: ede83032e612eadde7c2c662fe8bfd1937731dc1
+  pristine_tree_hash: 693408b68b0081818029738b0cdd9d306268fb74
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: 810cb1d82f8cb9a7515c026bacc83d70433a8d3c
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:4a04549e713ba65565d12f22a4f66187f3d7ea10
-    pristine_git_object: bd103abd0e68906fa2b4eb2ae10a74d95d7b2c64
+    last_write_checksum: sha1:f7cd428e542bdb6262b61dc967a8e5be2ec0352a
+    pristine_git_object: 2180cdb83598c02e94c9ec330b0dd5946fb06cd1
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:3097349d1a9b9b86341f47cfe92037f258f331ff
@@ -9370,7 +9370,6 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Payments.Create()`: \n  *  `request.PaymentRequest.GooglePayPaymentToken` **Added**\n* `Client.Customers.CreatePayment()`: \n  *  `request.PaymentRequest.GooglePayPaymentToken` **Added**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
