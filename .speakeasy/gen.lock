@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 536cfdf4a7ed1cc890da692cec8211a7
+  docChecksum: f407935ca22fe6fd9cab31d14286f1c8
   docVersion: 1.0.0
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 1.1.3
-  configChecksum: 5f24de48cf0181fb81eb87396e11cd48
+  releaseVersion: 1.1.4
+  configChecksum: e83f52a2fac218f8d8265bb451879cf9
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 4fe97afe-645c-424a-b7d0-b6046c47b158
-  pristine_commit_hash: ede83032e612eadde7c2c662fe8bfd1937731dc1
-  pristine_tree_hash: 693408b68b0081818029738b0cdd9d306268fb74
+  generation_id: 60705c81-26b0-4a52-9d50-375abd6d0fcd
+  pristine_commit_hash: a0be9e54423dcbd76a559465b5f378e1c62cfc4d
+  pristine_tree_hash: 47dbc1ef75dc9b9bccf60110aedea612b782ac78
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: 810cb1d82f8cb9a7515c026bacc83d70433a8d3c
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:f7cd428e542bdb6262b61dc967a8e5be2ec0352a
-    pristine_git_object: 2180cdb83598c02e94c9ec330b0dd5946fb06cd1
+    last_write_checksum: sha1:2fec82db957bc0d0c82e8c4e8c7b0fabdc117a5b
+    pristine_git_object: bdc8f968e966f3ff05fd127639d33a225a772fb3
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:3097349d1a9b9b86341f47cfe92037f258f331ff
@@ -2315,14 +2315,10 @@ trackedFiles:
     id: 831b01a8c0ef
     last_write_checksum: sha1:9aa52083df27eccba418985c9b5ecace92edd741
     pristine_git_object: 1b2fd18a37c0b6991e65762c3c00b0569a864170
-  docs/models/operations/createpayoutglobals.md:
-    id: e322dce395e6
-    last_write_checksum: sha1:2ef77907e202cca5f3fb9fadf335cfc4821996f5
-    pristine_git_object: 02b4bbdc9dbd15837316437c9bf753388fa925b6
   docs/models/operations/createpayoutrequest.md:
     id: b225c160c1a7
-    last_write_checksum: sha1:f592b4c6220571440f4cb4d549f332115e38e0cb
-    pristine_git_object: f7a68bd809f4c0efa162fece69975121f12c40a8
+    last_write_checksum: sha1:1a307a09a7eaa5c1e3da1125e1a1d9e2846ccfff
+    pristine_git_object: d6d688ec4ba5351c41a5b2d7724eb7a96f827822
   docs/models/operations/createpayoutresponse.md:
     id: 232e3938cfbc
     last_write_checksum: sha1:b6193d6c1b637b19e0186f598e6f8a307a1dc995
@@ -3889,8 +3885,8 @@ trackedFiles:
     pristine_git_object: 9b0fc0e1e271775c5062a0c035b2e89eaa40386c
   docs/sdks/payouts/README.md:
     id: 184ed4a74471
-    last_write_checksum: sha1:2a9f4a3ddde63fdcc799c05609e1f391165024c7
-    pristine_git_object: 886a272285019e2e883b2b7bc50f91a79021415d
+    last_write_checksum: sha1:a08c2287641eba8fa6e6cab22a6ac434ddc84fe4
+    pristine_git_object: 2dd6a385015a740c96686b32be429810c217c19a
   docs/sdks/permissions/README.md:
     id: 2e4061ce50d4
     last_write_checksum: sha1:9f30b88cd155bff08cbbbdbb556fab67a7fe8acf
@@ -5001,8 +4997,8 @@ trackedFiles:
     pristine_git_object: 3ca83c64a0f0bdfaa640e27ef6139e257f59797b
   models/operations/createpayout.go:
     id: 96ed620d22b9
-    last_write_checksum: sha1:32c6cf38b5d17b8381fee2d047eae8cc695f1f20
-    pristine_git_object: aed597223110187d3075118c5b8e8903c0b0e3e5
+    last_write_checksum: sha1:8574d9acecc906f85b0ad7a61c374787532e8359
+    pristine_git_object: 7259de50f44a74ed9ef4b21a1bc39e2fee532b0f
   models/operations/createprofile.go:
     id: 5af4a47869cb
     last_write_checksum: sha1:e37f10c1c09e0a1539eccb79ad0a9b76df686cdf
@@ -5449,8 +5445,8 @@ trackedFiles:
     pristine_git_object: 5bb104fdc1e06ba64ff3816e44cde0b24ec055ab
   payouts.go:
     id: 4c2cb3e66872
-    last_write_checksum: sha1:f8918f1605fc8185e0296701f14dc6c804920bb5
-    pristine_git_object: 8d1c1c349d2250f3ecd28634f5afdc19d12b97ff
+    last_write_checksum: sha1:9cc2814ab819035a34eec8c1d1791e9a2459448c
+    pristine_git_object: 07594c5f4506bd46272db1d62280fae9dac3f259
   permissions.go:
     id: 24d6fe5c456e
     last_write_checksum: sha1:2667d0ae699cc0c59455e54076e9656051115c52
@@ -9370,6 +9366,9 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Payouts.Create()`:  `request.Testmode` **Removed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
