@@ -7,39 +7,10 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-type CreatePayoutGlobals struct {
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
-}
-
-func (c *CreatePayoutGlobals) GetTestmode() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.Testmode
-}
-
 type CreatePayoutRequest struct {
-	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-	// setting the `testmode` query parameter to `true`.
-	//
-	// Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string                  `header:"style=simple,explode=false,name=idempotency-key"`
 	PayoutRequest  components.PayoutRequest `request:"mediaType=application/json"`
-}
-
-func (c *CreatePayoutRequest) GetTestmode() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.Testmode
 }
 
 func (c *CreatePayoutRequest) GetIdempotencyKey() *string {

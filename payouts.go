@@ -70,15 +70,10 @@ func newPayouts(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // - The balance has queued refunds.
 // - One of the organization's balances is below the negative balance threshold.
 // - The payout destination (bank account) is invalid or not configured.
-func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutRequest, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CreatePayoutResponse, error) {
+func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreatePayoutResponse, error) {
 	request := operations.CreatePayoutRequest{
-		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 		PayoutRequest:  payoutRequest,
-	}
-
-	globals := operations.CreatePayoutGlobals{
-		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
 
 	o := operations.Options{}
@@ -139,11 +134,7 @@ func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutReq
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
