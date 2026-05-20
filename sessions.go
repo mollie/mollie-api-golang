@@ -38,6 +38,8 @@ func newSessions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // > This feature is currently in private beta, and the final specification may still change.
 //
 // Create a session to start a checkout process with Mollie Components.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRequest *components.SessionRequest, opts ...operations.Option) (*operations.CreateSessionResponse, error) {
 	request := operations.CreateSessionRequest{
 		IdempotencyKey: idempotencyKey,
@@ -104,7 +106,7 @@ func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRe
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -135,6 +137,7 @@ func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRe
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -239,6 +242,8 @@ func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRe
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -293,6 +298,8 @@ func (s *Sessions) Create(ctx context.Context, idempotencyKey *string, sessionRe
 // > This feature is currently in private beta, and the final specification may still change.
 //
 // Retrieve a session to view its details and status to inform your customers about the checkout process.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Sessions) Get(ctx context.Context, sessionID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSessionResponse, error) {
 	request := operations.GetSessionRequest{
 		SessionID:      sessionID,
@@ -352,7 +359,7 @@ func (s *Sessions) Get(ctx context.Context, sessionID string, idempotencyKey *st
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -383,6 +390,7 @@ func (s *Sessions) Get(ctx context.Context, sessionID string, idempotencyKey *st
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -479,6 +487,31 @@ func (s *Sessions) Get(ctx context.Context, sessionID string, idempotencyKey *st
 			}
 
 			res.SessionResponse = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

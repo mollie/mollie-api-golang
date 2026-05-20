@@ -39,6 +39,8 @@ func newSalesInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // With the Sales Invoice API you can generate sales invoices to send to your customers.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, salesInvoiceRequest *components.SalesInvoiceRequest, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
 	request := operations.CreateSalesInvoiceRequest{
 		IdempotencyKey:      idempotencyKey,
@@ -105,7 +107,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -136,6 +138,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -242,6 +245,8 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -298,6 +303,8 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 // Retrieve a list of all sales invoices created through the API.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListSalesInvoicesResponse, error) {
 	request := operations.ListSalesInvoicesRequest{
 		From:           from,
@@ -372,7 +379,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -403,6 +410,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -546,6 +554,8 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -600,6 +610,8 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 // > This feature is currently in beta testing, and the final specification may still change.
 //
 // Retrieve a single sales invoice by its ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
 	request := operations.GetSalesInvoiceRequest{
 		SalesInvoiceID: salesInvoiceID,
@@ -668,7 +680,7 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -699,6 +711,7 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -803,6 +816,8 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -859,6 +874,8 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 // Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
 // statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
 // respectively).
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idempotencyKey *string, requestBody *operations.UpdateSalesInvoiceRequestBody, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	request := operations.UpdateSalesInvoiceRequest{
 		SalesInvoiceID: salesInvoiceID,
@@ -926,7 +943,7 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -957,6 +974,7 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1063,6 +1081,8 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1118,6 +1138,8 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 //
 // Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
 // [Update sales invoice](update-sales-invoice) endpoint instead.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idempotencyKey *string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
 	request := operations.DeleteSalesInvoiceRequest{
 		SalesInvoiceID:           salesInvoiceID,
@@ -1185,7 +1207,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idemp
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1216,6 +1238,7 @@ func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idemp
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1303,6 +1326,8 @@ func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idemp
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

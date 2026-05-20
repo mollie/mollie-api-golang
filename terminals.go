@@ -37,6 +37,8 @@ func newTerminals(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // Retrieve a list of all physical point-of-sale devices.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRequest, opts ...operations.Option) (*operations.ListTerminalsResponse, error) {
 	globals := operations.ListTerminalsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -104,7 +106,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -135,6 +137,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -275,6 +278,8 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -325,6 +330,8 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 
 // Get terminal
 // Retrieve a single terminal by its ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetTerminalResponse, error) {
 	request := operations.GetTerminalRequest{
 		TerminalID:     terminalID,
@@ -393,7 +400,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -424,6 +431,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -528,6 +536,8 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

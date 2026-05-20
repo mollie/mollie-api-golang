@@ -41,6 +41,8 @@ func newUnmatchedCreditTransfers(rootSDK *Client, sdkConfig config.SDKConfigurat
 // Retrieves a list of unmatched credit transfers for the profile.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListUnmatchedCreditTransfersResponse, error) {
 	request := operations.ListUnmatchedCreditTransfersRequest{
 		From:           from,
@@ -110,7 +112,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -141,6 +143,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -283,6 +286,8 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -337,6 +342,8 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 // > This feature is currently in private beta, and the final specification may still change.
 //
 // Retrieves a single unmatched credit transfer by its identifier.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetUnmatchedCreditTransferResponse, error) {
 	request := operations.GetUnmatchedCreditTransferRequest{
 		UnmatchedCreditTransferID: unmatchedCreditTransferID,
@@ -396,7 +403,7 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -427,6 +434,7 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -531,6 +539,8 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -585,6 +595,8 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 // > This feature is currently in private beta, and the final specification may still change.
 //
 // Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, unmatchedCreditTransferMatchRequest *components.UnmatchedCreditTransferMatchRequest, opts ...operations.Option) (*operations.MatchUnmatchedCreditTransferResponse, error) {
 	request := operations.MatchUnmatchedCreditTransferRequest{
 		UnmatchedCreditTransferID:           unmatchedCreditTransferID,
@@ -652,7 +664,7 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -683,6 +695,7 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -789,6 +802,8 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -843,6 +858,8 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 // > This feature is currently in private beta, and the final specification may still change.
 //
 // Returns an unmatched credit transfer, sending the funds back to the original sender.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, opts ...operations.Option) (*operations.ReturnUnmatchedCreditTransferResponse, error) {
 	request := operations.ReturnUnmatchedCreditTransferRequest{
 		UnmatchedCreditTransferID: unmatchedCreditTransferID,
@@ -902,7 +919,7 @@ func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTr
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -933,6 +950,7 @@ func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTr
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1037,6 +1055,8 @@ func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTr
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

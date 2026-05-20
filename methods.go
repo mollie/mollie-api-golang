@@ -52,6 +52,8 @@ func newMethods(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 //
 // ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 // a non-online payment method, you can use the [Get payment method endpoint](get-method).
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Methods) List(ctx context.Context, request operations.ListMethodsRequest, opts ...operations.Option) (*operations.ListMethodsResponse, error) {
 	globals := operations.ListMethodsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -115,7 +117,7 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -146,6 +148,7 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -250,6 +253,8 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -306,6 +311,8 @@ func (s *Methods) List(ctx context.Context, request operations.ListMethodsReques
 //
 // ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 // a non-online payment method, you can use the [Get payment method endpoint](get-method).
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequest, opts ...operations.Option) (*operations.ListAllMethodsResponse, error) {
 	globals := operations.ListAllMethodsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -369,7 +376,7 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -400,6 +407,7 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -504,6 +512,8 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -565,6 +575,8 @@ func (s *Methods) All(ctx context.Context, request operations.ListAllMethodsRequ
 //
 // Additionally, it is possible to check if wallet methods such as Apple Pay
 // are enabled by passing the wallet ID (`applepay`) as the method ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, opts ...operations.Option) (*operations.GetMethodResponse, error) {
 	globals := operations.GetMethodGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -628,7 +640,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -659,6 +671,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -765,6 +778,8 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

@@ -53,6 +53,8 @@ func newSubscriptions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
 // `startDate="2018-04-30"`
 // Your customer will be charged €10 on the last day of each month, starting in April 2018.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) Create(ctx context.Context, customerID string, idempotencyKey *string, subscriptionRequest *components.SubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
 	request := operations.CreateSubscriptionRequest{
 		CustomerID:          customerID,
@@ -120,7 +122,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -151,6 +153,7 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -255,6 +258,8 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -307,6 +312,8 @@ func (s *Subscriptions) Create(ctx context.Context, customerID string, idempoten
 // Retrieve all subscriptions of a customer.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscriptionsRequest, opts ...operations.Option) (*operations.ListSubscriptionsResponse, error) {
 	globals := operations.ListSubscriptionsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -374,7 +381,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -405,6 +412,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -547,6 +555,8 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -597,6 +607,8 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 
 // Get subscription
 // Retrieve a single subscription by its ID and the ID of its parent customer.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) Get(ctx context.Context, customerID string, subscriptionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSubscriptionResponse, error) {
 	request := operations.GetSubscriptionRequest{
 		CustomerID:     customerID,
@@ -666,7 +678,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -697,6 +709,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -801,6 +814,8 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -855,6 +870,8 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 // Canceled subscriptions cannot be updated.
 //
 // For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) Update(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.UpdateSubscriptionRequestBody, opts ...operations.Option) (*operations.UpdateSubscriptionResponse, error) {
 	request := operations.UpdateSubscriptionRequest{
 		CustomerID:     customerID,
@@ -923,7 +940,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -954,6 +971,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1058,6 +1076,8 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1108,6 +1128,8 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 
 // Cancel subscription
 // Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.CancelSubscriptionRequestBody, opts ...operations.Option) (*operations.CancelSubscriptionResponse, error) {
 	request := operations.CancelSubscriptionRequest{
 		CustomerID:     customerID,
@@ -1176,7 +1198,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1207,6 +1229,7 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1311,6 +1334,8 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1363,6 +1388,8 @@ func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscript
 // Retrieve all subscriptions initiated across all your customers.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubscriptionsRequest, opts ...operations.Option) (*operations.ListAllSubscriptionsResponse, error) {
 	globals := operations.ListAllSubscriptionsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -1431,7 +1458,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1462,6 +1489,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1604,6 +1632,8 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1656,6 +1686,8 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 // Retrieve all payments of a specific subscription.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Subscriptions) ListPayments(ctx context.Context, request operations.ListSubscriptionPaymentsRequest, opts ...operations.Option) (*operations.ListSubscriptionPaymentsResponse, error) {
 	globals := operations.ListSubscriptionPaymentsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -1724,7 +1756,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1755,6 +1787,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1895,6 +1928,8 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

@@ -23,7 +23,6 @@ type AcceptHeaderEnum string
 
 const (
 	AcceptHeaderEnumApplicationJson        AcceptHeaderEnum = "application/json"
-	AcceptHeaderEnumWildcardRootWildcard   AcceptHeaderEnum = "*/*"
 	AcceptHeaderEnumApplicationHalPlusJson AcceptHeaderEnum = "application/hal+json"
 )
 

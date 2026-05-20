@@ -63,19 +63,17 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := client.New(
-		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-		}),
-	)
+	s := client.New()
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),
@@ -125,9 +123,60 @@ func main() {
 		client.WithSecurity(components.Security{
 			APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
 		}),
+		client.WithTestmode(false),
 	)
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
+		Currency:       client.Pointer("EUR"),
+		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:          client.Pointer[int64](50),
+		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+	}
+}
+
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```go
+package main
+
+import (
+	"context"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/components"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := client.New()
+
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),
@@ -615,19 +664,17 @@ import (
 	"github.com/mollie/mollie-api-golang/retry"
 	"log"
 	"models/operations"
-	"os"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := client.New(
-		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-		}),
-	)
+	s := client.New()
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),
@@ -664,7 +711,6 @@ import (
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"github.com/mollie/mollie-api-golang/retry"
 	"log"
-	"os"
 )
 
 func main() {
@@ -682,12 +728,12 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-		}),
 	)
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),
@@ -786,11 +832,11 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `apierrors.APIError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `List` function may return the following errors:
+For example, the `Generate` function may return the following errors:
 
 | Error Type              | Status Code | Content Type         |
 | ----------------------- | ----------- | -------------------- |
-| apierrors.ErrorResponse | 400, 404    | application/hal+json |
+| apierrors.ErrorResponse | 429         | application/hal+json |
 | apierrors.APIError      | 4XX, 5XX    | \*/\*                |
 
 ### Example
@@ -806,24 +852,21 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := client.New(
-		client.WithTestmode(false),
-		client.WithSecurity(components.Security{
-			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
-		}),
-	)
+	s := client.New()
 
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+		GrantType:    components.OauthGrantTypeAuthorizationCode,
+		Code:         client.Pointer("auth_..."),
+		RefreshToken: client.Pointer("refresh_..."),
+		RedirectURI:  client.Pointer("https://example.com/redirect"),
 	})
 	if err != nil {
 
@@ -913,19 +956,17 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := client.New(
-		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-		}),
-	)
+	s := client.New()
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),

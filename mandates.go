@@ -38,6 +38,8 @@ func newMandates(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 //
 // It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 // mandates for cards, your customers need to perform a 'first payment' with their card.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey *string, mandateRequest *components.MandateRequest, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
 	request := operations.CreateMandateRequest{
 		CustomerID:     customerID,
@@ -105,7 +107,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -136,6 +138,7 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -240,6 +243,8 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -292,6 +297,8 @@ func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey
 // Retrieve a list of all mandates.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequest, opts ...operations.Option) (*operations.ListMandatesResponse, error) {
 	globals := operations.ListMandatesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -359,7 +366,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -390,6 +397,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -532,6 +540,8 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -583,6 +593,8 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 // Get mandate
 // Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
 // account details, card details, or PayPal account details.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetMandateResponse, error) {
 	request := operations.GetMandateRequest{
 		CustomerID:     customerID,
@@ -652,7 +664,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -683,6 +695,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -787,6 +800,8 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -838,6 +853,8 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 // Revoke mandate
 // Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
 // mandate, and all connected subscriptions will be canceled.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID string, idempotencyKey *string, requestBody *operations.RevokeMandateRequestBody, opts ...operations.Option) (*operations.RevokeMandateResponse, error) {
 	request := operations.RevokeMandateRequest{
 		CustomerID:     customerID,
@@ -906,7 +923,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -937,6 +954,7 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1022,6 +1040,8 @@ func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID stri
 	case httpRes.StatusCode == 204:
 		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

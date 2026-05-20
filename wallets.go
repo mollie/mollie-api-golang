@@ -52,6 +52,8 @@ func newWallets(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the
 // full documentation, see the official
 // [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *string, requestBody *operations.RequestApplePayPaymentSessionRequestBody, opts ...operations.Option) (*operations.RequestApplePayPaymentSessionResponse, error) {
 	request := operations.RequestApplePayPaymentSessionRequest{
 		IdempotencyKey: idempotencyKey,
@@ -118,7 +120,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -149,6 +151,7 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -253,6 +256,8 @@ func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *st
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

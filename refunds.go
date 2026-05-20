@@ -36,6 +36,8 @@ func newRefunds(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // Create payment refund
 // Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 // transfer or by refunding the amount to your customer's credit card.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *string, refundRequest *components.RefundRequest, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
 	request := operations.CreateRefundRequest{
 		PaymentID:      paymentID,
@@ -103,7 +105,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -134,6 +136,7 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -242,6 +245,8 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 	case httpRes.StatusCode == 409:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -294,6 +299,8 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 // Retrieve a list of all refunds created for a specific payment.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Refunds) List(ctx context.Context, request operations.ListRefundsRequest, opts ...operations.Option) (*operations.ListRefundsResponse, error) {
 	globals := operations.ListRefundsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -361,7 +368,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -392,6 +399,7 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -534,6 +542,8 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -584,6 +594,8 @@ func (s *Refunds) List(ctx context.Context, request operations.ListRefundsReques
 
 // Get payment refund
 // Retrieve a single payment refund by its ID and the ID of its parent payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, opts ...operations.Option) (*operations.GetRefundResponse, error) {
 	globals := operations.GetRefundGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -646,7 +658,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -677,6 +689,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -781,6 +794,8 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -835,6 +850,8 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 //
 // A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
 // [Get refund endpoint](get-refund) for more information.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CancelRefundResponse, error) {
 	request := operations.CancelRefundRequest{
 		PaymentID:      paymentID,
@@ -904,7 +921,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -935,6 +952,7 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1020,6 +1038,8 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 	case httpRes.StatusCode == 204:
 		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1072,6 +1092,8 @@ func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string,
 // Retrieve a list of all of your refunds.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequest, opts ...operations.Option) (*operations.ListAllRefundsResponse, error) {
 	globals := operations.ListAllRefundsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -1140,7 +1162,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1171,6 +1193,7 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1311,6 +1334,8 @@ func (s *Refunds) All(ctx context.Context, request operations.ListAllRefundsRequ
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

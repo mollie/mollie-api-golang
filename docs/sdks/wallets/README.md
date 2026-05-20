@@ -83,5 +83,5 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.ErrorResponse | 422, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

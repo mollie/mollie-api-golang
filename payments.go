@@ -46,6 +46,8 @@ func newPayments(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // If you specify the `method` parameter when creating a payment, optional
 // additional parameters may be available for the payment method that are not listed below. Please refer to the
 // guide on [method-specific parameters](extra-payment-parameters).
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	request := operations.CreatePaymentRequest{
 		Include:        include,
@@ -117,7 +119,7 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -148,6 +150,7 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -252,6 +255,8 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -329,6 +334,8 @@ func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *
 // Retrieve all payments created with the current website profile.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequest, opts ...operations.Option) (*operations.ListPaymentsResponse, error) {
 	globals := operations.ListPaymentsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -397,7 +404,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -428,6 +435,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -568,6 +576,8 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -618,6 +628,8 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 
 // Get payment
 // Retrieve a single payment object by its payment ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest, opts ...operations.Option) (*operations.GetPaymentResponse, error) {
 	globals := operations.GetPaymentGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -680,7 +692,7 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -711,6 +723,7 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -815,6 +828,8 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -867,6 +882,8 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 // Certain details of an existing payment can be updated.
 //
 // Updating the payment details will not result in a webhook call.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.UpdatePaymentRequestBody, opts ...operations.Option) (*operations.UpdatePaymentResponse, error) {
 	request := operations.UpdatePaymentRequest{
 		PaymentID:      paymentID,
@@ -934,7 +951,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -965,6 +982,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1071,6 +1089,8 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1126,6 +1146,8 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 // Payments may also be canceled manually from the Mollie Dashboard.
 //
 // The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.CancelPaymentRequestBody, opts ...operations.Option) (*operations.CancelPaymentResponse, error) {
 	request := operations.CancelPaymentRequest{
 		PaymentID:      paymentID,
@@ -1193,7 +1215,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1224,6 +1246,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1330,6 +1353,8 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1387,6 +1412,8 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 //
 // If the request does succeed, the payment status will change to `canceled` for payments without captures.
 // If there is a successful capture, the payment will transition to `paid`.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.ReleaseAuthorizationRequestBody, opts ...operations.Option) (*operations.ReleaseAuthorizationResponse, error) {
 	request := operations.ReleaseAuthorizationRequest{
 		PaymentID:      paymentID,
@@ -1454,7 +1481,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1485,6 +1512,7 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1572,6 +1600,8 @@ func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, i
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

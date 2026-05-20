@@ -37,6 +37,8 @@ func newChargebacks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // Retrieve the chargebacks initiated for a specific payment.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebacksRequest, opts ...operations.Option) (*operations.ListChargebacksResponse, error) {
 	globals := operations.ListChargebacksGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -104,7 +106,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -135,6 +137,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -277,6 +280,8 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -327,6 +332,8 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 
 // Get payment chargeback
 // Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackRequest, opts ...operations.Option) (*operations.GetChargebackResponse, error) {
 	globals := operations.GetChargebackGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -389,7 +396,7 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -420,6 +427,7 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -524,6 +532,8 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -576,6 +586,8 @@ func (s *Chargebacks) Get(ctx context.Context, request operations.GetChargebackR
 // Retrieve all chargebacks initiated for all your payments.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargebacksRequest, opts ...operations.Option) (*operations.ListAllChargebacksResponse, error) {
 	globals := operations.ListAllChargebacksGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -644,7 +656,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -675,6 +687,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -817,6 +830,8 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

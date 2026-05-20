@@ -38,6 +38,8 @@ func newCustomers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // to this customer object, which simplifies management of recurring payments.
 //
 // Once registered, customers will also appear in your Mollie dashboard.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	request := operations.CreateCustomerRequest{
 		IdempotencyKey: idempotencyKey,
@@ -104,7 +106,7 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -135,6 +137,7 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -239,6 +242,8 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -291,6 +296,8 @@ func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCu
 // Retrieve a list of all customers.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) List(ctx context.Context, request operations.ListCustomersRequest, opts ...operations.Option) (*operations.ListCustomersResponse, error) {
 	globals := operations.ListCustomersGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -358,7 +365,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -389,6 +396,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -531,6 +539,8 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -581,6 +591,8 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 
 // Get customer
 // Retrieve a single customer by its ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) Get(ctx context.Context, customerID string, include *string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	request := operations.GetCustomerRequest{
 		CustomerID:     customerID,
@@ -650,7 +662,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -681,6 +693,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -785,6 +798,8 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -837,6 +852,8 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 // Update an existing customer.
 //
 // For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.UpdateCustomerRequestBody, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	request := operations.UpdateCustomerRequest{
 		CustomerID:     customerID,
@@ -904,7 +921,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -935,6 +952,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1039,6 +1057,8 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1089,6 +1109,8 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 
 // Delete customer
 // Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.DeleteCustomerRequestBody, opts ...operations.Option) (*operations.DeleteCustomerResponse, error) {
 	request := operations.DeleteCustomerRequest{
 		CustomerID:     customerID,
@@ -1156,7 +1178,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1187,6 +1209,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1272,6 +1295,8 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 	case httpRes.StatusCode == 204:
 		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1332,6 +1357,8 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 //
 // This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
 // parameter predefined.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
 	request := operations.CreateCustomerPaymentRequest{
 		CustomerID:     customerID,
@@ -1399,7 +1426,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1430,6 +1457,7 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1534,6 +1562,8 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1609,6 +1639,8 @@ func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempo
 
 // ListPayments - List customer payments
 // Retrieve all payments linked to the customer.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Customers) ListPayments(ctx context.Context, request operations.ListCustomerPaymentsRequest, opts ...operations.Option) (*operations.ListCustomerPaymentsResponse, error) {
 	globals := operations.ListCustomerPaymentsGlobals{
 		ProfileID: s.sdkConfiguration.Globals.ProfileID,
@@ -1677,7 +1709,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1708,6 +1740,7 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1848,6 +1881,8 @@ func (s *Customers) ListPayments(ctx context.Context, request operations.ListCus
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

@@ -118,7 +118,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 422                     | application/hal+json    |
+| apierrors.ErrorResponse | 422, 429                | application/hal+json    |
 | apierrors.ErrorResponse | 503                     | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
@@ -236,5 +236,5 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

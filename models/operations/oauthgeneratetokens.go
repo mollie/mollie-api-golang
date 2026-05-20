@@ -11,6 +11,25 @@ var OauthGenerateTokensServerList = []string{
 	"https://api.mollie.com/oauth2",
 }
 
+type OauthGenerateTokensSecurity struct {
+	Username string `security:"scheme,type=http,subtype=basic,name=username,env=client_username"`
+	Password string `security:"scheme,type=http,subtype=basic,name=password,env=client_password"`
+}
+
+func (o *OauthGenerateTokensSecurity) GetUsername() string {
+	if o == nil {
+		return ""
+	}
+	return o.Username
+}
+
+func (o *OauthGenerateTokensSecurity) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}
+
 type OauthGenerateTokensRequestBody struct {
 	GrantType components.OauthGrantType `json:"grant_type"`
 	// The authorization code you received when creating the authorization. Only use this field when using

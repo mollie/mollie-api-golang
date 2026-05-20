@@ -69,7 +69,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetCurrent
@@ -127,9 +127,10 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetPartner
 
@@ -183,6 +184,7 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

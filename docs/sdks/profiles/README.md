@@ -122,7 +122,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 403, 422                | application/hal+json    |
+| apierrors.ErrorResponse | 403, 422, 429           | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
@@ -194,7 +194,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 400                     | application/hal+json    |
+| apierrors.ErrorResponse | 400, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
@@ -253,7 +253,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404, 410                | application/hal+json    |
+| apierrors.ErrorResponse | 404, 410, 429           | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Update
@@ -370,7 +370,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 403, 404, 410, 422      | application/hal+json    |
+| apierrors.ErrorResponse | 403, 404, 410, 422, 429 | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Delete
@@ -427,7 +427,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404, 410                | application/hal+json    |
+| apierrors.ErrorResponse | 404, 410, 429           | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetCurrent
@@ -485,6 +485,7 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

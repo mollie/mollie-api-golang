@@ -8,19 +8,17 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := client.New(
-		client.WithSecurity(components.Security{
-			OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-		}),
-	)
+	s := client.New()
 
-	res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+		Username: "",
+		Password: "",
+	}, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
 		GrantType:    components.OauthGrantTypeAuthorizationCode,
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),

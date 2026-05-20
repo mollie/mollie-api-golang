@@ -135,7 +135,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 400, 404                | application/hal+json    |
+| apierrors.ErrorResponse | 400, 404, 429           | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
@@ -241,7 +241,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404                     | application/hal+json    |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetPrimary
@@ -299,9 +299,10 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## GetReport
 
@@ -450,7 +451,7 @@ func main() {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| apierrors.ErrorResponse | 404, 422                | application/hal+json    |
+| apierrors.ErrorResponse | 404, 422, 429           | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## ListTransactions
