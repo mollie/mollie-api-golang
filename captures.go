@@ -41,6 +41,8 @@ func newCaptures(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // By default, Mollie captures payments automatically. If however you
 // configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
 // having collected the customer's authorization.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityCapture *components.EntityCapture, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
 	request := operations.CreateCaptureRequest{
 		PaymentID:      paymentID,
@@ -108,7 +110,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -139,6 +141,7 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -245,6 +248,8 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -297,6 +302,8 @@ func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey 
 // Retrieve a list of all captures created for a specific payment.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequest, opts ...operations.Option) (*operations.ListCapturesResponse, error) {
 	globals := operations.ListCapturesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -364,7 +371,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -395,6 +402,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -537,6 +545,8 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -588,6 +598,8 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 // Get capture
 // Retrieve a single payment capture by its ID and the ID of its parent
 // payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest, opts ...operations.Option) (*operations.GetCaptureResponse, error) {
 	globals := operations.GetCaptureGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -650,7 +662,7 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -681,6 +693,7 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -785,6 +798,8 @@ func (s *Captures) Get(ctx context.Context, request operations.GetCaptureRequest
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

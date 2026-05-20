@@ -34,6 +34,8 @@ func newDelayedRouting(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // Create a delayed route
 // Create a route for a specific payment.
 // The routed amount is credited to the account of your customer.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempotencyKey *string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
 	request := operations.PaymentCreateRouteRequest{
 		PaymentID:          paymentID,
@@ -101,7 +103,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -132,6 +134,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -236,6 +239,8 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -286,6 +291,8 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 
 // List payment routes
 // Retrieve a list of all routes created for a specific payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.PaymentListRoutesResponse, error) {
 	request := operations.PaymentListRoutesRequest{
 		PaymentID:      paymentID,
@@ -354,7 +361,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -385,6 +392,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -489,6 +497,8 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -539,6 +549,8 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 
 // Get a delayed route
 // Retrieve a single route created for a specific payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID string, idempotencyKey *string, opts ...operations.Option) (*operations.PaymentGetRouteResponse, error) {
 	request := operations.PaymentGetRouteRequest{
 		PaymentID:      paymentID,
@@ -599,7 +611,7 @@ func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID stri
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -630,6 +642,7 @@ func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID stri
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -734,6 +747,8 @@ func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID stri
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

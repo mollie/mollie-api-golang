@@ -37,9 +37,7 @@ func newOauth(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks.H
 // API credential, with which you can communicate with the Mollie API on behalf of the consenting merchant.
 //
 // This endpoint can only be accessed using **OAuth client credentials**.
-//
-// If set, this operation will use [Security.OAuth] from the global security.
-func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBody *operations.OauthGenerateTokensRequestBody, opts ...operations.Option) (*operations.OauthGenerateTokensResponse, error) {
+func (s *Oauth) Generate(ctx context.Context, security operations.OauthGenerateTokensSecurity, idempotencyKey *string, requestBody *operations.OauthGenerateTokensRequestBody, opts ...operations.Option) (*operations.OauthGenerateTokensResponse, error) {
 	request := operations.OauthGenerateTokensRequest{
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
@@ -74,7 +72,7 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 		Context:          ctx,
 		OperationID:      "oauth-generate-tokens",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -104,7 +102,7 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -135,6 +133,7 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -238,6 +237,31 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -268,9 +292,7 @@ func (s *Oauth) Generate(ctx context.Context, idempotencyKey *string, requestBod
 // Revoking a refresh token revokes all access tokens that were created using the same authorization.
 //
 // This endpoint can only be accessed using **OAuth client credentials**.
-//
-// If set, this operation will use [Security.OAuth] from the global security.
-func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody *operations.OauthRevokeTokensRequestBody, opts ...operations.Option) (*operations.OauthRevokeTokensResponse, error) {
+func (s *Oauth) Revoke(ctx context.Context, security operations.OauthRevokeTokensSecurity, idempotencyKey *string, requestBody *operations.OauthRevokeTokensRequestBody, opts ...operations.Option) (*operations.OauthRevokeTokensResponse, error) {
 	request := operations.OauthRevokeTokensRequest{
 		IdempotencyKey: idempotencyKey,
 		RequestBody:    requestBody,
@@ -305,7 +327,7 @@ func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody 
 		Context:          ctx,
 		OperationID:      "oauth-revoke-tokens",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -327,7 +349,7 @@ func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody 
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Accept", "application/hal+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
@@ -335,7 +357,7 @@ func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody 
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -366,6 +388,7 @@ func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody 
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -450,6 +473,31 @@ func (s *Oauth) Revoke(ctx context.Context, idempotencyKey *string, requestBody 
 	switch {
 	case httpRes.StatusCode == 204:
 		utils.DrainBody(httpRes)
+	case httpRes.StatusCode == 429:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {

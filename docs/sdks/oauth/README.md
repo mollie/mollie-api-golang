@@ -22,23 +22,21 @@ package main
 
 import(
 	"context"
-	"os"
-	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/operations"
+	"github.com/mollie/mollie-api-golang/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := client.New(
-        client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-        }),
-    )
+    s := client.New()
 
-    res, err := s.Oauth.Generate(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
+    res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
+        Username: "",
+        Password: "",
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthGenerateTokensRequestBody{
         GrantType: components.OauthGrantTypeAuthorizationCode,
         Code: client.Pointer("auth_..."),
         RefreshToken: client.Pointer("refresh_..."),
@@ -58,6 +56,7 @@ func main() {
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             | Example                                                                                                 |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                   | :heavy_check_mark:                                                                                      | The context to use for the request.                                                                     |                                                                                                         |
+| `security`                                                                                              | [operations.OauthGenerateTokensSecurity](../../models/operations/oauthgeneratetokenssecurity.md)        | :heavy_check_mark:                                                                                      | The security requirements to use for the request.                                                       |                                                                                                         |
 | `idempotencyKey`                                                                                        | `*string`                                                                                               | :heavy_minus_sign:                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                        | 123e4567-e89b-12d3-a456-426                                                                             |
 | `requestBody`                                                                                           | [*operations.OauthGenerateTokensRequestBody](../../models/operations/oauthgeneratetokensrequestbody.md) | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
 | `opts`                                                                                                  | [][operations.Option](../../models/operations/option.md)                                                | :heavy_minus_sign:                                                                                      | The options for this request.                                                                           |                                                                                                         |
@@ -68,9 +67,10 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Revoke
 
@@ -88,23 +88,21 @@ package main
 
 import(
 	"context"
-	"os"
-	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/models/operations"
+	"github.com/mollie/mollie-api-golang/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := client.New(
-        client.WithSecurity(components.Security{
-            OAuth: client.Pointer(os.Getenv("CLIENT_O_AUTH")),
-        }),
-    )
+    s := client.New()
 
-    res, err := s.Oauth.Revoke(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthRevokeTokensRequestBody{
+    res, err := s.Oauth.Revoke(ctx, operations.OauthRevokeTokensSecurity{
+        Username: "",
+        Password: "",
+    }, client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.OauthRevokeTokensRequestBody{
         TokenTypeHint: components.OauthTokenTypeHintAccessToken,
         Token: "access_...",
     })
@@ -122,6 +120,7 @@ func main() {
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                               | [context.Context](https://pkg.go.dev/context#Context)                                               | :heavy_check_mark:                                                                                  | The context to use for the request.                                                                 |                                                                                                     |
+| `security`                                                                                          | [operations.OauthRevokeTokensSecurity](../../models/operations/oauthrevoketokenssecurity.md)        | :heavy_check_mark:                                                                                  | The security requirements to use for the request.                                                   |                                                                                                     |
 | `idempotencyKey`                                                                                    | `*string`                                                                                           | :heavy_minus_sign:                                                                                  | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                    | 123e4567-e89b-12d3-a456-426                                                                         |
 | `requestBody`                                                                                       | [*operations.OauthRevokeTokensRequestBody](../../models/operations/oauthrevoketokensrequestbody.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |                                                                                                     |
 | `opts`                                                                                              | [][operations.Option](../../models/operations/option.md)                                            | :heavy_minus_sign:                                                                                  | The options for this request.                                                                       |                                                                                                     |
@@ -132,6 +131,7 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 429                     | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

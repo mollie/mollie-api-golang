@@ -154,6 +154,7 @@ func (s *VerifyPayee) Create(ctx context.Context, idempotencyKey *string, verifi
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {

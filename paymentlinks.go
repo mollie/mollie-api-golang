@@ -37,6 +37,8 @@ func newPaymentLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
 // The payment link can be shared with your customers and will redirect them to them the payment page where they can
 // complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreatePaymentLinkRequestBody, opts ...operations.Option) (*operations.CreatePaymentLinkResponse, error) {
 	request := operations.CreatePaymentLinkRequest{
 		IdempotencyKey: idempotencyKey,
@@ -103,7 +105,7 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -134,6 +136,7 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -240,6 +243,8 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -292,6 +297,8 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 // Retrieve a list of all payment links.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListPaymentLinksResponse, error) {
 	request := operations.ListPaymentLinksRequest{
 		From:           from,
@@ -366,7 +373,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -397,6 +404,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -540,6 +548,8 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -590,6 +600,8 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 
 // Get payment link
 // Retrieve a single payment link by its ID.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPaymentLinkResponse, error) {
 	request := operations.GetPaymentLinkRequest{
 		PaymentLinkID:  paymentLinkID,
@@ -658,7 +670,7 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -689,6 +701,7 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -793,6 +806,8 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -843,6 +858,8 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 
 // Update payment link
 // Certain details of an existing payment link can be updated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.UpdatePaymentLinkRequestBody, opts ...operations.Option) (*operations.UpdatePaymentLinkResponse, error) {
 	request := operations.UpdatePaymentLinkRequest{
 		PaymentLinkID:  paymentLinkID,
@@ -910,7 +927,7 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -941,6 +958,7 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1047,6 +1065,8 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1103,6 +1123,8 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 //
 // To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
 // [Update payment link](update-payment-link) endpoint instead.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.DeletePaymentLinkRequestBody, opts ...operations.Option) (*operations.DeletePaymentLinkResponse, error) {
 	request := operations.DeletePaymentLinkRequest{
 		PaymentLinkID:  paymentLinkID,
@@ -1170,7 +1192,7 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1201,6 +1223,7 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1288,6 +1311,8 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 422:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1340,6 +1365,8 @@ func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempot
 // Retrieve the list of payments for a specific payment link.
 //
 // The results are paginated.
+//
+// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
 func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetPaymentLinkPaymentsRequest, opts ...operations.Option) (*operations.GetPaymentLinkPaymentsResponse, error) {
 	globals := operations.GetPaymentLinkPaymentsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -1407,7 +1434,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1438,6 +1465,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 		httpRes, err = utils.Retry(ctx, utils.Retries{
 			Config: retryConfig,
 			StatusCodes: []string{
+				"429",
 				"5xx",
 			},
 		}, func() (*http.Response, error) {
@@ -1578,6 +1606,8 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 429:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/hal+json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

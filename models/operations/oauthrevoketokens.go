@@ -11,6 +11,25 @@ var OauthRevokeTokensServerList = []string{
 	"https://api.mollie.com/oauth2",
 }
 
+type OauthRevokeTokensSecurity struct {
+	Username string `security:"scheme,type=http,subtype=basic,name=username,env=client_username"`
+	Password string `security:"scheme,type=http,subtype=basic,name=password,env=client_password"`
+}
+
+func (o *OauthRevokeTokensSecurity) GetUsername() string {
+	if o == nil {
+		return ""
+	}
+	return o.Username
+}
+
+func (o *OauthRevokeTokensSecurity) GetPassword() string {
+	if o == nil {
+		return ""
+	}
+	return o.Password
+}
+
 type OauthRevokeTokensRequestBody struct {
 	TokenTypeHint components.OauthTokenTypeHint `json:"token_type_hint"`
 	// The token you want to revoke.
