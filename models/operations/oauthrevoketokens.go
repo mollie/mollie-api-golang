@@ -7,10 +7,6 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-var OauthRevokeTokensServerList = []string{
-	"https://api.mollie.com/oauth2",
-}
-
 type OauthRevokeTokensSecurity struct {
 	Username string `security:"scheme,type=http,subtype=basic,name=username,env=client_username"`
 	Password string `security:"scheme,type=http,subtype=basic,name=password,env=client_password"`

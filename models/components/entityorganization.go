@@ -93,9 +93,9 @@ type EntityOrganization struct {
 	Email string `json:"email"`
 	// The preferred locale of the merchant, as set in their Mollie dashboard.
 	Locale  *EntityOrganizationLocale `json:"locale"`
-	Address Address                   `json:"address"`
+	Address *Address                  `json:"address,omitempty"`
 	// The registration number of the organization at their local chamber of commerce.
-	RegistrationNumber string `json:"registrationNumber"`
+	RegistrationNumber *string `json:"registrationNumber,omitempty"`
 	// The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
 	// verified against the international registry *VIES*.
 	//
@@ -145,16 +145,16 @@ func (e *EntityOrganization) GetLocale() *EntityOrganizationLocale {
 	return e.Locale
 }
 
-func (e *EntityOrganization) GetAddress() Address {
+func (e *EntityOrganization) GetAddress() *Address {
 	if e == nil {
-		return Address{}
+		return nil
 	}
 	return e.Address
 }
 
-func (e *EntityOrganization) GetRegistrationNumber() string {
+func (e *EntityOrganization) GetRegistrationNumber() *string {
 	if e == nil {
-		return ""
+		return nil
 	}
 	return e.RegistrationNumber
 }
