@@ -906,7 +906,6 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
@@ -914,58 +913,7 @@ func main() {
 
 	s := client.New(
 		client.WithServerURL("https://api.mollie.com"),
-		client.WithTestmode(false),
-		client.WithSecurity(components.Security{
-			AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
-		}),
 	)
-
-	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Object != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
-	}
-}
-
-```
-
-### Override Server URL Per-Operation
-
-The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-```go
-package main
-
-import (
-	"context"
-	client "github.com/mollie/mollie-api-golang"
-	"github.com/mollie/mollie-api-golang/models/components"
-	"github.com/mollie/mollie-api-golang/models/operations"
-	"log"
-)
-
-func main() {
-	ctx := context.Background()
-
-	s := client.New()
 
 	res, err := s.Oauth.Generate(ctx, operations.OauthGenerateTokensSecurity{
 		Username: "",
@@ -975,7 +923,7 @@ func main() {
 		Code:         client.Pointer("auth_..."),
 		RefreshToken: client.Pointer("refresh_..."),
 		RedirectURI:  client.Pointer("https://example.com/redirect"),
-	}, operations.WithServerURL("https://api.mollie.com/oauth2"))
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

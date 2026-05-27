@@ -55,11 +55,12 @@ func (s *Oauth) Generate(ctx context.Context, security operations.OauthGenerateT
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(operations.OauthGenerateTokensServerList[0], map[string]string{})
-	if o.ServerURL != nil {
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
 		baseURL = *o.ServerURL
 	}
-
 	opURL, err := url.JoinPath(baseURL, "/oauth2/tokens")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -310,11 +311,12 @@ func (s *Oauth) Revoke(ctx context.Context, security operations.OauthRevokeToken
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(operations.OauthRevokeTokensServerList[0], map[string]string{})
-	if o.ServerURL != nil {
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
 		baseURL = *o.ServerURL
 	}
-
 	opURL, err := url.JoinPath(baseURL, "/oauth2/tokens")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)

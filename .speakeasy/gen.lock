@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 8835ed62dc6fdd7ed4b481435a63a1ee
+  docChecksum: 7c48e163bb714661aab7d7e7a9fb6ebf
   docVersion: 1.0.0
   speakeasyVersion: 1.763.3
   generationVersion: 2.884.7
-  releaseVersion: 1.2.1
-  configChecksum: 9d87b67c9fa19bbe3ff081272dda07ad
+  releaseVersion: 1.3.0
+  configChecksum: 0c4e56f8aceaed6b2293f34bb51230ed
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: bc54f5ff-1f82-45ca-9371-d3723ff48e05
-  pristine_commit_hash: cd18809289775047d26c5c9c10e7c86c58b49029
-  pristine_tree_hash: 93d2ed58c02766427535c8f492c8bd8bd70ebd91
+  generation_id: 581845c9-51ca-4855-aa9d-a89c57aa123c
+  pristine_commit_hash: 43b1e57a4f97229265693303280276319aeb784b
+  pristine_tree_hash: 10ba7e81252d5bfb459d9d74a892ce7fc30d1797
 features:
   go:
     additionalDependencies: 0.1.0
@@ -30,7 +30,6 @@ features:
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     methodSecurity: 2.82.6
-    methodServerURLs: 2.82.2
     nameOverrides: 2.81.4
     nullables: 0.2.1
     openEnums: 0.1.0
@@ -86,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:880c490aedf42f356509ecf56852359743ddf429
-    pristine_git_object: 59215be6ebfef32329f51a2fb2f408e249a045a4
+    last_write_checksum: sha1:6062763be07587ee8aa457555d35fded5052efc6
+    pristine_git_object: e9c6c594bf58317bf9b049004f384f5cf0644b0d
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -574,8 +573,8 @@ trackedFiles:
     pristine_git_object: 6df408043cf8de0873b8818bd5fbfcb7dac03328
   docs/models/components/entityorganization.md:
     id: 40562c548407
-    last_write_checksum: sha1:b0726594b47b711667647fb8af484f5d8e879d20
-    pristine_git_object: 8c1ee58731126ac7ccd9e667a1f05514069714d4
+    last_write_checksum: sha1:501f16027867ad57c16fe25ce63351b5e18d1891
+    pristine_git_object: a661338b9c2a61682ca3dbea71b08d3376540985
   docs/models/components/entityorganizationlinks.md:
     id: b3b3cce4f462
     last_write_checksum: sha1:2b54970b4763acaf7dcd8e9ae3324a2e879924e9
@@ -4346,8 +4345,8 @@ trackedFiles:
     pristine_git_object: b0d69750dab93a650b46ddc44ef1e3013d9fe3dc
   models/components/entityorganization.go:
     id: 1b64c482dbfe
-    last_write_checksum: sha1:8df96e4c37b9b24a1f975dfa54a178f5db671f3c
-    pristine_git_object: 2f236e10c2c6f6249e57437e8a3841a43d8da33a
+    last_write_checksum: sha1:dfa1ea74da199712de726ca6337d593ddb9c6381
+    pristine_git_object: 5e4d91140ed11ac60f82584ec8cc184743b93e0c
   models/components/entitypairingcode.go:
     id: 5eccbd7d061a
     last_write_checksum: sha1:3548d8221b80a299140bf32e8b3733def1a938d7
@@ -5422,12 +5421,12 @@ trackedFiles:
     pristine_git_object: 061d5e7f84f7bc56a7b08a29891aaa6335ad162e
   models/operations/oauthgeneratetokens.go:
     id: 9a1fa0d16143
-    last_write_checksum: sha1:2e3d6cecc9a3f389a8088a1c9a01d132505dc42c
-    pristine_git_object: fe6662857f4f45c1a4c8d3f840d3bde232894f8b
+    last_write_checksum: sha1:04353eae08f774ebe8dd9aa610b65fa962512ed7
+    pristine_git_object: 21b14318ad2cc178b4bea9ae11a481fadc6258b0
   models/operations/oauthrevoketokens.go:
     id: 17620948fbba
-    last_write_checksum: sha1:63f49b10fc32094bc279c3f259eea08324ff2d69
-    pristine_git_object: c55c9e57312c7aee14f1c6ea618a1319319424ff
+    last_write_checksum: sha1:a6b4c8acd0b311577043a963668aefccba368f8b
+    pristine_git_object: bd2e28505bd4f253dc7fa47ca9b7ebc983b2b100
   models/operations/options.go:
     id: d20dd4db9865
     last_write_checksum: sha1:fbf313807a9961416562ac5e1309fd5789d8233e
@@ -5518,8 +5517,8 @@ trackedFiles:
     pristine_git_object: fe1c335abf16365137b95c98ddfd8bbd1d073d91
   oauth.go:
     id: a9cad7eb3094
-    last_write_checksum: sha1:3affe054bba9df836f8ce73097fdb0f4bdad8faa
-    pristine_git_object: ede633bb8d5f0c3b87e5712e956a38f0e95b103d
+    last_write_checksum: sha1:4e224c96139475e820840d9919f087b96644e4ed
+    pristine_git_object: 92f04ff7042934993d02afd7704fa88f84684da3
   onboarding.go:
     id: d1e4a134fcc2
     last_write_checksum: sha1:ec48deffe8bce8ded2e1ec0521a22ceb9ccf5f40
@@ -9617,10 +9616,10 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Terminals.TerminalsRequestPairingCode()`: **Added**
-  * `Client.Terminals.TerminalsListPairingCodes()`: **Added**
-  * `Client.Terminals.TerminalsGetPairingCode()`: **Added**
-  * `Client.Terminals.TerminalsRevokePairingCode()`: **Added**
+  * `Client.Organizations.Get()`:  `response` **Changed**
+  * `Client.Organizations.GetCurrent()`:  `response` **Changed**
+  * `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization` **Changed**
+  * `Client.Clients.Get()`:  `response.Embedded.Organization` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
