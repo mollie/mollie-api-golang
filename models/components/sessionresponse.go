@@ -99,6 +99,12 @@ type SessionResponse struct {
 	ProfileID string `json:"profileId"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
+	// The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+	// Omitted if the session has not expired.
+	ExpiredAt *string `json:"expiredAt,omitempty"`
+	// The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+	// Omitted if the session has not been completed.
+	CompletedAt *string `json:"completedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links SessionResponseLinks `json:"_links"`
 }
@@ -220,6 +226,20 @@ func (s *SessionResponse) GetCreatedAt() string {
 		return ""
 	}
 	return s.CreatedAt
+}
+
+func (s *SessionResponse) GetExpiredAt() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ExpiredAt
+}
+
+func (s *SessionResponse) GetCompletedAt() *string {
+	if s == nil {
+		return nil
+	}
+	return s.CompletedAt
 }
 
 func (s *SessionResponse) GetLinks() SessionResponseLinks {
