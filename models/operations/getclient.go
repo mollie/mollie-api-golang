@@ -101,7 +101,7 @@ func (g *GetClientLinks) GetDocumentation() *components.URLObj {
 type GetClientEmbedded struct {
 	Organization *components.EntityOrganization     `json:"organization,omitempty"`
 	Onboarding   *components.EntityOnboardingStatus `json:"onboarding,omitempty"`
-	Capabilities *components.EntityCapability       `json:"capabilities,omitempty"`
+	Capabilities []components.EntityCapability      `json:"capabilities,omitempty"`
 }
 
 func (g *GetClientEmbedded) GetOrganization() *components.EntityOrganization {
@@ -118,7 +118,7 @@ func (g *GetClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
 	return g.Onboarding
 }
 
-func (g *GetClientEmbedded) GetCapabilities() *components.EntityCapability {
+func (g *GetClientEmbedded) GetCapabilities() []components.EntityCapability {
 	if g == nil {
 		return nil
 	}

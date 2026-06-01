@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 017182f54e9fc0727b783f26195b93dc
+  docChecksum: 8466f8cd44e35230a20130badacdfaf8
   docVersion: 1.0.0
   speakeasyVersion: 1.763.3
   generationVersion: 2.884.7
-  releaseVersion: 1.3.1
-  configChecksum: fdb02dfa3d7a1043ba240364755ca5f3
+  releaseVersion: 1.3.2
+  configChecksum: 318b1250a2f87402e305e22ce4518833
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 248e50a0-c2eb-4dda-b53d-f82b65f61357
-  pristine_commit_hash: 923f4a7444599486aeb85cb5c18683a715203cc7
-  pristine_tree_hash: e2ddd9e43308be78bd7ebb0d3230c06b0401c2e9
+  generation_id: 79f268f6-b19a-46f9-8b0e-06c22f57f812
+  pristine_commit_hash: 3324f87755b3e52947e527ddeaf28d22b1f25d72
+  pristine_tree_hash: 3433c935786243754a3a7448190da9d99102e53f
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:2112d59388a7d3d6a2dbc30b301d2f74409a80aa
-    pristine_git_object: 41a25c34709e8f30ab0ce9a56fc7a6b6d7a488cf
+    last_write_checksum: sha1:8ec95358d32ae6f572b2c582aad663f321950d9f
+    pristine_git_object: 0d339deb840e8a56b1004fa0faaba1632882633c
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -2265,8 +2265,8 @@ trackedFiles:
     pristine_git_object: de88637fe91c19a0712dc6824dd61cb4388b17dd
   docs/models/operations/clientembedded.md:
     id: 97be729156d2
-    last_write_checksum: sha1:1dfe350476c45a685098d076bc28663b677478fb
-    pristine_git_object: 77855642e890fa7d5465010f25b850b852733003
+    last_write_checksum: sha1:cf51f96102e8b974394f0e7cdc5d4659f95f97c5
+    pristine_git_object: 6aae40c86dc4d5652ab738db564ecd44976bd60b
   docs/models/operations/createcapturerequest.md:
     id: 49196b8b207c
     last_write_checksum: sha1:7e203f625d05d23b3f73bf250879abaf85ad5834
@@ -2537,8 +2537,8 @@ trackedFiles:
     pristine_git_object: 3712e85f9fe4757668f16d8a89f3d2e5e91ba207
   docs/models/operations/getclientembedded.md:
     id: 0fcff4aa3ec0
-    last_write_checksum: sha1:309cfe770a2b2dd38aa5a824b17059866bae956e
-    pristine_git_object: 40fe01bd9a7a90164fdd3df2ecc75ecede6a9bda
+    last_write_checksum: sha1:4e6e092b7bd135cff81390134b587d08580966ab
+    pristine_git_object: 28310582c45e355a368a1c879edaaec8969c8dae
   docs/models/operations/getclientlinks.md:
     id: ad2913528c33
     last_write_checksum: sha1:9f8e233351c66b8fcd66d283e173945dd9f0503f
@@ -5157,8 +5157,8 @@ trackedFiles:
     pristine_git_object: d16b2bb8e19d77317b6d0fdedd43c61316d29182
   models/operations/getclient.go:
     id: 348f60c6b9d2
-    last_write_checksum: sha1:a613a0fc42aceb9e1744674ddabc55b378942059
-    pristine_git_object: 0814ded198acc94ed82f76c19ac68c39bff2b094
+    last_write_checksum: sha1:572028017128937ae61b5afda8c7866ff04e88b6
+    pristine_git_object: 259b88855a6538d57fcf21735d610b787d52e96c
   models/operations/getconnectbalancetransfer.go:
     id: 7cb7305d130d
     last_write_checksum: sha1:e7c1a1d057bc4b379e4e8f6f28db7c2a24311865
@@ -5321,8 +5321,8 @@ trackedFiles:
     pristine_git_object: aebef6d6c3bbc1e9fb0fbc011279f37df9a5cc7e
   models/operations/listclients.go:
     id: 08fb8e3ef8e4
-    last_write_checksum: sha1:836236f0b815744e0dce46b2c6d18a79682b47ed
-    pristine_git_object: 493be031f02770797106a606b2d431df42fac0c7
+    last_write_checksum: sha1:9c1d031a5d43a106be212f239e4e3d81ea8237e6
+    pristine_git_object: 515f93153738ba5125a60fdcbf90f8ce14c21b84
   models/operations/listconnectbalancetransfers.go:
     id: 328784ec7767
     last_write_checksum: sha1:a7f9739babf22fbb97af663a475d7f971b6021b8
@@ -6607,7 +6607,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": [{"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}]}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -6672,7 +6672,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "client", "id": "org_1234567", "commission": {"count": 10}, "organizationCreatedAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
+          application/hal+json: {"resource": "client", "id": "org_1234567", "commission": {"count": 10}, "organizationCreatedAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": [{"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}]}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-client-link:
@@ -9616,8 +9616,8 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Sessions.Create()`:  `response` **Changed**
-  * `Client.Sessions.Get()`:  `response` **Changed**
+  * `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Capabilities` **Changed** (Breaking ⚠️)
+  * `Client.Clients.Get()`:  `response.Embedded.Capabilities` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
