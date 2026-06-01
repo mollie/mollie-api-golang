@@ -102,7 +102,7 @@ func (l *ListClientsLinks) GetOnboarding() *components.URLObj {
 type ClientEmbedded struct {
 	Organization *components.EntityOrganization     `json:"organization,omitempty"`
 	Onboarding   *components.EntityOnboardingStatus `json:"onboarding,omitempty"`
-	Capabilities *components.EntityCapability       `json:"capabilities,omitempty"`
+	Capabilities []components.EntityCapability      `json:"capabilities,omitempty"`
 }
 
 func (c *ClientEmbedded) GetOrganization() *components.EntityOrganization {
@@ -119,7 +119,7 @@ func (c *ClientEmbedded) GetOnboarding() *components.EntityOnboardingStatus {
 	return c.Onboarding
 }
 
-func (c *ClientEmbedded) GetCapabilities() *components.EntityCapability {
+func (c *ClientEmbedded) GetCapabilities() []components.EntityCapability {
 	if c == nil {
 		return nil
 	}
