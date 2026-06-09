@@ -18,6 +18,7 @@ custom := components.PaymentDetailsWalletResponse("custom_value")
 
 ## Values
 
-| Name                                   | Value                                  |
-| -------------------------------------- | -------------------------------------- |
-| `PaymentDetailsWalletResponseApplepay` | applepay                               |
+| Name                                    | Value                                   |
+| --------------------------------------- | --------------------------------------- |
+| `PaymentDetailsWalletResponseApplepay`  | applepay                                |
+| `PaymentDetailsWalletResponseGooglepay` | googlepay                               |

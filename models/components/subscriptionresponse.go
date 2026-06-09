@@ -62,11 +62,11 @@ type SubscriptionResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Self URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Customer *URLNullable `json:"customer"`
+	Customer URLObj `json:"customer"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Mandate *URLNullable `json:"mandate,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Profile *URLNullable `json:"profile"`
+	Profile URLObj `json:"profile"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Payments *URLNullable `json:"payments,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -80,9 +80,9 @@ func (s *SubscriptionResponseLinks) GetSelf() URLObj {
 	return s.Self
 }
 
-func (s *SubscriptionResponseLinks) GetCustomer() *URLNullable {
+func (s *SubscriptionResponseLinks) GetCustomer() URLObj {
 	if s == nil {
-		return nil
+		return URLObj{}
 	}
 	return s.Customer
 }
@@ -94,9 +94,9 @@ func (s *SubscriptionResponseLinks) GetMandate() *URLNullable {
 	return s.Mandate
 }
 
-func (s *SubscriptionResponseLinks) GetProfile() *URLNullable {
+func (s *SubscriptionResponseLinks) GetProfile() URLObj {
 	if s == nil {
-		return nil
+		return URLObj{}
 	}
 	return s.Profile
 }

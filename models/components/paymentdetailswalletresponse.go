@@ -7,7 +7,8 @@ package components
 type PaymentDetailsWalletResponse string
 
 const (
-	PaymentDetailsWalletResponseApplepay PaymentDetailsWalletResponse = "applepay"
+	PaymentDetailsWalletResponseApplepay  PaymentDetailsWalletResponse = "applepay"
+	PaymentDetailsWalletResponseGooglepay PaymentDetailsWalletResponse = "googlepay"
 )
 
 func (e PaymentDetailsWalletResponse) ToPointer() *PaymentDetailsWalletResponse {
@@ -18,7 +19,7 @@ func (e PaymentDetailsWalletResponse) ToPointer() *PaymentDetailsWalletResponse 
 func (e *PaymentDetailsWalletResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "applepay":
+		case "applepay", "googlepay":
 			return true
 		}
 	}
