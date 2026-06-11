@@ -6,21 +6,21 @@ package components
 // EntityPermissionLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type EntityPermissionLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *URLObj `json:"self,omitempty"`
+	Self URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *URLObj `json:"documentation,omitempty"`
+	Documentation URLObj `json:"documentation"`
 }
 
-func (e *EntityPermissionLinks) GetSelf() *URLObj {
+func (e *EntityPermissionLinks) GetSelf() URLObj {
 	if e == nil {
-		return nil
+		return URLObj{}
 	}
 	return e.Self
 }
 
-func (e *EntityPermissionLinks) GetDocumentation() *URLObj {
+func (e *EntityPermissionLinks) GetDocumentation() URLObj {
 	if e == nil {
-		return nil
+		return URLObj{}
 	}
 	return e.Documentation
 }

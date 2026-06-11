@@ -34,21 +34,21 @@ func (l *ListPermissionsEmbedded) GetPermissions() []components.ListEntityPermis
 // ListPermissionsLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type ListPermissionsLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self *components.URLObj `json:"self,omitempty"`
+	Self components.URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation *components.URLObj `json:"documentation,omitempty"`
+	Documentation components.URLObj `json:"documentation"`
 }
 
-func (l *ListPermissionsLinks) GetSelf() *components.URLObj {
+func (l *ListPermissionsLinks) GetSelf() components.URLObj {
 	if l == nil {
-		return nil
+		return components.URLObj{}
 	}
 	return l.Self
 }
 
-func (l *ListPermissionsLinks) GetDocumentation() *components.URLObj {
+func (l *ListPermissionsLinks) GetDocumentation() components.URLObj {
 	if l == nil {
-		return nil
+		return components.URLObj{}
 	}
 	return l.Documentation
 }

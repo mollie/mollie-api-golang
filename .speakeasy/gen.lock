@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 89794158251ec56930f799af0b6b35a4
+  docChecksum: 80b8463fa777ff489cf7724d6b6353dc
   docVersion: 1.0.0
-  speakeasyVersion: 1.773.1
-  generationVersion: 2.897.1
-  releaseVersion: 1.3.3
-  configChecksum: 2bbd9a3626f941c4bcc1368b0842e538
+  speakeasyVersion: 1.776.0
+  generationVersion: 2.900.1
+  releaseVersion: 1.3.4
+  configChecksum: 5d18ecbdfba603c63094a4e7eb135d87
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 91fa0492-c71a-4b81-80b0-41801e124077
-  pristine_commit_hash: 408ae2479d044a2f829b31aa45eba27ee9125969
-  pristine_tree_hash: e2c17f314a34d544dae4a3d48b3a87c40ae4cef5
+  generation_id: 2ffcb064-8e88-40bd-bc92-39af815a0c3d
+  pristine_commit_hash: 90ae6c487c269e0b52f74025adc6eb8361aeafa0
+  pristine_tree_hash: b39c8822519aa68db16685f20254b1c2b8f33bb4
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:8be3bebdb4e08df05ed3abf3be6e5ed495cc092d
-    pristine_git_object: f5658737894a96b3fa943f0d54b94137e0c0003c
+    last_write_checksum: sha1:d23437bb027a5078a426bdf9bf5a7fa163e043b2
+    pristine_git_object: 38c301944717a2c24032463889517078d87f1e15
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -637,8 +637,8 @@ trackedFiles:
     pristine_git_object: 337fa03b6415fc372047012bc92679cc43d9e745
   docs/models/components/entitypermissionlinks.md:
     id: bac564d5b0eb
-    last_write_checksum: sha1:f30219122e6f3d797a0ba92f2de739986aa62a18
-    pristine_git_object: 92687c6a349372e9bdccd6b70820476016c06837
+    last_write_checksum: sha1:e2d16385f9eb0a2b14da1b3c4863adb2b7fe8f8a
+    pristine_git_object: 04961b40994694c4ff320d16e9acbb06e67a6046
   docs/models/components/entityrefundresponse.md:
     id: dae27e97fc5b
     last_write_checksum: sha1:66ecf181af6c30cf688cf6a3254a43a65fa254e4
@@ -977,8 +977,8 @@ trackedFiles:
     pristine_git_object: 071b58d80e566477d9e515fd50557f5e51532446
   docs/models/components/listentitypermissionlinks.md:
     id: ee11122095f3
-    last_write_checksum: sha1:5e9aee47c3105b0f336f0dc7f0b7e9fec154d901
-    pristine_git_object: 8a98dfb81e7cad012fe464f757b53059c37c5cb7
+    last_write_checksum: sha1:c2dbc7b299506ad914f38a0cf428fffb7da3eac2
+    pristine_git_object: 353e49be83fe6b6cce8ffe53868658de4e62f7c7
   docs/models/components/listentityrefund.md:
     id: 505437f3f883
     last_write_checksum: sha1:b7c937f7f4e80fedc85f655d4d77583f8dc24273
@@ -3317,8 +3317,8 @@ trackedFiles:
     pristine_git_object: e53f32f43e3b3163203d8162c6e1eb4ab75f39c2
   docs/models/operations/listpermissionslinks.md:
     id: 5468d093c14a
-    last_write_checksum: sha1:82cfbb27bb122213b5f69c8ad47a2f94b063bfbf
-    pristine_git_object: 7a71d120ce28c3aa22ffa9092984f4bf300bf654
+    last_write_checksum: sha1:bcf064ac22162448a43ce4a8f9237357b39d5352
+    pristine_git_object: 9d42096fa5d82ea82d8f74d52a6b756f33c4909d
   docs/models/operations/listpermissionsrequest.md:
     id: fec10d2b2bea
     last_write_checksum: sha1:853582bf8668cf347d80462424d11fa5d303cfa0
@@ -4365,8 +4365,8 @@ trackedFiles:
     pristine_git_object: b07c33e5775c256a16dd74e09b8c02f231206003
   models/components/entitypermission.go:
     id: 6d55c5a83f45
-    last_write_checksum: sha1:ecb4de3c1671090d1495295c5a97b75973217c9b
-    pristine_git_object: 4192b5e83e60a1a51db934f227481c43f7708fc7
+    last_write_checksum: sha1:5f1c52456af349c3daf8b0827f53f1c09fc50b62
+    pristine_git_object: 8423bafe1a0e316ad2458012ff24d44525f92b04
   models/components/entityrefundresponse.go:
     id: 7a9f16d1e0d3
     last_write_checksum: sha1:18e71a90e36de7f2e3c52681805b31bd17c9907f
@@ -4441,8 +4441,8 @@ trackedFiles:
     pristine_git_object: f3073cfc1a33828faabc3294a2ece6d26c2a8168
   models/components/listentitypermission.go:
     id: eb7e5d428c9c
-    last_write_checksum: sha1:a1982ecb33966686c8acdde95f4e9a5205f6dcb6
-    pristine_git_object: 690e89e321f6eda6b9dd167846a2ea5e9c954a4e
+    last_write_checksum: sha1:613dddab569ee5afc61960e7fc506d4e4ea76644
+    pristine_git_object: a802e6f9e499825c10c52950795908ecd9ff809f
   models/components/listentityrefund.go:
     id: b50a8ce292ca
     last_write_checksum: sha1:6223c5c7a3f2107d19a151e4abfefbbb355bb156
@@ -5361,8 +5361,8 @@ trackedFiles:
     pristine_git_object: b30ca9fc880a5d2a0f7b67c056df3493c219b308
   models/operations/listpermissions.go:
     id: 6bd9808e3633
-    last_write_checksum: sha1:29e64bb78e0504e54f08591bd22eaa5225147882
-    pristine_git_object: da82df55e3d2111dffe40cb7ca2a16509756a7a0
+    last_write_checksum: sha1:108b45b15211aa964d1d3ed5911962e30d0ff802
+    pristine_git_object: 6215470f0726b9c247c2265ac0bb608c11f10cc9
   models/operations/listprofiles.go:
     id: 2cacf4fb083c
     last_write_checksum: sha1:feec293fcdadb54106f4bcacfa0c5f40de7ab116
@@ -9616,22 +9616,8 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Subscriptions.Create()`:  `response.Links` **Changed** (Breaking ⚠️)
-  * `Client.Subscriptions.All()`:  `response.Embedded.Subscriptions[].Links` **Changed** (Breaking ⚠️)
-  * `Client.Subscriptions.Cancel()`:  `response.Links` **Changed** (Breaking ⚠️)
-  * `Client.Subscriptions.Update()`:  `response.Links` **Changed** (Breaking ⚠️)
-  * `Client.Subscriptions.Get()`:  `response.Links` **Changed** (Breaking ⚠️)
-  * `Client.Subscriptions.List()`:  `response.Embedded.Subscriptions[].Links` **Changed** (Breaking ⚠️)
-  * `Client.Payments.Update()`:  `response.Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Customers.CreatePayment()`:  `response.Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Payments.Cancel()`:  `response.Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Payments.Get()`:  `response.Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Payments.List()`:  `response.Embedded.Payments[].Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Payments.Create()`:  `response.Details.Wallet.Enum(googlepay)` **Added**
-  * `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Details.Wallet.Enum(googlepay)` **Added**
+  * `Client.Permissions.List()`:  `response` **Changed**
+  * `Client.Permissions.Get()`:  `response.Links` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
