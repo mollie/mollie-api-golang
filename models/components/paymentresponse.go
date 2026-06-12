@@ -670,6 +670,8 @@ type PaymentResponseDetails struct {
 	MultibancoReference *string `json:"multibancoReference,omitempty"`
 	// Multibanco entity reference of the transaction
 	MultibancoEntity *string `json:"multibancoEntity,omitempty"`
+	// Bizum payment reference of the transaction
+	BizumReference *string `json:"bizumReference,omitempty"`
 }
 
 func (p PaymentResponseDetails) MarshalJSON() ([]byte, error) {
@@ -1045,6 +1047,13 @@ func (p *PaymentResponseDetails) GetMultibancoEntity() *string {
 		return nil
 	}
 	return p.MultibancoEntity
+}
+
+func (p *PaymentResponseDetails) GetBizumReference() *string {
+	if p == nil {
+		return nil
+	}
+	return p.BizumReference
 }
 
 // PaymentResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
