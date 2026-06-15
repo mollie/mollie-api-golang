@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 209a2825519d071096a4f597e8f005b7
+  docChecksum: db15a87ae2baa66de62dfde1a2c094ad
   docVersion: 1.0.0
   speakeasyVersion: 1.778.0
   generationVersion: 2.904.2
-  releaseVersion: 1.3.6
-  configChecksum: 74edaf2093ad892ad8096c6aeff9048c
+  releaseVersion: 1.3.7
+  configChecksum: 9a886124f69363d7ed43a6975a2fa63c
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 44d448b1-c3a2-4528-b1d7-c7a7c149df4b
-  pristine_commit_hash: 3fe87efcb9878a2a321a88c30b102b258c0885a3
-  pristine_tree_hash: 6cef90c6df0a42a781c434bf60b82d707d02cd81
+  generation_id: a82d5f03-a12f-4270-892b-8e769d4ab4be
+  pristine_commit_hash: e19ecd6344a59cc6f826cb0228225cccbb8b618a
+  pristine_tree_hash: a4909163007881f2f6538e74dee638d9bec3e31b
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:6fa3a176db3c7ac9b2d004430162ea81ad55e979
-    pristine_git_object: 90ce9cebf59e710235d8dcefa705f830bf2a131c
+    last_write_checksum: sha1:cd4e44682c0cb92901f93cad0a669f0b753a51f6
+    pristine_git_object: 7d4a7d90665a0e0702892011127ce822d180ab1b
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -9614,13 +9614,6 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes:
-  * `Client.Settlements.ListRefunds()`:  `response.Embedded.Refunds[].PaymentId` **Changed**
-  * `Client.Refunds.Create()`:  `response.PaymentId` **Changed**
-  * `Client.Refunds.List()`:  `response.Embedded.Refunds[].PaymentId` **Changed**
-  * `Client.Refunds.Get()`:  `response.PaymentId` **Changed**
-  * `Client.Refunds.All()`:  `response.Embedded.Refunds[].PaymentId` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
