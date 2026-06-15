@@ -182,7 +182,7 @@ type EntityRefundResponse struct {
 	Metadata *Metadata `json:"metadata"`
 	// The unique identifier of the payment this refund was created for.
 	// The full payment object can be retrieved via the payment URL in the `_links` object.
-	PaymentID *string `json:"paymentId,omitempty"`
+	PaymentID string `json:"paymentId"`
 	// The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
 	SettlementID *string                    `json:"settlementId,omitempty"`
 	Status       EntityRefundResponseStatus `json:"status"`
@@ -251,9 +251,9 @@ func (e *EntityRefundResponse) GetMetadata() *Metadata {
 	return e.Metadata
 }
 
-func (e *EntityRefundResponse) GetPaymentID() *string {
+func (e *EntityRefundResponse) GetPaymentID() string {
 	if e == nil {
-		return nil
+		return ""
 	}
 	return e.PaymentID
 }

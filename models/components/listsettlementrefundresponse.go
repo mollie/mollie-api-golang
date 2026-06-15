@@ -135,7 +135,7 @@ type ListSettlementRefundResponse struct {
 	Metadata *Metadata `json:"metadata"`
 	// The unique identifier of the payment this refund was created for.
 	// The full payment object can be retrieved via the payment URL in the `_links` object.
-	PaymentID *string `json:"paymentId,omitempty"`
+	PaymentID string `json:"paymentId"`
 	// The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
 	SettlementID *string `json:"settlementId,omitempty"`
 	// The refund's status. Settlement refunds always have a status of `refunded`.
@@ -205,9 +205,9 @@ func (l *ListSettlementRefundResponse) GetMetadata() *Metadata {
 	return l.Metadata
 }
 
-func (l *ListSettlementRefundResponse) GetPaymentID() *string {
+func (l *ListSettlementRefundResponse) GetPaymentID() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.PaymentID
 }
