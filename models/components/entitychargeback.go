@@ -3,35 +3,6 @@
 
 package components
 
-// EntityChargebackSettlementAmount - **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-//
-// The amount deducted from your account balance for this chargeback, converted to the currency your account is
-// settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
-// amount has been determined.
-//
-// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-type EntityChargebackSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (e *EntityChargebackSettlementAmount) GetCurrency() string {
-	if e == nil {
-		return ""
-	}
-	return e.Currency
-}
-
-func (e *EntityChargebackSettlementAmount) GetValue() string {
-	if e == nil {
-		return ""
-	}
-	return e.Value
-}
-
 // EntityChargebackReason - Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 type EntityChargebackReason struct {
 	// Technical code provided by the bank.
@@ -102,15 +73,6 @@ type EntityChargeback struct {
 	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-	// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-	//
-	// The amount deducted from your account balance for this chargeback, converted to the currency your account is
-	// settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
-	// amount has been determined.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	SettlementAmount *EntityChargebackSettlementAmount `json:"settlementAmount,omitempty"`
 	// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 	Reason *EntityChargebackReason `json:"reason,omitempty"`
 	// The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
@@ -147,13 +109,6 @@ func (e *EntityChargeback) GetAmount() Amount {
 		return Amount{}
 	}
 	return e.Amount
-}
-
-func (e *EntityChargeback) GetSettlementAmount() *EntityChargebackSettlementAmount {
-	if e == nil {
-		return nil
-	}
-	return e.SettlementAmount
 }
 
 func (e *EntityChargeback) GetReason() *EntityChargebackReason {
