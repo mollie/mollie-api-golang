@@ -3,143 +3,318 @@
 
 package components
 
-// Code - A machine-readable code that indicates the reason for the payment's status.
-type Code string
-
-const (
-	CodeApprovedOrCompletedSuccessfully             Code = "approved_or_completed_successfully"
-	CodeReferToCardIssuer                           Code = "refer_to_card_issuer"
-	CodeInvalidMerchant                             Code = "invalid_merchant"
-	CodeCaptureCard                                 Code = "capture_card"
-	CodeDoNotHonor                                  Code = "do_not_honor"
-	CodeError                                       Code = "error"
-	CodePartialApproval                             Code = "partial_approval"
-	CodeInvalidTransaction                          Code = "invalid_transaction"
-	CodeInvalidAmount                               Code = "invalid_amount"
-	CodeInvalidIssuer                               Code = "invalid_issuer"
-	CodeLostCard                                    Code = "lost_card"
-	CodeStolenCard                                  Code = "stolen_card"
-	CodeInsufficientFunds                           Code = "insufficient_funds"
-	CodeExpiredCard                                 Code = "expired_card"
-	CodeInvalidPin                                  Code = "invalid_pin"
-	CodeTransactionNotPermittedToCardholder         Code = "transaction_not_permitted_to_cardholder"
-	CodeTransactionNotAllowedAtTerminal             Code = "transaction_not_allowed_at_terminal"
-	CodeExceedsWithdrawalAmountLimit                Code = "exceeds_withdrawal_amount_limit"
-	CodeRestrictedCard                              Code = "restricted_card"
-	CodeSecurityViolation                           Code = "security_violation"
-	CodeExceedsWithdrawalCountLimit                 Code = "exceeds_withdrawal_count_limit"
-	CodeAllowableNumberOfPinTriesExceeded           Code = "allowable_number_of_pin_tries_exceeded"
-	CodeNoReasonToDecline                           Code = "no_reason_to_decline"
-	CodeCannotVerifyPin                             Code = "cannot_verify_pin"
-	CodeIssuerUnavailable                           Code = "issuer_unavailable"
-	CodeUnableToRouteTransaction                    Code = "unable_to_route_transaction"
-	CodeDuplicateTransaction                        Code = "duplicate_transaction"
-	CodeSystemMalfunction                           Code = "system_malfunction"
-	CodeHonorWithID                                 Code = "honor_with_id"
-	CodeInvalidCardNumber                           Code = "invalid_card_number"
-	CodeFormatError                                 Code = "format_error"
-	CodeContactCardIssuer                           Code = "contact_card_issuer"
-	CodePinNotChanged                               Code = "pin_not_changed"
-	CodeInvalidNonexistentToAccountSpecified        Code = "invalid_nonexistent_to_account_specified"
-	CodeInvalidNonexistentFromAccountSpecified      Code = "invalid_nonexistent_from_account_specified"
-	CodeInvalidNonexistentAccountSpecified          Code = "invalid_nonexistent_account_specified"
-	CodeLifecycleRelated                            Code = "lifecycle_related"
-	CodeDomesticDebitTransactionNotAllowed          Code = "domestic_debit_transaction_not_allowed"
-	CodePolicyRelated                               Code = "policy_related"
-	CodeFraudSecurityRelated                        Code = "fraud_security_related"
-	CodeInvalidAuthorizationLifeCycle               Code = "invalid_authorization_life_cycle"
-	CodePurchaseAmountOnlyNoCashBackAllowed         Code = "purchase_amount_only_no_cash_back_allowed"
-	CodeCryptographicFailure                        Code = "cryptographic_failure"
-	CodeUnacceptablePin                             Code = "unacceptable_pin"
-	CodeReferToCardIssuerSpecialCondition           Code = "refer_to_card_issuer_special_condition"
-	CodePickUpCardSpecialCondition                  Code = "pick_up_card_special_condition"
-	CodeVipApproval                                 Code = "vip_approval"
-	CodeInvalidAccountNumber                        Code = "invalid_account_number"
-	CodeReEnterTransaction                          Code = "re_enter_transaction"
-	CodeNoActionTaken                               Code = "no_action_taken"
-	CodeUnableToLocateRecord                        Code = "unable_to_locate_record"
-	CodeFileTemporarilyUnavailable                  Code = "file_temporarily_unavailable"
-	CodeNoCreditAccount                             Code = "no_credit_account"
-	CodeClosedAccount                               Code = "closed_account"
-	CodeNoCheckingAccount                           Code = "no_checking_account"
-	CodeNoSavingsAccount                            Code = "no_savings_account"
-	CodeSuspectedFraud                              Code = "suspected_fraud"
-	CodeTransactionDoesNotFulfillAmlRequirement     Code = "transaction_does_not_fulfill_aml_requirement"
-	CodePinDataRequired                             Code = "pin_data_required"
-	CodeUnableToLocatePreviousMessage               Code = "unable_to_locate_previous_message"
-	CodePreviousMessageLocatedInconsistentData      Code = "previous_message_located_inconsistent_data"
-	CodeBlockedFirstUsed                            Code = "blocked_first_used"
-	CodeTransactionReversed                         Code = "transaction_reversed"
-	CodeCreditIssuerUnavailable                     Code = "credit_issuer_unavailable"
-	CodePinCryptographicErrorFound                  Code = "pin_cryptographic_error_found"
-	CodeNegativeOnlineCamResult                     Code = "negative_online_cam_result"
-	CodeViolationOfLaw                              Code = "violation_of_law"
-	CodeForceStip                                   Code = "force_stip"
-	CodeCashServiceNotAvailable                     Code = "cash_service_not_available"
-	CodeCashbackRequestExceedsIssuerLimit           Code = "cashback_request_exceeds_issuer_limit"
-	CodeDeclineForCvv2Failure                       Code = "decline_for_cvv2_failure"
-	CodeTransactionAmountExceedsPreAuthorizedAmount Code = "transaction_amount_exceeds_pre_authorized_amount"
-	CodeInvalidBillerInformation                    Code = "invalid_biller_information"
-	CodePinChangeUnblockRequestDeclined             Code = "pin_change_unblock_request_declined"
-	CodeUnsafePin                                   Code = "unsafe_pin"
-	CodeCardAuthenticationFailed                    Code = "card_authentication_failed"
-	CodeStopPaymentOrder                            Code = "stop_payment_order"
-	CodeRevocationOfAuthorization                   Code = "revocation_of_authorization"
-	CodeRevocationOfAllAuthorizations               Code = "revocation_of_all_authorizations"
-	CodeForwardToIssuerXa                           Code = "forward_to_issuer_xa"
-	CodeForwardToIssuerXd                           Code = "forward_to_issuer_xd"
-	CodeUnableToGoOnline                            Code = "unable_to_go_online"
-	CodeAdditionalCustomerAuthenticationRequired    Code = "additional_customer_authentication_required"
-	CodeMerchantIDNotFound                          Code = "merchant_id_not_found"
-	CodeMerchantAccountClosed                       Code = "merchant_account_closed"
-	CodeTerminalIDNotFound                          Code = "terminal_id_not_found"
-	CodeTerminalClosed                              Code = "terminal_closed"
-	CodeInvalidCategoryCode                         Code = "invalid_category_code"
-	CodeInvalidCurrency                             Code = "invalid_currency"
-	CodeMissingCvv2Cvc2                             Code = "missing_cvv2_cvc2"
-	CodeCvv2NotAllowed                              Code = "cvv2_not_allowed"
-	CodeMerchantNotRegisteredVbv                    Code = "merchant_not_registered_vbv"
-	CodeMerchantNotRegisteredForAmex                Code = "merchant_not_registered_for_amex"
-	CodeTransactionNotPermittedAtTerminal           Code = "transaction_not_permitted_at_terminal"
-	CodeAgreementTerminalNotRelated                 Code = "agreement_terminal_not_related"
-	CodeInvalidProcessorID                          Code = "invalid_processor_id"
-	CodeInvalidMerchantData                         Code = "invalid_merchant_data"
-	CodeSubMerchantAccountClosed                    Code = "sub_merchant_account_closed"
-	CodeTerminalBusy                                Code = "terminal_busy"
-	CodeTerminalUnreachable                         Code = "terminal_unreachable"
-	CodeServiceFailed                               Code = "service_failed"
-	CodeInvalidOperation                            Code = "invalid_operation"
-	CodeAuthorizationError                          Code = "authorization_error"
-	CodeLoginFailedWithoutReason                    Code = "login_failed_without_reason"
-	CodeInvalidRetailer                             Code = "invalid_retailer"
-	CodeCardDoesNotExist                            Code = "card_does_not_exist"
-	CodeCardIsBlocked                               Code = "card_is_blocked"
-	CodeInvalidCardID                               Code = "invalid_card_id"
-	CodeCardIsTransferred                           Code = "card_is_transferred"
-	CodeCardIsNotActive                             Code = "card_is_not_active"
-	CodeIncorrectPurchaseValue                      Code = "incorrect_purchase_value"
-	CodeCardNotAvailable                            Code = "card_not_available"
-	CodeWrongCurrency                               Code = "wrong_currency"
-	CodeLoginFailedUnknownUser                      Code = "login_failed_unknown_user"
-	CodeLoginFailedInvalidPassword                  Code = "login_failed_invalid_password"
-	CodeInvalidEanCode                              Code = "invalid_ean_code"
-	CodeCardError                                   Code = "card_error"
-	CodeTerminalConfigurationIssue                  Code = "terminal_configuration_issue"
+import (
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
 )
 
-func (e Code) ToPointer() *Code {
+type StatusReasonVoucherResponse string
+
+const (
+	StatusReasonVoucherResponseServiceFailed              StatusReasonVoucherResponse = "service_failed"
+	StatusReasonVoucherResponseInvalidOperation           StatusReasonVoucherResponse = "invalid_operation"
+	StatusReasonVoucherResponseAuthorizationError         StatusReasonVoucherResponse = "authorization_error"
+	StatusReasonVoucherResponseLoginFailedWithoutReason   StatusReasonVoucherResponse = "login_failed_without_reason"
+	StatusReasonVoucherResponseInvalidRetailer            StatusReasonVoucherResponse = "invalid_retailer"
+	StatusReasonVoucherResponseReferToCardIssuer          StatusReasonVoucherResponse = "refer_to_card_issuer"
+	StatusReasonVoucherResponseCardDoesNotExist           StatusReasonVoucherResponse = "card_does_not_exist"
+	StatusReasonVoucherResponseExpiredCard                StatusReasonVoucherResponse = "expired_card"
+	StatusReasonVoucherResponseCardIsBlocked              StatusReasonVoucherResponse = "card_is_blocked"
+	StatusReasonVoucherResponseInsufficientFunds          StatusReasonVoucherResponse = "insufficient_funds"
+	StatusReasonVoucherResponseInvalidCardID              StatusReasonVoucherResponse = "invalid_card_id"
+	StatusReasonVoucherResponseCardIsTransferred          StatusReasonVoucherResponse = "card_is_transferred"
+	StatusReasonVoucherResponseCardIsNotActive            StatusReasonVoucherResponse = "card_is_not_active"
+	StatusReasonVoucherResponseIncorrectPurchaseValue     StatusReasonVoucherResponse = "incorrect_purchase_value"
+	StatusReasonVoucherResponseCardNotAvailable           StatusReasonVoucherResponse = "card_not_available"
+	StatusReasonVoucherResponseWrongCurrency              StatusReasonVoucherResponse = "wrong_currency"
+	StatusReasonVoucherResponseLoginFailedUnknownUser     StatusReasonVoucherResponse = "login_failed_unknown_user"
+	StatusReasonVoucherResponseLoginFailedInvalidPassword StatusReasonVoucherResponse = "login_failed_invalid_password"
+	StatusReasonVoucherResponseInvalidPin                 StatusReasonVoucherResponse = "invalid_pin"
+	StatusReasonVoucherResponseInvalidEanCode             StatusReasonVoucherResponse = "invalid_ean_code"
+)
+
+func (e StatusReasonVoucherResponse) ToPointer() *StatusReasonVoucherResponse {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Code) IsExact() bool {
+func (e *StatusReasonVoucherResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "approved_or_completed_successfully", "refer_to_card_issuer", "invalid_merchant", "capture_card", "do_not_honor", "error", "partial_approval", "invalid_transaction", "invalid_amount", "invalid_issuer", "lost_card", "stolen_card", "insufficient_funds", "expired_card", "invalid_pin", "transaction_not_permitted_to_cardholder", "transaction_not_allowed_at_terminal", "exceeds_withdrawal_amount_limit", "restricted_card", "security_violation", "exceeds_withdrawal_count_limit", "allowable_number_of_pin_tries_exceeded", "no_reason_to_decline", "cannot_verify_pin", "issuer_unavailable", "unable_to_route_transaction", "duplicate_transaction", "system_malfunction", "honor_with_id", "invalid_card_number", "format_error", "contact_card_issuer", "pin_not_changed", "invalid_nonexistent_to_account_specified", "invalid_nonexistent_from_account_specified", "invalid_nonexistent_account_specified", "lifecycle_related", "domestic_debit_transaction_not_allowed", "policy_related", "fraud_security_related", "invalid_authorization_life_cycle", "purchase_amount_only_no_cash_back_allowed", "cryptographic_failure", "unacceptable_pin", "refer_to_card_issuer_special_condition", "pick_up_card_special_condition", "vip_approval", "invalid_account_number", "re_enter_transaction", "no_action_taken", "unable_to_locate_record", "file_temporarily_unavailable", "no_credit_account", "closed_account", "no_checking_account", "no_savings_account", "suspected_fraud", "transaction_does_not_fulfill_aml_requirement", "pin_data_required", "unable_to_locate_previous_message", "previous_message_located_inconsistent_data", "blocked_first_used", "transaction_reversed", "credit_issuer_unavailable", "pin_cryptographic_error_found", "negative_online_cam_result", "violation_of_law", "force_stip", "cash_service_not_available", "cashback_request_exceeds_issuer_limit", "decline_for_cvv2_failure", "transaction_amount_exceeds_pre_authorized_amount", "invalid_biller_information", "pin_change_unblock_request_declined", "unsafe_pin", "card_authentication_failed", "stop_payment_order", "revocation_of_authorization", "revocation_of_all_authorizations", "forward_to_issuer_xa", "forward_to_issuer_xd", "unable_to_go_online", "additional_customer_authentication_required", "merchant_id_not_found", "merchant_account_closed", "terminal_id_not_found", "terminal_closed", "invalid_category_code", "invalid_currency", "missing_cvv2_cvc2", "cvv2_not_allowed", "merchant_not_registered_vbv", "merchant_not_registered_for_amex", "transaction_not_permitted_at_terminal", "agreement_terminal_not_related", "invalid_processor_id", "invalid_merchant_data", "sub_merchant_account_closed", "terminal_busy", "terminal_unreachable", "service_failed", "invalid_operation", "authorization_error", "login_failed_without_reason", "invalid_retailer", "card_does_not_exist", "card_is_blocked", "invalid_card_id", "card_is_transferred", "card_is_not_active", "incorrect_purchase_value", "card_not_available", "wrong_currency", "login_failed_unknown_user", "login_failed_invalid_password", "invalid_ean_code", "card_error", "terminal_configuration_issue":
+		case "service_failed", "invalid_operation", "authorization_error", "login_failed_without_reason", "invalid_retailer", "refer_to_card_issuer", "card_does_not_exist", "expired_card", "card_is_blocked", "insufficient_funds", "invalid_card_id", "card_is_transferred", "card_is_not_active", "incorrect_purchase_value", "card_not_available", "wrong_currency", "login_failed_unknown_user", "login_failed_invalid_password", "invalid_pin", "invalid_ean_code":
 			return true
 		}
 	}
 	return false
+}
+
+type StatusReasonTerminalResponse string
+
+const (
+	StatusReasonTerminalResponseTerminalBusy        StatusReasonTerminalResponse = "terminal_busy"
+	StatusReasonTerminalResponseTerminalUnreachable StatusReasonTerminalResponse = "terminal_unreachable"
+)
+
+func (e StatusReasonTerminalResponse) ToPointer() *StatusReasonTerminalResponse {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *StatusReasonTerminalResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "terminal_busy", "terminal_unreachable":
+			return true
+		}
+	}
+	return false
+}
+
+type StatusReasonMerchantResponse string
+
+const (
+	StatusReasonMerchantResponseMerchantIDNotFound                StatusReasonMerchantResponse = "merchant_id_not_found"
+	StatusReasonMerchantResponseMerchantAccountClosed             StatusReasonMerchantResponse = "merchant_account_closed"
+	StatusReasonMerchantResponseTerminalIDNotFound                StatusReasonMerchantResponse = "terminal_id_not_found"
+	StatusReasonMerchantResponseTerminalClosed                    StatusReasonMerchantResponse = "terminal_closed"
+	StatusReasonMerchantResponseInvalidCategoryCode               StatusReasonMerchantResponse = "invalid_category_code"
+	StatusReasonMerchantResponseInvalidCurrency                   StatusReasonMerchantResponse = "invalid_currency"
+	StatusReasonMerchantResponseMissingCvv2Cvc2                   StatusReasonMerchantResponse = "missing_cvv2_cvc2"
+	StatusReasonMerchantResponseCvv2NotAllowed                    StatusReasonMerchantResponse = "cvv2_not_allowed"
+	StatusReasonMerchantResponseMerchantNotRegisteredVbv          StatusReasonMerchantResponse = "merchant_not_registered_vbv"
+	StatusReasonMerchantResponseMerchantNotRegisteredForAmex      StatusReasonMerchantResponse = "merchant_not_registered_for_amex"
+	StatusReasonMerchantResponseTransactionNotPermittedAtTerminal StatusReasonMerchantResponse = "transaction_not_permitted_at_terminal"
+	StatusReasonMerchantResponseAgreementTerminalNotRelated       StatusReasonMerchantResponse = "agreement_terminal_not_related"
+	StatusReasonMerchantResponseInvalidProcessorID                StatusReasonMerchantResponse = "invalid_processor_id"
+	StatusReasonMerchantResponseInvalidMerchantData               StatusReasonMerchantResponse = "invalid_merchant_data"
+	StatusReasonMerchantResponseSubMerchantAccountClosed          StatusReasonMerchantResponse = "sub_merchant_account_closed"
+)
+
+func (e StatusReasonMerchantResponse) ToPointer() *StatusReasonMerchantResponse {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *StatusReasonMerchantResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "merchant_id_not_found", "merchant_account_closed", "terminal_id_not_found", "terminal_closed", "invalid_category_code", "invalid_currency", "missing_cvv2_cvc2", "cvv2_not_allowed", "merchant_not_registered_vbv", "merchant_not_registered_for_amex", "transaction_not_permitted_at_terminal", "agreement_terminal_not_related", "invalid_processor_id", "invalid_merchant_data", "sub_merchant_account_closed":
+			return true
+		}
+	}
+	return false
+}
+
+type StatusReasonCardSchemeResponse string
+
+const (
+	StatusReasonCardSchemeResponseApprovedOrCompletedSuccessfully             StatusReasonCardSchemeResponse = "approved_or_completed_successfully"
+	StatusReasonCardSchemeResponseReferToCardIssuer                           StatusReasonCardSchemeResponse = "refer_to_card_issuer"
+	StatusReasonCardSchemeResponseInvalidMerchant                             StatusReasonCardSchemeResponse = "invalid_merchant"
+	StatusReasonCardSchemeResponseCaptureCard                                 StatusReasonCardSchemeResponse = "capture_card"
+	StatusReasonCardSchemeResponseDoNotHonor                                  StatusReasonCardSchemeResponse = "do_not_honor"
+	StatusReasonCardSchemeResponseError                                       StatusReasonCardSchemeResponse = "error"
+	StatusReasonCardSchemeResponsePartialApproval                             StatusReasonCardSchemeResponse = "partial_approval"
+	StatusReasonCardSchemeResponseInvalidTransaction                          StatusReasonCardSchemeResponse = "invalid_transaction"
+	StatusReasonCardSchemeResponseInvalidAmount                               StatusReasonCardSchemeResponse = "invalid_amount"
+	StatusReasonCardSchemeResponseInvalidIssuer                               StatusReasonCardSchemeResponse = "invalid_issuer"
+	StatusReasonCardSchemeResponseLostCard                                    StatusReasonCardSchemeResponse = "lost_card"
+	StatusReasonCardSchemeResponseStolenCard                                  StatusReasonCardSchemeResponse = "stolen_card"
+	StatusReasonCardSchemeResponseInsufficientFunds                           StatusReasonCardSchemeResponse = "insufficient_funds"
+	StatusReasonCardSchemeResponseExpiredCard                                 StatusReasonCardSchemeResponse = "expired_card"
+	StatusReasonCardSchemeResponseInvalidPin                                  StatusReasonCardSchemeResponse = "invalid_pin"
+	StatusReasonCardSchemeResponseTransactionNotPermittedToCardholder         StatusReasonCardSchemeResponse = "transaction_not_permitted_to_cardholder"
+	StatusReasonCardSchemeResponseTransactionNotAllowedAtTerminal             StatusReasonCardSchemeResponse = "transaction_not_allowed_at_terminal"
+	StatusReasonCardSchemeResponseExceedsWithdrawalAmountLimit                StatusReasonCardSchemeResponse = "exceeds_withdrawal_amount_limit"
+	StatusReasonCardSchemeResponseRestrictedCard                              StatusReasonCardSchemeResponse = "restricted_card"
+	StatusReasonCardSchemeResponseSecurityViolation                           StatusReasonCardSchemeResponse = "security_violation"
+	StatusReasonCardSchemeResponseExceedsWithdrawalCountLimit                 StatusReasonCardSchemeResponse = "exceeds_withdrawal_count_limit"
+	StatusReasonCardSchemeResponseAllowableNumberOfPinTriesExceeded           StatusReasonCardSchemeResponse = "allowable_number_of_pin_tries_exceeded"
+	StatusReasonCardSchemeResponseNoReasonToDecline                           StatusReasonCardSchemeResponse = "no_reason_to_decline"
+	StatusReasonCardSchemeResponseCannotVerifyPin                             StatusReasonCardSchemeResponse = "cannot_verify_pin"
+	StatusReasonCardSchemeResponseIssuerUnavailable                           StatusReasonCardSchemeResponse = "issuer_unavailable"
+	StatusReasonCardSchemeResponseUnableToRouteTransaction                    StatusReasonCardSchemeResponse = "unable_to_route_transaction"
+	StatusReasonCardSchemeResponseDuplicateTransaction                        StatusReasonCardSchemeResponse = "duplicate_transaction"
+	StatusReasonCardSchemeResponseSystemMalfunction                           StatusReasonCardSchemeResponse = "system_malfunction"
+	StatusReasonCardSchemeResponseHonorWithID                                 StatusReasonCardSchemeResponse = "honor_with_id"
+	StatusReasonCardSchemeResponseInvalidCardNumber                           StatusReasonCardSchemeResponse = "invalid_card_number"
+	StatusReasonCardSchemeResponseFormatError                                 StatusReasonCardSchemeResponse = "format_error"
+	StatusReasonCardSchemeResponseContactCardIssuer                           StatusReasonCardSchemeResponse = "contact_card_issuer"
+	StatusReasonCardSchemeResponsePinNotChanged                               StatusReasonCardSchemeResponse = "pin_not_changed"
+	StatusReasonCardSchemeResponseInvalidNonexistentToAccountSpecified        StatusReasonCardSchemeResponse = "invalid_nonexistent_to_account_specified"
+	StatusReasonCardSchemeResponseInvalidNonexistentFromAccountSpecified      StatusReasonCardSchemeResponse = "invalid_nonexistent_from_account_specified"
+	StatusReasonCardSchemeResponseInvalidNonexistentAccountSpecified          StatusReasonCardSchemeResponse = "invalid_nonexistent_account_specified"
+	StatusReasonCardSchemeResponseLifecycleRelated                            StatusReasonCardSchemeResponse = "lifecycle_related"
+	StatusReasonCardSchemeResponseDomesticDebitTransactionNotAllowed          StatusReasonCardSchemeResponse = "domestic_debit_transaction_not_allowed"
+	StatusReasonCardSchemeResponsePolicyRelated                               StatusReasonCardSchemeResponse = "policy_related"
+	StatusReasonCardSchemeResponseFraudSecurityRelated                        StatusReasonCardSchemeResponse = "fraud_security_related"
+	StatusReasonCardSchemeResponseInvalidAuthorizationLifeCycle               StatusReasonCardSchemeResponse = "invalid_authorization_life_cycle"
+	StatusReasonCardSchemeResponsePurchaseAmountOnlyNoCashBackAllowed         StatusReasonCardSchemeResponse = "purchase_amount_only_no_cash_back_allowed"
+	StatusReasonCardSchemeResponseCryptographicFailure                        StatusReasonCardSchemeResponse = "cryptographic_failure"
+	StatusReasonCardSchemeResponseUnacceptablePin                             StatusReasonCardSchemeResponse = "unacceptable_pin"
+	StatusReasonCardSchemeResponseReferToCardIssuerSpecialCondition           StatusReasonCardSchemeResponse = "refer_to_card_issuer_special_condition"
+	StatusReasonCardSchemeResponsePickUpCardSpecialCondition                  StatusReasonCardSchemeResponse = "pick_up_card_special_condition"
+	StatusReasonCardSchemeResponseVipApproval                                 StatusReasonCardSchemeResponse = "vip_approval"
+	StatusReasonCardSchemeResponseInvalidAccountNumber                        StatusReasonCardSchemeResponse = "invalid_account_number"
+	StatusReasonCardSchemeResponseReEnterTransaction                          StatusReasonCardSchemeResponse = "re_enter_transaction"
+	StatusReasonCardSchemeResponseNoActionTaken                               StatusReasonCardSchemeResponse = "no_action_taken"
+	StatusReasonCardSchemeResponseUnableToLocateRecord                        StatusReasonCardSchemeResponse = "unable_to_locate_record"
+	StatusReasonCardSchemeResponseFileTemporarilyUnavailable                  StatusReasonCardSchemeResponse = "file_temporarily_unavailable"
+	StatusReasonCardSchemeResponseNoCreditAccount                             StatusReasonCardSchemeResponse = "no_credit_account"
+	StatusReasonCardSchemeResponseClosedAccount                               StatusReasonCardSchemeResponse = "closed_account"
+	StatusReasonCardSchemeResponseNoCheckingAccount                           StatusReasonCardSchemeResponse = "no_checking_account"
+	StatusReasonCardSchemeResponseNoSavingsAccount                            StatusReasonCardSchemeResponse = "no_savings_account"
+	StatusReasonCardSchemeResponseSuspectedFraud                              StatusReasonCardSchemeResponse = "suspected_fraud"
+	StatusReasonCardSchemeResponseTransactionDoesNotFulfillAmlRequirement     StatusReasonCardSchemeResponse = "transaction_does_not_fulfill_aml_requirement"
+	StatusReasonCardSchemeResponsePinDataRequired                             StatusReasonCardSchemeResponse = "pin_data_required"
+	StatusReasonCardSchemeResponseUnableToLocatePreviousMessage               StatusReasonCardSchemeResponse = "unable_to_locate_previous_message"
+	StatusReasonCardSchemeResponsePreviousMessageLocatedInconsistentData      StatusReasonCardSchemeResponse = "previous_message_located_inconsistent_data"
+	StatusReasonCardSchemeResponseBlockedFirstUsed                            StatusReasonCardSchemeResponse = "blocked_first_used"
+	StatusReasonCardSchemeResponseTransactionReversed                         StatusReasonCardSchemeResponse = "transaction_reversed"
+	StatusReasonCardSchemeResponseCreditIssuerUnavailable                     StatusReasonCardSchemeResponse = "credit_issuer_unavailable"
+	StatusReasonCardSchemeResponsePinCryptographicErrorFound                  StatusReasonCardSchemeResponse = "pin_cryptographic_error_found"
+	StatusReasonCardSchemeResponseNegativeOnlineCamResult                     StatusReasonCardSchemeResponse = "negative_online_cam_result"
+	StatusReasonCardSchemeResponseViolationOfLaw                              StatusReasonCardSchemeResponse = "violation_of_law"
+	StatusReasonCardSchemeResponseForceStip                                   StatusReasonCardSchemeResponse = "force_stip"
+	StatusReasonCardSchemeResponseCashServiceNotAvailable                     StatusReasonCardSchemeResponse = "cash_service_not_available"
+	StatusReasonCardSchemeResponseCashbackRequestExceedsIssuerLimit           StatusReasonCardSchemeResponse = "cashback_request_exceeds_issuer_limit"
+	StatusReasonCardSchemeResponseDeclineForCvv2Failure                       StatusReasonCardSchemeResponse = "decline_for_cvv2_failure"
+	StatusReasonCardSchemeResponseTransactionAmountExceedsPreAuthorizedAmount StatusReasonCardSchemeResponse = "transaction_amount_exceeds_pre_authorized_amount"
+	StatusReasonCardSchemeResponseInvalidBillerInformation                    StatusReasonCardSchemeResponse = "invalid_biller_information"
+	StatusReasonCardSchemeResponsePinChangeUnblockRequestDeclined             StatusReasonCardSchemeResponse = "pin_change_unblock_request_declined"
+	StatusReasonCardSchemeResponseUnsafePin                                   StatusReasonCardSchemeResponse = "unsafe_pin"
+	StatusReasonCardSchemeResponseCardAuthenticationFailed                    StatusReasonCardSchemeResponse = "card_authentication_failed"
+	StatusReasonCardSchemeResponseStopPaymentOrder                            StatusReasonCardSchemeResponse = "stop_payment_order"
+	StatusReasonCardSchemeResponseRevocationOfAuthorization                   StatusReasonCardSchemeResponse = "revocation_of_authorization"
+	StatusReasonCardSchemeResponseRevocationOfAllAuthorizations               StatusReasonCardSchemeResponse = "revocation_of_all_authorizations"
+	StatusReasonCardSchemeResponseForwardToIssuerXa                           StatusReasonCardSchemeResponse = "forward_to_issuer_xa"
+	StatusReasonCardSchemeResponseForwardToIssuerXd                           StatusReasonCardSchemeResponse = "forward_to_issuer_xd"
+	StatusReasonCardSchemeResponseUnableToGoOnline                            StatusReasonCardSchemeResponse = "unable_to_go_online"
+	StatusReasonCardSchemeResponseAdditionalCustomerAuthenticationRequired    StatusReasonCardSchemeResponse = "additional_customer_authentication_required"
+)
+
+func (e StatusReasonCardSchemeResponse) ToPointer() *StatusReasonCardSchemeResponse {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *StatusReasonCardSchemeResponse) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "approved_or_completed_successfully", "refer_to_card_issuer", "invalid_merchant", "capture_card", "do_not_honor", "error", "partial_approval", "invalid_transaction", "invalid_amount", "invalid_issuer", "lost_card", "stolen_card", "insufficient_funds", "expired_card", "invalid_pin", "transaction_not_permitted_to_cardholder", "transaction_not_allowed_at_terminal", "exceeds_withdrawal_amount_limit", "restricted_card", "security_violation", "exceeds_withdrawal_count_limit", "allowable_number_of_pin_tries_exceeded", "no_reason_to_decline", "cannot_verify_pin", "issuer_unavailable", "unable_to_route_transaction", "duplicate_transaction", "system_malfunction", "honor_with_id", "invalid_card_number", "format_error", "contact_card_issuer", "pin_not_changed", "invalid_nonexistent_to_account_specified", "invalid_nonexistent_from_account_specified", "invalid_nonexistent_account_specified", "lifecycle_related", "domestic_debit_transaction_not_allowed", "policy_related", "fraud_security_related", "invalid_authorization_life_cycle", "purchase_amount_only_no_cash_back_allowed", "cryptographic_failure", "unacceptable_pin", "refer_to_card_issuer_special_condition", "pick_up_card_special_condition", "vip_approval", "invalid_account_number", "re_enter_transaction", "no_action_taken", "unable_to_locate_record", "file_temporarily_unavailable", "no_credit_account", "closed_account", "no_checking_account", "no_savings_account", "suspected_fraud", "transaction_does_not_fulfill_aml_requirement", "pin_data_required", "unable_to_locate_previous_message", "previous_message_located_inconsistent_data", "blocked_first_used", "transaction_reversed", "credit_issuer_unavailable", "pin_cryptographic_error_found", "negative_online_cam_result", "violation_of_law", "force_stip", "cash_service_not_available", "cashback_request_exceeds_issuer_limit", "decline_for_cvv2_failure", "transaction_amount_exceeds_pre_authorized_amount", "invalid_biller_information", "pin_change_unblock_request_declined", "unsafe_pin", "card_authentication_failed", "stop_payment_order", "revocation_of_authorization", "revocation_of_all_authorizations", "forward_to_issuer_xa", "forward_to_issuer_xd", "unable_to_go_online", "additional_customer_authentication_required":
+			return true
+		}
+	}
+	return false
+}
+
+type CodeType string
+
+const (
+	CodeTypeStatusReasonCardSchemeResponse CodeType = "status-reason-card-scheme-response"
+	CodeTypeStatusReasonMerchantResponse   CodeType = "status-reason-merchant-response"
+	CodeTypeStatusReasonTerminalResponse   CodeType = "status-reason-terminal-response"
+	CodeTypeStatusReasonVoucherResponse    CodeType = "status-reason-voucher-response"
+)
+
+// Code - A machine-readable code that indicates the reason for the payment's status.
+type Code struct {
+	StatusReasonCardSchemeResponse *StatusReasonCardSchemeResponse `queryParam:"inline" union:"member"`
+	StatusReasonMerchantResponse   *StatusReasonMerchantResponse   `queryParam:"inline" union:"member"`
+	StatusReasonTerminalResponse   *StatusReasonTerminalResponse   `queryParam:"inline" union:"member"`
+	StatusReasonVoucherResponse    *StatusReasonVoucherResponse    `queryParam:"inline" union:"member"`
+
+	Type CodeType
+}
+
+func CreateCodeStatusReasonCardSchemeResponse(statusReasonCardSchemeResponse StatusReasonCardSchemeResponse) Code {
+	typ := CodeTypeStatusReasonCardSchemeResponse
+
+	return Code{
+		StatusReasonCardSchemeResponse: &statusReasonCardSchemeResponse,
+		Type:                           typ,
+	}
+}
+
+func CreateCodeStatusReasonMerchantResponse(statusReasonMerchantResponse StatusReasonMerchantResponse) Code {
+	typ := CodeTypeStatusReasonMerchantResponse
+
+	return Code{
+		StatusReasonMerchantResponse: &statusReasonMerchantResponse,
+		Type:                         typ,
+	}
+}
+
+func CreateCodeStatusReasonTerminalResponse(statusReasonTerminalResponse StatusReasonTerminalResponse) Code {
+	typ := CodeTypeStatusReasonTerminalResponse
+
+	return Code{
+		StatusReasonTerminalResponse: &statusReasonTerminalResponse,
+		Type:                         typ,
+	}
+}
+
+func CreateCodeStatusReasonVoucherResponse(statusReasonVoucherResponse StatusReasonVoucherResponse) Code {
+	typ := CodeTypeStatusReasonVoucherResponse
+
+	return Code{
+		StatusReasonVoucherResponse: &statusReasonVoucherResponse,
+		Type:                        typ,
+	}
+}
+
+func (u *Code) UnmarshalJSON(data []byte) error {
+
+	var statusReasonCardSchemeResponse StatusReasonCardSchemeResponse = StatusReasonCardSchemeResponse("")
+	if err := utils.UnmarshalJSON(data, &statusReasonCardSchemeResponse, "", true, nil); err == nil {
+		u.StatusReasonCardSchemeResponse = &statusReasonCardSchemeResponse
+		u.Type = CodeTypeStatusReasonCardSchemeResponse
+		return nil
+	}
+
+	var statusReasonMerchantResponse StatusReasonMerchantResponse = StatusReasonMerchantResponse("")
+	if err := utils.UnmarshalJSON(data, &statusReasonMerchantResponse, "", true, nil); err == nil {
+		u.StatusReasonMerchantResponse = &statusReasonMerchantResponse
+		u.Type = CodeTypeStatusReasonMerchantResponse
+		return nil
+	}
+
+	var statusReasonTerminalResponse StatusReasonTerminalResponse = StatusReasonTerminalResponse("")
+	if err := utils.UnmarshalJSON(data, &statusReasonTerminalResponse, "", true, nil); err == nil {
+		u.StatusReasonTerminalResponse = &statusReasonTerminalResponse
+		u.Type = CodeTypeStatusReasonTerminalResponse
+		return nil
+	}
+
+	var statusReasonVoucherResponse StatusReasonVoucherResponse = StatusReasonVoucherResponse("")
+	if err := utils.UnmarshalJSON(data, &statusReasonVoucherResponse, "", true, nil); err == nil {
+		u.StatusReasonVoucherResponse = &statusReasonVoucherResponse
+		u.Type = CodeTypeStatusReasonVoucherResponse
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Code", string(data))
+}
+
+func (u Code) MarshalJSON() ([]byte, error) {
+	if u.StatusReasonCardSchemeResponse != nil {
+		return utils.MarshalJSON(u.StatusReasonCardSchemeResponse, "", true)
+	}
+
+	if u.StatusReasonMerchantResponse != nil {
+		return utils.MarshalJSON(u.StatusReasonMerchantResponse, "", true)
+	}
+
+	if u.StatusReasonTerminalResponse != nil {
+		return utils.MarshalJSON(u.StatusReasonTerminalResponse, "", true)
+	}
+
+	if u.StatusReasonVoucherResponse != nil {
+		return utils.MarshalJSON(u.StatusReasonVoucherResponse, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Code: all fields are null")
 }
 
 // StatusReason - This object offers details about the status of a payment. Currently it is only available for point-of-sale
@@ -155,7 +330,7 @@ type StatusReason struct {
 
 func (s *StatusReason) GetCode() Code {
 	if s == nil {
-		return Code("")
+		return Code{}
 	}
 	return s.Code
 }

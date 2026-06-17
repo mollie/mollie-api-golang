@@ -3,29 +3,6 @@
 
 package components
 
-// ListSettlementChargebackResponseSettlementAmount - The amount deducted from your account balance for this chargeback, converted to the currency your account is
-// settled in. Always a **negative** amount.
-type ListSettlementChargebackResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (l *ListSettlementChargebackResponseSettlementAmount) GetCurrency() string {
-	if l == nil {
-		return ""
-	}
-	return l.Currency
-}
-
-func (l *ListSettlementChargebackResponseSettlementAmount) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
 // ListSettlementChargebackResponseReason - Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 type ListSettlementChargebackResponseReason struct {
 	// Technical code provided by the bank.
@@ -79,6 +56,29 @@ func (l *ListSettlementChargebackResponseLinks) GetSettlement() *URLNullable {
 	return l.Settlement
 }
 
+// ListSettlementChargebackResponseSettlementAmount - The amount deducted from your account balance for this chargeback, converted to the currency your account is
+// settled in. Always a **negative** amount.
+type ListSettlementChargebackResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (l *ListSettlementChargebackResponseSettlementAmount) GetCurrency() string {
+	if l == nil {
+		return ""
+	}
+	return l.Currency
+}
+
+func (l *ListSettlementChargebackResponseSettlementAmount) GetValue() string {
+	if l == nil {
+		return ""
+	}
+	return l.Value
+}
+
 type ListSettlementChargebackResponse struct {
 	// Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
 	// endpoint.
@@ -87,9 +87,6 @@ type ListSettlementChargebackResponse struct {
 	ID string `json:"id"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// The amount deducted from your account balance for this chargeback, converted to the currency your account is
-	// settled in. Always a **negative** amount.
-	SettlementAmount *ListSettlementChargebackResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 	Reason *ListSettlementChargebackResponseReason `json:"reason,omitempty"`
 	// The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
@@ -107,6 +104,9 @@ type ListSettlementChargebackResponse struct {
 	Links ListSettlementChargebackResponseLinks `json:"_links"`
 	// Whether this entity was created in live mode or in test mode. Settlements are always in live mode.
 	Mode *SettlementMode `json:"mode,omitempty"`
+	// The amount deducted from your account balance for this chargeback, converted to the currency your account is
+	// settled in. Always a **negative** amount.
+	SettlementAmount *ListSettlementChargebackResponseSettlementAmount `json:"settlementAmount,omitempty"`
 }
 
 func (l *ListSettlementChargebackResponse) GetResource() string {
@@ -128,13 +128,6 @@ func (l *ListSettlementChargebackResponse) GetAmount() Amount {
 		return Amount{}
 	}
 	return l.Amount
-}
-
-func (l *ListSettlementChargebackResponse) GetSettlementAmount() *ListSettlementChargebackResponseSettlementAmount {
-	if l == nil {
-		return nil
-	}
-	return l.SettlementAmount
 }
 
 func (l *ListSettlementChargebackResponse) GetReason() *ListSettlementChargebackResponseReason {
@@ -184,4 +177,11 @@ func (l *ListSettlementChargebackResponse) GetMode() *SettlementMode {
 		return nil
 	}
 	return l.Mode
+}
+
+func (l *ListSettlementChargebackResponse) GetSettlementAmount() *ListSettlementChargebackResponseSettlementAmount {
+	if l == nil {
+		return nil
+	}
+	return l.SettlementAmount
 }

@@ -3,31 +3,6 @@
 
 package components
 
-// ListSettlementRefundResponseSettlementAmount - The amount deducted from your account balance for this refund, converted to the currency your account is
-// settled in. Always a **negative** amount.
-//
-// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-type ListSettlementRefundResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (l *ListSettlementRefundResponseSettlementAmount) GetCurrency() string {
-	if l == nil {
-		return ""
-	}
-	return l.Currency
-}
-
-func (l *ListSettlementRefundResponseSettlementAmount) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
 type ListSettlementRefundResponseExternalReference struct {
 	// Specifies the reference type
 	Type *RefundExternalReferenceTypeResponse `json:"type,omitempty"`
@@ -113,6 +88,31 @@ func (l *ListSettlementRefundResponseLinks) GetSettlement() *URLNullable {
 	return l.Settlement
 }
 
+// ListSettlementRefundResponseSettlementAmount - The amount deducted from your account balance for this refund, converted to the currency your account is
+// settled in. Always a **negative** amount.
+//
+// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+type ListSettlementRefundResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (l *ListSettlementRefundResponseSettlementAmount) GetCurrency() string {
+	if l == nil {
+		return ""
+	}
+	return l.Currency
+}
+
+func (l *ListSettlementRefundResponseSettlementAmount) GetValue() string {
+	if l == nil {
+		return ""
+	}
+	return l.Value
+}
+
 type ListSettlementRefundResponse struct {
 	// Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
 	Resource string `json:"resource"`
@@ -125,11 +125,6 @@ type ListSettlementRefundResponse struct {
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// The amount deducted from your account balance for this refund, converted to the currency your account is
-	// settled in. Always a **negative** amount.
-	//
-	// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-	SettlementAmount *ListSettlementRefundResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *Metadata `json:"metadata"`
@@ -154,6 +149,11 @@ type ListSettlementRefundResponse struct {
 	RoutingReversals []ListSettlementRefundResponseRoutingReversal `json:"routingReversals,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links ListSettlementRefundResponseLinks `json:"_links"`
+	// The amount deducted from your account balance for this refund, converted to the currency your account is
+	// settled in. Always a **negative** amount.
+	//
+	// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+	SettlementAmount *ListSettlementRefundResponseSettlementAmount `json:"settlementAmount,omitempty"`
 }
 
 func (l *ListSettlementRefundResponse) GetResource() string {
@@ -189,13 +189,6 @@ func (l *ListSettlementRefundResponse) GetAmount() Amount {
 		return Amount{}
 	}
 	return l.Amount
-}
-
-func (l *ListSettlementRefundResponse) GetSettlementAmount() *ListSettlementRefundResponseSettlementAmount {
-	if l == nil {
-		return nil
-	}
-	return l.SettlementAmount
 }
 
 func (l *ListSettlementRefundResponse) GetMetadata() *Metadata {
@@ -252,4 +245,11 @@ func (l *ListSettlementRefundResponse) GetLinks() ListSettlementRefundResponseLi
 		return ListSettlementRefundResponseLinks{}
 	}
 	return l.Links
+}
+
+func (l *ListSettlementRefundResponse) GetSettlementAmount() *ListSettlementRefundResponseSettlementAmount {
+	if l == nil {
+		return nil
+	}
+	return l.SettlementAmount
 }

@@ -3,11 +3,6 @@
 
 package components
 
-import (
-	"github.com/mollie/mollie-api-golang/internal/utils"
-	"github.com/mollie/mollie-api-golang/types"
-)
-
 // ListSettlementPaymentResponseAmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
 // payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
 // costs for a return shipment to the customer.
@@ -93,31 +88,6 @@ func (l *ListSettlementPaymentResponseAmountChargedBack) GetCurrency() string {
 }
 
 func (l *ListSettlementPaymentResponseAmountChargedBack) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
-// ListSettlementPaymentResponseSettlementAmount - The amount settled to your account for this payment, converted to the currency your account is settled in.
-//
-// Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
-// Mollie, this field is omitted from the response.
-type ListSettlementPaymentResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (l *ListSettlementPaymentResponseSettlementAmount) GetCurrency() string {
-	if l == nil {
-		return ""
-	}
-	return l.Currency
-}
-
-func (l *ListSettlementPaymentResponseSettlementAmount) GetValue() string {
 	if l == nil {
 		return ""
 	}
@@ -428,599 +398,6 @@ func (l *ListSettlementPaymentResponseApplicationFee) GetDescription() *string {
 	return l.Description
 }
 
-// ListSettlementPaymentResponseReceipt - The Point of sale receipt object.
-type ListSettlementPaymentResponseReceipt struct {
-	// A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
-	AuthorizationCode *string `json:"authorizationCode,omitempty"`
-	// The unique number that identifies a specific payment application on a chip card.
-	ApplicationIdentifier *string `json:"applicationIdentifier,omitempty"`
-	// The method by which the card was read by the terminal.
-	CardReadMethod *PaymentDetailsReceiptCardReadMethodResponse `json:"cardReadMethod,omitempty"`
-	// The method used to verify the cardholder's identity.
-	CardVerificationMethod *PaymentDetailsReceiptCardVerificationMethodResponse `json:"cardVerificationMethod,omitempty"`
-}
-
-func (l *ListSettlementPaymentResponseReceipt) GetAuthorizationCode() *string {
-	if l == nil {
-		return nil
-	}
-	return l.AuthorizationCode
-}
-
-func (l *ListSettlementPaymentResponseReceipt) GetApplicationIdentifier() *string {
-	if l == nil {
-		return nil
-	}
-	return l.ApplicationIdentifier
-}
-
-func (l *ListSettlementPaymentResponseReceipt) GetCardReadMethod() *PaymentDetailsReceiptCardReadMethodResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardReadMethod
-}
-
-func (l *ListSettlementPaymentResponseReceipt) GetCardVerificationMethod() *PaymentDetailsReceiptCardVerificationMethodResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardVerificationMethod
-}
-
-// ListSettlementPaymentResponseQrCode - Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
-// the QR code details will be available in this object.
-//
-// The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
-// Bancontact QR payments can be completed by the customer using the Bancontact app.
-type ListSettlementPaymentResponseQrCode struct {
-	// The height of the QR code image in pixels.
-	Height *int64 `json:"height,omitempty"`
-	// The width of the QR code image in pixels.
-	Width *int64 `json:"width,omitempty"`
-	// The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
-	// downloaded.
-	Src *string `json:"src,omitempty"`
-}
-
-func (l *ListSettlementPaymentResponseQrCode) GetHeight() *int64 {
-	if l == nil {
-		return nil
-	}
-	return l.Height
-}
-
-func (l *ListSettlementPaymentResponseQrCode) GetWidth() *int64 {
-	if l == nil {
-		return nil
-	}
-	return l.Width
-}
-
-func (l *ListSettlementPaymentResponseQrCode) GetSrc() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Src
-}
-
-// ListSettlementPaymentResponseDetails - An object containing payment details collected during the payment process. For example, details may include the
-// customer's card or bank details and a payment reference. For the full list of details, please refer to the
-// [method-specific parameters](extra-payment-parameters) guide.
-type ListSettlementPaymentResponseDetails struct {
-	// The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
-	ConsumerName *string `json:"consumerName,omitempty"`
-	// The customer's account reference.
-	//
-	// For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
-	// number.
-	//
-	// For PayPal, the account reference is an email address.
-	//
-	// For card and Bancontact payments, refer to details.cardNumber.
-	ConsumerAccount *string `json:"consumerAccount,omitempty"`
-	// The BIC of the customer's bank account, if applicable.
-	ConsumerBic *string `json:"consumerBic,omitempty"`
-	// For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
-	// wallet provider. In these cases the shipping address may be available as a payment detail.
-	ShippingAddress map[string]any `json:"shippingAddress,omitempty"`
-	// For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
-	// PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
-	CardNumber *string `json:"cardNumber,omitempty"`
-	// The name of the bank that the customer will need to make the bank transfer payment towards.
-	BankName *string `json:"bankName,omitempty"`
-	// The bank account number the customer will need to make the bank transfer payment towards.
-	BankAccount *string `json:"bankAccount,omitempty"`
-	// The BIC of the bank the customer will need to make the bank transfer payment towards.
-	BankBic *string `json:"bankBic,omitempty"`
-	// The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
-	// formatting here; show it to the customer as-is.
-	TransferReference *string `json:"transferReference,omitempty"`
-	// A unique fingerprint for a specific card. Can be used to identify returning customers.
-	//
-	// In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-	// linking multiple transactions from wallets and physical card to a single account, also across payment methods
-	// or when the card is reissued.
-	CardFingerprint *string `json:"cardFingerprint,omitempty"`
-	// The customer's name as shown on their card.
-	CardHolder *string `json:"cardHolder,omitempty"`
-	// The card's target audience, if known.
-	CardAudition *PaymentDetailsCardAuditionResponse `json:"cardAudition,omitempty"`
-	// The card's label, if known.
-	CardLabel *PaymentDetailsCardLabelResponse `json:"cardLabel,omitempty"`
-	// The ISO 3166-1 alpha-2 country code of the country the card was issued in.
-	CardCountryCode *string `json:"cardCountryCode,omitempty"`
-	// The expiry date (MM/YY) of the card as displayed on the card.
-	CardExpiryDate *string `json:"cardExpiryDate,omitempty"`
-	// The card type.
-	CardFunding *PaymentDetailsCardFundingResponse `json:"cardFunding,omitempty"`
-	// The level of security applied during card processing.
-	CardSecurity *PaymentDetailsCardSecurityResponse `json:"cardSecurity,omitempty"`
-	// The applicable card fee region.
-	FeeRegion *PaymentDetailsFeeRegionResponse `json:"feeRegion,omitempty"`
-	// The first 6 and last 4 digits of the card number.
-	CardMaskedNumber *string `json:"cardMaskedNumber,omitempty"`
-	// The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
-	Card3dsEci *string `json:"card3dsEci,omitempty"`
-	// The first 6 digit of the card bank identification number.
-	CardBin *string `json:"cardBin,omitempty"`
-	// The issuer of the Card.
-	CardIssuer *string `json:"cardIssuer,omitempty"`
-	// A failure code to help understand why the payment failed.
-	FailureReason *PaymentDetailsFailureReasonResponse `json:"failureReason,omitempty"`
-	// A human-friendly failure message that can be shown to the customer. The message is translated in accordance
-	// with the payment's locale setting.
-	FailureMessage *string `json:"failureMessage,omitempty"`
-	// The wallet used when creating the payment.
-	Wallet *PaymentDetailsWalletResponse `json:"wallet,omitempty"`
-	// PayPal's reference for the payment.
-	PaypalReference *string `json:"paypalReference,omitempty"`
-	// ID of the customer's PayPal account.
-	PaypalPayerID *string `json:"paypalPayerId,omitempty"`
-	// Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
-	// payments, and if the information is made available by PayPal.
-	SellerProtection *PaymentDetailsSellerProtectionResponse `json:"sellerProtection,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	PaypalFee *AmountNullable `json:"paypalFee,omitempty"`
-	// The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
-	CustomerReference *string `json:"customerReference,omitempty"`
-	// The ID of the terminal device where the payment took place on.
-	TerminalID *string `json:"terminalId,omitempty"`
-	// The first 6 digits & last 4 digits of the customer's masked card number.
-	MaskedNumber *string `json:"maskedNumber,omitempty"`
-	// The Point of sale receipt object.
-	Receipt *ListSettlementPaymentResponseReceipt `json:"receipt,omitempty"`
-	// The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
-	// reference to Mollie.
-	CreditorIdentifier *string `json:"creditorIdentifier,omitempty"`
-	// Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
-	DueDate *types.Date `json:"dueDate,omitempty"`
-	// Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
-	// has been signed.
-	SignatureDate *types.Date `json:"signatureDate,omitempty"`
-	// The official reason why this payment has failed. A detailed description of each reason is available on the
-	// website of the European Payments Council.
-	BankReasonCode *string `json:"bankReasonCode,omitempty"`
-	// A human-friendly description of the failure reason.
-	BankReason *string `json:"bankReason,omitempty"`
-	// The end-to-end identifier you provided in the batch file.
-	EndToEndIdentifier *string `json:"endToEndIdentifier,omitempty"`
-	// The mandate reference you provided in the batch file.
-	MandateReference *string `json:"mandateReference,omitempty"`
-	// The batch reference you provided in the batch file.
-	BatchReference *string `json:"batchReference,omitempty"`
-	// The file reference you provided in the batch file.
-	FileReference *string `json:"fileReference,omitempty"`
-	// Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
-	// the QR code details will be available in this object.
-	//
-	// The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
-	// Bancontact QR payments can be completed by the customer using the Bancontact app.
-	QrCode *ListSettlementPaymentResponseQrCode `json:"qrCode,omitempty"`
-	// For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
-	VoucherNumber *string `json:"voucherNumber,omitempty"`
-	// An array of detail objects for each gift card that was used on this payment, if any.
-	Giftcards []map[string]any `json:"giftcards,omitempty"`
-	// For payments with vouchers: the brand name of the first voucher applied.
-	Issuer *string `json:"issuer,omitempty"`
-	// An array of detail objects for each voucher that was used on this payment, if any.
-	Vouchers []map[string]any `json:"vouchers,omitempty"`
-	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	RemainderAmount *Amount `json:"remainderAmount,omitempty"`
-	// The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
-	RemainderMethod *string `json:"remainderMethod,omitempty"`
-	// Optional include. The full payment method details of the remainder payment.
-	RemainderDetails map[string]any `json:"remainderDetails,omitempty"`
-	// Multibanco payment reference of the transaction
-	MultibancoReference *string `json:"multibancoReference,omitempty"`
-	// Multibanco entity reference of the transaction
-	MultibancoEntity *string `json:"multibancoEntity,omitempty"`
-	// Bizum payment reference of the transaction
-	BizumReference *string `json:"bizumReference,omitempty"`
-}
-
-func (l ListSettlementPaymentResponseDetails) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *ListSettlementPaymentResponseDetails) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetConsumerName() *string {
-	if l == nil {
-		return nil
-	}
-	return l.ConsumerName
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetConsumerAccount() *string {
-	if l == nil {
-		return nil
-	}
-	return l.ConsumerAccount
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetConsumerBic() *string {
-	if l == nil {
-		return nil
-	}
-	return l.ConsumerBic
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetShippingAddress() map[string]any {
-	if l == nil {
-		return nil
-	}
-	return l.ShippingAddress
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardNumber() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardNumber
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBankName() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BankName
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBankAccount() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BankAccount
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBankBic() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BankBic
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetTransferReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.TransferReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardFingerprint() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardFingerprint
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardHolder() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardHolder
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardAudition() *PaymentDetailsCardAuditionResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardAudition
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardLabel() *PaymentDetailsCardLabelResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardLabel
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardCountryCode() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardCountryCode
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardExpiryDate() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardExpiryDate
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardFunding() *PaymentDetailsCardFundingResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardFunding
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardSecurity() *PaymentDetailsCardSecurityResponse {
-	if l == nil {
-		return nil
-	}
-	return l.CardSecurity
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetFeeRegion() *PaymentDetailsFeeRegionResponse {
-	if l == nil {
-		return nil
-	}
-	return l.FeeRegion
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardMaskedNumber() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardMaskedNumber
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCard3dsEci() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Card3dsEci
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardBin() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardBin
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCardIssuer() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CardIssuer
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetFailureReason() *PaymentDetailsFailureReasonResponse {
-	if l == nil {
-		return nil
-	}
-	return l.FailureReason
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetFailureMessage() *string {
-	if l == nil {
-		return nil
-	}
-	return l.FailureMessage
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetWallet() *PaymentDetailsWalletResponse {
-	if l == nil {
-		return nil
-	}
-	return l.Wallet
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetPaypalReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.PaypalReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetPaypalPayerID() *string {
-	if l == nil {
-		return nil
-	}
-	return l.PaypalPayerID
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetSellerProtection() *PaymentDetailsSellerProtectionResponse {
-	if l == nil {
-		return nil
-	}
-	return l.SellerProtection
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetPaypalFee() *AmountNullable {
-	if l == nil {
-		return nil
-	}
-	return l.PaypalFee
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCustomerReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CustomerReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetTerminalID() *string {
-	if l == nil {
-		return nil
-	}
-	return l.TerminalID
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetMaskedNumber() *string {
-	if l == nil {
-		return nil
-	}
-	return l.MaskedNumber
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetReceipt() *ListSettlementPaymentResponseReceipt {
-	if l == nil {
-		return nil
-	}
-	return l.Receipt
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetCreditorIdentifier() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CreditorIdentifier
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetDueDate() *types.Date {
-	if l == nil {
-		return nil
-	}
-	return l.DueDate
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetSignatureDate() *types.Date {
-	if l == nil {
-		return nil
-	}
-	return l.SignatureDate
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBankReasonCode() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BankReasonCode
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBankReason() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BankReason
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetEndToEndIdentifier() *string {
-	if l == nil {
-		return nil
-	}
-	return l.EndToEndIdentifier
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetMandateReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.MandateReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBatchReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BatchReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetFileReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.FileReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetQrCode() *ListSettlementPaymentResponseQrCode {
-	if l == nil {
-		return nil
-	}
-	return l.QrCode
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetVoucherNumber() *string {
-	if l == nil {
-		return nil
-	}
-	return l.VoucherNumber
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetGiftcards() []map[string]any {
-	if l == nil {
-		return nil
-	}
-	return l.Giftcards
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetIssuer() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Issuer
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetVouchers() []map[string]any {
-	if l == nil {
-		return nil
-	}
-	return l.Vouchers
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetRemainderAmount() *Amount {
-	if l == nil {
-		return nil
-	}
-	return l.RemainderAmount
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetRemainderMethod() *string {
-	if l == nil {
-		return nil
-	}
-	return l.RemainderMethod
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetRemainderDetails() map[string]any {
-	if l == nil {
-		return nil
-	}
-	return l.RemainderDetails
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetMultibancoReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.MultibancoReference
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetMultibancoEntity() *string {
-	if l == nil {
-		return nil
-	}
-	return l.MultibancoEntity
-}
-
-func (l *ListSettlementPaymentResponseDetails) GetBizumReference() *string {
-	if l == nil {
-		return nil
-	}
-	return l.BizumReference
-}
-
 // ListSettlementPaymentResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type ListSettlementPaymentResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -1169,6 +546,31 @@ func (l *ListSettlementPaymentResponseLinks) GetPayOnline() *URLObj {
 	return l.PayOnline
 }
 
+// ListSettlementPaymentResponseSettlementAmount - The amount settled to your account for this payment, converted to the currency your account is settled in.
+//
+// Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+// Mollie, this field is omitted from the response.
+type ListSettlementPaymentResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (l *ListSettlementPaymentResponseSettlementAmount) GetCurrency() string {
+	if l == nil {
+		return ""
+	}
+	return l.Currency
+}
+
+func (l *ListSettlementPaymentResponseSettlementAmount) GetValue() string {
+	if l == nil {
+		return ""
+	}
+	return l.Value
+}
+
 type ListSettlementPaymentResponse struct {
 	// Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
 	Resource string `json:"resource"`
@@ -1200,11 +602,6 @@ type ListSettlementPaymentResponse struct {
 	// The total amount that was charged back for this payment. Only available when the total charged back amount is not
 	// zero.
 	AmountChargedBack *ListSettlementPaymentResponseAmountChargedBack `json:"amountChargedBack,omitempty"`
-	// The amount settled to your account for this payment, converted to the currency your account is settled in.
-	//
-	// Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
-	// Mollie, this field is omitted from the response.
-	SettlementAmount *ListSettlementPaymentResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
@@ -1352,7 +749,7 @@ type ListSettlementPaymentResponse struct {
 	// An object containing payment details collected during the payment process. For example, details may include the
 	// customer's card or bank details and a payment reference. For the full list of details, please refer to the
 	// [method-specific parameters](extra-payment-parameters) guide.
-	Details *ListSettlementPaymentResponseDetails `json:"details,omitempty"`
+	Details *PaymentDetails `json:"details,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
@@ -1375,6 +772,11 @@ type ListSettlementPaymentResponse struct {
 	FailedAt *string `json:"failedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links ListSettlementPaymentResponseLinks `json:"_links"`
+	// The amount settled to your account for this payment, converted to the currency your account is settled in.
+	//
+	// Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+	// Mollie, this field is omitted from the response.
+	SettlementAmount *ListSettlementPaymentResponseSettlementAmount `json:"settlementAmount,omitempty"`
 }
 
 func (l *ListSettlementPaymentResponse) GetResource() string {
@@ -1438,13 +840,6 @@ func (l *ListSettlementPaymentResponse) GetAmountChargedBack() *ListSettlementPa
 		return nil
 	}
 	return l.AmountChargedBack
-}
-
-func (l *ListSettlementPaymentResponse) GetSettlementAmount() *ListSettlementPaymentResponseSettlementAmount {
-	if l == nil {
-		return nil
-	}
-	return l.SettlementAmount
 }
 
 func (l *ListSettlementPaymentResponse) GetRedirectURL() *string {
@@ -1629,7 +1024,7 @@ func (l *ListSettlementPaymentResponse) GetIsCancelable() *bool {
 	return l.IsCancelable
 }
 
-func (l *ListSettlementPaymentResponse) GetDetails() *ListSettlementPaymentResponseDetails {
+func (l *ListSettlementPaymentResponse) GetDetails() *PaymentDetails {
 	if l == nil {
 		return nil
 	}
@@ -1690,4 +1085,11 @@ func (l *ListSettlementPaymentResponse) GetLinks() ListSettlementPaymentResponse
 		return ListSettlementPaymentResponseLinks{}
 	}
 	return l.Links
+}
+
+func (l *ListSettlementPaymentResponse) GetSettlementAmount() *ListSettlementPaymentResponseSettlementAmount {
+	if l == nil {
+		return nil
+	}
+	return l.SettlementAmount
 }

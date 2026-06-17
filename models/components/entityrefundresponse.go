@@ -3,37 +3,6 @@
 
 package components
 
-// EntityRefundResponseSettlementAmount - **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-//
-// The amount deducted from your account balance for this refund, converted to the currency your account is settled
-// in. Always a **negative** amount. Only available once the refund is finalized and the final settlement amount has
-// been determined.
-//
-// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-//
-// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-type EntityRefundResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (e *EntityRefundResponseSettlementAmount) GetCurrency() string {
-	if e == nil {
-		return ""
-	}
-	return e.Currency
-}
-
-func (e *EntityRefundResponseSettlementAmount) GetValue() string {
-	if e == nil {
-		return ""
-	}
-	return e.Value
-}
-
 type EntityRefundResponseStatus string
 
 const (
@@ -166,17 +135,6 @@ type EntityRefundResponse struct {
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-	// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-	//
-	// The amount deducted from your account balance for this refund, converted to the currency your account is settled
-	// in. Always a **negative** amount. Only available once the refund is finalized and the final settlement amount has
-	// been determined.
-	//
-	// For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	SettlementAmount *EntityRefundResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *Metadata `json:"metadata"`
@@ -235,13 +193,6 @@ func (e *EntityRefundResponse) GetAmount() Amount {
 		return Amount{}
 	}
 	return e.Amount
-}
-
-func (e *EntityRefundResponse) GetSettlementAmount() *EntityRefundResponseSettlementAmount {
-	if e == nil {
-		return nil
-	}
-	return e.SettlementAmount
 }
 
 func (e *EntityRefundResponse) GetMetadata() *Metadata {

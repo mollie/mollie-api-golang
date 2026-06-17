@@ -3,28 +3,6 @@
 
 package components
 
-// ListSettlementCaptureResponseSettlementAmount - The amount settled to your account for this capture, converted to the currency your account is settled in.
-type ListSettlementCaptureResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (l *ListSettlementCaptureResponseSettlementAmount) GetCurrency() string {
-	if l == nil {
-		return ""
-	}
-	return l.Currency
-}
-
-func (l *ListSettlementCaptureResponseSettlementAmount) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
 // ListSettlementCaptureResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 type ListSettlementCaptureResponseLinks struct {
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -65,6 +43,28 @@ func (l *ListSettlementCaptureResponseLinks) GetShipment() *URLNullable {
 	return l.Shipment
 }
 
+// ListSettlementCaptureResponseSettlementAmount - The amount settled to your account for this capture, converted to the currency your account is settled in.
+type ListSettlementCaptureResponseSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (l *ListSettlementCaptureResponseSettlementAmount) GetCurrency() string {
+	if l == nil {
+		return ""
+	}
+	return l.Currency
+}
+
+func (l *ListSettlementCaptureResponseSettlementAmount) GetValue() string {
+	if l == nil {
+		return ""
+	}
+	return l.Value
+}
+
 type ListSettlementCaptureResponse struct {
 	// Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
 	Resource string `json:"resource"`
@@ -76,8 +76,6 @@ type ListSettlementCaptureResponse struct {
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount *AmountNullable `json:"amount"`
-	// The amount settled to your account for this capture, converted to the currency your account is settled in.
-	SettlementAmount *ListSettlementCaptureResponseSettlementAmount `json:"settlementAmount,omitempty"`
 	// The capture's status. Settlement captures always have a status of `succeeded`.
 	Status SettlementCaptureStatus `json:"status"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -96,6 +94,8 @@ type ListSettlementCaptureResponse struct {
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links ListSettlementCaptureResponseLinks `json:"_links"`
+	// The amount settled to your account for this capture, converted to the currency your account is settled in.
+	SettlementAmount *ListSettlementCaptureResponseSettlementAmount `json:"settlementAmount,omitempty"`
 }
 
 func (l *ListSettlementCaptureResponse) GetResource() string {
@@ -131,13 +131,6 @@ func (l *ListSettlementCaptureResponse) GetAmount() *AmountNullable {
 		return nil
 	}
 	return l.Amount
-}
-
-func (l *ListSettlementCaptureResponse) GetSettlementAmount() *ListSettlementCaptureResponseSettlementAmount {
-	if l == nil {
-		return nil
-	}
-	return l.SettlementAmount
 }
 
 func (l *ListSettlementCaptureResponse) GetStatus() SettlementCaptureStatus {
@@ -187,4 +180,11 @@ func (l *ListSettlementCaptureResponse) GetLinks() ListSettlementCaptureResponse
 		return ListSettlementCaptureResponseLinks{}
 	}
 	return l.Links
+}
+
+func (l *ListSettlementCaptureResponse) GetSettlementAmount() *ListSettlementCaptureResponseSettlementAmount {
+	if l == nil {
+		return nil
+	}
+	return l.SettlementAmount
 }

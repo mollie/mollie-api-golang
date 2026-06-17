@@ -3,34 +3,6 @@
 
 package components
 
-// CaptureResponseSettlementAmount - **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-//
-// The amount that will be settled to your account for this capture, converted to the currency your account is
-// settled in. Only available once the capture is finalized and the final settlement amount has been determined.
-//
-// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-type CaptureResponseSettlementAmount struct {
-	// A three-character ISO 4217 currency code.
-	Currency string `json:"currency"`
-	// A string containing an exact monetary amount in the given currency.
-	Value string `json:"value"`
-}
-
-func (c *CaptureResponseSettlementAmount) GetCurrency() string {
-	if c == nil {
-		return ""
-	}
-	return c.Currency
-}
-
-func (c *CaptureResponseSettlementAmount) GetValue() string {
-	if c == nil {
-		return ""
-	}
-	return c.Value
-}
-
 // CaptureResponseStatus - The capture's status.
 type CaptureResponseStatus string
 
@@ -114,16 +86,8 @@ type CaptureResponse struct {
 	// The description of the capture.
 	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *AmountNullable `json:"amount"`
-	// **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
-	// the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-	//
-	// The amount that will be settled to your account for this capture, converted to the currency your account is
-	// settled in. Only available once the capture is finalized and the final settlement amount has been determined.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	SettlementAmount *CaptureResponseSettlementAmount `json:"settlementAmount,omitempty"`
-	Status           CaptureResponseStatus            `json:"status"`
+	Amount *AmountNullable       `json:"amount"`
+	Status CaptureResponseStatus `json:"status"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *Metadata `json:"metadata,omitempty"`
@@ -175,13 +139,6 @@ func (c *CaptureResponse) GetAmount() *AmountNullable {
 		return nil
 	}
 	return c.Amount
-}
-
-func (c *CaptureResponse) GetSettlementAmount() *CaptureResponseSettlementAmount {
-	if c == nil {
-		return nil
-	}
-	return c.SettlementAmount
 }
 
 func (c *CaptureResponse) GetStatus() CaptureResponseStatus {
