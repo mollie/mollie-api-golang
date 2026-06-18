@@ -228,16 +228,11 @@ type ListSalesInvoiceResponse struct {
 	//
 	// E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only when
 	// the recipient is also located in one of these countries.
-	IsEInvoice *bool `json:"isEInvoice,omitempty"`
-	// The amount that is left to be paid.
-	AmountDue *ListSalesInvoiceResponseAmountDue `json:"amountDue,omitempty"`
-	// The total amount without VAT before discounts.
-	SubtotalAmount *ListSalesInvoiceResponseSubtotalAmount `json:"subtotalAmount,omitempty"`
-	// The total amount with VAT.
-	TotalAmount *ListSalesInvoiceResponseTotalAmount `json:"totalAmount,omitempty"`
-	// The total VAT amount.
-	TotalVatAmount *ListSalesInvoiceResponseTotalVatAmount `json:"totalVatAmount,omitempty"`
-	// The total amount without VAT after discounts.
+	IsEInvoice               *bool                                             `json:"isEInvoice,omitempty"`
+	AmountDue                *ListSalesInvoiceResponseAmountDue                `json:"amountDue,omitempty"`
+	SubtotalAmount           *ListSalesInvoiceResponseSubtotalAmount           `json:"subtotalAmount,omitempty"`
+	TotalAmount              *ListSalesInvoiceResponseTotalAmount              `json:"totalAmount,omitempty"`
+	TotalVatAmount           *ListSalesInvoiceResponseTotalVatAmount           `json:"totalVatAmount,omitempty"`
 	DiscountedSubtotalAmount *ListSalesInvoiceResponseDiscountedSubtotalAmount `json:"discountedSubtotalAmount,omitempty"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt *string `json:"createdAt,omitempty"`

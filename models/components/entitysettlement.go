@@ -316,8 +316,7 @@ type EntitySettlement struct {
 	// date is available.
 	SettledAt *string                `json:"settledAt,omitempty"`
 	Status    EntitySettlementStatus `json:"status"`
-	// The total amount of the settlement.
-	Amount EntitySettlementAmount `json:"amount"`
+	Amount    EntitySettlementAmount `json:"amount"`
 	// The balance token that the settlement was settled to.
 	BalanceID string `json:"balanceId"`
 	// The ID of the oldest invoice created for all the periods, if the invoice has been created yet.

@@ -603,17 +603,10 @@ type PaymentResponse struct {
 	// characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount Amount `json:"amount"`
-	// The total amount that is already refunded. Only available when refunds are available for this payment. For some
-	// payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
-	// costs for a return shipment to the customer.
-	AmountRefunded *PaymentResponseAmountRefunded `json:"amountRefunded,omitempty"`
-	// The remaining amount that can be refunded. Only available when refunds are available for this payment.
-	AmountRemaining *PaymentResponseAmountRemaining `json:"amountRemaining,omitempty"`
-	// The total amount that is already captured for this payment. Only available when this payment supports captures.
-	AmountCaptured *PaymentResponseAmountCaptured `json:"amountCaptured,omitempty"`
-	// The total amount that was charged back for this payment. Only available when the total charged back amount is not
-	// zero.
+	Amount            Amount                            `json:"amount"`
+	AmountRefunded    *PaymentResponseAmountRefunded    `json:"amountRefunded,omitempty"`
+	AmountRemaining   *PaymentResponseAmountRemaining   `json:"amountRemaining,omitempty"`
+	AmountCaptured    *PaymentResponseAmountCaptured    `json:"amountCaptured,omitempty"`
 	AmountChargedBack *PaymentResponseAmountChargedBack `json:"amountChargedBack,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//

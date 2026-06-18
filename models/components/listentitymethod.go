@@ -236,8 +236,7 @@ type ListEntityMethod struct {
 	// The full name of the payment method.
 	//
 	// If a `locale` parameter is provided, the name is translated to the given locale if possible.
-	Description string `json:"description"`
-	// The minimum payment amount required to use this payment method.
+	Description   string                        `json:"description"`
 	MinimumAmount ListEntityMethodMinimumAmount `json:"minimumAmount"`
 	// The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
 	// is returned instead.
