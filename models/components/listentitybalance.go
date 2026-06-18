@@ -224,20 +224,14 @@ type ListEntityBalance struct {
 	Description       string                              `json:"description"`
 	Status            ListEntityBalanceStatus             `json:"status"`
 	TransferFrequency *ListEntityBalanceTransferFrequency `json:"transferFrequency,omitempty"`
-	// The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
-	// this threshold, the complete balance will be paid out to the transfer destination according to the configured
-	// frequency.
 	TransferThreshold *ListEntityBalanceTransferThreshold `json:"transferThreshold,omitempty"`
 	// The transfer reference set to be included in all the transfers for this balance.
 	TransferReference *string `json:"transferReference,omitempty"`
 	// The destination where the available amount will be automatically transferred to according to the configured
 	// transfer frequency.
 	TransferDestination *ListEntityBalanceTransferDestination `json:"transferDestination,omitempty"`
-	// The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-	AvailableAmount ListEntityBalanceAvailableAmount `json:"availableAmount"`
-	// The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
-	// few days to clear.
-	PendingAmount ListEntityBalancePendingAmount `json:"pendingAmount"`
+	AvailableAmount     ListEntityBalanceAvailableAmount      `json:"availableAmount"`
+	PendingAmount       ListEntityBalancePendingAmount        `json:"pendingAmount"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links ListEntityBalanceLinks `json:"_links"`
 }

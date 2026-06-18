@@ -590,17 +590,10 @@ type ListSettlementPaymentResponse struct {
 	// characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
 	Description string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount Amount `json:"amount"`
-	// The total amount that is already refunded. Only available when refunds are available for this payment. For some
-	// payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
-	// costs for a return shipment to the customer.
-	AmountRefunded *ListSettlementPaymentResponseAmountRefunded `json:"amountRefunded,omitempty"`
-	// The remaining amount that can be refunded. Only available when refunds are available for this payment.
-	AmountRemaining *ListSettlementPaymentResponseAmountRemaining `json:"amountRemaining,omitempty"`
-	// The total amount that is already captured for this payment. Only available when this payment supports captures.
-	AmountCaptured *ListSettlementPaymentResponseAmountCaptured `json:"amountCaptured,omitempty"`
-	// The total amount that was charged back for this payment. Only available when the total charged back amount is not
-	// zero.
+	Amount            Amount                                          `json:"amount"`
+	AmountRefunded    *ListSettlementPaymentResponseAmountRefunded    `json:"amountRefunded,omitempty"`
+	AmountRemaining   *ListSettlementPaymentResponseAmountRemaining   `json:"amountRemaining,omitempty"`
+	AmountCaptured    *ListSettlementPaymentResponseAmountCaptured    `json:"amountCaptured,omitempty"`
 	AmountChargedBack *ListSettlementPaymentResponseAmountChargedBack `json:"amountChargedBack,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//
@@ -771,11 +764,7 @@ type ListSettlementPaymentResponse struct {
 	// (yet).
 	FailedAt *string `json:"failedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links ListSettlementPaymentResponseLinks `json:"_links"`
-	// The amount settled to your account for this payment, converted to the currency your account is settled in.
-	//
-	// Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
-	// Mollie, this field is omitted from the response.
+	Links            ListSettlementPaymentResponseLinks             `json:"_links"`
 	SettlementAmount *ListSettlementPaymentResponseSettlementAmount `json:"settlementAmount,omitempty"`
 }
 
