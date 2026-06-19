@@ -268,6 +268,8 @@ type SalesInvoiceResponse struct {
 	//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
 	//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
 	Status *SalesInvoiceStatusResponse `json:"status,omitempty"`
+	// The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+	EInvoiceStatus *SalesInvoiceEInvoiceStatus `json:"eInvoiceStatus,omitempty"`
 	// The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
 	VatScheme *SalesInvoiceVatSchemeResponse `json:"vatScheme,omitempty"`
 	// The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -379,6 +381,13 @@ func (s *SalesInvoiceResponse) GetStatus() *SalesInvoiceStatusResponse {
 		return nil
 	}
 	return s.Status
+}
+
+func (s *SalesInvoiceResponse) GetEInvoiceStatus() *SalesInvoiceEInvoiceStatus {
+	if s == nil {
+		return nil
+	}
+	return s.EInvoiceStatus
 }
 
 func (s *SalesInvoiceResponse) GetVatScheme() *SalesInvoiceVatSchemeResponse {
