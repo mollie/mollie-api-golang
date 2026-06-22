@@ -24,6 +24,8 @@ const (
 	WebhookEventTypesSalesInvoiceIssued                   WebhookEventTypes = "sales-invoice.issued"
 	WebhookEventTypesSalesInvoiceCanceled                 WebhookEventTypes = "sales-invoice.canceled"
 	WebhookEventTypesSalesInvoicePaid                     WebhookEventTypes = "sales-invoice.paid"
+	WebhookEventTypesSalesInvoiceEInvoiceFailed           WebhookEventTypes = "sales-invoice.e-invoice-failed"
+	WebhookEventTypesSalesInvoiceEInvoiceIssued           WebhookEventTypes = "sales-invoice.e-invoice-issued"
 	WebhookEventTypesBusinessAccountTransferRequested     WebhookEventTypes = "business-account-transfer.requested"
 	WebhookEventTypesBusinessAccountTransferInitiated     WebhookEventTypes = "business-account-transfer.initiated"
 	WebhookEventTypesBusinessAccountTransferPendingReview WebhookEventTypes = "business-account-transfer.pending-review"
@@ -64,6 +66,10 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "sales-invoice.canceled":
 		fallthrough
 	case "sales-invoice.paid":
+		fallthrough
+	case "sales-invoice.e-invoice-failed":
+		fallthrough
+	case "sales-invoice.e-invoice-issued":
 		fallthrough
 	case "business-account-transfer.requested":
 		fallthrough

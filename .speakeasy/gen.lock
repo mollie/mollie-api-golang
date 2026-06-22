@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: b0753ee21ada70995c85d206c2bcaf06
+  docChecksum: 4aa9ead5f71f139d745557290350f31e
   docVersion: 1.0.0
   speakeasyVersion: 1.784.0
   generationVersion: 2.911.0
-  releaseVersion: 1.3.10
-  configChecksum: 32ec16fc76cee679fcc8ed39f9dbcfd4
+  releaseVersion: 1.3.11
+  configChecksum: 135c498bfbada5671dddd5242f09a270
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: ef377c86-14ba-441b-b68f-b93406ca1343
-  pristine_commit_hash: 24601ef0ce58d83fdc46a77ec7d928c08d7aed76
-  pristine_tree_hash: 5a1285fdf876c4023d28bb130a424be941ae0d22
+  generation_id: 2527166c-c9db-49b2-81f7-83580a288148
+  pristine_commit_hash: cb2237cf1330affd82aab254b666e0dcf668da37
+  pristine_tree_hash: 7b5e3f473767d0a92fe1850befd912237935ace3
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:2c588f282847da9a2b2ede58d1eb66b9e5b70daf
-    pristine_git_object: c193d20016728d94b904ab4865686f3e85184c80
+    last_write_checksum: sha1:6d7c7284587f40a9b2ce13af20391f37f87144f9
+    pristine_git_object: 4c756c4b4a2843adc81a82da44c0facf8cb96019
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -741,8 +741,8 @@ trackedFiles:
     pristine_git_object: a19dc6dbc21ce54829e650e4a8b0485f3600235e
   docs/models/components/entitywebhookeventwebhookeventtypes.md:
     id: be7b3c5a2df9
-    last_write_checksum: sha1:cd900b2505c7c8b6d165327ad8ac370a55dcbcc9
-    pristine_git_object: f10fa91b0c7dbd8ac14ef95f2d29a98d248528c4
+    last_write_checksum: sha1:d38f900812ac39df1f902729eb4d945a8e337113
+    pristine_git_object: 101264a16489b88dc6bfb9468505ce6e5cfff757
   docs/models/components/entitywebhooklinks.md:
     id: e5a4ca2169c0
     last_write_checksum: sha1:9f0d9ae1375ad4d8d1cf29d6290eff3519cf35a2
@@ -2165,8 +2165,8 @@ trackedFiles:
     pristine_git_object: fd53ec1112857f3c38a15fb9eeccbf7af4fd6dd2
   docs/models/components/webhookeventtypes.md:
     id: 023bc418a38f
-    last_write_checksum: sha1:a754852f655989378587dd037786120c10fd2e4f
-    pristine_git_object: 7d04871b59933a41f90d072120b684521a20799d
+    last_write_checksum: sha1:c37df9f0a200fb34d5d6892e975fb4d942821bc2
+    pristine_git_object: 6aff5a91f74a4e4aab75118db001bd28c65b33f3
   docs/models/components/webhookstatus.md:
     id: 8b7d0483cdcd
     last_write_checksum: sha1:03fe825509db594dcebfbf9e99baaf642986ce46
@@ -4353,8 +4353,8 @@ trackedFiles:
     pristine_git_object: 411e7a62f3c31cfa99237c578a9814030bda97cf
   models/components/entitywebhookevent.go:
     id: 5d6e7a76e689
-    last_write_checksum: sha1:d4887caa49547b273b33bc159177f8e7237e59d4
-    pristine_git_object: 2e10fa76ee5b809fd07b1bd308717c90b3fcdb3e
+    last_write_checksum: sha1:4447898360a63922071f43c49e2766cd986dac32
+    pristine_git_object: 1ada35a99c8f2d8978e301a42365bde2c74945ff
   models/components/errorresponse.go:
     id: 789ac133631c
     last_write_checksum: sha1:a04f58af488697abcf77bffbff0bc5dd781e6b6e
@@ -4997,8 +4997,8 @@ trackedFiles:
     pristine_git_object: 3df63249cdbe356e1a0cd171d478f63b02c00de5
   models/components/webhookeventtypes.go:
     id: 6e7927c5123d
-    last_write_checksum: sha1:0c11871edcb96d32eef1557f31a11a04aadc043a
-    pristine_git_object: 9f8a0b92dd11d0bb8070e393fe96c768481bc147
+    last_write_checksum: sha1:e9c60ee929543bd23abc358c60631ae14a06d707
+    pristine_git_object: 5d44749d3b2b88a2861b3e4ad9227610016eaa2a
   models/components/webhookstatus.go:
     id: 0c316c014935
     last_write_checksum: sha1:f4e0cf1766969ad0d89210172b231473b4170357
@@ -9586,13 +9586,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes:
-  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(sales-invoice-response).EInvoiceStatus` **Added**
-  * `Client.SalesInvoices.Create()`:  `response.EInvoiceStatus` **Added**
-  * `Client.SalesInvoices.List()`:  `response.Embedded.SalesInvoices[].EInvoiceStatus` **Added**
-  * `Client.SalesInvoices.Get()`:  `response.EInvoiceStatus` **Added**
-  * `Client.SalesInvoices.Update()`:  `response.EInvoiceStatus` **Added**
+releaseNotes: "## Go SDK Changes:\n* `Client.Webhooks.Create()`: \n  *  `request.RequestBody.EventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.List()`: \n  *  `request.Request.EventTypes` **Changed**\n  *  `response.Embedded.Webhooks[].EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Update()`: \n  *  `request.RequestBody.EventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Get()`:  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.WebhookEvents.Get()`:  `response.WebhookEventTypes` **Changed**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

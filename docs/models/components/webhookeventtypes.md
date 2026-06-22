@@ -29,6 +29,8 @@ value := components.WebhookEventTypesPaymentLinkPaid
 | `WebhookEventTypesSalesInvoiceIssued`                   | sales-invoice.issued                                    |
 | `WebhookEventTypesSalesInvoiceCanceled`                 | sales-invoice.canceled                                  |
 | `WebhookEventTypesSalesInvoicePaid`                     | sales-invoice.paid                                      |
+| `WebhookEventTypesSalesInvoiceEInvoiceFailed`           | sales-invoice.e-invoice-failed                          |
+| `WebhookEventTypesSalesInvoiceEInvoiceIssued`           | sales-invoice.e-invoice-issued                          |
 | `WebhookEventTypesBusinessAccountTransferRequested`     | business-account-transfer.requested                     |
 | `WebhookEventTypesBusinessAccountTransferInitiated`     | business-account-transfer.initiated                     |
 | `WebhookEventTypesBusinessAccountTransferPendingReview` | business-account-transfer.pending-review                |

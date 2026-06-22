@@ -25,6 +25,8 @@ const (
 	EntityWebhookEventWebhookEventTypesSalesInvoiceIssued                   EntityWebhookEventWebhookEventTypes = "sales-invoice.issued"
 	EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled                 EntityWebhookEventWebhookEventTypes = "sales-invoice.canceled"
 	EntityWebhookEventWebhookEventTypesSalesInvoicePaid                     EntityWebhookEventWebhookEventTypes = "sales-invoice.paid"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceEInvoiceFailed           EntityWebhookEventWebhookEventTypes = "sales-invoice.e-invoice-failed"
+	EntityWebhookEventWebhookEventTypesSalesInvoiceEInvoiceIssued           EntityWebhookEventWebhookEventTypes = "sales-invoice.e-invoice-issued"
 	EntityWebhookEventWebhookEventTypesBusinessAccountTransferRequested     EntityWebhookEventWebhookEventTypes = "business-account-transfer.requested"
 	EntityWebhookEventWebhookEventTypesBusinessAccountTransferInitiated     EntityWebhookEventWebhookEventTypes = "business-account-transfer.initiated"
 	EntityWebhookEventWebhookEventTypesBusinessAccountTransferPendingReview EntityWebhookEventWebhookEventTypes = "business-account-transfer.pending-review"
@@ -43,7 +45,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
+		case "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
 			return true
 		}
 	}
