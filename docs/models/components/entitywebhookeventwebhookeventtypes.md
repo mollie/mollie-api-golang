@@ -32,6 +32,8 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 | `EntityWebhookEventWebhookEventTypesSalesInvoiceIssued`                   | sales-invoice.issued                                                      |
 | `EntityWebhookEventWebhookEventTypesSalesInvoiceCanceled`                 | sales-invoice.canceled                                                    |
 | `EntityWebhookEventWebhookEventTypesSalesInvoicePaid`                     | sales-invoice.paid                                                        |
+| `EntityWebhookEventWebhookEventTypesSalesInvoiceEInvoiceFailed`           | sales-invoice.e-invoice-failed                                            |
+| `EntityWebhookEventWebhookEventTypesSalesInvoiceEInvoiceIssued`           | sales-invoice.e-invoice-issued                                            |
 | `EntityWebhookEventWebhookEventTypesBusinessAccountTransferRequested`     | business-account-transfer.requested                                       |
 | `EntityWebhookEventWebhookEventTypesBusinessAccountTransferInitiated`     | business-account-transfer.initiated                                       |
 | `EntityWebhookEventWebhookEventTypesBusinessAccountTransferPendingReview` | business-account-transfer.pending-review                                  |
