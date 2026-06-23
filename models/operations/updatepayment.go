@@ -51,7 +51,7 @@ type UpdatePaymentRequestBody struct {
 	// You can also specify the methods in an array. By doing so we will still show the payment method selection screen
 	// but will only show the methods specified in the array. For example, you can use this functionality to only show
 	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-	Method *components.MethodEnum `json:"method,omitempty"`
+	Method *components.MethodRequest `json:"method,omitempty"`
 	// Sets the language for customer-facing content and communications.
 	Locale *components.Locale `json:"locale,omitempty"`
 	// The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -134,7 +134,7 @@ func (u *UpdatePaymentRequestBody) GetMetadata() *components.Metadata {
 	return u.Metadata
 }
 
-func (u *UpdatePaymentRequestBody) GetMethod() *components.MethodEnum {
+func (u *UpdatePaymentRequestBody) GetMethod() *components.MethodRequest {
 	if u == nil {
 		return nil
 	}

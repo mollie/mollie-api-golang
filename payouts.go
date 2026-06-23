@@ -71,7 +71,7 @@ func newPayouts(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // - One of the organization's balances is below the negative balance threshold.
 // - The payout destination (bank account) is invalid or not configured.
 //
-// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
 func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreatePayoutResponse, error) {
 	request := operations.CreatePayoutRequest{
 		IdempotencyKey: idempotencyKey,
@@ -138,7 +138,7 @@ func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutReq
 
 	utils.PopulateHeaders(ctx, req, request, nil)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
@@ -333,7 +333,7 @@ func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutReq
 // The results are paginated. Use the `from` query parameter together with `_links.next` to iterate through
 // the full result set.
 //
-// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
 func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsRequest, opts ...operations.Option) (*operations.ListPayoutsResponse, error) {
 	globals := operations.ListPayoutsGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
@@ -401,7 +401,7 @@ func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsReques
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
@@ -626,7 +626,7 @@ func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsReques
 // Get payout
 // Retrieve a single payout by its ID.
 //
-// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
 func (s *Payouts) Get(ctx context.Context, payoutID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPayoutResponse, error) {
 	request := operations.GetPayoutRequest{
 		PayoutID:       payoutID,
@@ -695,7 +695,7 @@ func (s *Payouts) Get(ctx context.Context, payoutID string, testmode *bool, idem
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
@@ -887,7 +887,7 @@ func (s *Payouts) Get(ctx context.Context, payoutID string, testmode *bool, idem
 //
 // The canceled payout object is returned with the status set to `canceled`.
 //
-// If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
+// If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
 func (s *Payouts) Cancel(ctx context.Context, payoutID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CancelPayoutResponse, error) {
 	request := operations.CancelPayoutRequest{
 		PayoutID:       payoutID,
@@ -956,7 +956,7 @@ func (s *Payouts) Cancel(ctx context.Context, payoutID string, testmode *bool, i
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken", "OAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKey", "AdvancedAccessToken"); err != nil {
 		return nil, err
 	}
 
