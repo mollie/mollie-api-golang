@@ -2660,7 +2660,9 @@ func main() {
         RedirectURL: client.Pointer("https://example.org/redirect"),
         CancelURL: client.Pointer("https://example.org/cancel"),
         WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: components.MethodEnumIdeal.ToPointer(),
+        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+            components.MethodEnumIdeal,
+        )),
         Locale: components.LocaleEnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
@@ -2742,7 +2744,9 @@ func main() {
         RedirectURL: client.Pointer("https://example.org/redirect"),
         CancelURL: client.Pointer("https://example.org/cancel"),
         WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: components.MethodEnumIdeal.ToPointer(),
+        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+            components.MethodEnumIdeal,
+        )),
         Locale: components.LocaleEnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
@@ -2824,7 +2828,9 @@ func main() {
         RedirectURL: client.Pointer("https://example.org/redirect"),
         CancelURL: client.Pointer("https://example.org/cancel"),
         WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: components.MethodEnumIdeal.ToPointer(),
+        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+            components.MethodEnumIdeal,
+        )),
         Locale: components.LocaleEnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
