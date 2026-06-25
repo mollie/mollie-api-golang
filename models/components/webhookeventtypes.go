@@ -13,6 +13,18 @@ import (
 type WebhookEventTypes string
 
 const (
+	WebhookEventTypesPaymentPaid                          WebhookEventTypes = "payment.paid"
+	WebhookEventTypesPaymentAuthorized                    WebhookEventTypes = "payment.authorized"
+	WebhookEventTypesPaymentFailed                        WebhookEventTypes = "payment.failed"
+	WebhookEventTypesPaymentCanceled                      WebhookEventTypes = "payment.canceled"
+	WebhookEventTypesPaymentExpired                       WebhookEventTypes = "payment.expired"
+	WebhookEventTypesPaymentPending                       WebhookEventTypes = "payment.pending"
+	WebhookEventTypesRefundQueued                         WebhookEventTypes = "refund.queued"
+	WebhookEventTypesRefundPending                        WebhookEventTypes = "refund.pending"
+	WebhookEventTypesRefundProcessing                     WebhookEventTypes = "refund.processing"
+	WebhookEventTypesRefundRefunded                       WebhookEventTypes = "refund.refunded"
+	WebhookEventTypesRefundFailed                         WebhookEventTypes = "refund.failed"
+	WebhookEventTypesRefundCanceled                       WebhookEventTypes = "refund.canceled"
 	WebhookEventTypesPaymentLinkPaid                      WebhookEventTypes = "payment-link.paid"
 	WebhookEventTypesBalanceTransactionCreated            WebhookEventTypes = "balance-transaction.created"
 	WebhookEventTypesPayoutInitiated                      WebhookEventTypes = "payout.initiated"
@@ -45,6 +57,30 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "payment.paid":
+		fallthrough
+	case "payment.authorized":
+		fallthrough
+	case "payment.failed":
+		fallthrough
+	case "payment.canceled":
+		fallthrough
+	case "payment.expired":
+		fallthrough
+	case "payment.pending":
+		fallthrough
+	case "refund.queued":
+		fallthrough
+	case "refund.pending":
+		fallthrough
+	case "refund.processing":
+		fallthrough
+	case "refund.refunded":
+		fallthrough
+	case "refund.failed":
+		fallthrough
+	case "refund.canceled":
+		fallthrough
 	case "payment-link.paid":
 		fallthrough
 	case "balance-transaction.created":

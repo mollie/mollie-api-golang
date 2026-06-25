@@ -10,7 +10,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.WebhookEventTypesPaymentLinkPaid
+value := components.WebhookEventTypesPaymentPaid
 ```
 
 
@@ -18,6 +18,18 @@ value := components.WebhookEventTypesPaymentLinkPaid
 
 | Name                                                    | Value                                                   |
 | ------------------------------------------------------- | ------------------------------------------------------- |
+| `WebhookEventTypesPaymentPaid`                          | payment.paid                                            |
+| `WebhookEventTypesPaymentAuthorized`                    | payment.authorized                                      |
+| `WebhookEventTypesPaymentFailed`                        | payment.failed                                          |
+| `WebhookEventTypesPaymentCanceled`                      | payment.canceled                                        |
+| `WebhookEventTypesPaymentExpired`                       | payment.expired                                         |
+| `WebhookEventTypesPaymentPending`                       | payment.pending                                         |
+| `WebhookEventTypesRefundQueued`                         | refund.queued                                           |
+| `WebhookEventTypesRefundPending`                        | refund.pending                                          |
+| `WebhookEventTypesRefundProcessing`                     | refund.processing                                       |
+| `WebhookEventTypesRefundRefunded`                       | refund.refunded                                         |
+| `WebhookEventTypesRefundFailed`                         | refund.failed                                           |
+| `WebhookEventTypesRefundCanceled`                       | refund.canceled                                         |
 | `WebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                       |
 | `WebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                             |
 | `WebhookEventTypesPayoutInitiated`                      | payout.initiated                                        |

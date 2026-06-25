@@ -3,11 +3,26 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // EntityPaymentRouteResponseDestination - The destination of this portion of the payment.
 type EntityPaymentRouteResponseDestination struct {
 	// The type of destination. Currently only the destination type `organization` is supported.
 	Type           RouteDestinationTypeResponse `json:"type"`
 	OrganizationID string                       `json:"organizationId"`
+}
+
+func (e EntityPaymentRouteResponseDestination) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityPaymentRouteResponseDestination) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"type", "organizationId"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityPaymentRouteResponseDestination) GetType() RouteDestinationTypeResponse {
@@ -30,6 +45,17 @@ type EntityPaymentRouteResponseLinks struct {
 	Self URLObj `json:"self"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Payment URLObj `json:"payment"`
+}
+
+func (e EntityPaymentRouteResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityPaymentRouteResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"self", "payment"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityPaymentRouteResponseLinks) GetSelf() URLObj {
@@ -67,6 +93,17 @@ type EntityPaymentRouteResponse struct {
 	ReleaseDate *string `json:"releaseDate,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityPaymentRouteResponseLinks `json:"_links"`
+}
+
+func (e EntityPaymentRouteResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityPaymentRouteResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"resource", "id", "mode", "amount", "destination", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityPaymentRouteResponse) GetResource() string {

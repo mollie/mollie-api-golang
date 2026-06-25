@@ -30,6 +30,17 @@ type Receipt struct {
 	CardVerificationMethod *PaymentDetailsReceiptCardVerificationMethodResponse `json:"cardVerificationMethod,omitempty"`
 }
 
+func (r Receipt) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Receipt) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (r *Receipt) GetAuthorizationCode() *string {
 	if r == nil {
 		return nil
@@ -74,6 +85,17 @@ type PaymentDetailsQrCode struct {
 	Width *int64 `json:"width,omitempty"`
 	// The URL to the QR code image.
 	Src *string `json:"src,omitempty"`
+}
+
+func (p PaymentDetailsQrCode) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentDetailsQrCode) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentDetailsQrCode) GetHeight() *int64 {

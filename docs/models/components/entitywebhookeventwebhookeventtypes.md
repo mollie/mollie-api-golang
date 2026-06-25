@@ -10,7 +10,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.EntityWebhookEventWebhookEventTypesPaymentLinkPaid
+value := components.EntityWebhookEventWebhookEventTypesPaymentPaid
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
@@ -21,6 +21,18 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 
 | Name                                                                      | Value                                                                     |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `EntityWebhookEventWebhookEventTypesPaymentPaid`                          | payment.paid                                                              |
+| `EntityWebhookEventWebhookEventTypesPaymentAuthorized`                    | payment.authorized                                                        |
+| `EntityWebhookEventWebhookEventTypesPaymentFailed`                        | payment.failed                                                            |
+| `EntityWebhookEventWebhookEventTypesPaymentCanceled`                      | payment.canceled                                                          |
+| `EntityWebhookEventWebhookEventTypesPaymentExpired`                       | payment.expired                                                           |
+| `EntityWebhookEventWebhookEventTypesPaymentPending`                       | payment.pending                                                           |
+| `EntityWebhookEventWebhookEventTypesRefundQueued`                         | refund.queued                                                             |
+| `EntityWebhookEventWebhookEventTypesRefundPending`                        | refund.pending                                                            |
+| `EntityWebhookEventWebhookEventTypesRefundProcessing`                     | refund.processing                                                         |
+| `EntityWebhookEventWebhookEventTypesRefundRefunded`                       | refund.refunded                                                           |
+| `EntityWebhookEventWebhookEventTypesRefundFailed`                         | refund.failed                                                             |
+| `EntityWebhookEventWebhookEventTypesRefundCanceled`                       | refund.canceled                                                           |
 | `EntityWebhookEventWebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                                         |
 | `EntityWebhookEventWebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                                               |
 | `EntityWebhookEventWebhookEventTypesPayoutInitiated`                      | payout.initiated                                                          |
