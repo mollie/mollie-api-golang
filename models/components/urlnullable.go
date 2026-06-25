@@ -3,12 +3,27 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // URLNullable - In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 type URLNullable struct {
 	// The actual URL string.
 	Href *string `json:"href,omitempty"`
 	// The content type of the page or endpoint the URL points to.
 	Type *string `json:"type,omitempty"`
+}
+
+func (u URLNullable) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *URLNullable) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *URLNullable) GetHref() *string {

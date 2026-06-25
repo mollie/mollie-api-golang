@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type RecurringLineItem struct {
 	// A description of the recurring item. If not present, the main description of the item will be used.
 	Description *string `json:"description,omitempty"`
@@ -16,6 +20,17 @@ type RecurringLineItem struct {
 	Times *int64 `json:"times,omitempty"`
 	// The start date of the subscription if it does not start right away (format `YYYY-MM-DD`)
 	StartDate *string `json:"startDate,omitempty"`
+}
+
+func (r RecurringLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecurringLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"interval"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (r *RecurringLineItem) GetDescription() *string {

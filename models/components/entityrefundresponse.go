@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 type EntityRefundResponseStatus string
 
 const (
@@ -36,6 +40,17 @@ type EntityRefundResponseExternalReference struct {
 	ID *string `json:"id,omitempty"`
 }
 
+func (e EntityRefundResponseExternalReference) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityRefundResponseExternalReference) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (e *EntityRefundResponseExternalReference) GetType() *RefundExternalReferenceTypeResponse {
 	if e == nil {
 		return nil
@@ -55,6 +70,17 @@ type EntityRefundResponseSource struct {
 	OrganizationID *string `json:"organizationId,omitempty"`
 }
 
+func (e EntityRefundResponseSource) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityRefundResponseSource) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (e *EntityRefundResponseSource) GetOrganizationID() *string {
 	if e == nil {
 		return nil
@@ -67,6 +93,17 @@ type EntityRefundResponseRoutingReversal struct {
 	Amount *Amount `json:"amount,omitempty"`
 	// Where the funds will be pulled back from.
 	Source *EntityRefundResponseSource `json:"source,omitempty"`
+}
+
+func (e EntityRefundResponseRoutingReversal) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityRefundResponseRoutingReversal) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityRefundResponseRoutingReversal) GetAmount() *Amount {
@@ -93,6 +130,17 @@ type EntityRefundResponseLinks struct {
 	Settlement *URLNullable `json:"settlement,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation URLObj `json:"documentation"`
+}
+
+func (e EntityRefundResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityRefundResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"self", "payment", "documentation"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityRefundResponseLinks) GetSelf() URLObj {
@@ -158,6 +206,17 @@ type EntityRefundResponse struct {
 	RoutingReversals []EntityRefundResponseRoutingReversal `json:"routingReversals,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityRefundResponseLinks `json:"_links"`
+}
+
+func (e EntityRefundResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityRefundResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"resource", "id", "mode", "description", "amount", "paymentId", "status", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityRefundResponse) GetResource() string {

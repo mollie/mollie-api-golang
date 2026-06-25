@@ -3,6 +3,18 @@
 
 ## Supported Types
 
+### PaymentResponse
+
+```go
+entity := components.CreateEntityPaymentResponse(components.PaymentResponse{/* values here */})
+```
+
+### EntityRefundResponse
+
+```go
+entity := components.CreateEntityEntityRefundResponse(components.EntityRefundResponse{/* values here */})
+```
+
 ### PaymentLinkResponse
 
 ```go
@@ -33,6 +45,10 @@ Use the `Type` field to determine which variant is active, then access the corre
 
 ```go
 switch entity.Type {
+	case components.EntityTypePaymentResponse:
+		// entity.PaymentResponse is populated
+	case components.EntityTypeEntityRefundResponse:
+		// entity.EntityRefundResponse is populated
 	case components.EntityTypePaymentLinkResponse:
 		// entity.PaymentLinkResponse is populated
 	case components.EntityTypeEntityPayoutResponse:

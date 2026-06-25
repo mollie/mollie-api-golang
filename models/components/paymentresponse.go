@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // PaymentResponseAmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
 // payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
 // costs for a return shipment to the customer.
@@ -11,6 +15,17 @@ type PaymentResponseAmountRefunded struct {
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (p PaymentResponseAmountRefunded) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseAmountRefunded) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponseAmountRefunded) GetCurrency() string {
@@ -35,6 +50,17 @@ type PaymentResponseAmountRemaining struct {
 	Value string `json:"value"`
 }
 
+func (p PaymentResponseAmountRemaining) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseAmountRemaining) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *PaymentResponseAmountRemaining) GetCurrency() string {
 	if p == nil {
 		return ""
@@ -55,6 +81,17 @@ type PaymentResponseAmountCaptured struct {
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (p PaymentResponseAmountCaptured) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseAmountCaptured) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponseAmountCaptured) GetCurrency() string {
@@ -78,6 +115,17 @@ type PaymentResponseAmountChargedBack struct {
 	Currency string `json:"currency"`
 	// A string containing an exact monetary amount in the given currency.
 	Value string `json:"value"`
+}
+
+func (p PaymentResponseAmountChargedBack) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseAmountChargedBack) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"currency", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponseAmountChargedBack) GetCurrency() string {
@@ -126,6 +174,17 @@ type PaymentResponseLine struct {
 	// A link pointing to the product page in your web shop of the product sold.
 	ProductURL *string            `json:"productUrl,omitempty"`
 	Recurring  *RecurringLineItem `json:"recurring,omitempty"`
+}
+
+func (p PaymentResponseLine) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseLine) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"description", "quantity", "unitPrice", "totalAmount"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponseLine) GetType() *PaymentLineTypeResponse {
@@ -283,6 +342,17 @@ type PaymentResponseBillingAddress struct {
 	Country *string `json:"country,omitempty"`
 }
 
+func (p PaymentResponseBillingAddress) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseBillingAddress) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *PaymentResponseBillingAddress) GetTitle() *string {
 	if p == nil {
 		return nil
@@ -384,6 +454,17 @@ type PaymentResponseApplicationFee struct {
 	Description *string `json:"description,omitempty"`
 }
 
+func (p PaymentResponseApplicationFee) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseApplicationFee) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *PaymentResponseApplicationFee) GetAmount() *Amount {
 	if p == nil {
 		return nil
@@ -463,6 +544,17 @@ type PaymentResponseLinks struct {
 	Status *URLObj `json:"status,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	PayOnline *URLObj `json:"payOnline,omitempty"`
+}
+
+func (p PaymentResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"self", "dashboard"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponseLinks) GetSelf() URLObj {
@@ -770,6 +862,17 @@ type PaymentResponse struct {
 	FailedAt *string `json:"failedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links PaymentResponseLinks `json:"_links"`
+}
+
+func (p PaymentResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"resource", "id", "mode", "description", "amount", "sequenceType", "profileId", "status", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaymentResponse) GetResource() string {

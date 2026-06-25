@@ -14,6 +14,18 @@ import (
 type EntityWebhookEventWebhookEventTypes string
 
 const (
+	EntityWebhookEventWebhookEventTypesPaymentPaid                          EntityWebhookEventWebhookEventTypes = "payment.paid"
+	EntityWebhookEventWebhookEventTypesPaymentAuthorized                    EntityWebhookEventWebhookEventTypes = "payment.authorized"
+	EntityWebhookEventWebhookEventTypesPaymentFailed                        EntityWebhookEventWebhookEventTypes = "payment.failed"
+	EntityWebhookEventWebhookEventTypesPaymentCanceled                      EntityWebhookEventWebhookEventTypes = "payment.canceled"
+	EntityWebhookEventWebhookEventTypesPaymentExpired                       EntityWebhookEventWebhookEventTypes = "payment.expired"
+	EntityWebhookEventWebhookEventTypesPaymentPending                       EntityWebhookEventWebhookEventTypes = "payment.pending"
+	EntityWebhookEventWebhookEventTypesRefundQueued                         EntityWebhookEventWebhookEventTypes = "refund.queued"
+	EntityWebhookEventWebhookEventTypesRefundPending                        EntityWebhookEventWebhookEventTypes = "refund.pending"
+	EntityWebhookEventWebhookEventTypesRefundProcessing                     EntityWebhookEventWebhookEventTypes = "refund.processing"
+	EntityWebhookEventWebhookEventTypesRefundRefunded                       EntityWebhookEventWebhookEventTypes = "refund.refunded"
+	EntityWebhookEventWebhookEventTypesRefundFailed                         EntityWebhookEventWebhookEventTypes = "refund.failed"
+	EntityWebhookEventWebhookEventTypesRefundCanceled                       EntityWebhookEventWebhookEventTypes = "refund.canceled"
 	EntityWebhookEventWebhookEventTypesPaymentLinkPaid                      EntityWebhookEventWebhookEventTypes = "payment-link.paid"
 	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated            EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
 	EntityWebhookEventWebhookEventTypesPayoutInitiated                      EntityWebhookEventWebhookEventTypes = "payout.initiated"
@@ -45,7 +57,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
+		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
 			return true
 		}
 	}
@@ -55,6 +67,8 @@ func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 type EntityType string
 
 const (
+	EntityTypePaymentResponse      EntityType = "payment-response"
+	EntityTypeEntityRefundResponse EntityType = "entity-refund-response"
 	EntityTypePaymentLinkResponse  EntityType = "payment-link-response"
 	EntityTypeEntityPayoutResponse EntityType = "entity-payout-response"
 	EntityTypeSalesInvoiceResponse EntityType = "sales-invoice-response"
@@ -62,12 +76,32 @@ const (
 )
 
 type Entity struct {
+	PaymentResponse      *PaymentResponse      `queryParam:"inline" union:"member"`
+	EntityRefundResponse *EntityRefundResponse `queryParam:"inline" union:"member"`
 	PaymentLinkResponse  *PaymentLinkResponse  `queryParam:"inline" union:"member"`
 	EntityPayoutResponse *EntityPayoutResponse `queryParam:"inline" union:"member"`
 	SalesInvoiceResponse *SalesInvoiceResponse `queryParam:"inline" union:"member"`
 	TransferResponse     *TransferResponse     `queryParam:"inline" union:"member"`
 
 	Type EntityType
+}
+
+func CreateEntityPaymentResponse(paymentResponse PaymentResponse) Entity {
+	typ := EntityTypePaymentResponse
+
+	return Entity{
+		PaymentResponse: &paymentResponse,
+		Type:            typ,
+	}
+}
+
+func CreateEntityEntityRefundResponse(entityRefundResponse EntityRefundResponse) Entity {
+	typ := EntityTypeEntityRefundResponse
+
+	return Entity{
+		EntityRefundResponse: &entityRefundResponse,
+		Type:                 typ,
+	}
 }
 
 func CreateEntityPaymentLinkResponse(paymentLinkResponse PaymentLinkResponse) Entity {
@@ -122,6 +156,20 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var paymentResponse PaymentResponse = PaymentResponse{}
+	if err := utils.UnmarshalJSON(data, &paymentResponse, "", true, nil); err == nil {
+		u.PaymentResponse = &paymentResponse
+		u.Type = EntityTypePaymentResponse
+		return nil
+	}
+
+	var entityRefundResponse EntityRefundResponse = EntityRefundResponse{}
+	if err := utils.UnmarshalJSON(data, &entityRefundResponse, "", true, nil); err == nil {
+		u.EntityRefundResponse = &entityRefundResponse
+		u.Type = EntityTypeEntityRefundResponse
+		return nil
+	}
+
 	var entityPayoutResponse EntityPayoutResponse = EntityPayoutResponse{}
 	if err := utils.UnmarshalJSON(data, &entityPayoutResponse, "", true, nil); err == nil {
 		u.EntityPayoutResponse = &entityPayoutResponse
@@ -140,6 +188,14 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 }
 
 func (u Entity) MarshalJSON() ([]byte, error) {
+	if u.PaymentResponse != nil {
+		return utils.MarshalJSON(u.PaymentResponse, "", true)
+	}
+
+	if u.EntityRefundResponse != nil {
+		return utils.MarshalJSON(u.EntityRefundResponse, "", true)
+	}
+
 	if u.PaymentLinkResponse != nil {
 		return utils.MarshalJSON(u.PaymentLinkResponse, "", true)
 	}

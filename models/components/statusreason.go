@@ -328,6 +328,17 @@ type StatusReason struct {
 	Message string `json:"message"`
 }
 
+func (s StatusReason) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusReason) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"code", "message"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *StatusReason) GetCode() Code {
 	if s == nil {
 		return Code{}
