@@ -26,8 +26,6 @@ func (g *GetCustomerGlobals) GetTestmode() *bool {
 type GetCustomerRequest struct {
 	// Provide the ID of the related customer.
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
-	// This endpoint allows you to include additional information via the `include` query string parameter.
-	Include *string `queryParam:"style=form,explode=true,name=include"`
 	// Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
 	// parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
 	// setting the `testmode` query parameter to `true`.
@@ -45,13 +43,6 @@ func (g *GetCustomerRequest) GetCustomerID() string {
 	return g.CustomerID
 }
 
-func (g *GetCustomerRequest) GetInclude() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Include
-}
-
 func (g *GetCustomerRequest) GetTestmode() *bool {
 	if g == nil {
 		return nil
@@ -66,164 +57,10 @@ func (g *GetCustomerRequest) GetIdempotencyKey() *string {
 	return g.IdempotencyKey
 }
 
-// GetCustomerLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-type GetCustomerLinks struct {
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Self components.URLObj `json:"self"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Dashboard components.URLObj `json:"dashboard"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Payments *components.URLNullable `json:"payments,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Mandates *components.URLNullable `json:"mandates,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Subscriptions *components.URLNullable `json:"subscriptions,omitempty"`
-	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-	Documentation components.URLObj `json:"documentation"`
-}
-
-func (g *GetCustomerLinks) GetSelf() components.URLObj {
-	if g == nil {
-		return components.URLObj{}
-	}
-	return g.Self
-}
-
-func (g *GetCustomerLinks) GetDashboard() components.URLObj {
-	if g == nil {
-		return components.URLObj{}
-	}
-	return g.Dashboard
-}
-
-func (g *GetCustomerLinks) GetPayments() *components.URLNullable {
-	if g == nil {
-		return nil
-	}
-	return g.Payments
-}
-
-func (g *GetCustomerLinks) GetMandates() *components.URLNullable {
-	if g == nil {
-		return nil
-	}
-	return g.Mandates
-}
-
-func (g *GetCustomerLinks) GetSubscriptions() *components.URLNullable {
-	if g == nil {
-		return nil
-	}
-	return g.Subscriptions
-}
-
-func (g *GetCustomerLinks) GetDocumentation() components.URLObj {
-	if g == nil {
-		return components.URLObj{}
-	}
-	return g.Documentation
-}
-
-// GetCustomerResponseBody - The customer object.
-type GetCustomerResponseBody struct {
-	// Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-	Resource string `json:"resource"`
-	// The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
-	ID string `json:"id"`
-	// Whether this entity was created in live mode or in test mode.
-	Mode components.Mode `json:"mode"`
-	// The full name of the customer.
-	Name *string `json:"name"`
-	// The email address of the customer.
-	//
-	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
-	Email *string `json:"email"`
-	// Sets the language for customer-facing content and communications.
-	Locale *components.LocaleResponse `json:"locale"`
-	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata *components.Metadata `json:"metadata"`
-	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	CreatedAt string `json:"createdAt"`
-	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-	Links  GetCustomerLinks         `json:"_links"`
-	Events []components.EntityEvent `json:"events,omitempty"`
-}
-
-func (g *GetCustomerResponseBody) GetResource() string {
-	if g == nil {
-		return ""
-	}
-	return g.Resource
-}
-
-func (g *GetCustomerResponseBody) GetID() string {
-	if g == nil {
-		return ""
-	}
-	return g.ID
-}
-
-func (g *GetCustomerResponseBody) GetMode() components.Mode {
-	if g == nil {
-		return components.Mode("")
-	}
-	return g.Mode
-}
-
-func (g *GetCustomerResponseBody) GetName() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Name
-}
-
-func (g *GetCustomerResponseBody) GetEmail() *string {
-	if g == nil {
-		return nil
-	}
-	return g.Email
-}
-
-func (g *GetCustomerResponseBody) GetLocale() *components.LocaleResponse {
-	if g == nil {
-		return nil
-	}
-	return g.Locale
-}
-
-func (g *GetCustomerResponseBody) GetMetadata() *components.Metadata {
-	if g == nil {
-		return nil
-	}
-	return g.Metadata
-}
-
-func (g *GetCustomerResponseBody) GetCreatedAt() string {
-	if g == nil {
-		return ""
-	}
-	return g.CreatedAt
-}
-
-func (g *GetCustomerResponseBody) GetLinks() GetCustomerLinks {
-	if g == nil {
-		return GetCustomerLinks{}
-	}
-	return g.Links
-}
-
-func (g *GetCustomerResponseBody) GetEvents() []components.EntityEvent {
-	if g == nil {
-		return nil
-	}
-	return g.Events
-}
-
 type GetCustomerResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The customer object.
-	Object *GetCustomerResponseBody
+	CustomerResponse *components.CustomerResponse
 }
 
 func (g *GetCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -233,9 +70,9 @@ func (g *GetCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerResponse) GetObject() *GetCustomerResponseBody {
+func (g *GetCustomerResponse) GetCustomerResponse() *components.CustomerResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Object
+	return g.CustomerResponse
 }

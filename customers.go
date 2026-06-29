@@ -593,10 +593,9 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 // Retrieve a single customer by its ID.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) Get(ctx context.Context, customerID string, include *string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
+func (s *Customers) Get(ctx context.Context, customerID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	request := operations.GetCustomerRequest{
 		CustomerID:     customerID,
-		Include:        include,
 		Testmode:       testmode,
 		IdempotencyKey: idempotencyKey,
 	}
@@ -784,12 +783,12 @@ func (s *Customers) Get(ctx context.Context, customerID string, include *string,
 				return nil, err
 			}
 
-			var out operations.GetCustomerResponseBody
+			var out components.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
