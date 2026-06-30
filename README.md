@@ -35,7 +35,6 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *client* 
   * [Custom HTTP Client](#custom-http-client)
   * [Special Types](#special-types)
 * [Development](#development)
-  * [Maturity](#maturity)
   * [Contributions](#contributions)
 
 <!-- End Table of Contents [toc] -->
@@ -994,12 +993,6 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
-
-## Maturity
-
-This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
-to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
-looking for the latest version.
 
 ## Contributions
 
