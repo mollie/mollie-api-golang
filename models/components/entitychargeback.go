@@ -3,12 +3,27 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // EntityChargebackReason - Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
 type EntityChargebackReason struct {
 	// Technical code provided by the bank.
 	Code string `json:"code"`
 	// A more detailed human-friendly description.
 	Description string `json:"description"`
+}
+
+func (e EntityChargebackReason) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityChargebackReason) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"code", "description"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityChargebackReason) GetCode() string {
@@ -35,6 +50,17 @@ type EntityChargebackLinks struct {
 	Settlement *URLNullable `json:"settlement,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation URLObj `json:"documentation"`
+}
+
+func (e EntityChargebackLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityChargebackLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"self", "payment", "documentation"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityChargebackLinks) GetSelf() URLObj {
@@ -88,6 +114,17 @@ type EntityChargeback struct {
 	ReversedAt *string `json:"reversedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityChargebackLinks `json:"_links"`
+}
+
+func (e EntityChargeback) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityChargeback) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"resource", "id", "amount", "paymentId", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *EntityChargeback) GetResource() string {

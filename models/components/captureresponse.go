@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // CaptureResponseStatus - The capture's status.
 type CaptureResponseStatus string
 
@@ -39,6 +43,17 @@ type CaptureResponseLinks struct {
 	Shipment *URLNullable `json:"shipment,omitempty"`
 	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
 	Documentation URLObj `json:"documentation"`
+}
+
+func (c CaptureResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CaptureResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"self", "payment", "documentation"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CaptureResponseLinks) GetSelf() URLObj {
@@ -104,6 +119,17 @@ type CaptureResponse struct {
 	CreatedAt string `json:"createdAt"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links CaptureResponseLinks `json:"_links"`
+}
+
+func (c CaptureResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CaptureResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"resource", "id", "mode", "status", "paymentId", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CaptureResponse) GetResource() string {

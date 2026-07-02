@@ -30,6 +30,10 @@ value := components.WebhookEventTypesPaymentPaid
 | `WebhookEventTypesRefundRefunded`                       | refund.refunded                                         |
 | `WebhookEventTypesRefundFailed`                         | refund.failed                                           |
 | `WebhookEventTypesRefundCanceled`                       | refund.canceled                                         |
+| `WebhookEventTypesChargebackReceived`                   | chargeback.received                                     |
+| `WebhookEventTypesChargebackReversed`                   | chargeback.reversed                                     |
+| `WebhookEventTypesCaptureSucceeded`                     | capture.succeeded                                       |
+| `WebhookEventTypesCaptureFailed`                        | capture.failed                                          |
 | `WebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                       |
 | `WebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                             |
 | `WebhookEventTypesPayoutInitiated`                      | payout.initiated                                        |

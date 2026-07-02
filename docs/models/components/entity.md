@@ -15,6 +15,18 @@ entity := components.CreateEntityPaymentResponse(components.PaymentResponse{/* v
 entity := components.CreateEntityEntityRefundResponse(components.EntityRefundResponse{/* values here */})
 ```
 
+### EntityChargeback
+
+```go
+entity := components.CreateEntityEntityChargeback(components.EntityChargeback{/* values here */})
+```
+
+### CaptureResponse
+
+```go
+entity := components.CreateEntityCaptureResponse(components.CaptureResponse{/* values here */})
+```
+
 ### PaymentLinkResponse
 
 ```go
@@ -49,6 +61,10 @@ switch entity.Type {
 		// entity.PaymentResponse is populated
 	case components.EntityTypeEntityRefundResponse:
 		// entity.EntityRefundResponse is populated
+	case components.EntityTypeEntityChargeback:
+		// entity.EntityChargeback is populated
+	case components.EntityTypeCaptureResponse:
+		// entity.CaptureResponse is populated
 	case components.EntityTypePaymentLinkResponse:
 		// entity.PaymentLinkResponse is populated
 	case components.EntityTypeEntityPayoutResponse:
