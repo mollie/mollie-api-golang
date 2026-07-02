@@ -26,6 +26,10 @@ const (
 	EntityWebhookEventWebhookEventTypesRefundRefunded                       EntityWebhookEventWebhookEventTypes = "refund.refunded"
 	EntityWebhookEventWebhookEventTypesRefundFailed                         EntityWebhookEventWebhookEventTypes = "refund.failed"
 	EntityWebhookEventWebhookEventTypesRefundCanceled                       EntityWebhookEventWebhookEventTypes = "refund.canceled"
+	EntityWebhookEventWebhookEventTypesChargebackReceived                   EntityWebhookEventWebhookEventTypes = "chargeback.received"
+	EntityWebhookEventWebhookEventTypesChargebackReversed                   EntityWebhookEventWebhookEventTypes = "chargeback.reversed"
+	EntityWebhookEventWebhookEventTypesCaptureSucceeded                     EntityWebhookEventWebhookEventTypes = "capture.succeeded"
+	EntityWebhookEventWebhookEventTypesCaptureFailed                        EntityWebhookEventWebhookEventTypes = "capture.failed"
 	EntityWebhookEventWebhookEventTypesPaymentLinkPaid                      EntityWebhookEventWebhookEventTypes = "payment-link.paid"
 	EntityWebhookEventWebhookEventTypesBalanceTransactionCreated            EntityWebhookEventWebhookEventTypes = "balance-transaction.created"
 	EntityWebhookEventWebhookEventTypesPayoutInitiated                      EntityWebhookEventWebhookEventTypes = "payout.initiated"
@@ -57,7 +61,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
+		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "chargeback.received", "chargeback.reversed", "capture.succeeded", "capture.failed", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "*":
 			return true
 		}
 	}
@@ -69,6 +73,8 @@ type EntityType string
 const (
 	EntityTypePaymentResponse      EntityType = "payment-response"
 	EntityTypeEntityRefundResponse EntityType = "entity-refund-response"
+	EntityTypeEntityChargeback     EntityType = "entity-chargeback"
+	EntityTypeCaptureResponse      EntityType = "capture-response"
 	EntityTypePaymentLinkResponse  EntityType = "payment-link-response"
 	EntityTypeEntityPayoutResponse EntityType = "entity-payout-response"
 	EntityTypeSalesInvoiceResponse EntityType = "sales-invoice-response"
@@ -78,6 +84,8 @@ const (
 type Entity struct {
 	PaymentResponse      *PaymentResponse      `queryParam:"inline" union:"member"`
 	EntityRefundResponse *EntityRefundResponse `queryParam:"inline" union:"member"`
+	EntityChargeback     *EntityChargeback     `queryParam:"inline" union:"member"`
+	CaptureResponse      *CaptureResponse      `queryParam:"inline" union:"member"`
 	PaymentLinkResponse  *PaymentLinkResponse  `queryParam:"inline" union:"member"`
 	EntityPayoutResponse *EntityPayoutResponse `queryParam:"inline" union:"member"`
 	SalesInvoiceResponse *SalesInvoiceResponse `queryParam:"inline" union:"member"`
@@ -101,6 +109,24 @@ func CreateEntityEntityRefundResponse(entityRefundResponse EntityRefundResponse)
 	return Entity{
 		EntityRefundResponse: &entityRefundResponse,
 		Type:                 typ,
+	}
+}
+
+func CreateEntityEntityChargeback(entityChargeback EntityChargeback) Entity {
+	typ := EntityTypeEntityChargeback
+
+	return Entity{
+		EntityChargeback: &entityChargeback,
+		Type:             typ,
+	}
+}
+
+func CreateEntityCaptureResponse(captureResponse CaptureResponse) Entity {
+	typ := EntityTypeCaptureResponse
+
+	return Entity{
+		CaptureResponse: &captureResponse,
+		Type:            typ,
 	}
 }
 
@@ -170,10 +196,24 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var captureResponse CaptureResponse = CaptureResponse{}
+	if err := utils.UnmarshalJSON(data, &captureResponse, "", true, nil); err == nil {
+		u.CaptureResponse = &captureResponse
+		u.Type = EntityTypeCaptureResponse
+		return nil
+	}
+
 	var entityPayoutResponse EntityPayoutResponse = EntityPayoutResponse{}
 	if err := utils.UnmarshalJSON(data, &entityPayoutResponse, "", true, nil); err == nil {
 		u.EntityPayoutResponse = &entityPayoutResponse
 		u.Type = EntityTypeEntityPayoutResponse
+		return nil
+	}
+
+	var entityChargeback EntityChargeback = EntityChargeback{}
+	if err := utils.UnmarshalJSON(data, &entityChargeback, "", true, nil); err == nil {
+		u.EntityChargeback = &entityChargeback
+		u.Type = EntityTypeEntityChargeback
 		return nil
 	}
 
@@ -194,6 +234,14 @@ func (u Entity) MarshalJSON() ([]byte, error) {
 
 	if u.EntityRefundResponse != nil {
 		return utils.MarshalJSON(u.EntityRefundResponse, "", true)
+	}
+
+	if u.EntityChargeback != nil {
+		return utils.MarshalJSON(u.EntityChargeback, "", true)
+	}
+
+	if u.CaptureResponse != nil {
+		return utils.MarshalJSON(u.CaptureResponse, "", true)
 	}
 
 	if u.PaymentLinkResponse != nil {

@@ -25,6 +25,10 @@ const (
 	WebhookEventTypesRefundRefunded                       WebhookEventTypes = "refund.refunded"
 	WebhookEventTypesRefundFailed                         WebhookEventTypes = "refund.failed"
 	WebhookEventTypesRefundCanceled                       WebhookEventTypes = "refund.canceled"
+	WebhookEventTypesChargebackReceived                   WebhookEventTypes = "chargeback.received"
+	WebhookEventTypesChargebackReversed                   WebhookEventTypes = "chargeback.reversed"
+	WebhookEventTypesCaptureSucceeded                     WebhookEventTypes = "capture.succeeded"
+	WebhookEventTypesCaptureFailed                        WebhookEventTypes = "capture.failed"
 	WebhookEventTypesPaymentLinkPaid                      WebhookEventTypes = "payment-link.paid"
 	WebhookEventTypesBalanceTransactionCreated            WebhookEventTypes = "balance-transaction.created"
 	WebhookEventTypesPayoutInitiated                      WebhookEventTypes = "payout.initiated"
@@ -80,6 +84,14 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "refund.failed":
 		fallthrough
 	case "refund.canceled":
+		fallthrough
+	case "chargeback.received":
+		fallthrough
+	case "chargeback.reversed":
+		fallthrough
+	case "capture.succeeded":
+		fallthrough
+	case "capture.failed":
 		fallthrough
 	case "payment-link.paid":
 		fallthrough

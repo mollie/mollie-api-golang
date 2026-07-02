@@ -33,6 +33,10 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 | `EntityWebhookEventWebhookEventTypesRefundRefunded`                       | refund.refunded                                                           |
 | `EntityWebhookEventWebhookEventTypesRefundFailed`                         | refund.failed                                                             |
 | `EntityWebhookEventWebhookEventTypesRefundCanceled`                       | refund.canceled                                                           |
+| `EntityWebhookEventWebhookEventTypesChargebackReceived`                   | chargeback.received                                                       |
+| `EntityWebhookEventWebhookEventTypesChargebackReversed`                   | chargeback.reversed                                                       |
+| `EntityWebhookEventWebhookEventTypesCaptureSucceeded`                     | capture.succeeded                                                         |
+| `EntityWebhookEventWebhookEventTypesCaptureFailed`                        | capture.failed                                                            |
 | `EntityWebhookEventWebhookEventTypesPaymentLinkPaid`                      | payment-link.paid                                                         |
 | `EntityWebhookEventWebhookEventTypesBalanceTransactionCreated`            | balance-transaction.created                                               |
 | `EntityWebhookEventWebhookEventTypesPayoutInitiated`                      | payout.initiated                                                          |
