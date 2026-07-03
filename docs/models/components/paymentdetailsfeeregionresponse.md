@@ -18,15 +18,28 @@ custom := components.PaymentDetailsFeeRegionResponse("custom_value")
 
 ## Values
 
-| Name                                              | Value                                             |
-| ------------------------------------------------- | ------------------------------------------------- |
-| `PaymentDetailsFeeRegionResponseAmericanExpress`  | american-express                                  |
-| `PaymentDetailsFeeRegionResponseAmexIntraEea`     | amex-intra-eea                                    |
-| `PaymentDetailsFeeRegionResponseCarteBancaire`    | carte-bancaire                                    |
-| `PaymentDetailsFeeRegionResponseIntraEu`          | intra-eu                                          |
-| `PaymentDetailsFeeRegionResponseIntraEuCorporate` | intra-eu-corporate                                |
-| `PaymentDetailsFeeRegionResponseDomestic`         | domestic                                          |
-| `PaymentDetailsFeeRegionResponseMaestro`          | maestro                                           |
-| `PaymentDetailsFeeRegionResponseOther`            | other                                             |
-| `PaymentDetailsFeeRegionResponseInter`            | inter                                             |
-| `PaymentDetailsFeeRegionResponseIntraEea`         | intra_eea                                         |
+| Name                                                              | Value                                                             |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `PaymentDetailsFeeRegionResponseAmericanExpress`                  | american-express                                                  |
+| `PaymentDetailsFeeRegionResponseAmexIntraEea`                     | amex-intra-eea                                                    |
+| `PaymentDetailsFeeRegionResponseCarteBancaire`                    | carte-bancaire                                                    |
+| `PaymentDetailsFeeRegionResponseIntraEu`                          | intra-eu                                                          |
+| `PaymentDetailsFeeRegionResponseIntraEuCorporate`                 | intra-eu-corporate                                                |
+| `PaymentDetailsFeeRegionResponseDomestic`                         | domestic                                                          |
+| `PaymentDetailsFeeRegionResponseMaestro`                          | maestro                                                           |
+| `PaymentDetailsFeeRegionResponseMastercardCreditBusinessDomestic` | mastercard-credit-business-domestic                               |
+| `PaymentDetailsFeeRegionResponseMastercardCreditConsumerDomestic` | mastercard-credit-consumer-domestic                               |
+| `PaymentDetailsFeeRegionResponseMastercardCreditConsumerIntraEea` | mastercard-credit-consumer-intra-eea                              |
+| `PaymentDetailsFeeRegionResponseMastercardDebitBusinessDomestic`  | mastercard-debit-business-domestic                                |
+| `PaymentDetailsFeeRegionResponseMastercardDebitBusinessIntraEea`  | mastercard-debit-business-intra-eea                               |
+| `PaymentDetailsFeeRegionResponseMastercardDebitConsumerDomestic`  | mastercard-debit-consumer-domestic                                |
+| `PaymentDetailsFeeRegionResponseMastercardDebitConsumerIntraEea`  | mastercard-debit-consumer-intra-eea                               |
+| `PaymentDetailsFeeRegionResponseOther`                            | other                                                             |
+| `PaymentDetailsFeeRegionResponseInter`                            | inter                                                             |
+| `PaymentDetailsFeeRegionResponseIntraEea`                         | intra_eea                                                         |
+| `PaymentDetailsFeeRegionResponseVisaCreditBusinessDomestic`       | visa-credit-business-domestic                                     |
+| `PaymentDetailsFeeRegionResponseVisaCreditConsumerDomestic`       | visa-credit-consumer-domestic                                     |
+| `PaymentDetailsFeeRegionResponseVisaCreditConsumerIntraEea`       | visa-credit-consumer-intra-eea                                    |
+| `PaymentDetailsFeeRegionResponseVisaDebitBusinessDomestic`        | visa-debit-business-domestic                                      |
+| `PaymentDetailsFeeRegionResponseVisaDebitBusinessIntraEea`        | visa-debit-business-intra-eea                                     |
+| `PaymentDetailsFeeRegionResponseVisaDebitConsumerDomestic`        | visa-debit-consumer-domestic                                      |

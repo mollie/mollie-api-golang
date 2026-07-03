@@ -32,3 +32,4 @@ custom := components.EntityBalanceCurrency("custom_value")
 | `EntityBalanceCurrencyHuf` | HUF                        |
 | `EntityBalanceCurrencyAud` | AUD                        |
 | `EntityBalanceCurrencyCad` | CAD                        |
+| `EntityBalanceCurrencyRon` | RON                        |

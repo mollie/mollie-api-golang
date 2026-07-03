@@ -7,16 +7,29 @@ package components
 type PaymentDetailsFeeRegionResponse string
 
 const (
-	PaymentDetailsFeeRegionResponseAmericanExpress  PaymentDetailsFeeRegionResponse = "american-express"
-	PaymentDetailsFeeRegionResponseAmexIntraEea     PaymentDetailsFeeRegionResponse = "amex-intra-eea"
-	PaymentDetailsFeeRegionResponseCarteBancaire    PaymentDetailsFeeRegionResponse = "carte-bancaire"
-	PaymentDetailsFeeRegionResponseIntraEu          PaymentDetailsFeeRegionResponse = "intra-eu"
-	PaymentDetailsFeeRegionResponseIntraEuCorporate PaymentDetailsFeeRegionResponse = "intra-eu-corporate"
-	PaymentDetailsFeeRegionResponseDomestic         PaymentDetailsFeeRegionResponse = "domestic"
-	PaymentDetailsFeeRegionResponseMaestro          PaymentDetailsFeeRegionResponse = "maestro"
-	PaymentDetailsFeeRegionResponseOther            PaymentDetailsFeeRegionResponse = "other"
-	PaymentDetailsFeeRegionResponseInter            PaymentDetailsFeeRegionResponse = "inter"
-	PaymentDetailsFeeRegionResponseIntraEea         PaymentDetailsFeeRegionResponse = "intra_eea"
+	PaymentDetailsFeeRegionResponseAmericanExpress                  PaymentDetailsFeeRegionResponse = "american-express"
+	PaymentDetailsFeeRegionResponseAmexIntraEea                     PaymentDetailsFeeRegionResponse = "amex-intra-eea"
+	PaymentDetailsFeeRegionResponseCarteBancaire                    PaymentDetailsFeeRegionResponse = "carte-bancaire"
+	PaymentDetailsFeeRegionResponseIntraEu                          PaymentDetailsFeeRegionResponse = "intra-eu"
+	PaymentDetailsFeeRegionResponseIntraEuCorporate                 PaymentDetailsFeeRegionResponse = "intra-eu-corporate"
+	PaymentDetailsFeeRegionResponseDomestic                         PaymentDetailsFeeRegionResponse = "domestic"
+	PaymentDetailsFeeRegionResponseMaestro                          PaymentDetailsFeeRegionResponse = "maestro"
+	PaymentDetailsFeeRegionResponseMastercardCreditBusinessDomestic PaymentDetailsFeeRegionResponse = "mastercard-credit-business-domestic"
+	PaymentDetailsFeeRegionResponseMastercardCreditConsumerDomestic PaymentDetailsFeeRegionResponse = "mastercard-credit-consumer-domestic"
+	PaymentDetailsFeeRegionResponseMastercardCreditConsumerIntraEea PaymentDetailsFeeRegionResponse = "mastercard-credit-consumer-intra-eea"
+	PaymentDetailsFeeRegionResponseMastercardDebitBusinessDomestic  PaymentDetailsFeeRegionResponse = "mastercard-debit-business-domestic"
+	PaymentDetailsFeeRegionResponseMastercardDebitBusinessIntraEea  PaymentDetailsFeeRegionResponse = "mastercard-debit-business-intra-eea"
+	PaymentDetailsFeeRegionResponseMastercardDebitConsumerDomestic  PaymentDetailsFeeRegionResponse = "mastercard-debit-consumer-domestic"
+	PaymentDetailsFeeRegionResponseMastercardDebitConsumerIntraEea  PaymentDetailsFeeRegionResponse = "mastercard-debit-consumer-intra-eea"
+	PaymentDetailsFeeRegionResponseOther                            PaymentDetailsFeeRegionResponse = "other"
+	PaymentDetailsFeeRegionResponseInter                            PaymentDetailsFeeRegionResponse = "inter"
+	PaymentDetailsFeeRegionResponseIntraEea                         PaymentDetailsFeeRegionResponse = "intra_eea"
+	PaymentDetailsFeeRegionResponseVisaCreditBusinessDomestic       PaymentDetailsFeeRegionResponse = "visa-credit-business-domestic"
+	PaymentDetailsFeeRegionResponseVisaCreditConsumerDomestic       PaymentDetailsFeeRegionResponse = "visa-credit-consumer-domestic"
+	PaymentDetailsFeeRegionResponseVisaCreditConsumerIntraEea       PaymentDetailsFeeRegionResponse = "visa-credit-consumer-intra-eea"
+	PaymentDetailsFeeRegionResponseVisaDebitBusinessDomestic        PaymentDetailsFeeRegionResponse = "visa-debit-business-domestic"
+	PaymentDetailsFeeRegionResponseVisaDebitBusinessIntraEea        PaymentDetailsFeeRegionResponse = "visa-debit-business-intra-eea"
+	PaymentDetailsFeeRegionResponseVisaDebitConsumerDomestic        PaymentDetailsFeeRegionResponse = "visa-debit-consumer-domestic"
 )
 
 func (e PaymentDetailsFeeRegionResponse) ToPointer() *PaymentDetailsFeeRegionResponse {
@@ -27,7 +40,7 @@ func (e PaymentDetailsFeeRegionResponse) ToPointer() *PaymentDetailsFeeRegionRes
 func (e *PaymentDetailsFeeRegionResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "american-express", "amex-intra-eea", "carte-bancaire", "intra-eu", "intra-eu-corporate", "domestic", "maestro", "other", "inter", "intra_eea":
+		case "american-express", "amex-intra-eea", "carte-bancaire", "intra-eu", "intra-eu-corporate", "domestic", "maestro", "mastercard-credit-business-domestic", "mastercard-credit-consumer-domestic", "mastercard-credit-consumer-intra-eea", "mastercard-debit-business-domestic", "mastercard-debit-business-intra-eea", "mastercard-debit-consumer-domestic", "mastercard-debit-consumer-intra-eea", "other", "inter", "intra_eea", "visa-credit-business-domestic", "visa-credit-consumer-domestic", "visa-credit-consumer-intra-eea", "visa-debit-business-domestic", "visa-debit-business-intra-eea", "visa-debit-consumer-domestic":
 			return true
 		}
 	}
