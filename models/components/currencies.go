@@ -18,6 +18,7 @@ const (
 	CurrenciesHuf Currencies = "HUF"
 	CurrenciesAud Currencies = "AUD"
 	CurrenciesCad Currencies = "CAD"
+	CurrenciesRon Currencies = "RON"
 )
 
 func (e Currencies) ToPointer() *Currencies {
@@ -28,7 +29,7 @@ func (e Currencies) ToPointer() *Currencies {
 func (e *Currencies) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD":
+		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD", "RON":
 			return true
 		}
 	}

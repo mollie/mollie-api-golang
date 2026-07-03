@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: c852776d6b36a672d2afd74882ef3ac7
+  docChecksum: f37c11e53508ebd367999b108a7ca00f
   docVersion: 1.0.0
-  speakeasyVersion: 1.787.0
-  generationVersion: 2.914.0
-  releaseVersion: 1.3.15
-  configChecksum: dd6a9b7f39fdf421cf8cf143c1c38c1a
+  speakeasyVersion: 1.788.0
+  generationVersion: 2.915.0
+  releaseVersion: 1.3.16
+  configChecksum: 3d24d6ec3c1272f7e7daaf486712043c
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 829c0ac0-d342-45a0-80f3-3e9cb949944f
-  pristine_commit_hash: 5d17d1cd0a8d9f228172dd87d8cb55a3160f2fb4
-  pristine_tree_hash: a4141f2a5b8e2965c16842a289124f86b512e551
+  generation_id: 446e9d7d-ee88-4575-8900-e4a57ca3c276
+  pristine_commit_hash: 13d33911441989d3f03abfa072a3756fce84e6ef
+  pristine_tree_hash: 21df18e3b9b55f0f5b70f8b52639fa302b64aa5e
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.46
+    core: 3.13.47
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0f76cb6d96ac8bf5f8144e410befb197ee037ea1
-    pristine_git_object: 011c2752d5af7e905e0c2f09b0e522d290f592f9
+    last_write_checksum: sha1:0c6ef610178a29fccc0e9d17df313c7b1c9c109a
+    pristine_git_object: d8fb7ba9a673ac214746ee9c284caedb51da22a6
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -177,8 +177,8 @@ trackedFiles:
     pristine_git_object: c3e4869801f0d01fa12c5f4f730693761d39393b
   docs/models/components/balancetransactiontype.md:
     id: d9ea074248bc
-    last_write_checksum: sha1:b7d8c6799d31983560dc507aa39f2622eb2f32a6
-    pristine_git_object: be3582f3c0b1dcd9d059089d706ca359ed9416ba
+    last_write_checksum: sha1:0a77b64310563a4d681aed78436e33b592447051
+    pristine_git_object: 5b485f496f9e3190d8f316244696d19c1b6860ba
   docs/models/components/balancetransfercategory.md:
     id: f30f3ec9c973
     last_write_checksum: sha1:7658c81a2011e54bca8dacbfbc28028a2a762156
@@ -345,8 +345,8 @@ trackedFiles:
     pristine_git_object: c86d0dfdbb8cc8a438090483b66a6e10c51b5cf3
   docs/models/components/currencies.md:
     id: fd295de1f8e0
-    last_write_checksum: sha1:79663aeb3fb404d842cd4b12f20b7655b8c3c005
-    pristine_git_object: 4359a4d355dbd73612abf28f9af5d0ddbb21747e
+    last_write_checksum: sha1:716aede0e67b91e26f5891f4df05052bd0364709
+    pristine_git_object: 3d3f96fcb99cad7a4427f5abc558658d7d139a24
   docs/models/components/customerresponse.md:
     id: 1a9d8c9df64e
     last_write_checksum: sha1:39b3cd3fbeeeafd1d557aa73e44acb282824787a
@@ -385,8 +385,8 @@ trackedFiles:
     pristine_git_object: 4975253be5f2befba39c262351535ccfda932178
   docs/models/components/entitybalancecurrency.md:
     id: 3ae35b6ec1de
-    last_write_checksum: sha1:07453abe16bf20288390c114144e337ab489785c
-    pristine_git_object: 1c11a6fe7773c1e861aed6bfeceb3236ae0dc1e8
+    last_write_checksum: sha1:2ae2c023b5d71cf981600ba01fe671098c46b541
+    pristine_git_object: 1c56320fdf958460f4fd5df8abc63f14ef1e9f8f
   docs/models/components/entitybalancelinks.md:
     id: 611e66523b3f
     last_write_checksum: sha1:460372145dcf1563eb3ca7fcc40b4125a9994de0
@@ -805,8 +805,8 @@ trackedFiles:
     pristine_git_object: 81d2db1a17aba4bddc6bc2017df74fa43d85676a
   docs/models/components/listentitybalancecurrency.md:
     id: 3f763ef72f30
-    last_write_checksum: sha1:99b548c61cf07d7001fb7a8c76b1dcd4ab812e37
-    pristine_git_object: 256b621584e3c90f22a72c88225fdb265c8ae848
+    last_write_checksum: sha1:4179133861ce8588b74a46eacdd2c7a66b007c23
+    pristine_git_object: af6ec3e922d5aa075bea49542b734a4987a7b68e
   docs/models/components/listentitybalancelinks.md:
     id: 58bd201896b3
     last_write_checksum: sha1:aff28913ddb3affc4b16e6904eae116a3c4c5b24
@@ -1117,8 +1117,8 @@ trackedFiles:
     pristine_git_object: 38ca2aa1ab38eb1fefa87034e1a2a2557ee6db1f
   docs/models/components/listprofileresponse.md:
     id: 11781583cba3
-    last_write_checksum: sha1:53f32f27711bc3352d6fcaf17097d40722fb5176
-    pristine_git_object: f02299c674bd7468498fc5e1961cbd5482bcc0fa
+    last_write_checksum: sha1:fcd46f48c0da6f58f8cbafbc4e45cbb02c6fecb8
+    pristine_git_object: 7d257517ebb41d368ec9a40d47a8c1fc79806a2a
   docs/models/components/listprofileresponselinks.md:
     id: cfc8d03452e3
     last_write_checksum: sha1:345ac7bf59e9db09a5e2dbc7ddb269478e3cba34
@@ -1429,8 +1429,8 @@ trackedFiles:
     pristine_git_object: 509f3e696a966cd00d884b4fd0bdde3406d84bcb
   docs/models/components/paymentdetailsfeeregionresponse.md:
     id: 2e92ac9f78d1
-    last_write_checksum: sha1:4dc431fc8f872024507737c8631bd7f4f6565880
-    pristine_git_object: 59e01732e01f53d88ce706cd8d051a9f97d90d73
+    last_write_checksum: sha1:9f2d3833bd227f05290cb3e9c982378acadfb75e
+    pristine_git_object: bcfefbe465af2d13be4c05101a162a8a8bd7344d
   docs/models/components/paymentdetailsqrcode.md:
     id: 7c367df34c93
     last_write_checksum: sha1:d85a936d3092167c6b4fe67455852088b92bae3e
@@ -1605,8 +1605,8 @@ trackedFiles:
     pristine_git_object: 5622123312fd8983a03f64629b36f6d81643c03b
   docs/models/components/profileresponse.md:
     id: 7f243f9a45a6
-    last_write_checksum: sha1:7b26572344f77675c895081dab7dd8fec86d623d
-    pristine_git_object: e233b830f30a9a4baad457c1fb564f5fb3619102
+    last_write_checksum: sha1:2a77c0488d17046b74b98f9af5cdcd8c244fdff9
+    pristine_git_object: 68d569bdd82daf036286cbdeec0570fdf0fd5e49
   docs/models/components/profileresponselinks.md:
     id: 0218ac8c7b4e
     last_write_checksum: sha1:26c76b0af376b5b0433877c3a455c2d9a8818335
@@ -4129,8 +4129,8 @@ trackedFiles:
     pristine_git_object: 229363c3218d986ac5e127b1623036d6bacd5a2e
   models/components/balancetransactiontype.go:
     id: 890dfb428a33
-    last_write_checksum: sha1:7cc779e8e16543e4831371999f7e5710afdd2b22
-    pristine_git_object: ebc68ee54e2e39062ed96d9babf9261d368dbed8
+    last_write_checksum: sha1:342aad5a49181d75b23e63b5b640291857f89b39
+    pristine_git_object: 64c1d6e1af85ad49667fd8ece9ba96ab72231542
   models/components/balancetransfercategory.go:
     id: a56922556d6c
     last_write_checksum: sha1:9c210fe175e286e54ed1be5703929b469b9ad42e
@@ -4221,8 +4221,8 @@ trackedFiles:
     pristine_git_object: e1e4f2eb495b306866ea347ea06e7a43384fda85
   models/components/currencies.go:
     id: b41a9e267145
-    last_write_checksum: sha1:802c9f2cbe42976c263b3f9055f7c3e6b9ab419f
-    pristine_git_object: 915eef09b6e3e36b1bb3dc84dacad12c1bcf7550
+    last_write_checksum: sha1:96733517b8d0fae91b1021bd819859fbc2f7535d
+    pristine_git_object: f4383bc6619092aac3ca65b0d954d7a400759caa
   models/components/customerresponse.go:
     id: 19564da94abe
     last_write_checksum: sha1:cfc98dcbb1761a918a698cb56d7b8886443c1298
@@ -4233,8 +4233,8 @@ trackedFiles:
     pristine_git_object: 3af7ce2db306b6469f2e0a0c5063c9f4bdbc8890
   models/components/entitybalance.go:
     id: f8b349e78ddc
-    last_write_checksum: sha1:89c2f72bb26b4a344daeacf8a1e12fb50bdaad38
-    pristine_git_object: 7de007333fc01054656e3d009346ba2949c4a18a
+    last_write_checksum: sha1:0e589e6f891a94ea9c436ade1023d755a4f3f533
+    pristine_git_object: e32e49f581a4f025a3e57143598eefff987eb235
   models/components/entitybalancereport.go:
     id: 7aea6f207db3
     last_write_checksum: sha1:bdbc0098da0c09799651d3d9b9a4a22baa1f7f49
@@ -4365,8 +4365,8 @@ trackedFiles:
     pristine_git_object: 42049cd312a8db658d363086d3599dee2b4a88a7
   models/components/listentitybalance.go:
     id: a775d7a9ec24
-    last_write_checksum: sha1:8a0d082a29d3ab724d288d43c4fdd3620fb1281e
-    pristine_git_object: e767dfc42786a453edd3f5533fcf80241fbcecfb
+    last_write_checksum: sha1:317225e1e64f40109d0ee870754a28f32663fe3e
+    pristine_git_object: 9b67781ab7a190909b03ec1c3c4f53a00cdb4143
   models/components/listentitychargeback.go:
     id: d51e8bfff034
     last_write_checksum: sha1:d51041e2b198061b20568d33f578820b841472d3
@@ -4425,8 +4425,8 @@ trackedFiles:
     pristine_git_object: d811e45c26f0798ca63f57ba339d15382c8b7f41
   models/components/listprofileresponse.go:
     id: 34f56d75e719
-    last_write_checksum: sha1:4278dda9e9f81eb4c21ef7b02039e02a52711310
-    pristine_git_object: 189761fec7b853242cc58be428e10d6c48a1a49e
+    last_write_checksum: sha1:057f35668c2dcfa47db602275bfbc5cefccc00df
+    pristine_git_object: e6815fc971d99c6f9f4bb6e6ec27422ab9df648d
   models/components/listroutegetresponse.go:
     id: 7d41a573497b
     last_write_checksum: sha1:dba6412fc72c43837aa0260993522ce314435221
@@ -4565,8 +4565,8 @@ trackedFiles:
     pristine_git_object: 64f295c3948d0c2e045d656f2b7b3abe52bf8fe7
   models/components/paymentdetailsfeeregionresponse.go:
     id: bde9361c9936
-    last_write_checksum: sha1:b6c98e59420eb7c2174b0d78ccd827d76a4f833a
-    pristine_git_object: 2d706cd3e06632e0ad232ab4e7e400b2c9ecf885
+    last_write_checksum: sha1:1dc8714ee6064c97d0e55381694da31b9f59ac03
+    pristine_git_object: 62856f77802161c16e2fc078a511da2c1fc0ef90
   models/components/paymentdetailsreceiptcardreadmethodresponse.go:
     id: 97c5591061fc
     last_write_checksum: sha1:cf2ed41b27c082f348311f4fde2719a9068b3707
@@ -4653,8 +4653,8 @@ trackedFiles:
     pristine_git_object: 3babf71d1b173b780b1bc4cb6a7585627894eedc
   models/components/profileresponse.go:
     id: 0ce2805ab1fa
-    last_write_checksum: sha1:75fc5c5ad6082ca1db1cb5a8e226339c0556c288
-    pristine_git_object: 7b53ca93bdff80d32ace58a1872276b87e22c23f
+    last_write_checksum: sha1:7679581fada117655f369d1ab5276c232c0b82c3
+    pristine_git_object: 5eec50f11aaf3259f0e6fad1a6cab168de13686f
   models/components/profilereviewstatusresponse.go:
     id: ec5186ad84ab
     last_write_checksum: sha1:6cf227a392f4f8de5c5e0c983540dfd4c31c2d99
@@ -9574,7 +9574,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Webhooks.Create()`: \n  *  `request.RequestBody.EventTypes.union(webhook-event-types)` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.List()`: \n  *  `request.Request.EventTypes` **Changed**\n  *  `response.Embedded.Webhooks[].EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Update()`: \n  *  `request.RequestBody.EventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Get()`:  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.WebhookEvents.Get()`:  `response` **Changed** (Breaking ⚠️)\n"
+releaseNotes: "## Go SDK Changes:\n* `Client.Profiles.Create()`: \n  *  `request.ProfileRequest.BusinessCategory` **Changed**\n  *  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Clients.Get()`:  `response.Embedded.Organization.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Profiles.GetCurrent()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Update()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Get()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.List()`:  `response.Embedded.Profiles[].BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Organizations.Get()`:  `response.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Organizations.GetCurrent()`:  `response.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Settlements.List()`: \n  *  `request.Request.Currencies` **Changed**\n* `Client.Balances.ListTransactions()`:  `response.Embedded.BalanceTransactions[].Type` **Changed**\n* `Client.Balances.GetReport()`:  `response.Totals.PendingBalance.Open.Subtotals[].SubTotals[].TransactionType` **Changed**\n* `Client.Balances.GetPrimary()`:  `response.Currency.Enum(ron)` **Added**\n* `Client.Balances.Get()`:  `response.Currency.Enum(ron)` **Added**\n* `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(payment-response).Details.FeeRegion` **Changed**\n* `Client.Payments.Create()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Balances.List()`:  `response.Embedded.Balances[].Currency.Enum(ron)` **Added**\n* `Client.Payments.Get()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Payments.Update()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Payments.Cancel()`:  `response.Details.FeeRegion` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Customers.CreatePayment()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

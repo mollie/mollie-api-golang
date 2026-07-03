@@ -57,3 +57,6 @@ custom := components.BalanceTransactionType("custom_value")
 | `BalanceTransactionTypeToBeReleasedRollingReserve`        | to-be-released-rolling-reserve                            |
 | `BalanceTransactionTypeHeldRollingReserve`                | held-rolling-reserve                                      |
 | `BalanceTransactionTypeReleasedRollingReserve`            | released-rolling-reserve                                  |
+| `BalanceTransactionTypeMovement`                          | movement                                                  |
+| `BalanceTransactionTypeInvoiceCompensation`               | invoice-compensation                                      |
+| `BalanceTransactionTypeTopup`                             | topup                                                     |

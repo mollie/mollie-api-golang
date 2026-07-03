@@ -139,7 +139,7 @@ type ListProfileResponse struct {
 	CountriesOfActivity []string `json:"countriesOfActivity,omitempty"`
 	// The industry associated with the profile's trade name or brand. Please refer to the
 	// [business category list](common-data-types#business-category) for all possible options.
-	BusinessCategory string                    `json:"businessCategory"`
+	BusinessCategory *string                   `json:"businessCategory"`
 	Status           ListProfileResponseStatus `json:"status"`
 	// Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
 	// automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
@@ -214,9 +214,9 @@ func (l *ListProfileResponse) GetCountriesOfActivity() []string {
 	return l.CountriesOfActivity
 }
 
-func (l *ListProfileResponse) GetBusinessCategory() string {
+func (l *ListProfileResponse) GetBusinessCategory() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.BusinessCategory
 }

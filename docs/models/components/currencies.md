@@ -30,3 +30,4 @@ custom := components.Currencies("custom_value")
 | `CurrenciesHuf` | HUF             |
 | `CurrenciesAud` | AUD             |
 | `CurrenciesCad` | CAD             |
+| `CurrenciesRon` | RON             |

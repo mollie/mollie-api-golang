@@ -19,6 +19,7 @@ const (
 	ListEntityBalanceCurrencyHuf ListEntityBalanceCurrency = "HUF"
 	ListEntityBalanceCurrencyAud ListEntityBalanceCurrency = "AUD"
 	ListEntityBalanceCurrencyCad ListEntityBalanceCurrency = "CAD"
+	ListEntityBalanceCurrencyRon ListEntityBalanceCurrency = "RON"
 )
 
 func (e ListEntityBalanceCurrency) ToPointer() *ListEntityBalanceCurrency {
@@ -29,7 +30,7 @@ func (e ListEntityBalanceCurrency) ToPointer() *ListEntityBalanceCurrency {
 func (e *ListEntityBalanceCurrency) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD":
+		case "EUR", "GBP", "CHF", "DKK", "NOK", "PLN", "SEK", "USD", "CZK", "HUF", "AUD", "CAD", "RON":
 			return true
 		}
 	}
