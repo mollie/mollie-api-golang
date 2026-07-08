@@ -9,7 +9,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.LocaleResponseEnUs
+value := components.LocaleResponseCaEs
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.LocaleResponse("custom_value")
@@ -20,28 +20,30 @@ custom := components.LocaleResponse("custom_value")
 
 | Name                 | Value                |
 | -------------------- | -------------------- |
-| `LocaleResponseEnUs` | en_US                |
-| `LocaleResponseEnGb` | en_GB                |
-| `LocaleResponseNlNl` | nl_NL                |
-| `LocaleResponseNlBe` | nl_BE                |
-| `LocaleResponseDeDe` | de_DE                |
+| `LocaleResponseCaEs` | ca_ES                |
+| `LocaleResponseCsCz` | cs_CZ                |
+| `LocaleResponseDaDk` | da_DK                |
 | `LocaleResponseDeAt` | de_AT                |
 | `LocaleResponseDeCh` | de_CH                |
+| `LocaleResponseDeDe` | de_DE                |
 | `LocaleResponseDeLu` | de_LU                |
-| `LocaleResponseFrFr` | fr_FR                |
-| `LocaleResponseFrBe` | fr_BE                |
-| `LocaleResponseFrLu` | fr_LU                |
+| `LocaleResponseEnGb` | en_GB                |
+| `LocaleResponseEnUs` | en_US                |
 | `LocaleResponseEsEs` | es_ES                |
-| `LocaleResponseCaEs` | ca_ES                |
-| `LocaleResponsePtPt` | pt_PT                |
-| `LocaleResponseItIt` | it_IT                |
-| `LocaleResponseNbNo` | nb_NO                |
-| `LocaleResponseSvSe` | sv_SE                |
 | `LocaleResponseFiFi` | fi_FI                |
-| `LocaleResponseDaDk` | da_DK                |
-| `LocaleResponseIsIs` | is_IS                |
+| `LocaleResponseFrBe` | fr_BE                |
+| `LocaleResponseFrFr` | fr_FR                |
+| `LocaleResponseFrLu` | fr_LU                |
 | `LocaleResponseHuHu` | hu_HU                |
-| `LocaleResponsePlPl` | pl_PL                |
-| `LocaleResponseLvLv` | lv_LV                |
+| `LocaleResponseIsIs` | is_IS                |
+| `LocaleResponseItIt` | it_IT                |
 | `LocaleResponseLtLt` | lt_LT                |
+| `LocaleResponseLvLv` | lv_LV                |
+| `LocaleResponseNbNo` | nb_NO                |
+| `LocaleResponseNlBe` | nl_BE                |
+| `LocaleResponseNlNl` | nl_NL                |
+| `LocaleResponsePlPl` | pl_PL                |
+| `LocaleResponsePtPt` | pt_PT                |
+| `LocaleResponseSkSk` | sk_SK                |
+| `LocaleResponseSvSe` | sv_SE                |
 | `LocaleResponseNull` | null                 |

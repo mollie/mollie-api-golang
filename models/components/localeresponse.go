@@ -7,30 +7,32 @@ package components
 type LocaleResponse string
 
 const (
-	LocaleResponseEnUs LocaleResponse = "en_US"
-	LocaleResponseEnGb LocaleResponse = "en_GB"
-	LocaleResponseNlNl LocaleResponse = "nl_NL"
-	LocaleResponseNlBe LocaleResponse = "nl_BE"
-	LocaleResponseDeDe LocaleResponse = "de_DE"
+	LocaleResponseCaEs LocaleResponse = "ca_ES"
+	LocaleResponseCsCz LocaleResponse = "cs_CZ"
+	LocaleResponseDaDk LocaleResponse = "da_DK"
 	LocaleResponseDeAt LocaleResponse = "de_AT"
 	LocaleResponseDeCh LocaleResponse = "de_CH"
+	LocaleResponseDeDe LocaleResponse = "de_DE"
 	LocaleResponseDeLu LocaleResponse = "de_LU"
-	LocaleResponseFrFr LocaleResponse = "fr_FR"
-	LocaleResponseFrBe LocaleResponse = "fr_BE"
-	LocaleResponseFrLu LocaleResponse = "fr_LU"
+	LocaleResponseEnGb LocaleResponse = "en_GB"
+	LocaleResponseEnUs LocaleResponse = "en_US"
 	LocaleResponseEsEs LocaleResponse = "es_ES"
-	LocaleResponseCaEs LocaleResponse = "ca_ES"
-	LocaleResponsePtPt LocaleResponse = "pt_PT"
-	LocaleResponseItIt LocaleResponse = "it_IT"
-	LocaleResponseNbNo LocaleResponse = "nb_NO"
-	LocaleResponseSvSe LocaleResponse = "sv_SE"
 	LocaleResponseFiFi LocaleResponse = "fi_FI"
-	LocaleResponseDaDk LocaleResponse = "da_DK"
-	LocaleResponseIsIs LocaleResponse = "is_IS"
+	LocaleResponseFrBe LocaleResponse = "fr_BE"
+	LocaleResponseFrFr LocaleResponse = "fr_FR"
+	LocaleResponseFrLu LocaleResponse = "fr_LU"
 	LocaleResponseHuHu LocaleResponse = "hu_HU"
-	LocaleResponsePlPl LocaleResponse = "pl_PL"
-	LocaleResponseLvLv LocaleResponse = "lv_LV"
+	LocaleResponseIsIs LocaleResponse = "is_IS"
+	LocaleResponseItIt LocaleResponse = "it_IT"
 	LocaleResponseLtLt LocaleResponse = "lt_LT"
+	LocaleResponseLvLv LocaleResponse = "lv_LV"
+	LocaleResponseNbNo LocaleResponse = "nb_NO"
+	LocaleResponseNlBe LocaleResponse = "nl_BE"
+	LocaleResponseNlNl LocaleResponse = "nl_NL"
+	LocaleResponsePlPl LocaleResponse = "pl_PL"
+	LocaleResponsePtPt LocaleResponse = "pt_PT"
+	LocaleResponseSkSk LocaleResponse = "sk_SK"
+	LocaleResponseSvSe LocaleResponse = "sv_SE"
 	LocaleResponseNull LocaleResponse = "null"
 )
 
@@ -42,7 +44,7 @@ func (e LocaleResponse) ToPointer() *LocaleResponse {
 func (e *LocaleResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "de_LU", "fr_FR", "fr_BE", "fr_LU", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
+		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "en_GB", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sv_SE", "null":
 			return true
 		}
 	}

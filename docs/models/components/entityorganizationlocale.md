@@ -9,7 +9,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.EntityOrganizationLocaleEnUs
+value := components.EntityOrganizationLocaleCaEs
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.EntityOrganizationLocale("custom_value")
@@ -20,28 +20,30 @@ custom := components.EntityOrganizationLocale("custom_value")
 
 | Name                           | Value                          |
 | ------------------------------ | ------------------------------ |
-| `EntityOrganizationLocaleEnUs` | en_US                          |
-| `EntityOrganizationLocaleEnGb` | en_GB                          |
-| `EntityOrganizationLocaleNlNl` | nl_NL                          |
-| `EntityOrganizationLocaleNlBe` | nl_BE                          |
-| `EntityOrganizationLocaleDeDe` | de_DE                          |
+| `EntityOrganizationLocaleCaEs` | ca_ES                          |
+| `EntityOrganizationLocaleCsCz` | cs_CZ                          |
+| `EntityOrganizationLocaleDaDk` | da_DK                          |
 | `EntityOrganizationLocaleDeAt` | de_AT                          |
 | `EntityOrganizationLocaleDeCh` | de_CH                          |
+| `EntityOrganizationLocaleDeDe` | de_DE                          |
 | `EntityOrganizationLocaleDeLu` | de_LU                          |
-| `EntityOrganizationLocaleFrFr` | fr_FR                          |
-| `EntityOrganizationLocaleFrBe` | fr_BE                          |
-| `EntityOrganizationLocaleFrLu` | fr_LU                          |
+| `EntityOrganizationLocaleEnGb` | en_GB                          |
+| `EntityOrganizationLocaleEnUs` | en_US                          |
 | `EntityOrganizationLocaleEsEs` | es_ES                          |
-| `EntityOrganizationLocaleCaEs` | ca_ES                          |
-| `EntityOrganizationLocalePtPt` | pt_PT                          |
-| `EntityOrganizationLocaleItIt` | it_IT                          |
-| `EntityOrganizationLocaleNbNo` | nb_NO                          |
-| `EntityOrganizationLocaleSvSe` | sv_SE                          |
 | `EntityOrganizationLocaleFiFi` | fi_FI                          |
-| `EntityOrganizationLocaleDaDk` | da_DK                          |
-| `EntityOrganizationLocaleIsIs` | is_IS                          |
+| `EntityOrganizationLocaleFrBe` | fr_BE                          |
+| `EntityOrganizationLocaleFrFr` | fr_FR                          |
+| `EntityOrganizationLocaleFrLu` | fr_LU                          |
 | `EntityOrganizationLocaleHuHu` | hu_HU                          |
-| `EntityOrganizationLocalePlPl` | pl_PL                          |
-| `EntityOrganizationLocaleLvLv` | lv_LV                          |
+| `EntityOrganizationLocaleIsIs` | is_IS                          |
+| `EntityOrganizationLocaleItIt` | it_IT                          |
 | `EntityOrganizationLocaleLtLt` | lt_LT                          |
+| `EntityOrganizationLocaleLvLv` | lv_LV                          |
+| `EntityOrganizationLocaleNbNo` | nb_NO                          |
+| `EntityOrganizationLocaleNlBe` | nl_BE                          |
+| `EntityOrganizationLocaleNlNl` | nl_NL                          |
+| `EntityOrganizationLocalePlPl` | pl_PL                          |
+| `EntityOrganizationLocalePtPt` | pt_PT                          |
+| `EntityOrganizationLocaleSkSk` | sk_SK                          |
+| `EntityOrganizationLocaleSvSe` | sv_SE                          |
 | `EntityOrganizationLocaleNull` | null                           |

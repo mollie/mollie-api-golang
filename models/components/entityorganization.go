@@ -7,30 +7,32 @@ package components
 type EntityOrganizationLocale string
 
 const (
-	EntityOrganizationLocaleEnUs EntityOrganizationLocale = "en_US"
-	EntityOrganizationLocaleEnGb EntityOrganizationLocale = "en_GB"
-	EntityOrganizationLocaleNlNl EntityOrganizationLocale = "nl_NL"
-	EntityOrganizationLocaleNlBe EntityOrganizationLocale = "nl_BE"
-	EntityOrganizationLocaleDeDe EntityOrganizationLocale = "de_DE"
+	EntityOrganizationLocaleCaEs EntityOrganizationLocale = "ca_ES"
+	EntityOrganizationLocaleCsCz EntityOrganizationLocale = "cs_CZ"
+	EntityOrganizationLocaleDaDk EntityOrganizationLocale = "da_DK"
 	EntityOrganizationLocaleDeAt EntityOrganizationLocale = "de_AT"
 	EntityOrganizationLocaleDeCh EntityOrganizationLocale = "de_CH"
+	EntityOrganizationLocaleDeDe EntityOrganizationLocale = "de_DE"
 	EntityOrganizationLocaleDeLu EntityOrganizationLocale = "de_LU"
-	EntityOrganizationLocaleFrFr EntityOrganizationLocale = "fr_FR"
-	EntityOrganizationLocaleFrBe EntityOrganizationLocale = "fr_BE"
-	EntityOrganizationLocaleFrLu EntityOrganizationLocale = "fr_LU"
+	EntityOrganizationLocaleEnGb EntityOrganizationLocale = "en_GB"
+	EntityOrganizationLocaleEnUs EntityOrganizationLocale = "en_US"
 	EntityOrganizationLocaleEsEs EntityOrganizationLocale = "es_ES"
-	EntityOrganizationLocaleCaEs EntityOrganizationLocale = "ca_ES"
-	EntityOrganizationLocalePtPt EntityOrganizationLocale = "pt_PT"
-	EntityOrganizationLocaleItIt EntityOrganizationLocale = "it_IT"
-	EntityOrganizationLocaleNbNo EntityOrganizationLocale = "nb_NO"
-	EntityOrganizationLocaleSvSe EntityOrganizationLocale = "sv_SE"
 	EntityOrganizationLocaleFiFi EntityOrganizationLocale = "fi_FI"
-	EntityOrganizationLocaleDaDk EntityOrganizationLocale = "da_DK"
-	EntityOrganizationLocaleIsIs EntityOrganizationLocale = "is_IS"
+	EntityOrganizationLocaleFrBe EntityOrganizationLocale = "fr_BE"
+	EntityOrganizationLocaleFrFr EntityOrganizationLocale = "fr_FR"
+	EntityOrganizationLocaleFrLu EntityOrganizationLocale = "fr_LU"
 	EntityOrganizationLocaleHuHu EntityOrganizationLocale = "hu_HU"
-	EntityOrganizationLocalePlPl EntityOrganizationLocale = "pl_PL"
-	EntityOrganizationLocaleLvLv EntityOrganizationLocale = "lv_LV"
+	EntityOrganizationLocaleIsIs EntityOrganizationLocale = "is_IS"
+	EntityOrganizationLocaleItIt EntityOrganizationLocale = "it_IT"
 	EntityOrganizationLocaleLtLt EntityOrganizationLocale = "lt_LT"
+	EntityOrganizationLocaleLvLv EntityOrganizationLocale = "lv_LV"
+	EntityOrganizationLocaleNbNo EntityOrganizationLocale = "nb_NO"
+	EntityOrganizationLocaleNlBe EntityOrganizationLocale = "nl_BE"
+	EntityOrganizationLocaleNlNl EntityOrganizationLocale = "nl_NL"
+	EntityOrganizationLocalePlPl EntityOrganizationLocale = "pl_PL"
+	EntityOrganizationLocalePtPt EntityOrganizationLocale = "pt_PT"
+	EntityOrganizationLocaleSkSk EntityOrganizationLocale = "sk_SK"
+	EntityOrganizationLocaleSvSe EntityOrganizationLocale = "sv_SE"
 	EntityOrganizationLocaleNull EntityOrganizationLocale = "null"
 )
 
@@ -42,7 +44,7 @@ func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
 func (e *EntityOrganizationLocale) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "en_US", "en_GB", "nl_NL", "nl_BE", "de_DE", "de_AT", "de_CH", "de_LU", "fr_FR", "fr_BE", "fr_LU", "es_ES", "ca_ES", "pt_PT", "it_IT", "nb_NO", "sv_SE", "fi_FI", "da_DK", "is_IS", "hu_HU", "pl_PL", "lv_LV", "lt_LT", "null":
+		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "en_GB", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sv_SE", "null":
 			return true
 		}
 	}
