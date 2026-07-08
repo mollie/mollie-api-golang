@@ -12,30 +12,32 @@ import (
 type Locale string
 
 const (
-	LocaleEnUs Locale = "en_US"
-	LocaleEnGb Locale = "en_GB"
-	LocaleNlNl Locale = "nl_NL"
-	LocaleNlBe Locale = "nl_BE"
-	LocaleDeDe Locale = "de_DE"
+	LocaleCaEs Locale = "ca_ES"
+	LocaleCsCz Locale = "cs_CZ"
+	LocaleDaDk Locale = "da_DK"
 	LocaleDeAt Locale = "de_AT"
 	LocaleDeCh Locale = "de_CH"
+	LocaleDeDe Locale = "de_DE"
 	LocaleDeLu Locale = "de_LU"
-	LocaleFrFr Locale = "fr_FR"
-	LocaleFrBe Locale = "fr_BE"
-	LocaleFrLu Locale = "fr_LU"
+	LocaleEnGb Locale = "en_GB"
+	LocaleEnUs Locale = "en_US"
 	LocaleEsEs Locale = "es_ES"
-	LocaleCaEs Locale = "ca_ES"
-	LocalePtPt Locale = "pt_PT"
-	LocaleItIt Locale = "it_IT"
-	LocaleNbNo Locale = "nb_NO"
-	LocaleSvSe Locale = "sv_SE"
 	LocaleFiFi Locale = "fi_FI"
-	LocaleDaDk Locale = "da_DK"
-	LocaleIsIs Locale = "is_IS"
+	LocaleFrBe Locale = "fr_BE"
+	LocaleFrFr Locale = "fr_FR"
+	LocaleFrLu Locale = "fr_LU"
 	LocaleHuHu Locale = "hu_HU"
-	LocalePlPl Locale = "pl_PL"
-	LocaleLvLv Locale = "lv_LV"
+	LocaleIsIs Locale = "is_IS"
+	LocaleItIt Locale = "it_IT"
 	LocaleLtLt Locale = "lt_LT"
+	LocaleLvLv Locale = "lv_LV"
+	LocaleNbNo Locale = "nb_NO"
+	LocaleNlBe Locale = "nl_BE"
+	LocaleNlNl Locale = "nl_NL"
+	LocalePlPl Locale = "pl_PL"
+	LocalePtPt Locale = "pt_PT"
+	LocaleSkSk Locale = "sk_SK"
+	LocaleSvSe Locale = "sv_SE"
 	LocaleNull Locale = "null"
 )
 
@@ -48,53 +50,57 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "en_US":
+	case "ca_ES":
 		fallthrough
-	case "en_GB":
+	case "cs_CZ":
 		fallthrough
-	case "nl_NL":
-		fallthrough
-	case "nl_BE":
-		fallthrough
-	case "de_DE":
+	case "da_DK":
 		fallthrough
 	case "de_AT":
 		fallthrough
 	case "de_CH":
 		fallthrough
+	case "de_DE":
+		fallthrough
 	case "de_LU":
 		fallthrough
-	case "fr_FR":
+	case "en_GB":
 		fallthrough
-	case "fr_BE":
-		fallthrough
-	case "fr_LU":
+	case "en_US":
 		fallthrough
 	case "es_ES":
 		fallthrough
-	case "ca_ES":
-		fallthrough
-	case "pt_PT":
-		fallthrough
-	case "it_IT":
-		fallthrough
-	case "nb_NO":
-		fallthrough
-	case "sv_SE":
-		fallthrough
 	case "fi_FI":
 		fallthrough
-	case "da_DK":
+	case "fr_BE":
 		fallthrough
-	case "is_IS":
+	case "fr_FR":
+		fallthrough
+	case "fr_LU":
 		fallthrough
 	case "hu_HU":
 		fallthrough
-	case "pl_PL":
+	case "is_IS":
+		fallthrough
+	case "it_IT":
+		fallthrough
+	case "lt_LT":
 		fallthrough
 	case "lv_LV":
 		fallthrough
-	case "lt_LT":
+	case "nb_NO":
+		fallthrough
+	case "nl_BE":
+		fallthrough
+	case "nl_NL":
+		fallthrough
+	case "pl_PL":
+		fallthrough
+	case "pt_PT":
+		fallthrough
+	case "sk_SK":
+		fallthrough
+	case "sv_SE":
 		fallthrough
 	case "null":
 		*e = Locale(v)

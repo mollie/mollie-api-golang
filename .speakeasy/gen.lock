@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: f37c11e53508ebd367999b108a7ca00f
+  docChecksum: 8593aecb906dbab90ddb6a74d1fe8078
   docVersion: 1.0.0
-  speakeasyVersion: 1.788.0
-  generationVersion: 2.915.0
-  releaseVersion: 1.3.16
-  configChecksum: 3d24d6ec3c1272f7e7daaf486712043c
+  speakeasyVersion: 1.789.0
+  generationVersion: 2.916.2
+  releaseVersion: 1.3.17
+  configChecksum: 92de62459fe8efbba186f88897f88380
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 446e9d7d-ee88-4575-8900-e4a57ca3c276
-  pristine_commit_hash: 13d33911441989d3f03abfa072a3756fce84e6ef
-  pristine_tree_hash: 21df18e3b9b55f0f5b70f8b52639fa302b64aa5e
+  generation_id: 331c9e75-795a-4386-b7d5-a0bbb960d487
+  pristine_commit_hash: a918bdda1eb72ed8b7f50e35c6ed83cb8df68554
+  pristine_tree_hash: 7cf6471764ef175bfcabf851c0d22066b121096e
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0c6ef610178a29fccc0e9d17df313c7b1c9c109a
-    pristine_git_object: d8fb7ba9a673ac214746ee9c284caedb51da22a6
+    last_write_checksum: sha1:1d4a284bf5177d8fe11314415ddbdbda2bbe6d1e
+    pristine_git_object: fe1b626820298dd5391c6b1d3d48b7c6545717d3
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -565,8 +565,8 @@ trackedFiles:
     pristine_git_object: 668305f52ef8d66450c75d5630e0748b90e859e7
   docs/models/components/entityorganizationlocale.md:
     id: 05a9622ccfaa
-    last_write_checksum: sha1:03888d048a2bf3da664bec867c0a2c1f4b93cb4e
-    pristine_git_object: ce68cde0c60589a796b0bec5207eeef23cf71d42
+    last_write_checksum: sha1:f880de7d9a67c173a797bca9a2df6049faac2f47
+    pristine_git_object: ba566cc615ae3d511ed0696b0148190a98ec87ea
   docs/models/components/entitypairingcode.md:
     id: 11df7ff7e21a
     last_write_checksum: sha1:3ee42f1dc2dc7083c5ce272d7ca7f5ef27410df1
@@ -1281,12 +1281,12 @@ trackedFiles:
     pristine_git_object: 54614902281fcc9a2e262df22089ffdeb7fe6a69
   docs/models/components/locale.md:
     id: ee63d94417a1
-    last_write_checksum: sha1:8387676244bb92a1c1fe8cc3ee936949de8f33d7
-    pristine_git_object: 04a1b292dd4fb95366c9b766a5f81795b822a12a
+    last_write_checksum: sha1:8607eb2138bfde3cf1a8867cfa441696eea6c0e0
+    pristine_git_object: bde1e26563466a544bc4b1ac8f9fd965344ac651
   docs/models/components/localeresponse.md:
     id: 7ef871d2fbe2
-    last_write_checksum: sha1:8b70073a2f801e6c89bf0dc69a5f1288a02205e8
-    pristine_git_object: b70c6b76a0bf2ac7f62e00715fd24f410dcce511
+    last_write_checksum: sha1:fbdf70f2b1e22b8acae20e91f5d487003d8bea62
+    pristine_git_object: 58cb8937b76d12d5b1fe7d2b9cb53d667f2f91aa
   docs/models/components/managedfee.md:
     id: d6bf3ad0f360
     last_write_checksum: sha1:8bcec6f644e05bae99a0e6b921179c260a9ba97f
@@ -4293,8 +4293,8 @@ trackedFiles:
     pristine_git_object: b0d69750dab93a650b46ddc44ef1e3013d9fe3dc
   models/components/entityorganization.go:
     id: 1b64c482dbfe
-    last_write_checksum: sha1:dfa1ea74da199712de726ca6337d593ddb9c6381
-    pristine_git_object: 5e4d91140ed11ac60f82584ec8cc184743b93e0c
+    last_write_checksum: sha1:e4b0b3d905f4ee6279290c082a1da43463f548e0
+    pristine_git_object: cde2bd6d1704ffe6ce0970b4acbfe2267de8b013
   models/components/entitypairingcode.go:
     id: 5eccbd7d061a
     last_write_checksum: sha1:3548d8221b80a299140bf32e8b3733def1a938d7
@@ -4457,12 +4457,12 @@ trackedFiles:
     pristine_git_object: 4b02c00aaf1daaf71b9cf39830d4f230730b4ca6
   models/components/locale.go:
     id: 93b814fef79b
-    last_write_checksum: sha1:d0f9bb3ba2e39ef99e3927a4f013a9fd1b6f8d16
-    pristine_git_object: 2b8b54f08ab03e47d162910b0612edc3bf3cce84
+    last_write_checksum: sha1:7ec1a1f99fc1de6597789da0ed9745077ec808ba
+    pristine_git_object: 2dac7e3e2c4e732c3f71b50800be993a4bb97df1
   models/components/localeresponse.go:
     id: 3112bcc4688b
-    last_write_checksum: sha1:71326e8d89f1e7bb9192e89c1851864b99d4d88c
-    pristine_git_object: c8dbd83a114299419f02d4e49299bedc0acc1792
+    last_write_checksum: sha1:df1b224f8dada10f3b9817e7d2c3d44d410cb192
+    pristine_git_object: 48c2b3b7e366bdb918790de2e3960a3cfad2b33d
   models/components/mandatedetailscardlabelresponse.go:
     id: 1724528f5c17
     last_write_checksum: sha1:71cd8287be5bfde59ed71b99fd4232d090ceeaea
@@ -9574,7 +9574,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Profiles.Create()`: \n  *  `request.ProfileRequest.BusinessCategory` **Changed**\n  *  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Clients.Get()`:  `response.Embedded.Organization.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Profiles.GetCurrent()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Update()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Get()`:  `response.BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Profiles.List()`:  `response.Embedded.Profiles[].BusinessCategory` **Changed** (Breaking ⚠️)\n* `Client.Organizations.Get()`:  `response.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Organizations.GetCurrent()`:  `response.RegistrationNumber` **Changed** (Breaking ⚠️)\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Settlements.List()`: \n  *  `request.Request.Currencies` **Changed**\n* `Client.Balances.ListTransactions()`:  `response.Embedded.BalanceTransactions[].Type` **Changed**\n* `Client.Balances.GetReport()`:  `response.Totals.PendingBalance.Open.Subtotals[].SubTotals[].TransactionType` **Changed**\n* `Client.Balances.GetPrimary()`:  `response.Currency.Enum(ron)` **Added**\n* `Client.Balances.Get()`:  `response.Currency.Enum(ron)` **Added**\n* `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(payment-response).Details.FeeRegion` **Changed**\n* `Client.Payments.Create()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Balances.List()`:  `response.Embedded.Balances[].Currency.Enum(ron)` **Added**\n* `Client.Payments.Get()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Payments.Update()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Payments.Cancel()`:  `response.Details.FeeRegion` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Customers.CreatePayment()`:  `response.Details.FeeRegion` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Details.FeeRegion` **Changed**\n"
+releaseNotes: "## Go SDK Changes:\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Organizations.Get()`:  `response.Locale` **Changed**\n* `Client.Organizations.GetCurrent()`:  `response.Locale` **Changed**\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.Locale` **Changed**\n* `Client.Clients.Get()`:  `response.Embedded.Organization.Locale` **Changed**\n* `Client.ClientLinks.Create()`: \n  *  `request.ClientLinkRequest.Owner.Locale` **Changed**\n* `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(payment-response).Locale` **Changed**\n* `Client.Payments.Create()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Payments.Get()`:  `response.Locale` **Changed**\n* `Client.Payments.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.Cancel()`:  `response.Locale` **Changed**\n* `Client.Methods.List()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.All()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.Get()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Customers.Create()`: \n  *  `request.EntityCustomer.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.List()`:  `response.Embedded.Customers[].Locale` **Changed**\n* `Client.Customers.Get()`:  `response.Locale` **Changed**\n* `Client.Customers.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.CreatePayment()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
