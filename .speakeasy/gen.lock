@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 8593aecb906dbab90ddb6a74d1fe8078
+  docChecksum: 5bf79303ff8ff1ec1a79986258d4d6d3
   docVersion: 1.0.0
-  speakeasyVersion: 1.789.0
-  generationVersion: 2.916.2
-  releaseVersion: 1.3.17
-  configChecksum: 92de62459fe8efbba186f88897f88380
+  speakeasyVersion: 1.790.2
+  generationVersion: 2.918.3
+  releaseVersion: 1.3.18
+  configChecksum: cbb50aaf96c6313eb747b06f94ea62a3
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 331c9e75-795a-4386-b7d5-a0bbb960d487
-  pristine_commit_hash: a918bdda1eb72ed8b7f50e35c6ed83cb8df68554
-  pristine_tree_hash: 7cf6471764ef175bfcabf851c0d22066b121096e
+  generation_id: 0b8ad432-dada-4d33-aba6-c7ed05621f31
+  pristine_commit_hash: 7f2b0479bc4f85d0db10f4486b981b40784614a5
+  pristine_tree_hash: 4902576ef08c65ced90aefe7fbc6fad1b453daee
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:1d4a284bf5177d8fe11314415ddbdbda2bbe6d1e
-    pristine_git_object: fe1b626820298dd5391c6b1d3d48b7c6545717d3
+    last_write_checksum: sha1:6f80331d7c230c3d85943fbe0927b170ac598be2
+    pristine_git_object: 44173da7e1b74f9c571c06516d7d1fb381431f89
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -3933,8 +3933,8 @@ trackedFiles:
     pristine_git_object: d57917978bc77e0cc2f578568ca99993a7601130
   docs/sdks/salesinvoices/README.md:
     id: 7b2a80290a07
-    last_write_checksum: sha1:ae3491efe6ca7456c3888105d6fe8ac2cf31a1ba
-    pristine_git_object: 32570db84bcea89906a915733b6e907d893ec45a
+    last_write_checksum: sha1:ea44b763e38faa32a05db3a6290dcacf4916ac8a
+    pristine_git_object: adf72215a30218e8c9309441b797898a75bf225b
   docs/sdks/sessions/README.md:
     id: 57ad62844f79
     last_write_checksum: sha1:7b878975e34172905698e28ec388fb0eaf218aa5
@@ -5525,8 +5525,8 @@ trackedFiles:
     pristine_git_object: 41b99806908e2adeaa2c0bcfb601c08b8064eae6
   salesinvoices.go:
     id: 089376558bce
-    last_write_checksum: sha1:fe6b9e0fc9c2221c89ba46975d2d31d1590cbe0e
-    pristine_git_object: dcad3a8355ed36650886ad03a3a5edc7c39038ec
+    last_write_checksum: sha1:4ec694a46ad440999cb56afcf97f6dd69cab67aa
+    pristine_git_object: 9f593d013d138629a414f51ec143ff7180b4b97d
   sessions.go:
     id: 8c9f6fb78f3e
     last_write_checksum: sha1:e9a433c3cfd63c031f166910ac50f39628f474e2
@@ -9574,7 +9574,6 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Organizations.Get()`:  `response.Locale` **Changed**\n* `Client.Organizations.GetCurrent()`:  `response.Locale` **Changed**\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.Locale` **Changed**\n* `Client.Clients.Get()`:  `response.Embedded.Organization.Locale` **Changed**\n* `Client.ClientLinks.Create()`: \n  *  `request.ClientLinkRequest.Owner.Locale` **Changed**\n* `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(payment-response).Locale` **Changed**\n* `Client.Payments.Create()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Payments.Get()`:  `response.Locale` **Changed**\n* `Client.Payments.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.Cancel()`:  `response.Locale` **Changed**\n* `Client.Methods.List()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.All()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Methods.Get()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Customers.Create()`: \n  *  `request.EntityCustomer.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.List()`:  `response.Embedded.Customers[].Locale` **Changed**\n* `Client.Customers.Get()`:  `response.Locale` **Changed**\n* `Client.Customers.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.CreatePayment()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
