@@ -80,11 +80,18 @@ type SessionResponse struct {
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
 	// right page referencing the order when your customer returns.
-	RedirectURL     string                       `json:"redirectUrl"`
-	BillingAddress  *PaymentAddress              `json:"billingAddress,omitempty"`
-	ShippingAddress *PaymentAddress              `json:"shippingAddress,omitempty"`
-	CustomerID      *string                      `json:"customerId,omitempty"`
-	SequenceType    *SessionSequenceTypeResponse `json:"sequenceType,omitempty"`
+	RedirectURL string `json:"redirectUrl"`
+	// > 🚧 Private beta
+	// >
+	// > This property is currently in private beta, and the final specification may still change.
+	//
+	// Declare which customer details should be collected during checkout. Mollie can collect these details for you
+	// with the Express Component and returns them on the session's and payment's `billingAddress` and `shippingAddress`.
+	RequiredCustomerDetails []SessionRequiredCustomerDetailsResponse `json:"requiredCustomerDetails,omitempty"`
+	BillingAddress          *PaymentAddress                          `json:"billingAddress,omitempty"`
+	ShippingAddress         *PaymentAddress                          `json:"shippingAddress,omitempty"`
+	CustomerID              *string                                  `json:"customerId,omitempty"`
+	SequenceType            *SessionSequenceTypeResponse             `json:"sequenceType,omitempty"`
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	//
@@ -170,6 +177,13 @@ func (s *SessionResponse) GetRedirectURL() string {
 		return ""
 	}
 	return s.RedirectURL
+}
+
+func (s *SessionResponse) GetRequiredCustomerDetails() []SessionRequiredCustomerDetailsResponse {
+	if s == nil {
+		return nil
+	}
+	return s.RequiredCustomerDetails
 }
 
 func (s *SessionResponse) GetBillingAddress() *PaymentAddress {
