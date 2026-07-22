@@ -46,6 +46,9 @@ func main() {
         Description: "Order #12345",
         Lines: []components.SessionLineItem{},
         RedirectURL: "https://example.org/redirect",
+        RequiredCustomerDetails: []components.SessionRequiredCustomerDetails{
+            components.SessionRequiredCustomerDetailsBillingAddress,
+        },
         BillingAddress: &components.PaymentAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
