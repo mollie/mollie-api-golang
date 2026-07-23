@@ -31,37 +31,37 @@ func (t *TransferResponseAccount) GetIban() string {
 	return t.Iban
 }
 
-// TransferResponseDebtor - The debtor (sender) of the transfer, including their name and account details.
-type TransferResponseDebtor struct {
+// Debtor - The debtor (sender) of the transfer, including their name and account details.
+type Debtor struct {
 	// The full name of the account holder.
 	FullName string `json:"fullName"`
 	// The bank account details of the party.
 	Account TransferResponseAccount `json:"account"`
 }
 
-func (t TransferResponseDebtor) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
+func (d Debtor) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
 }
 
-func (t *TransferResponseDebtor) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"fullName", "account"}); err != nil {
+func (d *Debtor) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"fullName", "account"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TransferResponseDebtor) GetFullName() string {
-	if t == nil {
+func (d *Debtor) GetFullName() string {
+	if d == nil {
 		return ""
 	}
-	return t.FullName
+	return d.FullName
 }
 
-func (t *TransferResponseDebtor) GetAccount() TransferResponseAccount {
-	if t == nil {
+func (d *Debtor) GetAccount() TransferResponseAccount {
+	if d == nil {
 		return TransferResponseAccount{}
 	}
-	return t.Account
+	return d.Account
 }
 
 type TransferResponse struct {
@@ -73,7 +73,7 @@ type TransferResponse struct {
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The debtor (sender) of the transfer, including their name and account details.
-	Debtor TransferResponseDebtor `json:"debtor"`
+	Debtor Debtor `json:"debtor"`
 	// A party involved in the transfer, representing either the debtor (sender) or creditor (recipient).
 	// Contains the party's name and account details.
 	Creditor TransferParty `json:"creditor"`
@@ -142,9 +142,9 @@ func (t *TransferResponse) GetMode() Mode {
 	return t.Mode
 }
 
-func (t *TransferResponse) GetDebtor() TransferResponseDebtor {
+func (t *TransferResponse) GetDebtor() Debtor {
 	if t == nil {
-		return TransferResponseDebtor{}
+		return Debtor{}
 	}
 	return t.Debtor
 }
