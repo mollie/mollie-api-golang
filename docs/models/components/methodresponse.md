@@ -26,6 +26,7 @@ custom := components.MethodResponse("custom_value")
 | `MethodResponseBanktransfer`   | banktransfer                   |
 | `MethodResponseBelfius`        | belfius                        |
 | `MethodResponseBillie`         | billie                         |
+| `MethodResponseBillink`        | billink                        |
 | `MethodResponseBizum`          | bizum                          |
 | `MethodResponseBlik`           | blik                           |
 | `MethodResponseCreditcard`     | creditcard                     |

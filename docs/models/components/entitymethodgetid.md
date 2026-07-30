@@ -29,6 +29,7 @@ custom := components.EntityMethodGetID("custom_value")
 | `EntityMethodGetIDBanktransfer`   | banktransfer                      |
 | `EntityMethodGetIDBelfius`        | belfius                           |
 | `EntityMethodGetIDBillie`         | billie                            |
+| `EntityMethodGetIDBillink`        | billink                           |
 | `EntityMethodGetIDBizum`          | bizum                             |
 | `EntityMethodGetIDBlik`           | blik                              |
 | `EntityMethodGetIDCreditcard`     | creditcard                        |

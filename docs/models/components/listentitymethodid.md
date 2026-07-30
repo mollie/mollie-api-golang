@@ -29,6 +29,7 @@ custom := components.ListEntityMethodID("custom_value")
 | `ListEntityMethodIDBanktransfer` | banktransfer                     |
 | `ListEntityMethodIDBelfius`      | belfius                          |
 | `ListEntityMethodIDBillie`       | billie                           |
+| `ListEntityMethodIDBillink`      | billink                          |
 | `ListEntityMethodIDBizum`        | bizum                            |
 | `ListEntityMethodIDBlik`         | blik                             |
 | `ListEntityMethodIDCreditcard`   | creditcard                       |

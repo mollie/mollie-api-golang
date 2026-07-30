@@ -19,6 +19,7 @@ const (
 	MethodEnumBanktransfer MethodEnum = "banktransfer"
 	MethodEnumBelfius      MethodEnum = "belfius"
 	MethodEnumBillie       MethodEnum = "billie"
+	MethodEnumBillink      MethodEnum = "billink"
 	MethodEnumBizum        MethodEnum = "bizum"
 	MethodEnumBlik         MethodEnum = "blik"
 	MethodEnumCreditcard   MethodEnum = "creditcard"
@@ -71,6 +72,8 @@ func (e *MethodEnum) UnmarshalJSON(data []byte) error {
 	case "belfius":
 		fallthrough
 	case "billie":
+		fallthrough
+	case "billink":
 		fallthrough
 	case "bizum":
 		fallthrough

@@ -16,6 +16,7 @@ const (
 	EntityMethodGetIDBanktransfer EntityMethodGetID = "banktransfer"
 	EntityMethodGetIDBelfius      EntityMethodGetID = "belfius"
 	EntityMethodGetIDBillie       EntityMethodGetID = "billie"
+	EntityMethodGetIDBillink      EntityMethodGetID = "billink"
 	EntityMethodGetIDBizum        EntityMethodGetID = "bizum"
 	EntityMethodGetIDBlik         EntityMethodGetID = "blik"
 	EntityMethodGetIDCreditcard   EntityMethodGetID = "creditcard"
@@ -60,7 +61,7 @@ func (e EntityMethodGetID) ToPointer() *EntityMethodGetID {
 func (e *EntityMethodGetID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
 			return true
 		}
 	}

@@ -16,6 +16,7 @@ const (
 	ListEntityMethodIDBanktransfer ListEntityMethodID = "banktransfer"
 	ListEntityMethodIDBelfius      ListEntityMethodID = "belfius"
 	ListEntityMethodIDBillie       ListEntityMethodID = "billie"
+	ListEntityMethodIDBillink      ListEntityMethodID = "billink"
 	ListEntityMethodIDBizum        ListEntityMethodID = "bizum"
 	ListEntityMethodIDBlik         ListEntityMethodID = "blik"
 	ListEntityMethodIDCreditcard   ListEntityMethodID = "creditcard"
@@ -52,7 +53,7 @@ func (e ListEntityMethodID) ToPointer() *ListEntityMethodID {
 func (e *ListEntityMethodID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "googlepay", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "googlepay", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher":
 			return true
 		}
 	}
