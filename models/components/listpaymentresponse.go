@@ -232,7 +232,7 @@ func (l *ListPaymentResponseLine) GetRecurring() *RecurringLineItem {
 // Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
 // `country`.
 //
-// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
 type ListPaymentResponseBillingAddress struct {
 	// The title of the person, for example *Mr.* or *Mrs.*.
 	Title *string `json:"title,omitempty"`
@@ -627,7 +627,7 @@ type ListPaymentResponse struct {
 	//
 	// All lines must have the same currency as the payment.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+	// Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
 	Lines []ListPaymentResponseLine `json:"lines,omitempty"`
 	// The customer's billing address details. We advise to provide these details to improve fraud protection and
 	// conversion.
@@ -635,7 +635,7 @@ type ListPaymentResponse struct {
 	// Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
 	// `country`.
 	//
-	// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+	// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
 	BillingAddress  *ListPaymentResponseBillingAddress `json:"billingAddress,omitempty"`
 	ShippingAddress *PaymentAddress                    `json:"shippingAddress,omitempty"`
 	// Sets the language for customer-facing content and communications.

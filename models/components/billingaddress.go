@@ -9,7 +9,7 @@ package components
 // Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
 // `country`.
 //
-// Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
 type BillingAddress struct {
 	// The title of the person, for example *Mr.* or *Mrs.*.
 	Title *string `json:"title,omitempty"`

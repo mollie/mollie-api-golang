@@ -23,6 +23,7 @@ value := components.MethodEnumAlma
 | `MethodEnumBanktransfer` | banktransfer             |
 | `MethodEnumBelfius`      | belfius                  |
 | `MethodEnumBillie`       | billie                   |
+| `MethodEnumBillink`      | billink                  |
 | `MethodEnumBizum`        | bizum                    |
 | `MethodEnumBlik`         | blik                     |
 | `MethodEnumCreditcard`   | creditcard               |

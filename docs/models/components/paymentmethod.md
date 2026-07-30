@@ -28,6 +28,7 @@ custom := components.PaymentMethod("custom_value")
 | `PaymentMethodBanktransfer`      | banktransfer                     |
 | `PaymentMethodBelfius`           | belfius                          |
 | `PaymentMethodBillie`            | billie                           |
+| `PaymentMethodBillink`           | billink                          |
 | `PaymentMethodBizum`             | bizum                            |
 | `PaymentMethodBitcoin`           | bitcoin                          |
 | `PaymentMethodBlik`              | blik                             |
