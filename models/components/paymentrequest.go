@@ -573,7 +573,7 @@ type PaymentRequest struct {
 	// required.
 	ProfileID *string `json:"profileId,omitempty"`
 	// The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is tomorrow, and the
-	// maximum date is 100 days after tomorrow.
+	// maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
 	//
 	// After you created the payment, you can still update the `dueDate` via [Update payment](update-payment).
 	//

@@ -54,7 +54,8 @@ type UpdatePaymentRequestBody struct {
 	Method *components.MethodRequest `json:"method,omitempty"`
 	// Sets the language for customer-facing content and communications.
 	Locale *components.Locale `json:"locale,omitempty"`
-	// The date by which the payment should be completed in `YYYY-MM-DD` format
+	// The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the same effect
+	// as omitting the field.
 	DueDate *string `json:"dueDate,omitempty"`
 	// For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
 	// rates you have used for the order to ensure your customer's country matches the VAT country.
