@@ -11,6 +11,12 @@ type EntityCapture struct {
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	Metadata *Metadata `json:"metadata,omitempty"`
+	// Whether to create the entity in test mode or live mode.
+	//
+	// Most API credentials are specifically created for either live mode or test mode, in which case this parameter must
+	// not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+	// `testmode` to `true`.
+	Testmode *bool `json:"testmode,omitempty"`
 }
 
 func (e *EntityCapture) GetDescription() *string {
@@ -32,4 +38,11 @@ func (e *EntityCapture) GetMetadata() *Metadata {
 		return nil
 	}
 	return e.Metadata
+}
+
+func (e *EntityCapture) GetTestmode() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.Testmode
 }

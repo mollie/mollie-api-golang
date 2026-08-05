@@ -7,7 +7,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.BalanceTransactionTypePayment
+value := components.BalanceTransactionTypeBalanceChargeFee
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.BalanceTransactionType("custom_value")
@@ -18,45 +18,47 @@ custom := components.BalanceTransactionType("custom_value")
 
 | Name                                                      | Value                                                     |
 | --------------------------------------------------------- | --------------------------------------------------------- |
-| `BalanceTransactionTypePayment`                           | payment                                                   |
-| `BalanceTransactionTypeSplitPayment`                      | split-payment                                             |
+| `BalanceTransactionTypeBalanceChargeFee`                  | balance-charge-fee                                        |
+| `BalanceTransactionTypeBalanceCorrection`                 | balance-correction                                        |
+| `BalanceTransactionTypeBalanceReserve`                    | balance-reserve                                           |
+| `BalanceTransactionTypeBalanceReserveReturn`              | balance-reserve-return                                    |
+| `BalanceTransactionTypeBalanceTopup`                      | balance-topup                                             |
+| `BalanceTransactionTypeCanceledTransfer`                  | canceled-transfer                                         |
+| `BalanceTransactionTypeCapture`                           | capture                                                   |
+| `BalanceTransactionTypeCashCollateralIssuance`            | cash-collateral-issuance                                  |
+| `BalanceTransactionTypeCashCollateralRelease`             | cash-collateral-release                                   |
+| `BalanceTransactionTypeChargeback`                        | chargeback                                                |
+| `BalanceTransactionTypeChargebackCompensation`            | chargeback-compensation                                   |
+| `BalanceTransactionTypeChargebackReversal`                | chargeback-reversal                                       |
 | `BalanceTransactionTypeFailedPayment`                     | failed-payment                                            |
 | `BalanceTransactionTypeFailedPlatformSplitPayment`        | failed-platform-split-payment                             |
 | `BalanceTransactionTypeFailedSplitPaymentCompensation`    | failed-split-payment-compensation                         |
-| `BalanceTransactionTypeCapture`                           | capture                                                   |
-| `BalanceTransactionTypeSplitTransaction`                  | split-transaction                                         |
-| `BalanceTransactionTypeRefund`                            | refund                                                    |
-| `BalanceTransactionTypePlatformPaymentRefund`             | platform-payment-refund                                   |
-| `BalanceTransactionTypeReturnedPlatformPaymentRefund`     | returned-platform-payment-refund                          |
-| `BalanceTransactionTypeRefundCompensation`                | refund-compensation                                       |
-| `BalanceTransactionTypeReturnedRefundCompensation`        | returned-refund-compensation                              |
-| `BalanceTransactionTypeReturnedRefund`                    | returned-refund                                           |
-| `BalanceTransactionTypeChargeback`                        | chargeback                                                |
-| `BalanceTransactionTypeChargebackReversal`                | chargeback-reversal                                       |
-| `BalanceTransactionTypeChargebackCompensation`            | chargeback-compensation                                   |
-| `BalanceTransactionTypeReversedChargebackCompensation`    | reversed-chargeback-compensation                          |
-| `BalanceTransactionTypePlatformPaymentChargeback`         | platform-payment-chargeback                               |
-| `BalanceTransactionTypeReversedPlatformPaymentChargeback` | reversed-platform-payment-chargeback                      |
 | `BalanceTransactionTypeFeePrepayment`                     | fee-prepayment                                            |
-| `BalanceTransactionTypeOutgoingTransfer`                  | outgoing-transfer                                         |
+| `BalanceTransactionTypeHeldRollingReserve`                | held-rolling-reserve                                      |
 | `BalanceTransactionTypeIncomingTransfer`                  | incoming-transfer                                         |
-| `BalanceTransactionTypeCanceledTransfer`                  | canceled-transfer                                         |
-| `BalanceTransactionTypeReturnedTransfer`                  | returned-transfer                                         |
-| `BalanceTransactionTypeBalanceReserve`                    | balance-reserve                                           |
-| `BalanceTransactionTypeBalanceReserveReturn`              | balance-reserve-return                                    |
+| `BalanceTransactionTypeInvoiceCompensation`               | invoice-compensation                                      |
 | `BalanceTransactionTypeInvoiceRoundingCompensation`       | invoice-rounding-compensation                             |
+| `BalanceTransactionTypeLoan`                              | loan                                                      |
+| `BalanceTransactionTypeMovement`                          | movement                                                  |
+| `BalanceTransactionTypeOutgoingCustomAmountTransfer`      | outgoing-custom-amount-transfer                           |
+| `BalanceTransactionTypeOutgoingTransfer`                  | outgoing-transfer                                         |
+| `BalanceTransactionTypePayment`                           | payment                                                   |
+| `BalanceTransactionTypePendingRollingReserve`             | pending-rolling-reserve                                   |
+| `BalanceTransactionTypePlatformPaymentChargeback`         | platform-payment-chargeback                               |
+| `BalanceTransactionTypePlatformPaymentRefund`             | platform-payment-refund                                   |
+| `BalanceTransactionTypeRefund`                            | refund                                                    |
+| `BalanceTransactionTypeRefundCompensation`                | refund-compensation                                       |
+| `BalanceTransactionTypeReleasedRollingReserve`            | released-rolling-reserve                                  |
+| `BalanceTransactionTypeRepayment`                         | repayment                                                 |
+| `BalanceTransactionTypeReturnedPlatformPaymentRefund`     | returned-platform-payment-refund                          |
+| `BalanceTransactionTypeReturnedRefund`                    | returned-refund                                           |
+| `BalanceTransactionTypeReturnedRefundCompensation`        | returned-refund-compensation                              |
+| `BalanceTransactionTypeReturnedTransfer`                  | returned-transfer                                         |
+| `BalanceTransactionTypeReversedChargebackCompensation`    | reversed-chargeback-compensation                          |
+| `BalanceTransactionTypeReversedPlatformPaymentChargeback` | reversed-platform-payment-chargeback                      |
 | `BalanceTransactionTypeRollingReserveHold`                | rolling-reserve-hold                                      |
 | `BalanceTransactionTypeRollingReserveRelease`             | rolling-reserve-release                                   |
-| `BalanceTransactionTypeBalanceCorrection`                 | balance-correction                                        |
-| `BalanceTransactionTypeRepayment`                         | repayment                                                 |
-| `BalanceTransactionTypeLoan`                              | loan                                                      |
-| `BalanceTransactionTypeBalanceTopup`                      | balance-topup                                             |
-| `BalanceTransactionTypeCashCollateralIssuance`            | cash-collateral-issuance';                                |
-| `BalanceTransactionTypeCashCollateralRelease`             | cash-collateral-release                                   |
-| `BalanceTransactionTypePendingRollingReserve`             | pending-rolling-reserve                                   |
+| `BalanceTransactionTypeSplitPayment`                      | split-payment                                             |
+| `BalanceTransactionTypeSplitTransaction`                  | split-transaction                                         |
 | `BalanceTransactionTypeToBeReleasedRollingReserve`        | to-be-released-rolling-reserve                            |
-| `BalanceTransactionTypeHeldRollingReserve`                | held-rolling-reserve                                      |
-| `BalanceTransactionTypeReleasedRollingReserve`            | released-rolling-reserve                                  |
-| `BalanceTransactionTypeMovement`                          | movement                                                  |
-| `BalanceTransactionTypeInvoiceCompensation`               | invoice-compensation                                      |
 | `BalanceTransactionTypeTopup`                             | topup                                                     |

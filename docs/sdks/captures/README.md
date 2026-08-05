@@ -48,6 +48,7 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -96,6 +97,7 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
+        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
