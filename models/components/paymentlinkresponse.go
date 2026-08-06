@@ -115,8 +115,8 @@ type PaymentLinkResponse struct {
 	//
 	// Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
 	Lines           []PaymentLineItemResponse `json:"lines,omitempty"`
-	BillingAddress  *PaymentAddress           `json:"billingAddress,omitempty"`
-	ShippingAddress *PaymentAddress           `json:"shippingAddress,omitempty"`
+	BillingAddress  *ShippingAddress          `json:"billingAddress,omitempty"`
+	ShippingAddress *ShippingAddress          `json:"shippingAddress,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
 	//
 	// Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent in the creation
@@ -237,14 +237,14 @@ func (p *PaymentLinkResponse) GetLines() []PaymentLineItemResponse {
 	return p.Lines
 }
 
-func (p *PaymentLinkResponse) GetBillingAddress() *PaymentAddress {
+func (p *PaymentLinkResponse) GetBillingAddress() *ShippingAddress {
 	if p == nil {
 		return nil
 	}
 	return p.BillingAddress
 }
 
-func (p *PaymentLinkResponse) GetShippingAddress() *PaymentAddress {
+func (p *PaymentLinkResponse) GetShippingAddress() *ShippingAddress {
 	if p == nil {
 		return nil
 	}

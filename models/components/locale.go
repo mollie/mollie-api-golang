@@ -38,7 +38,6 @@ const (
 	LocalePtPt Locale = "pt_PT"
 	LocaleSkSk Locale = "sk_SK"
 	LocaleSvSe Locale = "sv_SE"
-	LocaleNull Locale = "null"
 )
 
 func (e Locale) ToPointer() *Locale {
@@ -101,8 +100,6 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 	case "sk_SK":
 		fallthrough
 	case "sv_SE":
-		fallthrough
-	case "null":
 		*e = Locale(v)
 		return nil
 	default:

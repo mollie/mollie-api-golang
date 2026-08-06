@@ -633,7 +633,7 @@ type ListSettlementPaymentResponse struct {
 	//
 	// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
 	BillingAddress  *ListSettlementPaymentResponseBillingAddress `json:"billingAddress,omitempty"`
-	ShippingAddress *PaymentAddress                              `json:"shippingAddress,omitempty"`
+	ShippingAddress *ShippingAddress                             `json:"shippingAddress,omitempty"`
 	// Sets the language for customer-facing content and communications.
 	Locale *LocaleResponse `json:"locale,omitempty"`
 	// This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
@@ -859,7 +859,7 @@ func (l *ListSettlementPaymentResponse) GetBillingAddress() *ListSettlementPayme
 	return l.BillingAddress
 }
 
-func (l *ListSettlementPaymentResponse) GetShippingAddress() *PaymentAddress {
+func (l *ListSettlementPaymentResponse) GetShippingAddress() *ShippingAddress {
 	if l == nil {
 		return nil
 	}

@@ -43,4 +43,3 @@ value := components.LocaleCaEs
 | `LocalePtPt` | pt_PT        |
 | `LocaleSkSk` | sk_SK        |
 | `LocaleSvSe` | sv_SE        |
-| `LocaleNull` | null         |
