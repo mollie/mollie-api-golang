@@ -114,7 +114,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -128,7 +128,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -285,7 +285,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -299,7 +299,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -456,7 +456,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -470,7 +470,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -627,7 +627,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -641,7 +641,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -798,7 +798,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -812,7 +812,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -969,7 +969,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -983,7 +983,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1140,7 +1140,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -1154,7 +1154,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1311,7 +1311,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -1325,7 +1325,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1482,7 +1482,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -1496,7 +1496,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1653,7 +1653,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -1667,7 +1667,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1824,7 +1824,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -1838,7 +1838,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -1995,7 +1995,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -2009,7 +2009,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -2166,7 +2166,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -2180,7 +2180,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         Method: client.Pointer(components.CreateMethodMethodEnum(
             components.MethodEnumIdeal,
         )),
@@ -2663,7 +2663,7 @@ func main() {
         Method: client.Pointer(components.CreateMethodRequestMethodEnum(
             components.MethodEnumIdeal,
         )),
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
         Testmode: client.Pointer(false),
@@ -2681,7 +2681,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -2747,7 +2747,7 @@ func main() {
         Method: client.Pointer(components.CreateMethodRequestMethodEnum(
             components.MethodEnumIdeal,
         )),
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
         Testmode: client.Pointer(false),
@@ -2765,7 +2765,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -2831,7 +2831,7 @@ func main() {
         Method: client.Pointer(components.CreateMethodRequestMethodEnum(
             components.MethodEnumIdeal,
         )),
-        Locale: components.LocaleEnUs.ToPointer(),
+        Locale: components.Locale2EnUs.ToPointer(),
         DueDate: client.Pointer("2025-01-01"),
         RestrictPaymentMethodsToCountry: client.Pointer("NL"),
         Testmode: client.Pointer(false),
@@ -2849,7 +2849,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),

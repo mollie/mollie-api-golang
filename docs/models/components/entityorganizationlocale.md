@@ -46,4 +46,3 @@ custom := components.EntityOrganizationLocale("custom_value")
 | `EntityOrganizationLocalePtPt` | pt_PT                          |
 | `EntityOrganizationLocaleSkSk` | sk_SK                          |
 | `EntityOrganizationLocaleSvSe` | sv_SE                          |
-| `EntityOrganizationLocaleNull` | null                           |

@@ -46,4 +46,3 @@ custom := components.LocaleResponse("custom_value")
 | `LocaleResponsePtPt` | pt_PT                |
 | `LocaleResponseSkSk` | sk_SK                |
 | `LocaleResponseSvSe` | sv_SE                |
-| `LocaleResponseNull` | null                 |

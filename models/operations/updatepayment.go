@@ -53,7 +53,7 @@ type UpdatePaymentRequestBody struct {
 	// payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 	Method *components.MethodRequest `json:"method,omitempty"`
 	// Sets the language for customer-facing content and communications.
-	Locale *components.Locale `json:"locale,omitempty"`
+	Locale *components.Locale2 `json:"locale,omitempty"`
 	// The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the same effect
 	// as omitting the field.
 	DueDate *string `json:"dueDate,omitempty"`
@@ -95,9 +95,9 @@ type UpdatePaymentRequestBody struct {
 	// `country`.
 	//
 	// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
-	BillingAddress  *components.BillingAddress `json:"billingAddress,omitempty"`
-	ShippingAddress *components.PaymentAddress `json:"shippingAddress,omitempty"`
-	BillingEmail    *string                    `json:"billingEmail,omitempty"`
+	BillingAddress  *components.BillingAddress  `json:"billingAddress,omitempty"`
+	ShippingAddress *components.ShippingAddress `json:"shippingAddress,omitempty"`
+	BillingEmail    *string                     `json:"billingEmail,omitempty"`
 }
 
 func (u *UpdatePaymentRequestBody) GetDescription() *string {
@@ -142,7 +142,7 @@ func (u *UpdatePaymentRequestBody) GetMethod() *components.MethodRequest {
 	return u.Method
 }
 
-func (u *UpdatePaymentRequestBody) GetLocale() *components.Locale {
+func (u *UpdatePaymentRequestBody) GetLocale() *components.Locale2 {
 	if u == nil {
 		return nil
 	}
@@ -184,7 +184,7 @@ func (u *UpdatePaymentRequestBody) GetBillingAddress() *components.BillingAddres
 	return u.BillingAddress
 }
 
-func (u *UpdatePaymentRequestBody) GetShippingAddress() *components.PaymentAddress {
+func (u *UpdatePaymentRequestBody) GetShippingAddress() *components.ShippingAddress {
 	if u == nil {
 		return nil
 	}

@@ -41,8 +41,8 @@ type SessionRequest struct {
 	// Declare which customer details should be collected during checkout. Mollie can collect these details for you
 	// with the Express Component and returns them on the session's and payment's `billingAddress` and `shippingAddress`.
 	RequiredCustomerDetails []SessionRequiredCustomerDetails `json:"requiredCustomerDetails,omitempty"`
-	BillingAddress          *PaymentAddress                  `json:"billingAddress,omitempty"`
-	ShippingAddress         *PaymentAddress                  `json:"shippingAddress,omitempty"`
+	BillingAddress          *ShippingAddress                 `json:"billingAddress,omitempty"`
+	ShippingAddress         *ShippingAddress                 `json:"shippingAddress,omitempty"`
 	CustomerID              *string                          `json:"customerId,omitempty"`
 	SequenceType            *SessionSequenceType             `json:"sequenceType,omitempty"`
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
@@ -100,14 +100,14 @@ func (s *SessionRequest) GetRequiredCustomerDetails() []SessionRequiredCustomerD
 	return s.RequiredCustomerDetails
 }
 
-func (s *SessionRequest) GetBillingAddress() *PaymentAddress {
+func (s *SessionRequest) GetBillingAddress() *ShippingAddress {
 	if s == nil {
 		return nil
 	}
 	return s.BillingAddress
 }
 
-func (s *SessionRequest) GetShippingAddress() *PaymentAddress {
+func (s *SessionRequest) GetShippingAddress() *ShippingAddress {
 	if s == nil {
 		return nil
 	}

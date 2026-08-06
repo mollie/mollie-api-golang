@@ -473,9 +473,9 @@ type PaymentRequest struct {
 	//
 	// Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
 	BillingAddress  *PaymentRequestBillingAddress `json:"billingAddress,omitempty"`
-	ShippingAddress *PaymentAddress               `json:"shippingAddress,omitempty"`
+	ShippingAddress *ShippingAddress              `json:"shippingAddress,omitempty"`
 	// Sets the language for customer-facing content and communications.
-	Locale *Locale `json:"locale,omitempty"`
+	Locale *Locale2 `json:"locale,omitempty"`
 	// Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific
 	// payment method and your customer will skip the selection screen and is sent directly to the chosen payment
 	// method. The parameter enables you to fully integrate the payment method selection into your website.
@@ -713,14 +713,14 @@ func (p *PaymentRequest) GetBillingAddress() *PaymentRequestBillingAddress {
 	return p.BillingAddress
 }
 
-func (p *PaymentRequest) GetShippingAddress() *PaymentAddress {
+func (p *PaymentRequest) GetShippingAddress() *ShippingAddress {
 	if p == nil {
 		return nil
 	}
 	return p.ShippingAddress
 }
 
-func (p *PaymentRequest) GetLocale() *Locale {
+func (p *PaymentRequest) GetLocale() *Locale2 {
 	if p == nil {
 		return nil
 	}

@@ -49,7 +49,7 @@ func main() {
         RequiredCustomerDetails: []components.SessionRequiredCustomerDetails{
             components.SessionRequiredCustomerDetailsBillingAddress,
         },
-        BillingAddress: &components.PaymentAddress{
+        BillingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
@@ -63,7 +63,7 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
-        ShippingAddress: &components.PaymentAddress{
+        ShippingAddress: &components.ShippingAddress{
             Title: client.Pointer("Mr."),
             GivenName: client.Pointer("Piet"),
             FamilyName: client.Pointer("Mondriaan"),
