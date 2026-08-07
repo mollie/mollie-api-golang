@@ -27,7 +27,9 @@ custom := components.LocaleResponse("custom_value")
 | `LocaleResponseDeCh` | de_CH                |
 | `LocaleResponseDeDe` | de_DE                |
 | `LocaleResponseDeLu` | de_LU                |
+| `LocaleResponseEnBe` | en_BE                |
 | `LocaleResponseEnGb` | en_GB                |
+| `LocaleResponseEnNl` | en_NL                |
 | `LocaleResponseEnUs` | en_US                |
 | `LocaleResponseEsEs` | es_ES                |
 | `LocaleResponseFiFi` | fi_FI                |

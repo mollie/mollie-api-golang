@@ -24,7 +24,9 @@ value := components.Locale2CaEs
 | `Locale2DeCh` | de_CH         |
 | `Locale2DeDe` | de_DE         |
 | `Locale2DeLu` | de_LU         |
+| `Locale2EnBe` | en_BE         |
 | `Locale2EnGb` | en_GB         |
+| `Locale2EnNl` | en_NL         |
 | `Locale2EnUs` | en_US         |
 | `Locale2EsEs` | es_ES         |
 | `Locale2FiFi` | fi_FI         |
