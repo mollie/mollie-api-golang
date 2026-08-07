@@ -7,6 +7,10 @@
 * [List](#list) - List payment methods
 * [All](#all) - List all payment methods
 * [Get](#get) - Get payment method
+* [Enable](#enable) - Enable payment method
+* [Disable](#disable) - Disable payment method
+* [EnableIssuer](#enableissuer) - Enable payment method issuer
+* [DisableIssuer](#disableissuer) - Disable payment method issuer
 
 ## List
 
@@ -472,4 +476,336 @@ func main() {
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | apierrors.ErrorResponse | 400, 404, 429           | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
+
+## Enable
+
+Enable a payment method on a specific profile.
+
+When using a profile-specific API credential, the alias `me` can be used
+instead of the profile ID to refer to the current profile.
+
+Some payment methods require extra steps in order to be activated. In cases
+where a step at the payment method provider needs to be completed first, the status will be set to
+`pending-external` and the response will contain a link to complete the activation at the provider.
+
+To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
+
+### Example Usage: enable-method-200-1
+
+<!-- UsageSnippet language="go" operationID="enable-method" method="post" path="/v2/profiles/{profileId}/methods/{methodId}" example="enable-method-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityMethodGet != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: enable-method-200-2
+
+<!-- UsageSnippet language="go" operationID="enable-method" method="post" path="/v2/profiles/{profileId}/methods/{methodId}" example="enable-method-200-2" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityMethodGet != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: enable-method-200-3
+
+<!-- UsageSnippet language="go" operationID="enable-method" method="post" path="/v2/profiles/{profileId}/methods/{methodId}" example="enable-method-200-3" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityMethodGet != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
+| `methodID`                                                                       | [*components.MethodEnum](../../models/components/methodenum.md)                  | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+
+### Response
+
+**[*operations.EnableMethodResponse](../../models/operations/enablemethodresponse.md), error**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
+
+## Disable
+
+Disable a payment method on a specific profile.
+
+When using a profile-specific API credential, the alias `me` can be used
+instead of the profile ID to refer to the current profile.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="disable-method" method="delete" path="/v2/profiles/{profileId}/methods/{methodId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.Disable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
+| `methodID`                                                                       | [*components.MethodEnum](../../models/components/methodenum.md)                  | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+
+### Response
+
+**[*operations.DisableMethodResponse](../../models/operations/disablemethodresponse.md), error**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
+
+## EnableIssuer
+
+Enable an issuer for a payment method on a specific profile.
+
+Currently only the payment methods `voucher` and `giftcard` are supported.
+
+When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
+current profile.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="enable-method-issuer" method="post" path="/v2/profiles/{profileId}/methods/{methodId}/issuers/{issuerId}" example="enable-method-issuer-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.EnableIssuer(ctx, operations.EnableMethodIssuerRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDWithIssuerVoucher,
+        IssuerID: "edenred-france-sports",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        RequestBody: &operations.EnableMethodIssuerRequestBody{
+            ContractID: client.Pointer("ideal"),
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.OneOf != nil {
+        switch res.OneOf.Type {
+            case operations.EnableMethodIssuerResponseBodyTypeGiftcard:
+                // res.OneOf.Giftcard is populated
+            case operations.EnableMethodIssuerResponseBodyTypeVoucher:
+                // res.OneOf.Voucher is populated
+        }
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.EnableMethodIssuerRequest](../../models/operations/enablemethodissuerrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.EnableMethodIssuerResponse](../../models/operations/enablemethodissuerresponse.md), error**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
+| apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
+
+## DisableIssuer
+
+Disable an issuer for a payment method on a specific profile.
+
+Currently only the payment methods `voucher` and `giftcard` are supported.
+
+When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
+current profile.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="disable-method-issuer" method="delete" path="/v2/profiles/{profileId}/methods/{methodId}/issuers/{issuerId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            APIKey: client.Pointer(os.Getenv("CLIENT_API_KEY")),
+        }),
+    )
+
+    res, err := s.Methods.DisableIssuer(ctx, "pfl_5B8cwPMGnU", components.MethodIDWithIssuerVoucher, "edenred-france-sports", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
+| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
+| `methodID`                                                                       | [components.MethodIDWithIssuer](../../models/components/methodidwithissuer.md)   | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | voucher                                                                          |
+| `issuerID`                                                                       | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related issuer.                                            | edenred-france-sports                                                            |
+| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+
+### Response
+
+**[*operations.DisableMethodIssuerResponse](../../models/operations/disablemethodissuerresponse.md), error**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| apierrors.ErrorResponse | 404, 429                | application/hal+json    |
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |

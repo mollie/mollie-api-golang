@@ -19,11 +19,358 @@ func (g *GetNextSettlementRequest) GetIdempotencyKey() *string {
 	return g.IdempotencyKey
 }
 
+// GetNextSettlementStatus - The status of the settlement.
+type GetNextSettlementStatus string
+
+const (
+	GetNextSettlementStatusOpen             GetNextSettlementStatus = "open"
+	GetNextSettlementStatusPending          GetNextSettlementStatus = "pending"
+	GetNextSettlementStatusProcessingAtBank GetNextSettlementStatus = "processing-at-bank"
+	GetNextSettlementStatusPaidout          GetNextSettlementStatus = "paidout"
+	GetNextSettlementStatusFailed           GetNextSettlementStatus = "failed"
+)
+
+func (e GetNextSettlementStatus) ToPointer() *GetNextSettlementStatus {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *GetNextSettlementStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "open", "pending", "processing-at-bank", "paidout", "failed":
+			return true
+		}
+	}
+	return false
+}
+
+// GetNextSettlementAmount - The total amount of the settlement.
+type GetNextSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (g *GetNextSettlementAmount) GetCurrency() string {
+	if g == nil {
+		return ""
+	}
+	return g.Currency
+}
+
+func (g *GetNextSettlementAmount) GetValue() string {
+	if g == nil {
+		return ""
+	}
+	return g.Value
+}
+
+// GetNextSettlementRate - The service rates, further divided into `fixed` and `percentage` costs.
+type GetNextSettlementRate struct {
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Fixed      *components.Amount `json:"fixed,omitempty"`
+	Percentage *string            `json:"percentage,omitempty"`
+}
+
+func (g *GetNextSettlementRate) GetFixed() *components.Amount {
+	if g == nil {
+		return nil
+	}
+	return g.Fixed
+}
+
+func (g *GetNextSettlementRate) GetPercentage() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Percentage
+}
+
+type GetNextSettlementCost struct {
+	// A description of the cost subtotal
+	Description string `json:"description"`
+	// The payment method, if applicable
+	Method *components.PaymentMethod `json:"method"`
+	// The number of fees
+	Count int64 `json:"count"`
+	// The service rates, further divided into `fixed` and `percentage` costs.
+	Rate GetNextSettlementRate `json:"rate"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet components.Amount `json:"amountNet"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *components.AmountNullable `json:"amountVat"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross components.Amount `json:"amountGross"`
+}
+
+func (g *GetNextSettlementCost) GetDescription() string {
+	if g == nil {
+		return ""
+	}
+	return g.Description
+}
+
+func (g *GetNextSettlementCost) GetMethod() *components.PaymentMethod {
+	if g == nil {
+		return nil
+	}
+	return g.Method
+}
+
+func (g *GetNextSettlementCost) GetCount() int64 {
+	if g == nil {
+		return 0
+	}
+	return g.Count
+}
+
+func (g *GetNextSettlementCost) GetRate() GetNextSettlementRate {
+	if g == nil {
+		return GetNextSettlementRate{}
+	}
+	return g.Rate
+}
+
+func (g *GetNextSettlementCost) GetAmountNet() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountNet
+}
+
+func (g *GetNextSettlementCost) GetAmountVat() *components.AmountNullable {
+	if g == nil {
+		return nil
+	}
+	return g.AmountVat
+}
+
+func (g *GetNextSettlementCost) GetAmountGross() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountGross
+}
+
+type GetNextSettlementRevenue struct {
+	// A description of the revenue subtotal
+	Description string `json:"description"`
+	// The payment method, if applicable
+	Method *components.PaymentMethod `json:"method"`
+	// The number of payments
+	Count int64 `json:"count"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet components.Amount `json:"amountNet"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *components.AmountNullable `json:"amountVat"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross components.Amount `json:"amountGross"`
+}
+
+func (g *GetNextSettlementRevenue) GetDescription() string {
+	if g == nil {
+		return ""
+	}
+	return g.Description
+}
+
+func (g *GetNextSettlementRevenue) GetMethod() *components.PaymentMethod {
+	if g == nil {
+		return nil
+	}
+	return g.Method
+}
+
+func (g *GetNextSettlementRevenue) GetCount() int64 {
+	if g == nil {
+		return 0
+	}
+	return g.Count
+}
+
+func (g *GetNextSettlementRevenue) GetAmountNet() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountNet
+}
+
+func (g *GetNextSettlementRevenue) GetAmountVat() *components.AmountNullable {
+	if g == nil {
+		return nil
+	}
+	return g.AmountVat
+}
+
+func (g *GetNextSettlementRevenue) GetAmountGross() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountGross
+}
+
+type GetNextSettlementPeriods struct {
+	// An array of cost objects, describing the fees withheld for each payment method during this period.
+	Costs []GetNextSettlementCost `json:"costs,omitempty"`
+	// An array of revenue objects containing the total revenue for each payment method during this period.
+	Revenue   []GetNextSettlementRevenue `json:"revenue,omitempty"`
+	InvoiceID *string                    `json:"invoiceId,omitempty"`
+	// The invoice reference, if the invoice has been created already.
+	InvoiceReference *string `json:"invoiceReference,omitempty"`
+}
+
+func (g *GetNextSettlementPeriods) GetCosts() []GetNextSettlementCost {
+	if g == nil {
+		return nil
+	}
+	return g.Costs
+}
+
+func (g *GetNextSettlementPeriods) GetRevenue() []GetNextSettlementRevenue {
+	if g == nil {
+		return nil
+	}
+	return g.Revenue
+}
+
+func (g *GetNextSettlementPeriods) GetInvoiceID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceID
+}
+
+func (g *GetNextSettlementPeriods) GetInvoiceReference() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceReference
+}
+
+// GetNextSettlementResponseBody - The next settlement object. For a complete reference of the settlement object, refer to the
+// [Get settlement](get-settlement) endpoint documentation.
+type GetNextSettlementResponseBody struct {
+	// Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+	// endpoint.
+	Resource string                      `json:"resource"`
+	ID       components.NextSettlementID `json:"id"`
+	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+	CreatedAt *string `json:"createdAt,omitempty"`
+	// The settlement's bank reference, as found in your Mollie account and on your bank statement.
+	Reference *string `json:"reference,omitempty"`
+	// The date on which the settlement was settled, in ISO 8601 format.
+	//
+	// For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+	// date is available.
+	SettledAt *string                 `json:"settledAt,omitempty"`
+	Status    GetNextSettlementStatus `json:"status"`
+	Amount    GetNextSettlementAmount `json:"amount"`
+	// The balance token that the settlement was settled to.
+	BalanceID string `json:"balanceId"`
+	// The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+	InvoiceID *string `json:"invoiceId,omitempty"`
+	// For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+	// transactions are grouped into 'period' objects — one for each calendar month.
+	//
+	// For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+	// all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+	//
+	// Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+	// look as follows: `{"2024": {"04": {...}, "05": {...}}}`. The year and month in this documentation are referred as `<year>` and `<month>`.
+	//
+	// The example response should give a good idea of what this looks like in practise.
+	Periods map[string]map[string]GetNextSettlementPeriods `json:"periods,omitempty"`
+	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+	//
+	// This endpoint always points to your organization's current open or next settlement rather than one specific
+	// settlement, so it doesn't return links to that settlement's payments, captures, refunds, chargebacks, or invoice.
+	Links components.SettlementConvenienceLinks `json:"_links"`
+}
+
+func (g *GetNextSettlementResponseBody) GetResource() string {
+	if g == nil {
+		return ""
+	}
+	return g.Resource
+}
+
+func (g *GetNextSettlementResponseBody) GetID() components.NextSettlementID {
+	if g == nil {
+		return components.NextSettlementID("")
+	}
+	return g.ID
+}
+
+func (g *GetNextSettlementResponseBody) GetCreatedAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.CreatedAt
+}
+
+func (g *GetNextSettlementResponseBody) GetReference() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Reference
+}
+
+func (g *GetNextSettlementResponseBody) GetSettledAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.SettledAt
+}
+
+func (g *GetNextSettlementResponseBody) GetStatus() GetNextSettlementStatus {
+	if g == nil {
+		return GetNextSettlementStatus("")
+	}
+	return g.Status
+}
+
+func (g *GetNextSettlementResponseBody) GetAmount() GetNextSettlementAmount {
+	if g == nil {
+		return GetNextSettlementAmount{}
+	}
+	return g.Amount
+}
+
+func (g *GetNextSettlementResponseBody) GetBalanceID() string {
+	if g == nil {
+		return ""
+	}
+	return g.BalanceID
+}
+
+func (g *GetNextSettlementResponseBody) GetInvoiceID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceID
+}
+
+func (g *GetNextSettlementResponseBody) GetPeriods() map[string]map[string]GetNextSettlementPeriods {
+	if g == nil {
+		return nil
+	}
+	return g.Periods
+}
+
+func (g *GetNextSettlementResponseBody) GetLinks() components.SettlementConvenienceLinks {
+	if g == nil {
+		return components.SettlementConvenienceLinks{}
+	}
+	return g.Links
+}
+
 type GetNextSettlementResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The next settlement object. For a complete reference of the settlement object, refer to the
 	// [Get settlement](get-settlement) endpoint documentation.
-	EntitySettlement *components.EntitySettlement
+	Object *GetNextSettlementResponseBody
 }
 
 func (g *GetNextSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -33,9 +380,9 @@ func (g *GetNextSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetNextSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
+func (g *GetNextSettlementResponse) GetObject() *GetNextSettlementResponseBody {
 	if g == nil {
 		return nil
 	}
-	return g.EntitySettlement
+	return g.Object
 }

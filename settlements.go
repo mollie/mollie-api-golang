@@ -777,12 +777,12 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 				return nil, err
 			}
 
-			var out components.EntitySettlement
+			var out operations.GetOpenSettlementResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntitySettlement = &out
+			res.Object = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1029,12 +1029,12 @@ func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts 
 				return nil, err
 			}
 
-			var out components.EntitySettlement
+			var out operations.GetNextSettlementResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntitySettlement = &out
+			res.Object = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

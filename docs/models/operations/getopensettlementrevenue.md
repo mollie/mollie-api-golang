@@ -1,4 +1,4 @@
-# EntitySettlementRevenue
+# GetOpenSettlementRevenue
 
 
 ## Fields
