@@ -14,7 +14,9 @@ const (
 	LocaleResponseDeCh LocaleResponse = "de_CH"
 	LocaleResponseDeDe LocaleResponse = "de_DE"
 	LocaleResponseDeLu LocaleResponse = "de_LU"
+	LocaleResponseEnBe LocaleResponse = "en_BE"
 	LocaleResponseEnGb LocaleResponse = "en_GB"
+	LocaleResponseEnNl LocaleResponse = "en_NL"
 	LocaleResponseEnUs LocaleResponse = "en_US"
 	LocaleResponseEsEs LocaleResponse = "es_ES"
 	LocaleResponseFiFi LocaleResponse = "fi_FI"
@@ -43,7 +45,7 @@ func (e LocaleResponse) ToPointer() *LocaleResponse {
 func (e *LocaleResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "en_GB", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sv_SE":
+		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "en_BE", "en_GB", "en_NL", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sv_SE":
 			return true
 		}
 	}

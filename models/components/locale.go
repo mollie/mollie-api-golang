@@ -19,7 +19,9 @@ const (
 	LocaleDeCh Locale = "de_CH"
 	LocaleDeDe Locale = "de_DE"
 	LocaleDeLu Locale = "de_LU"
+	LocaleEnBe Locale = "en_BE"
 	LocaleEnGb Locale = "en_GB"
+	LocaleEnNl Locale = "en_NL"
 	LocaleEnUs Locale = "en_US"
 	LocaleEsEs Locale = "es_ES"
 	LocaleFiFi Locale = "fi_FI"
@@ -63,7 +65,11 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "de_LU":
 		fallthrough
+	case "en_BE":
+		fallthrough
 	case "en_GB":
+		fallthrough
+	case "en_NL":
 		fallthrough
 	case "en_US":
 		fallthrough
