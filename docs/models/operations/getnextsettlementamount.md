@@ -1,4 +1,4 @@
-# ListEntitySettlementAmount
+# GetNextSettlementAmount
 
 The total amount of the settlement.
 

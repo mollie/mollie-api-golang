@@ -1,4 +1,4 @@
-# ListEntitySettlementRevenue
+# GetNextSettlementRevenue
 
 
 ## Fields

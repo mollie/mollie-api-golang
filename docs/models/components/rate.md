@@ -1,4 +1,4 @@
-# EntitySettlementRate
+# Rate
 
 The service rates, further divided into `fixed` and `percentage` costs.
 

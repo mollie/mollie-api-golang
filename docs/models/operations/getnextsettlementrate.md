@@ -1,4 +1,4 @@
-# ListEntitySettlementRate
+# GetNextSettlementRate
 
 The service rates, further divided into `fixed` and `percentage` costs.
 

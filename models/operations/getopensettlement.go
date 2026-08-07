@@ -19,11 +19,358 @@ func (g *GetOpenSettlementRequest) GetIdempotencyKey() *string {
 	return g.IdempotencyKey
 }
 
+// GetOpenSettlementStatus - The status of the settlement.
+type GetOpenSettlementStatus string
+
+const (
+	GetOpenSettlementStatusOpen             GetOpenSettlementStatus = "open"
+	GetOpenSettlementStatusPending          GetOpenSettlementStatus = "pending"
+	GetOpenSettlementStatusProcessingAtBank GetOpenSettlementStatus = "processing-at-bank"
+	GetOpenSettlementStatusPaidout          GetOpenSettlementStatus = "paidout"
+	GetOpenSettlementStatusFailed           GetOpenSettlementStatus = "failed"
+)
+
+func (e GetOpenSettlementStatus) ToPointer() *GetOpenSettlementStatus {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *GetOpenSettlementStatus) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "open", "pending", "processing-at-bank", "paidout", "failed":
+			return true
+		}
+	}
+	return false
+}
+
+// GetOpenSettlementAmount - The total amount of the settlement.
+type GetOpenSettlementAmount struct {
+	// A three-character ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// A string containing an exact monetary amount in the given currency.
+	Value string `json:"value"`
+}
+
+func (g *GetOpenSettlementAmount) GetCurrency() string {
+	if g == nil {
+		return ""
+	}
+	return g.Currency
+}
+
+func (g *GetOpenSettlementAmount) GetValue() string {
+	if g == nil {
+		return ""
+	}
+	return g.Value
+}
+
+// GetOpenSettlementRate - The service rates, further divided into `fixed` and `percentage` costs.
+type GetOpenSettlementRate struct {
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Fixed      *components.Amount `json:"fixed,omitempty"`
+	Percentage *string            `json:"percentage,omitempty"`
+}
+
+func (g *GetOpenSettlementRate) GetFixed() *components.Amount {
+	if g == nil {
+		return nil
+	}
+	return g.Fixed
+}
+
+func (g *GetOpenSettlementRate) GetPercentage() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Percentage
+}
+
+type GetOpenSettlementCost struct {
+	// A description of the cost subtotal
+	Description string `json:"description"`
+	// The payment method, if applicable
+	Method *components.PaymentMethod `json:"method"`
+	// The number of fees
+	Count int64 `json:"count"`
+	// The service rates, further divided into `fixed` and `percentage` costs.
+	Rate GetOpenSettlementRate `json:"rate"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet components.Amount `json:"amountNet"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *components.AmountNullable `json:"amountVat"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross components.Amount `json:"amountGross"`
+}
+
+func (g *GetOpenSettlementCost) GetDescription() string {
+	if g == nil {
+		return ""
+	}
+	return g.Description
+}
+
+func (g *GetOpenSettlementCost) GetMethod() *components.PaymentMethod {
+	if g == nil {
+		return nil
+	}
+	return g.Method
+}
+
+func (g *GetOpenSettlementCost) GetCount() int64 {
+	if g == nil {
+		return 0
+	}
+	return g.Count
+}
+
+func (g *GetOpenSettlementCost) GetRate() GetOpenSettlementRate {
+	if g == nil {
+		return GetOpenSettlementRate{}
+	}
+	return g.Rate
+}
+
+func (g *GetOpenSettlementCost) GetAmountNet() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountNet
+}
+
+func (g *GetOpenSettlementCost) GetAmountVat() *components.AmountNullable {
+	if g == nil {
+		return nil
+	}
+	return g.AmountVat
+}
+
+func (g *GetOpenSettlementCost) GetAmountGross() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountGross
+}
+
+type GetOpenSettlementRevenue struct {
+	// A description of the revenue subtotal
+	Description string `json:"description"`
+	// The payment method, if applicable
+	Method *components.PaymentMethod `json:"method"`
+	// The number of payments
+	Count int64 `json:"count"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountNet components.Amount `json:"amountNet"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountVat *components.AmountNullable `json:"amountVat"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	AmountGross components.Amount `json:"amountGross"`
+}
+
+func (g *GetOpenSettlementRevenue) GetDescription() string {
+	if g == nil {
+		return ""
+	}
+	return g.Description
+}
+
+func (g *GetOpenSettlementRevenue) GetMethod() *components.PaymentMethod {
+	if g == nil {
+		return nil
+	}
+	return g.Method
+}
+
+func (g *GetOpenSettlementRevenue) GetCount() int64 {
+	if g == nil {
+		return 0
+	}
+	return g.Count
+}
+
+func (g *GetOpenSettlementRevenue) GetAmountNet() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountNet
+}
+
+func (g *GetOpenSettlementRevenue) GetAmountVat() *components.AmountNullable {
+	if g == nil {
+		return nil
+	}
+	return g.AmountVat
+}
+
+func (g *GetOpenSettlementRevenue) GetAmountGross() components.Amount {
+	if g == nil {
+		return components.Amount{}
+	}
+	return g.AmountGross
+}
+
+type GetOpenSettlementPeriods struct {
+	// An array of cost objects, describing the fees withheld for each payment method during this period.
+	Costs []GetOpenSettlementCost `json:"costs,omitempty"`
+	// An array of revenue objects containing the total revenue for each payment method during this period.
+	Revenue   []GetOpenSettlementRevenue `json:"revenue,omitempty"`
+	InvoiceID *string                    `json:"invoiceId,omitempty"`
+	// The invoice reference, if the invoice has been created already.
+	InvoiceReference *string `json:"invoiceReference,omitempty"`
+}
+
+func (g *GetOpenSettlementPeriods) GetCosts() []GetOpenSettlementCost {
+	if g == nil {
+		return nil
+	}
+	return g.Costs
+}
+
+func (g *GetOpenSettlementPeriods) GetRevenue() []GetOpenSettlementRevenue {
+	if g == nil {
+		return nil
+	}
+	return g.Revenue
+}
+
+func (g *GetOpenSettlementPeriods) GetInvoiceID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceID
+}
+
+func (g *GetOpenSettlementPeriods) GetInvoiceReference() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceReference
+}
+
+// GetOpenSettlementResponseBody - A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+// the [Get settlement](get-settlement) endpoint documentation.
+type GetOpenSettlementResponseBody struct {
+	// Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+	// endpoint.
+	Resource string                      `json:"resource"`
+	ID       components.OpenSettlementID `json:"id"`
+	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+	CreatedAt *string `json:"createdAt,omitempty"`
+	// The settlement's bank reference, as found in your Mollie account and on your bank statement.
+	Reference *string `json:"reference,omitempty"`
+	// The date on which the settlement was settled, in ISO 8601 format.
+	//
+	// For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+	// date is available.
+	SettledAt *string                 `json:"settledAt,omitempty"`
+	Status    GetOpenSettlementStatus `json:"status"`
+	Amount    GetOpenSettlementAmount `json:"amount"`
+	// The balance token that the settlement was settled to.
+	BalanceID string `json:"balanceId"`
+	// The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+	InvoiceID *string `json:"invoiceId,omitempty"`
+	// For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+	// transactions are grouped into 'period' objects — one for each calendar month.
+	//
+	// For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+	// all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+	//
+	// Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+	// look as follows: `{"2024": {"04": {...}, "05": {...}}}`. The year and month in this documentation are referred as `<year>` and `<month>`.
+	//
+	// The example response should give a good idea of what this looks like in practise.
+	Periods map[string]map[string]GetOpenSettlementPeriods `json:"periods,omitempty"`
+	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+	//
+	// This endpoint always points to your organization's current open or next settlement rather than one specific
+	// settlement, so it doesn't return links to that settlement's payments, captures, refunds, chargebacks, or invoice.
+	Links components.SettlementConvenienceLinks `json:"_links"`
+}
+
+func (g *GetOpenSettlementResponseBody) GetResource() string {
+	if g == nil {
+		return ""
+	}
+	return g.Resource
+}
+
+func (g *GetOpenSettlementResponseBody) GetID() components.OpenSettlementID {
+	if g == nil {
+		return components.OpenSettlementID("")
+	}
+	return g.ID
+}
+
+func (g *GetOpenSettlementResponseBody) GetCreatedAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.CreatedAt
+}
+
+func (g *GetOpenSettlementResponseBody) GetReference() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Reference
+}
+
+func (g *GetOpenSettlementResponseBody) GetSettledAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.SettledAt
+}
+
+func (g *GetOpenSettlementResponseBody) GetStatus() GetOpenSettlementStatus {
+	if g == nil {
+		return GetOpenSettlementStatus("")
+	}
+	return g.Status
+}
+
+func (g *GetOpenSettlementResponseBody) GetAmount() GetOpenSettlementAmount {
+	if g == nil {
+		return GetOpenSettlementAmount{}
+	}
+	return g.Amount
+}
+
+func (g *GetOpenSettlementResponseBody) GetBalanceID() string {
+	if g == nil {
+		return ""
+	}
+	return g.BalanceID
+}
+
+func (g *GetOpenSettlementResponseBody) GetInvoiceID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.InvoiceID
+}
+
+func (g *GetOpenSettlementResponseBody) GetPeriods() map[string]map[string]GetOpenSettlementPeriods {
+	if g == nil {
+		return nil
+	}
+	return g.Periods
+}
+
+func (g *GetOpenSettlementResponseBody) GetLinks() components.SettlementConvenienceLinks {
+	if g == nil {
+		return components.SettlementConvenienceLinks{}
+	}
+	return g.Links
+}
+
 type GetOpenSettlementResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A settlement object describing your current balance. For a complete reference of the settlement object, refer to
 	// the [Get settlement](get-settlement) endpoint documentation.
-	EntitySettlement *components.EntitySettlement
+	Object *GetOpenSettlementResponseBody
 }
 
 func (g *GetOpenSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -33,9 +380,9 @@ func (g *GetOpenSettlementResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetOpenSettlementResponse) GetEntitySettlement() *components.EntitySettlement {
+func (g *GetOpenSettlementResponse) GetObject() *GetOpenSettlementResponseBody {
 	if g == nil {
 		return nil
 	}
-	return g.EntitySettlement
+	return g.Object
 }

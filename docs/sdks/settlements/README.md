@@ -171,7 +171,39 @@ documentation.
 For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 [balance transactions](list-balance-transactions) endpoint.
 
-### Example Usage
+### Example Usage: get-open-settlement-200-1
+
+<!-- UsageSnippet language="go" operationID="get-open-settlement" method="get" path="/v2/settlements/open" example="get-open-settlement-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Settlements.GetOpen(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-settlement-200-1
 
 <!-- UsageSnippet language="go" operationID="get-open-settlement" method="get" path="/v2/settlements/open" example="get-settlement-200-1" -->
 ```go
@@ -198,7 +230,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySettlement != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -233,7 +265,39 @@ documentation.
 For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 [balance transactions](list-balance-transactions) endpoint.
 
-### Example Usage
+### Example Usage: get-next-settlement-200-1
+
+<!-- UsageSnippet language="go" operationID="get-next-settlement" method="get" path="/v2/settlements/next" example="get-next-settlement-200-1" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Settlements.GetNext(ctx, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-settlement-200-1
 
 <!-- UsageSnippet language="go" operationID="get-next-settlement" method="get" path="/v2/settlements/next" example="get-settlement-200-1" -->
 ```go
@@ -260,7 +324,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntitySettlement != nil {
+    if res.Object != nil {
         // handle response
     }
 }

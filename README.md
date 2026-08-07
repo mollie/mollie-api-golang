@@ -374,6 +374,10 @@ s := client.New(
 * [List](docs/sdks/methods/README.md#list) - List payment methods
 * [All](docs/sdks/methods/README.md#all) - List all payment methods
 * [Get](docs/sdks/methods/README.md#get) - Get payment method
+* [Enable](docs/sdks/methods/README.md#enable) - Enable payment method
+* [Disable](docs/sdks/methods/README.md#disable) - Disable payment method
+* [EnableIssuer](docs/sdks/methods/README.md#enableissuer) - Enable payment method issuer
+* [DisableIssuer](docs/sdks/methods/README.md#disableissuer) - Disable payment method issuer
 
 ### [Oauth](docs/sdks/oauth/README.md)
 
