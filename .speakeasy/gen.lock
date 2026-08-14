@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 026c1f55dc079ec7865433150d1186ab
+  docChecksum: da3c7906c3501bcf695d51c94bab8c9e
   docVersion: 1.0.0
-  speakeasyVersion: 1.791.4
-  generationVersion: 2.926.8
-  releaseVersion: 1.3.27
-  configChecksum: 73975118bc45d674158c68ff02ff91d0
+  speakeasyVersion: 1.793.2
+  generationVersion: 2.928.0
+  releaseVersion: 1.3.28
+  configChecksum: c679008e7cb065e6e9f1340d35ddf74c
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 2918cb05-6b08-46c5-a465-4de433cf2353
-  pristine_commit_hash: edb3db470b5c20b703178b132e02c669144b47b4
-  pristine_tree_hash: ec44ee5058ea512aa70bf838b8623c7dcfc699f7
+  generation_id: 6681ecd2-814c-4d30-bb49-5c6c63665a60
+  pristine_commit_hash: 968ddc031a9fc40471139ea72f66c004c9019f8c
+  pristine_tree_hash: dca79eac3b3124abb863475601c58baa6133357d
 features:
   go:
     additionalDependencies: 0.1.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:b13cfff24470a0deca57eeeb9e628a2175171119
-    pristine_git_object: fd0ccb1d04e3de20b2c5a8a5439a28ac908c9e69
+    last_write_checksum: sha1:7dd392ab5ef5344441fc3bfb6c653990cc117a9f
+    pristine_git_object: 09f16216fa345dff8c98c25c08a7d400e90fcbfe
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -4077,8 +4077,8 @@ trackedFiles:
     pristine_git_object: 4c01c698ebb4848a85bd153f747b2cc88864aba4
   docs/sdks/terminals/README.md:
     id: 4b9f7986e224
-    last_write_checksum: sha1:51b59b8016ae6a306d5d62cf0710a365a43aa386
-    pristine_git_object: fd2c8605a780ef096370f3fa789eb754893783e7
+    last_write_checksum: sha1:4ae55ffb4a01a4cecb94bc165842296e902334ad
+    pristine_git_object: 5475a833dbc6fa3c02155c211e20d5a1fcbe0239
   docs/sdks/transfers/README.md:
     id: f56918861798
     last_write_checksum: sha1:624dab77c0daa7b6c6e612448b50e193dc2f4804
@@ -5725,8 +5725,8 @@ trackedFiles:
     pristine_git_object: e0deec5d34a223d8a0efdb8e6388d2dab219b8a4
   terminals.go:
     id: 4462dab7faee
-    last_write_checksum: sha1:19088a08cbe12292933d420190da2c9aa3520806
-    pristine_git_object: a008d44a0436b78fe877e0f80cbf80554e56f11b
+    last_write_checksum: sha1:1763178af8d29bf96ec7fd41f751daa6a81ed58a
+    pristine_git_object: 7d4207dcc3430c78f59b5970f3295763404c76e2
   transfers.go:
     id: a45ada44323b
     last_write_checksum: sha1:e5596f1d20bf65226971ecd628c38373206d778e
@@ -9734,6 +9734,8 @@ examples:
           application/hal+json: {"resource": "terminal-pairing-code", "id": "termpc_R7gX5Ea9bC4DkFj3G", "mode": "live", "code": "20eb5ca1f78b48ae9e2b", "profileId": "pfl_jA9bC4DkFj3G", "status": "active", "details": {"qrCode": {"height": 256, "width": 256, "src": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4w..."}}, "expiresAt": "2025-12-10T10:15:00+00:00", "revokedAt": "2025-12-10T10:03:23+00:00", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "403":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   terminals-list-pairing-codes:
     speakeasy-default-terminals-list-pairing-codes:
       parameters:
@@ -9966,13 +9968,7 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.Settlements.GetOpen()`:  `response` **Changed** (Breaking ⚠️)
-  * `Client.Settlements.GetNext()`:  `response` **Changed** (Breaking ⚠️)
-  * `Client.Methods.Enable()`: **Added**
-  * `Client.Methods.Disable()`: **Added**
-  * `Client.Methods.EnableIssuer()`: **Added**
-  * `Client.Methods.DisableIssuer()`: **Added**
-  * `Client.Settlements.List()`:  `response.Embedded.Settlements[].Links.Documentation` **Added**
+  * `Client.Terminals.TerminalsRequestPairingCode()`:  `error.status[403]` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
