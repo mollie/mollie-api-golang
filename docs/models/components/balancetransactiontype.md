@@ -7,7 +7,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.BalanceTransactionTypeBalanceChargeFee
+value := components.BalanceTransactionTypeApplicationFee
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.BalanceTransactionType("custom_value")
@@ -18,6 +18,7 @@ custom := components.BalanceTransactionType("custom_value")
 
 | Name                                                      | Value                                                     |
 | --------------------------------------------------------- | --------------------------------------------------------- |
+| `BalanceTransactionTypeApplicationFee`                    | application-fee                                           |
 | `BalanceTransactionTypeBalanceChargeFee`                  | balance-charge-fee                                        |
 | `BalanceTransactionTypeBalanceCorrection`                 | balance-correction                                        |
 | `BalanceTransactionTypeBalanceReserve`                    | balance-reserve                                           |
@@ -43,6 +44,7 @@ custom := components.BalanceTransactionType("custom_value")
 | `BalanceTransactionTypeOutgoingCustomAmountTransfer`      | outgoing-custom-amount-transfer                           |
 | `BalanceTransactionTypeOutgoingTransfer`                  | outgoing-transfer                                         |
 | `BalanceTransactionTypePayment`                           | payment                                                   |
+| `BalanceTransactionTypePaymentFee`                        | payment-fee                                               |
 | `BalanceTransactionTypePendingRollingReserve`             | pending-rolling-reserve                                   |
 | `BalanceTransactionTypePlatformPaymentChargeback`         | platform-payment-chargeback                               |
 | `BalanceTransactionTypePlatformPaymentRefund`             | platform-payment-refund                                   |
