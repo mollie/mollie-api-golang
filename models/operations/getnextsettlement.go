@@ -91,8 +91,9 @@ func (g *GetNextSettlementRate) GetPercentage() *string {
 type GetNextSettlementCost struct {
 	// A description of the cost subtotal
 	Description string `json:"description"`
-	// The payment method, if applicable
-	Method *components.PaymentMethod `json:"method"`
+	// The method the cost or revenue subtotal applies to. This is usually a payment method, but can also represent a
+	// correction or transaction type that is not tied to a specific payment method.
+	Method *components.SettlementMethod `json:"method"`
 	// The number of fees
 	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
@@ -112,7 +113,7 @@ func (g *GetNextSettlementCost) GetDescription() string {
 	return g.Description
 }
 
-func (g *GetNextSettlementCost) GetMethod() *components.PaymentMethod {
+func (g *GetNextSettlementCost) GetMethod() *components.SettlementMethod {
 	if g == nil {
 		return nil
 	}
@@ -157,8 +158,9 @@ func (g *GetNextSettlementCost) GetAmountGross() components.Amount {
 type GetNextSettlementRevenue struct {
 	// A description of the revenue subtotal
 	Description string `json:"description"`
-	// The payment method, if applicable
-	Method *components.PaymentMethod `json:"method"`
+	// The method the cost or revenue subtotal applies to. This is usually a payment method, but can also represent a
+	// correction or transaction type that is not tied to a specific payment method.
+	Method *components.SettlementMethod `json:"method"`
 	// The number of payments
 	Count int64 `json:"count"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -176,7 +178,7 @@ func (g *GetNextSettlementRevenue) GetDescription() string {
 	return g.Description
 }
 
-func (g *GetNextSettlementRevenue) GetMethod() *components.PaymentMethod {
+func (g *GetNextSettlementRevenue) GetMethod() *components.SettlementMethod {
 	if g == nil {
 		return nil
 	}

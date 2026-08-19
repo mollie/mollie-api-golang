@@ -75,8 +75,9 @@ func (r *Rate) GetPercentage() *string {
 type Cost struct {
 	// A description of the cost subtotal
 	Description string `json:"description"`
-	// The payment method, if applicable
-	Method *PaymentMethod `json:"method"`
+	// The method the cost or revenue subtotal applies to. This is usually a payment method, but can also represent a
+	// correction or transaction type that is not tied to a specific payment method.
+	Method *SettlementMethod `json:"method"`
 	// The number of fees
 	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
@@ -96,7 +97,7 @@ func (c *Cost) GetDescription() string {
 	return c.Description
 }
 
-func (c *Cost) GetMethod() *PaymentMethod {
+func (c *Cost) GetMethod() *SettlementMethod {
 	if c == nil {
 		return nil
 	}
@@ -141,8 +142,9 @@ func (c *Cost) GetAmountGross() Amount {
 type Revenue struct {
 	// A description of the revenue subtotal
 	Description string `json:"description"`
-	// The payment method, if applicable
-	Method *PaymentMethod `json:"method"`
+	// The method the cost or revenue subtotal applies to. This is usually a payment method, but can also represent a
+	// correction or transaction type that is not tied to a specific payment method.
+	Method *SettlementMethod `json:"method"`
 	// The number of payments
 	Count int64 `json:"count"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -160,7 +162,7 @@ func (r *Revenue) GetDescription() string {
 	return r.Description
 }
 
-func (r *Revenue) GetMethod() *PaymentMethod {
+func (r *Revenue) GetMethod() *SettlementMethod {
 	if r == nil {
 		return nil
 	}
