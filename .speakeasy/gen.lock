@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 479ee18740b913960b6fbd04d2105ef6
+  docChecksum: eb6c4204228e5a94402ecdd9faadff64
   docVersion: 1.0.0
-  speakeasyVersion: 1.795.0
-  generationVersion: 2.931.0
-  releaseVersion: 1.3.30
-  configChecksum: 1fd996c34a213f462b285abee9808ebb
+  speakeasyVersion: 1.796.0
+  generationVersion: 2.932.15
+  releaseVersion: 1.3.31
+  configChecksum: 1d04d802adfb8d308eab5c2abef41cdc
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 04b9d6c6-2da3-4354-ac9c-5cf4ed074e9b
-  pristine_commit_hash: 19ed4448ced14dae08b3a42b7b29c50d429646bc
-  pristine_tree_hash: 786389f43528f1f7a90c8dfa63a1ef54d8340546
+  generation_id: ba15e097-cce6-45d3-8484-35e6a8f1c8d9
+  pristine_commit_hash: 8f61d4c4e8b6f217bc84342fbe2a9c4fa9434917
+  pristine_tree_hash: c0b1e666c0a0ac24d855fd5969339b9aa3d65394
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.13.48
+    core: 3.13.50
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -85,8 +85,8 @@ trackedFiles:
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:fa6e1c8d9a41ef4a7d4c4bea1e409971b917c751
-    pristine_git_object: 86ddb12df28e9a245322e5271f64ce60d955c5fa
+    last_write_checksum: sha1:d5e287f9124deb19daca33b3b530f9eec4ef53d2
+    pristine_git_object: 1c2b94d3f0d3147431c8392e22a4b5036f4d967d
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -177,8 +177,8 @@ trackedFiles:
     pristine_git_object: c3e4869801f0d01fa12c5f4f730693761d39393b
   docs/models/components/balancetransactiontype.md:
     id: d9ea074248bc
-    last_write_checksum: sha1:208f803023b2c2611d22b664cee4b18d1f2bbc8e
-    pristine_git_object: 39fb5504d49b1c3512d452b3cdf12acab1e5fd0e
+    last_write_checksum: sha1:79b6e53e3965b298f88946fdcec414b2c9e31c2f
+    pristine_git_object: cef5c26da7598b9b95df002b8e39cd637a6dcd5e
   docs/models/components/balancetransfercategory.md:
     id: f30f3ec9c973
     last_write_checksum: sha1:7658c81a2011e54bca8dacbfbc28028a2a762156
@@ -4397,8 +4397,8 @@ trackedFiles:
     pristine_git_object: 229363c3218d986ac5e127b1623036d6bacd5a2e
   models/components/balancetransactiontype.go:
     id: 890dfb428a33
-    last_write_checksum: sha1:8d40cd69eddfe8ae14ef826fa7ba71fdc59c9aab
-    pristine_git_object: c9ffead8f48d1532c9fc03570e4aa266268ce09b
+    last_write_checksum: sha1:6a05c06b1fbb9b112fb4289f5fca3df65c45e4c1
+    pristine_git_object: 585bc4c150993291b82fd09e3673f614397cbbaf
   models/components/balancetransfercategory.go:
     id: a56922556d6c
     last_write_checksum: sha1:9c210fe175e286e54ed1be5703929b469b9ad42e
@@ -10178,10 +10178,8 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.DraftTransfers.Create()`: **Added**
-  * `Client.DraftTransfers.List()`: **Added**
-  * `Client.DraftTransfers.Get()`: **Added**
-  * `Client.DraftTransfers.Cancel()`: **Added**
+  * `Client.Balances.GetReport()`:  `response.Totals.PendingBalance.Open.Subtotals[].SubTotals[].TransactionType` **Changed**
+  * `Client.Balances.ListTransactions()`:  `response.Embedded.BalanceTransactions[].Type` **Changed**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

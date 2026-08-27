@@ -7,7 +7,7 @@ import (
 	"github.com/mollie/mollie-api-golang/models/components"
 )
 
-value := components.BalanceTransactionTypeApplicationFee
+value := components.BalanceTransactionTypeAPIPaymentRollingReserveRelease
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.BalanceTransactionType("custom_value")
@@ -18,6 +18,7 @@ custom := components.BalanceTransactionType("custom_value")
 
 | Name                                                      | Value                                                     |
 | --------------------------------------------------------- | --------------------------------------------------------- |
+| `BalanceTransactionTypeAPIPaymentRollingReserveRelease`   | api-payment-rolling-reserve-release                       |
 | `BalanceTransactionTypeApplicationFee`                    | application-fee                                           |
 | `BalanceTransactionTypeBalanceChargeFee`                  | balance-charge-fee                                        |
 | `BalanceTransactionTypeBalanceCorrection`                 | balance-correction                                        |
@@ -48,6 +49,7 @@ custom := components.BalanceTransactionType("custom_value")
 | `BalanceTransactionTypePendingRollingReserve`             | pending-rolling-reserve                                   |
 | `BalanceTransactionTypePlatformPaymentChargeback`         | platform-payment-chargeback                               |
 | `BalanceTransactionTypePlatformPaymentRefund`             | platform-payment-refund                                   |
+| `BalanceTransactionTypePostPaymentSplitPayment`           | post-payment-split-payment                                |
 | `BalanceTransactionTypeRefund`                            | refund                                                    |
 | `BalanceTransactionTypeRefundCompensation`                | refund-compensation                                       |
 | `BalanceTransactionTypeReleasedRollingReserve`            | released-rolling-reserve                                  |
