@@ -23,6 +23,7 @@ custom := components.PaymentDetailsCardLabelResponse("custom_value")
 | `PaymentDetailsCardLabelResponseAmericanExpress` | American Express                                 |
 | `PaymentDetailsCardLabelResponseCartaSi`         | Carta Si                                         |
 | `PaymentDetailsCardLabelResponseCarteBleue`      | Carte Bleue                                      |
+| `PaymentDetailsCardLabelResponseCartesBancaires` | Cartes Bancaires                                 |
 | `PaymentDetailsCardLabelResponseDankort`         | Dankort                                          |
 | `PaymentDetailsCardLabelResponseDinersClub`      | Diners Club                                      |
 | `PaymentDetailsCardLabelResponseDiscover`        | Discover                                         |

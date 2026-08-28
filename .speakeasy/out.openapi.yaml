@@ -31179,6 +31179,7 @@ components:
         - American Express
         - Carta Si
         - Carte Bleue
+        - Cartes Bancaires
         - Dankort
         - Diners Club
         - Discover
@@ -31219,6 +31220,8 @@ components:
         - american-express
         - amex-intra-eea
         - carte-bancaire
+        - cartes-bancaires-business
+        - cartes-bancaires-consumer
         - domestic
         - inter
         - intra-eu
@@ -31231,6 +31234,7 @@ components:
         - mastercard-debit-business-domestic
         - mastercard-debit-business-intra-eea
         - mastercard-debit-consumer-domestic
+        - mastercard-debit-consumer-inter
         - mastercard-debit-consumer-intra-eea
         - other
         - visa-credit-business-domestic
@@ -31240,6 +31244,8 @@ components:
         - visa-debit-business-domestic
         - visa-debit-business-intra-eea
         - visa-debit-consumer-domestic
+        - visa-debit-consumer-inter
+        - visa-debit-consumer-intra-eea
       example: maestro
     payment-details-failure-reason:
       type:
@@ -31472,8 +31478,8 @@ components:
             cards: |-
               The card's label, if known.
 
-              Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB`
-              `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
+              Possible values: `American Express` `Carta Si` `Carte Bleue` `Cartes Bancaires` `Dankort` `Diners Club`
+              `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
             point-of-sale: 'The card''s label, if known. Possible values: `Mastercard` `Visa` `Maestro` `Vpay`'
         cardCountryCode:
           type:
@@ -32805,9 +32811,15 @@ components:
           readOnly: true
     settlement-refund-status:
       type: string
-      description: The refund's status. Settlement refunds always have a status of `refunded`.
+      description: |-
+        The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+        could not be processed.
       enum:
         - refunded
+        - failed
+      x-enumDescriptions:
+        refunded: The refund was processed successfully.
+        failed: The refund could not be processed.
       readOnly: true
       example: refunded
       x-speakeasy-unknown-values: allow
@@ -42473,6 +42485,7 @@ components:
         - American Express
         - Carta Si
         - Carte Bleue
+        - Cartes Bancaires
         - Dankort
         - Diners Club
         - Discover
@@ -42516,6 +42529,8 @@ components:
         - american-express
         - amex-intra-eea
         - carte-bancaire
+        - cartes-bancaires-business
+        - cartes-bancaires-consumer
         - domestic
         - inter
         - intra-eu
@@ -42528,6 +42543,7 @@ components:
         - mastercard-debit-business-domestic
         - mastercard-debit-business-intra-eea
         - mastercard-debit-consumer-domestic
+        - mastercard-debit-consumer-inter
         - mastercard-debit-consumer-intra-eea
         - other
         - visa-credit-business-domestic
@@ -42537,6 +42553,8 @@ components:
         - visa-debit-business-domestic
         - visa-debit-business-intra-eea
         - visa-debit-consumer-domestic
+        - visa-debit-consumer-inter
+        - visa-debit-consumer-intra-eea
       example: maestro
       x-speakeasy-unknown-values: allow
     payment-details-failure-reason-response:

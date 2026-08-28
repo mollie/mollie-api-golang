@@ -23,6 +23,8 @@ custom := components.PaymentDetailsFeeRegionResponse("custom_value")
 | `PaymentDetailsFeeRegionResponseAmericanExpress`                  | american-express                                                  |
 | `PaymentDetailsFeeRegionResponseAmexIntraEea`                     | amex-intra-eea                                                    |
 | `PaymentDetailsFeeRegionResponseCarteBancaire`                    | carte-bancaire                                                    |
+| `PaymentDetailsFeeRegionResponseCartesBancairesBusiness`          | cartes-bancaires-business                                         |
+| `PaymentDetailsFeeRegionResponseCartesBancairesConsumer`          | cartes-bancaires-consumer                                         |
 | `PaymentDetailsFeeRegionResponseDomestic`                         | domestic                                                          |
 | `PaymentDetailsFeeRegionResponseInter`                            | inter                                                             |
 | `PaymentDetailsFeeRegionResponseIntraEu`                          | intra-eu                                                          |
@@ -35,6 +37,7 @@ custom := components.PaymentDetailsFeeRegionResponse("custom_value")
 | `PaymentDetailsFeeRegionResponseMastercardDebitBusinessDomestic`  | mastercard-debit-business-domestic                                |
 | `PaymentDetailsFeeRegionResponseMastercardDebitBusinessIntraEea`  | mastercard-debit-business-intra-eea                               |
 | `PaymentDetailsFeeRegionResponseMastercardDebitConsumerDomestic`  | mastercard-debit-consumer-domestic                                |
+| `PaymentDetailsFeeRegionResponseMastercardDebitConsumerInter`     | mastercard-debit-consumer-inter                                   |
 | `PaymentDetailsFeeRegionResponseMastercardDebitConsumerIntraEea`  | mastercard-debit-consumer-intra-eea                               |
 | `PaymentDetailsFeeRegionResponseOther`                            | other                                                             |
 | `PaymentDetailsFeeRegionResponseVisaCreditBusinessDomestic`       | visa-credit-business-domestic                                     |
@@ -44,3 +47,5 @@ custom := components.PaymentDetailsFeeRegionResponse("custom_value")
 | `PaymentDetailsFeeRegionResponseVisaDebitBusinessDomestic`        | visa-debit-business-domestic                                      |
 | `PaymentDetailsFeeRegionResponseVisaDebitBusinessIntraEea`        | visa-debit-business-intra-eea                                     |
 | `PaymentDetailsFeeRegionResponseVisaDebitConsumerDomestic`        | visa-debit-consumer-domestic                                      |
+| `PaymentDetailsFeeRegionResponseVisaDebitConsumerInter`           | visa-debit-consumer-inter                                         |
+| `PaymentDetailsFeeRegionResponseVisaDebitConsumerIntraEea`        | visa-debit-consumer-intra-eea                                     |
