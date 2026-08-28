@@ -10,6 +10,8 @@ const (
 	PaymentDetailsFeeRegionResponseAmericanExpress                  PaymentDetailsFeeRegionResponse = "american-express"
 	PaymentDetailsFeeRegionResponseAmexIntraEea                     PaymentDetailsFeeRegionResponse = "amex-intra-eea"
 	PaymentDetailsFeeRegionResponseCarteBancaire                    PaymentDetailsFeeRegionResponse = "carte-bancaire"
+	PaymentDetailsFeeRegionResponseCartesBancairesBusiness          PaymentDetailsFeeRegionResponse = "cartes-bancaires-business"
+	PaymentDetailsFeeRegionResponseCartesBancairesConsumer          PaymentDetailsFeeRegionResponse = "cartes-bancaires-consumer"
 	PaymentDetailsFeeRegionResponseDomestic                         PaymentDetailsFeeRegionResponse = "domestic"
 	PaymentDetailsFeeRegionResponseInter                            PaymentDetailsFeeRegionResponse = "inter"
 	PaymentDetailsFeeRegionResponseIntraEu                          PaymentDetailsFeeRegionResponse = "intra-eu"
@@ -22,6 +24,7 @@ const (
 	PaymentDetailsFeeRegionResponseMastercardDebitBusinessDomestic  PaymentDetailsFeeRegionResponse = "mastercard-debit-business-domestic"
 	PaymentDetailsFeeRegionResponseMastercardDebitBusinessIntraEea  PaymentDetailsFeeRegionResponse = "mastercard-debit-business-intra-eea"
 	PaymentDetailsFeeRegionResponseMastercardDebitConsumerDomestic  PaymentDetailsFeeRegionResponse = "mastercard-debit-consumer-domestic"
+	PaymentDetailsFeeRegionResponseMastercardDebitConsumerInter     PaymentDetailsFeeRegionResponse = "mastercard-debit-consumer-inter"
 	PaymentDetailsFeeRegionResponseMastercardDebitConsumerIntraEea  PaymentDetailsFeeRegionResponse = "mastercard-debit-consumer-intra-eea"
 	PaymentDetailsFeeRegionResponseOther                            PaymentDetailsFeeRegionResponse = "other"
 	PaymentDetailsFeeRegionResponseVisaCreditBusinessDomestic       PaymentDetailsFeeRegionResponse = "visa-credit-business-domestic"
@@ -31,6 +34,8 @@ const (
 	PaymentDetailsFeeRegionResponseVisaDebitBusinessDomestic        PaymentDetailsFeeRegionResponse = "visa-debit-business-domestic"
 	PaymentDetailsFeeRegionResponseVisaDebitBusinessIntraEea        PaymentDetailsFeeRegionResponse = "visa-debit-business-intra-eea"
 	PaymentDetailsFeeRegionResponseVisaDebitConsumerDomestic        PaymentDetailsFeeRegionResponse = "visa-debit-consumer-domestic"
+	PaymentDetailsFeeRegionResponseVisaDebitConsumerInter           PaymentDetailsFeeRegionResponse = "visa-debit-consumer-inter"
+	PaymentDetailsFeeRegionResponseVisaDebitConsumerIntraEea        PaymentDetailsFeeRegionResponse = "visa-debit-consumer-intra-eea"
 )
 
 func (e PaymentDetailsFeeRegionResponse) ToPointer() *PaymentDetailsFeeRegionResponse {
@@ -41,7 +46,7 @@ func (e PaymentDetailsFeeRegionResponse) ToPointer() *PaymentDetailsFeeRegionRes
 func (e *PaymentDetailsFeeRegionResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "american-express", "amex-intra-eea", "carte-bancaire", "domestic", "inter", "intra-eu", "intra-eu-corporate", "intra_eea", "maestro", "mastercard-credit-business-domestic", "mastercard-credit-consumer-domestic", "mastercard-credit-consumer-intra-eea", "mastercard-debit-business-domestic", "mastercard-debit-business-intra-eea", "mastercard-debit-consumer-domestic", "mastercard-debit-consumer-intra-eea", "other", "visa-credit-business-domestic", "visa-credit-consumer-domestic", "visa-credit-consumer-inter", "visa-credit-consumer-intra-eea", "visa-debit-business-domestic", "visa-debit-business-intra-eea", "visa-debit-consumer-domestic":
+		case "american-express", "amex-intra-eea", "carte-bancaire", "cartes-bancaires-business", "cartes-bancaires-consumer", "domestic", "inter", "intra-eu", "intra-eu-corporate", "intra_eea", "maestro", "mastercard-credit-business-domestic", "mastercard-credit-consumer-domestic", "mastercard-credit-consumer-intra-eea", "mastercard-debit-business-domestic", "mastercard-debit-business-intra-eea", "mastercard-debit-consumer-domestic", "mastercard-debit-consumer-inter", "mastercard-debit-consumer-intra-eea", "other", "visa-credit-business-domestic", "visa-credit-consumer-domestic", "visa-credit-consumer-inter", "visa-credit-consumer-intra-eea", "visa-debit-business-domestic", "visa-debit-business-intra-eea", "visa-debit-consumer-domestic", "visa-debit-consumer-inter", "visa-debit-consumer-intra-eea":
 			return true
 		}
 	}

@@ -3,11 +3,13 @@
 
 package components
 
-// SettlementRefundStatus - The refund's status. Settlement refunds always have a status of `refunded`.
+// SettlementRefundStatus - The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+// could not be processed.
 type SettlementRefundStatus string
 
 const (
 	SettlementRefundStatusRefunded SettlementRefundStatus = "refunded"
+	SettlementRefundStatusFailed   SettlementRefundStatus = "failed"
 )
 
 func (e SettlementRefundStatus) ToPointer() *SettlementRefundStatus {
@@ -18,7 +20,7 @@ func (e SettlementRefundStatus) ToPointer() *SettlementRefundStatus {
 func (e *SettlementRefundStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "refunded":
+		case "refunded", "failed":
 			return true
 		}
 	}
