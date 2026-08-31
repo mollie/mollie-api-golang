@@ -96,12 +96,12 @@ func (r *RefundRequestRoutingReversal) GetSource() *RefundRequestSource {
 
 type RefundRequest struct {
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata          *Metadata                       `json:"metadata"`
+	Metadata          *Metadata                       `json:"metadata,omitempty"`
 	ExternalReference *RefundRequestExternalReference `json:"externalReference,omitempty"`
 	// *This feature is only available to marketplace operators.*
 	//
@@ -132,9 +132,9 @@ type RefundRequest struct {
 	Testmode *bool `json:"testmode,omitempty"`
 }
 
-func (r *RefundRequest) GetDescription() string {
+func (r *RefundRequest) GetDescription() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Description
 }

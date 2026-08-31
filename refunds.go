@@ -227,12 +227,12 @@ func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *
 				return nil, err
 			}
 
-			var out components.EntityRefundResponse
+			var out components.RefundResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityRefundResponse = &out
+			res.RefundResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -780,12 +780,12 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 				return nil, err
 			}
 
-			var out components.EntityRefundResponse
+			var out components.RefundResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityRefundResponse = &out
+			res.RefundResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

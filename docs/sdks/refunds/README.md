@@ -39,16 +39,11 @@ func main() {
     )
 
     res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
-        Description: "Refunding a Chess Board",
+        Description: client.Pointer("Refunding a Chess Board"),
         Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Metadata: client.Pointer(components.CreateMetadataMapOfAny(
-            map[string]any{
-
-            },
-        )),
         ExternalReference: &components.RefundRequestExternalReference{
             Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
             ID: client.Pointer("123456789012345"),
@@ -71,16 +66,16 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityRefundResponse != nil {
-        switch res.EntityRefundResponse.Metadata.Type {
+    if res.RefundResponse != nil {
+        switch res.RefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
-                // res.EntityRefundResponse.Metadata.Str is populated
+                // res.RefundResponse.Metadata.Str is populated
             case components.MetadataTypeNumber:
-                // res.EntityRefundResponse.Metadata.Number is populated
+                // res.RefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
-                // res.EntityRefundResponse.Metadata.MapOfAny is populated
+                // res.RefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
-                // res.EntityRefundResponse.Metadata.ArrayOfStr is populated
+                // res.RefundResponse.Metadata.ArrayOfStr is populated
         }
 
     }
@@ -110,16 +105,11 @@ func main() {
     )
 
     res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
-        Description: "Refunding a Chess Board",
+        Description: client.Pointer("Refunding a Chess Board"),
         Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
         },
-        Metadata: client.Pointer(components.CreateMetadataMapOfAny(
-            map[string]any{
-
-            },
-        )),
         ExternalReference: &components.RefundRequestExternalReference{
             Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
             ID: client.Pointer("123456789012345"),
@@ -142,16 +132,16 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityRefundResponse != nil {
-        switch res.EntityRefundResponse.Metadata.Type {
+    if res.RefundResponse != nil {
+        switch res.RefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
-                // res.EntityRefundResponse.Metadata.Str is populated
+                // res.RefundResponse.Metadata.Str is populated
             case components.MetadataTypeNumber:
-                // res.EntityRefundResponse.Metadata.Number is populated
+                // res.RefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
-                // res.EntityRefundResponse.Metadata.MapOfAny is populated
+                // res.RefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
-                // res.EntityRefundResponse.Metadata.ArrayOfStr is populated
+                // res.RefundResponse.Metadata.ArrayOfStr is populated
         }
 
     }
@@ -295,16 +285,16 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityRefundResponse != nil {
-        switch res.EntityRefundResponse.Metadata.Type {
+    if res.RefundResponse != nil {
+        switch res.RefundResponse.Metadata.Type {
             case components.MetadataTypeStr:
-                // res.EntityRefundResponse.Metadata.Str is populated
+                // res.RefundResponse.Metadata.Str is populated
             case components.MetadataTypeNumber:
-                // res.EntityRefundResponse.Metadata.Number is populated
+                // res.RefundResponse.Metadata.Number is populated
             case components.MetadataTypeMapOfAny:
-                // res.EntityRefundResponse.Metadata.MapOfAny is populated
+                // res.RefundResponse.Metadata.MapOfAny is populated
             case components.MetadataTypeArrayOfStr:
-                // res.EntityRefundResponse.Metadata.ArrayOfStr is populated
+                // res.RefundResponse.Metadata.ArrayOfStr is populated
         }
 
     }

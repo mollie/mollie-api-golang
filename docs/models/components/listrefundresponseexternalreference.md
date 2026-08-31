@@ -1,4 +1,4 @@
-# EntityRefundResponseExternalReference
+# ListRefundResponseExternalReference
 
 
 ## Fields

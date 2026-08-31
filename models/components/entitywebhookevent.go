@@ -72,7 +72,7 @@ type EntityType string
 
 const (
 	EntityTypePaymentResponse      EntityType = "payment-response"
-	EntityTypeEntityRefundResponse EntityType = "entity-refund-response"
+	EntityTypeRefundResponse       EntityType = "refund-response"
 	EntityTypeEntityChargeback     EntityType = "entity-chargeback"
 	EntityTypeCaptureResponse      EntityType = "capture-response"
 	EntityTypePaymentLinkResponse  EntityType = "payment-link-response"
@@ -83,7 +83,7 @@ const (
 
 type Entity struct {
 	PaymentResponse      *PaymentResponse      `queryParam:"inline" union:"member"`
-	EntityRefundResponse *EntityRefundResponse `queryParam:"inline" union:"member"`
+	RefundResponse       *RefundResponse       `queryParam:"inline" union:"member"`
 	EntityChargeback     *EntityChargeback     `queryParam:"inline" union:"member"`
 	CaptureResponse      *CaptureResponse      `queryParam:"inline" union:"member"`
 	PaymentLinkResponse  *PaymentLinkResponse  `queryParam:"inline" union:"member"`
@@ -103,12 +103,12 @@ func CreateEntityPaymentResponse(paymentResponse PaymentResponse) Entity {
 	}
 }
 
-func CreateEntityEntityRefundResponse(entityRefundResponse EntityRefundResponse) Entity {
-	typ := EntityTypeEntityRefundResponse
+func CreateEntityRefundResponse(refundResponse RefundResponse) Entity {
+	typ := EntityTypeRefundResponse
 
 	return Entity{
-		EntityRefundResponse: &entityRefundResponse,
-		Type:                 typ,
+		RefundResponse: &refundResponse,
+		Type:           typ,
 	}
 }
 
@@ -189,10 +189,10 @@ func (u *Entity) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var entityRefundResponse EntityRefundResponse = EntityRefundResponse{}
-	if err := utils.UnmarshalJSON(data, &entityRefundResponse, "", true, nil); err == nil {
-		u.EntityRefundResponse = &entityRefundResponse
-		u.Type = EntityTypeEntityRefundResponse
+	var refundResponse RefundResponse = RefundResponse{}
+	if err := utils.UnmarshalJSON(data, &refundResponse, "", true, nil); err == nil {
+		u.RefundResponse = &refundResponse
+		u.Type = EntityTypeRefundResponse
 		return nil
 	}
 
@@ -232,8 +232,8 @@ func (u Entity) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PaymentResponse, "", true)
 	}
 
-	if u.EntityRefundResponse != nil {
-		return utils.MarshalJSON(u.EntityRefundResponse, "", true)
+	if u.RefundResponse != nil {
+		return utils.MarshalJSON(u.RefundResponse, "", true)
 	}
 
 	if u.EntityChargeback != nil {

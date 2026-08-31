@@ -79,7 +79,7 @@ func (g *GetRefundRequest) GetIdempotencyKey() *string {
 type GetRefundResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The payment object.
-	EntityRefundResponse *components.EntityRefundResponse
+	RefundResponse *components.RefundResponse
 }
 
 func (g *GetRefundResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -89,9 +89,9 @@ func (g *GetRefundResponse) GetHTTPMeta() components.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
+func (g *GetRefundResponse) GetRefundResponse() *components.RefundResponse {
 	if g == nil {
 		return nil
 	}
-	return g.EntityRefundResponse
+	return g.RefundResponse
 }
