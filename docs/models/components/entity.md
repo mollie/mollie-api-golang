@@ -9,10 +9,10 @@
 entity := components.CreateEntityPaymentResponse(components.PaymentResponse{/* values here */})
 ```
 
-### EntityRefundResponse
+### RefundResponse
 
 ```go
-entity := components.CreateEntityEntityRefundResponse(components.EntityRefundResponse{/* values here */})
+entity := components.CreateEntityRefundResponse(components.RefundResponse{/* values here */})
 ```
 
 ### EntityChargeback
@@ -59,8 +59,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch entity.Type {
 	case components.EntityTypePaymentResponse:
 		// entity.PaymentResponse is populated
-	case components.EntityTypeEntityRefundResponse:
-		// entity.EntityRefundResponse is populated
+	case components.EntityTypeRefundResponse:
+		// entity.RefundResponse is populated
 	case components.EntityTypeEntityChargeback:
 		// entity.EntityChargeback is populated
 	case components.EntityTypeCaptureResponse:

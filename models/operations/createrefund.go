@@ -39,7 +39,7 @@ func (c *CreateRefundRequest) GetRefundRequest() *components.RefundRequest {
 type CreateRefundResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The newly created refund object.
-	EntityRefundResponse *components.EntityRefundResponse
+	RefundResponse *components.RefundResponse
 }
 
 func (c *CreateRefundResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -49,9 +49,9 @@ func (c *CreateRefundResponse) GetHTTPMeta() components.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateRefundResponse) GetEntityRefundResponse() *components.EntityRefundResponse {
+func (c *CreateRefundResponse) GetRefundResponse() *components.RefundResponse {
 	if c == nil {
 		return nil
 	}
-	return c.EntityRefundResponse
+	return c.RefundResponse
 }
