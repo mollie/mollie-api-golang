@@ -8,7 +8,7 @@ import (
 )
 
 type GetSessionRequest struct {
-	// Provide the ID of the related session.
+	// Provide the ID of the related Checkout Session.
 	SessionID string `pathParam:"style=simple,explode=false,name=sessionId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
@@ -30,7 +30,7 @@ func (g *GetSessionRequest) GetIdempotencyKey() *string {
 
 type GetSessionResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The session object.
+	// The Checkout Session object.
 	SessionResponse *components.SessionResponse
 }
 

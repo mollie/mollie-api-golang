@@ -3,7 +3,7 @@
 
 package components
 
-// SessionResponseStatus - The session's status.
+// SessionResponseStatus - The Checkout Session's status.
 type SessionResponseStatus string
 
 const (
@@ -30,7 +30,7 @@ func (e *SessionResponseStatus) IsExact() bool {
 type SessionResponsePayment struct {
 	// The webhook URL where we will send payment status updates to.
 	//
-	// This URL will be automatically set as the webhook URL for all payments created for this session.
+	// This URL will be automatically set as the webhook URL for all payments created for this Checkout Session.
 	WebhookURL *string `json:"webhookUrl,omitempty"`
 }
 
@@ -57,24 +57,25 @@ func (s *SessionResponseLinks) GetSelf() URLObj {
 type SessionResponse struct {
 	// The resource type of the object.
 	Resource string `json:"resource"`
-	// The identifier uniquely referring to this session. Mollie assigns this identifier at session creation time. Mollie
-	// will always refer to the session by this ID. Example: `sess_5B8cwPMGnU6qLbRvo7qEZo`.
+	// The identifier uniquely referring to this Checkout Session. Mollie assigns this identifier at Checkout
+	// Session creation time. Mollie will always refer to the Checkout Session by this ID. Example:
+	// `sess_5B8cwPMGnU6qLbRvo7qEZo`.
 	ID string `json:"id"`
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
-	// The client access token for the session. Use the client access token to initialize Mollie Components.
+	// The client access token for the Checkout Session. Use the client access token to initialize Mollie Components.
 	ClientAccessToken string                `json:"clientAccessToken"`
 	Status            SessionResponseStatus `json:"status"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// A user-friendly description of the session that may be shown to the customer during the checkout process.
+	// A user-friendly description of the Checkout Session that may be shown to the customer during the checkout process.
 	//
-	// Any payment created for the session will use the same description.
+	// Any payment created for the Checkout Session will use the same description.
 	Description string `json:"description"`
-	// List of items the customer will pay for in this session. The sum of all line items must equal the
-	// session's amount.
+	// List of items the customer will pay for in this Checkout Session. The sum of all line items must equal the
+	// Checkout Session's amount.
 	//
-	// All lines must have the same currency as the session.
+	// All lines must have the same currency as the Checkout Session.
 	Lines []SessionLineItemResponse `json:"lines"`
 	// The URL your customer will be redirected to after the payment process.
 	//
@@ -86,7 +87,8 @@ type SessionResponse struct {
 	// > This property is currently in private beta, and the final specification may still change.
 	//
 	// Declare which customer details should be collected during checkout. Mollie can collect these details for you
-	// with the Express Component and returns them on the session's and payment's `billingAddress` and `shippingAddress`.
+	// with the Express Component and returns them on the Checkout Session's and payment's `billingAddress` and
+	// `shippingAddress`.
 	RequiredCustomerDetails []SessionRequiredCustomerDetailsResponse `json:"requiredCustomerDetails,omitempty"`
 	BillingAddress          *ShippingAddress                         `json:"billingAddress,omitempty"`
 	ShippingAddress         *ShippingAddress                         `json:"shippingAddress,omitempty"`
@@ -95,7 +97,7 @@ type SessionResponse struct {
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	//
-	// Any payment created for the session will use the same metadata.
+	// Any payment created for the Checkout Session will use the same metadata.
 	Metadata map[string]any          `json:"metadata,omitempty"`
 	Payment  *SessionResponsePayment `json:"payment,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -106,11 +108,11 @@ type SessionResponse struct {
 	ProfileID string `json:"profileId"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
-	// The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	// Omitted if the session has not expired.
+	// The date and time the Checkout Session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+	// Omitted if the Checkout Session has not expired.
 	ExpiredAt *string `json:"expiredAt,omitempty"`
-	// The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-	// Omitted if the session has not been completed.
+	// The date and time the Checkout Session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+	// format. Omitted if the Checkout Session has not been completed.
 	CompletedAt *string `json:"completedAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links SessionResponseLinks `json:"_links"`
