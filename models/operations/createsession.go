@@ -29,7 +29,7 @@ func (c *CreateSessionRequest) GetSessionRequest() *components.SessionRequest {
 
 type CreateSessionResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The newly created session object.
+	// The newly created Checkout Session object.
 	SessionResponse *components.SessionResponse
 }
 

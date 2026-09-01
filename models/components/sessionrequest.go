@@ -6,7 +6,7 @@ package components
 type SessionRequestPayment struct {
 	// The webhook URL where we will send payment status updates to.
 	//
-	// This URL will be automatically set as the webhook URL for all payments created for this session.
+	// This URL will be automatically set as the webhook URL for all payments created for this Checkout Session.
 	WebhookURL *string `json:"webhookUrl,omitempty"`
 }
 
@@ -20,14 +20,14 @@ func (s *SessionRequestPayment) GetWebhookURL() *string {
 type SessionRequest struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
-	// A user-friendly description of the session that may be shown to the customer during the checkout process.
+	// A user-friendly description of the Checkout Session that may be shown to the customer during the checkout process.
 	//
-	// Any payment created for the session will use the same description.
+	// Any payment created for the Checkout Session will use the same description.
 	Description string `json:"description"`
-	// List of items the customer will pay for in this session. The sum of all line items must equal the
-	// session's amount.
+	// List of items the customer will pay for in this Checkout Session. The sum of all line items must equal the
+	// Checkout Session's amount.
 	//
-	// All lines must have the same currency as the session.
+	// All lines must have the same currency as the Checkout Session.
 	Lines []SessionLineItem `json:"lines"`
 	// The URL your customer will be redirected to after the payment process.
 	//
@@ -39,7 +39,8 @@ type SessionRequest struct {
 	// > This property is currently in private beta, and the final specification may still change.
 	//
 	// Declare which customer details should be collected during checkout. Mollie can collect these details for you
-	// with the Express Component and returns them on the session's and payment's `billingAddress` and `shippingAddress`.
+	// with the Express Component and returns them on the Checkout Session's and payment's `billingAddress` and
+	// `shippingAddress`.
 	RequiredCustomerDetails []SessionRequiredCustomerDetails `json:"requiredCustomerDetails,omitempty"`
 	BillingAddress          *ShippingAddress                 `json:"billingAddress,omitempty"`
 	ShippingAddress         *ShippingAddress                 `json:"shippingAddress,omitempty"`
@@ -48,7 +49,7 @@ type SessionRequest struct {
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	//
-	// Any payment created for the session will use the same metadata.
+	// Any payment created for the Checkout Session will use the same metadata.
 	Metadata map[string]any         `json:"metadata,omitempty"`
 	Payment  *SessionRequestPayment `json:"payment,omitempty"`
 	// The identifier referring to the [profile](get-profile) this entity belongs to.

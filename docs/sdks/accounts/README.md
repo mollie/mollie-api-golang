@@ -11,6 +11,10 @@
 
 ## ListAccounts
 
+> 🔒 Restricted access
+>
+> This API is only available to Mollie partners with a signed agreement for Business Accounts. [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+
 Retrieve all business accounts for the authenticated organization.
 
 The results are paginated.
@@ -88,6 +92,10 @@ func main() {
 
 ## GetAccount
 
+> 🔒 Restricted access
+>
+> This API is only available to Mollie partners with a signed agreement for Business Accounts. [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+
 Retrieve a single business account object by its account ID. This allows you to check the current status,
 balance, and account details.
 
@@ -147,6 +155,10 @@ func main() {
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
+
+> 🔒 Restricted access
+>
+> This API is only available to Mollie partners with a signed agreement for Business Accounts. [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
 
 Retrieve all transactions for a specific business account.
 
@@ -225,6 +237,10 @@ func main() {
 | apierrors.APIError      | 4XX, 5XX                | \*/\*                   |
 
 ## Get
+
+> 🔒 Restricted access
+>
+> This API is only available to Mollie partners with a signed agreement for Business Accounts. [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
 
 Retrieve a single transaction object by its transaction ID. This allows you to check the details,
 amount, counterparty, and balance impact of a specific transaction.

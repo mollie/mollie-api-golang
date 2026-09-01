@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: a17e4eb9f8dced190787adbc4ed6aba3
+  docChecksum: 40566afffc143891f099a3184ec36e0b
   docVersion: 1.0.0
   speakeasyVersion: 1.796.2
   generationVersion: 2.933.0
-  releaseVersion: 1.3.33
-  configChecksum: eb9d4483d3e137bca0a6efe88a86fbaa
+  releaseVersion: 1.3.34
+  configChecksum: 44b800d0f993a1bfa4d1cda0b30b917b
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 4455d92d-071b-4541-88b2-a25f8f7b96a4
-  pristine_commit_hash: 3c30709b48944e47bf12457ab4bd1eb7deb61f4c
-  pristine_tree_hash: 68e1422cff07e789f476b834ca4a8c50b26f4eee
+  generation_id: 8c56a2aa-4e06-4c21-8799-d9036cfb0381
+  pristine_commit_hash: 6a471d474a83047f3175bf3df46e3de64e285e44
+  pristine_tree_hash: de308dfdd86d03dbb5ad7689f971bb8b6cca20a8
 features:
   go:
     additionalDependencies: 0.1.0
@@ -61,8 +61,8 @@ trackedFiles:
     pristine_git_object: 4b8a307dba50434d1b0d27e17edc79cd9c3e78db
   accounts.go:
     id: c7bd7b26c9d3
-    last_write_checksum: sha1:f9462d5c5c5526668754db7155784fbf1ebb9fb7
-    pristine_git_object: cd0c06c7fb4aa04856f6839d195f93d43bf90006
+    last_write_checksum: sha1:de7b35ad1e8a122b9d7c0a7e15c393015f748ff2
+    pristine_git_object: 0d2fd6401a6e3d8cd026f1f6949a6e121fb2a0da
   balances.go:
     id: 3e5eeed258ec
     last_write_checksum: sha1:f82718ebc2e398ffd5086cdc57d05d28827d29d1
@@ -83,10 +83,14 @@ trackedFiles:
     id: 02c7e4df797b
     last_write_checksum: sha1:cd9bdda3afa6e7bb88c744f5a34d38ced3cfa4d0
     pristine_git_object: c400a4a5acc0fff2a4681be3974c626eae5862a3
+  checkoutsessions.go:
+    id: e45447bbbca1
+    last_write_checksum: sha1:f846f63bdbe7d990ef5bc8a16cb3a2105a0af370
+    pristine_git_object: 5b7e9520cac718cd1262022fad6512720f146aa6
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:d329aba1abde2ea5d3f9afa2e5637d6faa3aac84
-    pristine_git_object: c6e541991479410625d22f847aa84ab0a4aa18b5
+    last_write_checksum: sha1:2c14fd4b5605eaeb69cd351c0f4d5addab9f8fd4
+    pristine_git_object: 87556386ec8d0fce292f1feebe5e251416f06134
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -1965,12 +1969,12 @@ trackedFiles:
     pristine_git_object: 49bb192e41ba5f3808f4aab881ad8f5eff3ab6d2
   docs/models/components/sessionrequest.md:
     id: 719a07fb44b1
-    last_write_checksum: sha1:67105833400983182d221e173fd87979b904698f
-    pristine_git_object: e03abda44498b0d78d6b5aae448816d23a366898
+    last_write_checksum: sha1:32614087b3c7a83ace9420b36a215f2c48d27e4b
+    pristine_git_object: b928269324ec9d9115fa871a5019723382d024c7
   docs/models/components/sessionrequestpayment.md:
     id: 7b4dfcd0935a
-    last_write_checksum: sha1:a8a7d0ca613b76863df3bfa4447ed6ea31319429
-    pristine_git_object: 9ef1860252728af1be22b54fe92e3de72fe16a0a
+    last_write_checksum: sha1:093d791676210ddbe1355061a4827e48c21ec36b
+    pristine_git_object: f058436b768ab0638f28173f034fa35051ee7e81
   docs/models/components/sessionrequiredcustomerdetails.md:
     id: b3b87c66cd44
     last_write_checksum: sha1:232357b8e355a50db2122308898fc46dddfafaa7
@@ -1981,20 +1985,20 @@ trackedFiles:
     pristine_git_object: f49092d986be1447fcfab4317952a43d37fca2c7
   docs/models/components/sessionresponse.md:
     id: 961206f4c98a
-    last_write_checksum: sha1:343e812518ebfb91cb9b972587d2601a8aedc7a9
-    pristine_git_object: 9bf29c021a9d8ba27cd44731374215914b51840a
+    last_write_checksum: sha1:79eda3dfd9a87a8224112d51ae2c8c930b1c0841
+    pristine_git_object: 07bd5a3c6d5b46c3547d91a947cf6d781e428230
   docs/models/components/sessionresponselinks.md:
     id: 9b2aba629602
     last_write_checksum: sha1:09bd69efe7da1c46e88c05cc53f878719609f194
     pristine_git_object: 1fbb8ec66e6d88b76d7d1f0b33ff3c0f386e8938
   docs/models/components/sessionresponsepayment.md:
     id: 63f3d3cd4c20
-    last_write_checksum: sha1:9e55bcf69b1c6a78a8654b28cf2d6089370b61ad
-    pristine_git_object: 6c4307d508105a82069449a9c96cade9d9c6d223
+    last_write_checksum: sha1:a61db5bc4b41ee1aa355bccc2f912ef42f4dc8b4
+    pristine_git_object: 8c6d506da1e84f301fd4fb88664eb05b8d2a1df5
   docs/models/components/sessionresponsestatus.md:
     id: ab21a6e934cf
-    last_write_checksum: sha1:160be853e34154eb92c1ea73048d689de129eb57
-    pristine_git_object: af60eb686af5f1cc0b2061bf106598b11abef6d1
+    last_write_checksum: sha1:33397168ce240c1fb9a5d46e1a167a90f1cdf181
+    pristine_git_object: 912e7d1d6a0f166471963c310e4c413c08d46583
   docs/models/components/sessionsequencetype.md:
     id: 46797d6238f7
     last_write_checksum: sha1:cc1145dcf780a1aca2d2992696bc3c2e4ca71bad
@@ -2465,8 +2469,8 @@ trackedFiles:
     pristine_git_object: 2129039da8a10e8eb90840144b957aabbc9f992d
   docs/models/operations/createsessionresponse.md:
     id: 95acaf2225aa
-    last_write_checksum: sha1:2a5840f6b76da414d32dd9b1a31dbb32f8b5afb7
-    pristine_git_object: 94c43ea778bcd95e5c41c9e442905a7cdd588f4f
+    last_write_checksum: sha1:44351a96344cb75754bf90431f318f048a4c40f9
+    pristine_git_object: 86f7b7ecb0bf25ac6d3b1da098db88799ebcbe7a
   docs/models/operations/createsubscriptionrequest.md:
     id: e71be0fed944
     last_write_checksum: sha1:470e31d721a5b3adf86dd690ac504dbde0b6888d
@@ -2993,12 +2997,12 @@ trackedFiles:
     pristine_git_object: fb5961dac050d83a04ec6196eaf3f85299f787b9
   docs/models/operations/getsessionrequest.md:
     id: 86ae7adb9b0b
-    last_write_checksum: sha1:bd3edf01f949d5a01fb2520a1c2b59094250c0ed
-    pristine_git_object: 1531802298256fbb43470e4a2464ad0744928ecc
+    last_write_checksum: sha1:7ae855fcc589aeb7a877eb215f559aec042d3a1a
+    pristine_git_object: e67ab29c483da807984aff709bbb6cfb5047642c
   docs/models/operations/getsessionresponse.md:
     id: 2485d8d30237
-    last_write_checksum: sha1:6540361d2e3420e28f93886a797c80c7d317ef73
-    pristine_git_object: ff3ee55231e6da91c1ea86148c2bcf297992002b
+    last_write_checksum: sha1:7539645c7579d83891b28043c4716d39d7765dbf
+    pristine_git_object: 3a4210aa749d261aa30d28a18b12794efab5e2ff
   docs/models/operations/getsettlementrequest.md:
     id: 8b004cba1a3f
     last_write_checksum: sha1:a04000dfff78d602c61ffa715ea810b87fcc0550
@@ -4105,8 +4109,8 @@ trackedFiles:
     pristine_git_object: 3b8263d62446ad9bab7a9d5b3af222efa664f092
   docs/sdks/accounts/README.md:
     id: d6c754b1ca96
-    last_write_checksum: sha1:590e33e778db804a386e32eff14d40f8e1275a05
-    pristine_git_object: da02c1554221cfd799248e3a389faed532bb7a09
+    last_write_checksum: sha1:8870145eec17a5278e608c4fab6b77f81411dd4f
+    pristine_git_object: 3369593127c9a94f3bbd357c3390c4b823a6842f
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:462a84c70333564ef15ff0337fff42f9e50298d6
@@ -4127,6 +4131,10 @@ trackedFiles:
     id: 651e1876c61b
     last_write_checksum: sha1:6fa330fcfa025995936281e6868709db03551deb
     pristine_git_object: 9b1dd85ebf2539d90fadd62e3e2c8ae4bdd6c1dc
+  docs/sdks/checkoutsessions/README.md:
+    id: 093cc3fe624c
+    last_write_checksum: sha1:3a0dbd530f831b00f2ea1ea5d7fb4535187b8837
+    pristine_git_object: b83691d1b8b1df1bab1ec67b64d7494f4fd3b560
   docs/sdks/clientlinks/README.md:
     id: 74ba097043d3
     last_write_checksum: sha1:66ebbcb158e14f310db219dd9cc7cb3a372ef9c1
@@ -4199,10 +4207,6 @@ trackedFiles:
     id: 7b2a80290a07
     last_write_checksum: sha1:ea44b763e38faa32a05db3a6290dcacf4916ac8a
     pristine_git_object: adf72215a30218e8c9309441b797898a75bf225b
-  docs/sdks/sessions/README.md:
-    id: 57ad62844f79
-    last_write_checksum: sha1:b6d03ad058f6152639a4bc3768a0bb03a647be8f
-    pristine_git_object: 36ba178cad1d3450ae9cea58f205770b1b7c93d0
   docs/sdks/settlements/README.md:
     id: c0b0673bed80
     last_write_checksum: sha1:c6d982a11b7e883d69b63ed4143c8618d281d404
@@ -5137,8 +5141,8 @@ trackedFiles:
     pristine_git_object: 1910640b5064d613469c1314e7980c4b9a2df1f7
   models/components/sessionrequest.go:
     id: 81fd0ec59248
-    last_write_checksum: sha1:0c0006a02ba991533b263e997fa24ac94ee433cc
-    pristine_git_object: 036aef938b6f4a5c87a67caf8b4495df33a3e11b
+    last_write_checksum: sha1:bd17f1ec1692c46b354f412da25b5485766c1390
+    pristine_git_object: a83f6631fc57eaa4976d5eb8677bf5d9199d94a0
   models/components/sessionrequiredcustomerdetails.go:
     id: f3e3c903210a
     last_write_checksum: sha1:ea6e304cfbffdea235c4f053591a68f8cf734c52
@@ -5149,8 +5153,8 @@ trackedFiles:
     pristine_git_object: 713b5224a4a076879d78e89152d0d3057f711ab4
   models/components/sessionresponse.go:
     id: 4c3b22d29248
-    last_write_checksum: sha1:fb698e4349c8e9ce1be9046e7f1db09f93003ad8
-    pristine_git_object: ce1a0e1e2b4e2168939e2b3bda60bc3f0352ca49
+    last_write_checksum: sha1:2516c39d040d2033845bcb71cc3b560282d2f26c
+    pristine_git_object: b640d2444e2ce764b6645f9bd3ae676409a19103
   models/components/sessionsequencetype.go:
     id: ce70e3ea7822
     last_write_checksum: sha1:bc60c1a94c0ee081b90126a6f9978b9086fee50b
@@ -5405,8 +5409,8 @@ trackedFiles:
     pristine_git_object: 69c3efc7e229a3ec5bb3a925a0717d62f8b67142
   models/operations/createsession.go:
     id: 7eb53a474a96
-    last_write_checksum: sha1:c08f85482118f501b026c72a81ac95707268ad4f
-    pristine_git_object: 42e3361c2d98de5f8ff1514b447644f5776530a2
+    last_write_checksum: sha1:374360b53b1417ee7818817145c5707cf2e37933
+    pristine_git_object: 2fe5f305242b2bc7888bfe5792c81021512c8eed
   models/operations/createsubscription.go:
     id: 16b511206b4f
     last_write_checksum: sha1:cd7fac85e15cf896cfc46c1794a3b2a999c959df
@@ -5573,8 +5577,8 @@ trackedFiles:
     pristine_git_object: 25881101bbce7a339267d1dbe939c884823c8358
   models/operations/getsession.go:
     id: 56c364a35dfb
-    last_write_checksum: sha1:238b212530eb216250ab003e67807f421e78ccd7
-    pristine_git_object: 52c149b4cc78cb5b535d66945120b4bba6b791f8
+    last_write_checksum: sha1:47ce1fd5a33d54e3e09f4ae7a61d093745757a85
+    pristine_git_object: 756aea65dfe354583911ec01c515571fec73019e
   models/operations/getsettlement.go:
     id: 6e5c40689cf4
     last_write_checksum: sha1:16b48365bf89439d8fb4c3bbf28048ba7558742c
@@ -5899,10 +5903,6 @@ trackedFiles:
     id: 089376558bce
     last_write_checksum: sha1:4ec694a46ad440999cb56afcf97f6dd69cab67aa
     pristine_git_object: 9f593d013d138629a414f51ec143ff7180b4b97d
-  sessions.go:
-    id: 8c9f6fb78f3e
-    last_write_checksum: sha1:e9a433c3cfd63c031f166910ac50f39628f474e2
-    pristine_git_object: 0dae539003abf139d1849e8e63531ba59651e1c1
   settlements.go:
     id: b2d865202d0d
     last_write_checksum: sha1:8c049ed427fe43fec33de82f95eb576f40cc64d5
@@ -9445,6 +9445,33 @@ examples:
           application/hal+json: {"resource": "session", "id": "sess_82jFYDTrLcCQV68NLDvMJ", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4i...", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"type": "physical", "description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "imageUrl": "https://...", "productUrl": "https://..."}], "redirectUrl": "https://example.org/redirect", "requiredCustomerDetails": ["billing-address"], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "customerId": "cst_5B8cwPMGnU", "sequenceType": "oneoff", "payment": {"webhookUrl": "https://example.org/webhook"}, "profileId": "pfl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37+00:00", "expiredAt": "2024-03-20T10:13:37+00:00", "completedAt": "2024-03-20T11:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+    create-session-201-2:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [], "redirectUrl": "https://example.org/redirect", "requiredCustomerDetails": ["billing-address"], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "customerId": "cst_5B8cwPMGnU", "sequenceType": "oneoff", "payment": {"webhookUrl": "https://example.org/webhook"}, "profileId": "pfl_5B8cwPMGnU", "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "session", "id": "sess_hJT2ZmqxL8vN4wRfy76sPq", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc19oSlQyWm1xeEw4dk40d1JmeTc2c1BxIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "sequenceType": "oneoff", "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
+    create-session-201-3:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [], "redirectUrl": "https://example.org/redirect", "requiredCustomerDetails": ["billing-address"], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "customerId": "cst_5B8cwPMGnU", "sequenceType": "oneoff", "payment": {"webhookUrl": "https://example.org/webhook"}, "profileId": "pfl_5B8cwPMGnU", "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "session", "id": "sess_9wR4Kq6ZxJ8vNfT2ymLpBq", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc185d1I0S3E2WnhKOHZOZlQyeW1McEJxIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "billingAddress": {"givenName": "Piet", "familyName": "Mondriaan", "streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "email": "piet@example.org", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"givenName": "Piet", "familyName": "Mondriaan", "streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "sequenceType": "oneoff", "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
+    create-session-201-4:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [], "redirectUrl": "https://example.org/redirect", "requiredCustomerDetails": ["billing-address"], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "customerId": "cst_5B8cwPMGnU", "sequenceType": "oneoff", "payment": {"webhookUrl": "https://example.org/webhook"}, "profileId": "pfl_5B8cwPMGnU", "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "session", "id": "sess_3vTq7NxKm9RfY4wZbL2sJp", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc18zdlRxN054S205UmZZNHdaYkwyc0pwIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "customerId": "cst_tKt44u85MM", "sequenceType": "first", "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
   get-session:
     get-session-200-1:
       parameters:
@@ -10178,8 +10205,10 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Go SDK Changes:
-  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity` **Changed** (Breaking ⚠️)
-  * `Client.Refunds.Create()`:  `request.RefundRequest` **Changed**
+  * `Client.CheckoutSessions.Create()`: **Added**
+  * `Client.CheckoutSessions.Get()`: **Added**
+  * `Client.Sessions.Create()`: **Removed** (Breaking ⚠️)
+  * `Client.Sessions.Get()`: **Removed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

@@ -67,7 +67,7 @@ type Client struct {
 	BalanceTransfers         *BalanceTransfers
 	Payments                 *Payments
 	UnmatchedCreditTransfers *UnmatchedCreditTransfers
-	Sessions                 *Sessions
+	CheckoutSessions         *CheckoutSessions
 	Methods                  *Methods
 	Refunds                  *Refunds
 	Chargebacks              *Chargebacks
@@ -181,9 +181,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.3.33",
+		SDKVersion: "1.3.34",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 1.3.33 2.933.0 1.0.0 github.com/mollie/mollie-api-golang",
+			UserAgent:  "speakeasy-sdk/go 1.3.34 2.933.0 1.0.0 github.com/mollie/mollie-api-golang",
 			Globals:    globals.Globals{},
 			ServerList: ServerList,
 		},
@@ -225,7 +225,7 @@ func New(opts ...SDKOption) *Client {
 	sdk.BalanceTransfers = newBalanceTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.UnmatchedCreditTransfers = newUnmatchedCreditTransfers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Sessions = newSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CheckoutSessions = newCheckoutSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Methods = newMethods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Chargebacks = newChargebacks(sdk, sdk.sdkConfiguration, sdk.hooks)
