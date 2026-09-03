@@ -13,31 +13,31 @@ type ShippingAddress struct {
 	// The given name (first name) of the person should be at least two characters and cannot contain only
 	// numbers.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	GivenName *string `json:"givenName,omitempty"`
 	// The given family name (surname) of the person should be at least two characters and cannot contain only
 	// numbers.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	FamilyName *string `json:"familyName,omitempty"`
 	// The name of the organization, in case the addressee is an organization.
 	OrganizationName *string `json:"organizationName,omitempty"`
 	// A street and street number.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	StreetAndNumber *string `json:"streetAndNumber,omitempty"`
 	// Any additional addressing details, for example an apartment number.
 	StreetAdditional *string `json:"streetAdditional,omitempty"`
 	// A postal code. This field may be required if the provided country has a postal code system.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	PostalCode *string `json:"postalCode,omitempty"`
 	// A valid e-mail address.
 	//
 	// If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
 	// email upon payment creation. The language of the email will follow the locale parameter of the payment.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	//
 	// If the domain contains non-ASCII characters, encode it as Punycode per [RFC 3492](https://www.rfc-editor.org/rfc/rfc3492).
 	Email *string `json:"email,omitempty"`
@@ -45,13 +45,13 @@ type ShippingAddress struct {
 	Phone *string `json:"phone,omitempty"`
 	// A city name.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	City *string `json:"city,omitempty"`
 	// The top-level administrative subdivision of the country. For example: Noord-Holland.
 	Region *string `json:"region,omitempty"`
 	// A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 	//
-	// Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+	// Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
 	Country *string `json:"country,omitempty"`
 }
 
