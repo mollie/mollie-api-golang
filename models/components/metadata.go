@@ -65,7 +65,14 @@ func CreateMetadataArrayOfStr(arrayOfStr []string) Metadata {
 	}
 }
 
-func (u *Metadata) UnmarshalJSON(data []byte) error {
+func (u *Metadata) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Metadata{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

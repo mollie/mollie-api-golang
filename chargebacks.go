@@ -86,6 +86,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -249,7 +250,7 @@ func (s *Chargebacks) List(ctx context.Context, request operations.ListChargebac
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -636,6 +637,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -799,7 +801,7 @@ func (s *Chargebacks) All(ctx context.Context, request operations.ListAllChargeb
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.All(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

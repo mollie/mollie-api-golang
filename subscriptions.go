@@ -361,6 +361,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -524,7 +525,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1438,6 +1439,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1601,7 +1603,7 @@ func (s *Subscriptions) All(ctx context.Context, request operations.ListAllSubsc
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.All(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1736,6 +1738,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1899,7 +1902,7 @@ func (s *Subscriptions) ListPayments(ctx context.Context, request operations.Lis
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListPayments(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

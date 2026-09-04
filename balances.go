@@ -86,6 +86,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -249,7 +250,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1172,6 +1173,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1335,7 +1337,7 @@ func (s *Balances) ListTransactions(ctx context.Context, request operations.List
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListTransactions(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

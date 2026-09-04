@@ -89,6 +89,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -252,7 +253,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			embed,
 			from,
 			limit,

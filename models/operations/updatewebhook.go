@@ -42,7 +42,14 @@ func CreateUpdateWebhookEventTypesWebhookEventTypes(webhookEventTypes components
 	}
 }
 
-func (u *UpdateWebhookEventTypes) UnmarshalJSON(data []byte) error {
+func (u *UpdateWebhookEventTypes) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpdateWebhookEventTypes{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var arrayOfWebhookEventTypes []components.WebhookEventTypes = []components.WebhookEventTypes{}
 	if err := utils.UnmarshalJSON(data, &arrayOfWebhookEventTypes, "", true, nil); err == nil {

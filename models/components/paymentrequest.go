@@ -322,7 +322,14 @@ func CreateMethodArrayOfMethodEnum(arrayOfMethodEnum []*MethodEnum) Method {
 	}
 }
 
-func (u *Method) UnmarshalJSON(data []byte) error {
+func (u *Method) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Method{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var methodEnum MethodEnum = MethodEnum("")
 	if err := utils.UnmarshalJSON(data, &methodEnum, "", true, nil); err == nil {

@@ -82,6 +82,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -245,7 +246,7 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1147,6 +1148,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1310,7 +1312,7 @@ func (s *Settlements) ListPayments(ctx context.Context, request operations.ListS
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListPayments(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1438,6 +1440,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1601,7 +1604,7 @@ func (s *Settlements) ListCaptures(ctx context.Context, request operations.ListS
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListCaptures(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1731,6 +1734,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1894,7 +1898,7 @@ func (s *Settlements) ListRefunds(ctx context.Context, request operations.ListSe
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListRefunds(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -2028,6 +2032,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -2191,7 +2196,7 @@ func (s *Settlements) ListChargebacks(ctx context.Context, request operations.Li
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListChargebacks(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

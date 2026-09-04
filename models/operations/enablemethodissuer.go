@@ -106,7 +106,14 @@ func CreateEnableMethodIssuerResponseBodyVoucher(voucher components.Voucher) Ena
 	}
 }
 
-func (u *EnableMethodIssuerResponseBody) UnmarshalJSON(data []byte) error {
+func (u *EnableMethodIssuerResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = EnableMethodIssuerResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var voucher components.Voucher = components.Voucher{}
 	if err := utils.UnmarshalJSON(data, &voucher, "", true, nil); err == nil {
