@@ -51,6 +51,7 @@ const (
 	PaymentMethodTwint             PaymentMethod = "twint"
 	PaymentMethodVipps             PaymentMethod = "vipps"
 	PaymentMethodVoucher           PaymentMethod = "voucher"
+	PaymentMethodWero              PaymentMethod = "wero"
 )
 
 func (e PaymentMethod) ToPointer() *PaymentMethod {
@@ -61,7 +62,7 @@ func (e PaymentMethod) ToPointer() *PaymentMethod {
 func (e *PaymentMethod) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "bacs", "applepay", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "bitcoin", "blik", "creditcard", "directdebit", "eps", "giftcard", "giropay", "googlepay", "ideal", "in3", "inghomepay", "kbc", "klarnapaylater", "klarnapaynow", "klarnasliceit", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "podiumcadeaukaart", "pointofsale", "sofort", "swish", "trustly", "twint", "vipps", "voucher":
+		case "alma", "bacs", "applepay", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "bitcoin", "blik", "creditcard", "directdebit", "eps", "giftcard", "giropay", "googlepay", "ideal", "in3", "inghomepay", "kbc", "klarnapaylater", "klarnapaynow", "klarnasliceit", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "przelewy24", "riverty", "satispay", "podiumcadeaukaart", "pointofsale", "sofort", "swish", "trustly", "twint", "vipps", "voucher", "wero":
 			return true
 		}
 	}

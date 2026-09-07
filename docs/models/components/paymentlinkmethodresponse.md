@@ -47,3 +47,4 @@ custom := components.PaymentLinkMethodResponse("custom_value")
 | `PaymentLinkMethodResponseTrustly`      | trustly                                 |
 | `PaymentLinkMethodResponseTwint`        | twint                                   |
 | `PaymentLinkMethodResponseVoucher`      | voucher                                 |
+| `PaymentLinkMethodResponseWero`         | wero                                    |

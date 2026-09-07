@@ -351,6 +351,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -514,7 +515,7 @@ func (s *Captures) List(ctx context.Context, request operations.ListCapturesRequ
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

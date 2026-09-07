@@ -35,6 +35,7 @@ const (
 	PaymentLinkMethodResponseTrustly      PaymentLinkMethodResponse = "trustly"
 	PaymentLinkMethodResponseTwint        PaymentLinkMethodResponse = "twint"
 	PaymentLinkMethodResponseVoucher      PaymentLinkMethodResponse = "voucher"
+	PaymentLinkMethodResponseWero         PaymentLinkMethodResponse = "wero"
 )
 
 func (e PaymentLinkMethodResponse) ToPointer() *PaymentLinkMethodResponse {
@@ -45,7 +46,7 @@ func (e PaymentLinkMethodResponse) ToPointer() *PaymentLinkMethodResponse {
 func (e *PaymentLinkMethodResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "blik", "creditcard", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "voucher":
+		case "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "blik", "creditcard", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "voucher", "wero":
 			return true
 		}
 	}

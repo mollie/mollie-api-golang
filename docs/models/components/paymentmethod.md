@@ -64,3 +64,4 @@ custom := components.PaymentMethod("custom_value")
 | `PaymentMethodTwint`             | twint                            |
 | `PaymentMethodVipps`             | vipps                            |
 | `PaymentMethodVoucher`           | voucher                          |
+| `PaymentMethodWero`              | wero                             |

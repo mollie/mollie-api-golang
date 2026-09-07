@@ -55,6 +55,7 @@ func Retry(ctx context.Context, r Retries, operation func() (*http.Response, err
 		err := retryWithBackoff(ctx, r.Config.Backoff, func() error {
 			if resp != nil {
 				resp.Body.Close()
+				resp = nil
 			}
 
 			select {
@@ -144,21 +145,31 @@ func Retry(ctx context.Context, r Retries, operation func() (*http.Response, err
 			return nil
 		})
 
-		var tempErr *retry.TemporaryError
-		if err != nil && !errors.As(err, &tempErr) {
-			return nil, err
-		}
-
-		return resp, nil
+		return retryResult(resp, err)
 	default:
 		return operation()
 	}
 }
 
+func retryResult(resp *http.Response, err error) (*http.Response, error) {
+	var tempErr *retry.TemporaryError
+	if err != nil && !errors.As(err, &tempErr) {
+		if resp != nil {
+			resp.Body.Close()
+		}
+		return nil, err
+	}
+
+	if resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 func retryWithBackoff(ctx context.Context, s *retry.BackoffStrategy, operation func() error) error {
 	var (
 		err            error
-		next           time.Duration
 		attempt        int
 		start          = time.Now()
 		maxElapsedTime = time.Duration(s.MaxElapsedTime) * time.Millisecond
@@ -170,6 +181,7 @@ func retryWithBackoff(ctx context.Context, s *retry.BackoffStrategy, operation f
 	}()
 
 	for {
+		var next time.Duration
 		err = operation()
 		if err == nil {
 			return nil
@@ -180,13 +192,23 @@ func retryWithBackoff(ctx context.Context, s *retry.BackoffStrategy, operation f
 			return permanent.Unwrap()
 		}
 
+		if ctxErr := ctx.Err(); ctxErr != nil {
+			return ctxErr
+		}
+
 		if time.Since(start) >= maxElapsedTime {
 			return err
 		}
 
 		var temporary *retry.TemporaryError
+		hasRetryAfter := false
 		if errors.As(err, &temporary) {
 			next = temporary.RetryAfter()
+			hasRetryAfter = next > 0
+		}
+
+		if hasRetryAfter && next > maxElapsedTime-time.Since(start) {
+			return err
 		}
 
 		if next <= 0 {

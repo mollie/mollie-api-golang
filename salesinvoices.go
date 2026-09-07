@@ -351,6 +351,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -514,7 +515,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			from,
 			limit,
 			testmode,

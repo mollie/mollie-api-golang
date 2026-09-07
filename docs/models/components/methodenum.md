@@ -50,3 +50,4 @@ value := components.MethodEnumAlma
 | `MethodEnumTwint`        | twint                    |
 | `MethodEnumVipps`        | vipps                    |
 | `MethodEnumVoucher`      | voucher                  |
+| `MethodEnumWero`         | wero                     |
