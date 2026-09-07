@@ -264,7 +264,14 @@ func CreateCodeStatusReasonVoucherResponse(statusReasonVoucherResponse StatusRea
 	}
 }
 
-func (u *Code) UnmarshalJSON(data []byte) error {
+func (u *Code) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Code{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var statusReasonCardSchemeResponse StatusReasonCardSchemeResponse = StatusReasonCardSchemeResponse("")
 	if err := utils.UnmarshalJSON(data, &statusReasonCardSchemeResponse, "", true, nil); err == nil {

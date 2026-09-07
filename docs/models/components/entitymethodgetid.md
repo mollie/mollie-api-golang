@@ -56,6 +56,7 @@ custom := components.EntityMethodGetID("custom_value")
 | `EntityMethodGetIDTwint`          | twint                             |
 | `EntityMethodGetIDVipps`          | vipps                             |
 | `EntityMethodGetIDVoucher`        | voucher                           |
+| `EntityMethodGetIDWero`           | wero                              |
 | `EntityMethodGetIDKlarnapaylater` | klarnapaylater                    |
 | `EntityMethodGetIDKlarnapaynow`   | klarnapaynow                      |
 | `EntityMethodGetIDKlarnasliceit`  | klarnasliceit                     |

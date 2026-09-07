@@ -40,6 +40,7 @@ const (
 	PaymentLinkMethodTrustly      PaymentLinkMethod = "trustly"
 	PaymentLinkMethodTwint        PaymentLinkMethod = "twint"
 	PaymentLinkMethodVoucher      PaymentLinkMethod = "voucher"
+	PaymentLinkMethodWero         PaymentLinkMethod = "wero"
 )
 
 func (e PaymentLinkMethod) ToPointer() *PaymentLinkMethod {
@@ -108,6 +109,8 @@ func (e *PaymentLinkMethod) UnmarshalJSON(data []byte) error {
 	case "twint":
 		fallthrough
 	case "voucher":
+		fallthrough
+	case "wero":
 		*e = PaymentLinkMethod(v)
 		return nil
 	default:

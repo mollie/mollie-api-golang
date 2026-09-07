@@ -166,7 +166,14 @@ func CreateEntityTransferResponse(transferResponse TransferResponse) Entity {
 	}
 }
 
-func (u *Entity) UnmarshalJSON(data []byte) error {
+func (u *Entity) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Entity{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var paymentLinkResponse PaymentLinkResponse = PaymentLinkResponse{}
 	if err := utils.UnmarshalJSON(data, &paymentLinkResponse, "", true, nil); err == nil {

@@ -349,6 +349,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -512,7 +513,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			from,
 			limit,
 			idempotencyKey,

@@ -68,3 +68,4 @@ value := components.SettlementMethodAlma
 | `SettlementMethodTwint`                 | twint                                   |
 | `SettlementMethodVipps`                 | vipps                                   |
 | `SettlementMethodVoucher`               | voucher                                 |
+| `SettlementMethodWero`                  | wero                                    |

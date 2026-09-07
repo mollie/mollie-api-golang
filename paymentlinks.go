@@ -353,6 +353,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -516,7 +517,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			from,
 			limit,
 			testmode,
@@ -1414,6 +1415,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1577,7 +1579,7 @@ func (s *PaymentLinks) ListPayments(ctx context.Context, request operations.GetP
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListPayments(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

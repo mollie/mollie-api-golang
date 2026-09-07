@@ -63,6 +63,7 @@ const (
 	SettlementMethodTwint                 SettlementMethod = "twint"
 	SettlementMethodVipps                 SettlementMethod = "vipps"
 	SettlementMethodVoucher               SettlementMethod = "voucher"
+	SettlementMethodWero                  SettlementMethod = "wero"
 )
 
 func (e SettlementMethod) ToPointer() *SettlementMethod {
@@ -173,6 +174,8 @@ func (e *SettlementMethod) UnmarshalJSON(data []byte) error {
 	case "vipps":
 		fallthrough
 	case "voucher":
+		fallthrough
+	case "wero":
 		*e = SettlementMethod(v)
 		return nil
 	default:

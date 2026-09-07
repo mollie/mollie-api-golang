@@ -46,6 +46,7 @@ const (
 	MethodEnumTwint        MethodEnum = "twint"
 	MethodEnumVipps        MethodEnum = "vipps"
 	MethodEnumVoucher      MethodEnum = "voucher"
+	MethodEnumWero         MethodEnum = "wero"
 )
 
 func (e MethodEnum) ToPointer() *MethodEnum {
@@ -126,6 +127,8 @@ func (e *MethodEnum) UnmarshalJSON(data []byte) error {
 	case "vipps":
 		fallthrough
 	case "voucher":
+		fallthrough
+	case "wero":
 		*e = MethodEnum(v)
 		return nil
 	default:

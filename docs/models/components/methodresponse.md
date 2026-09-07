@@ -53,6 +53,7 @@ custom := components.MethodResponse("custom_value")
 | `MethodResponseTwint`          | twint                          |
 | `MethodResponseVipps`          | vipps                          |
 | `MethodResponseVoucher`        | voucher                        |
+| `MethodResponseWero`           | wero                           |
 | `MethodResponseKlarnapaylater` | klarnapaylater                 |
 | `MethodResponseKlarnapaynow`   | klarnapaynow                   |
 | `MethodResponseKlarnasliceit`  | klarnasliceit                  |

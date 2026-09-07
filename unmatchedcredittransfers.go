@@ -92,6 +92,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -255,7 +256,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			from,
 			limit,
 			idempotencyKey,

@@ -90,6 +90,7 @@ func (s *Accounts) ListAccounts(ctx context.Context, request operations.ListBusi
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -253,7 +254,7 @@ func (s *Accounts) ListAccounts(ctx context.Context, request operations.ListBusi
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListAccounts(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -652,6 +653,7 @@ func (s *Accounts) List(ctx context.Context, request operations.ListBusinessAcco
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -815,7 +817,7 @@ func (s *Accounts) List(ctx context.Context, request operations.ListBusinessAcco
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

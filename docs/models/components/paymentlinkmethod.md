@@ -44,3 +44,4 @@ value := components.PaymentLinkMethodApplepay
 | `PaymentLinkMethodTrustly`      | trustly                         |
 | `PaymentLinkMethodTwint`        | twint                           |
 | `PaymentLinkMethodVoucher`      | voucher                         |
+| `PaymentLinkMethodWero`         | wero                            |

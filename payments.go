@@ -384,6 +384,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -547,7 +548,7 @@ func (s *Payments) List(ctx context.Context, request operations.ListPaymentsRequ
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

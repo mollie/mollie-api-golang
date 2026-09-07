@@ -56,3 +56,4 @@ custom := components.ListEntityMethodAllID("custom_value")
 | `ListEntityMethodAllIDTwint`        | twint                               |
 | `ListEntityMethodAllIDVipps`        | vipps                               |
 | `ListEntityMethodAllIDVoucher`      | voucher                             |
+| `ListEntityMethodAllIDWero`         | wero                                |
