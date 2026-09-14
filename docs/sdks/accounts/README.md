@@ -45,6 +45,7 @@ func main() {
     )
 
     res, err := s.Accounts.ListAccounts(ctx, operations.ListBusinessAccountsRequest{
+        Iban: client.Pointer("NL95MLLE1234567890"),
         From: client.Pointer("ba_nopqrstuvwxyz23456789A"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
@@ -175,6 +176,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/types"
 	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
@@ -191,6 +193,9 @@ func main() {
 
     res, err := s.Accounts.List(ctx, operations.ListBusinessAccountTransactionsRequest{
         BusinessAccountID: "ba_nopqrstuvwxyz23456789A",
+        CreditDebitIndicator: components.CreditDebitIndicatorDebit.ToPointer(),
+        ProcessedAfter: types.MustNewTimeFromString("2025-02-01T00:00:00+00:00"),
+        ProcessedBefore: types.MustNewTimeFromString("2025-02-26T23:59:59+00:00"),
         From: client.Pointer("batr_87GByBuj4UCcUTEbs6aGJ"),
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),

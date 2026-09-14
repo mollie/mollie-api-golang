@@ -78,12 +78,12 @@ func (l *ListDraftTransfersRequest) GetIdempotencyKey() *string {
 
 type ListDraftTransfersEmbedded struct {
 	// An array of draft transfer objects.
-	DraftTransfers []components.ListDraftTransferResponse `json:"draft_transfers"`
+	DraftTransfers []components.DraftTransferResponse `json:"draft_transfers"`
 }
 
-func (l *ListDraftTransfersEmbedded) GetDraftTransfers() []components.ListDraftTransferResponse {
+func (l *ListDraftTransfersEmbedded) GetDraftTransfers() []components.DraftTransferResponse {
 	if l == nil {
-		return []components.ListDraftTransferResponse{}
+		return []components.DraftTransferResponse{}
 	}
 	return l.DraftTransfers
 }

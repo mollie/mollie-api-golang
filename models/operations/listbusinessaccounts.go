@@ -24,6 +24,8 @@ func (l *ListBusinessAccountsGlobals) GetTestmode() *bool {
 }
 
 type ListBusinessAccountsRequest struct {
+	// Filter the results by IBAN. Only the business account with an exact match is returned.
+	Iban *string `queryParam:"style=form,explode=true,name=iban"`
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
 	// the result set.
 	From *string `queryParam:"style=form,explode=true,name=from"`
@@ -40,6 +42,13 @@ type ListBusinessAccountsRequest struct {
 	Testmode *bool `queryParam:"style=form,explode=true,name=testmode"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+}
+
+func (l *ListBusinessAccountsRequest) GetIban() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Iban
 }
 
 func (l *ListBusinessAccountsRequest) GetFrom() *string {

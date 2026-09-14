@@ -19,6 +19,7 @@ const (
 	TransactionTypeCorrection        TransactionType = "correction"
 	TransactionTypeDirectDebit       TransactionType = "direct-debit"
 	TransactionTypeDirectDebitRefund TransactionType = "direct-debit-refund"
+	TransactionTypeRewardsPayout     TransactionType = "rewards-payout"
 )
 
 func (e TransactionType) ToPointer() *TransactionType {
@@ -29,7 +30,7 @@ func (e TransactionType) ToPointer() *TransactionType {
 func (e *TransactionType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "card-payment", "bank-transfer", "psp-transfer", "internal-transfer", "ideal-payment", "fee", "correction", "direct-debit", "direct-debit-refund":
+		case "card-payment", "bank-transfer", "psp-transfer", "internal-transfer", "ideal-payment", "fee", "correction", "direct-debit", "direct-debit-refund", "rewards-payout":
 			return true
 		}
 	}

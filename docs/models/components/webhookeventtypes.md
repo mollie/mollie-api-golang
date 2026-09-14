@@ -54,4 +54,7 @@ value := components.WebhookEventTypesPaymentPaid
 | `WebhookEventTypesBusinessAccountTransferFailed`        | business-account-transfer.failed                        |
 | `WebhookEventTypesBusinessAccountTransferBlocked`       | business-account-transfer.blocked                       |
 | `WebhookEventTypesBusinessAccountTransferReturned`      | business-account-transfer.returned                      |
+| `WebhookEventTypesBusinessAccountDraftTransferCreated`  | business-account-draft-transfer.created                 |
+| `WebhookEventTypesBusinessAccountDraftTransferApproved` | business-account-draft-transfer.approved                |
+| `WebhookEventTypesBusinessAccountDraftTransferDeclined` | business-account-draft-transfer.declined                |
 | `WebhookEventTypesWildcard`                             | *                                                       |
