@@ -4,7 +4,9 @@
 package operations
 
 import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
 	"github.com/mollie/mollie-api-golang/models/components"
+	"time"
 )
 
 type ListBusinessAccountTransactionsGlobals struct {
@@ -26,8 +28,22 @@ func (l *ListBusinessAccountTransactionsGlobals) GetTestmode() *bool {
 type ListBusinessAccountTransactionsRequest struct {
 	// Provide the ID of the related business account.
 	BusinessAccountID string `pathParam:"style=simple,explode=false,name=businessAccountId"`
+	// Filter the transactions by whether they credited or debited the account balance.
+	CreditDebitIndicator *components.CreditDebitIndicator `queryParam:"style=form,explode=true,name=creditDebitIndicator"`
+	// Filter the transactions to only include those processed on or after this date and time. Filters on the
+	// `processedAt` property.
+	//
+	// Cannot be combined with `from`.
+	ProcessedAfter *time.Time `queryParam:"style=form,explode=true,name=processedAfter"`
+	// Filter the transactions to only include those processed on or before this date and time. Filters on the
+	// `processedAt` property.
+	//
+	// Cannot be combined with `from`.
+	ProcessedBefore *time.Time `queryParam:"style=form,explode=true,name=processedBefore"`
 	// Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
 	// the result set.
+	//
+	// Cannot be combined with `processedAfter` or `processedBefore`.
 	From *string `queryParam:"style=form,explode=true,name=from"`
 	// The maximum number of items to return. Defaults to 50 items.
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
@@ -44,11 +60,43 @@ type ListBusinessAccountTransactionsRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
+func (l ListBusinessAccountTransactionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListBusinessAccountTransactionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListBusinessAccountTransactionsRequest) GetBusinessAccountID() string {
 	if l == nil {
 		return ""
 	}
 	return l.BusinessAccountID
+}
+
+func (l *ListBusinessAccountTransactionsRequest) GetCreditDebitIndicator() *components.CreditDebitIndicator {
+	if l == nil {
+		return nil
+	}
+	return l.CreditDebitIndicator
+}
+
+func (l *ListBusinessAccountTransactionsRequest) GetProcessedAfter() *time.Time {
+	if l == nil {
+		return nil
+	}
+	return l.ProcessedAfter
+}
+
+func (l *ListBusinessAccountTransactionsRequest) GetProcessedBefore() *time.Time {
+	if l == nil {
+		return nil
+	}
+	return l.ProcessedBefore
 }
 
 func (l *ListBusinessAccountTransactionsRequest) GetFrom() *string {

@@ -3,10 +3,25 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // DraftTransferPartyAccount - The bank account details of the party.
 type DraftTransferPartyAccount struct {
 	// The IBAN (International Bank Account Number) of the account holder.
 	Iban string `json:"iban"`
+}
+
+func (d DraftTransferPartyAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferPartyAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"iban"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DraftTransferPartyAccount) GetIban() string {
@@ -23,6 +38,17 @@ type DraftTransferParty struct {
 	FullName string `json:"fullName"`
 	// The bank account details of the party.
 	Account DraftTransferPartyAccount `json:"account"`
+}
+
+func (d DraftTransferParty) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferParty) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"fullName", "account"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DraftTransferParty) GetFullName() string {

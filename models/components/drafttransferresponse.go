@@ -14,6 +14,17 @@ type DraftTransferResponseAccount struct {
 	Iban string `json:"iban"`
 }
 
+func (d DraftTransferResponseAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferResponseAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"iban"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DraftTransferResponseAccount) GetIban() string {
 	if d == nil {
 		return ""
@@ -27,6 +38,17 @@ type DraftTransferResponseDebtor struct {
 	FullName string `json:"fullName"`
 	// The bank account details of the party.
 	Account DraftTransferResponseAccount `json:"account"`
+}
+
+func (d DraftTransferResponseDebtor) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferResponseDebtor) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"fullName", "account"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DraftTransferResponseDebtor) GetFullName() string {
@@ -73,6 +95,17 @@ type DraftTransferResponseSelf struct {
 	Type *string `json:"type,omitempty"`
 }
 
+func (d DraftTransferResponseSelf) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferResponseSelf) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DraftTransferResponseSelf) GetHref() *string {
 	if d == nil {
 		return nil
@@ -87,32 +120,21 @@ func (d *DraftTransferResponseSelf) GetType() *string {
 	return d.Type
 }
 
-// DraftTransferResponseDocumentation - The URL to the documentation of this endpoint.
-type DraftTransferResponseDocumentation struct {
-	Href *string `json:"href,omitempty"`
-	Type *string `json:"type,omitempty"`
-}
-
-func (d *DraftTransferResponseDocumentation) GetHref() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Href
-}
-
-func (d *DraftTransferResponseDocumentation) GetType() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Type
-}
-
 // DraftTransferResponseLinks - Links to related resources.
 type DraftTransferResponseLinks struct {
 	// The URL to this draft transfer.
 	Self DraftTransferResponseSelf `json:"self"`
-	// The URL to the documentation of this endpoint.
-	Documentation *DraftTransferResponseDocumentation `json:"documentation,omitempty"`
+}
+
+func (d DraftTransferResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"self"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DraftTransferResponseLinks) GetSelf() DraftTransferResponseSelf {
@@ -120,13 +142,6 @@ func (d *DraftTransferResponseLinks) GetSelf() DraftTransferResponseSelf {
 		return DraftTransferResponseSelf{}
 	}
 	return d.Self
-}
-
-func (d *DraftTransferResponseLinks) GetDocumentation() *DraftTransferResponseDocumentation {
-	if d == nil {
-		return nil
-	}
-	return d.Documentation
 }
 
 type DraftTransferResponse struct {
@@ -176,7 +191,7 @@ func (d DraftTransferResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DraftTransferResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"resource", "id", "mode", "debtor", "creditor", "amount", "status", "createdAt", "_links"}); err != nil {
 		return err
 	}
 	return nil

@@ -32,3 +32,4 @@ custom := components.TransactionType("custom_value")
 | `TransactionTypeCorrection`        | correction                         |
 | `TransactionTypeDirectDebit`       | direct-debit                       |
 | `TransactionTypeDirectDebitRefund` | direct-debit-refund                |
+| `TransactionTypeRewardsPayout`     | rewards-payout                     |

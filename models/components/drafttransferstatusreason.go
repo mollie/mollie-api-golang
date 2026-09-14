@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // DraftTransferStatusReason - The reason for the draft transfer's current status. `null` unless `status` is `declined`.
 type DraftTransferStatusReason struct {
 	// A machine-readable code that indicates the reason for the draft transfer's current status.
@@ -10,6 +14,17 @@ type DraftTransferStatusReason struct {
 	// A human-readable explanation of the status reason. For `declined-by-initiator`, this includes the
 	// initiator's free-text reason when they provided one.
 	Message string `json:"message"`
+}
+
+func (d DraftTransferStatusReason) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DraftTransferStatusReason) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"code", "message"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DraftTransferStatusReason) GetCode() DraftTransferStatusReasonCodeResponse {

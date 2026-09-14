@@ -9,9 +9,8 @@ import (
 )
 
 type CreateDraftTransferRequest struct {
-	// The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary account
-	// if omitted.
-	DebtorIban *string `json:"debtorIban,omitempty"`
+	// The IBAN of the debtor's (sender) Mollie Business Account.
+	DebtorIban string `json:"debtorIban"`
 	// A party involved in the draft transfer, representing either the debtor (sender) or creditor
 	// (recipient). Contains the party's name and account details.
 	Creditor DraftTransferParty `json:"creditor"`
@@ -42,9 +41,9 @@ func (c *CreateDraftTransferRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CreateDraftTransferRequest) GetDebtorIban() *string {
+func (c *CreateDraftTransferRequest) GetDebtorIban() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.DebtorIban
 }
