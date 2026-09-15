@@ -3,7 +3,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.935.1
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.937.18
 
 import (
 	"context"
@@ -181,11 +181,11 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.3.40",
+		SDKVersion: "1.3.41",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 1.3.40 2.935.1 1.0.0 github.com/mollie/mollie-api-golang",
-			SDKVersion:        "1.3.40",
-			GenVersion:        "2.935.1",
+			UserAgent:         "speakeasy-sdk/go 1.3.41 2.937.18 1.0.0 github.com/mollie/mollie-api-golang",
+			SDKVersion:        "1.3.41",
+			GenVersion:        "2.937.18",
 			OpenAPIDocVersion: "1.0.0",
 			Globals:           globals.Globals{},
 			ServerList:        ServerList,

@@ -53,6 +53,7 @@ const (
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferCreated  EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.created"
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferApproved EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.approved"
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferDeclined EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.declined"
+	EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReceived      EntityWebhookEventWebhookEventTypes = "unmatched-credit-transfer.received"
 	EntityWebhookEventWebhookEventTypesWildcard                             EntityWebhookEventWebhookEventTypes = "*"
 )
 
@@ -64,7 +65,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "chargeback.received", "chargeback.reversed", "capture.succeeded", "capture.failed", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "business-account-draft-transfer.created", "business-account-draft-transfer.approved", "business-account-draft-transfer.declined", "*":
+		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "chargeback.received", "chargeback.reversed", "capture.succeeded", "capture.failed", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "business-account-draft-transfer.created", "business-account-draft-transfer.approved", "business-account-draft-transfer.declined", "unmatched-credit-transfer.received", "*":
 			return true
 		}
 	}

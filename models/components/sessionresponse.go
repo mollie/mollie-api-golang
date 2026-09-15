@@ -76,7 +76,7 @@ type SessionResponse struct {
 	// Checkout Session's amount.
 	//
 	// All lines must have the same currency as the Checkout Session.
-	Lines []SessionLineItemResponse `json:"lines"`
+	Lines []SessionLineItemResponse `json:"lines,omitempty"`
 	// The URL your customer will be redirected to after the payment process.
 	//
 	// It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
@@ -169,7 +169,7 @@ func (s *SessionResponse) GetDescription() string {
 
 func (s *SessionResponse) GetLines() []SessionLineItemResponse {
 	if s == nil {
-		return []SessionLineItemResponse{}
+		return nil
 	}
 	return s.Lines
 }

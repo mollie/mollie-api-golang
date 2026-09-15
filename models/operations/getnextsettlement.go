@@ -25,6 +25,7 @@ type GetNextSettlementStatus string
 const (
 	GetNextSettlementStatusOpen             GetNextSettlementStatus = "open"
 	GetNextSettlementStatusPending          GetNextSettlementStatus = "pending"
+	GetNextSettlementStatusProcessing       GetNextSettlementStatus = "processing"
 	GetNextSettlementStatusProcessingAtBank GetNextSettlementStatus = "processing-at-bank"
 	GetNextSettlementStatusPaidout          GetNextSettlementStatus = "paidout"
 	GetNextSettlementStatusFailed           GetNextSettlementStatus = "failed"
@@ -38,7 +39,7 @@ func (e GetNextSettlementStatus) ToPointer() *GetNextSettlementStatus {
 func (e *GetNextSettlementStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "open", "pending", "processing-at-bank", "paidout", "failed":
+		case "open", "pending", "processing", "processing-at-bank", "paidout", "failed":
 			return true
 		}
 	}

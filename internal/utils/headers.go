@@ -6,11 +6,14 @@ package utils
 import (
 	"context"
 	"fmt"
+	"math/big"
 	"net/http"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/mollie/mollie-api-golang/optionalnullable"
+	"github.com/mollie/mollie-api-golang/types"
 )
 
 func PopulateHeaders(_ context.Context, req *http.Request, headers interface{}, globals interface{}) {
@@ -89,6 +92,11 @@ func serializeHeader(objType reflect.Type, objValue reflect.Value, explode bool)
 
 	switch objType.Kind() {
 	case reflect.Struct:
+		switch objValue.Interface().(type) {
+		case time.Time, types.Date, big.Int:
+			return valToString(objValue.Interface())
+		}
+
 		items := []string{}
 
 		for i := 0; i < objType.NumField(); i++ {
@@ -101,6 +109,11 @@ func serializeHeader(objType reflect.Type, objValue reflect.Value, explode bool)
 
 			if fieldType.Type.Kind() == reflect.Pointer {
 				valType = valType.Elem()
+			}
+
+			valType, hasValue := unwrapOptionalNullable(valType)
+			if !hasValue {
+				continue
 			}
 
 			tag := parseParamTag(headerParamTagKey, fieldType, "simple", false)
@@ -134,9 +147,10 @@ func serializeHeader(objType reflect.Type, objValue reflect.Value, explode bool)
 	case reflect.Map:
 		// check if optionalnullable.OptionalNullable[T]
 		if nullableValue, ok := optionalnullable.AsOptionalNullable(objValue); ok {
-			// Handle optionalnullable.OptionalNullable[T] using GetUntyped method
+			// Serialize the wrapped value using the rules for its own type
 			if value, isSet := nullableValue.GetUntyped(); isSet && value != nil {
-				return valToString(value)
+				innerValue := reflect.ValueOf(value)
+				return serializeHeader(innerValue.Type(), innerValue, explode)
 			}
 			// If not set or explicitly null, return empty string
 			return ""

@@ -60,4 +60,5 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 | `EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferCreated`  | business-account-draft-transfer.created                                   |
 | `EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferApproved` | business-account-draft-transfer.approved                                  |
 | `EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferDeclined` | business-account-draft-transfer.declined                                  |
+| `EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReceived`      | unmatched-credit-transfer.received                                        |
 | `EntityWebhookEventWebhookEventTypesWildcard`                             | *                                                                         |

@@ -449,7 +449,7 @@ type PaymentRequest struct {
 	//
 	// The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
 	// Apple Pay payments with an `applePayPaymentToken`.
-	RedirectURL *string `json:"redirectUrl"`
+	RedirectURL *string `json:"redirectUrl,omitempty"`
 	// The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
 	// provided, the customer will be redirected to the `redirectUrl` instead — see above.
 	//
