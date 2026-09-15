@@ -52,6 +52,7 @@ const (
 	WebhookEventTypesBusinessAccountDraftTransferCreated  WebhookEventTypes = "business-account-draft-transfer.created"
 	WebhookEventTypesBusinessAccountDraftTransferApproved WebhookEventTypes = "business-account-draft-transfer.approved"
 	WebhookEventTypesBusinessAccountDraftTransferDeclined WebhookEventTypes = "business-account-draft-transfer.declined"
+	WebhookEventTypesUnmatchedCreditTransferReceived      WebhookEventTypes = "unmatched-credit-transfer.received"
 	WebhookEventTypesWildcard                             WebhookEventTypes = "*"
 )
 
@@ -141,6 +142,8 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "business-account-draft-transfer.approved":
 		fallthrough
 	case "business-account-draft-transfer.declined":
+		fallthrough
+	case "unmatched-credit-transfer.received":
 		fallthrough
 	case "*":
 		*e = WebhookEventTypes(v)

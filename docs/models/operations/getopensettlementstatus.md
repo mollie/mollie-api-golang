@@ -22,6 +22,7 @@ custom := operations.GetOpenSettlementStatus("custom_value")
 | ----------------------------------------- | ----------------------------------------- |
 | `GetOpenSettlementStatusOpen`             | open                                      |
 | `GetOpenSettlementStatusPending`          | pending                                   |
+| `GetOpenSettlementStatusProcessing`       | processing                                |
 | `GetOpenSettlementStatusProcessingAtBank` | processing-at-bank                        |
 | `GetOpenSettlementStatusPaidout`          | paidout                                   |
 | `GetOpenSettlementStatusFailed`           | failed                                    |

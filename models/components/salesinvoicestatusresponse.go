@@ -3,22 +3,20 @@
 
 package components
 
-// SalesInvoiceStatusResponse - The status for the invoice to end up in.
-//
-// A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-// the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
-// mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-//
-// Dependent parameters:
-//   - `paymentDetails` is required if invoice should be set directly to `paid`
-//   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-//   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+// SalesInvoiceStatusResponse - The current status of the invoice.
 type SalesInvoiceStatusResponse string
 
 const (
-	SalesInvoiceStatusResponseDraft  SalesInvoiceStatusResponse = "draft"
-	SalesInvoiceStatusResponseIssued SalesInvoiceStatusResponse = "issued"
-	SalesInvoiceStatusResponsePaid   SalesInvoiceStatusResponse = "paid"
+	SalesInvoiceStatusResponseDraft           SalesInvoiceStatusResponse = "draft"
+	SalesInvoiceStatusResponseIssuing         SalesInvoiceStatusResponse = "issuing"
+	SalesInvoiceStatusResponseIssued          SalesInvoiceStatusResponse = "issued"
+	SalesInvoiceStatusResponsePendingPayment  SalesInvoiceStatusResponse = "pending-payment"
+	SalesInvoiceStatusResponsePaid            SalesInvoiceStatusResponse = "paid"
+	SalesInvoiceStatusResponseOverdue         SalesInvoiceStatusResponse = "overdue"
+	SalesInvoiceStatusResponsePaymentReversed SalesInvoiceStatusResponse = "payment_reversed"
+	SalesInvoiceStatusResponseCancelled       SalesInvoiceStatusResponse = "cancelled"
+	SalesInvoiceStatusResponseExpired         SalesInvoiceStatusResponse = "expired"
+	SalesInvoiceStatusResponseFailed          SalesInvoiceStatusResponse = "failed"
 )
 
 func (e SalesInvoiceStatusResponse) ToPointer() *SalesInvoiceStatusResponse {
@@ -29,7 +27,7 @@ func (e SalesInvoiceStatusResponse) ToPointer() *SalesInvoiceStatusResponse {
 func (e *SalesInvoiceStatusResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "draft", "issued", "paid":
+		case "draft", "issuing", "issued", "pending-payment", "paid", "overdue", "payment_reversed", "cancelled", "expired", "failed":
 			return true
 		}
 	}

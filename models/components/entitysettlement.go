@@ -9,6 +9,7 @@ type EntitySettlementStatus string
 const (
 	EntitySettlementStatusOpen             EntitySettlementStatus = "open"
 	EntitySettlementStatusPending          EntitySettlementStatus = "pending"
+	EntitySettlementStatusProcessing       EntitySettlementStatus = "processing"
 	EntitySettlementStatusProcessingAtBank EntitySettlementStatus = "processing-at-bank"
 	EntitySettlementStatusPaidout          EntitySettlementStatus = "paidout"
 	EntitySettlementStatusFailed           EntitySettlementStatus = "failed"
@@ -22,7 +23,7 @@ func (e EntitySettlementStatus) ToPointer() *EntitySettlementStatus {
 func (e *EntitySettlementStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "open", "pending", "processing-at-bank", "paidout", "failed":
+		case "open", "pending", "processing", "processing-at-bank", "paidout", "failed":
 			return true
 		}
 	}
