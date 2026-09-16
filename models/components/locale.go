@@ -19,6 +19,7 @@ const (
 	LocaleDeCh Locale = "de_CH"
 	LocaleDeDe Locale = "de_DE"
 	LocaleDeLu Locale = "de_LU"
+	LocaleElGr Locale = "el_GR"
 	LocaleEnBe Locale = "en_BE"
 	LocaleEnGb Locale = "en_GB"
 	LocaleEnNl Locale = "en_NL"
@@ -39,7 +40,9 @@ const (
 	LocalePlPl Locale = "pl_PL"
 	LocalePtPt Locale = "pt_PT"
 	LocaleSkSk Locale = "sk_SK"
+	LocaleSlSi Locale = "sl_SI"
 	LocaleSvSe Locale = "sv_SE"
+	LocaleTrTr Locale = "tr_TR"
 )
 
 func (e Locale) ToPointer() *Locale {
@@ -64,6 +67,8 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 	case "de_DE":
 		fallthrough
 	case "de_LU":
+		fallthrough
+	case "el_GR":
 		fallthrough
 	case "en_BE":
 		fallthrough
@@ -105,7 +110,11 @@ func (e *Locale) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "sk_SK":
 		fallthrough
+	case "sl_SI":
+		fallthrough
 	case "sv_SE":
+		fallthrough
+	case "tr_TR":
 		*e = Locale(v)
 		return nil
 	default:

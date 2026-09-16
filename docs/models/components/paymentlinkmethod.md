@@ -26,6 +26,7 @@ value := components.PaymentLinkMethodApplepay
 | `PaymentLinkMethodCreditcard`   | creditcard                      |
 | `PaymentLinkMethodEps`          | eps                             |
 | `PaymentLinkMethodGiftcard`     | giftcard                        |
+| `PaymentLinkMethodGooglepay`    | googlepay                       |
 | `PaymentLinkMethodIdeal`        | ideal                           |
 | `PaymentLinkMethodIn3`          | in3                             |
 | `PaymentLinkMethodKbc`          | kbc                             |

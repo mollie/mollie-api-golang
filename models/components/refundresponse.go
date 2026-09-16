@@ -180,7 +180,7 @@ type RefundResponse struct {
 	// Whether this entity was created in live mode or in test mode.
 	Mode Mode `json:"mode"`
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
-	Description string `json:"description"`
+	Description *string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -213,7 +213,7 @@ func (r RefundResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RefundResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"resource", "id", "mode", "description", "amount", "paymentId", "status", "createdAt", "_links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"resource", "id", "mode", "amount", "paymentId", "status", "createdAt", "_links"}); err != nil {
 		return err
 	}
 	return nil
@@ -240,9 +240,9 @@ func (r *RefundResponse) GetMode() Mode {
 	return r.Mode
 }
 
-func (r *RefundResponse) GetDescription() string {
+func (r *RefundResponse) GetDescription() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Description
 }

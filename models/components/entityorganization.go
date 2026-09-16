@@ -14,6 +14,7 @@ const (
 	EntityOrganizationLocaleDeCh EntityOrganizationLocale = "de_CH"
 	EntityOrganizationLocaleDeDe EntityOrganizationLocale = "de_DE"
 	EntityOrganizationLocaleDeLu EntityOrganizationLocale = "de_LU"
+	EntityOrganizationLocaleElGr EntityOrganizationLocale = "el_GR"
 	EntityOrganizationLocaleEnBe EntityOrganizationLocale = "en_BE"
 	EntityOrganizationLocaleEnGb EntityOrganizationLocale = "en_GB"
 	EntityOrganizationLocaleEnNl EntityOrganizationLocale = "en_NL"
@@ -34,7 +35,9 @@ const (
 	EntityOrganizationLocalePlPl EntityOrganizationLocale = "pl_PL"
 	EntityOrganizationLocalePtPt EntityOrganizationLocale = "pt_PT"
 	EntityOrganizationLocaleSkSk EntityOrganizationLocale = "sk_SK"
+	EntityOrganizationLocaleSlSi EntityOrganizationLocale = "sl_SI"
 	EntityOrganizationLocaleSvSe EntityOrganizationLocale = "sv_SE"
+	EntityOrganizationLocaleTrTr EntityOrganizationLocale = "tr_TR"
 )
 
 func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
@@ -45,7 +48,7 @@ func (e EntityOrganizationLocale) ToPointer() *EntityOrganizationLocale {
 func (e *EntityOrganizationLocale) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "en_BE", "en_GB", "en_NL", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sv_SE":
+		case "ca_ES", "cs_CZ", "da_DK", "de_AT", "de_CH", "de_DE", "de_LU", "el_GR", "en_BE", "en_GB", "en_NL", "en_US", "es_ES", "fi_FI", "fr_BE", "fr_FR", "fr_LU", "hu_HU", "is_IS", "it_IT", "lt_LT", "lv_LV", "nb_NO", "nl_BE", "nl_NL", "pl_PL", "pt_PT", "sk_SK", "sl_SI", "sv_SE", "tr_TR":
 			return true
 		}
 	}

@@ -13,47 +13,54 @@ import (
 type WebhookEventTypes string
 
 const (
-	WebhookEventTypesPaymentPaid                          WebhookEventTypes = "payment.paid"
-	WebhookEventTypesPaymentAuthorized                    WebhookEventTypes = "payment.authorized"
-	WebhookEventTypesPaymentFailed                        WebhookEventTypes = "payment.failed"
-	WebhookEventTypesPaymentCanceled                      WebhookEventTypes = "payment.canceled"
-	WebhookEventTypesPaymentExpired                       WebhookEventTypes = "payment.expired"
-	WebhookEventTypesPaymentPending                       WebhookEventTypes = "payment.pending"
-	WebhookEventTypesRefundQueued                         WebhookEventTypes = "refund.queued"
-	WebhookEventTypesRefundPending                        WebhookEventTypes = "refund.pending"
-	WebhookEventTypesRefundProcessing                     WebhookEventTypes = "refund.processing"
-	WebhookEventTypesRefundRefunded                       WebhookEventTypes = "refund.refunded"
-	WebhookEventTypesRefundFailed                         WebhookEventTypes = "refund.failed"
-	WebhookEventTypesRefundCanceled                       WebhookEventTypes = "refund.canceled"
-	WebhookEventTypesChargebackReceived                   WebhookEventTypes = "chargeback.received"
-	WebhookEventTypesChargebackReversed                   WebhookEventTypes = "chargeback.reversed"
-	WebhookEventTypesCaptureSucceeded                     WebhookEventTypes = "capture.succeeded"
-	WebhookEventTypesCaptureFailed                        WebhookEventTypes = "capture.failed"
-	WebhookEventTypesPaymentLinkPaid                      WebhookEventTypes = "payment-link.paid"
-	WebhookEventTypesBalanceTransactionCreated            WebhookEventTypes = "balance-transaction.created"
-	WebhookEventTypesPayoutInitiated                      WebhookEventTypes = "payout.initiated"
-	WebhookEventTypesPayoutProcessingAtBank               WebhookEventTypes = "payout.processing-at-bank"
-	WebhookEventTypesPayoutCompleted                      WebhookEventTypes = "payout.completed"
-	WebhookEventTypesPayoutCanceled                       WebhookEventTypes = "payout.canceled"
-	WebhookEventTypesPayoutFailed                         WebhookEventTypes = "payout.failed"
-	WebhookEventTypesSalesInvoiceCreated                  WebhookEventTypes = "sales-invoice.created"
-	WebhookEventTypesSalesInvoiceIssued                   WebhookEventTypes = "sales-invoice.issued"
-	WebhookEventTypesSalesInvoiceCanceled                 WebhookEventTypes = "sales-invoice.canceled"
-	WebhookEventTypesSalesInvoicePaid                     WebhookEventTypes = "sales-invoice.paid"
-	WebhookEventTypesSalesInvoiceEInvoiceFailed           WebhookEventTypes = "sales-invoice.e-invoice-failed"
-	WebhookEventTypesSalesInvoiceEInvoiceIssued           WebhookEventTypes = "sales-invoice.e-invoice-issued"
-	WebhookEventTypesBusinessAccountTransferRequested     WebhookEventTypes = "business-account-transfer.requested"
-	WebhookEventTypesBusinessAccountTransferInitiated     WebhookEventTypes = "business-account-transfer.initiated"
-	WebhookEventTypesBusinessAccountTransferPendingReview WebhookEventTypes = "business-account-transfer.pending-review"
-	WebhookEventTypesBusinessAccountTransferProcessed     WebhookEventTypes = "business-account-transfer.processed"
-	WebhookEventTypesBusinessAccountTransferFailed        WebhookEventTypes = "business-account-transfer.failed"
-	WebhookEventTypesBusinessAccountTransferBlocked       WebhookEventTypes = "business-account-transfer.blocked"
-	WebhookEventTypesBusinessAccountTransferReturned      WebhookEventTypes = "business-account-transfer.returned"
-	WebhookEventTypesBusinessAccountDraftTransferCreated  WebhookEventTypes = "business-account-draft-transfer.created"
-	WebhookEventTypesBusinessAccountDraftTransferApproved WebhookEventTypes = "business-account-draft-transfer.approved"
-	WebhookEventTypesBusinessAccountDraftTransferDeclined WebhookEventTypes = "business-account-draft-transfer.declined"
-	WebhookEventTypesUnmatchedCreditTransferReceived      WebhookEventTypes = "unmatched-credit-transfer.received"
-	WebhookEventTypesWildcard                             WebhookEventTypes = "*"
+	WebhookEventTypesPaymentPaid                            WebhookEventTypes = "payment.paid"
+	WebhookEventTypesPaymentAuthorized                      WebhookEventTypes = "payment.authorized"
+	WebhookEventTypesPaymentFailed                          WebhookEventTypes = "payment.failed"
+	WebhookEventTypesPaymentCanceled                        WebhookEventTypes = "payment.canceled"
+	WebhookEventTypesPaymentExpired                         WebhookEventTypes = "payment.expired"
+	WebhookEventTypesPaymentPending                         WebhookEventTypes = "payment.pending"
+	WebhookEventTypesRefundQueued                           WebhookEventTypes = "refund.queued"
+	WebhookEventTypesRefundPending                          WebhookEventTypes = "refund.pending"
+	WebhookEventTypesRefundProcessing                       WebhookEventTypes = "refund.processing"
+	WebhookEventTypesRefundRefunded                         WebhookEventTypes = "refund.refunded"
+	WebhookEventTypesRefundFailed                           WebhookEventTypes = "refund.failed"
+	WebhookEventTypesRefundCanceled                         WebhookEventTypes = "refund.canceled"
+	WebhookEventTypesChargebackReceived                     WebhookEventTypes = "chargeback.received"
+	WebhookEventTypesChargebackReversed                     WebhookEventTypes = "chargeback.reversed"
+	WebhookEventTypesCaptureSucceeded                       WebhookEventTypes = "capture.succeeded"
+	WebhookEventTypesCaptureFailed                          WebhookEventTypes = "capture.failed"
+	WebhookEventTypesPaymentLinkPaid                        WebhookEventTypes = "payment-link.paid"
+	WebhookEventTypesBalanceTransactionCreated              WebhookEventTypes = "balance-transaction.created"
+	WebhookEventTypesPayoutInitiated                        WebhookEventTypes = "payout.initiated"
+	WebhookEventTypesPayoutProcessingAtBank                 WebhookEventTypes = "payout.processing-at-bank"
+	WebhookEventTypesPayoutCompleted                        WebhookEventTypes = "payout.completed"
+	WebhookEventTypesPayoutCanceled                         WebhookEventTypes = "payout.canceled"
+	WebhookEventTypesPayoutFailed                           WebhookEventTypes = "payout.failed"
+	WebhookEventTypesSalesInvoiceCreated                    WebhookEventTypes = "sales-invoice.created"
+	WebhookEventTypesSalesInvoiceIssued                     WebhookEventTypes = "sales-invoice.issued"
+	WebhookEventTypesSalesInvoiceCanceled                   WebhookEventTypes = "sales-invoice.canceled"
+	WebhookEventTypesSalesInvoicePaid                       WebhookEventTypes = "sales-invoice.paid"
+	WebhookEventTypesSalesInvoiceEInvoiceFailed             WebhookEventTypes = "sales-invoice.e-invoice-failed"
+	WebhookEventTypesSalesInvoiceEInvoiceIssued             WebhookEventTypes = "sales-invoice.e-invoice-issued"
+	WebhookEventTypesBusinessAccountTransferRequested       WebhookEventTypes = "business-account-transfer.requested"
+	WebhookEventTypesBusinessAccountTransferInitiated       WebhookEventTypes = "business-account-transfer.initiated"
+	WebhookEventTypesBusinessAccountTransferPendingReview   WebhookEventTypes = "business-account-transfer.pending-review"
+	WebhookEventTypesBusinessAccountTransferProcessed       WebhookEventTypes = "business-account-transfer.processed"
+	WebhookEventTypesBusinessAccountTransferFailed          WebhookEventTypes = "business-account-transfer.failed"
+	WebhookEventTypesBusinessAccountTransferBlocked         WebhookEventTypes = "business-account-transfer.blocked"
+	WebhookEventTypesBusinessAccountTransferReturned        WebhookEventTypes = "business-account-transfer.returned"
+	WebhookEventTypesBusinessAccountDraftTransferCreated    WebhookEventTypes = "business-account-draft-transfer.created"
+	WebhookEventTypesBusinessAccountDraftTransferApproved   WebhookEventTypes = "business-account-draft-transfer.approved"
+	WebhookEventTypesBusinessAccountDraftTransferDeclined   WebhookEventTypes = "business-account-draft-transfer.declined"
+	WebhookEventTypesUnmatchedCreditTransferReceived        WebhookEventTypes = "unmatched-credit-transfer.received"
+	WebhookEventTypesUnmatchedCreditTransferMatched         WebhookEventTypes = "unmatched-credit-transfer.matched"
+	WebhookEventTypesUnmatchedCreditTransferReturned        WebhookEventTypes = "unmatched-credit-transfer.returned"
+	WebhookEventTypesUnmatchedCreditTransferExpired         WebhookEventTypes = "unmatched-credit-transfer.expired"
+	WebhookEventTypesUnmatchedCreditTransferMatchCompleted  WebhookEventTypes = "unmatched-credit-transfer.match.completed"
+	WebhookEventTypesUnmatchedCreditTransferMatchFailed     WebhookEventTypes = "unmatched-credit-transfer.match.failed"
+	WebhookEventTypesUnmatchedCreditTransferReturnCompleted WebhookEventTypes = "unmatched-credit-transfer.return.completed"
+	WebhookEventTypesUnmatchedCreditTransferReturnFailed    WebhookEventTypes = "unmatched-credit-transfer.return.failed"
+	WebhookEventTypesWildcard                               WebhookEventTypes = "*"
 )
 
 func (e WebhookEventTypes) ToPointer() *WebhookEventTypes {
@@ -144,6 +151,20 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "business-account-draft-transfer.declined":
 		fallthrough
 	case "unmatched-credit-transfer.received":
+		fallthrough
+	case "unmatched-credit-transfer.matched":
+		fallthrough
+	case "unmatched-credit-transfer.returned":
+		fallthrough
+	case "unmatched-credit-transfer.expired":
+		fallthrough
+	case "unmatched-credit-transfer.match.completed":
+		fallthrough
+	case "unmatched-credit-transfer.match.failed":
+		fallthrough
+	case "unmatched-credit-transfer.return.completed":
+		fallthrough
+	case "unmatched-credit-transfer.return.failed":
 		fallthrough
 	case "*":
 		*e = WebhookEventTypes(v)

@@ -27,6 +27,7 @@ custom := components.LocaleResponse("custom_value")
 | `LocaleResponseDeCh` | de_CH                |
 | `LocaleResponseDeDe` | de_DE                |
 | `LocaleResponseDeLu` | de_LU                |
+| `LocaleResponseElGr` | el_GR                |
 | `LocaleResponseEnBe` | en_BE                |
 | `LocaleResponseEnGb` | en_GB                |
 | `LocaleResponseEnNl` | en_NL                |
@@ -47,4 +48,6 @@ custom := components.LocaleResponse("custom_value")
 | `LocaleResponsePlPl` | pl_PL                |
 | `LocaleResponsePtPt` | pt_PT                |
 | `LocaleResponseSkSk` | sk_SK                |
+| `LocaleResponseSlSi` | sl_SI                |
 | `LocaleResponseSvSe` | sv_SE                |
+| `LocaleResponseTrTr` | tr_TR                |
