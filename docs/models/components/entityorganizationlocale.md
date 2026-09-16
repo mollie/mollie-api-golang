@@ -27,6 +27,7 @@ custom := components.EntityOrganizationLocale("custom_value")
 | `EntityOrganizationLocaleDeCh` | de_CH                          |
 | `EntityOrganizationLocaleDeDe` | de_DE                          |
 | `EntityOrganizationLocaleDeLu` | de_LU                          |
+| `EntityOrganizationLocaleElGr` | el_GR                          |
 | `EntityOrganizationLocaleEnBe` | en_BE                          |
 | `EntityOrganizationLocaleEnGb` | en_GB                          |
 | `EntityOrganizationLocaleEnNl` | en_NL                          |
@@ -47,4 +48,6 @@ custom := components.EntityOrganizationLocale("custom_value")
 | `EntityOrganizationLocalePlPl` | pl_PL                          |
 | `EntityOrganizationLocalePtPt` | pt_PT                          |
 | `EntityOrganizationLocaleSkSk` | sk_SK                          |
+| `EntityOrganizationLocaleSlSi` | sl_SI                          |
 | `EntityOrganizationLocaleSvSe` | sv_SE                          |
+| `EntityOrganizationLocaleTrTr` | tr_TR                          |

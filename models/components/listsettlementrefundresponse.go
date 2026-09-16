@@ -122,7 +122,7 @@ type ListSettlementRefundResponse struct {
 	// Whether this entity was created in live mode or in test mode. Settlements are always in live mode.
 	Mode SettlementMode `json:"mode"`
 	// The description of the refund that may be shown to your customer, depending on the payment method used.
-	Description string `json:"description"`
+	Description *string `json:"description"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Amount Amount `json:"amount"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -178,9 +178,9 @@ func (l *ListSettlementRefundResponse) GetMode() SettlementMode {
 	return l.Mode
 }
 
-func (l *ListSettlementRefundResponse) GetDescription() string {
+func (l *ListSettlementRefundResponse) GetDescription() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.Description
 }

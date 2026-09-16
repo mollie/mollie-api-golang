@@ -24,6 +24,7 @@ value := components.Locale2CaEs
 | `Locale2DeCh` | de_CH         |
 | `Locale2DeDe` | de_DE         |
 | `Locale2DeLu` | de_LU         |
+| `Locale2ElGr` | el_GR         |
 | `Locale2EnBe` | en_BE         |
 | `Locale2EnGb` | en_GB         |
 | `Locale2EnNl` | en_NL         |
@@ -44,4 +45,6 @@ value := components.Locale2CaEs
 | `Locale2PlPl` | pl_PL         |
 | `Locale2PtPt` | pt_PT         |
 | `Locale2SkSk` | sk_SK         |
+| `Locale2SlSi` | sl_SI         |
 | `Locale2SvSe` | sv_SE         |
+| `Locale2TrTr` | tr_TR         |

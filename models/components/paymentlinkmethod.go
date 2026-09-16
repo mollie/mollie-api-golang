@@ -22,6 +22,7 @@ const (
 	PaymentLinkMethodCreditcard   PaymentLinkMethod = "creditcard"
 	PaymentLinkMethodEps          PaymentLinkMethod = "eps"
 	PaymentLinkMethodGiftcard     PaymentLinkMethod = "giftcard"
+	PaymentLinkMethodGooglepay    PaymentLinkMethod = "googlepay"
 	PaymentLinkMethodIdeal        PaymentLinkMethod = "ideal"
 	PaymentLinkMethodIn3          PaymentLinkMethod = "in3"
 	PaymentLinkMethodKbc          PaymentLinkMethod = "kbc"
@@ -73,6 +74,8 @@ func (e *PaymentLinkMethod) UnmarshalJSON(data []byte) error {
 	case "eps":
 		fallthrough
 	case "giftcard":
+		fallthrough
+	case "googlepay":
 		fallthrough
 	case "ideal":
 		fallthrough

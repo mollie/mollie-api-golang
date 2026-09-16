@@ -29,6 +29,7 @@ custom := components.PaymentLinkMethodResponse("custom_value")
 | `PaymentLinkMethodResponseCreditcard`   | creditcard                              |
 | `PaymentLinkMethodResponseEps`          | eps                                     |
 | `PaymentLinkMethodResponseGiftcard`     | giftcard                                |
+| `PaymentLinkMethodResponseGooglepay`    | googlepay                               |
 | `PaymentLinkMethodResponseIdeal`        | ideal                                   |
 | `PaymentLinkMethodResponseIn3`          | in3                                     |
 | `PaymentLinkMethodResponseKbc`          | kbc                                     |

@@ -10,6 +10,7 @@ const (
 	MandateDetailsCardLabelResponseAmericanExpress MandateDetailsCardLabelResponse = "American Express"
 	MandateDetailsCardLabelResponseCartaSi         MandateDetailsCardLabelResponse = "Carta Si"
 	MandateDetailsCardLabelResponseCarteBleue      MandateDetailsCardLabelResponse = "Carte Bleue"
+	MandateDetailsCardLabelResponseCartesBancaires MandateDetailsCardLabelResponse = "Cartes Bancaires"
 	MandateDetailsCardLabelResponseDankort         MandateDetailsCardLabelResponse = "Dankort"
 	MandateDetailsCardLabelResponseDinersClub      MandateDetailsCardLabelResponse = "Diners Club"
 	MandateDetailsCardLabelResponseDiscover        MandateDetailsCardLabelResponse = "Discover"
@@ -29,7 +30,7 @@ func (e MandateDetailsCardLabelResponse) ToPointer() *MandateDetailsCardLabelRes
 func (e *MandateDetailsCardLabelResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "American Express", "Carta Si", "Carte Bleue", "Dankort", "Diners Club", "Discover", "JCB", "Laser", "Maestro", "Mastercard", "Unionpay", "Visa":
+		case "American Express", "Carta Si", "Carte Bleue", "Cartes Bancaires", "Dankort", "Diners Club", "Discover", "JCB", "Laser", "Maestro", "Mastercard", "Unionpay", "Visa":
 			return true
 		}
 	}
