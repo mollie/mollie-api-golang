@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 7786670ae1f5b5980196a081541ee43f
+  docChecksum: 490963247baa188088c58efdd5aa66cf
   docVersion: 1.0.0
-  speakeasyVersion: 1.797.0
-  generationVersion: 2.937.18
-  releaseVersion: 1.3.42
-  configChecksum: a79b08352654a09d7c62593413fb0280
+  speakeasyVersion: 1.798.0
+  generationVersion: 2.938.0
+  releaseVersion: 1.3.43
+  configChecksum: 1c60b596da3dc80fbf43568d338f7e12
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 184297d7-20c8-4963-a455-98322522cbe6
-  pristine_commit_hash: ff9b7d4db8a5059af1971aee442c852eed374efc
-  pristine_tree_hash: 6cc47c08a744e8b366d90e334a318d171c4c339f
+  generation_id: aa104a12-714a-479e-a103-8a7be9bde94d
+  pristine_commit_hash: 34a17098f981192e1082a83a86c4d0e5d055db7a
+  pristine_tree_hash: 0b6845a1279481860eacb7fd009b6ec95421fdc0
 features:
   go:
     additionalDependencies: 0.1.0
@@ -89,8 +89,8 @@ trackedFiles:
     pristine_git_object: 5b7e9520cac718cd1262022fad6512720f146aa6
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:0bf9c8af28a1faf8c5c9f313c64cbae68d2de243
-    pristine_git_object: b85473a50e6db48a7eb1ce685fb0a3b6243bfe78
+    last_write_checksum: sha1:898459bb01dfb079e08117b551ed9fb1cddc8346
+    pristine_git_object: 190e4f1c3395ef5e14e7f73976ef3de11071ac36
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:eb7017b2b93c075e4c5b78e9b3f569688fa9b730
@@ -3557,8 +3557,8 @@ trackedFiles:
     pristine_git_object: c625360402375f6e215f9bae94653a75281484b7
   docs/models/operations/listsalesinvoicesembedded.md:
     id: 0d2178488b44
-    last_write_checksum: sha1:9544288e769d9406c6e69a9d0f8f79fc06edb574
-    pristine_git_object: ae5cf22715ccc5faa8936281070e810e0cc6deb0
+    last_write_checksum: sha1:6db8d29f04c04f38f4e92df6d4298906c01196e3
+    pristine_git_object: 772639857cb198fbae05f18b807ea855e021d346
   docs/models/operations/listsalesinvoicesglobals.md:
     id: 1b019bb9fac8
     last_write_checksum: sha1:8adc6d7f363be559ae8ee6a5e0a6ba960c68ea8f
@@ -4033,8 +4033,8 @@ trackedFiles:
     pristine_git_object: 9fc4b5bd6b2879544c962d648790359170d7d7ff
   docs/models/operations/updatesalesinvoicerequestbody.md:
     id: b897977fab48
-    last_write_checksum: sha1:4ace8c92267ffa7fb92fa067ef3204ad787cc89e
-    pristine_git_object: 5c466def7af6aef8143a90caba752a25f856e489
+    last_write_checksum: sha1:f1340a7ed22090887b2d80c3a6a852c0dfd91e89
+    pristine_git_object: 66c5187c8dae0d0d9dfc7578cec63a8a74d90118
   docs/models/operations/updatesalesinvoiceresponse.md:
     id: fed0ba49c817
     last_write_checksum: sha1:ff32a5824306253aef4fd69bcc487c7d4a849c2e
@@ -5677,8 +5677,8 @@ trackedFiles:
     pristine_git_object: 4dc4792d289be946e99b53da7b9ae28a8fe1a12b
   models/operations/listsalesinvoices.go:
     id: 8e2388ae9157
-    last_write_checksum: sha1:a890547a5f7b41158fe2231bcdf817dbf9dba97e
-    pristine_git_object: b6dc9a5fa487b2dbbd9b125fe53797af18f9f611
+    last_write_checksum: sha1:cc5f9ca31a0ab2534d2999aaa5f155c0ad72138b
+    pristine_git_object: fd8ad1d05b57902e991156df226d0ab37864ec1f
   models/operations/listsettlementcaptures.go:
     id: 6946d5d30c83
     last_write_checksum: sha1:b502b3262043bb5ee488d322c4ad0b8a48475a72
@@ -5805,8 +5805,8 @@ trackedFiles:
     pristine_git_object: b09d8735c8c60630cec3cb111f886d51a45ad8d0
   models/operations/updatesalesinvoice.go:
     id: 921eb3fcadfd
-    last_write_checksum: sha1:8c3f7965ff8aa97c29850e15e78acff99acf75ed
-    pristine_git_object: 63a7de8d34e5ea28b4c426a76ff4a848cdc48844
+    last_write_checksum: sha1:be5694052ca10ffe15fbe863805f029cd24255b5
+    pristine_git_object: 5ad16375d353dbd5c94970a5113bb59653430e6f
   models/operations/updatesubscription.go:
     id: 1f900e362646
     last_write_checksum: sha1:9a0a96378560d5930fed13229fb9a4871b2a46fd
@@ -9246,7 +9246,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"sales_invoices": [{"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "mode": "live", "invoiceNumber": "INV-0000001", "status": "draft", "vatScheme": "standard", "vatMode": "exclusive", "memo": "This is a memo!", "paymentTerm": "30 days", "paymentDetails": [{"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}], "emailDetails": null, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38+00:00", "paidAt": "2024-10-04T10:47:38+00:00", "dueAt": "2024-11-01T10:47:38+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"invoices": [{"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "mode": "live", "invoiceNumber": "INV-0000001", "profileId": "pfl_QkEhN94Ba", "status": "draft", "eInvoiceStatus": "issuing", "vatScheme": "standard", "vatMode": "exclusive", "memo": "This is a memo!", "paymentTerm": "30 days", "paymentDetails": [{"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}], "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": null, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "isEInvoice": false, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37+00:00", "issuedAt": "2024-10-03T10:47:38+00:00", "paidAt": "2024-10-04T10:47:38+00:00", "dueAt": "2024-11-01T10:47:38+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-sales-invoice:
@@ -10193,7 +10193,9 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Webhooks.Get()`:  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Settlements.ListRefunds()`:  `response.Embedded.Refunds[].Description` **Changed** (Breaking ⚠️)\n* `Client.Refunds.All()`:  `response.Embedded.Refunds[].Description` **Changed** (Breaking ⚠️)\n* `Client.Refunds.Get()`:  `response.Description` **Changed** (Breaking ⚠️)\n* `Client.Refunds.List()`:  `response.Embedded.Refunds[].Description` **Changed** (Breaking ⚠️)\n* `Client.Refunds.Create()`: \n  *  `request.RefundRequest.Description` **Changed**\n  *  `response.Description` **Changed** (Breaking ⚠️)\n* `Client.WebhookEvents.Get()`:  `response` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Create()`: \n  *  `request.RequestBody.EventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.List()`: \n  *  `request.Request.EventTypes` **Changed**\n  *  `response.Embedded.Webhooks[].EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Update()`: \n  *  `request.RequestBody.EventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.EventTypes[]` **Changed** (Breaking ⚠️)\n* `Client.Methods.All()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.PaymentLinks.List()`:  `response.Embedded.PaymentLinks[].AllowedMethods[].Enum(googlepay)` **Added**\n* `Client.Payments.Create()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.List()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Payments.Get()`:  `response.Locale` **Changed**\n* `Client.Payments.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Payments.Cancel()`:  `response.Locale` **Changed**\n* `Client.Methods.List()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Methods.Get()`: \n  *  `request.Request.Locale` **Changed**\n* `Client.Clients.Get()`:  `response.Embedded.Organization.Locale` **Changed**\n* `Client.Clients.List()`:  `response.Embedded.Clients[].Embedded.Organization.Locale` **Changed**\n* `Client.Organizations.GetCurrent()`:  `response.Locale` **Changed**\n* `Client.Organizations.Get()`:  `response.Locale` **Changed**\n* `Client.PaymentLinks.Create()`: \n  *  `request.RequestBody.AllowedMethods[].Enum(googlepay)` **Added**\n  *  `response.AllowedMethods[].Enum(googlepay)` **Added**\n* `Client.ClientLinks.Create()`: \n  *  `request.ClientLinkRequest.Owner.Locale` **Changed**\n* `Client.PaymentLinks.Get()`:  `response.AllowedMethods[].Enum(googlepay)` **Added**\n* `Client.PaymentLinks.Update()`: \n  *  `request.RequestBody.AllowedMethods[].Enum(googlepay)` **Added**\n  *  `response.AllowedMethods[].Enum(googlepay)` **Added**\n* `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Customers.Create()`: \n  *  `request.EntityCustomer.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.List()`:  `response.Embedded.Customers[].Locale` **Changed**\n* `Client.Customers.Get()`:  `response.Locale` **Changed**\n* `Client.Customers.Update()`: \n  *  `request.RequestBody.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.CreatePayment()`: \n  *  `request.PaymentRequest.Locale` **Changed**\n  *  `response.Locale` **Changed**\n* `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n* `Client.Mandates.Create()`:  `response.Details.CardLabel.Enum(cartesBancaires)` **Added**\n* `Client.Mandates.List()`:  `response.Embedded.Mandates[].Details.CardLabel.Enum(cartesBancaires)` **Added**\n* `Client.Mandates.Get()`:  `response.Details.CardLabel.Enum(cartesBancaires)` **Added**\n* `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Locale` **Changed**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.SalesInvoices.List()`:  `response.Embedded` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
