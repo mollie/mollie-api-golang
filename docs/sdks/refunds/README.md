@@ -352,7 +352,7 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
