@@ -246,7 +246,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Get(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Webhooks.Get(ctx, "hook_1234567890", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -279,7 +279,7 @@ func main() {
         }),
     )
 
-    res, err := s.Webhooks.Get(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Webhooks.Get(ctx, "hook_1234567890", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
