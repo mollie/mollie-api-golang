@@ -140,7 +140,7 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.List(ctx, client.Pointer("invoice_4Y0eZitmBnQ6IDoMqZQKh"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.SalesInvoices.List(ctx, client.Pointer("invoice_4Y0eZitmBnQ6IDoMqZQKh"), client.Pointer[int64](50), nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -212,7 +212,7 @@ func main() {
         }),
     )
 
-    res, err := s.SalesInvoices.Get(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.SalesInvoices.Get(ctx, "invoice_4Y0eZitmBnQ6IDoMqZQKh", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
