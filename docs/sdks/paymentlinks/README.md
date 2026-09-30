@@ -544,7 +544,7 @@ func main() {
         }),
     )
 
-    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -589,7 +589,7 @@ func main() {
         }),
     )
 
-    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.PaymentLinks.List(ctx, client.Pointer("pl_d9fQur83kFdhH8hIhaZfq"), client.Pointer[int64](50), nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -661,7 +661,7 @@ func main() {
         }),
     )
 
-    res, err := s.PaymentLinks.Get(ctx, "pl_d9fQur83kFdhH8hIhaZfq", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.PaymentLinks.Get(ctx, "pl_d9fQur83kFdhH8hIhaZfq", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }

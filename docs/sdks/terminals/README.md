@@ -167,7 +167,7 @@ func main() {
         }),
     )
 
-    res, err := s.Terminals.Get(ctx, "term_vytxeTZskVKR7C7WgdSP3d", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Terminals.Get(ctx, "term_vytxeTZskVKR7C7WgdSP3d", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }

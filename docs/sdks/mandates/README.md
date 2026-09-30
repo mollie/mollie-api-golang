@@ -237,7 +237,7 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Get(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Mandates.Get(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
