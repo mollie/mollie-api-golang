@@ -180,7 +180,7 @@ func main() {
         }),
     )
 
-    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -213,7 +213,7 @@ func main() {
         }),
     )
 
-    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Balances.Get(ctx, "bal_gVMhHKqSSRYJyPsuoPNFH", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
