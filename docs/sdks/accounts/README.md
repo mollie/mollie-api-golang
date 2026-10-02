@@ -124,7 +124,7 @@ func main() {
         }),
     )
 
-    res, err := s.Accounts.GetAccount(ctx, "ba_nopqrstuvwxyz23456789A", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Accounts.GetAccount(ctx, "ba_nopqrstuvwxyz23456789A", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -274,7 +274,7 @@ func main() {
         }),
     )
 
-    res, err := s.Accounts.Get(ctx, "ba_nopqrstuvwxyz23456789A", "batr_87GByBuj4UCcUTEbs6aGJ", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Accounts.Get(ctx, "ba_nopqrstuvwxyz23456789A", "batr_87GByBuj4UCcUTEbs6aGJ", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -307,7 +307,7 @@ func main() {
         }),
     )
 
-    res, err := s.Accounts.Get(ctx, "ba_nopqrstuvwxyz23456789A", "batr_87GByBuj4UCcUTEbs6aGJ", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Accounts.Get(ctx, "ba_nopqrstuvwxyz23456789A", "batr_87GByBuj4UCcUTEbs6aGJ", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
