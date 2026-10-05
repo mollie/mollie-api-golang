@@ -8,27 +8,6 @@ import (
 	"fmt"
 )
 
-type RefundRequestExternalReference struct {
-	// Specifies the reference type
-	Type *RefundExternalReferenceType `json:"type,omitempty"`
-	// Unique reference from the payment provider
-	ID *string `json:"id,omitempty"`
-}
-
-func (r *RefundRequestExternalReference) GetType() *RefundExternalReferenceType {
-	if r == nil {
-		return nil
-	}
-	return r.Type
-}
-
-func (r *RefundRequestExternalReference) GetID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ID
-}
-
 // Type - The type of source. Currently only the source type `organization` is supported.
 type Type string
 
@@ -101,8 +80,7 @@ type RefundRequest struct {
 	Amount Amount `json:"amount"`
 	// Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-	Metadata          *Metadata                       `json:"metadata,omitempty"`
-	ExternalReference *RefundRequestExternalReference `json:"externalReference,omitempty"`
+	Metadata *Metadata `json:"metadata,omitempty"`
 	// *This feature is only available to marketplace operators.*
 	//
 	// With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -151,13 +129,6 @@ func (r *RefundRequest) GetMetadata() *Metadata {
 		return nil
 	}
 	return r.Metadata
-}
-
-func (r *RefundRequest) GetExternalReference() *RefundRequestExternalReference {
-	if r == nil {
-		return nil
-	}
-	return r.ExternalReference
 }
 
 func (r *RefundRequest) GetReverseRouting() *bool {
