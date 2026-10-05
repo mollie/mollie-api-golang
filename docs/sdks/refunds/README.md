@@ -44,10 +44,6 @@ func main() {
             Currency: "EUR",
             Value: "10.00",
         },
-        ExternalReference: &components.RefundRequestExternalReference{
-            Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
-            ID: client.Pointer("123456789012345"),
-        },
         ReverseRouting: client.Pointer(false),
         RoutingReversals: []components.RefundRequestRoutingReversal{
             components.RefundRequestRoutingReversal{
@@ -109,10 +105,6 @@ func main() {
         Amount: components.Amount{
             Currency: "EUR",
             Value: "10.00",
-        },
-        ExternalReference: &components.RefundRequestExternalReference{
-            Type: components.RefundExternalReferenceTypeAcquirerReference.ToPointer(),
-            ID: client.Pointer("123456789012345"),
         },
         ReverseRouting: client.Pointer(false),
         RoutingReversals: []components.RefundRequestRoutingReversal{
@@ -352,7 +344,7 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
