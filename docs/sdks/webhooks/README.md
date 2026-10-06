@@ -156,9 +156,89 @@ func main() {
 
 Updates the webhook. You may edit the name, url and the list of subscribed event types.
 
-### Example Usage
+### Example Usage: create-webhook-200
 
 <!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="create-webhook-200" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Webhooks.Update(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
+        Name: client.Pointer("Webhook #1"),
+        URL: client.Pointer("https://mollie.com/"),
+        EventTypes: client.Pointer(operations.CreateUpdateWebhookEventTypesWebhookEventTypes(
+            components.WebhookEventTypesPaymentLinkPaid,
+        )),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityWebhook != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-webhook-200
+
+<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="get-webhook-200" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/mollie/mollie-api-golang/models/components"
+	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := client.New(
+        client.WithSecurity(components.Security{
+            AdvancedAccessToken: client.Pointer(os.Getenv("CLIENT_ADVANCED_ACCESS_TOKEN")),
+        }),
+    )
+
+    res, err := s.Webhooks.Update(ctx, "hook_1234567890", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateWebhookRequestBody{
+        Name: client.Pointer("Webhook #1"),
+        URL: client.Pointer("https://mollie.com/"),
+        EventTypes: client.Pointer(operations.CreateUpdateWebhookEventTypesWebhookEventTypes(
+            components.WebhookEventTypesPaymentLinkPaid,
+        )),
+        Testmode: client.Pointer(false),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityWebhook != nil {
+        // handle response
+    }
+}
+```
+### Example Usage: get-webhook-200-1
+
+<!-- UsageSnippet language="go" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```go
 package main
 

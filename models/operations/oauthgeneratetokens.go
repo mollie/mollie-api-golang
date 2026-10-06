@@ -36,9 +36,6 @@ type OauthGenerateTokensRequestBody struct {
 	RefreshToken *string `json:"refresh_token,omitempty"`
 	// The URL the merchant is sent back to once the request has been authorized. It must match the URL you set
 	// when registering your app.
-	//
-	// For consecutive refresh token requests, this parameter is required only if the initial authorization
-	// code grant request also contained a `redirect_uri`.
 	RedirectURI *string `json:"redirect_uri,omitempty"`
 }
 

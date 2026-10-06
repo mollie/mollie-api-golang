@@ -137,11 +137,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -308,11 +308,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -479,11 +479,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -650,11 +650,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -821,11 +821,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -992,11 +992,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -1163,11 +1163,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -1334,11 +1334,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -1505,11 +1505,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -1676,11 +1676,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -1847,11 +1847,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -2018,11 +2018,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
@@ -2189,11 +2189,11 @@ func main() {
         CaptureMode: components.CaptureModeManual.ToPointer(),
         CaptureDelay: client.Pointer("8 hours"),
         ApplicationFee: &components.PaymentRequestApplicationFee{
-            Amount: &components.Amount{
+            Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: client.Pointer("10"),
+            Description: "10",
         },
         Routing: []components.EntityPaymentRoute{
             components.EntityPaymentRoute{
