@@ -448,10 +448,10 @@ func (p *PaymentResponseBillingAddress) GetCountry() *string {
 // `routing` parameter.
 type PaymentResponseApplicationFee struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// The description of the application fee. This will appear on settlement reports towards both you and the
 	// connected merchant.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 }
 
 func (p PaymentResponseApplicationFee) MarshalJSON() ([]byte, error) {
@@ -459,22 +459,22 @@ func (p PaymentResponseApplicationFee) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentResponseApplicationFee) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"amount", "description"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PaymentResponseApplicationFee) GetAmount() *Amount {
+func (p *PaymentResponseApplicationFee) GetAmount() Amount {
 	if p == nil {
-		return nil
+		return Amount{}
 	}
 	return p.Amount
 }
 
-func (p *PaymentResponseApplicationFee) GetDescription() *string {
+func (p *PaymentResponseApplicationFee) GetDescription() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Description
 }

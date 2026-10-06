@@ -371,22 +371,22 @@ func (u Method) MarshalJSON() ([]byte, error) {
 // `routing` parameter.
 type PaymentRequestApplicationFee struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// The description of the application fee. This will appear on settlement reports towards both you and the
 	// connected merchant.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 }
 
-func (p *PaymentRequestApplicationFee) GetAmount() *Amount {
+func (p *PaymentRequestApplicationFee) GetAmount() Amount {
 	if p == nil {
-		return nil
+		return Amount{}
 	}
 	return p.Amount
 }
 
-func (p *PaymentRequestApplicationFee) GetDescription() *string {
+func (p *PaymentRequestApplicationFee) GetDescription() string {
 	if p == nil {
-		return nil
+		return ""
 	}
 	return p.Description
 }

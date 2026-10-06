@@ -378,22 +378,22 @@ func (l *ListSettlementPaymentResponseBillingAddress) GetCountry() *string {
 // `routing` parameter.
 type ListSettlementPaymentResponseApplicationFee struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Amount *Amount `json:"amount,omitempty"`
+	Amount Amount `json:"amount"`
 	// The description of the application fee. This will appear on settlement reports towards both you and the
 	// connected merchant.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
 }
 
-func (l *ListSettlementPaymentResponseApplicationFee) GetAmount() *Amount {
+func (l *ListSettlementPaymentResponseApplicationFee) GetAmount() Amount {
 	if l == nil {
-		return nil
+		return Amount{}
 	}
 	return l.Amount
 }
 
-func (l *ListSettlementPaymentResponseApplicationFee) GetDescription() *string {
+func (l *ListSettlementPaymentResponseApplicationFee) GetDescription() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.Description
 }
