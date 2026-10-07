@@ -77,6 +77,21 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
+        Shipping: client.Pointer(components.CreateSessionRequestShippingUnionSessionRequestShipping1(
+            components.SessionRequestShipping1{
+                Options: []components.SessionRequestOption1{
+                    components.SessionRequestOption1{
+                        Description: "Next day delivery",
+                        Reference: "express",
+                        Amount: components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                    },
+                },
+                CallbackURL: client.Pointer("https://example.org/shipping-options"),
+            },
+        )),
         CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         SequenceType: components.SessionSequenceTypeOneoff.ToPointer(),
         Payment: &components.SessionRequestPayment{
@@ -89,7 +104,13 @@ func main() {
         log.Fatal(err)
     }
     if res.SessionResponse != nil {
-        // handle response
+        switch res.SessionResponse.Shipping.Type {
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping1:
+                // res.SessionResponse.Shipping.SessionResponseShipping1 is populated
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping2:
+                // res.SessionResponse.Shipping.SessionResponseShipping2 is populated
+        }
+
     }
 }
 ```
@@ -155,6 +176,21 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
+        Shipping: client.Pointer(components.CreateSessionRequestShippingUnionSessionRequestShipping1(
+            components.SessionRequestShipping1{
+                Options: []components.SessionRequestOption1{
+                    components.SessionRequestOption1{
+                        Description: "Next day delivery",
+                        Reference: "express",
+                        Amount: components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                    },
+                },
+                CallbackURL: client.Pointer("https://example.org/shipping-options"),
+            },
+        )),
         CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         SequenceType: components.SessionSequenceTypeOneoff.ToPointer(),
         Payment: &components.SessionRequestPayment{
@@ -167,7 +203,13 @@ func main() {
         log.Fatal(err)
     }
     if res.SessionResponse != nil {
-        // handle response
+        switch res.SessionResponse.Shipping.Type {
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping1:
+                // res.SessionResponse.Shipping.SessionResponseShipping1 is populated
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping2:
+                // res.SessionResponse.Shipping.SessionResponseShipping2 is populated
+        }
+
     }
 }
 ```
@@ -233,6 +275,21 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
+        Shipping: client.Pointer(components.CreateSessionRequestShippingUnionSessionRequestShipping1(
+            components.SessionRequestShipping1{
+                Options: []components.SessionRequestOption1{
+                    components.SessionRequestOption1{
+                        Description: "Next day delivery",
+                        Reference: "express",
+                        Amount: components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                    },
+                },
+                CallbackURL: client.Pointer("https://example.org/shipping-options"),
+            },
+        )),
         CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         SequenceType: components.SessionSequenceTypeOneoff.ToPointer(),
         Payment: &components.SessionRequestPayment{
@@ -245,7 +302,13 @@ func main() {
         log.Fatal(err)
     }
     if res.SessionResponse != nil {
-        // handle response
+        switch res.SessionResponse.Shipping.Type {
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping1:
+                // res.SessionResponse.Shipping.SessionResponseShipping1 is populated
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping2:
+                // res.SessionResponse.Shipping.SessionResponseShipping2 is populated
+        }
+
     }
 }
 ```
@@ -311,6 +374,21 @@ func main() {
             Region: client.Pointer("Noord-Holland"),
             Country: client.Pointer("NL"),
         },
+        Shipping: client.Pointer(components.CreateSessionRequestShippingUnionSessionRequestShipping1(
+            components.SessionRequestShipping1{
+                Options: []components.SessionRequestOption1{
+                    components.SessionRequestOption1{
+                        Description: "Next day delivery",
+                        Reference: "express",
+                        Amount: components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                    },
+                },
+                CallbackURL: client.Pointer("https://example.org/shipping-options"),
+            },
+        )),
         CustomerID: client.Pointer("cst_5B8cwPMGnU"),
         SequenceType: components.SessionSequenceTypeOneoff.ToPointer(),
         Payment: &components.SessionRequestPayment{
@@ -323,7 +401,13 @@ func main() {
         log.Fatal(err)
     }
     if res.SessionResponse != nil {
-        // handle response
+        switch res.SessionResponse.Shipping.Type {
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping1:
+                // res.SessionResponse.Shipping.SessionResponseShipping1 is populated
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping2:
+                // res.SessionResponse.Shipping.SessionResponseShipping2 is populated
+        }
+
     }
 }
 ```
@@ -384,7 +468,13 @@ func main() {
         log.Fatal(err)
     }
     if res.SessionResponse != nil {
-        // handle response
+        switch res.SessionResponse.Shipping.Type {
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping1:
+                // res.SessionResponse.Shipping.SessionResponseShipping1 is populated
+            case components.SessionResponseShippingUnionTypeSessionResponseShipping2:
+                // res.SessionResponse.Shipping.SessionResponseShipping2 is populated
+        }
+
     }
 }
 ```

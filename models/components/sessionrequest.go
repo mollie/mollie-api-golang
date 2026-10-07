@@ -3,6 +3,258 @@
 
 package components
 
+import (
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
+type SessionRequestOption2 struct {
+	// The name of the shipping option, as shown to your customer.
+	Description string `json:"description"`
+	// Your own identifier for the shipping option.
+	Reference string `json:"reference"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Amount Amount `json:"amount"`
+}
+
+func (s SessionRequestOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionRequestOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"description", "reference", "amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRequestOption2) GetDescription() string {
+	if s == nil {
+		return ""
+	}
+	return s.Description
+}
+
+func (s *SessionRequestOption2) GetReference() string {
+	if s == nil {
+		return ""
+	}
+	return s.Reference
+}
+
+func (s *SessionRequestOption2) GetAmount() Amount {
+	if s == nil {
+		return Amount{}
+	}
+	return s.Amount
+}
+
+// #region class-body-sessionrequestoption2
+// #endregion class-body-sessionrequestoption2
+
+type SessionRequestShipping2 struct {
+	// A fixed list of shipping options to show your customer during checkout. Use `callbackUrl` instead if your
+	// options depend on the customer's shipping address.
+	Options []SessionRequestOption2 `json:"options,omitempty"`
+	// The URL Mollie calls to retrieve shipping options whenever your customer selects or changes their shipping
+	// address. Requires `https://` for live mode. In test mode, `http://` is also allowed.
+	//
+	// See the [shipping options guide](https://docs.mollie.com/docs/handle-shipping-options-with-express-component)
+	// for the callback request and response.
+	CallbackURL string `json:"callbackUrl"`
+}
+
+func (s SessionRequestShipping2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionRequestShipping2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"callbackUrl"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRequestShipping2) GetOptions() []SessionRequestOption2 {
+	if s == nil {
+		return nil
+	}
+	return s.Options
+}
+
+func (s *SessionRequestShipping2) GetCallbackURL() string {
+	if s == nil {
+		return ""
+	}
+	return s.CallbackURL
+}
+
+// #region class-body-sessionrequestshipping2
+// #endregion class-body-sessionrequestshipping2
+
+type SessionRequestOption1 struct {
+	// The name of the shipping option, as shown to your customer.
+	Description string `json:"description"`
+	// Your own identifier for the shipping option.
+	Reference string `json:"reference"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Amount Amount `json:"amount"`
+}
+
+func (s SessionRequestOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionRequestOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"description", "reference", "amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRequestOption1) GetDescription() string {
+	if s == nil {
+		return ""
+	}
+	return s.Description
+}
+
+func (s *SessionRequestOption1) GetReference() string {
+	if s == nil {
+		return ""
+	}
+	return s.Reference
+}
+
+func (s *SessionRequestOption1) GetAmount() Amount {
+	if s == nil {
+		return Amount{}
+	}
+	return s.Amount
+}
+
+// #region class-body-sessionrequestoption1
+// #endregion class-body-sessionrequestoption1
+
+type SessionRequestShipping1 struct {
+	// A fixed list of shipping options to show your customer during checkout. Use `callbackUrl` instead if your
+	// options depend on the customer's shipping address.
+	Options []SessionRequestOption1 `json:"options"`
+	// The URL Mollie calls to retrieve shipping options whenever your customer selects or changes their shipping
+	// address. Requires `https://` for live mode. In test mode, `http://` is also allowed.
+	//
+	// See the [shipping options guide](https://docs.mollie.com/docs/handle-shipping-options-with-express-component)
+	// for the callback request and response.
+	CallbackURL *string `json:"callbackUrl,omitempty"`
+}
+
+func (s SessionRequestShipping1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionRequestShipping1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"options"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionRequestShipping1) GetOptions() []SessionRequestOption1 {
+	if s == nil {
+		return []SessionRequestOption1{}
+	}
+	return s.Options
+}
+
+func (s *SessionRequestShipping1) GetCallbackURL() *string {
+	if s == nil {
+		return nil
+	}
+	return s.CallbackURL
+}
+
+// #region class-body-sessionrequestshipping1
+// #endregion class-body-sessionrequestshipping1
+
+type SessionRequestShippingUnionType string
+
+const (
+	SessionRequestShippingUnionTypeSessionRequestShipping1 SessionRequestShippingUnionType = "session-request_shipping_1"
+	SessionRequestShippingUnionTypeSessionRequestShipping2 SessionRequestShippingUnionType = "session-request_shipping_2"
+)
+
+// SessionRequestShippingUnion - > 🚧 Private beta
+// >
+// > This property is currently in private beta, and the final specification may still change.
+//
+// Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+//
+// The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When `shipping` is set,
+// `requiredCustomerDetails` must contain `shipping-address`.
+type SessionRequestShippingUnion struct {
+	SessionRequestShipping1 *SessionRequestShipping1 `queryParam:"inline" union:"member"`
+	SessionRequestShipping2 *SessionRequestShipping2 `queryParam:"inline" union:"member"`
+
+	Type SessionRequestShippingUnionType
+}
+
+func CreateSessionRequestShippingUnionSessionRequestShipping1(sessionRequestShipping1 SessionRequestShipping1) SessionRequestShippingUnion {
+	typ := SessionRequestShippingUnionTypeSessionRequestShipping1
+
+	return SessionRequestShippingUnion{
+		SessionRequestShipping1: &sessionRequestShipping1,
+		Type:                    typ,
+	}
+}
+
+func CreateSessionRequestShippingUnionSessionRequestShipping2(sessionRequestShipping2 SessionRequestShipping2) SessionRequestShippingUnion {
+	typ := SessionRequestShippingUnionTypeSessionRequestShipping2
+
+	return SessionRequestShippingUnion{
+		SessionRequestShipping2: &sessionRequestShipping2,
+		Type:                    typ,
+	}
+}
+
+func (u *SessionRequestShippingUnion) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = SessionRequestShippingUnion{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var sessionRequestShipping1 SessionRequestShipping1 = SessionRequestShipping1{}
+	if err := utils.UnmarshalJSON(data, &sessionRequestShipping1, "", true, nil); err == nil {
+		u.SessionRequestShipping1 = &sessionRequestShipping1
+		u.Type = SessionRequestShippingUnionTypeSessionRequestShipping1
+		return nil
+	}
+
+	var sessionRequestShipping2 SessionRequestShipping2 = SessionRequestShipping2{}
+	if err := utils.UnmarshalJSON(data, &sessionRequestShipping2, "", true, nil); err == nil {
+		u.SessionRequestShipping2 = &sessionRequestShipping2
+		u.Type = SessionRequestShippingUnionTypeSessionRequestShipping2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SessionRequestShippingUnion", string(data))
+}
+
+func (u SessionRequestShippingUnion) MarshalJSON() ([]byte, error) {
+	if u.SessionRequestShipping1 != nil {
+		return utils.MarshalJSON(u.SessionRequestShipping1, "", true)
+	}
+
+	if u.SessionRequestShipping2 != nil {
+		return utils.MarshalJSON(u.SessionRequestShipping2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SessionRequestShippingUnion: all fields are null")
+}
+
 type SessionRequestPayment struct {
 	// The webhook URL where we will send payment status updates to.
 	//
@@ -44,8 +296,17 @@ type SessionRequest struct {
 	RequiredCustomerDetails []SessionRequiredCustomerDetails `json:"requiredCustomerDetails,omitempty"`
 	BillingAddress          *ShippingAddress                 `json:"billingAddress,omitempty"`
 	ShippingAddress         *ShippingAddress                 `json:"shippingAddress,omitempty"`
-	CustomerID              *string                          `json:"customerId,omitempty"`
-	SequenceType            *SessionSequenceType             `json:"sequenceType,omitempty"`
+	// > 🚧 Private beta
+	// >
+	// > This property is currently in private beta, and the final specification may still change.
+	//
+	// Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+	//
+	// The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When `shipping` is set,
+	// `requiredCustomerDetails` must contain `shipping-address`.
+	Shipping     *SessionRequestShippingUnion `json:"shipping,omitempty"`
+	CustomerID   *string                      `json:"customerId,omitempty"`
+	SequenceType *SessionSequenceType         `json:"sequenceType,omitempty"`
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	//
@@ -113,6 +374,13 @@ func (s *SessionRequest) GetShippingAddress() *ShippingAddress {
 		return nil
 	}
 	return s.ShippingAddress
+}
+
+func (s *SessionRequest) GetShipping() *SessionRequestShippingUnion {
+	if s == nil {
+		return nil
+	}
+	return s.Shipping
 }
 
 func (s *SessionRequest) GetCustomerID() *string {

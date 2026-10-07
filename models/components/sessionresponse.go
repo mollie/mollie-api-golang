@@ -3,6 +3,12 @@
 
 package components
 
+import (
+	"errors"
+	"fmt"
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // SessionResponseStatus - The Checkout Session's status.
 type SessionResponseStatus string
 
@@ -25,6 +31,252 @@ func (e *SessionResponseStatus) IsExact() bool {
 		}
 	}
 	return false
+}
+
+type SessionResponseOption2 struct {
+	// The name of the shipping option, as shown to your customer.
+	Description string `json:"description"`
+	// Your own identifier for the shipping option.
+	Reference string `json:"reference"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Amount Amount `json:"amount"`
+}
+
+func (s SessionResponseOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionResponseOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"description", "reference", "amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionResponseOption2) GetDescription() string {
+	if s == nil {
+		return ""
+	}
+	return s.Description
+}
+
+func (s *SessionResponseOption2) GetReference() string {
+	if s == nil {
+		return ""
+	}
+	return s.Reference
+}
+
+func (s *SessionResponseOption2) GetAmount() Amount {
+	if s == nil {
+		return Amount{}
+	}
+	return s.Amount
+}
+
+// #region class-body-sessionresponseoption2
+// #endregion class-body-sessionresponseoption2
+
+type SessionResponseShipping2 struct {
+	// A fixed list of shipping options to show your customer during checkout. Use `callbackUrl` instead if your
+	// options depend on the customer's shipping address.
+	Options []SessionResponseOption2 `json:"options,omitempty"`
+	// The URL Mollie calls to retrieve shipping options whenever your customer selects or changes their shipping
+	// address. Requires `https://` for live mode. In test mode, `http://` is also allowed.
+	//
+	// See the [shipping options guide](https://docs.mollie.com/docs/handle-shipping-options-with-express-component)
+	// for the callback request and response.
+	CallbackURL string `json:"callbackUrl"`
+}
+
+func (s SessionResponseShipping2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionResponseShipping2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"callbackUrl"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionResponseShipping2) GetOptions() []SessionResponseOption2 {
+	if s == nil {
+		return nil
+	}
+	return s.Options
+}
+
+func (s *SessionResponseShipping2) GetCallbackURL() string {
+	if s == nil {
+		return ""
+	}
+	return s.CallbackURL
+}
+
+// #region class-body-sessionresponseshipping2
+// #endregion class-body-sessionresponseshipping2
+
+type SessionResponseOption1 struct {
+	// The name of the shipping option, as shown to your customer.
+	Description string `json:"description"`
+	// Your own identifier for the shipping option.
+	Reference string `json:"reference"`
+	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+	Amount Amount `json:"amount"`
+}
+
+func (s SessionResponseOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionResponseOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"description", "reference", "amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionResponseOption1) GetDescription() string {
+	if s == nil {
+		return ""
+	}
+	return s.Description
+}
+
+func (s *SessionResponseOption1) GetReference() string {
+	if s == nil {
+		return ""
+	}
+	return s.Reference
+}
+
+func (s *SessionResponseOption1) GetAmount() Amount {
+	if s == nil {
+		return Amount{}
+	}
+	return s.Amount
+}
+
+// #region class-body-sessionresponseoption1
+// #endregion class-body-sessionresponseoption1
+
+type SessionResponseShipping1 struct {
+	// A fixed list of shipping options to show your customer during checkout. Use `callbackUrl` instead if your
+	// options depend on the customer's shipping address.
+	Options []SessionResponseOption1 `json:"options"`
+	// The URL Mollie calls to retrieve shipping options whenever your customer selects or changes their shipping
+	// address. Requires `https://` for live mode. In test mode, `http://` is also allowed.
+	//
+	// See the [shipping options guide](https://docs.mollie.com/docs/handle-shipping-options-with-express-component)
+	// for the callback request and response.
+	CallbackURL *string `json:"callbackUrl,omitempty"`
+}
+
+func (s SessionResponseShipping1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SessionResponseShipping1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"options"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionResponseShipping1) GetOptions() []SessionResponseOption1 {
+	if s == nil {
+		return []SessionResponseOption1{}
+	}
+	return s.Options
+}
+
+func (s *SessionResponseShipping1) GetCallbackURL() *string {
+	if s == nil {
+		return nil
+	}
+	return s.CallbackURL
+}
+
+// #region class-body-sessionresponseshipping1
+// #endregion class-body-sessionresponseshipping1
+
+type SessionResponseShippingUnionType string
+
+const (
+	SessionResponseShippingUnionTypeSessionResponseShipping1 SessionResponseShippingUnionType = "session-response_shipping_1"
+	SessionResponseShippingUnionTypeSessionResponseShipping2 SessionResponseShippingUnionType = "session-response_shipping_2"
+)
+
+// SessionResponseShippingUnion - > 🚧 Private beta
+// >
+// > This property is currently in private beta, and the final specification may still change.
+//
+// Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+//
+// The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When `shipping` is set,
+// `requiredCustomerDetails` must contain `shipping-address`.
+type SessionResponseShippingUnion struct {
+	SessionResponseShipping1 *SessionResponseShipping1 `queryParam:"inline" union:"member"`
+	SessionResponseShipping2 *SessionResponseShipping2 `queryParam:"inline" union:"member"`
+
+	Type SessionResponseShippingUnionType
+}
+
+func CreateSessionResponseShippingUnionSessionResponseShipping1(sessionResponseShipping1 SessionResponseShipping1) SessionResponseShippingUnion {
+	typ := SessionResponseShippingUnionTypeSessionResponseShipping1
+
+	return SessionResponseShippingUnion{
+		SessionResponseShipping1: &sessionResponseShipping1,
+		Type:                     typ,
+	}
+}
+
+func CreateSessionResponseShippingUnionSessionResponseShipping2(sessionResponseShipping2 SessionResponseShipping2) SessionResponseShippingUnion {
+	typ := SessionResponseShippingUnionTypeSessionResponseShipping2
+
+	return SessionResponseShippingUnion{
+		SessionResponseShipping2: &sessionResponseShipping2,
+		Type:                     typ,
+	}
+}
+
+func (u *SessionResponseShippingUnion) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = SessionResponseShippingUnion{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var sessionResponseShipping1 SessionResponseShipping1 = SessionResponseShipping1{}
+	if err := utils.UnmarshalJSON(data, &sessionResponseShipping1, "", true, nil); err == nil {
+		u.SessionResponseShipping1 = &sessionResponseShipping1
+		u.Type = SessionResponseShippingUnionTypeSessionResponseShipping1
+		return nil
+	}
+
+	var sessionResponseShipping2 SessionResponseShipping2 = SessionResponseShipping2{}
+	if err := utils.UnmarshalJSON(data, &sessionResponseShipping2, "", true, nil); err == nil {
+		u.SessionResponseShipping2 = &sessionResponseShipping2
+		u.Type = SessionResponseShippingUnionTypeSessionResponseShipping2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SessionResponseShippingUnion", string(data))
+}
+
+func (u SessionResponseShippingUnion) MarshalJSON() ([]byte, error) {
+	if u.SessionResponseShipping1 != nil {
+		return utils.MarshalJSON(u.SessionResponseShipping1, "", true)
+	}
+
+	if u.SessionResponseShipping2 != nil {
+		return utils.MarshalJSON(u.SessionResponseShipping2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SessionResponseShippingUnion: all fields are null")
 }
 
 type SessionResponsePayment struct {
@@ -92,8 +344,17 @@ type SessionResponse struct {
 	RequiredCustomerDetails []SessionRequiredCustomerDetailsResponse `json:"requiredCustomerDetails,omitempty"`
 	BillingAddress          *ShippingAddress                         `json:"billingAddress,omitempty"`
 	ShippingAddress         *ShippingAddress                         `json:"shippingAddress,omitempty"`
-	CustomerID              *string                                  `json:"customerId,omitempty"`
-	SequenceType            *SessionSequenceTypeResponse             `json:"sequenceType,omitempty"`
+	// > 🚧 Private beta
+	// >
+	// > This property is currently in private beta, and the final specification may still change.
+	//
+	// Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+	//
+	// The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When `shipping` is set,
+	// `requiredCustomerDetails` must contain `shipping-address`.
+	Shipping     *SessionResponseShippingUnion `json:"shipping,omitempty"`
+	CustomerID   *string                       `json:"customerId,omitempty"`
+	SequenceType *SessionSequenceTypeResponse  `json:"sequenceType,omitempty"`
 	// Provide any data you like in a JSON object. We will save the data alongside the entity. Whenever
 	// you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 	//
@@ -200,6 +461,13 @@ func (s *SessionResponse) GetShippingAddress() *ShippingAddress {
 		return nil
 	}
 	return s.ShippingAddress
+}
+
+func (s *SessionResponse) GetShipping() *SessionResponseShippingUnion {
+	if s == nil {
+		return nil
+	}
+	return s.Shipping
 }
 
 func (s *SessionResponse) GetCustomerID() *string {
