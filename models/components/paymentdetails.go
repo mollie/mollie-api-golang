@@ -8,67 +8,6 @@ import (
 	"github.com/mollie/mollie-api-golang/types"
 )
 
-// Receipt - The Point of sale receipt object.
-//
-//   - `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm that the
-//     transaction was successfully approved.
-//   - `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment application
-//     on a chip card.
-//   - `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible values:
-//     `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-//   - `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity. Possible
-//     values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-//     `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-type Receipt struct {
-	// A unique code provided by the cardholder's bank to confirm that the transaction was successfully approved.
-	AuthorizationCode *string `json:"authorizationCode,omitempty"`
-	// The unique number that identifies a specific payment application on a chip card.
-	ApplicationIdentifier *string `json:"applicationIdentifier,omitempty"`
-	// The method by which the card was read by the terminal.
-	CardReadMethod *PaymentDetailsReceiptCardReadMethodResponse `json:"cardReadMethod,omitempty"`
-	// The method used to verify the cardholder's identity.
-	CardVerificationMethod *PaymentDetailsReceiptCardVerificationMethodResponse `json:"cardVerificationMethod,omitempty"`
-}
-
-func (r Receipt) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *Receipt) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (r *Receipt) GetAuthorizationCode() *string {
-	if r == nil {
-		return nil
-	}
-	return r.AuthorizationCode
-}
-
-func (r *Receipt) GetApplicationIdentifier() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ApplicationIdentifier
-}
-
-func (r *Receipt) GetCardReadMethod() *PaymentDetailsReceiptCardReadMethodResponse {
-	if r == nil {
-		return nil
-	}
-	return r.CardReadMethod
-}
-
-func (r *Receipt) GetCardVerificationMethod() *PaymentDetailsReceiptCardVerificationMethodResponse {
-	if r == nil {
-		return nil
-	}
-	return r.CardVerificationMethod
-}
-
 // PaymentDetailsQrCode - **Optional include.** If a QR code was requested during payment creation for a QR-compatible payment method,
 // the QR code details will be available in this object.
 //
@@ -204,18 +143,6 @@ type PaymentDetails struct {
 	TerminalID *string `json:"terminalId,omitempty"`
 	// The first 6 digits & last 4 digits of the customer's masked card number.
 	MaskedNumber *string `json:"maskedNumber,omitempty"`
-	// The Point of sale receipt object.
-	//
-	// * `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm that the
-	//   transaction was successfully approved.
-	// * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment application
-	//   on a chip card.
-	// * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible values:
-	//   `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-	// * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity. Possible
-	//   values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-	//   `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-	Receipt *Receipt `json:"receipt,omitempty"`
 	// The creditor identifier indicates who is authorized to execute the payment. In this case, it is a reference
 	// to Mollie.
 	CreditorIdentifier *string `json:"creditorIdentifier,omitempty"`
@@ -517,13 +444,6 @@ func (p *PaymentDetails) GetMaskedNumber() *string {
 		return nil
 	}
 	return p.MaskedNumber
-}
-
-func (p *PaymentDetails) GetReceipt() *Receipt {
-	if p == nil {
-		return nil
-	}
-	return p.Receipt
 }
 
 func (p *PaymentDetails) GetCreditorIdentifier() *string {
