@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: f0d36ca4c49ab7e7ff7e07aa80093d9c
+  docChecksum: 73b84c34b41d3207af209021bf73c6e0
   docVersion: 1.0.0
-  speakeasyVersion: 1.801.0
-  generationVersion: 2.946.0
-  releaseVersion: 1.4.3
-  configChecksum: 7f3eee7ee4681b467098ecfc7c94c722
+  speakeasyVersion: 1.802.0
+  generationVersion: 2.948.4
+  releaseVersion: 1.5.0
+  configChecksum: 755f545a7e42f5c731eb7db18f83623d
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: c265119e-2de8-4c70-8656-377a3d76376f
-  pristine_commit_hash: ad66dd23cda4a1ece1d829a2a23031ca63e382a8
-  pristine_tree_hash: 46462eb00d2302662299badae3eb9c4e973b2028
+  generation_id: 74afeb80-1cbb-49a5-94d0-982d7269d7cc
+  pristine_commit_hash: 4e2ac733fc6fced4e142307d87a913f51b2e0240
+  pristine_tree_hash: b6c35b054fd9172fb25884a1f6c4d385a49507f9
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.14.1
+    core: 3.16.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -85,12 +85,12 @@ trackedFiles:
     pristine_git_object: 8bfc2631953b61f04fac0a3b99ce046aa4dfcf06
   checkoutsessions.go:
     id: e45447bbbca1
-    last_write_checksum: sha1:3ede396f975af6c00462d8f523871c8c83e81447
-    pristine_git_object: 3e8cfb98f3fd2c6fc233657c678f85e1375e826f
+    last_write_checksum: sha1:6b8b51033b3567a97980e868546c9e379f399780
+    pristine_git_object: 746a9bd242c825c0c3fe2611e699039049f3931b
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:e4cde2a9b21a6b27aea9ebbcb1c6e971fd0b575b
-    pristine_git_object: a2e8c96644cfb838e6df1e069610a1a51050846f
+    last_write_checksum: sha1:80d10598beb2e11229b2e3582e8ab471b2344cb8
+    pristine_git_object: 5318d442663a58bf41e7d802402aa1df86061fda
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f2d75b9870f49643694f5b4c34776f2b5e556408
@@ -4125,8 +4125,8 @@ trackedFiles:
     pristine_git_object: 9b1dd85ebf2539d90fadd62e3e2c8ae4bdd6c1dc
   docs/sdks/checkoutsessions/README.md:
     id: 093cc3fe624c
-    last_write_checksum: sha1:cd89d5f22ad45af820c776af8bf366287017ff6c
-    pristine_git_object: 7bdd4bd600a455b8060eb6f817dbe6c376260ea7
+    last_write_checksum: sha1:3ed6bf1ac2ee0e742f9a2e7c6bc199b23d48e039
+    pristine_git_object: 8f9bf8f1784bf28b82b12d2fcafa9fe844dfdbf0
   docs/sdks/clientlinks/README.md:
     id: 74ba097043d3
     last_write_checksum: sha1:66ebbcb158e14f310db219dd9cc7cb3a372ef9c1
@@ -10227,19 +10227,6 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Go SDK Changes:
-  * `Client.Settlements.ListPayments()`:  `response.Embedded.Payments[].Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(payment-response).Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Payments.Create()`:  `response.Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Payments.List()`:  `response.Embedded.Payments[].Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Payments.Get()`:  `response.Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Payments.Update()`:  `response.Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Payments.Cancel()`:  `response.Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.PaymentLinks.ListPayments()`:  `response.Embedded.Payments[].Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Customers.CreatePayment()`:  `response.Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Customers.ListPayments()`:  `response.Embedded.Payments[].Details.Receipt` **Removed** (Breaking ⚠️)
-  * `Client.Subscriptions.ListPayments()`:  `response.Embedded.Payments[].Details.Receipt` **Removed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
