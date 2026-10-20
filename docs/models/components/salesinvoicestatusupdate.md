@@ -24,9 +24,10 @@ value := components.SalesInvoiceStatusUpdateDraft
 
 ## Values
 
-| Name                                | Value                               |
-| ----------------------------------- | ----------------------------------- |
-| `SalesInvoiceStatusUpdateDraft`     | draft                               |
-| `SalesInvoiceStatusUpdateIssued`    | issued                              |
-| `SalesInvoiceStatusUpdatePaid`      | paid                                |
-| `SalesInvoiceStatusUpdateCancelled` | cancelled                           |
+| Name                                      | Value                                     |
+| ----------------------------------------- | ----------------------------------------- |
+| `SalesInvoiceStatusUpdateDraft`           | draft                                     |
+| `SalesInvoiceStatusUpdateIssued`          | issued                                    |
+| `SalesInvoiceStatusUpdatePaid`            | paid                                      |
+| `SalesInvoiceStatusUpdateCancelled`       | cancelled                                 |
+| `SalesInvoiceStatusUpdatePaymentReversed` | payment_reversed                          |

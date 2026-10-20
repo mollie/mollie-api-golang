@@ -25,6 +25,7 @@ custom := components.BalanceTransactionType("custom_value")
 | `BalanceTransactionTypeBalanceReserve`                    | balance-reserve                                           |
 | `BalanceTransactionTypeBalanceReserveReturn`              | balance-reserve-return                                    |
 | `BalanceTransactionTypeBalanceTopup`                      | balance-topup                                             |
+| `BalanceTransactionTypeBankChargedFailureFee`             | bank-charged-failure-fee                                  |
 | `BalanceTransactionTypeCanceledTransfer`                  | canceled-transfer                                         |
 | `BalanceTransactionTypeCapture`                           | capture                                                   |
 | `BalanceTransactionTypeCashCollateralIssuance`            | cash-collateral-issuance                                  |
@@ -33,6 +34,7 @@ custom := components.BalanceTransactionType("custom_value")
 | `BalanceTransactionTypeChargebackCompensation`            | chargeback-compensation                                   |
 | `BalanceTransactionTypeChargebackReversal`                | chargeback-reversal                                       |
 | `BalanceTransactionTypeFailedPayment`                     | failed-payment                                            |
+| `BalanceTransactionTypeFailedPaymentFee`                  | failed-payment-fee                                        |
 | `BalanceTransactionTypeFailedPlatformSplitPayment`        | failed-platform-split-payment                             |
 | `BalanceTransactionTypeFailedSplitPaymentCompensation`    | failed-split-payment-compensation                         |
 | `BalanceTransactionTypeFeePrepayment`                     | fee-prepayment                                            |
