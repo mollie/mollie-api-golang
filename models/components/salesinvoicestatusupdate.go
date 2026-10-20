@@ -21,10 +21,11 @@ import (
 type SalesInvoiceStatusUpdate string
 
 const (
-	SalesInvoiceStatusUpdateDraft     SalesInvoiceStatusUpdate = "draft"
-	SalesInvoiceStatusUpdateIssued    SalesInvoiceStatusUpdate = "issued"
-	SalesInvoiceStatusUpdatePaid      SalesInvoiceStatusUpdate = "paid"
-	SalesInvoiceStatusUpdateCancelled SalesInvoiceStatusUpdate = "cancelled"
+	SalesInvoiceStatusUpdateDraft           SalesInvoiceStatusUpdate = "draft"
+	SalesInvoiceStatusUpdateIssued          SalesInvoiceStatusUpdate = "issued"
+	SalesInvoiceStatusUpdatePaid            SalesInvoiceStatusUpdate = "paid"
+	SalesInvoiceStatusUpdateCancelled       SalesInvoiceStatusUpdate = "cancelled"
+	SalesInvoiceStatusUpdatePaymentReversed SalesInvoiceStatusUpdate = "payment_reversed"
 )
 
 func (e SalesInvoiceStatusUpdate) ToPointer() *SalesInvoiceStatusUpdate {
@@ -43,6 +44,8 @@ func (e *SalesInvoiceStatusUpdate) UnmarshalJSON(data []byte) error {
 	case "paid":
 		fallthrough
 	case "cancelled":
+		fallthrough
+	case "payment_reversed":
 		*e = SalesInvoiceStatusUpdate(v)
 		return nil
 	default:

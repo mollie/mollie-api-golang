@@ -13,6 +13,7 @@ const (
 	BalanceTransactionTypeBalanceReserve                    BalanceTransactionType = "balance-reserve"
 	BalanceTransactionTypeBalanceReserveReturn              BalanceTransactionType = "balance-reserve-return"
 	BalanceTransactionTypeBalanceTopup                      BalanceTransactionType = "balance-topup"
+	BalanceTransactionTypeBankChargedFailureFee             BalanceTransactionType = "bank-charged-failure-fee"
 	BalanceTransactionTypeCanceledTransfer                  BalanceTransactionType = "canceled-transfer"
 	BalanceTransactionTypeCapture                           BalanceTransactionType = "capture"
 	BalanceTransactionTypeCashCollateralIssuance            BalanceTransactionType = "cash-collateral-issuance"
@@ -21,6 +22,7 @@ const (
 	BalanceTransactionTypeChargebackCompensation            BalanceTransactionType = "chargeback-compensation"
 	BalanceTransactionTypeChargebackReversal                BalanceTransactionType = "chargeback-reversal"
 	BalanceTransactionTypeFailedPayment                     BalanceTransactionType = "failed-payment"
+	BalanceTransactionTypeFailedPaymentFee                  BalanceTransactionType = "failed-payment-fee"
 	BalanceTransactionTypeFailedPlatformSplitPayment        BalanceTransactionType = "failed-platform-split-payment"
 	BalanceTransactionTypeFailedSplitPaymentCompensation    BalanceTransactionType = "failed-split-payment-compensation"
 	BalanceTransactionTypeFeePrepayment                     BalanceTransactionType = "fee-prepayment"
@@ -64,7 +66,7 @@ func (e BalanceTransactionType) ToPointer() *BalanceTransactionType {
 func (e *BalanceTransactionType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "api-payment-rolling-reserve-release", "application-fee", "balance-charge-fee", "balance-correction", "balance-reserve", "balance-reserve-return", "balance-topup", "canceled-transfer", "capture", "cash-collateral-issuance", "cash-collateral-release", "chargeback", "chargeback-compensation", "chargeback-reversal", "failed-payment", "failed-platform-split-payment", "failed-split-payment-compensation", "fee-prepayment", "held-rolling-reserve", "incoming-transfer", "invoice-compensation", "invoice-rounding-compensation", "loan", "movement", "outgoing-custom-amount-transfer", "outgoing-transfer", "payment", "payment-fee", "pending-rolling-reserve", "platform-payment-chargeback", "platform-payment-refund", "post-payment-split-payment", "refund", "refund-compensation", "released-rolling-reserve", "repayment", "returned-platform-payment-refund", "returned-refund", "returned-refund-compensation", "returned-transfer", "reversed-chargeback-compensation", "reversed-platform-payment-chargeback", "rolling-reserve-hold", "rolling-reserve-release", "split-payment", "split-transaction", "to-be-released-rolling-reserve", "topup":
+		case "api-payment-rolling-reserve-release", "application-fee", "balance-charge-fee", "balance-correction", "balance-reserve", "balance-reserve-return", "balance-topup", "bank-charged-failure-fee", "canceled-transfer", "capture", "cash-collateral-issuance", "cash-collateral-release", "chargeback", "chargeback-compensation", "chargeback-reversal", "failed-payment", "failed-payment-fee", "failed-platform-split-payment", "failed-split-payment-compensation", "fee-prepayment", "held-rolling-reserve", "incoming-transfer", "invoice-compensation", "invoice-rounding-compensation", "loan", "movement", "outgoing-custom-amount-transfer", "outgoing-transfer", "payment", "payment-fee", "pending-rolling-reserve", "platform-payment-chargeback", "platform-payment-refund", "post-payment-split-payment", "refund", "refund-compensation", "released-rolling-reserve", "repayment", "returned-platform-payment-refund", "returned-refund", "returned-refund-compensation", "returned-transfer", "reversed-chargeback-compensation", "reversed-platform-payment-chargeback", "rolling-reserve-hold", "rolling-reserve-release", "split-payment", "split-transaction", "to-be-released-rolling-reserve", "topup":
 			return true
 		}
 	}
