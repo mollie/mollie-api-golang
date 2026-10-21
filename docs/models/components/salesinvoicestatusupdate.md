@@ -30,4 +30,4 @@ value := components.SalesInvoiceStatusUpdateDraft
 | `SalesInvoiceStatusUpdateIssued`          | issued                                    |
 | `SalesInvoiceStatusUpdatePaid`            | paid                                      |
 | `SalesInvoiceStatusUpdateCancelled`       | cancelled                                 |
-| `SalesInvoiceStatusUpdatePaymentReversed` | payment_reversed                          |
+| `SalesInvoiceStatusUpdatePaymentReversed` | payment-reversed                          |

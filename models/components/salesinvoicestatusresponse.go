@@ -13,7 +13,7 @@ const (
 	SalesInvoiceStatusResponsePendingPayment  SalesInvoiceStatusResponse = "pending-payment"
 	SalesInvoiceStatusResponsePaid            SalesInvoiceStatusResponse = "paid"
 	SalesInvoiceStatusResponseOverdue         SalesInvoiceStatusResponse = "overdue"
-	SalesInvoiceStatusResponsePaymentReversed SalesInvoiceStatusResponse = "payment_reversed"
+	SalesInvoiceStatusResponsePaymentReversed SalesInvoiceStatusResponse = "payment-reversed"
 	SalesInvoiceStatusResponseCancelled       SalesInvoiceStatusResponse = "cancelled"
 	SalesInvoiceStatusResponseExpired         SalesInvoiceStatusResponse = "expired"
 	SalesInvoiceStatusResponseFailed          SalesInvoiceStatusResponse = "failed"
@@ -27,7 +27,7 @@ func (e SalesInvoiceStatusResponse) ToPointer() *SalesInvoiceStatusResponse {
 func (e *SalesInvoiceStatusResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "draft", "issuing", "issued", "pending-payment", "paid", "overdue", "payment_reversed", "cancelled", "expired", "failed":
+		case "draft", "issuing", "issued", "pending-payment", "paid", "overdue", "payment-reversed", "cancelled", "expired", "failed":
 			return true
 		}
 	}
