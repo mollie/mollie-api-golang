@@ -25,7 +25,7 @@ const (
 	SalesInvoiceStatusUpdateIssued          SalesInvoiceStatusUpdate = "issued"
 	SalesInvoiceStatusUpdatePaid            SalesInvoiceStatusUpdate = "paid"
 	SalesInvoiceStatusUpdateCancelled       SalesInvoiceStatusUpdate = "cancelled"
-	SalesInvoiceStatusUpdatePaymentReversed SalesInvoiceStatusUpdate = "payment_reversed"
+	SalesInvoiceStatusUpdatePaymentReversed SalesInvoiceStatusUpdate = "payment-reversed"
 )
 
 func (e SalesInvoiceStatusUpdate) ToPointer() *SalesInvoiceStatusUpdate {
@@ -45,7 +45,7 @@ func (e *SalesInvoiceStatusUpdate) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "cancelled":
 		fallthrough
-	case "payment_reversed":
+	case "payment-reversed":
 		*e = SalesInvoiceStatusUpdate(v)
 		return nil
 	default:

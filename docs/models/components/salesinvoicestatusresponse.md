@@ -26,7 +26,7 @@ custom := components.SalesInvoiceStatusResponse("custom_value")
 | `SalesInvoiceStatusResponsePendingPayment`  | pending-payment                             |
 | `SalesInvoiceStatusResponsePaid`            | paid                                        |
 | `SalesInvoiceStatusResponseOverdue`         | overdue                                     |
-| `SalesInvoiceStatusResponsePaymentReversed` | payment_reversed                            |
+| `SalesInvoiceStatusResponsePaymentReversed` | payment-reversed                            |
 | `SalesInvoiceStatusResponseCancelled`       | cancelled                                   |
 | `SalesInvoiceStatusResponseExpired`         | expired                                     |
 | `SalesInvoiceStatusResponseFailed`          | failed                                      |

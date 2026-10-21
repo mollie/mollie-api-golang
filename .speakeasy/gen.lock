@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 91150334105ebd8973b60bf680b8e5e4
+  docChecksum: 693e92eeef422ee7b8c54afd390dea7a
   docVersion: 1.0.0
   speakeasyVersion: 1.803.0
   generationVersion: 2.950.2
-  releaseVersion: 1.5.1
-  configChecksum: 2a2347ca181a4d1fffa7cdbc9ce04af8
+  releaseVersion: 1.5.2
+  configChecksum: c16f7da7d42bf052e3e367720de47d0c
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: 467def6d-dabf-4391-b57a-9808b8ddd23f
-  pristine_commit_hash: c0f5f97154a6fefe01ab05b55ed5609e614061a1
-  pristine_tree_hash: a6d61476322ab1456e87d61ab33dbed2c27e9bfb
+  generation_id: 6c9233f1-8320-463f-a348-7c74c702fab5
+  pristine_commit_hash: 1cc3f7e2b60b45343cb7da0855094281275034c9
+  pristine_tree_hash: df82bc31b4aec2939664d7dce679a5579e4e2f41
 features:
   go:
     additionalDependencies: 0.1.0
@@ -89,8 +89,8 @@ trackedFiles:
     pristine_git_object: 746a9bd242c825c0c3fe2611e699039049f3931b
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:ab429fde18a09598bc43ad9846bb6e5aa8345638
-    pristine_git_object: c03af9c7765103a90a64fcfd6edfad14661cbb5e
+    last_write_checksum: sha1:7daf0cef8b3d2d78c829ecfcebe664d83de89340
+    pristine_git_object: 5fd5ee58184c1ccf79bc92b3deee3f5e08563321
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f2d75b9870f49643694f5b4c34776f2b5e556408
@@ -1877,12 +1877,12 @@ trackedFiles:
     pristine_git_object: 0e441939657ad71d0c6f6929569ac8fca9735847
   docs/models/components/salesinvoicestatusresponse.md:
     id: a8eba54055dc
-    last_write_checksum: sha1:0f29118d72fcd21d11aaa0d96c9d7d619d23b48a
-    pristine_git_object: 7296bb935da066a0b1ec23da95911574c73a92d4
+    last_write_checksum: sha1:01ce49e7d6517b1ad4f2fd5d62f7db75303468cf
+    pristine_git_object: c059641043879f095785ed188b2d0ce399538724
   docs/models/components/salesinvoicestatusupdate.md:
     id: 164aa81d1227
-    last_write_checksum: sha1:0640648fca566c6ce75ff31d64b9092e9c39d5d3
-    pristine_git_object: b62182dfc4feb36238683f35567646ea9bb39c84
+    last_write_checksum: sha1:42fa45f42bcff9396f2505c5621fb2142ec4bd89
+    pristine_git_object: d381cf7ba40f1ac19c020453aa67c6bed2e94efc
   docs/models/components/salesinvoicevatmode.md:
     id: 34217af5deb2
     last_write_checksum: sha1:49258cbe3515f57e0c4bd93a7cc71f09e12a135c
@@ -5077,12 +5077,12 @@ trackedFiles:
     pristine_git_object: 308ebdcd36110ef0e4fa5590e707396a2d803004
   models/components/salesinvoicestatusresponse.go:
     id: 153d4ba421d9
-    last_write_checksum: sha1:41c540a34d7cfc7ede0f94d5e407f5b282b95f30
-    pristine_git_object: 901b0dc4657ccc74d76610ddc0b9fc1db6599f8f
+    last_write_checksum: sha1:0f8e27cc1839faf9c5d0f79a1ad2a7af7379e3cc
+    pristine_git_object: 2d66ae221e3510b63f8dce48392a3c5b21cae623
   models/components/salesinvoicestatusupdate.go:
     id: dba61a2d1403
-    last_write_checksum: sha1:d662f3a9d277270352ed86a9609695e9a36e7c99
-    pristine_git_object: b5a49c8bbd728b1d3fc4e76d478287f024c2e8fd
+    last_write_checksum: sha1:a857164a5e98a219ed3694159f28d74718e4064d
+    pristine_git_object: 01129d8e8ff6a4c471f7605a62db6d88f8928380
   models/components/salesinvoicevatmode.go:
     id: 1ecece87c70d
     last_write_checksum: sha1:3fd7a0575210d18dfe6564c912c1424af5fbc2fa
@@ -10227,7 +10227,7 @@ examples:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Balances.GetReport()`:  `response.Totals.PendingBalance.Open.Subtotals[].SubTotals[].TransactionType` **Changed**\n* `Client.Balances.ListTransactions()`:  `response.Embedded.BalanceTransactions[].Type` **Changed**\n* `Client.SalesInvoices.Update()`: \n  *  `request.RequestBody.Status.Enum(paymentReversed)` **Added**\n"
+releaseNotes: "## Go SDK Changes:\n* `Client.WebhookEvents.Get()`:  `response.Embedded.Entity.union(sales-invoice-response).Status` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.Create()`:  `response.Status` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.List()`:  `response.Embedded.Invoices[].Status` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.Get()`:  `response.Status` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.Update()`: \n  *  `request.RequestBody.Status` **Changed** (Breaking ⚠️)\n  *  `response.Status` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
