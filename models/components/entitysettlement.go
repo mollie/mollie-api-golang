@@ -53,13 +53,16 @@ func (e *EntitySettlementAmount) GetValue() string {
 }
 
 // Rate - The service rates, further divided into `fixed` and `percentage` costs.
+//
+// For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+// rate, both `fixed` and `percentage` are `null`.
 type Rate struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Fixed      *Amount `json:"fixed,omitempty"`
-	Percentage *string `json:"percentage,omitempty"`
+	Fixed      *AmountNullable `json:"fixed"`
+	Percentage *string         `json:"percentage"`
 }
 
-func (r *Rate) GetFixed() *Amount {
+func (r *Rate) GetFixed() *AmountNullable {
 	if r == nil {
 		return nil
 	}
@@ -82,6 +85,9 @@ type Cost struct {
 	// The number of fees
 	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
+	//
+	// For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+	// rate, both `fixed` and `percentage` are `null`.
 	Rate Rate `json:"rate"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountNet Amount `json:"amountNet"`

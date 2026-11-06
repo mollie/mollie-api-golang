@@ -3,7 +3,7 @@
 
 package client
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.950.2
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.956.1
 
 import (
 	"context"
@@ -53,6 +53,7 @@ type Client struct {
 	SDKVersion               string
 	Oauth                    *Oauth
 	Balances                 *Balances
+	Reports                  *Reports
 	Settlements              *Settlements
 	Invoices                 *Invoices
 	Permissions              *Permissions
@@ -181,11 +182,11 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.5.2",
+		SDKVersion: "1.5.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 1.5.2 2.950.2 1.0.0 github.com/mollie/mollie-api-golang",
-			SDKVersion:        "1.5.2",
-			GenVersion:        "2.950.2",
+			UserAgent:         "speakeasy-sdk/go 1.5.3 2.956.1 1.0.0 github.com/mollie/mollie-api-golang",
+			SDKVersion:        "1.5.3",
+			GenVersion:        "2.956.1",
 			OpenAPIDocVersion: "1.0.0",
 			Globals:           globals.Globals{},
 			ServerList:        ServerList,
@@ -214,6 +215,7 @@ func New(opts ...SDKOption) *Client {
 
 	sdk.Oauth = newOauth(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Balances = newBalances(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Reports = newReports(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Settlements = newSettlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Permissions = newPermissions(sdk, sdk.sdkConfiguration, sdk.hooks)

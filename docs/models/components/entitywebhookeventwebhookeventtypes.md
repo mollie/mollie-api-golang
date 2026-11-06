@@ -68,4 +68,6 @@ custom := components.EntityWebhookEventWebhookEventTypes("custom_value")
 | `EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferMatchFailed`     | unmatched-credit-transfer.match.failed                                      |
 | `EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReturnCompleted` | unmatched-credit-transfer.return.completed                                  |
 | `EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReturnFailed`    | unmatched-credit-transfer.return.failed                                     |
+| `EntityWebhookEventWebhookEventTypesReportCompleted`                        | report.completed                                                            |
+| `EntityWebhookEventWebhookEventTypesReportFailed`                           | report.failed                                                               |
 | `EntityWebhookEventWebhookEventTypesWildcard`                               | *                                                                           |
