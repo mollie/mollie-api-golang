@@ -65,4 +65,6 @@ value := components.WebhookEventTypesPaymentPaid
 | `WebhookEventTypesUnmatchedCreditTransferMatchFailed`     | unmatched-credit-transfer.match.failed                    |
 | `WebhookEventTypesUnmatchedCreditTransferReturnCompleted` | unmatched-credit-transfer.return.completed                |
 | `WebhookEventTypesUnmatchedCreditTransferReturnFailed`    | unmatched-credit-transfer.return.failed                   |
+| `WebhookEventTypesReportCompleted`                        | report.completed                                          |
+| `WebhookEventTypesReportFailed`                           | report.failed                                             |
 | `WebhookEventTypesWildcard`                               | *                                                         |

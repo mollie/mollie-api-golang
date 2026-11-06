@@ -69,13 +69,16 @@ func (g *GetOpenSettlementAmount) GetValue() string {
 }
 
 // GetOpenSettlementRate - The service rates, further divided into `fixed` and `percentage` costs.
+//
+// For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+// rate, both `fixed` and `percentage` are `null`.
 type GetOpenSettlementRate struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-	Fixed      *components.Amount `json:"fixed,omitempty"`
-	Percentage *string            `json:"percentage,omitempty"`
+	Fixed      *components.AmountNullable `json:"fixed"`
+	Percentage *string                    `json:"percentage"`
 }
 
-func (g *GetOpenSettlementRate) GetFixed() *components.Amount {
+func (g *GetOpenSettlementRate) GetFixed() *components.AmountNullable {
 	if g == nil {
 		return nil
 	}
@@ -98,6 +101,9 @@ type GetOpenSettlementCost struct {
 	// The number of fees
 	Count int64 `json:"count"`
 	// The service rates, further divided into `fixed` and `percentage` costs.
+	//
+	// For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+	// rate, both `fixed` and `percentage` are `null`.
 	Rate GetOpenSettlementRate `json:"rate"`
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	AmountNet components.Amount `json:"amountNet"`

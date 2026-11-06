@@ -454,6 +454,11 @@ s := client.New(
 * [Cancel](docs/sdks/refunds/README.md#cancel) - Cancel payment refund
 * [All](docs/sdks/refunds/README.md#all) - List all refunds
 
+### [Reports](docs/sdks/reports/README.md)
+
+* [Create](docs/sdks/reports/README.md#create) - Create report
+* [Get](docs/sdks/reports/README.md#get) - Get report
+
 ### [SalesInvoices](docs/sdks/salesinvoices/README.md)
 
 * [Create](docs/sdks/salesinvoices/README.md#create) - Create sales invoice

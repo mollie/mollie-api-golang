@@ -60,6 +60,8 @@ const (
 	WebhookEventTypesUnmatchedCreditTransferMatchFailed     WebhookEventTypes = "unmatched-credit-transfer.match.failed"
 	WebhookEventTypesUnmatchedCreditTransferReturnCompleted WebhookEventTypes = "unmatched-credit-transfer.return.completed"
 	WebhookEventTypesUnmatchedCreditTransferReturnFailed    WebhookEventTypes = "unmatched-credit-transfer.return.failed"
+	WebhookEventTypesReportCompleted                        WebhookEventTypes = "report.completed"
+	WebhookEventTypesReportFailed                           WebhookEventTypes = "report.failed"
 	WebhookEventTypesWildcard                               WebhookEventTypes = "*"
 )
 
@@ -165,6 +167,10 @@ func (e *WebhookEventTypes) UnmarshalJSON(data []byte) error {
 	case "unmatched-credit-transfer.return.completed":
 		fallthrough
 	case "unmatched-credit-transfer.return.failed":
+		fallthrough
+	case "report.completed":
+		fallthrough
+	case "report.failed":
 		fallthrough
 	case "*":
 		*e = WebhookEventTypes(v)

@@ -35,7 +35,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 1.5.2
+  version: 1.5.3
   additionalDependencies: {}
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
@@ -44,6 +44,7 @@ go:
   enableSkipDeserialization: false
   envVarPrefix: CLIENT
   fixFlags:
+    applyPathParamDefaults: false
     encodePathParams: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
