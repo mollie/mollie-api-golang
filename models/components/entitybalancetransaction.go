@@ -44,843 +44,6 @@ func (d *DeductionDetails) GetReservations() *AmountNullable {
 	return d.Reservations
 }
 
-type EntityBalanceTransactionPayment struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (e *EntityBalanceTransactionPayment) GetPaymentID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentID
-}
-
-func (e *EntityBalanceTransactionPayment) GetPaymentDescription() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentDescription
-}
-
-type Capture struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	CaptureID          *string `json:"captureId,omitempty"`
-	CaptureDescription *string `json:"captureDescription,omitempty"`
-}
-
-func (c *Capture) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *Capture) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *Capture) GetCaptureID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureID
-}
-
-func (c *Capture) GetCaptureDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureDescription
-}
-
-type CaptureCommision struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	CaptureID          *string `json:"captureId,omitempty"`
-	CaptureDescription *string `json:"captureDescription,omitempty"`
-}
-
-func (c *CaptureCommision) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *CaptureCommision) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *CaptureCommision) GetCaptureID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureID
-}
-
-func (c *CaptureCommision) GetCaptureDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureDescription
-}
-
-type CaptureRollingReserveRelease struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	CaptureID          *string `json:"captureId,omitempty"`
-	CaptureDescription *string `json:"captureDescription,omitempty"`
-}
-
-func (c *CaptureRollingReserveRelease) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *CaptureRollingReserveRelease) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *CaptureRollingReserveRelease) GetCaptureID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureID
-}
-
-func (c *CaptureRollingReserveRelease) GetCaptureDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CaptureDescription
-}
-
-type UnauthorizedDirectDebit struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (u *UnauthorizedDirectDebit) GetPaymentID() *string {
-	if u == nil {
-		return nil
-	}
-	return u.PaymentID
-}
-
-func (u *UnauthorizedDirectDebit) GetPaymentDescription() *string {
-	if u == nil {
-		return nil
-	}
-	return u.PaymentDescription
-}
-
-type FailedPayment struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (f *FailedPayment) GetPaymentID() *string {
-	if f == nil {
-		return nil
-	}
-	return f.PaymentID
-}
-
-func (f *FailedPayment) GetPaymentDescription() *string {
-	if f == nil {
-		return nil
-	}
-	return f.PaymentDescription
-}
-
-type Refund struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (r *Refund) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *Refund) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *Refund) GetRefundID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundID
-}
-
-func (r *Refund) GetRefundDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundDescription
-}
-
-type RefundCompensation struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (r *RefundCompensation) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *RefundCompensation) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *RefundCompensation) GetRefundID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundID
-}
-
-func (r *RefundCompensation) GetRefundDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundDescription
-}
-
-type ReturnedRefund struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (r *ReturnedRefund) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReturnedRefund) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *ReturnedRefund) GetRefundID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundID
-}
-
-func (r *ReturnedRefund) GetRefundDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundDescription
-}
-
-type ReturnedRefundCompensation struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (r *ReturnedRefundCompensation) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReturnedRefundCompensation) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *ReturnedRefundCompensation) GetRefundID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundID
-}
-
-func (r *ReturnedRefundCompensation) GetRefundDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundDescription
-}
-
-type Chargeback struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (c *Chargeback) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *Chargeback) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *Chargeback) GetChargebackID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackID
-}
-
-func (c *Chargeback) GetChargebackDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackDescription
-}
-
-type ChargebackReversal struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (c *ChargebackReversal) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *ChargebackReversal) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *ChargebackReversal) GetChargebackID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackID
-}
-
-func (c *ChargebackReversal) GetChargebackDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackDescription
-}
-
-type ChargebackCompensation struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (c *ChargebackCompensation) GetPaymentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentID
-}
-
-func (c *ChargebackCompensation) GetPaymentDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentDescription
-}
-
-func (c *ChargebackCompensation) GetChargebackID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackID
-}
-
-func (c *ChargebackCompensation) GetChargebackDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ChargebackDescription
-}
-
-type ReversedChargebackCompensation struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (r *ReversedChargebackCompensation) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReversedChargebackCompensation) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *ReversedChargebackCompensation) GetChargebackID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ChargebackID
-}
-
-func (r *ReversedChargebackCompensation) GetChargebackDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ChargebackDescription
-}
-
-type OutgoingTransfer struct {
-	TransferID   *string `json:"transferId,omitempty"`
-	SettlementID *string `json:"settlementId,omitempty"`
-}
-
-func (o *OutgoingTransfer) GetTransferID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TransferID
-}
-
-func (o *OutgoingTransfer) GetSettlementID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SettlementID
-}
-
-type CanceledOutgoingTransfer struct {
-	TransferID   *string `json:"transferId,omitempty"`
-	SettlementID *string `json:"settlementId,omitempty"`
-}
-
-func (c *CanceledOutgoingTransfer) GetTransferID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.TransferID
-}
-
-func (c *CanceledOutgoingTransfer) GetSettlementID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.SettlementID
-}
-
-type ReturnedTransfer struct {
-	TransferID   *string `json:"transferId,omitempty"`
-	SettlementID *string `json:"settlementId,omitempty"`
-}
-
-func (r *ReturnedTransfer) GetTransferID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.TransferID
-}
-
-func (r *ReturnedTransfer) GetSettlementID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.SettlementID
-}
-
-type InvoiceCompensation struct {
-	InvoiceID *string `json:"invoiceId,omitempty"`
-}
-
-func (i *InvoiceCompensation) GetInvoiceID() *string {
-	if i == nil {
-		return nil
-	}
-	return i.InvoiceID
-}
-
-type EntityBalanceTransactionApplicationFee struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	PayingOwner        *string `json:"payingOwner,omitempty"`
-}
-
-func (e *EntityBalanceTransactionApplicationFee) GetPaymentID() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentID
-}
-
-func (e *EntityBalanceTransactionApplicationFee) GetPaymentDescription() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PaymentDescription
-}
-
-func (e *EntityBalanceTransactionApplicationFee) GetPayingOwner() *string {
-	if e == nil {
-		return nil
-	}
-	return e.PayingOwner
-}
-
-type SplitPayment struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	PaymentOnwer       *string `json:"paymentOnwer,omitempty"`
-}
-
-func (s *SplitPayment) GetPaymentID() *string {
-	if s == nil {
-		return nil
-	}
-	return s.PaymentID
-}
-
-func (s *SplitPayment) GetPaymentDescription() *string {
-	if s == nil {
-		return nil
-	}
-	return s.PaymentDescription
-}
-
-func (s *SplitPayment) GetPaymentOnwer() *string {
-	if s == nil {
-		return nil
-	}
-	return s.PaymentOnwer
-}
-
-type PlatformPaymentRefund struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (p *PlatformPaymentRefund) GetPaymentID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentID
-}
-
-func (p *PlatformPaymentRefund) GetPaymentDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentDescription
-}
-
-func (p *PlatformPaymentRefund) GetRefundID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.RefundID
-}
-
-func (p *PlatformPaymentRefund) GetRefundDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.RefundDescription
-}
-
-type ReturnedPlatformPaymentRefund struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	RefundID           *string `json:"refundId,omitempty"`
-	RefundDescription  *string `json:"refundDescription,omitempty"`
-}
-
-func (r *ReturnedPlatformPaymentRefund) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReturnedPlatformPaymentRefund) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *ReturnedPlatformPaymentRefund) GetRefundID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundID
-}
-
-func (r *ReturnedPlatformPaymentRefund) GetRefundDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.RefundDescription
-}
-
-type PlatformPaymentChargeback struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (p *PlatformPaymentChargeback) GetPaymentID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentID
-}
-
-func (p *PlatformPaymentChargeback) GetPaymentDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentDescription
-}
-
-func (p *PlatformPaymentChargeback) GetChargebackID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.ChargebackID
-}
-
-func (p *PlatformPaymentChargeback) GetChargebackDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.ChargebackDescription
-}
-
-type ReversedPlatformPaymentChargeback struct {
-	PaymentID             *string `json:"paymentId,omitempty"`
-	PaymentDescription    *string `json:"paymentDescription,omitempty"`
-	ChargebackID          *string `json:"chargebackId,omitempty"`
-	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
-}
-
-func (r *ReversedPlatformPaymentChargeback) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReversedPlatformPaymentChargeback) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-func (r *ReversedPlatformPaymentChargeback) GetChargebackID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ChargebackID
-}
-
-func (r *ReversedPlatformPaymentChargeback) GetChargebackDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.ChargebackDescription
-}
-
-type PaymentCommission struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-	OrganizationID     *string `json:"organizationId,omitempty"`
-}
-
-func (p *PaymentCommission) GetPaymentID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentID
-}
-
-func (p *PaymentCommission) GetPaymentDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentDescription
-}
-
-func (p *PaymentCommission) GetOrganizationID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.OrganizationID
-}
-
-type ReimbursementFee struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (r *ReimbursementFee) GetPaymentID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentID
-}
-
-func (r *ReimbursementFee) GetPaymentDescription() *string {
-	if r == nil {
-		return nil
-	}
-	return r.PaymentDescription
-}
-
-type FailedPaymentFee struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (f *FailedPaymentFee) GetPaymentID() *string {
-	if f == nil {
-		return nil
-	}
-	return f.PaymentID
-}
-
-func (f *FailedPaymentFee) GetPaymentDescription() *string {
-	if f == nil {
-		return nil
-	}
-	return f.PaymentDescription
-}
-
-type PaymentFee struct {
-	PaymentID          *string `json:"paymentId,omitempty"`
-	PaymentDescription *string `json:"paymentDescription,omitempty"`
-}
-
-func (p *PaymentFee) GetPaymentID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentID
-}
-
-func (p *PaymentFee) GetPaymentDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentDescription
-}
-
-type ManagedFee struct {
-	FeeType *string `json:"feeType,omitempty"`
-	FeeID   *string `json:"feeId,omitempty"`
-}
-
-func (m *ManagedFee) GetFeeType() *string {
-	if m == nil {
-		return nil
-	}
-	return m.FeeType
-}
-
-func (m *ManagedFee) GetFeeID() *string {
-	if m == nil {
-		return nil
-	}
-	return m.FeeID
-}
-
-type ReturnedManagedFee struct {
-	FeeType *string `json:"feeType,omitempty"`
-	FeeID   *string `json:"feeId,omitempty"`
-}
-
-func (r *ReturnedManagedFee) GetFeeType() *string {
-	if r == nil {
-		return nil
-	}
-	return r.FeeType
-}
-
-func (r *ReturnedManagedFee) GetFeeID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.FeeID
-}
-
-type PostPaymentSplitPayment struct {
-	PaymentID *string `json:"paymentId,omitempty"`
-}
-
-func (p *PostPaymentSplitPayment) GetPaymentID() *string {
-	if p == nil {
-		return nil
-	}
-	return p.PaymentID
-}
-
 // Context - Depending on the type of the balance transaction, we will try to give more context about the specific event that
 // triggered it. For example, the context object for a payment transaction will look like
 // `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
@@ -928,254 +91,134 @@ func (p *PostPaymentSplitPayment) GetPaymentID() *string {
 // * Type `cash-collateral-issuance`: none
 // * Type `cash-collateral-release`: none
 type Context struct {
-	Payment                           *EntityBalanceTransactionPayment        `json:"payment,omitempty"`
-	Capture                           *Capture                                `json:"capture,omitempty"`
-	CaptureCommision                  *CaptureCommision                       `json:"capture-commision,omitempty"`
-	CaptureRollingReserveRelease      *CaptureRollingReserveRelease           `json:"capture-rolling-reserve-release,omitempty"`
-	UnauthorizedDirectDebit           *UnauthorizedDirectDebit                `json:"unauthorized-direct-debit,omitempty"`
-	FailedPayment                     *FailedPayment                          `json:"failed-payment,omitempty"`
-	Refund                            *Refund                                 `json:"refund,omitempty"`
-	RefundCompensation                *RefundCompensation                     `json:"refund-compensation,omitempty"`
-	ReturnedRefund                    *ReturnedRefund                         `json:"returned-refund,omitempty"`
-	ReturnedRefundCompensation        *ReturnedRefundCompensation             `json:"returned-refund-compensation,omitempty"`
-	Chargeback                        *Chargeback                             `json:"chargeback,omitempty"`
-	ChargebackReversal                *ChargebackReversal                     `json:"chargeback-reversal,omitempty"`
-	ChargebackCompensation            *ChargebackCompensation                 `json:"chargeback-compensation,omitempty"`
-	ReversedChargebackCompensation    *ReversedChargebackCompensation         `json:"reversed-chargeback-compensation,omitempty"`
-	OutgoingTransfer                  *OutgoingTransfer                       `json:"outgoing-transfer,omitempty"`
-	CanceledOutgoingTransfer          *CanceledOutgoingTransfer               `json:"canceled-outgoing-transfer,omitempty"`
-	ReturnedTransfer                  *ReturnedTransfer                       `json:"returned-transfer,omitempty"`
-	InvoiceCompensation               *InvoiceCompensation                    `json:"invoice-compensation,omitempty"`
-	ApplicationFee                    *EntityBalanceTransactionApplicationFee `json:"application-fee,omitempty"`
-	SplitPayment                      *SplitPayment                           `json:"split-payment,omitempty"`
-	PlatformPaymentRefund             *PlatformPaymentRefund                  `json:"platform-payment-refund,omitempty"`
-	ReturnedPlatformPaymentRefund     *ReturnedPlatformPaymentRefund          `json:"returned-platform-payment-refund,omitempty"`
-	PlatformPaymentChargeback         *PlatformPaymentChargeback              `json:"platform-payment-chargeback,omitempty"`
-	ReversedPlatformPaymentChargeback *ReversedPlatformPaymentChargeback      `json:"reversed-platform-payment-chargeback,omitempty"`
-	PaymentCommission                 *PaymentCommission                      `json:"payment-commission,omitempty"`
-	ReimbursementFee                  *ReimbursementFee                       `json:"reimbursement-fee,omitempty"`
-	FailedPaymentFee                  *FailedPaymentFee                       `json:"failed-payment-fee,omitempty"`
-	PaymentFee                        *PaymentFee                             `json:"payment-fee,omitempty"`
-	ManagedFee                        *ManagedFee                             `json:"managed-fee,omitempty"`
-	ReturnedManagedFee                *ReturnedManagedFee                     `json:"returned-managed-fee,omitempty"`
-	PostPaymentSplitPayment           *PostPaymentSplitPayment                `json:"post-payment-split-payment,omitempty"`
+	PaymentID             *string `json:"paymentId,omitempty"`
+	PaymentDescription    *string `json:"paymentDescription,omitempty"`
+	CaptureID             *string `json:"captureId,omitempty"`
+	CaptureDescription    *string `json:"captureDescription,omitempty"`
+	RefundID              *string `json:"refundId,omitempty"`
+	RefundDescription     *string `json:"refundDescription,omitempty"`
+	ChargebackID          *string `json:"chargebackId,omitempty"`
+	ChargebackDescription *string `json:"chargebackDescription,omitempty"`
+	TransferID            *string `json:"transferId,omitempty"`
+	SettlementID          *string `json:"settlementId,omitempty"`
+	InvoiceID             *string `json:"invoiceId,omitempty"`
+	PayingOwner           *string `json:"payingOwner,omitempty"`
+	PaymentOwner          *string `json:"paymentOwner,omitempty"`
+	OrganizationID        *string `json:"organizationId,omitempty"`
+	FeeType               *string `json:"feeType,omitempty"`
+	FeeID                 *string `json:"feeId,omitempty"`
 }
 
-func (c *Context) GetPayment() *EntityBalanceTransactionPayment {
+func (c *Context) GetPaymentID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.Payment
+	return c.PaymentID
 }
 
-func (c *Context) GetCapture() *Capture {
+func (c *Context) GetPaymentDescription() *string {
 	if c == nil {
 		return nil
 	}
-	return c.Capture
+	return c.PaymentDescription
 }
 
-func (c *Context) GetCaptureCommision() *CaptureCommision {
+func (c *Context) GetCaptureID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.CaptureCommision
+	return c.CaptureID
 }
 
-func (c *Context) GetCaptureRollingReserveRelease() *CaptureRollingReserveRelease {
+func (c *Context) GetCaptureDescription() *string {
 	if c == nil {
 		return nil
 	}
-	return c.CaptureRollingReserveRelease
+	return c.CaptureDescription
 }
 
-func (c *Context) GetUnauthorizedDirectDebit() *UnauthorizedDirectDebit {
+func (c *Context) GetRefundID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.UnauthorizedDirectDebit
+	return c.RefundID
 }
 
-func (c *Context) GetFailedPayment() *FailedPayment {
+func (c *Context) GetRefundDescription() *string {
 	if c == nil {
 		return nil
 	}
-	return c.FailedPayment
+	return c.RefundDescription
 }
 
-func (c *Context) GetRefund() *Refund {
+func (c *Context) GetChargebackID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.Refund
+	return c.ChargebackID
 }
 
-func (c *Context) GetRefundCompensation() *RefundCompensation {
+func (c *Context) GetChargebackDescription() *string {
 	if c == nil {
 		return nil
 	}
-	return c.RefundCompensation
+	return c.ChargebackDescription
 }
 
-func (c *Context) GetReturnedRefund() *ReturnedRefund {
+func (c *Context) GetTransferID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.ReturnedRefund
+	return c.TransferID
 }
 
-func (c *Context) GetReturnedRefundCompensation() *ReturnedRefundCompensation {
+func (c *Context) GetSettlementID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.ReturnedRefundCompensation
+	return c.SettlementID
 }
 
-func (c *Context) GetChargeback() *Chargeback {
+func (c *Context) GetInvoiceID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.Chargeback
+	return c.InvoiceID
 }
 
-func (c *Context) GetChargebackReversal() *ChargebackReversal {
+func (c *Context) GetPayingOwner() *string {
 	if c == nil {
 		return nil
 	}
-	return c.ChargebackReversal
+	return c.PayingOwner
 }
 
-func (c *Context) GetChargebackCompensation() *ChargebackCompensation {
+func (c *Context) GetPaymentOwner() *string {
 	if c == nil {
 		return nil
 	}
-	return c.ChargebackCompensation
+	return c.PaymentOwner
 }
 
-func (c *Context) GetReversedChargebackCompensation() *ReversedChargebackCompensation {
+func (c *Context) GetOrganizationID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.ReversedChargebackCompensation
+	return c.OrganizationID
 }
 
-func (c *Context) GetOutgoingTransfer() *OutgoingTransfer {
+func (c *Context) GetFeeType() *string {
 	if c == nil {
 		return nil
 	}
-	return c.OutgoingTransfer
+	return c.FeeType
 }
 
-func (c *Context) GetCanceledOutgoingTransfer() *CanceledOutgoingTransfer {
+func (c *Context) GetFeeID() *string {
 	if c == nil {
 		return nil
 	}
-	return c.CanceledOutgoingTransfer
-}
-
-func (c *Context) GetReturnedTransfer() *ReturnedTransfer {
-	if c == nil {
-		return nil
-	}
-	return c.ReturnedTransfer
-}
-
-func (c *Context) GetInvoiceCompensation() *InvoiceCompensation {
-	if c == nil {
-		return nil
-	}
-	return c.InvoiceCompensation
-}
-
-func (c *Context) GetApplicationFee() *EntityBalanceTransactionApplicationFee {
-	if c == nil {
-		return nil
-	}
-	return c.ApplicationFee
-}
-
-func (c *Context) GetSplitPayment() *SplitPayment {
-	if c == nil {
-		return nil
-	}
-	return c.SplitPayment
-}
-
-func (c *Context) GetPlatformPaymentRefund() *PlatformPaymentRefund {
-	if c == nil {
-		return nil
-	}
-	return c.PlatformPaymentRefund
-}
-
-func (c *Context) GetReturnedPlatformPaymentRefund() *ReturnedPlatformPaymentRefund {
-	if c == nil {
-		return nil
-	}
-	return c.ReturnedPlatformPaymentRefund
-}
-
-func (c *Context) GetPlatformPaymentChargeback() *PlatformPaymentChargeback {
-	if c == nil {
-		return nil
-	}
-	return c.PlatformPaymentChargeback
-}
-
-func (c *Context) GetReversedPlatformPaymentChargeback() *ReversedPlatformPaymentChargeback {
-	if c == nil {
-		return nil
-	}
-	return c.ReversedPlatformPaymentChargeback
-}
-
-func (c *Context) GetPaymentCommission() *PaymentCommission {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentCommission
-}
-
-func (c *Context) GetReimbursementFee() *ReimbursementFee {
-	if c == nil {
-		return nil
-	}
-	return c.ReimbursementFee
-}
-
-func (c *Context) GetFailedPaymentFee() *FailedPaymentFee {
-	if c == nil {
-		return nil
-	}
-	return c.FailedPaymentFee
-}
-
-func (c *Context) GetPaymentFee() *PaymentFee {
-	if c == nil {
-		return nil
-	}
-	return c.PaymentFee
-}
-
-func (c *Context) GetManagedFee() *ManagedFee {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedFee
-}
-
-func (c *Context) GetReturnedManagedFee() *ReturnedManagedFee {
-	if c == nil {
-		return nil
-	}
-	return c.ReturnedManagedFee
-}
-
-func (c *Context) GetPostPaymentSplitPayment() *PostPaymentSplitPayment {
-	if c == nil {
-		return nil
-	}
-	return c.PostPaymentSplitPayment
+	return c.FeeID
 }
 
 type EntityBalanceTransaction struct {

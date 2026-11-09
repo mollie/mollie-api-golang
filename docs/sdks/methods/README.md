@@ -443,7 +443,7 @@ func main() {
     )
 
     res, err := s.Methods.Get(ctx, operations.GetMethodRequest{
-        MethodID: components.MethodEnumIdeal.ToPointer(),
+        MethodID: components.MethodIDIdeal.ToPointer(),
         Locale: components.LocaleEnUs.ToPointer(),
         Currency: client.Pointer("EUR"),
         Include: client.Pointer("issuers"),
@@ -514,7 +514,7 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -546,7 +546,7 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -578,7 +578,7 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -594,7 +594,7 @@ func main() {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodID`                                                                       | [*components.MethodEnum](../../models/components/methodenum.md)                  | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `methodID`                                                                       | [*components.MethodID](../../models/components/methodid.md)                      | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
 | `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 
@@ -639,7 +639,7 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Disable(ctx, "pfl_5B8cwPMGnU", components.MethodEnumIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Disable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
     if err != nil {
         log.Fatal(err)
     }
@@ -655,7 +655,7 @@ func main() {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
 | `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodID`                                                                       | [*components.MethodEnum](../../models/components/methodenum.md)                  | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `methodID`                                                                       | [*components.MethodID](../../models/components/methodid.md)                      | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
 | `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
 

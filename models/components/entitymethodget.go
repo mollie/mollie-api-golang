@@ -23,6 +23,7 @@ const (
 	EntityMethodGetIDDirectdebit  EntityMethodGetID = "directdebit"
 	EntityMethodGetIDEps          EntityMethodGetID = "eps"
 	EntityMethodGetIDGiftcard     EntityMethodGetID = "giftcard"
+	EntityMethodGetIDGooglepay    EntityMethodGetID = "googlepay"
 	EntityMethodGetIDIdeal        EntityMethodGetID = "ideal"
 	EntityMethodGetIDIn3          EntityMethodGetID = "in3"
 	EntityMethodGetIDKbc          EntityMethodGetID = "kbc"
@@ -44,14 +45,6 @@ const (
 	EntityMethodGetIDVipps        EntityMethodGetID = "vipps"
 	EntityMethodGetIDVoucher      EntityMethodGetID = "voucher"
 	EntityMethodGetIDWero         EntityMethodGetID = "wero"
-	// EntityMethodGetIDKlarnapaylater Deprecated, use 'klarna' instead
-	EntityMethodGetIDKlarnapaylater EntityMethodGetID = "klarnapaylater"
-	// EntityMethodGetIDKlarnapaynow Deprecated, use 'klarna' instead
-	EntityMethodGetIDKlarnapaynow EntityMethodGetID = "klarnapaynow"
-	// EntityMethodGetIDKlarnasliceit Deprecated, use 'klarna' instead
-	EntityMethodGetIDKlarnasliceit EntityMethodGetID = "klarnasliceit"
-	// EntityMethodGetIDPayconiq No longer available
-	EntityMethodGetIDPayconiq EntityMethodGetID = "payconiq"
 )
 
 func (e EntityMethodGetID) ToPointer() *EntityMethodGetID {
@@ -62,7 +55,7 @@ func (e EntityMethodGetID) ToPointer() *EntityMethodGetID {
 func (e *EntityMethodGetID) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "wero", "klarnapaylater", "klarnapaynow", "klarnasliceit", "payconiq":
+		case "alma", "applepay", "bacs", "bancomatpay", "bancontact", "banktransfer", "belfius", "billie", "billink", "bizum", "blik", "creditcard", "directdebit", "eps", "giftcard", "googlepay", "ideal", "in3", "kbc", "klarna", "mbway", "mobilepay", "multibanco", "mybank", "paybybank", "paypal", "paysafecard", "pointofsale", "przelewy24", "riverty", "satispay", "swish", "trustly", "twint", "vipps", "voucher", "wero":
 			return true
 		}
 	}

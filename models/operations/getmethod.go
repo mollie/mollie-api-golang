@@ -38,7 +38,7 @@ func (g *GetMethodGlobals) GetTestmode() *bool {
 
 type GetMethodRequest struct {
 	// Provide the ID of the related payment method.
-	MethodID *components.MethodEnum `pathParam:"style=simple,explode=false,name=methodId"`
+	MethodID *components.MethodID `pathParam:"style=simple,explode=false,name=methodId"`
 	// Passing a locale will sort the payment methods in the preferred order
 	// for the country, and translate the payment method names in the corresponding language.
 	Locale *components.Locale `queryParam:"style=form,explode=true,name=locale"`
@@ -69,7 +69,7 @@ type GetMethodRequest struct {
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
 
-func (g *GetMethodRequest) GetMethodID() *components.MethodEnum {
+func (g *GetMethodRequest) GetMethodID() *components.MethodID {
 	if g == nil {
 		return nil
 	}

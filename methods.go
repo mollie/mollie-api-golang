@@ -841,7 +841,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 // To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Methods) Enable(ctx context.Context, profileID string, methodID *components.MethodEnum, idempotencyKey *string, opts ...operations.Option) (*operations.EnableMethodResponse, error) {
+func (s *Methods) Enable(ctx context.Context, profileID string, methodID *components.MethodID, idempotencyKey *string, opts ...operations.Option) (*operations.EnableMethodResponse, error) {
 	request := operations.EnableMethodRequest{
 		ProfileID:      profileID,
 		MethodID:       methodID,
@@ -1096,7 +1096,7 @@ func (s *Methods) Enable(ctx context.Context, profileID string, methodID *compon
 // instead of the profile ID to refer to the current profile.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Methods) Disable(ctx context.Context, profileID string, methodID *components.MethodEnum, idempotencyKey *string, opts ...operations.Option) (*operations.DisableMethodResponse, error) {
+func (s *Methods) Disable(ctx context.Context, profileID string, methodID *components.MethodID, idempotencyKey *string, opts ...operations.Option) (*operations.DisableMethodResponse, error) {
 	request := operations.DisableMethodRequest{
 		ProfileID:      profileID,
 		MethodID:       methodID,
