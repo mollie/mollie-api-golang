@@ -48,6 +48,7 @@ custom := components.ListEntityMethodAllID("custom_value")
 | `ListEntityMethodAllIDPaybybank`    | paybybank                           |
 | `ListEntityMethodAllIDPaypal`       | paypal                              |
 | `ListEntityMethodAllIDPaysafecard`  | paysafecard                         |
+| `ListEntityMethodAllIDPointofsale`  | pointofsale                         |
 | `ListEntityMethodAllIDPrzelewy24`   | przelewy24                          |
 | `ListEntityMethodAllIDRiverty`      | riverty                             |
 | `ListEntityMethodAllIDSatispay`     | satispay                            |

@@ -11,7 +11,7 @@ type DisableMethodRequest struct {
 	// Provide the ID of the related profile.
 	ProfileID string `pathParam:"style=simple,explode=false,name=profileId"`
 	// Provide the ID of the related payment method.
-	MethodID *components.MethodEnum `pathParam:"style=simple,explode=false,name=methodId"`
+	MethodID *components.MethodID `pathParam:"style=simple,explode=false,name=methodId"`
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
 	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
 }
@@ -23,7 +23,7 @@ func (d *DisableMethodRequest) GetProfileID() string {
 	return d.ProfileID
 }
 
-func (d *DisableMethodRequest) GetMethodID() *components.MethodEnum {
+func (d *DisableMethodRequest) GetMethodID() *components.MethodID {
 	if d == nil {
 		return nil
 	}
