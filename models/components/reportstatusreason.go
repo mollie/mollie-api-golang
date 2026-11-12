@@ -6,14 +6,14 @@ package components
 // ReportStatusReason - Present when `status` is `failed`. Explains what went wrong.
 type ReportStatusReason struct {
 	// A machine-readable code for the failure reason.
-	Code string `json:"code"`
+	Code ReportStatusReasonCode `json:"code"`
 	// A human-readable explanation of why the report failed.
 	Message string `json:"message"`
 }
 
-func (r *ReportStatusReason) GetCode() string {
+func (r *ReportStatusReason) GetCode() ReportStatusReasonCode {
 	if r == nil {
-		return ""
+		return ReportStatusReasonCode("")
 	}
 	return r.Code
 }

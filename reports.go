@@ -42,11 +42,6 @@ func newReports(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 //
 // Poll [Get report](get-report) to check on progress, and grab a download link once it's ready.
 //
-// This needs an organization access token. A token scoped to a single website profile can't be used,
-// since report data spans the whole organization.
-//
-// Test mode credentials are rejected, since report data has no live/test distinction.
-//
 // Creating a report with the exact same parameters while one is already pending or completed doesn't create
 // a new one. You get the existing report back instead, whatever status it currently has.
 //
@@ -301,11 +296,6 @@ func (s *Reports) Create(ctx context.Context, createReportRequest components.Cre
 // it. If it expires before you download the file, just call this endpoint again for a new one. Expiry of
 // the link doesn't affect the report itself.
 //
-// A report that belongs to another organization gets a `404`, same as one that doesn't exist. The same goes
-// for a credential scoped to a single website profile, or a test mode credential. Reports are
-// organization-wide with no live/test distinction, so neither can ever own a real report. That keeps the
-// rule simple: any credential that can't own this report gets a `404`, and we never leak whether it exists.
-//
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
 func (s *Reports) Get(ctx context.Context, reportID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetReportResponse, error) {
 	request := operations.GetReportRequest{
@@ -501,6 +491,10 @@ func (s *Reports) Get(ctx context.Context, reportID string, idempotencyKey *stri
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
 	case httpRes.StatusCode == 404:
 		fallthrough
 	case httpRes.StatusCode == 429:

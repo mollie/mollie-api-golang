@@ -71,9 +71,9 @@ type EntityReport struct {
 	// The type of report to generate. Determines which other fields the request needs, and which fields show up
 	// on the resulting report.
 	ReportType ReportTypeResponse `json:"reportType"`
-	// The start date of the report period. Set for date-range report types, `null` otherwise.
+	// The start date of the report period. Only present for date-range report types.
 	FromDate *types.Date `json:"fromDate,omitempty"`
-	// The end date of the report period. Set for date-range report types, `null` otherwise.
+	// The end date of the report period. Only present for date-range report types.
 	UntilDate *types.Date        `json:"untilDate,omitempty"`
 	Status    EntityReportStatus `json:"status"`
 	// Present when `status` is `failed`. Explains what went wrong.
