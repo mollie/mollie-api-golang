@@ -8,7 +8,7 @@ package components
 type ReportTypeResponse string
 
 const (
-	ReportTypeResponseTransactionMargin ReportTypeResponse = "transaction_margin"
+	ReportTypeResponseTransactionMargin ReportTypeResponse = "transaction-margin"
 )
 
 func (e ReportTypeResponse) ToPointer() *ReportTypeResponse {
@@ -19,7 +19,7 @@ func (e ReportTypeResponse) ToPointer() *ReportTypeResponse {
 func (e *ReportTypeResponse) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "transaction_margin":
+		case "transaction-margin":
 			return true
 		}
 	}

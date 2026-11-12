@@ -13,7 +13,7 @@ import (
 type ReportType string
 
 const (
-	ReportTypeTransactionMargin ReportType = "transaction_margin"
+	ReportTypeTransactionMargin ReportType = "transaction-margin"
 )
 
 func (e ReportType) ToPointer() *ReportType {
@@ -25,7 +25,7 @@ func (e *ReportType) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "transaction_margin":
+	case "transaction-margin":
 		*e = ReportType(v)
 		return nil
 	default:

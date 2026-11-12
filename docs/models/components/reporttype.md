@@ -18,4 +18,4 @@ value := components.ReportTypeTransactionMargin
 
 | Name                          | Value                         |
 | ----------------------------- | ----------------------------- |
-| `ReportTypeTransactionMargin` | transaction_margin            |
+| `ReportTypeTransactionMargin` | transaction-margin            |

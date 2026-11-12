@@ -21,4 +21,4 @@ custom := components.ReportTypeResponse("custom_value")
 
 | Name                                  | Value                                 |
 | ------------------------------------- | ------------------------------------- |
-| `ReportTypeResponseTransactionMargin` | transaction_margin                    |
+| `ReportTypeResponseTransactionMargin` | transaction-margin                    |
