@@ -7,9 +7,9 @@ package components
 type ReportStatusReasonCode string
 
 const (
-	ReportStatusReasonCodeGenerationFailed       ReportStatusReasonCode = "generation-failed"
-	ReportStatusReasonCodeEmptyReport            ReportStatusReasonCode = "empty-report"
-	ReportStatusReasonCodeReportValidationFailed ReportStatusReasonCode = "report-validation-failed"
+	ReportStatusReasonCodeGenerationFailed ReportStatusReasonCode = "generation-failed"
+	ReportStatusReasonCodeValidationFailed ReportStatusReasonCode = "validation-failed"
+	ReportStatusReasonCodeEmptyReport      ReportStatusReasonCode = "empty-report"
 )
 
 func (e ReportStatusReasonCode) ToPointer() *ReportStatusReasonCode {
@@ -20,7 +20,7 @@ func (e ReportStatusReasonCode) ToPointer() *ReportStatusReasonCode {
 func (e *ReportStatusReasonCode) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "generation-failed", "empty-report", "report-validation-failed":
+		case "generation-failed", "validation-failed", "empty-report":
 			return true
 		}
 	}

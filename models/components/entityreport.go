@@ -81,14 +81,13 @@ type EntityReport struct {
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
 	// The date and time the report finished generating, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-	// format. Only present once `status` is `completed`.
+	// format. Only present when `status` is `completed`.
 	CompletedAt *time.Time `json:"completedAt,omitempty"`
 	// The date and time the report failed to generate, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-	// format. Only present once `status` is `failed`.
+	// format. Only present when `status` is `failed`.
 	FailedAt *time.Time `json:"failedAt,omitempty"`
 	// The date and time the `_links.download` link expires, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-	// format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-	// again once this one expires.
+	// format. Only present when `status` is `completed`.
 	DownloadExpiresAt *time.Time `json:"downloadExpiresAt,omitempty"`
 	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 	Links EntityReportLinks `json:"_links"`

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 324dec8ae0ce5b77fbcbe920fc8e6877
+  docChecksum: 2a10a1ad200bf087fda261562c4f3940
   docVersion: 1.0.0
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
-  releaseVersion: 1.5.5
-  configChecksum: 96a73a40d4181108e49f353e590b060b
+  releaseVersion: 1.5.6
+  configChecksum: c02c2b3fda7e472cecd51ea159f56377
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: fa5677c6-aa14-4790-9553-b5e4e02a3227
-  pristine_commit_hash: 6890905bd7876744980c234a472f0f8a557a836a
-  pristine_tree_hash: 9d3619ed89e45b544935ba5fd0339b2ed96f6a55
+  generation_id: cea71df0-0f05-476c-a2a4-f8a092272c4b
+  pristine_commit_hash: 111bd1ffc2e1c67b1c41fb11320d7ab5cbda7dd0
+  pristine_tree_hash: edd526096fe37df28281348f4461e4ce8c2dcbe6
 features:
   go:
     additionalDependencies: 0.1.0
@@ -89,8 +89,8 @@ trackedFiles:
     pristine_git_object: 746a9bd242c825c0c3fe2611e699039049f3931b
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:dbfdc9aab9c7fe3bd8acb7a97bf8a141b546cc2e
-    pristine_git_object: 842fcabc7fd504840bbbe6101ff26403ddd27f51
+    last_write_checksum: sha1:be202c1a6489c6763a2debad2073c5f459d54395
+    pristine_git_object: b0dc059fd235b53dc5459d1e04e9f895f74319f1
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:f2d75b9870f49643694f5b4c34776f2b5e556408
@@ -649,8 +649,8 @@ trackedFiles:
     pristine_git_object: 04961b40994694c4ff320d16e9acbb06e67a6046
   docs/models/components/entityreport.md:
     id: b1496a4cc150
-    last_write_checksum: sha1:64fba286ff1aace96b656f3a60f2f46bae7af7a2
-    pristine_git_object: ff081e221495870248e1bc956e43e1e48b399ea2
+    last_write_checksum: sha1:e362c904628a2f9f93ad7c90ac44b32f934d7bc4
+    pristine_git_object: 49bff0e002e397cfd73cac2120c911ea80c5d93f
   docs/models/components/entityreportlinks.md:
     id: 22fa2ce8288f
     last_write_checksum: sha1:80d7292ab9577377d58b071d2e11f4de369a4425
@@ -1461,8 +1461,8 @@ trackedFiles:
     pristine_git_object: 2745467f769d7253745c1b1b9fe68ee61a95d75c
   docs/models/components/paymentrequest.md:
     id: 3fdd80e71849
-    last_write_checksum: sha1:1ae649112b3adafde68444e29383ede1d610060c
-    pristine_git_object: 336d112757b13bf6374a2e2f60f837e92f7d1743
+    last_write_checksum: sha1:938fdd1a5aab200f0922aa474f59008970422689
+    pristine_git_object: e94496341c66df4c8d16d091f48160b5c976a035
   docs/models/components/paymentrequestapplicationfee.md:
     id: 0b96de6cea93
     last_write_checksum: sha1:cd1aea7e5cb51b61fbd8536f3a2dd656cf6f1af1
@@ -1629,8 +1629,8 @@ trackedFiles:
     pristine_git_object: ee5fa23b00c78bdd6b00e403e36e70667a99a6a5
   docs/models/components/reportstatusreasoncode.md:
     id: b7a7dbfaaaa1
-    last_write_checksum: sha1:0b4585a830c151e46d0e0eccb13d885245829b6f
-    pristine_git_object: 8b93e0d55f591b915dc6430781f8559a01444890
+    last_write_checksum: sha1:3c65240bcb3ffe21924a34c45d30d94795e5d2a4
+    pristine_git_object: 80df36f9aec4563c1f88890ebfecc6fdbc57877b
   docs/models/components/reporttype.md:
     id: 110b06e0bd14
     last_write_checksum: sha1:341f4d6eded7a93cfe71e8865e803f20c7c42413
@@ -4545,8 +4545,8 @@ trackedFiles:
     pristine_git_object: 8423bafe1a0e316ad2458012ff24d44525f92b04
   models/components/entityreport.go:
     id: b2ecd549ebd4
-    last_write_checksum: sha1:dd9207e4018703e757cb44eacc557f5fffafd0f2
-    pristine_git_object: 5e1963502e525bde88a25c5e848bf74f1ef00299
+    last_write_checksum: sha1:375de8e7df0466993272ae76d7e57f174507ef12
+    pristine_git_object: 86c6170d7494de9b5726bac5375a2fa41be3c6d6
   models/components/entitysettlement.go:
     id: 0060a020b645
     last_write_checksum: sha1:4a84f33601903c405472bd28529451ea5230a911
@@ -4865,8 +4865,8 @@ trackedFiles:
     pristine_git_object: 2e72b2e6fa1b25ebcffa18805fd38ac4d2a548c2
   models/components/paymentrequest.go:
     id: d36fbb833385
-    last_write_checksum: sha1:bff497fde8cfde72adb9047e27791d0c1cd3d430
-    pristine_git_object: f742c5ab1219bce24c9c0e06c55d34547b590b20
+    last_write_checksum: sha1:577ca2e4292b36bb8832f3bd3b3dadf0d81a02d0
+    pristine_git_object: 8543ddd319e2ae05de838646cba72382afe238e2
   models/components/paymentresponse.go:
     id: 94b4782571dc
     last_write_checksum: sha1:d697c0f923067f33cdf108c4ddb43b87838e1dc1
@@ -4921,8 +4921,8 @@ trackedFiles:
     pristine_git_object: a0112953b068565a48dfad8ca041d74791709419
   models/components/reportstatusreasoncode.go:
     id: 3363beefff87
-    last_write_checksum: sha1:df37615d9ef5514e72458949944bd6ccbcd76832
-    pristine_git_object: e8ef4ddaa070a67ce4b698f1aa412c21bce5a5a7
+    last_write_checksum: sha1:ac1621cc3a5e5d7523926e395fa6f6a7231e586f
+    pristine_git_object: 787294076098fab29152cb22ccbf0a39ad8dac06
   models/components/reporttype.go:
     id: 158dd67da1ae
     last_write_checksum: sha1:1690869b4fed77697333052cf23a268592134a06
@@ -10244,13 +10244,15 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "report", "id": "rpt_XRAG3v9EUyCDcX99pJ2Vc", "reportType": "transaction-margin", "fromDate": "2026-08-01", "untilDate": "2026-08-31", "status": "completed", "statusReason": {"code": "report-validation-failed", "message": "Something went wrong while generating the report. Try again, or contact support if it keeps happening."}, "createdAt": "2024-03-20T09:13:37+00:00", "completedAt": "2026-09-01T09:01:12+00:00", "failedAt": "2026-09-01T09:03:00+00:00", "downloadExpiresAt": "2026-09-01T09:16:12+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "download": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "report", "id": "rpt_XRAG3v9EUyCDcX99pJ2Vc", "reportType": "transaction-margin", "fromDate": "2026-08-01", "untilDate": "2026-08-31", "status": "completed", "statusReason": {"code": "empty-report", "message": "Something went wrong while generating the report. Try again, or contact support if it keeps happening."}, "createdAt": "2024-03-20T09:13:37+00:00", "completedAt": "2026-09-01T09:01:12+00:00", "failedAt": "2026-09-01T09:03:00+00:00", "downloadExpiresAt": "2026-09-01T09:16:12+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "download": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Reports.Create()`: \n  *  `request.CreateReportRequest.ReportType` **Changed** (Breaking ⚠️)\n* `Client.Reports.Get()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Client.Reports.Get()`:  `response.StatusReason.Code` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
