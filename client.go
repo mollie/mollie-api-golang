@@ -182,10 +182,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Client {
 	sdk := &Client{
-		SDKVersion: "1.5.5",
+		SDKVersion: "1.5.6",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 1.5.5 2.960.8 1.0.0 github.com/mollie/mollie-api-golang",
-			SDKVersion:        "1.5.5",
+			UserAgent:         "speakeasy-sdk/go 1.5.6 2.960.8 1.0.0 github.com/mollie/mollie-api-golang",
+			SDKVersion:        "1.5.6",
 			GenVersion:        "2.960.8",
 			OpenAPIDocVersion: "1.0.0",
 			Globals:           globals.Globals{},

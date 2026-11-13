@@ -18,8 +18,8 @@ custom := components.ReportStatusReasonCode("custom_value")
 
 ## Values
 
-| Name                                           | Value                                          |
-| ---------------------------------------------- | ---------------------------------------------- |
-| `ReportStatusReasonCodeGenerationFailed`       | generation-failed                              |
-| `ReportStatusReasonCodeEmptyReport`            | empty-report                                   |
-| `ReportStatusReasonCodeReportValidationFailed` | report-validation-failed                       |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `ReportStatusReasonCodeGenerationFailed` | generation-failed                        |
+| `ReportStatusReasonCodeValidationFailed` | validation-failed                        |
+| `ReportStatusReasonCodeEmptyReport`      | empty-report                             |

@@ -626,8 +626,7 @@ type PaymentRequest struct {
 	//
 	// The object should be passed encoded in a JSON string.
 	GooglePayPaymentToken *string `json:"googlePayPaymentToken,omitempty"`
-	// The card token you received from the card component of Mollie Components. The token represents the customer's
-	// card information needed to complete the payment.
+	// Number of the voucher.
 	VoucherNumber *string `json:"voucherNumber,omitempty"`
 	// The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
 	VoucherPin *string `json:"voucherPin,omitempty"`
