@@ -3,10 +3,25 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // Balance - The balance of the business account.
 type Balance struct {
 	// In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 	Total Amount `json:"total"`
+}
+
+func (b Balance) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *Balance) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"total"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (b *Balance) GetTotal() Amount {

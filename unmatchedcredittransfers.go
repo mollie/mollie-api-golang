@@ -43,13 +43,7 @@ func newUnmatchedCreditTransfers(rootSDK *Client, sdkConfig config.SDKConfigurat
 // The results are paginated.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListUnmatchedCreditTransfersResponse, error) {
-	request := operations.ListUnmatchedCreditTransfersRequest{
-		From:           from,
-		Limit:          limit,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *UnmatchedCreditTransfers) List(ctx context.Context, request operations.ListUnmatchedCreditTransfersRequest, opts ...operations.Option) (*operations.ListUnmatchedCreditTransfersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -257,9 +251,7 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 
 		return s.List(
 			paginationCtx,
-			from,
-			limit,
-			idempotencyKey,
+			request,
 			opts...,
 		)
 	}
@@ -345,10 +337,12 @@ func (s *UnmatchedCreditTransfers) List(ctx context.Context, from *string, limit
 // Retrieves a single unmatched credit transfer by its identifier.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetUnmatchedCreditTransferResponse, error) {
+func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetUnmatchedCreditTransferResponse, error) {
 	request := operations.GetUnmatchedCreditTransferRequest{
 		UnmatchedCreditTransferID: unmatchedCreditTransferID,
 		IdempotencyKey:            idempotencyKey,
+		XClientSignature:          xClientSignature,
+		XClientSignedAt:           xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -591,20 +585,14 @@ func (s *UnmatchedCreditTransfers) Get(ctx context.Context, unmatchedCreditTrans
 }
 
 // Match unmatched credit transfer
-// > 🚧 Beta feature
+// > 🚧
 // >
-// > This feature is currently in private beta, and the final specification may still change.
+// > To get access to this functionality, a virtual IBAN must be assigned to your webshop. We are currently rolling out virtual IBANs to our merchant base. Contact our support team or your account/sales manager to request access today.
 //
 // Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, unmatchedCreditTransferMatchRequest *components.UnmatchedCreditTransferMatchRequest, opts ...operations.Option) (*operations.MatchUnmatchedCreditTransferResponse, error) {
-	request := operations.MatchUnmatchedCreditTransferRequest{
-		UnmatchedCreditTransferID:           unmatchedCreditTransferID,
-		IdempotencyKey:                      idempotencyKey,
-		UnmatchedCreditTransferMatchRequest: unmatchedCreditTransferMatchRequest,
-	}
-
+func (s *UnmatchedCreditTransfers) Match(ctx context.Context, request operations.MatchUnmatchedCreditTransferRequest, opts ...operations.Option) (*operations.MatchUnmatchedCreditTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -861,10 +849,12 @@ func (s *UnmatchedCreditTransfers) Match(ctx context.Context, unmatchedCreditTra
 // Returns an unmatched credit transfer, sending the funds back to the original sender.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, opts ...operations.Option) (*operations.ReturnUnmatchedCreditTransferResponse, error) {
+func (s *UnmatchedCreditTransfers) Return(ctx context.Context, unmatchedCreditTransferID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.ReturnUnmatchedCreditTransferResponse, error) {
 	request := operations.ReturnUnmatchedCreditTransferRequest{
 		UnmatchedCreditTransferID: unmatchedCreditTransferID,
 		IdempotencyKey:            idempotencyKey,
+		XClientSignature:          xClientSignature,
+		XClientSignedAt:           xClientSignedAt,
 	}
 
 	o := operations.Options{}

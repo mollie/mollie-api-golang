@@ -40,10 +40,12 @@ func newCustomers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // Once registered, customers will also appear in your Mollie dashboard.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) Create(ctx context.Context, idempotencyKey *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
+func (s *Customers) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, entityCustomer *components.EntityCustomer, opts ...operations.Option) (*operations.CreateCustomerResponse, error) {
 	request := operations.CreateCustomerRequest{
-		IdempotencyKey: idempotencyKey,
-		EntityCustomer: entityCustomer,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		EntityCustomer:   entityCustomer,
 	}
 
 	o := operations.Options{}
@@ -594,13 +596,7 @@ func (s *Customers) List(ctx context.Context, request operations.ListCustomersRe
 // Retrieve a single customer by its ID.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) Get(ctx context.Context, customerID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
-	request := operations.GetCustomerRequest{
-		CustomerID:     customerID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponse, error) {
 	globals := operations.GetCustomerGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -854,13 +850,7 @@ func (s *Customers) Get(ctx context.Context, customerID string, testmode *bool, 
 // For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.UpdateCustomerRequestBody, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
-	request := operations.UpdateCustomerRequest{
-		CustomerID:     customerID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1111,13 +1101,7 @@ func (s *Customers) Update(ctx context.Context, customerID string, idempotencyKe
 // Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKey *string, requestBody *operations.DeleteCustomerRequestBody, opts ...operations.Option) (*operations.DeleteCustomerResponse, error) {
-	request := operations.DeleteCustomerRequest{
-		CustomerID:     customerID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Customers) Delete(ctx context.Context, request operations.DeleteCustomerRequest, opts ...operations.Option) (*operations.DeleteCustomerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1359,13 +1343,7 @@ func (s *Customers) Delete(ctx context.Context, customerID string, idempotencyKe
 // parameter predefined.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Customers) CreatePayment(ctx context.Context, customerID string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
-	request := operations.CreateCustomerPaymentRequest{
-		CustomerID:     customerID,
-		IdempotencyKey: idempotencyKey,
-		PaymentRequest: paymentRequest,
-	}
-
+func (s *Customers) CreatePayment(ctx context.Context, request operations.CreateCustomerPaymentRequest, opts ...operations.Option) (*operations.CreateCustomerPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

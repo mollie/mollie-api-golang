@@ -40,9 +40,11 @@ func newBalanceTransfers(rootSDK *Client, sdkConfig config.SDKConfiguration, hoo
 // that has authorized the `balance-transfers.write` scope for your organization.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, entityBalanceTransfer *components.EntityBalanceTransfer, opts ...operations.Option) (*operations.CreateConnectBalanceTransferResponse, error) {
+func (s *BalanceTransfers) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, entityBalanceTransfer *components.EntityBalanceTransfer, opts ...operations.Option) (*operations.CreateConnectBalanceTransferResponse, error) {
 	request := operations.CreateConnectBalanceTransferRequest{
 		IdempotencyKey:        idempotencyKey,
+		XClientSignature:      xClientSignature,
+		XClientSignedAt:       xClientSignedAt,
 		EntityBalanceTransfer: entityBalanceTransfer,
 	}
 
@@ -590,13 +592,7 @@ func (s *BalanceTransfers) List(ctx context.Context, request operations.ListConn
 // Retrieve a single Connect balance transfer object by its ID.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *BalanceTransfers) Get(ctx context.Context, balanceTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetConnectBalanceTransferResponse, error) {
-	request := operations.GetConnectBalanceTransferRequest{
-		BalanceTransferID: balanceTransferID,
-		Testmode:          testmode,
-		IdempotencyKey:    idempotencyKey,
-	}
-
+func (s *BalanceTransfers) Get(ctx context.Context, request operations.GetConnectBalanceTransferRequest, opts ...operations.Option) (*operations.GetConnectBalanceTransferResponse, error) {
 	globals := operations.GetConnectBalanceTransferGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

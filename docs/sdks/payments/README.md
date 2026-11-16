@@ -38,6 +38,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -50,134 +51,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -209,6 +216,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -221,134 +229,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -380,6 +394,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -392,134 +407,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -551,6 +572,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -563,134 +585,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -722,6 +750,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -734,134 +763,139 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, nil, client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -893,6 +927,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -905,134 +940,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1064,6 +1105,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1076,134 +1118,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1235,6 +1283,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1247,134 +1296,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1406,6 +1461,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1418,134 +1474,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1577,6 +1639,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1589,134 +1652,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1748,6 +1817,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1760,134 +1830,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -1919,6 +1995,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -1931,134 +2008,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2090,6 +2173,7 @@ import(
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
 	"github.com/mollie/mollie-api-golang/types"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -2102,134 +2186,140 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Create(ctx, client.Pointer("details.qrCode"), client.Pointer("123e4567-e89b-12d3-a456-426"), &components.PaymentRequest{
-        Description: "Chess Board",
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Lines: []components.PaymentRequestLine{
-            components.PaymentRequestLine{
-                Type: components.PaymentLineTypePhysical.ToPointer(),
-                Description: "LEGO 4440 Forest Police Station",
-                Quantity: 1,
-                QuantityUnit: client.Pointer("pcs"),
-                UnitPrice: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                DiscountAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                TotalAmount: components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                VatRate: client.Pointer("21.00"),
-                VatAmount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Sku: client.Pointer("9780241661628"),
-                Categories: []components.LineCategories{
-                    components.LineCategoriesMeal,
-                    components.LineCategoriesEco,
-                },
-                ImageURL: client.Pointer("https://..."),
-                ProductURL: client.Pointer("https://..."),
-                Recurring: &components.RecurringLineItem{
-                    Description: client.Pointer("Gym subscription"),
-                    Interval: "12 months",
-                    Amount: &components.Amount{
-                        Currency: "EUR",
-                        Value: "10.00",
-                    },
-                    Times: client.Pointer[int64](1),
-                    StartDate: client.Pointer("2024-12-12"),
-                },
-            },
-        },
-        BillingAddress: &components.PaymentRequestBillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        Locale: components.Locale2EnUs.ToPointer(),
-        Method: client.Pointer(components.CreateMethodMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        CaptureMode: components.CaptureModeManual.ToPointer(),
-        CaptureDelay: client.Pointer("8 hours"),
-        ApplicationFee: &components.PaymentRequestApplicationFee{
+    res, err := s.Payments.Create(ctx, operations.CreatePaymentRequest{
+        Include: client.Pointer("details.qrCode"),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        PaymentRequest: &components.PaymentRequest{
+            Description: "Chess Board",
             Amount: components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "10",
-        },
-        Routing: []components.EntityPaymentRoute{
-            components.EntityPaymentRoute{
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Lines: []components.PaymentRequestLine{
+                components.PaymentRequestLine{
+                    Type: components.PaymentLineTypePhysical.ToPointer(),
+                    Description: "LEGO 4440 Forest Police Station",
+                    Quantity: 1,
+                    QuantityUnit: client.Pointer("pcs"),
+                    UnitPrice: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    DiscountAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    TotalAmount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    VatRate: client.Pointer("21.00"),
+                    VatAmount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Sku: client.Pointer("9780241661628"),
+                    Categories: []components.LineCategories{
+                        components.LineCategoriesMeal,
+                        components.LineCategoriesEco,
+                    },
+                    ImageURL: client.Pointer("https://..."),
+                    ProductURL: client.Pointer("https://..."),
+                    Recurring: &components.RecurringLineItem{
+                        Description: client.Pointer("Gym subscription"),
+                        Interval: "12 months",
+                        Amount: &components.Amount{
+                            Currency: "EUR",
+                            Value: "10.00",
+                        },
+                        Times: client.Pointer[int64](1),
+                        StartDate: client.Pointer("2024-12-12"),
+                    },
+                },
+            },
+            BillingAddress: &components.PaymentRequestBillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            Locale: components.Locale2EnUs.ToPointer(),
+            Method: client.Pointer(components.CreateMethodMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            CaptureMode: components.CaptureModeManual.ToPointer(),
+            CaptureDelay: client.Pointer("8 hours"),
+            ApplicationFee: &components.PaymentRequestApplicationFee{
                 Amount: components.Amount{
                     Currency: "EUR",
                     Value: "10.00",
                 },
-                Destination: components.EntityPaymentRouteDestination{
-                    Type: components.RouteDestinationTypeOrganization,
-                    OrganizationID: "org_1234567",
-                },
-                ReleaseDate: client.Pointer("2024-12-12"),
+                Description: "10",
             },
+            Routing: []components.EntityPaymentRoute{
+                components.EntityPaymentRoute{
+                    Amount: components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Destination: components.EntityPaymentRouteDestination{
+                        Type: components.RouteDestinationTypeOrganization,
+                        OrganizationID: "org_1234567",
+                    },
+                    ReleaseDate: client.Pointer("2024-12-12"),
+                },
+            },
+            SequenceType: components.SequenceTypeOneoff.ToPointer(),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            CustomerID: client.Pointer("cst_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            DueDate: client.Pointer("2025-01-01"),
+            StoreCredentials: client.Pointer(true),
+            Testmode: client.Pointer(false),
+            ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
+            Company: &components.Company{
+                RegistrationNumber: client.Pointer("12345678"),
+                VatNumber: client.Pointer("NL123456789B01"),
+                EntityType: nil,
+            },
+            CardToken: client.Pointer("tkn_12345"),
+            GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
+            VoucherNumber: client.Pointer("1234567890"),
+            VoucherPin: client.Pointer("1234"),
+            ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
+            SessionID: nil,
+            DigitalGoods: client.Pointer(true),
+            CustomerReference: client.Pointer("1234567890"),
+            TerminalID: client.Pointer("term_1234567890"),
         },
-        SequenceType: components.SequenceTypeOneoff.ToPointer(),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        CustomerID: client.Pointer("cst_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        DueDate: client.Pointer("2025-01-01"),
-        StoreCredentials: client.Pointer(true),
-        Testmode: client.Pointer(false),
-        ApplePayPaymentToken: client.Pointer("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}"),
-        Company: &components.Company{
-            RegistrationNumber: client.Pointer("12345678"),
-            VatNumber: client.Pointer("NL123456789B01"),
-            EntityType: nil,
-        },
-        CardToken: client.Pointer("tkn_12345"),
-        GooglePayPaymentToken: client.Pointer("{\"signature\": \"MEYCIQCv...\", \"protocolVersion\": \"ECv2\", \"signedMessage\": \"{\\\"encryptedMessage\\\":\\\"...\\\",\\\"ephemeralPublicKey\\\":\\\"...\\\",\\\"tag\\\":\\\"...\\\"}\"}"),
-        VoucherNumber: client.Pointer("1234567890"),
-        VoucherPin: client.Pointer("1234"),
-        ConsumerDateOfBirth: types.MustNewDateFromString("2000-01-01"),
-        SessionID: nil,
-        DigitalGoods: client.Pointer(true),
-        CustomerReference: client.Pointer("1234567890"),
-        TerminalID: client.Pointer("term_1234567890"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2252,13 +2342,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |                                                                                                      |
-| `include`                                                                                            | `*string`                                                                                            | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. |                                                                                                      |
-| `idempotencyKey`                                                                                     | `*string`                                                                                            | :heavy_minus_sign:                                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                     | 123e4567-e89b-12d3-a456-426                                                                          |
-| `paymentRequest`                                                                                     | [*components.PaymentRequest](../../models/components/paymentrequest.md)                              | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |                                                                                                      |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreatePaymentRequest](../../models/operations/createpaymentrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -2309,6 +2397,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2361,6 +2451,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2413,6 +2505,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2488,6 +2582,8 @@ func main() {
         Include: client.Pointer("details.qrCode"),
         Embed: client.Pointer("captures"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2537,6 +2633,8 @@ func main() {
         Include: client.Pointer("details.qrCode"),
         Embed: client.Pointer("captures"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2586,6 +2684,8 @@ func main() {
         Include: client.Pointer("details.qrCode"),
         Embed: client.Pointer("captures"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2655,47 +2755,53 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Update(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdatePaymentRequestBody{
-        Description: client.Pointer("Chess Board"),
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Locale: components.Locale2EnUs.ToPointer(),
-        DueDate: client.Pointer("2025-01-01"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        Testmode: client.Pointer(false),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        BillingAddress: &components.BillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
+    res, err := s.Payments.Update(ctx, operations.UpdatePaymentRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.UpdatePaymentRequestBody{
+            Description: client.Pointer("Chess Board"),
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Locale: components.Locale2EnUs.ToPointer(),
+            DueDate: client.Pointer("2025-01-01"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            Testmode: client.Pointer(false),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            BillingAddress: &components.BillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            BillingEmail: client.Pointer("test@example.com"),
         },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        BillingEmail: client.Pointer("test@example.com"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2739,47 +2845,53 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Update(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdatePaymentRequestBody{
-        Description: client.Pointer("Chess Board"),
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Locale: components.Locale2EnUs.ToPointer(),
-        DueDate: client.Pointer("2025-01-01"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        Testmode: client.Pointer(false),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        BillingAddress: &components.BillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
+    res, err := s.Payments.Update(ctx, operations.UpdatePaymentRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.UpdatePaymentRequestBody{
+            Description: client.Pointer("Chess Board"),
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Locale: components.Locale2EnUs.ToPointer(),
+            DueDate: client.Pointer("2025-01-01"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            Testmode: client.Pointer(false),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            BillingAddress: &components.BillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            BillingEmail: client.Pointer("test@example.com"),
         },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        BillingEmail: client.Pointer("test@example.com"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2823,47 +2935,53 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Update(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdatePaymentRequestBody{
-        Description: client.Pointer("Chess Board"),
-        RedirectURL: client.Pointer("https://example.org/redirect"),
-        CancelURL: client.Pointer("https://example.org/cancel"),
-        WebhookURL: client.Pointer("https://example.org/webhooks"),
-        Method: client.Pointer(components.CreateMethodRequestMethodEnum(
-            components.MethodEnumIdeal,
-        )),
-        Locale: components.Locale2EnUs.ToPointer(),
-        DueDate: client.Pointer("2025-01-01"),
-        RestrictPaymentMethodsToCountry: client.Pointer("NL"),
-        Testmode: client.Pointer(false),
-        Issuer: client.Pointer("ideal_INGBNL2A"),
-        BillingAddress: &components.BillingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
+    res, err := s.Payments.Update(ctx, operations.UpdatePaymentRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.UpdatePaymentRequestBody{
+            Description: client.Pointer("Chess Board"),
+            RedirectURL: client.Pointer("https://example.org/redirect"),
+            CancelURL: client.Pointer("https://example.org/cancel"),
+            WebhookURL: client.Pointer("https://example.org/webhooks"),
+            Method: client.Pointer(components.CreateMethodRequestMethodEnum(
+                components.MethodEnumIdeal,
+            )),
+            Locale: components.Locale2EnUs.ToPointer(),
+            DueDate: client.Pointer("2025-01-01"),
+            RestrictPaymentMethodsToCountry: client.Pointer("NL"),
+            Testmode: client.Pointer(false),
+            Issuer: client.Pointer("ideal_INGBNL2A"),
+            BillingAddress: &components.BillingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            ShippingAddress: &components.ShippingAddress{
+                Title: client.Pointer("Mr."),
+                GivenName: client.Pointer("Piet"),
+                FamilyName: client.Pointer("Mondriaan"),
+                OrganizationName: client.Pointer("Mollie B.V."),
+                StreetAndNumber: client.Pointer("Keizersgracht 126"),
+                StreetAdditional: client.Pointer("Apt. 1"),
+                PostalCode: client.Pointer("1234AB"),
+                Email: client.Pointer("piet@example.org"),
+                Phone: client.Pointer("31208202070"),
+                City: client.Pointer("Amsterdam"),
+                Region: client.Pointer("Noord-Holland"),
+                Country: client.Pointer("NL"),
+            },
+            BillingEmail: client.Pointer("test@example.com"),
         },
-        ShippingAddress: &components.ShippingAddress{
-            Title: client.Pointer("Mr."),
-            GivenName: client.Pointer("Piet"),
-            FamilyName: client.Pointer("Mondriaan"),
-            OrganizationName: client.Pointer("Mollie B.V."),
-            StreetAndNumber: client.Pointer("Keizersgracht 126"),
-            StreetAdditional: client.Pointer("Apt. 1"),
-            PostalCode: client.Pointer("1234AB"),
-            Email: client.Pointer("piet@example.org"),
-            Phone: client.Pointer("31208202070"),
-            City: client.Pointer("Amsterdam"),
-            Region: client.Pointer("Noord-Holland"),
-            Country: client.Pointer("NL"),
-        },
-        BillingEmail: client.Pointer("test@example.com"),
     })
     if err != nil {
         log.Fatal(err)
@@ -2886,13 +3004,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `paymentID`                                                                                 | `string`                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related payment.                                                      | tr_5B8cwPMGnU                                                                               |
-| `idempotencyKey`                                                                            | `*string`                                                                                   | :heavy_minus_sign:                                                                          | A unique key to ensure idempotent requests. This key should be a UUID v4 string.            | 123e4567-e89b-12d3-a456-426                                                                 |
-| `requestBody`                                                                               | [*operations.UpdatePaymentRequestBody](../../models/operations/updatepaymentrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.UpdatePaymentRequest](../../models/operations/updatepaymentrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -2938,8 +3054,14 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.Cancel(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CancelPaymentRequestBody{
-        Testmode: client.Pointer(false),
+    res, err := s.Payments.Cancel(ctx, operations.CancelPaymentRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.CancelPaymentRequestBody{
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -2962,13 +3084,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `paymentID`                                                                                 | `string`                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related payment.                                                      | tr_5B8cwPMGnU                                                                               |
-| `idempotencyKey`                                                                            | `*string`                                                                                   | :heavy_minus_sign:                                                                          | A unique key to ensure idempotent requests. This key should be a UUID v4 string.            | 123e4567-e89b-12d3-a456-426                                                                 |
-| `requestBody`                                                                               | [*operations.CancelPaymentRequestBody](../../models/operations/cancelpaymentrequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CancelPaymentRequest](../../models/operations/cancelpaymentrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -3016,9 +3136,15 @@ func main() {
         }),
     )
 
-    res, err := s.Payments.ReleaseAuthorization(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.ReleaseAuthorizationRequestBody{
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
+    res, err := s.Payments.ReleaseAuthorization(ctx, operations.ReleaseAuthorizationRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.ReleaseAuthorizationRequestBody{
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -3031,13 +3157,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |                                                                                                           |
-| `paymentID`                                                                                               | `string`                                                                                                  | :heavy_check_mark:                                                                                        | Provide the ID of the related payment.                                                                    | tr_5B8cwPMGnU                                                                                             |
-| `idempotencyKey`                                                                                          | `*string`                                                                                                 | :heavy_minus_sign:                                                                                        | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                          | 123e4567-e89b-12d3-a456-426                                                                               |
-| `requestBody`                                                                                             | [*operations.ReleaseAuthorizationRequestBody](../../models/operations/releaseauthorizationrequestbody.md) | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |                                                                                                           |
-| `opts`                                                                                                    | [][operations.Option](../../models/operations/option.md)                                                  | :heavy_minus_sign:                                                                                        | The options for this request.                                                                             |                                                                                                           |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ReleaseAuthorizationRequest](../../models/operations/releaseauthorizationrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 

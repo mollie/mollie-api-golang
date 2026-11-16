@@ -35,13 +35,7 @@ func newWebhookEvents(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // Retrieve a single webhook event object by its event ID.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *WebhookEvents) Get(ctx context.Context, webhookEventID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
-	request := operations.GetWebhookEventRequest{
-		WebhookEventID: webhookEventID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *WebhookEvents) Get(ctx context.Context, request operations.GetWebhookEventRequest, opts ...operations.Option) (*operations.GetWebhookEventResponse, error) {
 	globals := operations.GetWebhookEventGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

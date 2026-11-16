@@ -43,13 +43,7 @@ func newCaptures(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // having collected the customer's authorization.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Captures) Create(ctx context.Context, paymentID string, idempotencyKey *string, entityCapture *components.EntityCapture, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
-	request := operations.CreateCaptureRequest{
-		PaymentID:      paymentID,
-		IdempotencyKey: idempotencyKey,
-		EntityCapture:  entityCapture,
-	}
-
+func (s *Captures) Create(ctx context.Context, request operations.CreateCaptureRequest, opts ...operations.Option) (*operations.CreateCaptureResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

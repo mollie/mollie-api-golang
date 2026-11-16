@@ -335,10 +335,12 @@ func (s *Invoices) List(ctx context.Context, request operations.ListInvoicesRequ
 // call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
+func (s *Invoices) Get(ctx context.Context, invoiceID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetInvoiceResponse, error) {
 	request := operations.GetInvoiceRequest{
-		InvoiceID:      invoiceID,
-		IdempotencyKey: idempotencyKey,
+		InvoiceID:        invoiceID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

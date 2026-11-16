@@ -72,6 +72,8 @@ func main() {
         OrderLineCategories: components.LineCategoriesEco.ToPointer(),
         Include: client.Pointer("issuers"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -119,6 +121,8 @@ func main() {
         OrderLineCategories: components.LineCategoriesEco.ToPointer(),
         Include: client.Pointer("issuers"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -166,6 +170,8 @@ func main() {
         OrderLineCategories: components.LineCategoriesEco.ToPointer(),
         Include: client.Pointer("issuers"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -240,6 +246,8 @@ func main() {
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -284,6 +292,8 @@ func main() {
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -328,6 +338,8 @@ func main() {
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -372,6 +384,8 @@ func main() {
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -449,6 +463,8 @@ func main() {
         Include: client.Pointer("issuers"),
         SequenceType: components.SequenceTypeOneoff.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -502,6 +518,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -514,7 +531,13 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, operations.EnableMethodRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDIdeal.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -534,6 +557,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -546,7 +570,13 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, operations.EnableMethodRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDIdeal.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -566,6 +596,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -578,7 +609,13 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Enable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Enable(ctx, operations.EnableMethodRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDIdeal.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -590,13 +627,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodID`                                                                       | [*components.MethodID](../../models/components/methodid.md)                      | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.EnableMethodRequest](../../models/operations/enablemethodrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -627,6 +662,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -639,7 +675,13 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.Disable(ctx, "pfl_5B8cwPMGnU", components.MethodIDIdeal.ToPointer(), client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.Disable(ctx, operations.DisableMethodRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDIdeal.ToPointer(),
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -651,13 +693,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodID`                                                                       | [*components.MethodID](../../models/components/methodid.md)                      | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.DisableMethodRequest](../../models/operations/disablemethodrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -708,6 +748,8 @@ func main() {
         MethodID: components.MethodIDWithIssuerVoucher,
         IssuerID: "edenred-france-sports",
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
         RequestBody: &operations.EnableMethodIssuerRequestBody{
             ContractID: client.Pointer("ideal"),
         },
@@ -766,6 +808,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -778,7 +821,14 @@ func main() {
         }),
     )
 
-    res, err := s.Methods.DisableIssuer(ctx, "pfl_5B8cwPMGnU", components.MethodIDWithIssuerVoucher, "edenred-france-sports", client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Methods.DisableIssuer(ctx, operations.DisableMethodIssuerRequest{
+        ProfileID: "pfl_5B8cwPMGnU",
+        MethodID: components.MethodIDWithIssuerVoucher,
+        IssuerID: "edenred-france-sports",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -790,14 +840,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `profileID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodID`                                                                       | [components.MethodIDWithIssuer](../../models/components/methodidwithissuer.md)   | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | voucher                                                                          |
-| `issuerID`                                                                       | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related issuer.                                            | edenred-france-sports                                                            |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.DisableMethodIssuerRequest](../../models/operations/disablemethodissuerrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 ### Response
 

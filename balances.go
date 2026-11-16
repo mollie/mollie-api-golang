@@ -349,13 +349,7 @@ func (s *Balances) List(ctx context.Context, request operations.ListBalancesRequ
 // funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
-	request := operations.GetBalanceRequest{
-		BalanceID:      balanceID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Balances) Get(ctx context.Context, request operations.GetBalanceRequest, opts ...operations.Option) (*operations.GetBalanceResponse, error) {
 	globals := operations.GetBalanceGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -611,9 +605,11 @@ func (s *Balances) Get(ctx context.Context, balanceID string, testmode *bool, id
 // endpoint.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPrimaryBalanceResponse, error) {
+func (s *Balances) GetPrimary(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetPrimaryBalanceResponse, error) {
 	request := operations.GetPrimaryBalanceRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

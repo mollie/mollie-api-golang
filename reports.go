@@ -46,9 +46,11 @@ func newReports(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // a new one. You get the existing report back instead, whatever status it currently has.
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Reports) Create(ctx context.Context, createReportRequest components.CreateReportRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreateReportResponse, error) {
+func (s *Reports) Create(ctx context.Context, createReportRequest components.CreateReportRequest, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.CreateReportResponse, error) {
 	request := operations.CreateReportRequest{
 		IdempotencyKey:      idempotencyKey,
+		XClientSignature:    xClientSignature,
+		XClientSignedAt:     xClientSignedAt,
 		CreateReportRequest: createReportRequest,
 	}
 
@@ -297,10 +299,12 @@ func (s *Reports) Create(ctx context.Context, createReportRequest components.Cre
 // the link doesn't affect the report itself.
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Reports) Get(ctx context.Context, reportID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetReportResponse, error) {
+func (s *Reports) Get(ctx context.Context, reportID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetReportResponse, error) {
 	request := operations.GetReportRequest{
-		ReportID:       reportID,
-		IdempotencyKey: idempotencyKey,
+		ReportID:         reportID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

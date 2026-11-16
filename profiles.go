@@ -40,10 +40,12 @@ func newProfiles(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // can use this endpoint to automate profile creation.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Profiles) Create(ctx context.Context, profileRequest components.ProfileRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
+func (s *Profiles) Create(ctx context.Context, profileRequest components.ProfileRequest, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.CreateProfileResponse, error) {
 	request := operations.CreateProfileRequest{
-		IdempotencyKey: idempotencyKey,
-		ProfileRequest: profileRequest,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		ProfileRequest:   profileRequest,
 	}
 
 	o := operations.Options{}
@@ -300,13 +302,7 @@ func (s *Profiles) Create(ctx context.Context, profileRequest components.Profile
 // The results are paginated.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListProfilesResponse, error) {
-	request := operations.ListProfilesRequest{
-		From:           from,
-		Limit:          limit,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Profiles) List(ctx context.Context, request operations.ListProfilesRequest, opts ...operations.Option) (*operations.ListProfilesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -514,9 +510,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 
 		return s.List(
 			paginationCtx,
-			from,
-			limit,
-			idempotencyKey,
+			request,
 			opts...,
 		)
 	}
@@ -598,13 +592,7 @@ func (s *Profiles) List(ctx context.Context, from *string, limit *int64, idempot
 // Retrieve a single profile by its ID.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetProfileResponse, error) {
-	request := operations.GetProfileRequest{
-		ProfileID:      profileID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Profiles) Get(ctx context.Context, request operations.GetProfileRequest, opts ...operations.Option) (*operations.GetProfileResponse, error) {
 	globals := operations.GetProfileGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -861,13 +849,7 @@ func (s *Profiles) Get(ctx context.Context, profileID string, testmode *bool, id
 // Alternatively, you can use this endpoint to automate profile management.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Profiles) Update(ctx context.Context, profileID string, requestBody operations.UpdateProfileRequestBody, idempotencyKey *string, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
-	request := operations.UpdateProfileRequest{
-		ProfileID:      profileID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Profiles) Update(ctx context.Context, request operations.UpdateProfileRequest, opts ...operations.Option) (*operations.UpdateProfileResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1124,10 +1106,12 @@ func (s *Profiles) Update(ctx context.Context, profileID string, requestBody ope
 // Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
+func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.DeleteProfileResponse, error) {
 	request := operations.DeleteProfileRequest{
-		ProfileID:      profileID,
-		IdempotencyKey: idempotencyKey,
+		ProfileID:        profileID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -1360,9 +1344,11 @@ func (s *Profiles) Delete(ctx context.Context, profileID string, idempotencyKey 
 // documentation.
 //
 // If set, this operation will use [Security.APIKey] from the global security.
-func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentProfileResponse, error) {
+func (s *Profiles) GetCurrent(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetCurrentProfileResponse, error) {
 	request := operations.GetCurrentProfileRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

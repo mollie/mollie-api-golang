@@ -39,10 +39,12 @@ func newPaymentLinks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreatePaymentLinkRequestBody, opts ...operations.Option) (*operations.CreatePaymentLinkResponse, error) {
+func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, requestBody *operations.CreatePaymentLinkRequestBody, opts ...operations.Option) (*operations.CreatePaymentLinkResponse, error) {
 	request := operations.CreatePaymentLinkRequest{
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		RequestBody:      requestBody,
 	}
 
 	o := operations.Options{}
@@ -299,14 +301,7 @@ func (s *PaymentLinks) Create(ctx context.Context, idempotencyKey *string, reque
 // The results are paginated.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListPaymentLinksResponse, error) {
-	request := operations.ListPaymentLinksRequest{
-		From:           from,
-		Limit:          limit,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *PaymentLinks) List(ctx context.Context, request operations.ListPaymentLinksRequest, opts ...operations.Option) (*operations.ListPaymentLinksResponse, error) {
 	globals := operations.ListPaymentLinksGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -518,10 +513,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 
 		return s.List(
 			paginationCtx,
-			from,
-			limit,
-			testmode,
-			idempotencyKey,
+			request,
 			opts...,
 		)
 	}
@@ -603,13 +595,7 @@ func (s *PaymentLinks) List(ctx context.Context, from *string, limit *int64, tes
 // Retrieve a single payment link by its ID.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPaymentLinkResponse, error) {
-	request := operations.GetPaymentLinkRequest{
-		PaymentLinkID:  paymentLinkID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *PaymentLinks) Get(ctx context.Context, request operations.GetPaymentLinkRequest, opts ...operations.Option) (*operations.GetPaymentLinkResponse, error) {
 	globals := operations.GetPaymentLinkGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -861,13 +847,7 @@ func (s *PaymentLinks) Get(ctx context.Context, paymentLinkID string, testmode *
 // Certain details of an existing payment link can be updated.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.UpdatePaymentLinkRequestBody, opts ...operations.Option) (*operations.UpdatePaymentLinkResponse, error) {
-	request := operations.UpdatePaymentLinkRequest{
-		PaymentLinkID:  paymentLinkID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *PaymentLinks) Update(ctx context.Context, request operations.UpdatePaymentLinkRequest, opts ...operations.Option) (*operations.UpdatePaymentLinkResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1126,13 +1106,7 @@ func (s *PaymentLinks) Update(ctx context.Context, paymentLinkID string, idempot
 // [Update payment link](update-payment-link) endpoint instead.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *PaymentLinks) Delete(ctx context.Context, paymentLinkID string, idempotencyKey *string, requestBody *operations.DeletePaymentLinkRequestBody, opts ...operations.Option) (*operations.DeletePaymentLinkResponse, error) {
-	request := operations.DeletePaymentLinkRequest{
-		PaymentLinkID:  paymentLinkID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *PaymentLinks) Delete(ctx context.Context, request operations.DeletePaymentLinkRequest, opts ...operations.Option) (*operations.DeletePaymentLinkResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

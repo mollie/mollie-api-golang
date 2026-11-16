@@ -36,13 +36,7 @@ func newDelayedRouting(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // The routed amount is credited to the account of your customer.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempotencyKey *string, routeCreateRequest *components.RouteCreateRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
-	request := operations.PaymentCreateRouteRequest{
-		PaymentID:          paymentID,
-		IdempotencyKey:     idempotencyKey,
-		RouteCreateRequest: routeCreateRequest,
-	}
-
+func (s *DelayedRouting) Create(ctx context.Context, request operations.PaymentCreateRouteRequest, opts ...operations.Option) (*operations.PaymentCreateRouteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -293,13 +287,7 @@ func (s *DelayedRouting) Create(ctx context.Context, paymentID string, idempoten
 // Retrieve a list of all routes created for a specific payment.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.PaymentListRoutesResponse, error) {
-	request := operations.PaymentListRoutesRequest{
-		PaymentID:      paymentID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *DelayedRouting) List(ctx context.Context, request operations.PaymentListRoutesRequest, opts ...operations.Option) (*operations.PaymentListRoutesResponse, error) {
 	globals := operations.PaymentListRoutesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -551,13 +539,7 @@ func (s *DelayedRouting) List(ctx context.Context, paymentID string, testmode *b
 // Retrieve a single route created for a specific payment.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *DelayedRouting) Get(ctx context.Context, paymentID string, routeID string, idempotencyKey *string, opts ...operations.Option) (*operations.PaymentGetRouteResponse, error) {
-	request := operations.PaymentGetRouteRequest{
-		PaymentID:      paymentID,
-		RouteID:        routeID,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *DelayedRouting) Get(ctx context.Context, request operations.PaymentGetRouteRequest, opts ...operations.Option) (*operations.PaymentGetRouteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

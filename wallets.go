@@ -54,10 +54,12 @@ func newWallets(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *string, requestBody *operations.RequestApplePayPaymentSessionRequestBody, opts ...operations.Option) (*operations.RequestApplePayPaymentSessionResponse, error) {
+func (s *Wallets) RequestApplePaySession(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, requestBody *operations.RequestApplePayPaymentSessionRequestBody, opts ...operations.Option) (*operations.RequestApplePayPaymentSessionResponse, error) {
 	request := operations.RequestApplePayPaymentSessionRequest{
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		RequestBody:      requestBody,
 	}
 
 	o := operations.Options{}

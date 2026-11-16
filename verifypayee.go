@@ -57,9 +57,11 @@ func newVerifyPayee(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // | Any other name                         | Default: name matches the bank records         | `match`             | —              |
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *VerifyPayee) Create(ctx context.Context, idempotencyKey *string, verificationOfPayeeRequest *components.VerificationOfPayeeRequest, opts ...operations.Option) (*operations.VerifyPayeeResponse, error) {
+func (s *VerifyPayee) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, verificationOfPayeeRequest *components.VerificationOfPayeeRequest, opts ...operations.Option) (*operations.VerifyPayeeResponse, error) {
 	request := operations.VerifyPayeeRequest{
 		IdempotencyKey:             idempotencyKey,
+		XClientSignature:           xClientSignature,
+		XClientSignedAt:            xClientSignedAt,
 		VerificationOfPayeeRequest: verificationOfPayeeRequest,
 	}
 

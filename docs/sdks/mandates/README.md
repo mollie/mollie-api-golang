@@ -28,6 +28,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -40,18 +41,24 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.MandateRequest{
-        ID: client.Pointer("mdt_5B8cwPMGnU"),
-        Method: components.MandateMethodDirectdebit,
-        ConsumerName: "John Doe",
-        ConsumerAccount: client.Pointer("NL55INGB0000000000"),
-        ConsumerBic: client.Pointer("BANKBIC"),
-        ConsumerEmail: client.Pointer("example@email.com"),
-        SignatureDate: client.Pointer("2025-01-01"),
-        MandateReference: client.Pointer("ID-1023892"),
-        PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
-        PayPalVaultID: client.Pointer("8kk8451t"),
-        Testmode: client.Pointer(false),
+    res, err := s.Mandates.Create(ctx, operations.CreateMandateRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        MandateRequest: &components.MandateRequest{
+            ID: client.Pointer("mdt_5B8cwPMGnU"),
+            Method: components.MandateMethodDirectdebit,
+            ConsumerName: "John Doe",
+            ConsumerAccount: client.Pointer("NL55INGB0000000000"),
+            ConsumerBic: client.Pointer("BANKBIC"),
+            ConsumerEmail: client.Pointer("example@email.com"),
+            SignatureDate: client.Pointer("2025-01-01"),
+            MandateReference: client.Pointer("ID-1023892"),
+            PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
+            PayPalVaultID: client.Pointer("8kk8451t"),
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -72,6 +79,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -84,18 +92,24 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.MandateRequest{
-        ID: client.Pointer("mdt_5B8cwPMGnU"),
-        Method: components.MandateMethodDirectdebit,
-        ConsumerName: "John Doe",
-        ConsumerAccount: client.Pointer("NL55INGB0000000000"),
-        ConsumerBic: client.Pointer("BANKBIC"),
-        ConsumerEmail: client.Pointer("example@email.com"),
-        SignatureDate: client.Pointer("2025-01-01"),
-        MandateReference: client.Pointer("ID-1023892"),
-        PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
-        PayPalVaultID: client.Pointer("8kk8451t"),
-        Testmode: client.Pointer(false),
+    res, err := s.Mandates.Create(ctx, operations.CreateMandateRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        MandateRequest: &components.MandateRequest{
+            ID: client.Pointer("mdt_5B8cwPMGnU"),
+            Method: components.MandateMethodDirectdebit,
+            ConsumerName: "John Doe",
+            ConsumerAccount: client.Pointer("NL55INGB0000000000"),
+            ConsumerBic: client.Pointer("BANKBIC"),
+            ConsumerEmail: client.Pointer("example@email.com"),
+            SignatureDate: client.Pointer("2025-01-01"),
+            MandateReference: client.Pointer("ID-1023892"),
+            PaypalBillingAgreementID: client.Pointer("B-12A34567B8901234CD"),
+            PayPalVaultID: client.Pointer("8kk8451t"),
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -108,13 +122,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `customerID`                                                                     | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `mandateRequest`                                                                 | [*components.MandateRequest](../../models/components/mandaterequest.md)          | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreateMandateRequest](../../models/operations/createmandaterequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -167,6 +179,8 @@ func main() {
             components.MandateScopesCustomerPresent,
         },
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -224,6 +238,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -237,7 +252,13 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Get(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Mandates.Get(ctx, operations.GetMandateRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        MandateID: "mdt_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -249,14 +270,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                                                                                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `customerID`                                                                                                                                                                                                                                                                                                                                                                             | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `mandateID`                                                                                                                                                                                                                                                                                                                                                                              | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related mandate.                                                                                                                                                                                                                                                                                                                                                   | mdt_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | `*bool`                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | `*string`                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
-| `opts`                                                                                                                                                                                                                                                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | The options for this request.                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                          |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.GetMandateRequest](../../models/operations/getmandaterequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -298,8 +316,15 @@ func main() {
         }),
     )
 
-    res, err := s.Mandates.Revoke(ctx, "cst_5B8cwPMGnU", "mdt_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.RevokeMandateRequestBody{
-        Testmode: client.Pointer(false),
+    res, err := s.Mandates.Revoke(ctx, operations.RevokeMandateRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        MandateID: "mdt_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.RevokeMandateRequestBody{
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -312,14 +337,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                       | [context.Context](https://pkg.go.dev/context#Context)                                       | :heavy_check_mark:                                                                          | The context to use for the request.                                                         |                                                                                             |
-| `customerID`                                                                                | `string`                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related customer.                                                     | cst_5B8cwPMGnU                                                                              |
-| `mandateID`                                                                                 | `string`                                                                                    | :heavy_check_mark:                                                                          | Provide the ID of the related mandate.                                                      | mdt_5B8cwPMGnU                                                                              |
-| `idempotencyKey`                                                                            | `*string`                                                                                   | :heavy_minus_sign:                                                                          | A unique key to ensure idempotent requests. This key should be a UUID v4 string.            | 123e4567-e89b-12d3-a456-426                                                                 |
-| `requestBody`                                                                               | [*operations.RevokeMandateRequestBody](../../models/operations/revokemandaterequestbody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
-| `opts`                                                                                      | [][operations.Option](../../models/operations/option.md)                                    | :heavy_minus_sign:                                                                          | The options for this request.                                                               |                                                                                             |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.RevokeMandateRequest](../../models/operations/revokemandaterequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 

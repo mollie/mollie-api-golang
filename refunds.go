@@ -38,13 +38,7 @@ func newRefunds(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // transfer or by refunding the amount to your customer's credit card.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Refunds) Create(ctx context.Context, paymentID string, idempotencyKey *string, refundRequest *components.RefundRequest, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
-	request := operations.CreateRefundRequest{
-		PaymentID:      paymentID,
-		IdempotencyKey: idempotencyKey,
-		RefundRequest:  refundRequest,
-	}
-
+func (s *Refunds) Create(ctx context.Context, request operations.CreateRefundRequest, opts ...operations.Option) (*operations.CreateRefundResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -853,14 +847,7 @@ func (s *Refunds) Get(ctx context.Context, request operations.GetRefundRequest, 
 // [Get refund endpoint](get-refund) for more information.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Refunds) Cancel(ctx context.Context, paymentID string, refundID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CancelRefundResponse, error) {
-	request := operations.CancelRefundRequest{
-		PaymentID:      paymentID,
-		RefundID:       refundID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Refunds) Cancel(ctx context.Context, request operations.CancelRefundRequest, opts ...operations.Option) (*operations.CancelRefundResponse, error) {
 	globals := operations.CancelRefundGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

@@ -72,10 +72,12 @@ func newPayouts(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // - The payout destination (bank account) is invalid or not configured.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
-func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutRequest, idempotencyKey *string, opts ...operations.Option) (*operations.CreatePayoutResponse, error) {
+func (s *Payouts) Create(ctx context.Context, payoutRequest components.PayoutRequest, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.CreatePayoutResponse, error) {
 	request := operations.CreatePayoutRequest{
-		IdempotencyKey: idempotencyKey,
-		PayoutRequest:  payoutRequest,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		PayoutRequest:    payoutRequest,
 	}
 
 	o := operations.Options{}
@@ -628,13 +630,7 @@ func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsReques
 // Retrieve a single payout by its ID.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
-func (s *Payouts) Get(ctx context.Context, payoutID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPayoutResponse, error) {
-	request := operations.GetPayoutRequest{
-		PayoutID:       payoutID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Payouts) Get(ctx context.Context, request operations.GetPayoutRequest, opts ...operations.Option) (*operations.GetPayoutResponse, error) {
 	globals := operations.GetPayoutGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -889,13 +885,7 @@ func (s *Payouts) Get(ctx context.Context, payoutID string, testmode *bool, idem
 // The canceled payout object is returned with the status set to `canceled`.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.AdvancedAccessToken] from the global security.
-func (s *Payouts) Cancel(ctx context.Context, payoutID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.CancelPayoutResponse, error) {
-	request := operations.CancelPayoutRequest{
-		PayoutID:       payoutID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Payouts) Cancel(ctx context.Context, request operations.CancelPayoutRequest, opts ...operations.Option) (*operations.CancelPayoutResponse, error) {
 	globals := operations.CancelPayoutGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

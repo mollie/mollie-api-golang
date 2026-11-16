@@ -45,6 +45,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -57,27 +58,33 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Create(ctx, "cst_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.SubscriptionRequest{
-        Amount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        Times: client.Pointer[int64](6),
-        Interval: client.Pointer("2 days"),
-        StartDate: client.Pointer("2025-01-01"),
-        Description: client.Pointer("Subscription of streaming channel"),
-        Method: components.SubscriptionMethodPaypal.ToPointer(),
-        ApplicationFee: &components.SubscriptionRequestApplicationFee{
-            Amount: components.Amount{
+    res, err := s.Subscriptions.Create(ctx, operations.CreateSubscriptionRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        SubscriptionRequest: &components.SubscriptionRequest{
+            Amount: &components.Amount{
                 Currency: "EUR",
                 Value: "10.00",
             },
-            Description: "Platform fee",
+            Times: client.Pointer[int64](6),
+            Interval: client.Pointer("2 days"),
+            StartDate: client.Pointer("2025-01-01"),
+            Description: client.Pointer("Subscription of streaming channel"),
+            Method: components.SubscriptionMethodPaypal.ToPointer(),
+            ApplicationFee: &components.SubscriptionRequestApplicationFee{
+                Amount: components.Amount{
+                    Currency: "EUR",
+                    Value: "10.00",
+                },
+                Description: "Platform fee",
+            },
+            WebhookURL: client.Pointer("https://example.com/webhook"),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
+            Testmode: client.Pointer(false),
         },
-        WebhookURL: client.Pointer("https://example.com/webhook"),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        ProfileID: client.Pointer("pfl_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -100,13 +107,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
-| `customerID`                                                                      | `string`                                                                          | :heavy_check_mark:                                                                | Provide the ID of the related customer.                                           | cst_5B8cwPMGnU                                                                    |
-| `idempotencyKey`                                                                  | `*string`                                                                         | :heavy_minus_sign:                                                                | A unique key to ensure idempotent requests. This key should be a UUID v4 string.  | 123e4567-e89b-12d3-a456-426                                                       |
-| `subscriptionRequest`                                                             | [*components.SubscriptionRequest](../../models/components/subscriptionrequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
-| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.CreateSubscriptionRequest](../../models/operations/createsubscriptionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
@@ -156,6 +161,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -212,6 +219,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -225,7 +233,13 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Get(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Subscriptions.Get(ctx, operations.GetSubscriptionRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -247,14 +261,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                                                                                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `customerID`                                                                                                                                                                                                                                                                                                                                                                             | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `subscriptionID`                                                                                                                                                                                                                                                                                                                                                                         | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related subscription.                                                                                                                                                                                                                                                                                                                                              | sub_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | `*bool`                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | `*string`                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
-| `opts`                                                                                                                                                                                                                                                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | The options for this request.                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                          |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetSubscriptionRequest](../../models/operations/getsubscriptionrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
@@ -299,18 +310,25 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateSubscriptionRequestBody{
-        Amount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
+    res, err := s.Subscriptions.Update(ctx, operations.UpdateSubscriptionRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.UpdateSubscriptionRequestBody{
+            Amount: &components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Description: client.Pointer("Subscription of streaming channel"),
+            Interval: client.Pointer("1 months"),
+            StartDate: client.Pointer("2025-01-01"),
+            Times: client.Pointer[int64](6),
+            WebhookURL: client.Pointer("https://example.com/webhook"),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            Testmode: client.Pointer(false),
         },
-        Description: client.Pointer("Subscription of streaming channel"),
-        Interval: client.Pointer("1 months"),
-        StartDate: client.Pointer("2025-01-01"),
-        Times: client.Pointer[int64](6),
-        WebhookURL: client.Pointer("https://example.com/webhook"),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -354,18 +372,25 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Update(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.UpdateSubscriptionRequestBody{
-        Amount: &components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
+    res, err := s.Subscriptions.Update(ctx, operations.UpdateSubscriptionRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.UpdateSubscriptionRequestBody{
+            Amount: &components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Description: client.Pointer("Subscription of streaming channel"),
+            Interval: client.Pointer("1 months"),
+            StartDate: client.Pointer("2025-01-01"),
+            Times: client.Pointer[int64](6),
+            WebhookURL: client.Pointer("https://example.com/webhook"),
+            MandateID: client.Pointer("mdt_5B8cwPMGnU"),
+            Testmode: client.Pointer(false),
         },
-        Description: client.Pointer("Subscription of streaming channel"),
-        Interval: client.Pointer("1 months"),
-        StartDate: client.Pointer("2025-01-01"),
-        Times: client.Pointer[int64](6),
-        WebhookURL: client.Pointer("https://example.com/webhook"),
-        MandateID: client.Pointer("mdt_5B8cwPMGnU"),
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -388,14 +413,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `customerID`                                                                                          | `string`                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related customer.                                                               | cst_5B8cwPMGnU                                                                                        |
-| `subscriptionID`                                                                                      | `string`                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related subscription.                                                           | sub_5B8cwPMGnU                                                                                        |
-| `idempotencyKey`                                                                                      | `*string`                                                                                             | :heavy_minus_sign:                                                                                    | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                      | 123e4567-e89b-12d3-a456-426                                                                           |
-| `requestBody`                                                                                         | [*operations.UpdateSubscriptionRequestBody](../../models/operations/updatesubscriptionrequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.UpdateSubscriptionRequest](../../models/operations/updatesubscriptionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
@@ -436,8 +458,15 @@ func main() {
         }),
     )
 
-    res, err := s.Subscriptions.Cancel(ctx, "cst_5B8cwPMGnU", "sub_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &operations.CancelSubscriptionRequestBody{
-        Testmode: client.Pointer(false),
+    res, err := s.Subscriptions.Cancel(ctx, operations.CancelSubscriptionRequest{
+        CustomerID: "cst_5B8cwPMGnU",
+        SubscriptionID: "sub_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RequestBody: &operations.CancelSubscriptionRequestBody{
+            Testmode: client.Pointer(false),
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -460,14 +489,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                 | :heavy_check_mark:                                                                                    | The context to use for the request.                                                                   |                                                                                                       |
-| `customerID`                                                                                          | `string`                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related customer.                                                               | cst_5B8cwPMGnU                                                                                        |
-| `subscriptionID`                                                                                      | `string`                                                                                              | :heavy_check_mark:                                                                                    | Provide the ID of the related subscription.                                                           | sub_5B8cwPMGnU                                                                                        |
-| `idempotencyKey`                                                                                      | `*string`                                                                                             | :heavy_minus_sign:                                                                                    | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                      | 123e4567-e89b-12d3-a456-426                                                                           |
-| `requestBody`                                                                                         | [*operations.CancelSubscriptionRequestBody](../../models/operations/cancelsubscriptionrequestbody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
-| `opts`                                                                                                | [][operations.Option](../../models/operations/option.md)                                              | :heavy_minus_sign:                                                                                    | The options for this request.                                                                         |                                                                                                       |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.CancelSubscriptionRequest](../../models/operations/cancelsubscriptionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
@@ -516,6 +542,8 @@ func main() {
         From: client.Pointer("sub_rVKGtNd6s3"),
         Limit: client.Pointer[int64](50),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -596,6 +624,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -650,6 +680,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -704,6 +736,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Sort: components.SortingDesc.ToPointer(),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)

@@ -37,10 +37,12 @@ func newWebhooks(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, requestBody *operations.CreateWebhookRequestBody, opts ...operations.Option) (*operations.CreateWebhookResponse, error) {
+func (s *Webhooks) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, requestBody *operations.CreateWebhookRequestBody, opts ...operations.Option) (*operations.CreateWebhookResponse, error) {
 	request := operations.CreateWebhookRequest{
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		RequestBody:      requestBody,
 	}
 
 	o := operations.Options{}
@@ -587,13 +589,7 @@ func (s *Webhooks) List(ctx context.Context, request operations.ListWebhooksRequ
 // Updates the webhook. You may edit the name, url and the list of subscribed event types.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.UpdateWebhookRequestBody, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
-	request := operations.UpdateWebhookRequest{
-		WebhookID:      webhookID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Webhooks) Update(ctx context.Context, request operations.UpdateWebhookRequest, opts ...operations.Option) (*operations.UpdateWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -846,13 +842,7 @@ func (s *Webhooks) Update(ctx context.Context, webhookID string, idempotencyKey 
 // Retrieve a single webhook object by its ID.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
-	request := operations.GetWebhookRequest{
-		WebhookID:      webhookID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Webhooks) Get(ctx context.Context, request operations.GetWebhookRequest, opts ...operations.Option) (*operations.GetWebhookResponse, error) {
 	globals := operations.GetWebhookGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -1106,13 +1096,7 @@ func (s *Webhooks) Get(ctx context.Context, webhookID string, testmode *bool, id
 // Delete a single webhook object by its webhook ID.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.DeleteWebhookRequestBody, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
-	request := operations.DeleteWebhookRequest{
-		WebhookID:      webhookID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Webhooks) Delete(ctx context.Context, request operations.DeleteWebhookRequest, opts ...operations.Option) (*operations.DeleteWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1346,13 +1330,7 @@ func (s *Webhooks) Delete(ctx context.Context, webhookID string, idempotencyKey 
 // Sends a test event to the webhook to verify the endpoint is working as expected.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Webhooks) Test(ctx context.Context, webhookID string, idempotencyKey *string, requestBody *operations.TestWebhookRequestBody, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
-	request := operations.TestWebhookRequest{
-		WebhookID:      webhookID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Webhooks) Test(ctx context.Context, request operations.TestWebhookRequest, opts ...operations.Option) (*operations.TestWebhookResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

@@ -60,7 +60,14 @@ func newTransfers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hoo
 // | Other   | Default: transfer is processed                      | `business-account-transfer.requested` → `business-account-transfer.initiated` → `business-account-transfer.processed`                                              |
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Transfers) Create(ctx context.Context, request operations.CreateTransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
+func (s *Transfers) Create(ctx context.Context, xClientSignature string, xClientSignedAt string, idempotencyKey string, transferRequest *components.TransferRequest, opts ...operations.Option) (*operations.CreateTransferResponse, error) {
+	request := operations.CreateTransferRequest{
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		IdempotencyKey:   idempotencyKey,
+		TransferRequest:  transferRequest,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -341,13 +348,7 @@ func (s *Transfers) Create(ctx context.Context, request operations.CreateTransfe
 // and details of a previously created transfer.
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Transfers) Get(ctx context.Context, businessAccountsTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetTransferResponse, error) {
-	request := operations.GetTransferRequest{
-		BusinessAccountsTransferID: businessAccountsTransferID,
-		Testmode:                   testmode,
-		IdempotencyKey:             idempotencyKey,
-	}
-
+func (s *Transfers) Get(ctx context.Context, request operations.GetTransferRequest, opts ...operations.Option) (*operations.GetTransferResponse, error) {
 	globals := operations.GetTransferGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

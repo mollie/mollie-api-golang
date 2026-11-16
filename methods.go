@@ -841,13 +841,7 @@ func (s *Methods) Get(ctx context.Context, request operations.GetMethodRequest, 
 // To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Methods) Enable(ctx context.Context, profileID string, methodID *components.MethodID, idempotencyKey *string, opts ...operations.Option) (*operations.EnableMethodResponse, error) {
-	request := operations.EnableMethodRequest{
-		ProfileID:      profileID,
-		MethodID:       methodID,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Methods) Enable(ctx context.Context, request operations.EnableMethodRequest, opts ...operations.Option) (*operations.EnableMethodResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1096,13 +1090,7 @@ func (s *Methods) Enable(ctx context.Context, profileID string, methodID *compon
 // instead of the profile ID to refer to the current profile.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Methods) Disable(ctx context.Context, profileID string, methodID *components.MethodID, idempotencyKey *string, opts ...operations.Option) (*operations.DisableMethodResponse, error) {
-	request := operations.DisableMethodRequest{
-		ProfileID:      profileID,
-		MethodID:       methodID,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Methods) Disable(ctx context.Context, request operations.DisableMethodRequest, opts ...operations.Option) (*operations.DisableMethodResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1590,14 +1578,7 @@ func (s *Methods) EnableIssuer(ctx context.Context, request operations.EnableMet
 // current profile.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Methods) DisableIssuer(ctx context.Context, profileID string, methodID components.MethodIDWithIssuer, issuerID string, idempotencyKey *string, opts ...operations.Option) (*operations.DisableMethodIssuerResponse, error) {
-	request := operations.DisableMethodIssuerRequest{
-		ProfileID:      profileID,
-		MethodID:       methodID,
-		IssuerID:       issuerID,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Methods) DisableIssuer(ctx context.Context, request operations.DisableMethodIssuerRequest, opts ...operations.Option) (*operations.DisableMethodIssuerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

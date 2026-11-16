@@ -39,14 +39,7 @@ func newClients(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hooks
 // The results are paginated.
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *int64, idempotencyKey *string, opts ...operations.Option) (*operations.ListClientsResponse, error) {
-	request := operations.ListClientsRequest{
-		Embed:          embed,
-		From:           from,
-		Limit:          limit,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Clients) List(ctx context.Context, request operations.ListClientsRequest, opts ...operations.Option) (*operations.ListClientsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -254,10 +247,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 
 		return s.List(
 			paginationCtx,
-			embed,
-			from,
-			limit,
-			idempotencyKey,
+			request,
 			opts...,
 		)
 	}
@@ -341,13 +331,7 @@ func (s *Clients) List(ctx context.Context, embed *string, from *string, limit *
 // Retrieve a single client by its ID.
 //
 // If set, this operation will use [Security.AdvancedAccessToken] from the global security.
-func (s *Clients) Get(ctx context.Context, organizationID string, embed *string, idempotencyKey *string, opts ...operations.Option) (*operations.GetClientResponse, error) {
-	request := operations.GetClientRequest{
-		OrganizationID: organizationID,
-		Embed:          embed,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Clients) Get(ctx context.Context, request operations.GetClientRequest, opts ...operations.Option) (*operations.GetClientResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
