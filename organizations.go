@@ -41,13 +41,7 @@ func newOrganizations(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // If you have a *partner account*', you can retrieve organization details of connected organizations.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Organizations) Get(ctx context.Context, organizationID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
-	request := operations.GetOrganizationRequest{
-		OrganizationID: organizationID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Organizations) Get(ctx context.Context, request operations.GetOrganizationRequest, opts ...operations.Option) (*operations.GetOrganizationResponse, error) {
 	globals := operations.GetOrganizationGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -303,9 +297,11 @@ func (s *Organizations) Get(ctx context.Context, organizationID string, testmode
 // documentation.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetCurrentOrganizationResponse, error) {
+func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetCurrentOrganizationResponse, error) {
 	request := operations.GetCurrentOrganizationRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -550,9 +546,11 @@ func (s *Organizations) GetCurrent(ctx context.Context, idempotencyKey *string, 
 // accounts*.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetPartnerStatusResponse, error) {
+func (s *Organizations) GetPartner(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetPartnerStatusResponse, error) {
 	request := operations.GetPartnerStatusRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

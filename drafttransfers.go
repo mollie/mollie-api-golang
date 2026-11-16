@@ -63,9 +63,11 @@ func newDraftTransfers(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks
 // `statusReason.code` set to `deleted-by-creator`, the same as in live mode.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *DraftTransfers) Create(ctx context.Context, idempotencyKey *string, createDraftTransferRequest *components.CreateDraftTransferRequest, opts ...operations.Option) (*operations.CreateDraftTransferResponse, error) {
+func (s *DraftTransfers) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, createDraftTransferRequest *components.CreateDraftTransferRequest, opts ...operations.Option) (*operations.CreateDraftTransferResponse, error) {
 	request := operations.CreateDraftTransferRequest{
 		IdempotencyKey:             idempotencyKey,
+		XClientSignature:           xClientSignature,
+		XClientSignedAt:            xClientSignedAt,
 		CreateDraftTransferRequest: createDraftTransferRequest,
 	}
 
@@ -633,13 +635,7 @@ func (s *DraftTransfers) List(ctx context.Context, request operations.ListDraftT
 // transfer](create-draft-transfer) for how to simulate `approved` and `declined` outcomes.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *DraftTransfers) Get(ctx context.Context, draftTransferID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetDraftTransferResponse, error) {
-	request := operations.GetDraftTransferRequest{
-		DraftTransferID: draftTransferID,
-		Testmode:        testmode,
-		IdempotencyKey:  idempotencyKey,
-	}
-
+func (s *DraftTransfers) Get(ctx context.Context, request operations.GetDraftTransferRequest, opts ...operations.Option) (*operations.GetDraftTransferResponse, error) {
 	globals := operations.GetDraftTransferGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -902,13 +898,7 @@ func (s *DraftTransfers) Get(ctx context.Context, draftTransferID string, testmo
 // transfer](create-draft-transfer) for how to simulate `approved` and `declined` outcomes.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *DraftTransfers) Cancel(ctx context.Context, draftTransferID string, idempotencyKey *string, requestBody *operations.CancelDraftTransferRequestBody, opts ...operations.Option) (*operations.CancelDraftTransferResponse, error) {
-	request := operations.CancelDraftTransferRequest{
-		DraftTransferID: draftTransferID,
-		IdempotencyKey:  idempotencyKey,
-		RequestBody:     requestBody,
-	}
-
+func (s *DraftTransfers) Cancel(ctx context.Context, request operations.CancelDraftTransferRequest, opts ...operations.Option) (*operations.CancelDraftTransferResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

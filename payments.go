@@ -48,13 +48,7 @@ func newPayments(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // guide on [method-specific parameters](extra-payment-parameters).
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Payments) Create(ctx context.Context, include *string, idempotencyKey *string, paymentRequest *components.PaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
-	request := operations.CreatePaymentRequest{
-		Include:        include,
-		IdempotencyKey: idempotencyKey,
-		PaymentRequest: paymentRequest,
-	}
-
+func (s *Payments) Create(ctx context.Context, request operations.CreatePaymentRequest, opts ...operations.Option) (*operations.CreatePaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -885,13 +879,7 @@ func (s *Payments) Get(ctx context.Context, request operations.GetPaymentRequest
 // Updating the payment details will not result in a webhook call.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.UpdatePaymentRequestBody, opts ...operations.Option) (*operations.UpdatePaymentResponse, error) {
-	request := operations.UpdatePaymentRequest{
-		PaymentID:      paymentID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Payments) Update(ctx context.Context, request operations.UpdatePaymentRequest, opts ...operations.Option) (*operations.UpdatePaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1149,13 +1137,7 @@ func (s *Payments) Update(ctx context.Context, paymentID string, idempotencyKey 
 // The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.CancelPaymentRequestBody, opts ...operations.Option) (*operations.CancelPaymentResponse, error) {
-	request := operations.CancelPaymentRequest{
-		PaymentID:      paymentID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Payments) Cancel(ctx context.Context, request operations.CancelPaymentRequest, opts ...operations.Option) (*operations.CancelPaymentResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1415,13 +1397,7 @@ func (s *Payments) Cancel(ctx context.Context, paymentID string, idempotencyKey 
 // If there is a successful capture, the payment will transition to `paid`.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Payments) ReleaseAuthorization(ctx context.Context, paymentID string, idempotencyKey *string, requestBody *operations.ReleaseAuthorizationRequestBody, opts ...operations.Option) (*operations.ReleaseAuthorizationResponse, error) {
-	request := operations.ReleaseAuthorizationRequest{
-		PaymentID:      paymentID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Payments) ReleaseAuthorization(ctx context.Context, request operations.ReleaseAuthorizationRequest, opts ...operations.Option) (*operations.ReleaseAuthorizationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

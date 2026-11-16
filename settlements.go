@@ -342,10 +342,12 @@ func (s *Settlements) List(ctx context.Context, request operations.ListSettlemen
 // [balance transactions](list-balance-transactions) endpoint.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
+func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetSettlementResponse, error) {
 	request := operations.GetSettlementRequest{
-		SettlementID:   settlementID,
-		IdempotencyKey: idempotencyKey,
+		SettlementID:     settlementID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -598,9 +600,11 @@ func (s *Settlements) Get(ctx context.Context, settlementID string, idempotencyK
 // [balance transactions](list-balance-transactions) endpoint.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOpenSettlementResponse, error) {
+func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetOpenSettlementResponse, error) {
 	request := operations.GetOpenSettlementRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -850,9 +854,11 @@ func (s *Settlements) GetOpen(ctx context.Context, idempotencyKey *string, opts 
 // [balance transactions](list-balance-transactions) endpoint.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetNextSettlementResponse, error) {
+func (s *Settlements) GetNext(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetNextSettlementResponse, error) {
 	request := operations.GetNextSettlementRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

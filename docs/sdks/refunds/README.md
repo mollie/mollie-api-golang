@@ -26,6 +26,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -38,26 +39,32 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
-        Description: client.Pointer("Refunding a Chess Board"),
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        ReverseRouting: client.Pointer(false),
-        RoutingReversals: []components.RefundRequestRoutingReversal{
-            components.RefundRequestRoutingReversal{
-                Amount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Source: &components.RefundRequestSource{
-                    Type: components.TypeOrganization.ToPointer(),
-                    OrganizationID: client.Pointer("org_1234567"),
+    res, err := s.Refunds.Create(ctx, operations.CreateRefundRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RefundRequest: &components.RefundRequest{
+            Description: client.Pointer("Refunding a Chess Board"),
+            Amount: components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            ReverseRouting: client.Pointer(false),
+            RoutingReversals: []components.RefundRequestRoutingReversal{
+                components.RefundRequestRoutingReversal{
+                    Amount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Source: &components.RefundRequestSource{
+                        Type: components.TypeOrganization.ToPointer(),
+                        OrganizationID: client.Pointer("org_1234567"),
+                    },
                 },
             },
+            Testmode: client.Pointer(false),
         },
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -88,6 +95,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -100,26 +108,32 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.RefundRequest{
-        Description: client.Pointer("Refunding a Chess Board"),
-        Amount: components.Amount{
-            Currency: "EUR",
-            Value: "10.00",
-        },
-        ReverseRouting: client.Pointer(false),
-        RoutingReversals: []components.RefundRequestRoutingReversal{
-            components.RefundRequestRoutingReversal{
-                Amount: &components.Amount{
-                    Currency: "EUR",
-                    Value: "10.00",
-                },
-                Source: &components.RefundRequestSource{
-                    Type: components.TypeOrganization.ToPointer(),
-                    OrganizationID: client.Pointer("org_1234567"),
+    res, err := s.Refunds.Create(ctx, operations.CreateRefundRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        RefundRequest: &components.RefundRequest{
+            Description: client.Pointer("Refunding a Chess Board"),
+            Amount: components.Amount{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            ReverseRouting: client.Pointer(false),
+            RoutingReversals: []components.RefundRequestRoutingReversal{
+                components.RefundRequestRoutingReversal{
+                    Amount: &components.Amount{
+                        Currency: "EUR",
+                        Value: "10.00",
+                    },
+                    Source: &components.RefundRequestSource{
+                        Type: components.TypeOrganization.ToPointer(),
+                        OrganizationID: client.Pointer("org_1234567"),
+                    },
                 },
             },
+            Testmode: client.Pointer(false),
         },
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -142,13 +156,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `paymentID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `refundRequest`                                                                  | [*components.RefundRequest](../../models/components/refundrequest.md)            | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.CreateRefundRequest](../../models/operations/createrefundrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -198,6 +210,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -273,6 +287,8 @@ func main() {
         RefundID: "re_5B8cwPMGnU",
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -331,6 +347,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -344,7 +361,13 @@ func main() {
         }),
     )
 
-    res, err := s.Refunds.Cancel(ctx, "tr_5B8cwPMGnU", "re_5B8cwPMGnU", nil, client.Pointer("123e4567-e89b-12d3-a456-426"))
+    res, err := s.Refunds.Cancel(ctx, operations.CancelRefundRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        RefundID: "re_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -356,14 +379,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                                                                                                                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `paymentID`                                                                                                                                                                                                                                                                                                                                                                              | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                   | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
-| `refundID`                                                                                                                                                                                                                                                                                                                                                                               | `string`                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                    | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | `*bool`                                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | `*string`                                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
-| `opts`                                                                                                                                                                                                                                                                                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | The options for this request.                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.CancelRefundRequest](../../models/operations/cancelrefundrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -414,6 +434,8 @@ func main() {
         Sort: components.SortingDesc.ToPointer(),
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)

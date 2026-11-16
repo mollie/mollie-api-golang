@@ -51,9 +51,11 @@ func newCapabilities(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *
 // the payments capability is enabled, communicating that the organization can indeed receive payments.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListCapabilitiesResponse, error) {
+func (s *Capabilities) List(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.ListCapabilitiesResponse, error) {
 	request := operations.ListCapabilitiesRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

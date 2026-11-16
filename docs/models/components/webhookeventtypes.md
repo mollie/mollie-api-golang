@@ -57,6 +57,7 @@ value := components.WebhookEventTypesPaymentPaid
 | `WebhookEventTypesBusinessAccountDraftTransferCreated`    | business-account-draft-transfer.created                   |
 | `WebhookEventTypesBusinessAccountDraftTransferApproved`   | business-account-draft-transfer.approved                  |
 | `WebhookEventTypesBusinessAccountDraftTransferDeclined`   | business-account-draft-transfer.declined                  |
+| `WebhookEventTypesBusinessAccountCreated`                 | business-account.created                                  |
 | `WebhookEventTypesUnmatchedCreditTransferReceived`        | unmatched-credit-transfer.received                        |
 | `WebhookEventTypesUnmatchedCreditTransferMatched`         | unmatched-credit-transfer.matched                         |
 | `WebhookEventTypesUnmatchedCreditTransferReturned`        | unmatched-credit-transfer.returned                        |

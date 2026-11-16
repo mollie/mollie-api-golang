@@ -55,13 +55,7 @@ func newSubscriptions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // Your customer will be charged €10 on the last day of each month, starting in April 2018.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Subscriptions) Create(ctx context.Context, customerID string, idempotencyKey *string, subscriptionRequest *components.SubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
-	request := operations.CreateSubscriptionRequest{
-		CustomerID:          customerID,
-		IdempotencyKey:      idempotencyKey,
-		SubscriptionRequest: subscriptionRequest,
-	}
-
+func (s *Subscriptions) Create(ctx context.Context, request operations.CreateSubscriptionRequest, opts ...operations.Option) (*operations.CreateSubscriptionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -610,14 +604,7 @@ func (s *Subscriptions) List(ctx context.Context, request operations.ListSubscri
 // Retrieve a single subscription by its ID and the ID of its parent customer.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Subscriptions) Get(ctx context.Context, customerID string, subscriptionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSubscriptionResponse, error) {
-	request := operations.GetSubscriptionRequest{
-		CustomerID:     customerID,
-		SubscriptionID: subscriptionID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Subscriptions) Get(ctx context.Context, request operations.GetSubscriptionRequest, opts ...operations.Option) (*operations.GetSubscriptionResponse, error) {
 	globals := operations.GetSubscriptionGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -873,14 +860,7 @@ func (s *Subscriptions) Get(ctx context.Context, customerID string, subscription
 // For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Subscriptions) Update(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.UpdateSubscriptionRequestBody, opts ...operations.Option) (*operations.UpdateSubscriptionResponse, error) {
-	request := operations.UpdateSubscriptionRequest{
-		CustomerID:     customerID,
-		SubscriptionID: subscriptionID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Subscriptions) Update(ctx context.Context, request operations.UpdateSubscriptionRequest, opts ...operations.Option) (*operations.UpdateSubscriptionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1131,14 +1111,7 @@ func (s *Subscriptions) Update(ctx context.Context, customerID string, subscript
 // Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Subscriptions) Cancel(ctx context.Context, customerID string, subscriptionID string, idempotencyKey *string, requestBody *operations.CancelSubscriptionRequestBody, opts ...operations.Option) (*operations.CancelSubscriptionResponse, error) {
-	request := operations.CancelSubscriptionRequest{
-		CustomerID:     customerID,
-		SubscriptionID: subscriptionID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Subscriptions) Cancel(ctx context.Context, request operations.CancelSubscriptionRequest, opts ...operations.Option) (*operations.CancelSubscriptionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

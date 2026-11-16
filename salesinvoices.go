@@ -37,9 +37,11 @@ func newSalesInvoices(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks 
 // With the Sales Invoice API you can generate sales invoices to send to your customers.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, salesInvoiceRequest *components.SalesInvoiceRequest, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
+func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, salesInvoiceRequest *components.SalesInvoiceRequest, opts ...operations.Option) (*operations.CreateSalesInvoiceResponse, error) {
 	request := operations.CreateSalesInvoiceRequest{
 		IdempotencyKey:      idempotencyKey,
+		XClientSignature:    xClientSignature,
+		XClientSignedAt:     xClientSignedAt,
 		SalesInvoiceRequest: salesInvoiceRequest,
 	}
 
@@ -297,14 +299,7 @@ func (s *SalesInvoices) Create(ctx context.Context, idempotencyKey *string, sale
 // The results are paginated.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.ListSalesInvoicesResponse, error) {
-	request := operations.ListSalesInvoicesRequest{
-		From:           from,
-		Limit:          limit,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *SalesInvoices) List(ctx context.Context, request operations.ListSalesInvoicesRequest, opts ...operations.Option) (*operations.ListSalesInvoicesResponse, error) {
 	globals := operations.ListSalesInvoicesGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -516,10 +511,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 
 		return s.List(
 			paginationCtx,
-			from,
-			limit,
-			testmode,
-			idempotencyKey,
+			request,
 			opts...,
 		)
 	}
@@ -601,13 +593,7 @@ func (s *SalesInvoices) List(ctx context.Context, from *string, limit *int64, te
 // Retrieve a single sales invoice by its ID.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
-	request := operations.GetSalesInvoiceRequest{
-		SalesInvoiceID: salesInvoiceID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *SalesInvoices) Get(ctx context.Context, request operations.GetSalesInvoiceRequest, opts ...operations.Option) (*operations.GetSalesInvoiceResponse, error) {
 	globals := operations.GetSalesInvoiceGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -861,13 +847,7 @@ func (s *SalesInvoices) Get(ctx context.Context, salesInvoiceID string, testmode
 // respectively).
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idempotencyKey *string, requestBody *operations.UpdateSalesInvoiceRequestBody, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
-	request := operations.UpdateSalesInvoiceRequest{
-		SalesInvoiceID: salesInvoiceID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *SalesInvoices) Update(ctx context.Context, request operations.UpdateSalesInvoiceRequest, opts ...operations.Option) (*operations.UpdateSalesInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1121,13 +1101,7 @@ func (s *SalesInvoices) Update(ctx context.Context, salesInvoiceID string, idemp
 // [Update sales invoice](update-sales-invoice) endpoint instead.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *SalesInvoices) Delete(ctx context.Context, salesInvoiceID string, idempotencyKey *string, deleteValuesSalesInvoice *components.DeleteValuesSalesInvoice, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
-	request := operations.DeleteSalesInvoiceRequest{
-		SalesInvoiceID:           salesInvoiceID,
-		IdempotencyKey:           idempotencyKey,
-		DeleteValuesSalesInvoice: deleteValuesSalesInvoice,
-	}
-
+func (s *SalesInvoices) Delete(ctx context.Context, request operations.DeleteSalesInvoiceRequest, opts ...operations.Option) (*operations.DeleteSalesInvoiceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

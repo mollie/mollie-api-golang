@@ -36,9 +36,11 @@ func newOnboarding(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *ho
 // Retrieve the onboarding status of the currently authenticated organization.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.GetOnboardingStatusResponse, error) {
+func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetOnboardingStatusResponse, error) {
 	request := operations.GetOnboardingStatusRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -287,10 +289,12 @@ func (s *Onboarding) Get(ctx context.Context, idempotencyKey *string, opts ...op
 // Information that the merchant has entered in their dashboard will not be overwritten.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, requestBody *operations.SubmitOnboardingDataRequestBody, opts ...operations.Option) (*operations.SubmitOnboardingDataResponse, error) {
+func (s *Onboarding) Submit(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, requestBody *operations.SubmitOnboardingDataRequestBody, opts ...operations.Option) (*operations.SubmitOnboardingDataResponse, error) {
 	request := operations.SubmitOnboardingDataRequest{
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		RequestBody:      requestBody,
 	}
 
 	o := operations.Options{}

@@ -53,6 +53,7 @@ const (
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferCreated    EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.created"
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferApproved   EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.approved"
 	EntityWebhookEventWebhookEventTypesBusinessAccountDraftTransferDeclined   EntityWebhookEventWebhookEventTypes = "business-account-draft-transfer.declined"
+	EntityWebhookEventWebhookEventTypesBusinessAccountCreated                 EntityWebhookEventWebhookEventTypes = "business-account.created"
 	EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReceived        EntityWebhookEventWebhookEventTypes = "unmatched-credit-transfer.received"
 	EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferMatched         EntityWebhookEventWebhookEventTypes = "unmatched-credit-transfer.matched"
 	EntityWebhookEventWebhookEventTypesUnmatchedCreditTransferReturned        EntityWebhookEventWebhookEventTypes = "unmatched-credit-transfer.returned"
@@ -74,7 +75,7 @@ func (e EntityWebhookEventWebhookEventTypes) ToPointer() *EntityWebhookEventWebh
 func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "chargeback.received", "chargeback.reversed", "capture.succeeded", "capture.failed", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "business-account-draft-transfer.created", "business-account-draft-transfer.approved", "business-account-draft-transfer.declined", "unmatched-credit-transfer.received", "unmatched-credit-transfer.matched", "unmatched-credit-transfer.returned", "unmatched-credit-transfer.expired", "unmatched-credit-transfer.match.completed", "unmatched-credit-transfer.match.failed", "unmatched-credit-transfer.return.completed", "unmatched-credit-transfer.return.failed", "report.completed", "report.failed", "*":
+		case "payment.paid", "payment.authorized", "payment.failed", "payment.canceled", "payment.expired", "payment.pending", "refund.queued", "refund.pending", "refund.processing", "refund.refunded", "refund.failed", "refund.canceled", "chargeback.received", "chargeback.reversed", "capture.succeeded", "capture.failed", "payment-link.paid", "balance-transaction.created", "payout.initiated", "payout.processing-at-bank", "payout.completed", "payout.canceled", "payout.failed", "sales-invoice.created", "sales-invoice.issued", "sales-invoice.canceled", "sales-invoice.paid", "sales-invoice.e-invoice-failed", "sales-invoice.e-invoice-issued", "business-account-transfer.requested", "business-account-transfer.initiated", "business-account-transfer.pending-review", "business-account-transfer.processed", "business-account-transfer.failed", "business-account-transfer.blocked", "business-account-transfer.returned", "business-account-draft-transfer.created", "business-account-draft-transfer.approved", "business-account-draft-transfer.declined", "business-account.created", "unmatched-credit-transfer.received", "unmatched-credit-transfer.matched", "unmatched-credit-transfer.returned", "unmatched-credit-transfer.expired", "unmatched-credit-transfer.match.completed", "unmatched-credit-transfer.match.failed", "unmatched-credit-transfer.return.completed", "unmatched-credit-transfer.return.failed", "report.completed", "report.failed", "*":
 			return true
 		}
 	}
@@ -84,27 +85,29 @@ func (e *EntityWebhookEventWebhookEventTypes) IsExact() bool {
 type EntityType string
 
 const (
-	EntityTypePaymentResponse       EntityType = "payment-response"
-	EntityTypeRefundResponse        EntityType = "refund-response"
-	EntityTypeEntityChargeback      EntityType = "entity-chargeback"
-	EntityTypeCaptureResponse       EntityType = "capture-response"
-	EntityTypePaymentLinkResponse   EntityType = "payment-link-response"
-	EntityTypeEntityPayoutResponse  EntityType = "entity-payout-response"
-	EntityTypeSalesInvoiceResponse  EntityType = "sales-invoice-response"
-	EntityTypeTransferResponse      EntityType = "transfer-response"
-	EntityTypeDraftTransferResponse EntityType = "draft-transfer-response"
+	EntityTypePaymentResponse         EntityType = "payment-response"
+	EntityTypeRefundResponse          EntityType = "refund-response"
+	EntityTypeEntityChargeback        EntityType = "entity-chargeback"
+	EntityTypeCaptureResponse         EntityType = "capture-response"
+	EntityTypePaymentLinkResponse     EntityType = "payment-link-response"
+	EntityTypeEntityPayoutResponse    EntityType = "entity-payout-response"
+	EntityTypeSalesInvoiceResponse    EntityType = "sales-invoice-response"
+	EntityTypeTransferResponse        EntityType = "transfer-response"
+	EntityTypeDraftTransferResponse   EntityType = "draft-transfer-response"
+	EntityTypeBusinessAccountResponse EntityType = "business-account-response"
 )
 
 type Entity struct {
-	PaymentResponse       *PaymentResponse       `queryParam:"inline" union:"member"`
-	RefundResponse        *RefundResponse        `queryParam:"inline" union:"member"`
-	EntityChargeback      *EntityChargeback      `queryParam:"inline" union:"member"`
-	CaptureResponse       *CaptureResponse       `queryParam:"inline" union:"member"`
-	PaymentLinkResponse   *PaymentLinkResponse   `queryParam:"inline" union:"member"`
-	EntityPayoutResponse  *EntityPayoutResponse  `queryParam:"inline" union:"member"`
-	SalesInvoiceResponse  *SalesInvoiceResponse  `queryParam:"inline" union:"member"`
-	TransferResponse      *TransferResponse      `queryParam:"inline" union:"member"`
-	DraftTransferResponse *DraftTransferResponse `queryParam:"inline" union:"member"`
+	PaymentResponse         *PaymentResponse         `queryParam:"inline" union:"member"`
+	RefundResponse          *RefundResponse          `queryParam:"inline" union:"member"`
+	EntityChargeback        *EntityChargeback        `queryParam:"inline" union:"member"`
+	CaptureResponse         *CaptureResponse         `queryParam:"inline" union:"member"`
+	PaymentLinkResponse     *PaymentLinkResponse     `queryParam:"inline" union:"member"`
+	EntityPayoutResponse    *EntityPayoutResponse    `queryParam:"inline" union:"member"`
+	SalesInvoiceResponse    *SalesInvoiceResponse    `queryParam:"inline" union:"member"`
+	TransferResponse        *TransferResponse        `queryParam:"inline" union:"member"`
+	DraftTransferResponse   *DraftTransferResponse   `queryParam:"inline" union:"member"`
+	BusinessAccountResponse *BusinessAccountResponse `queryParam:"inline" union:"member"`
 
 	Type EntityType
 }
@@ -190,6 +193,15 @@ func CreateEntityDraftTransferResponse(draftTransferResponse DraftTransferRespon
 	}
 }
 
+func CreateEntityBusinessAccountResponse(businessAccountResponse BusinessAccountResponse) Entity {
+	typ := EntityTypeBusinessAccountResponse
+
+	return Entity{
+		BusinessAccountResponse: &businessAccountResponse,
+		Type:                    typ,
+	}
+}
+
 func (u *Entity) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
 	*u = Entity{}
@@ -238,6 +250,13 @@ func (u *Entity) UnmarshalJSON(data []byte) (err error) {
 	if err := utils.UnmarshalJSON(data, &captureResponse, "", true, nil); err == nil {
 		u.CaptureResponse = &captureResponse
 		u.Type = EntityTypeCaptureResponse
+		return nil
+	}
+
+	var businessAccountResponse BusinessAccountResponse = BusinessAccountResponse{}
+	if err := utils.UnmarshalJSON(data, &businessAccountResponse, "", true, nil); err == nil {
+		u.BusinessAccountResponse = &businessAccountResponse
+		u.Type = EntityTypeBusinessAccountResponse
 		return nil
 	}
 
@@ -300,6 +319,10 @@ func (u Entity) MarshalJSON() ([]byte, error) {
 
 	if u.DraftTransferResponse != nil {
 		return utils.MarshalJSON(u.DraftTransferResponse, "", true)
+	}
+
+	if u.BusinessAccountResponse != nil {
+		return utils.MarshalJSON(u.BusinessAccountResponse, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Entity: all fields are null")

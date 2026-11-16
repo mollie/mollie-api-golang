@@ -3,6 +3,43 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
+// BusinessAccountResponseLinks - An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+type BusinessAccountResponseLinks struct {
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Self URLObj `json:"self"`
+	// In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+	Documentation URLObj `json:"documentation"`
+}
+
+func (b BusinessAccountResponseLinks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BusinessAccountResponseLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"self", "documentation"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (b *BusinessAccountResponseLinks) GetSelf() URLObj {
+	if b == nil {
+		return URLObj{}
+	}
+	return b.Self
+}
+
+func (b *BusinessAccountResponseLinks) GetDocumentation() URLObj {
+	if b == nil {
+		return URLObj{}
+	}
+	return b.Documentation
+}
+
 type BusinessAccountResponse struct {
 	// Indicates the response contains a business account object. Will always contain the string `business-account`
 	// for this endpoint.
@@ -20,6 +57,19 @@ type BusinessAccountResponse struct {
 	Mode Mode `json:"mode"`
 	// The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
 	CreatedAt string `json:"createdAt"`
+	// An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+	Links BusinessAccountResponseLinks `json:"_links"`
+}
+
+func (b BusinessAccountResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BusinessAccountResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"resource", "id", "accountDetails", "balance", "status", "mode", "createdAt", "_links"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (b *BusinessAccountResponse) GetResource() string {
@@ -69,4 +119,11 @@ func (b *BusinessAccountResponse) GetCreatedAt() string {
 		return ""
 	}
 	return b.CreatedAt
+}
+
+func (b *BusinessAccountResponse) GetLinks() BusinessAccountResponseLinks {
+	if b == nil {
+		return BusinessAccountResponseLinks{}
+	}
+	return b.Links
 }

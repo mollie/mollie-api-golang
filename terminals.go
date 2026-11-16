@@ -333,13 +333,7 @@ func (s *Terminals) List(ctx context.Context, request operations.ListTerminalsRe
 // Retrieve a single terminal by its ID.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetTerminalResponse, error) {
-	request := operations.GetTerminalRequest{
-		TerminalID:     terminalID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Terminals) Get(ctx context.Context, request operations.GetTerminalRequest, opts ...operations.Option) (*operations.GetTerminalResponse, error) {
 	globals := operations.GetTerminalGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -600,13 +594,7 @@ func (s *Terminals) Get(ctx context.Context, terminalID string, testmode *bool, 
 // Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.OAuth] from the global security.
-func (s *Terminals) TerminalsRequestPairingCode(ctx context.Context, include *string, idempotencyKey *string, requestBody *operations.TerminalsRequestPairingCodeRequestBody, opts ...operations.Option) (*operations.TerminalsRequestPairingCodeResponse, error) {
-	request := operations.TerminalsRequestPairingCodeRequest{
-		Include:        include,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Terminals) TerminalsRequestPairingCode(ctx context.Context, request operations.TerminalsRequestPairingCodeRequest, opts ...operations.Option) (*operations.TerminalsRequestPairingCodeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1132,13 +1120,7 @@ func (s *Terminals) TerminalsListPairingCodes(ctx context.Context, request opera
 // returns a 404. Active pairing codes are never deleted.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.OAuth] from the global security.
-func (s *Terminals) TerminalsGetPairingCode(ctx context.Context, pairingCodeID string, include *string, idempotencyKey *string, opts ...operations.Option) (*operations.TerminalsGetPairingCodeResponse, error) {
-	request := operations.TerminalsGetPairingCodeRequest{
-		PairingCodeID:  pairingCodeID,
-		Include:        include,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Terminals) TerminalsGetPairingCode(ctx context.Context, request operations.TerminalsGetPairingCodeRequest, opts ...operations.Option) (*operations.TerminalsGetPairingCodeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1394,10 +1376,12 @@ func (s *Terminals) TerminalsGetPairingCode(ctx context.Context, pairingCodeID s
 // We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a 404.
 //
 // If set, this operation will use either [Security.APIKey] or [Security.OAuth] from the global security.
-func (s *Terminals) TerminalsRevokePairingCode(ctx context.Context, pairingCodeID string, idempotencyKey *string, opts ...operations.Option) (*operations.TerminalsRevokePairingCodeResponse, error) {
+func (s *Terminals) TerminalsRevokePairingCode(ctx context.Context, pairingCodeID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.TerminalsRevokePairingCodeResponse, error) {
 	request := operations.TerminalsRevokePairingCodeRequest{
-		PairingCodeID:  pairingCodeID,
-		IdempotencyKey: idempotencyKey,
+		PairingCodeID:    pairingCodeID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

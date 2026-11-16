@@ -57,6 +57,12 @@ entity := components.CreateEntityTransferResponse(components.TransferResponse{/*
 entity := components.CreateEntityDraftTransferResponse(components.DraftTransferResponse{/* values here */})
 ```
 
+### BusinessAccountResponse
+
+```go
+entity := components.CreateEntityBusinessAccountResponse(components.BusinessAccountResponse{/* values here */})
+```
+
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -81,5 +87,7 @@ switch entity.Type {
 		// entity.TransferResponse is populated
 	case components.EntityTypeDraftTransferResponse:
 		// entity.DraftTransferResponse is populated
+	case components.EntityTypeBusinessAccountResponse:
+		// entity.BusinessAccountResponse is populated
 }
 ```

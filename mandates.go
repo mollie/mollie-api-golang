@@ -40,13 +40,7 @@ func newMandates(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 // mandates for cards, your customers need to perform a 'first payment' with their card.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Mandates) Create(ctx context.Context, customerID string, idempotencyKey *string, mandateRequest *components.MandateRequest, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
-	request := operations.CreateMandateRequest{
-		CustomerID:     customerID,
-		IdempotencyKey: idempotencyKey,
-		MandateRequest: mandateRequest,
-	}
-
+func (s *Mandates) Create(ctx context.Context, request operations.CreateMandateRequest, opts ...operations.Option) (*operations.CreateMandateResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -596,14 +590,7 @@ func (s *Mandates) List(ctx context.Context, request operations.ListMandatesRequ
 // account details, card details, or PayPal account details.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetMandateResponse, error) {
-	request := operations.GetMandateRequest{
-		CustomerID:     customerID,
-		MandateID:      mandateID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Mandates) Get(ctx context.Context, request operations.GetMandateRequest, opts ...operations.Option) (*operations.GetMandateResponse, error) {
 	globals := operations.GetMandateGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}
@@ -856,14 +843,7 @@ func (s *Mandates) Get(ctx context.Context, customerID string, mandateID string,
 // mandate, and all connected subscriptions will be canceled.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *Mandates) Revoke(ctx context.Context, customerID string, mandateID string, idempotencyKey *string, requestBody *operations.RevokeMandateRequestBody, opts ...operations.Option) (*operations.RevokeMandateResponse, error) {
-	request := operations.RevokeMandateRequest{
-		CustomerID:     customerID,
-		MandateID:      mandateID,
-		IdempotencyKey: idempotencyKey,
-		RequestBody:    requestBody,
-	}
-
+func (s *Mandates) Revoke(ctx context.Context, request operations.RevokeMandateRequest, opts ...operations.Option) (*operations.RevokeMandateResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

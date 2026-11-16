@@ -42,10 +42,12 @@ func newCheckoutSessions(rootSDK *Client, sdkConfig config.SDKConfiguration, hoo
 // Create a Checkout Session to start a checkout process with Mollie Components.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *CheckoutSessions) Create(ctx context.Context, idempotencyKey *string, sessionRequest *components.SessionRequest, opts ...operations.Option) (*operations.CreateSessionResponse, error) {
+func (s *CheckoutSessions) Create(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, sessionRequest *components.SessionRequest, opts ...operations.Option) (*operations.CreateSessionResponse, error) {
 	request := operations.CreateSessionRequest{
-		IdempotencyKey: idempotencyKey,
-		SessionRequest: sessionRequest,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
+		SessionRequest:   sessionRequest,
 	}
 
 	o := operations.Options{}
@@ -304,10 +306,12 @@ func (s *CheckoutSessions) Create(ctx context.Context, idempotencyKey *string, s
 // Retrieve a Checkout Session to view its details and status to inform your customers about the checkout process.
 //
 // If set, this operation will use one of [Security.APIKey], [Security.AdvancedAccessToken], or [Security.OAuth] from the global security.
-func (s *CheckoutSessions) Get(ctx context.Context, sessionID string, idempotencyKey *string, opts ...operations.Option) (*operations.GetSessionResponse, error) {
+func (s *CheckoutSessions) Get(ctx context.Context, sessionID string, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.GetSessionResponse, error) {
 	request := operations.GetSessionRequest{
-		SessionID:      sessionID,
-		IdempotencyKey: idempotencyKey,
+		SessionID:        sessionID,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}

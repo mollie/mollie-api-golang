@@ -126,10 +126,12 @@ func main() {
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+		Currency:         client.Pointer("EUR"),
+		From:             client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:            client.Pointer[int64](50),
+		IdempotencyKey:   client.Pointer("123e4567-e89b-12d3-a456-426"),
+		XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+		XClientSignedAt:  client.Pointer("2025-01-01T12:00:00Z"),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -297,6 +299,7 @@ s := client.New(
 
 ### [Accounts](docs/sdks/accounts/README.md)
 
+* [CreateAccount](docs/sdks/accounts/README.md#createaccount) - Create business account
 * [ListAccounts](docs/sdks/accounts/README.md#listaccounts) - List business accounts
 * [GetAccount](docs/sdks/accounts/README.md#getaccount) - Get business account
 * [List](docs/sdks/accounts/README.md#list) - List transactions
@@ -579,10 +582,12 @@ func main() {
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+		Currency:         client.Pointer("EUR"),
+		From:             client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:            client.Pointer[int64](50),
+		IdempotencyKey:   client.Pointer("123e4567-e89b-12d3-a456-426"),
+		XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+		XClientSignedAt:  client.Pointer("2025-01-01T12:00:00Z"),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -638,10 +643,12 @@ func main() {
 	)
 
 	res, err := s.Balances.List(ctx, operations.ListBalancesRequest{
-		Currency:       client.Pointer("EUR"),
-		From:           client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
-		Limit:          client.Pointer[int64](50),
-		IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+		Currency:         client.Pointer("EUR"),
+		From:             client.Pointer("bal_gVMhHKqSSRYJyPsuoPNFH"),
+		Limit:            client.Pointer[int64](50),
+		IdempotencyKey:   client.Pointer("123e4567-e89b-12d3-a456-426"),
+		XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+		XClientSignedAt:  client.Pointer("2025-01-01T12:00:00Z"),
 	})
 	if err != nil {
 		log.Fatal(err)

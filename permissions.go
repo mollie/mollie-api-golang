@@ -38,9 +38,11 @@ func newPermissions(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *h
 // The results are **not** paginated.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...operations.Option) (*operations.ListPermissionsResponse, error) {
+func (s *Permissions) List(ctx context.Context, idempotencyKey *string, xClientSignature *string, xClientSignedAt *string, opts ...operations.Option) (*operations.ListPermissionsResponse, error) {
 	request := operations.ListPermissionsRequest{
-		IdempotencyKey: idempotencyKey,
+		IdempotencyKey:   idempotencyKey,
+		XClientSignature: xClientSignature,
+		XClientSignedAt:  xClientSignedAt,
 	}
 
 	o := operations.Options{}
@@ -286,13 +288,7 @@ func (s *Permissions) List(ctx context.Context, idempotencyKey *string, opts ...
 // Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
 //
 // If set, this operation will use either [Security.AdvancedAccessToken] or [Security.OAuth] from the global security.
-func (s *Permissions) Get(ctx context.Context, permissionID string, testmode *bool, idempotencyKey *string, opts ...operations.Option) (*operations.GetPermissionResponse, error) {
-	request := operations.GetPermissionRequest{
-		PermissionID:   permissionID,
-		Testmode:       testmode,
-		IdempotencyKey: idempotencyKey,
-	}
-
+func (s *Permissions) Get(ctx context.Context, request operations.GetPermissionRequest, opts ...operations.Option) (*operations.GetPermissionResponse, error) {
 	globals := operations.GetPermissionGlobals{
 		Testmode: s.sdkConfiguration.Globals.Testmode,
 	}

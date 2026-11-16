@@ -19,9 +19,7 @@ type CreateTransferRequest struct {
 	//
 	// View the [public documentation](https://docs.mollie.com/reference/api-idempotency#using-an-idempotency-key)
 	// to learn more.
-	IdempotencyKey string `header:"style=simple,explode=false,name=Idempotency-Key"`
-	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey1 *string                     `header:"style=simple,explode=false,name=idempotency-key"`
+	IdempotencyKey  string                      `header:"style=simple,explode=false,name=Idempotency-Key"`
 	TransferRequest *components.TransferRequest `request:"mediaType=application/json"`
 }
 
@@ -44,13 +42,6 @@ func (c *CreateTransferRequest) GetIdempotencyKey() string {
 		return ""
 	}
 	return c.IdempotencyKey
-}
-
-func (c *CreateTransferRequest) GetIdempotencyKey1() *string {
-	if c == nil {
-		return nil
-	}
-	return c.IdempotencyKey1
 }
 
 func (c *CreateTransferRequest) GetTransferRequest() *components.TransferRequest {

@@ -30,6 +30,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -42,13 +43,19 @@ func main() {
         }),
     )
 
-    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
-        Description: client.Pointer("Capture for cart #12345"),
-        Amount: &components.AmountNullable{
-            Currency: "EUR",
-            Value: "10.00",
+    res, err := s.Captures.Create(ctx, operations.CreateCaptureRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        EntityCapture: &components.EntityCapture{
+            Description: client.Pointer("Capture for cart #12345"),
+            Amount: &components.AmountNullable{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Testmode: client.Pointer(false),
         },
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -79,6 +86,7 @@ import(
 	"os"
 	"github.com/mollie/mollie-api-golang/models/components"
 	client "github.com/mollie/mollie-api-golang"
+	"github.com/mollie/mollie-api-golang/models/operations"
 	"log"
 )
 
@@ -91,13 +99,19 @@ func main() {
         }),
     )
 
-    res, err := s.Captures.Create(ctx, "tr_5B8cwPMGnU", client.Pointer("123e4567-e89b-12d3-a456-426"), &components.EntityCapture{
-        Description: client.Pointer("Capture for cart #12345"),
-        Amount: &components.AmountNullable{
-            Currency: "EUR",
-            Value: "10.00",
+    res, err := s.Captures.Create(ctx, operations.CreateCaptureRequest{
+        PaymentID: "tr_5B8cwPMGnU",
+        IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
+        EntityCapture: &components.EntityCapture{
+            Description: client.Pointer("Capture for cart #12345"),
+            Amount: &components.AmountNullable{
+                Currency: "EUR",
+                Value: "10.00",
+            },
+            Testmode: client.Pointer(false),
         },
-        Testmode: client.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -120,13 +134,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |                                                                                  |
-| `paymentID`                                                                      | `string`                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
-| `idempotencyKey`                                                                 | `*string`                                                                        | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityCapture`                                                                  | [*components.EntityCapture](../../models/components/entitycapture.md)            | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |                                                                                  |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreateCaptureRequest](../../models/operations/createcapturerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -176,6 +188,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -228,6 +242,8 @@ func main() {
         Limit: client.Pointer[int64](50),
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -304,6 +320,8 @@ func main() {
         CaptureID: "cpt_vytxeTZskVKR7C7WgdSP3d",
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
@@ -353,6 +371,8 @@ func main() {
         CaptureID: "cpt_vytxeTZskVKR7C7WgdSP3d",
         Embed: client.Pointer("payment"),
         IdempotencyKey: client.Pointer("123e4567-e89b-12d3-a456-426"),
+        XClientSignature: client.Pointer("MEUCIQDx8sJvK3z..."),
+        XClientSignedAt: client.Pointer("2025-01-01T12:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)

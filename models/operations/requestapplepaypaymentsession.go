@@ -50,8 +50,12 @@ func (r *RequestApplePayPaymentSessionRequestBody) GetProfileID() *string {
 
 type RequestApplePayPaymentSessionRequest struct {
 	// A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-	IdempotencyKey *string                                   `header:"style=simple,explode=false,name=idempotency-key"`
-	RequestBody    *RequestApplePayPaymentSessionRequestBody `request:"mediaType=application/json"`
+	IdempotencyKey *string `header:"style=simple,explode=false,name=idempotency-key"`
+	// A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+	XClientSignature *string `header:"style=simple,explode=false,name=X-Client-Signature"`
+	// The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+	XClientSignedAt *string                                   `header:"style=simple,explode=false,name=X-Client-Signed-At"`
+	RequestBody     *RequestApplePayPaymentSessionRequestBody `request:"mediaType=application/json"`
 }
 
 func (r *RequestApplePayPaymentSessionRequest) GetIdempotencyKey() *string {
@@ -59,6 +63,20 @@ func (r *RequestApplePayPaymentSessionRequest) GetIdempotencyKey() *string {
 		return nil
 	}
 	return r.IdempotencyKey
+}
+
+func (r *RequestApplePayPaymentSessionRequest) GetXClientSignature() *string {
+	if r == nil {
+		return nil
+	}
+	return r.XClientSignature
+}
+
+func (r *RequestApplePayPaymentSessionRequest) GetXClientSignedAt() *string {
+	if r == nil {
+		return nil
+	}
+	return r.XClientSignedAt
 }
 
 func (r *RequestApplePayPaymentSessionRequest) GetRequestBody() *RequestApplePayPaymentSessionRequestBody {

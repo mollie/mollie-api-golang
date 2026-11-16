@@ -3,6 +3,10 @@
 
 package components
 
+import (
+	"github.com/mollie/mollie-api-golang/internal/utils"
+)
+
 // AccountDetails - The account holder details and bank account information for the business account.
 type AccountDetails struct {
 	// The name of the account holder.
@@ -15,6 +19,17 @@ type AccountDetails struct {
 	Iban string `json:"iban"`
 	// The BIC (Bank Identifier Code) of the account.
 	Bic *string `json:"bic,omitempty"`
+}
+
+func (a AccountDetails) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountDetails) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"accountHolderName", "currency", "iban"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (a *AccountDetails) GetAccountHolderName() string {
