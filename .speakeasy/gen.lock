@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0d194235-0cbf-49b0-95d5-397b67f65b06
 management:
-  docChecksum: 4afb838923553b2c29b8409cad5fe1f4
+  docChecksum: 43bb426a6dacee4cfe87197a7e53739c
   docVersion: 1.0.0
-  speakeasyVersion: 1.809.0
-  generationVersion: 2.961.1
-  releaseVersion: 1.5.7
-  configChecksum: 3faacf60b0fb1d259f97f9995bf5d2c2
+  speakeasyVersion: 1.811.0
+  generationVersion: 2.968.1
+  releaseVersion: 1.5.8
+  configChecksum: 10859bd3136b9250f5377313b3147601
   repoURL: https://github.com/mollie/mollie-api-golang.git
   installationURL: https://github.com/mollie/mollie-api-golang
 persistentEdits:
-  generation_id: cfc6b230-1580-473f-aea5-0cc74ebcbdbe
-  pristine_commit_hash: 611ea233e92318c40a0adc21c5e122de51e1d8ee
-  pristine_tree_hash: a0071b0f8b95cf76230d23ba966014fef7e415e1
+  generation_id: d3beb09e-0a27-4aee-bcc8-1308a18051e7
+  pristine_commit_hash: db55663b896f902fedb591464ef1d534d1f568f3
+  pristine_tree_hash: 59b6643a0a41b6a071480cbf3f6105a5ab28a86e
 features:
   go:
     additionalDependencies: 0.1.0
@@ -61,8 +61,8 @@ trackedFiles:
     pristine_git_object: 4b8a307dba50434d1b0d27e17edc79cd9c3e78db
   accounts.go:
     id: c7bd7b26c9d3
-    last_write_checksum: sha1:a48069b9275b4267f807fd9cf5aa78cc81fdfde6
-    pristine_git_object: 81f7d63a9c53a2b3fc6330914ebc2b160280b78c
+    last_write_checksum: sha1:6dd93ca752a4be9e6e30ea59205b2c828358203f
+    pristine_git_object: 2b77fb737c1a9e1851f37d6469d1cc2caa4223fe
   balances.go:
     id: 3e5eeed258ec
     last_write_checksum: sha1:cf2f9a3d4c8ac26fad0e09278a7abb396b8b1032
@@ -89,8 +89,8 @@ trackedFiles:
     pristine_git_object: b3fb997a1be564a2d39b5a4f1a2fe6e07f45769a
   client.go:
     id: d633516feaf9
-    last_write_checksum: sha1:2aa7beadaf949e59f02fee5c0e883b3517f32547
-    pristine_git_object: a09519758cd23bf7353b1ec1bbf65c058b7bbd37
+    last_write_checksum: sha1:273aad97d3a35c4bdf41b2991dffed7b22163df6
+    pristine_git_object: 042b9173c88fec0f1fe2a1da346a177b6970d7d7
   clientlinks.go:
     id: 380a1fe44314
     last_write_checksum: sha1:3545f84cfb5b54b2a834ffc400d47b3b680ebaf0
@@ -4057,8 +4057,8 @@ trackedFiles:
     pristine_git_object: 3b8263d62446ad9bab7a9d5b3af222efa664f092
   docs/sdks/accounts/README.md:
     id: d6c754b1ca96
-    last_write_checksum: sha1:2287d491d87fe7a64cc2a7df99e8fc39831f0588
-    pristine_git_object: a2f56c3ce09bfd08b8349416e524c8f158337e92
+    last_write_checksum: sha1:9003f6e76b4940a6316ea7c1a848e3646430631a
+    pristine_git_object: 5eb10922269d57b56b2025ce591d1bf52d87ad89
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:411bf603af648f18b23dbce2cca63b8315efd93f
@@ -4237,8 +4237,8 @@ trackedFiles:
     pristine_git_object: 8b822b06e0c7e37d71871628086ea44c9df57f04
   internal/utils/json.go:
     id: ad03e3c502d8
-    last_write_checksum: sha1:4e02f965e1461668a201b810e738ffa84eb05bd8
-    pristine_git_object: 967720586d82ce27966c1f4dad5f0ff2b7a9d682
+    last_write_checksum: sha1:08501048922a5c34277b1f016e013e302fd2b1ba
+    pristine_git_object: 0b326f0b498026dae2dbb0aaaeaccd9d663202fe
   internal/utils/pathparams.go:
     id: 1f3e0c30fd90
     last_write_checksum: sha1:eae909de6b27c96dac158708c9de9c6536ac488d
@@ -10967,7 +10967,6 @@ examples:
         "201":
           application/hal+json: {"resource": "business-account", "id": "ba_nopqrstuvwxyz23456789A", "accountDetails": {"accountHolderName": "Mollie B.V.", "name": "Main Checking Account", "currency": "EUR", "iban": "NL95MLLE1234567890", "bic": "MLLENL2AXXX"}, "balance": {"total": {"currency": "EUR", "value": "0.00"}}, "status": "active", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/accounts/ba_nopqrstuvwxyz23456789A", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/create-business-account", "type": "text/html"}}}
 examplesVersion: 1.0.2
-releaseNotes: "## Go SDK Changes:\n* `Client.Refunds.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Mandates.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payouts.Cancel()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payouts.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.DraftTransfers.Cancel()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.DraftTransfers.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Transfers.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Transfers.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Accounts.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Accounts.GetAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.Links` **Added**\n* `Client.SalesInvoices.Delete()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.SalesInvoices.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Subscriptions.Cancel()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Subscriptions.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Subscriptions.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Subscriptions.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Mandates.Revoke()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Permissions.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Organizations.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Mandates.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Customers.CreatePayment()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Customers.Delete()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Profiles.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Customers.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Customers.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.DelayedRouting.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.DelayedRouting.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.DelayedRouting.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Clients.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Clients.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Terminals.TerminalsGetPairingCode()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Create()`: \n  *  `request` **Changed**\n  *  `response.EventTypes[].Enum(businessAccount.created)` **Added** (Breaking ⚠️)\n* `Client.Webhooks.List()`: \n  *  `request.Request` **Changed**\n  *  `response.Embedded.Webhooks[].EventTypes[].Enum(businessAccount.created)` **Added** (Breaking ⚠️)\n* `Client.Webhooks.Update()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.EventTypes[].Enum(businessAccount.created)` **Added** (Breaking ⚠️)\n* `Client.Webhooks.Get()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.EventTypes[].Enum(businessAccount.created)` **Added** (Breaking ⚠️)\n* `Client.Webhooks.Delete()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Webhooks.Test()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.WebhookEvents.Get()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Client.Terminals.TerminalsRequestPairingCode()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Terminals.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.BalanceTransfers.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payments.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.PaymentLinks.Delete()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.PaymentLinks.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payments.Update()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payments.Cancel()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Payments.ReleaseAuthorization()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.UnmatchedCreditTransfers.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.PaymentLinks.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.UnmatchedCreditTransfers.Match()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.PaymentLinks.List()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Captures.Create()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Refunds.Cancel()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Balances.Get()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Methods.DisableIssuer()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Methods.Disable()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Methods.Enable()`:  `request` **Changed** (Breaking ⚠️)\n* `Client.Profiles.Create()`:  `request` **Changed**\n* `Client.Profiles.GetCurrent()`:  `request` **Changed**\n* `Client.Methods.All()`:  `request.Request` **Changed**\n* `Client.Methods.List()`:  `request.Request` **Changed**\n* `Client.Organizations.GetPartner()`:  `request` **Changed**\n* `Client.Settlements.GetOpen()`:  `request` **Changed**\n* `Client.CheckoutSessions.Get()`:  `request` **Changed**\n* `Client.Refunds.All()`:  `request.Request` **Changed**\n* `Client.Chargebacks.List()`:  `request.Request` **Changed**\n* `Client.Chargebacks.Get()`:  `request.Request` **Changed**\n* `Client.Chargebacks.All()`:  `request.Request` **Changed**\n* `Client.CheckoutSessions.Create()`:  `request` **Changed**\n* `Client.Captures.List()`:  `request.Request` **Changed**\n* `Client.Captures.Get()`:  `request.Request` **Changed**\n* `Client.Wallets.RequestApplePaySession()`:  `request` **Changed**\n* `Client.PaymentLinks.Create()`:  `request` **Changed**\n* `Client.UnmatchedCreditTransfers.Return()`:  `request` **Changed**\n* `Client.UnmatchedCreditTransfers.Get()`:  `request` **Changed**\n* `Client.Payments.Get()`:  `request.Request` **Changed**\n* `Client.Payments.List()`:  `request.Request` **Changed**\n* `Client.PaymentLinks.ListPayments()`:  `request.Request` **Changed**\n* `Client.Terminals.List()`:  `request.Request` **Changed**\n* `Client.BalanceTransfers.List()`:  `request.Request` **Changed**\n* `Client.BalanceTransfers.Create()`:  `request` **Changed**\n* `Client.Terminals.TerminalsListPairingCodes()`:  `request.Request` **Changed**\n* `Client.ClientLinks.Create()`:  `request` **Changed**\n* `Client.Terminals.TerminalsRevokePairingCode()`:  `request` **Changed**\n* `Client.Capabilities.List()`:  `request` **Changed**\n* `Client.Onboarding.Submit()`:  `request` **Changed**\n* `Client.Onboarding.Get()`:  `request` **Changed**\n* `Client.Customers.Create()`:  `request` **Changed**\n* `Client.Customers.List()`:  `request.Request` **Changed**\n* `Client.Balances.List()`:  `request.Request` **Changed**\n* `Client.Methods.EnableIssuer()`:  `request.Request` **Changed**\n* `Client.Reports.Get()`:  `request` **Changed**\n* `Client.Methods.Get()`:  `request.Request` **Changed**\n* `Client.Customers.ListPayments()`:  `request.Request` **Changed**\n* `Client.Refunds.List()`:  `request.Request` **Changed**\n* `Client.Mandates.List()`:  `request.Request` **Changed**\n* `Client.Organizations.GetCurrent()`:  `request` **Changed**\n* `Client.Permissions.List()`:  `request` **Changed**\n* `Client.Invoices.Get()`:  `request` **Changed**\n* `Client.Subscriptions.List()`:  `request.Request` **Changed**\n* `Client.Invoices.List()`:  `request.Request` **Changed**\n* `Client.Settlements.ListChargebacks()`:  `request.Request` **Changed**\n* `Client.Settlements.ListRefunds()`:  `request.Request` **Changed**\n* `Client.Subscriptions.All()`:  `request.Request` **Changed**\n* `Client.Subscriptions.ListPayments()`:  `request.Request` **Changed**\n* `Client.SalesInvoices.Create()`:  `request` **Changed**\n* `Client.Settlements.ListCaptures()`:  `request.Request` **Changed**\n* `Client.Settlements.ListPayments()`:  `request.Request` **Changed**\n* `Client.Settlements.GetNext()`:  `request` **Changed**\n* `Client.Refunds.Get()`:  `request.Request` **Changed**\n* `Client.Accounts.ListAccounts()`: \n  *  `request.Request` **Changed**\n  *  `response.Embedded.BusinessAccounts[].Links` **Added**\n* `Client.Settlements.Get()`:  `request` **Changed**\n* `Client.Accounts.List()`:  `request.Request` **Changed**\n* `Client.Settlements.List()`:  `request.Request` **Changed**\n* `Client.Profiles.Delete()`:  `request` **Changed**\n* `Client.Reports.Create()`:  `request` **Changed**\n* `Client.VerifyPayee.Create()`:  `request` **Changed**\n* `Client.DraftTransfers.Create()`:  `request` **Changed**\n* `Client.DraftTransfers.List()`:  `request.Request` **Changed**\n* `Client.Balances.ListTransactions()`:  `request.Request` **Changed**\n* `Client.Balances.GetReport()`:  `request.Request` **Changed**\n* `Client.Payouts.Create()`:  `request` **Changed**\n* `Client.Payouts.List()`:  `request.Request` **Changed**\n* `Client.Balances.GetPrimary()`:  `request` **Changed**\n* `Client.Accounts.CreateAccount()`: **Added**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
