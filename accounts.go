@@ -34,9 +34,17 @@ func newAccounts(rootSDK *Client, sdkConfig config.SDKConfiguration, hooks *hook
 }
 
 // CreateAccount - Create business account
-// > 🔒 Restricted access
+// > 🚧 Beta feature
 // >
-// > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+// > This feature is currently in beta testing, and the final specification may still change.
+//
+// > 🔐 **Request signing required**
+// >
+// > Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+// >
+// > Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+// >
+// > [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
 //
 // Create a new business account for the authenticated organization.
 //
@@ -305,9 +313,13 @@ func (s *Accounts) CreateAccount(ctx context.Context, idempotencyKey *string, xC
 }
 
 // ListAccounts - List business accounts
-// > 🔒 Restricted access
+// > 🔐 **Request signing required**
 // >
-// > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+// > Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+// >
+// > Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+// >
+// > [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
 //
 // Retrieve all business accounts for the authenticated organization.
 //
@@ -605,9 +617,13 @@ func (s *Accounts) ListAccounts(ctx context.Context, request operations.ListBusi
 }
 
 // GetAccount - Get business account
-// > 🔒 Restricted access
+// > 🔐 **Request signing required**
 // >
-// > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+// > Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+// >
+// > Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+// >
+// > [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
 //
 // Retrieve a single business account object by its account ID. This allows you to check the current status,
 // balance, and account details.
@@ -862,9 +878,13 @@ func (s *Accounts) GetAccount(ctx context.Context, request operations.GetBusines
 }
 
 // List transactions
-// > 🔒 Restricted access
+// > 🔐 **Request signing required**
 // >
-// > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+// > Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+// >
+// > Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+// >
+// > [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
 //
 // Retrieve all transactions for a specific business account.
 //
@@ -1162,9 +1182,13 @@ func (s *Accounts) List(ctx context.Context, request operations.ListBusinessAcco
 }
 
 // Get transaction
-// > 🔒 Restricted access
+// > 🔐 **Request signing required**
 // >
-// > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+// > Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+// >
+// > Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+// >
+// > [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
 //
 // Retrieve a single transaction object by its transaction ID. This allows you to check the details,
 // amount, counterparty, and balance impact of a specific transaction.
